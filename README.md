@@ -1,8 +1,9 @@
-[go to website](https://thorvaldursaemundsson.github.io/public/ "website")
+[go to website](https://thorvaldursaemundsson.github.io/infinitedarkness/ "website")
 
-[have a gander at the source code](https://github.com/thorvaldursaemundsson/thorvaldursaemundsson.github.io "source code")
+[have a gander at the source code](https://github.com/thorvaldursaemundsson/infinitedarkness "source code")
 
-cheatsheet
-npm run start
-npm run build
-npm run deploy
+# cheatsheet
+$ npm install
+$ npm run start
+$ npm run build
+$ npm run deploy
