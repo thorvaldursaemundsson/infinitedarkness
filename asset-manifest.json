@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "thorvaldursaemundsson.github.io/static/css/main.dfca195d.chunk.css",
-    "main.js": "thorvaldursaemundsson.github.io/static/js/main.00a06036.chunk.js",
-    "main.js.map": "thorvaldursaemundsson.github.io/static/js/main.00a06036.chunk.js.map",
-    "runtime-main.js": "thorvaldursaemundsson.github.io/static/js/runtime-main.49d3c174.js",
-    "runtime-main.js.map": "thorvaldursaemundsson.github.io/static/js/runtime-main.49d3c174.js.map",
-    "static/js/2.d1b1d0bf.chunk.js": "thorvaldursaemundsson.github.io/static/js/2.d1b1d0bf.chunk.js",
-    "static/js/2.d1b1d0bf.chunk.js.map": "thorvaldursaemundsson.github.io/static/js/2.d1b1d0bf.chunk.js.map",
-    "index.html": "thorvaldursaemundsson.github.io/index.html",
-    "precache-manifest.7492ef67419cc4ae672a1844f7aa8fdc.js": "thorvaldursaemundsson.github.io/precache-manifest.7492ef67419cc4ae672a1844f7aa8fdc.js",
-    "service-worker.js": "thorvaldursaemundsson.github.io/service-worker.js",
-    "static/css/main.dfca195d.chunk.css.map": "thorvaldursaemundsson.github.io/static/css/main.dfca195d.chunk.css.map"
+    "main.css": "thorvaldursaemundsson.github.io/infinitedarkness/static/css/main.dfca195d.chunk.css",
+    "main.js": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/main.68967039.chunk.js",
+    "main.js.map": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/main.68967039.chunk.js.map",
+    "runtime-main.js": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/runtime-main.296c8676.js",
+    "runtime-main.js.map": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/runtime-main.296c8676.js.map",
+    "static/js/2.d1b1d0bf.chunk.js": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/2.d1b1d0bf.chunk.js",
+    "static/js/2.d1b1d0bf.chunk.js.map": "thorvaldursaemundsson.github.io/infinitedarkness/static/js/2.d1b1d0bf.chunk.js.map",
+    "index.html": "thorvaldursaemundsson.github.io/infinitedarkness/index.html",
+    "precache-manifest.8b91db009384cb96c9e25cbc5fbd3ddb.js": "thorvaldursaemundsson.github.io/infinitedarkness/precache-manifest.8b91db009384cb96c9e25cbc5fbd3ddb.js",
+    "service-worker.js": "thorvaldursaemundsson.github.io/infinitedarkness/service-worker.js",
+    "static/css/main.dfca195d.chunk.css.map": "thorvaldursaemundsson.github.io/infinitedarkness/static/css/main.dfca195d.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.49d3c174.js",
+    "static/js/runtime-main.296c8676.js",
     "static/js/2.d1b1d0bf.chunk.js",
     "static/css/main.dfca195d.chunk.css",
-    "static/js/main.00a06036.chunk.js"
+    "static/js/main.68967039.chunk.js"
   ]
 }
