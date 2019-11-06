@@ -38,15 +38,15 @@ export class Character {
     skills: Skill[];
     techniques: Technique[];
     constructor(copy?: ICharacter) {
-        this.strength = copy && copy.strength || 5;
-        this.agility = copy && copy.agility || 5;
-        this.endurance = copy && copy.endurance || 5;
-        this.perception = copy && copy.perception || 5;
-        this.willpower = copy && copy.willpower || 5;
-        this.intelligence = copy && copy.intelligence || 5;
-        this.skills = copy && copy.skills || GetSkillList();
+        this.strength = (copy && copy.strength) || 5;
+        this.agility = (copy && copy.agility) || 5;
+        this.endurance = (copy && copy.endurance) || 5;
+        this.perception = (copy && copy.perception) || 5;
+        this.willpower = (copy && copy.willpower) || 5;
+        this.intelligence = (copy && copy.intelligence) || 5;
+        this.skills = (copy && copy.skills) || GetSkillList();
         this.techniques = [];
-        this.age = copy && copy.age || 18;
+        this.age = (copy && copy.age) || 18;
     }
     public getCalculatedPointsUsed() {
         return fSum(this.strength) * 4

@@ -1,19 +1,11 @@
-import React, { useState, useReducer } from 'react';
+import React, {  useReducer } from 'react';
 import { Field } from './Field';
-import { Label } from './Label';
 import { Paper, Grid } from '@material-ui/core';
-import { Skill, GetSkillList } from './Skills';
-import { normalize } from 'path';
 import { Character } from './Character';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
 }
-
-
-
-
-
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
