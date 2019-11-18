@@ -1,16 +1,18 @@
 import React, {  useReducer } from 'react';
 import { Field } from './Field';
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid,Button } from '@material-ui/core';
 import { Character } from './Character';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
+    characterCallback:(c:Character) => void;
 }
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
 
     return <Paper style={{ textAlign: 'left' }}>
+        <Button onClick={() => props.characterCallback(character)}>exit</Button>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
@@ -23,6 +25,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
             </Grid>
             <Grid item xs={12} sm={6}>
                 <Field label='age' max={80} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}></Field>
+                <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
                 <Paper>mana: {character.getMana()}</Paper>
                 <Paper>damage bonus small: {character.getDamageBonusSmall()}</Paper>
@@ -40,7 +43,16 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         case 'willpower': modifier = character.willpower; break;
                         case 'intelligence': modifier = character.intelligence; break;
                     }
-                    return <Field modifier={modifier} max={30} min={0} label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()} value={s.level} onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}></Field>
+                    return <Field
+                        enableDice={true}
+                        modifier={modifier}
+                        max={30}
+                        min={0}
+                        label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()} 
+                        value={s.level} 
+                        onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
+                           {s.description} 
+                    </Field>
                 })}
             </Grid>
         </Grid>

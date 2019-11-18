@@ -48,6 +48,8 @@ export class Character {
         this.techniques = [];
         this.age = (copy && copy.age) || 18;
     }
+
+
     public getCalculatedPointsUsed() {
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
@@ -70,6 +72,16 @@ export class Character {
         return this.getStartingPointsAvailable() * 2;
     }
 
+    public getExperienceMultiplier() {
+        if (this.age < 16) return 3;
+        if (this.age < 20) return 2.5;
+        if (this.age < 24) return 2;
+        if (this.age < 28) return 1.75;
+        if (this.age < 32) return 1.5;
+        if (this.age < 36) return 1.25;
+        return 1;
+    }
+
     public getHitpoints() {
         return this.strength + this.endurance * 2;
     }
@@ -81,7 +93,6 @@ export class Character {
     public getDamageBonusSmall() {
         return Math.floor(this.strength / 4);
     }
-
 
     public getDamageBonusMedium() {
         return Math.floor(this.strength / 3);
