@@ -3,7 +3,21 @@ import * as pilot from './skills/pilot.json';
 import * as spells from './skills/spells.json';
 import * as investigation from './skills/investigation.json';
 import * as intimidation from './skills/intimidation.json';
+import * as larceny from './skills/larceny.json';
+import * as stealth from './skills/stealth.json';
+import * as survival from './skills/survival.json';
+import * as science from './skills/science.json';
+import * as computer from './skills/computer.json';
+import * as medicine from './skills/medicine.json';
+import * as surgery from './skills/surgery.json';
+import * as empathy from './skills/empathy.json';
+import * as subtrefuge from './skills/subtrefuge.json';
+import * as athletics from './skills/athletics.json';
+import * as acrobatics from './skills/acrobatics.json';
+import * as search from './skills/search.json';
+import * as slightOfHand from './skills/slightOfHand.json';
 import * as persuation from './skills/persuation.json';
+
 
 export interface Skill {
     name: string;
@@ -12,6 +26,8 @@ export interface Skill {
     description: string;
 }
 export const GetSkillList = (): Skill[] => {
+
+
     return [
         {
             name: combat.name,
@@ -50,82 +66,82 @@ export const GetSkillList = (): Skill[] => {
             description: intimidation.description
         },
         {
-            name: 'larceny',
-            attribute: 'agility',
-            level:0,
-            description: ''
+            name: larceny.name,
+            attribute: larceny.attribute,
+            level: larceny.level,
+            description: larceny.description
         },
         {
-            name: 'stealth',
-            attribute: 'agility',
-            level:0,
-            description: ''
+            name: stealth.name,
+            attribute: stealth.attribute,
+            level: stealth.level,
+            description: stealth.description
         },
         {
-            name: 'survival',
-            attribute: 'intelligence',
-            level:0,
-            description: ''
+            name: survival.name,
+            attribute: survival.attribute,
+            level: survival.level,
+            description: survival.description
         },
         {
-            name: 'science',
-            attribute: 'intelligence',
-            level:0,
-            description: ''
+            name: science.name,
+            attribute: science.attribute,
+            level: science.level,
+            description: science.description
         },
         {
-            name: 'computer',
-            attribute: 'intelligence',
-            level:0,
-            description: ''
+            name: computer.name,
+            attribute: computer.attribute,
+            level: computer.level,
+            description: computer.description
         },
         {
-            name: 'medicine',
-            attribute: 'intelligence',
-            level:0,
-            description: ''
+            name: medicine.name,
+            attribute: medicine.attribute,
+            level: medicine.level,
+            description: medicine.description
         },
         {
-            name: 'surgery',
-            attribute: 'agility',
-            level:0,
-            description: ''
+            name: surgery.name,
+            attribute: surgery.attribute,
+            level: surgery.level,
+            description: surgery.description
         },
         {
-            name: 'empathy',
-            attribute: 'perception',
-            level:0,
-            description: ''
+            name: empathy.name,
+            attribute: empathy.attribute,
+            level: empathy.level,
+            description: empathy.description
         },
         {
-            name: 'subtrefuge',
-            attribute: 'perception',
-            level:0,
-            description: ''
+            name: subtrefuge.name,
+            attribute: subtrefuge.attribute,
+            level: subtrefuge.level,
+            description: subtrefuge.description
         },
         {
-            name: 'athletics',
-            attribute: 'endurance',
-            level:0,
-            description: ''
+            name: athletics.name,
+            attribute: athletics.attribute,
+            level: athletics.level,
+            description: athletics.description
         },
         {
-            name: 'acrobatics',
-            attribute: 'agility',
-            level:0,
-            description: ''
+            name: acrobatics.name,
+            attribute: acrobatics.attribute,
+            level: acrobatics.level,
+            description: acrobatics.description
         },
         {
-            name: 'search',
-            attribute: 'perception',
-            level:0,
-            description: ''
+            name: search.name,
+            attribute: search.attribute,
+            level: search.level,
+            description: search.description
         },
         {
-            name: 'slight of hand',
-            attribute: 'agility',
-            level:0,
-            description: ''
-        },
+            name: slightOfHand.name,
+            attribute: slightOfHand.attribute,
+            level: slightOfHand.level,
+            description: slightOfHand.description
+        }
     ].sort((a, b) => a.attribute < b.attribute ? -1 : 1);
 }
