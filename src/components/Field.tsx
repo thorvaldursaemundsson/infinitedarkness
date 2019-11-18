@@ -33,7 +33,7 @@ export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, 
         {enableDice ? <Button onClick={() => setResults([d10(), d10()])}>&</Button> : null}
         {results[0] !== 0 ? `(${total}) + d10(${results[0]}) + d10(${results[1]}) = ${total + results[0] + results[1]}`
             : null}
-            {children !== null ? viewChildren === true ? 
+            {children !== undefined ? viewChildren === true ? 
                 <Paper><Button onClick={() => setViewChildren(false)}>X</Button>{children} </Paper>
                 : <Button onClick={() => setViewChildren(true)}>?</Button> 
             : null}
