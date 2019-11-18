@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "../infinitedarkness/static/css/main.dfca195d.chunk.css",
-    "main.js": "../infinitedarkness/static/js/main.3b38b960.chunk.js",
-    "main.js.map": "../infinitedarkness/static/js/main.3b38b960.chunk.js.map",
+    "main.js": "../infinitedarkness/static/js/main.8694b134.chunk.js",
+    "main.js.map": "../infinitedarkness/static/js/main.8694b134.chunk.js.map",
     "runtime-main.js": "../infinitedarkness/static/js/runtime-main.c74a6b91.js",
     "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.c74a6b91.js.map",
     "static/js/2.307436e7.chunk.js": "../infinitedarkness/static/js/2.307436e7.chunk.js",
     "static/js/2.307436e7.chunk.js.map": "../infinitedarkness/static/js/2.307436e7.chunk.js.map",
     "index.html": "../infinitedarkness/index.html",
-    "precache-manifest.561c83602eb472a88e45930f6136c424.js": "../infinitedarkness/precache-manifest.561c83602eb472a88e45930f6136c424.js",
+    "precache-manifest.c85193a08b9aca98e68f9d27194a1b6c.js": "../infinitedarkness/precache-manifest.c85193a08b9aca98e68f9d27194a1b6c.js",
     "service-worker.js": "../infinitedarkness/service-worker.js",
     "static/css/main.dfca195d.chunk.css.map": "../infinitedarkness/static/css/main.dfca195d.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.c74a6b91.js",
     "static/js/2.307436e7.chunk.js",
     "static/css/main.dfca195d.chunk.css",
-    "static/js/main.3b38b960.chunk.js"
+    "static/js/main.8694b134.chunk.js"
   ]
 }
