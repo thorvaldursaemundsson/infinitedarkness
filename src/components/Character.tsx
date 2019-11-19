@@ -1,6 +1,6 @@
 import { Skill, GetSkillList } from "./Skills";
 
-interface Technique {
+interface Perk {
     name: string;
     bonus: string;
     cost: number;
@@ -24,7 +24,7 @@ interface ICharacter {
     willpower: number;
     intelligence: number;
     skills: Skill[];
-    techniques: Technique[];
+    techniques: Perk[];
 }
 
 export class Character {
@@ -36,7 +36,7 @@ export class Character {
     willpower: number;
     intelligence: number;
     skills: Skill[];
-    techniques: Technique[];
+    techniques: Perk[];
     constructor(copy?: ICharacter) {
         this.strength = (copy && copy.strength) || 5;
         this.agility = (copy && copy.agility) || 5;
