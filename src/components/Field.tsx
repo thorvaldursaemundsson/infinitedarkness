@@ -28,14 +28,14 @@ export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, 
     enableDice = enableDice === undefined ? false : enableDice;
     return <Paper>
         <Label>{label}:</Label> <Label>{value} {modifier !== undefined ? ` | ${modifier} | ${total}` : null}</Label>
-        <Button onClick={() => onChange(ma <= value ? value : value + 1)}>+</Button>
-        <Button onClick={() => onChange(mi >= value ? value : value - 1)}>-</Button>
-        {enableDice ? <Button onClick={() => setResults([d10(), d10()])}>&</Button> : null}
+        <Button size="small" variant="contained" onClick={() => onChange(ma <= value ? value : value + 1)}>+</Button>
+        <Button size="small" variant="contained" onClick={() => onChange(mi >= value ? value : value - 1)}>-</Button>
+        {enableDice ? <Button  size="small" variant="contained" onClick={() => setResults([d10(), d10()])}>&</Button> : null}
         {results[0] !== 0 ? `(${total}) + d10(${results[0]}) + d10(${results[1]}) = ${total + results[0] + results[1]}`
             : null}
             {children !== undefined ? viewChildren === true ? 
-                <Paper><Button onClick={() => setViewChildren(false)}>X</Button>{children} </Paper>
-                : <Button onClick={() => setViewChildren(true)}>?</Button> 
+                <Paper><Button size="small" variant="contained"  onClick={() => setViewChildren(false)}>X</Button>{children} </Paper>
+                : <Button size="small" variant="contained"  onClick={() => setViewChildren(true)}>?</Button> 
             : null}
     </Paper>
 }

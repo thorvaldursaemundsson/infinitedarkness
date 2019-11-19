@@ -16,15 +16,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
-                <Field label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
-                <Field label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
-                <Field label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
-                <Field label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
-                <Field label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
-                <Field label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
+                <Field max={15} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
+                <Field max={15} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
+                <Field max={15} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
+                <Field max={15} label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
+                <Field max={15} label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
+                <Field max={15} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
             </Grid>
             <Grid item xs={12} sm={6}>
-                <Field label='age' max={80} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
+                <Field label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
                 <Paper>mana: {character.getMana()}</Paper>
@@ -44,9 +44,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         case 'intelligence': modifier = character.intelligence; break;
                     }
                     return <Field
-                        enableDice={true}
                         modifier={modifier}
-                        max={30}
+                        max={40}
                         min={0}
                         label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()} 
                         value={s.level} 
