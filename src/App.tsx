@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CharacterSheet } from './components/CharacterSheet';
 import './App.css';
 import { Character } from './components/Character';
-import { Button } from '@material-ui/core';
+import { Button, DialogTitle } from '@material-ui/core';
 
 const App: React.FC = () => {
   const [viewMode, setViewMode] = useState('main');
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Conditional shouldView={viewMode === 'main'}>
+        <DialogTitle>Infinite Darkness</DialogTitle>
         <Menu callback={(option) => setViewMode(option)} options={options} />
       </Conditional>
       <Conditional shouldView={viewMode === 'character'}>
