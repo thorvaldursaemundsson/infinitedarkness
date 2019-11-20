@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { GetSkillList } from './Skills';
-import { Button } from '@material-ui/core';
+import React from 'react';
 
 const PlayerManual: React.FC = () => {
-    return (<div style={{ textAlign: 'left', padding: '15px' }}>
+    return (<div>
         <h1>Index</h1>
         <ul>
             <li>
@@ -51,22 +49,8 @@ const PlayerManual: React.FC = () => {
             <p>Perks are specializations, they either grant new capabilities under a skill or make a specific skill usage more powerful/likely to succeed (skills have multiple uses)</p>
             <p>Note that perks often come with skill requirements, and for skills that you don't put points into are often not worth taking.</p>
         </div>
-        <hr />
-        <SkillSection />
     </div>);
 }
 
-const SkillSection = () => {
-    const [currentSkill, setCurrentSkill] = useState('');
-    return (<div>
-        <h2>Skills</h2>
-        {GetSkillList().map(skill => {
-            return (<div><h3><span style={{ display: 'inline-block', width: '150px' }}>{skill.name}</span> {currentSkill !== skill.name ?
-                <Button onClick={() => setCurrentSkill(skill.name)}>?</Button> :
-                <Button onClick={() => setCurrentSkill('')}>X</Button>} </h3>
-                {currentSkill === skill.name ? <div>{skill.description}</div> : null}</div>);
-        })}
-    </div>);
-}
 
 export default PlayerManual;

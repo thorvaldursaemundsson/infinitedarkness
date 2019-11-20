@@ -18,7 +18,6 @@ const rand = (min: number, max: number) => {
 };
 
 const d10 = () => rand(1, 10);
-//results[0] + ' + ' + results[1] + ' ' + 
 export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, modifier, enableDice, children }) => {
     const [results, setResults] = useState([0, 0]);
     const [viewChildren, setViewChildren] = useState(false);
@@ -26,7 +25,7 @@ export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, 
     let mi = min !== undefined ? min : 1;
     let total = modifier !== undefined ? value + modifier : value;
     enableDice = enableDice === undefined ? false : enableDice;
-    return <Paper>
+    return <Paper className="extraPadding">
         <Label>{label}:</Label> <Label>{value} {modifier !== undefined ? ` | ${modifier} | ${total}` : null}</Label>
         <Button size="small" variant="contained" onClick={() => onChange(ma <= value ? value : value + 1)}>+</Button>
         <Button size="small" variant="contained" onClick={() => onChange(mi >= value ? value : value - 1)}>-</Button>
