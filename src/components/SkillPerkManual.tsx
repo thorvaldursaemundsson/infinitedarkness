@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GetSkillList } from './Skills';
 import { Button } from '@material-ui/core';
+import { GetPerkList } from './Perks';
 
 const SkillPerkManual:React.FC = () => {
     return <SkillSection />;
@@ -19,5 +20,22 @@ const SkillSection = () => {
     </div>);
 }
 
+const PerkSection = () => {
+    const [currentPerk, setCurrentPerk] = useState('');
+    return (<div>
+        <h2>Perks</h2>
+        {GetPerkList().map(perk => {
+            return (<div>
+                <h3><span style={{ display: 'inline-block', width: '150px' }}>{perk.name}</span> {currentPerk !== perk.name ?
+                <Button onClick={() => setCurrentPerk(perk.name)}>?</Button> :
+                <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
+                {currentPerk === perk.name ? <div>
+                    <p><b>Cost</b>: {perk.cost}</p>
+                    <p><b>Skill</b>: {perk.skill}</p>
+                {perk.description}</div> : null}
+            </div>);
+        })}
+    </div>)
+}
 
 export default SkillPerkManual;

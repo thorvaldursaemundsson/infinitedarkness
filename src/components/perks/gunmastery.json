@@ -1,0 +1,6 @@
+{
+    "name": "Gun Mastery",
+    "skill": "combat",
+    "cost": 10,
+    "description": "+5 to hit with guns"
+}

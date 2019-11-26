@@ -5,6 +5,8 @@ import { Character } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
 import PlayerManual from './components/PlayerManual';
 import SkillPerkManual from './components/SkillPerkManual';
+import GameMaster from './components/WorldAndLore';
+import WorldAndLore from './components/WorldAndLore';
 
 const App: React.FC = () => {
   const [viewMode, setViewMode] = useState('main');
@@ -32,13 +34,11 @@ const App: React.FC = () => {
       </Conditional>
       <Conditional shouldView={viewMode === 'game master'}>
         <MainButton />
-        <DialogTitle>Game master</DialogTitle>
-        This page will contain information on how to run a game
+        <GameMaster></GameMaster>
       </Conditional>
       <Conditional shouldView={viewMode === 'world & lore'}>
         <MainButton />
-        <DialogTitle>World and lore</DialogTitle>
-        This page will contain information about the world, the lore, factions, monsters, aliens, etc
+        <WorldAndLore></WorldAndLore>
       </Conditional>
       <Conditional shouldView={viewMode === 'skills & perks'}>
         <MainButton />
