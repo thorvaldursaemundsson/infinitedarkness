@@ -4,7 +4,10 @@ import { Button } from '@material-ui/core';
 import { GetPerkList } from './Perks';
 
 const SkillPerkManual:React.FC = () => {
-    return <SkillSection />;
+    return <div>
+            <SkillSection />
+            <PerkSection />
+        </div>;
 }
 
 const SkillSection = () => {
@@ -12,7 +15,7 @@ const SkillSection = () => {
     return (<div>
         <h2>Skills</h2>
         {GetSkillList().map(skill => {
-            return (<div><h3><span style={{ display: 'inline-block', width: '150px' }}>{skill.name}</span> {currentSkill !== skill.name ?
+            return (<div><h3><span style={{ display: 'inline-block', width: '200px' }}>{skill.name}</span> {currentSkill !== skill.name ?
                 <Button onClick={() => setCurrentSkill(skill.name)}>?</Button> :
                 <Button onClick={() => setCurrentSkill('')}>X</Button>} </h3>
                 {currentSkill === skill.name ? <div>{skill.description}</div> : null}</div>);
@@ -26,7 +29,7 @@ const PerkSection = () => {
         <h2>Perks</h2>
         {GetPerkList().map(perk => {
             return (<div>
-                <h3><span style={{ display: 'inline-block', width: '150px' }}>{perk.name}</span> {currentPerk !== perk.name ?
+                <h3><span style={{ display: 'inline-block', width: '200px' }}>{perk.name}</span> {currentPerk !== perk.name ?
                 <Button onClick={() => setCurrentPerk(perk.name)}>?</Button> :
                 <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
                 {currentPerk === perk.name ? <div>

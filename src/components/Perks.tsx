@@ -1,4 +1,7 @@
-import gunmastery from './perks/gunmastery.json';
+import gun1 from './perks/gun1.json';
+import gun2 from './perks/gun2.json';
+import gun3 from './perks/gun3.json';
+import gun4 from './perks/gun4.json';
 
 
 export interface Perk {
@@ -9,7 +12,15 @@ export interface Perk {
 }
 export const GetPerkList = (): Perk[] => {
     return [
-        { ...gunmastery },
+        { ...gun1 },
+        { ...gun2 },
+        { ...gun3 },
+        { ...gun4 },
         
-    ].sort((a, b) => a.skill < b.skill ? -1 : 1);
+    ].sort(sortPerk);
 }
+
+const sortPerk = (prevPerk:Perk, nextPerk:Perk) => {
+    if (prevPerk.skill !== nextPerk.skill) return prevPerk.skill > nextPerk.skill ? 1 : -1;
+    else return prevPerk.cost > nextPerk.cost ? 1 : -1;
+};

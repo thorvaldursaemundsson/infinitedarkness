@@ -1,0 +1,6 @@
+{
+    "name": "Gun Grandmaster",
+    "skill": "combat",
+    "cost": 40,
+    "description": "+4 to hit with guns (stacks with gun master)"
+}

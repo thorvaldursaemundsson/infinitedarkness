@@ -60,11 +60,11 @@ export class Character {
             + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0);
     }
     public getStartingPointsAvailable() {
-        let p = 200;
-        p += Math.min(this.age, 18) * 20;
-        if (this.age > 18) p += Math.min(this.age - 18, 26 - 18) * 15;
-        if (this.age > 26) p += Math.min(this.age - 26, 40 - 26) * 10;
-        if (this.age > 40) p += Math.min(this.age - 40, 70 - 40) * 5;
+        let p = 300;
+        p += Math.min(this.age, 18) * 16;
+        if (this.age > 18) p += Math.min(this.age - 18, 26 - 18) * 12;
+        if (this.age > 26) p += Math.min(this.age - 26, 40 - 26) * 8;
+        if (this.age > 40) p += Math.min(this.age - 40, 70 - 40) * 4;
         return p;
     }
 
