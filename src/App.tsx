@@ -9,14 +9,22 @@ import GameMaster from './components/WorldAndLore';
 import WorldAndLore from './components/WorldAndLore';
 
 const App: React.FC = () => {
-  const [viewMode, setViewMode] = useState('main');
+  const main = 'main';
+  const [viewMode, setViewMode] = useState(main);
   const [character, setCharacter ] = useState(new Character());//new Character();
-  let options = ['view character sheet',
-    'player manual',
-    'game master',
-    'world & lore',
-    'skills & perks',
-    'about'];
+  const characterSheet = 'view character sheet';
+  const playerManual = 'player manual';
+  const gameMaster = 'player manual';
+  const worldAndLore = 'player manual';
+  const skillsAndPerks = 'player manual';
+  const about = 'player manual';
+  let options = [characterSheet,
+    playerManual,
+    gameMaster,
+    worldAndLore,
+    skillsAndPerks,
+    about
+  ];
   const MainButton = () => <Button onClick={() => setViewMode('main')}>EXIT</Button>;
 
   const loadCharacter = () => {
@@ -27,7 +35,7 @@ const App: React.FC = () => {
       {
         const c = JSON.parse(charData) as ICharacter;
         setCharacter(new Character({...c}));
-        setViewMode('main');
+        setViewMode(characterSheet);
         console.log('character was successfully loaded:', {...c});
       } else console.log('no character info was pasted');
     }
@@ -39,33 +47,33 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Conditional shouldView={viewMode === 'main'}>
+      <Conditional shouldView={viewMode === main}>
         <DialogTitle>Infinite Darkness</DialogTitle>
         <Menu callback={(option) => setViewMode(option)} options={options} />
+        <Button onClick={() => loadCharacter()}>Load Character</Button>
       </Conditional>
-      <Conditional shouldView={viewMode === 'view character sheet'}>
-        <Button onClick={() => loadCharacter()}>Open Character</Button>
+      <Conditional shouldView={viewMode === characterSheet}>
         <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
       </Conditional>
-      <Conditional shouldView={viewMode === 'player manual'}>
+      <Conditional shouldView={viewMode === playerManual}>
         <MainButton />
         <DialogTitle>Player manual</DialogTitle>
         <PlayerManual />
       </Conditional>
-      <Conditional shouldView={viewMode === 'game master'}>
+      <Conditional shouldView={viewMode === gameMaster}>
         <MainButton />
         <GameMaster></GameMaster>
       </Conditional>
-      <Conditional shouldView={viewMode === 'world & lore'}>
+      <Conditional shouldView={viewMode === worldAndLore}>
         <MainButton />
         <WorldAndLore></WorldAndLore>
       </Conditional>
-      <Conditional shouldView={viewMode === 'skills & perks'}>
+      <Conditional shouldView={viewMode === skillsAndPerks}>
         <MainButton />
         <DialogTitle>About</DialogTitle>
         <SkillPerkManual />
       </Conditional>
-      <Conditional shouldView={viewMode === 'about'}>
+      <Conditional shouldView={viewMode === about}>
         <MainButton />
         <h2>About</h2>
         <h3>This is a work in progress</h3>
