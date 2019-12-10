@@ -1,10 +1,5 @@
 import { Skill, GetSkillList } from "./Skills";
-
-interface Perk {
-    name: string;
-    bonus: string;
-    cost: number;
-}
+import { Perk } from './Perks';
 
 const fSum = (n: number): number => {
     let x = 0;
@@ -14,7 +9,7 @@ const fSum = (n: number): number => {
     return x;
 };
 
-interface ICharacter {
+export interface ICharacter {
 
     age: number;
     strength: number;
@@ -24,7 +19,7 @@ interface ICharacter {
     willpower: number;
     intelligence: number;
     skills: Skill[];
-    techniques: Perk[];
+    perks: Perk[];
 }
 
 export class Character {
@@ -36,7 +31,7 @@ export class Character {
     willpower: number;
     intelligence: number;
     skills: Skill[];
-    techniques: Perk[];
+    perks: Perk[];
     constructor(copy?: ICharacter) {
         this.strength = (copy && copy.strength) || 4;
         this.agility = (copy && copy.agility) || 4;
@@ -45,19 +40,22 @@ export class Character {
         this.willpower = (copy && copy.willpower) || 4;
         this.intelligence = (copy && copy.intelligence) || 4;
         this.skills = (copy && copy.skills) || GetSkillList();
-        this.techniques = [];
+        if (copy !== undefined && copy.perks !== undefined) this.perks = copy.perks;
+        else this.perks = [];
         this.age = (copy && copy.age) || 24;
     }
 
 
     public getCalculatedPointsUsed() {
+        const perkCost = this.perks.length > 0 ? this.perks.map(p=>p.cost).reduce((a,b) => a+b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4
             + fSum(this.perception) * 4
             + fSum(this.willpower) * 4
             + fSum(this.intelligence) * 4
-            + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0);
+            + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0)
+            + perkCost;
     }
     public getStartingPointsAvailable() {
         let p = 300;

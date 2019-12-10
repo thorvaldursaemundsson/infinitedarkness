@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CharacterSheet } from './components/CharacterSheet';
 import './App.css';
-import { Character } from './components/Character';
+import { Character, ICharacter } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
 import PlayerManual from './components/PlayerManual';
 import SkillPerkManual from './components/SkillPerkManual';
@@ -10,7 +10,7 @@ import WorldAndLore from './components/WorldAndLore';
 
 const App: React.FC = () => {
   const [viewMode, setViewMode] = useState('main');
-  let character = new Character();
+  const [character, setCharacter ] = useState(new Character());//new Character();
   let options = ['view character sheet',
     'player manual',
     'game master',
@@ -18,6 +18,25 @@ const App: React.FC = () => {
     'skills & perks',
     'about'];
   const MainButton = () => <Button onClick={() => setViewMode('main')}>EXIT</Button>;
+
+  const loadCharacter = () => {
+    try {
+      console.info('attempting to load character');
+      const charData = prompt('paste character string here');
+      if (charData !== null)
+      {
+        const c = JSON.parse(charData) as ICharacter;
+        setCharacter(new Character({...c}));
+        setViewMode('main');
+        console.log('character was successfully loaded:', {...c});
+      } else console.log('no character info was pasted');
+    }
+    catch(error) {
+      console.error({error});
+    }
+  };
+
+
   return (
     <div className="App">
       <Conditional shouldView={viewMode === 'main'}>
@@ -25,7 +44,8 @@ const App: React.FC = () => {
         <Menu callback={(option) => setViewMode(option)} options={options} />
       </Conditional>
       <Conditional shouldView={viewMode === 'view character sheet'}>
-        <CharacterSheet characterCallback={(c) => { character = c; setViewMode('main'); }} initialCharacter={character} />
+        <Button onClick={() => loadCharacter()}>Open Character</Button>
+        <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
       </Conditional>
       <Conditional shouldView={viewMode === 'player manual'}>
         <MainButton />

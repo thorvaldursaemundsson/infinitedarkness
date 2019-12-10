@@ -1,18 +1,30 @@
-import React, {  useReducer } from 'react';
+import React, { useReducer,useState } from 'react';
 import { Field } from './Field';
-import { Paper, Grid,Button } from '@material-ui/core';
+import { Paper, Grid, Button } from '@material-ui/core';
 import { Character } from './Character';
+import { GetPerkList, Perk } from './Perks';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
-    characterCallback:(c:Character) => void;
+    characterCallback: (c: Character) => void;
 }
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
+    const [charJSON, setCharJSON] = useState('');
+
+    const perksList = GetPerkList();
+
+    const makeJSONText = () => {
+        const json = JSON.stringify({...character});
+        setCharJSON(json);
+    };
 
     return <Paper style={{ textAlign: 'left' }}>
         <Button onClick={() => props.characterCallback(character)}>exit</Button>
+        {charJSON !== '' ? <Button onClick={() => setCharJSON('')}>Close character data</Button> : null}
+        <Button onClick={() => makeJSONText()}>Save character data</Button>
+        <Paper>{charJSON}</Paper>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
@@ -47,11 +59,20 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         modifier={modifier}
                         max={40}
                         min={0}
-                        label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()} 
-                        value={s.level} 
+                        label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()}
+                        value={s.level}
                         onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
-                           {s.description} 
+                        {s.description}
+                        {perksList.filter(p => p.skill === s.name).map(p => {
+                            return <Button onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
+                        })}
                     </Field>
+                })}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <h1>Perks</h1>
+                {character.perks.map(perk => {
+                    return <p><b>{perk.name}</b> ({perk.cost}) {perk.description}</p>
                 })}
             </Grid>
         </Grid>
@@ -62,6 +83,7 @@ interface dispatcher {
     action: string;
     name?: string;
     value: number;
+    perkToAdd?: Perk;
 }
 
 const useCharacter = (state: Character, action: dispatcher): Character => {
@@ -80,5 +102,24 @@ const useCharacter = (state: Character, action: dispatcher): Character => {
             r.skills[state.skills.findIndex(s => s.name === action.name)].level = action.value;
             return r;
     }
+    if (action.action === 'addperk') {
+        let r = new Character({
+            ...state
+        });
+        if (action.perkToAdd !== undefined) r.perks.push(action.perkToAdd);
+        return r;
+    }
+    else if (action.action === 'removeperk') {
+        let r = new Character({
+            ...state
+        });
+        if (action.perkToAdd !== undefined) {
+            let pta = action.perkToAdd;
+            r.perks = r.perks.filter(p => p.name !== pta.name);
+        }
+        return r;
+    }
+
+
     return state;
 }
