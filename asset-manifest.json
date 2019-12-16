@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "../infinitedarkness/static/css/main.d881f499.chunk.css",
-    "main.js": "../infinitedarkness/static/js/main.091e6d2f.chunk.js",
-    "main.js.map": "../infinitedarkness/static/js/main.091e6d2f.chunk.js.map",
+    "main.js": "../infinitedarkness/static/js/main.84cae7d7.chunk.js",
+    "main.js.map": "../infinitedarkness/static/js/main.84cae7d7.chunk.js.map",
     "runtime-main.js": "../infinitedarkness/static/js/runtime-main.c74a6b91.js",
     "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.c74a6b91.js.map",
-    "static/js/2.2c50714c.chunk.js": "../infinitedarkness/static/js/2.2c50714c.chunk.js",
-    "static/js/2.2c50714c.chunk.js.map": "../infinitedarkness/static/js/2.2c50714c.chunk.js.map",
+    "static/js/2.412533b5.chunk.js": "../infinitedarkness/static/js/2.412533b5.chunk.js",
+    "static/js/2.412533b5.chunk.js.map": "../infinitedarkness/static/js/2.412533b5.chunk.js.map",
     "index.html": "../infinitedarkness/index.html",
-    "precache-manifest.dfc227fbfe8c2b062516fcd4375a52e8.js": "../infinitedarkness/precache-manifest.dfc227fbfe8c2b062516fcd4375a52e8.js",
+    "precache-manifest.105919c9fb70de0eb414edc54658e7fa.js": "../infinitedarkness/precache-manifest.105919c9fb70de0eb414edc54658e7fa.js",
     "service-worker.js": "../infinitedarkness/service-worker.js",
     "static/css/main.d881f499.chunk.css.map": "../infinitedarkness/static/css/main.d881f499.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.c74a6b91.js",
-    "static/js/2.2c50714c.chunk.js",
+    "static/js/2.412533b5.chunk.js",
     "static/css/main.d881f499.chunk.css",
-    "static/js/main.091e6d2f.chunk.js"
+    "static/js/main.84cae7d7.chunk.js"
   ]
 }
