@@ -72,7 +72,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
             <Grid item xs={12} sm={6}>
                 <h1>Perks</h1>
                 {character.perks.map(perk => {
-                    return <p><b>{perk.name}</b> ({perk.cost}) {perk.description}</p>
+                    return (<p><b>{perk.name}</b> ({perk.cost}) {perk.description()}
+                        <Button size="small" onClick={() => dispatch({action:'removeperk', name:perk.name, value:0, perkToAdd: perk})}>X</Button>
+                    </p>)
                 })}
             </Grid>
         </Grid>

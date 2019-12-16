@@ -35,7 +35,7 @@ const PerkSection = () => {
                 {currentPerk === perk.name ? <div>
                     <p><b>Cost</b>: {perk.cost}</p>
                     <p><b>Skill</b>: {perk.skill}</p>
-                {perk.description}</div> : null}
+                {perk.description()}</div> : null}
             </div>);
         })}
     </div>)
