@@ -12,6 +12,7 @@ interface CharacterSheetProps {
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [charJSON, setCharJSON] = useState('');
+    const [edit, setEdit] = useState(false);
 
     const perksList = GetPerkList();
 
@@ -24,19 +25,20 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         <Button onClick={() => props.characterCallback(character)}>exit</Button>
         {charJSON !== '' ? <Button onClick={() => setCharJSON('')}>Close character data</Button> : null}
         <Button onClick={() => makeJSONText()}>Save character data</Button>
+        <Button onClick={() => setEdit(!edit)}>edit</Button>
         <Paper>{charJSON}</Paper>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
-                <Field max={15} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
-                <Field max={15} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
-                <Field max={15} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
-                <Field max={15} label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
-                <Field max={15} label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
-                <Field max={15} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
+                <Field enableButtons={edit} max={15} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
+                <Field enableButtons={edit} max={15} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
+                <Field enableButtons={edit} max={15} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
+                <Field enableButtons={edit} max={15} label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
+                <Field enableButtons={edit} max={15} label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
+                <Field enableButtons={edit} max={15} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
             </Grid>
             <Grid item xs={12} sm={6}>
-                <Field label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
+                <Field enableButtons={edit} label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
                 <Paper>mana: {character.getMana()}</Paper>
@@ -56,6 +58,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         case 'intelligence': modifier = character.intelligence; break;
                     }
                     return <Field
+                        enableButtons={edit} 
                         modifier={modifier}
                         max={40}
                         min={0}

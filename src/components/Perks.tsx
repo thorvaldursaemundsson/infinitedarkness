@@ -5,7 +5,7 @@ import gun4 from './perks/gun4.json';
 import { JSXElement } from '@babel/types';
 import React from 'react';
 import { GetSkillList } from './Skills';
-import { Generic10Perk } from './perks/Generic10';
+import { TemplatePerk } from './perks/TemplatePerk';
 
 
 export interface Perk {
@@ -40,10 +40,15 @@ class PerkTemplate implements Perk{
 const Skills =GetSkillList();
 export const GetPerkList = (): Perk[] => {
     
-    const generic10All = Skills.map(m => new Generic10Perk("custom "+m.name, m.name))
-
+    const generic10All = Skills.map(m => new TemplatePerk("custom "+m.name+" 10", m.name,10));
+    const generic20All = Skills.map(m => new TemplatePerk("custom "+m.name+" 20", m.name,20));
+    const generic30All = Skills.map(m => new TemplatePerk("custom "+m.name+" 30", m.name,30));
+    const generic40All = Skills.map(m => new TemplatePerk("custom "+m.name+" 40", m.name,40));
     return [
         ...generic10All,
+        ...generic20All,
+        ...generic30All,
+        ...generic40All,
         new PerkTemplate({ ...gun1 }),
         new PerkTemplate({ ...gun2 }),
         new PerkTemplate({ ...gun3 }),
