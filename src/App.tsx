@@ -12,12 +12,12 @@ const App: React.FC = () => {
   const main = 'main';
   const [viewMode, setViewMode] = useState(main);
   const [character, setCharacter ] = useState(new Character());//new Character();
-  const characterSheet = 'view character sheet';
-  const playerManual = 'player manual';
-  const gameMaster = 'player manual';
-  const worldAndLore = 'player manual';
-  const skillsAndPerks = 'player manual';
-  const about = 'player manual';
+  const characterSheet = 'View Character Sheet';
+  const playerManual = 'Player Manual';
+  const gameMaster = 'Game Master';
+  const worldAndLore = 'World and Lore';
+  const skillsAndPerks = 'Skills and Perks';
+  const about = 'About';
   let options = [characterSheet,
     playerManual,
     gameMaster,
