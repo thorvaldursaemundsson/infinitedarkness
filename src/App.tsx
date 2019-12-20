@@ -5,7 +5,7 @@ import { Character, ICharacter } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
 import PlayerManual from './components/PlayerManual';
 import SkillPerkManual from './components/SkillPerkManual';
-import GameMaster from './components/WorldAndLore';
+import GameMaster from './components/GameMaster';
 import WorldAndLore from './components/WorldAndLore';
 
 const App: React.FC = () => {
@@ -57,7 +57,6 @@ const App: React.FC = () => {
       </Conditional>
       <Conditional shouldView={viewMode === playerManual}>
         <MainButton />
-        <DialogTitle>Player manual</DialogTitle>
         <PlayerManual />
       </Conditional>
       <Conditional shouldView={viewMode === gameMaster}>
@@ -70,7 +69,6 @@ const App: React.FC = () => {
       </Conditional>
       <Conditional shouldView={viewMode === skillsAndPerks}>
         <MainButton />
-        <DialogTitle>About</DialogTitle>
         <SkillPerkManual />
       </Conditional>
       <Conditional shouldView={viewMode === about}>
