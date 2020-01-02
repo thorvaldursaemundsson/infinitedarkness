@@ -7,7 +7,7 @@ import { GetSkillList } from './Skills';
 const Wizard: React.FC = () => {
     const [viewStep, setViewStep] = useState(0);
     const [character, setCharacter] = useState(new Character({
-        name:'',
+        name: '',
         species: '',
         gender: '',
         age: 1,
@@ -28,6 +28,7 @@ const Wizard: React.FC = () => {
     return <div>
         <h2>Character Creator Wizard</h2>
         This is a work in progress...
+        <hr />
         <Step0 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step0>
         <Step1 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step1>
         <Step2 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step2>
@@ -38,6 +39,7 @@ const Wizard: React.FC = () => {
         <Step7 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step7>
         <Step8 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step8>
         <Step9 character={character} currentNumber={viewStep} callback={(n, c) => setData(n, c)}></Step9>
+        <hr />
         <Button key='toggle_sheet' onClick={() => setViewSheet(!viewSheet)}>Toggle character sheet</Button>
         {viewSheet === true ? <CharacterSheet initialCharacter={character} characterCallback={(c) => setCharacter(c)} ></CharacterSheet> : null}
     </div>;
@@ -71,12 +73,43 @@ const Step1: React.FC<IStepProps> = (props: IStepProps) => {
         <Button key='wizard_step1_next' onClick={() => props.callback(step + 1, new Character({ ...props.character, name: name, species: species, gender: gender }))}>Next</Button>
     </div>;
 }
-const Step2: React.FC<IStepProps> = (props: IStepProps) => {
+const Step2: React.FC<IStepProps> = ({ character, currentNumber, callback }) => {
+    const [birthPlaceOption1, setBirthPlaceOption1] = useState('');
+    const [birthPlaceOption2, setBirthPlaceOption2] = useState('');
     const step = 2;
-    if (props.currentNumber !== step) return null;
+    const getAddLib = () => {
+        if (birthPlaceOption1 === '') return `${character.name} has no background`;
+        if (birthPlaceOption2 !== '') return `${character.name} was born in ${birthPlaceOption1}, ${birthPlaceOption2}`
+        return `${character.name} was born in ${birthPlaceOption1}`;
+    }
+    const getBirthPlaceOptions2 = () => {
+        if (birthPlaceOption1 === 'Coalition of Sol')
+            return ['Earth', 'Mars', 'Ceres', 'Saturn Moons', 'Jupiter Moons', 'Space Station', 'Mercury Outpost'];
+        else if (birthPlaceOption1 === 'Centauri Imperium')
+        return ['Rigil Bolemia', 'Rigil Phomelara', 'Toliman Lachowei', 'Toliman Auria', 'Toliman Nion', 'Proxima Siugantu'];
+        else return ['Wild wild space west'];
+    }
+    if (currentNumber !== step) return null;
     return <div>
         <h3>where was your character born or hatched?</h3>
-        <Button key='wizard_step2_next' onClick={() => props.callback(step + 1, props.character)}>Next</Button>
+        {birthPlaceOption1 === '' ?
+            <div>
+                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Coalition of Sol')}>Coalition of Sol</Button>
+                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Centauri Imperium')}>Centauri Imperium</Button>
+                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Fronteer World')}>Fronteer World</Button>
+            </div>
+            : null}
+        {birthPlaceOption1 !== '' ?
+            <div>
+                {getBirthPlaceOptions2().map(option => {
+                    return <Button variant="outlined" onClick={() => setBirthPlaceOption2(option)}>{option}</Button>
+                })}
+            </div>
+            : null
+        }
+        {getAddLib()}
+        <br />
+        <Button key='wizard_step2_next' onClick={() => callback(step + 1, new Character({ ...character, background: getAddLib() }))}>Next</Button>
     </div>;
 }
 const Step3: React.FC<IStepProps> = (props: IStepProps) => {

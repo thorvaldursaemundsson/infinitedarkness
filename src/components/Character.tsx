@@ -13,6 +13,7 @@ export interface ICharacter {
     name: string;
     species: string;
     gender: string;
+    background: string;
     age: number;
     strength: number;
     agility: number;
@@ -29,6 +30,7 @@ export class Character {
     species: string;
     gender: string;
     age: number;
+    background: string;
     strength: number;
     agility: number;
     endurance: number;
@@ -41,6 +43,7 @@ export class Character {
         this.name = (copy && copy.name) || "";
         this.species = (copy && copy.species) || "";
         this.gender = (copy && copy.gender) || "";
+        this.background = (copy && copy.background) || "";
         this.strength = (copy && copy.strength) || 4;
         this.agility = (copy && copy.agility) || 4;
         this.endurance = (copy && copy.endurance) || 4;

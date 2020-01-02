@@ -42,6 +42,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <StringField label={'name'} value={character.name} enableEdit={edit} onChange={n => dispatch({ action: 'name', value: 0, name: n })} ></StringField>
                 <StringField label={'gender'} value={character.gender} enableEdit={edit} onChange={n => dispatch({ action: 'gender', value: 0, name: n })} ></StringField>
                 <StringField label={'species'} value={character.species} enableEdit={edit} onChange={n => dispatch({ action: 'species', value: 0, name: n })} ></StringField>
+                <StringField label={'background'} value={character.background} enableEdit={edit} onChange={n => dispatch({ action: 'background', value: 0, name: n })} ></StringField>
                 <Field enableButtons={edit} label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
@@ -113,6 +114,7 @@ const useCharacter = (state: Character, action: dispatcher): Character => {
         case 'name': return new Character({ ...state, name: action.name || '' });
         case 'species': return new Character({ ...state, species: action.name || '' });
         case 'gender': return new Character({ ...state, gender: action.name || '' });
+        case 'background': return new Character({ ...state, background: action.name || '' });
     }
     if (action.action === 'addperk') {
         let r = new Character({

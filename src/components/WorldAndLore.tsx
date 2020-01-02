@@ -99,10 +99,10 @@ const History: React.FC = () => {
     "Greetings Humans, we come in peace, we are Klackon, we are delighted to make contact, we seek to know you"</HistorySection>
     <HistorySection title='2296'>Humans are welcome in the Klackon home world, having travelled on the much faster Klackon ship</HistorySection>
     <HistorySection title='2257'>Marks the date when half of humanity lives outside of the planet Earth.</HistorySection>
-    <HistorySection title='2261'>Centauri system declares independence from the Coalition of Sol, due to severe isolation between the two systems relations are becoming more strained over time.</HistorySection>
+    <HistorySection title='2261'>Centauri system declares independence from the Coalition of Sol, Centauri Imperium is formed, due to severe isolation between the two systems relations are becoming more strained over time.</HistorySection>
     <HistorySection title='2284'>A deep space exploration craft arrives at Alpha Herculis, there they discover a small yet extremely advanced outpost, it sends communications in an alien langauge, after they decipher it they are able to communicate. From there it is revealed that the outpost belongs to Merlions.
     The Merlions warn the humans to never return or they will be destroyed.</HistorySection>
-    <HistorySection title='2301'>Centauri shut down their borders from Sol, 10 million people live scattered in the Centauri system, the cold war starts</HistorySection>
+    <HistorySection title='2301'>Centauri Imperium shut down their borders from Sol, 90 million people live scattered in the Centauri system, the cold war starts</HistorySection>
     <HistorySection title='2317'>A tomb world named Agros orbiting Spica is discovered, it seems to have once had a huge population, now all that remains is fossilised remains.</HistorySection>
     <HistorySection title='2327'>Humanity now exist on self sufficient colonies on planets from 17 star systems</HistorySection>
     <HistorySection title='2328'>Planet Agros is destroyed when the star undergoes supernova, in 260 years this will be visible on the planet Earth.</HistorySection>
