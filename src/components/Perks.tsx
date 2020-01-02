@@ -2,7 +2,6 @@ import gun1 from './perks/gun1.json';
 import gun2 from './perks/gun2.json';
 import gun3 from './perks/gun3.json';
 import gun4 from './perks/gun4.json';
-import { JSXElement } from '@babel/types';
 import React from 'react';
 import { GetSkillList } from './Skills';
 import { TemplatePerk } from './perks/TemplatePerk';

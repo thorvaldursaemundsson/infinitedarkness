@@ -7,6 +7,7 @@ import PlayerManual from './components/PlayerManual';
 import SkillPerkManual from './components/SkillPerkManual';
 import GameMaster from './components/GameMaster';
 import WorldAndLore from './components/WorldAndLore';
+import Wizard from './components/Wizard';
 
 const App: React.FC = () => {
   const main = 'main';
@@ -17,12 +18,14 @@ const App: React.FC = () => {
   const gameMaster = 'Game Master';
   const worldAndLore = 'World and Lore';
   const skillsAndPerks = 'Skills and Perks';
+  const wizard = 'Launch Character Creator Wizard';
   const about = 'About';
   let options = [characterSheet,
     playerManual,
     gameMaster,
     worldAndLore,
     skillsAndPerks,
+    wizard,
     about
   ];
   const MainButton = () => <Button onClick={() => setViewMode('main')}>EXIT</Button>;
@@ -71,6 +74,10 @@ const App: React.FC = () => {
         <MainButton />
         <SkillPerkManual />
       </Conditional>
+      <Conditional shouldView={viewMode === wizard}>
+        <MainButton />
+        <Wizard />
+      </Conditional>
       <Conditional shouldView={viewMode === about}>
         <MainButton />
         <h2>About</h2>
@@ -99,7 +106,7 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  return <div>{props.options.map(option => <Button onClick={() => props.callback(option)}>{option}</Button>)}</div>;
+  return <div>{props.options.map(option => <Button key={option} onClick={() => props.callback(option)}>{option}</Button>)}</div>;
 }
 
 export default App;

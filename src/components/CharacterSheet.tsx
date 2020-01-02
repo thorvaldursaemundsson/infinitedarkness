@@ -1,8 +1,9 @@
-import React, { useReducer,useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Field } from './Field';
 import { Paper, Grid, Button } from '@material-ui/core';
 import { Character } from './Character';
 import { GetPerkList, Perk } from './Perks';
+import StringField from './StringField';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -17,15 +18,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const perksList = GetPerkList();
 
     const makeJSONText = () => {
-        const json = JSON.stringify({...character});
+        const json = JSON.stringify({ ...character });
         setCharJSON(json);
     };
 
     return <Paper style={{ textAlign: 'left' }}>
-        <Button onClick={() => props.characterCallback(character)}>exit</Button>
-        {charJSON !== '' ? <Button onClick={() => setCharJSON('')}>Close character data</Button> : null}
-        <Button onClick={() => makeJSONText()}>Save character data</Button>
-        <Button onClick={() => setEdit(!edit)}>edit</Button>
+        <Button key='charactersheet_exit_and_save' onClick={() => props.characterCallback(character)}>exit</Button>
+        {charJSON !== '' ? <Button key='charactersheet_close_character_data' onClick={() => setCharJSON('')}>Close character data</Button> : null}
+        <Button key='charactersheet_make_json_text' onClick={() => makeJSONText()}>Save character data</Button>
+        <Button key='charactersheet_edit' onClick={() => setEdit(!edit)}>edit</Button>
         <Paper>{charJSON}</Paper>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
@@ -38,6 +39,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <Field enableButtons={edit} max={15} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
             </Grid>
             <Grid item xs={12} sm={6}>
+                <StringField label={'name'} value={character.name} enableEdit={edit} onChange={n => dispatch({ action: 'name', value: 0, name: n })} ></StringField>
+                <StringField label={'gender'} value={character.gender} enableEdit={edit} onChange={n => dispatch({ action: 'gender', value: 0, name: n })} ></StringField>
+                <StringField label={'species'} value={character.species} enableEdit={edit} onChange={n => dispatch({ action: 'species', value: 0, name: n })} ></StringField>
                 <Field enableButtons={edit} label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
@@ -57,8 +61,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         case 'willpower': modifier = character.willpower; break;
                         case 'intelligence': modifier = character.intelligence; break;
                     }
-                    return <Field
-                        enableButtons={edit} 
+                    return <Field key={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()}
+                        enableButtons={edit}
                         modifier={modifier}
                         max={40}
                         min={0}
@@ -67,7 +71,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
                         {s.description}
                         {perksList.filter(p => p.skill === s.name).map(p => {
-                            return <Button onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
+                            return <Button key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
                         })}
                     </Field>
                 })}
@@ -76,7 +80,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <h1>Perks</h1>
                 {character.perks.map(perk => {
                     return (<p><b>{perk.name}</b> ({perk.cost}) {perk.description()}
-                        <Button size="small" onClick={() => dispatch({action:'removeperk', name:perk.name, value:0, perkToAdd: perk})}>X</Button>
+                        <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>
                     </p>)
                 })}
             </Grid>
@@ -106,6 +110,9 @@ const useCharacter = (state: Character, action: dispatcher): Character => {
             });
             r.skills[state.skills.findIndex(s => s.name === action.name)].level = action.value;
             return r;
+        case 'name': return new Character({ ...state, name: action.name || '' });
+        case 'species': return new Character({ ...state, species: action.name || '' });
+        case 'gender': return new Character({ ...state, gender: action.name || '' });
     }
     if (action.action === 'addperk') {
         let r = new Character({

@@ -10,7 +10,9 @@ const fSum = (n: number): number => {
 };
 
 export interface ICharacter {
-
+    name: string;
+    species: string;
+    gender: string;
     age: number;
     strength: number;
     agility: number;
@@ -23,6 +25,9 @@ export interface ICharacter {
 }
 
 export class Character {
+    name: string;
+    species: string;
+    gender: string;
     age: number;
     strength: number;
     agility: number;
@@ -33,6 +38,9 @@ export class Character {
     skills: Skill[];
     perks: Perk[];
     constructor(copy?: ICharacter) {
+        this.name = (copy && copy.name) || "";
+        this.species = (copy && copy.species) || "";
+        this.gender = (copy && copy.gender) || "";
         this.strength = (copy && copy.strength) || 4;
         this.agility = (copy && copy.agility) || 4;
         this.endurance = (copy && copy.endurance) || 4;
