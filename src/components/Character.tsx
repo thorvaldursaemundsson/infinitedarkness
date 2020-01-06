@@ -56,9 +56,103 @@ export class Character {
         this.age = (copy && copy.age) || 24;
     }
 
+    public getMaxStrength() {
+        switch (this.species) {
+            case 'human':
+                if (this.age < 14) return Math.min(Math.floor(this.age / 18) + 1, 11);
+                if (this.age < 26) return 11;
+                if (this.age < 36) return 12;
+                if (this.age < 50) return 10;
+                if (this.age < 66) return 9;
+                if (this.age < 90) return 8;
+                return 7;
+            case 'merlion':
+                if (this.age < 12) return Math.min(Math.floor(this.age / 14) + 1, 10);
+                if (this.age < 26) return 10;
+                if (this.age < 40) return 11;
+                if (this.age < 70) return 10;
+                if (this.age < 90) return 9;
+                return 8;
+            case 'klackon':
+                return 4 + Math.floor(Math.sqrt(this.age));
+            default: return 10;
+        }
+    }
+    public getMaxAgility() {
+        switch (this.species) {
+            case 'human':
+                return 10;
+            case 'merlion':
+                return 12;
+            case 'klackon':
+                return 9;
+            default: return 10;
+        }
+    }
+    public getMaxEndurance() {
+        switch (this.species) {
+            case 'human':
+                if (this.age < 14) return Math.min(Math.floor(this.age / 18) + 2, 11);
+                if (this.age < 26) return 12;
+                if (this.age < 36) return 13;
+                if (this.age < 50) return 12;
+                if (this.age < 66) return 11;
+                if (this.age < 90) return 10;
+                return 9;
+            case 'merlion':
+                if (this.age < 12) return Math.min(Math.floor(this.age / 14) + 1, 10);
+                if (this.age < 26) return 10;
+                if (this.age < 40) return 11;
+                if (this.age < 70) return 10;
+                if (this.age < 90) return 9;
+                return 8;
+            case 'klackon':
+                return 12
+            default: return 10;
+        }
+    }
+    public getMaxPerception() {
+        switch (this.species) {
+            case 'human':
+                if (this.age < 18) return Math.min(Math.floor(this.age / 18) + 1, 13);
+                if (this.age < 26) return 12;
+                if (this.age < 30) return 11;
+                if (this.age < 36) return 9;
+                if (this.age < 42) return 8;
+                if (this.age < 50) return 7;
+                return 6;
+            case 'merlion':
+                return 11;
+            case 'klackon':
+                return 12;
+            default: return 10;
+        }
+    }
+    public getMaxWillpower() {
+        switch (this.species) {
+            case 'human':
+                return 12;
+            case 'merlion':
+                return 8;
+            case 'klackon':
+                return 9;
+            default: return 10;
+        }
+    }
+    public getMaxIntelligence() {
+        switch (this.species) {
+            case 'human':
+                return 10;
+            case 'merlion':
+                return 16;
+            case 'klackon':
+                return 5 + Math.floor(Math.sqrt(Math.sqrt(this.age)));
+            default: return 10;
+        }
+    }
 
     public getCalculatedPointsUsed() {
-        const perkCost = this.perks.length > 0 ? this.perks.map(p=>p.cost).reduce((a,b) => a+b) : 0;
+        const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost).reduce((a, b) => a + b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4
@@ -68,13 +162,45 @@ export class Character {
             + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0)
             + perkCost;
     }
-    public getStartingPointsAvailable() {
-        let p = 300;
-        p += Math.min(this.age, 18) * 16;
-        if (this.age > 18) p += Math.min(this.age - 18, 26 - 18) * 12;
-        if (this.age > 26) p += Math.min(this.age - 26, 40 - 26) * 8;
-        if (this.age > 40) p += Math.min(this.age - 40, 70 - 40) * 4;
+
+    private characterPoints(start: number, agePhases: number[], expPhases: number[]): number {
+        let p = start;
+        if (agePhases.length !== expPhases.length) console.error('age Phases and expPhases must be of equal length!');
+        let prevPhase = 0;
+        for (var phase in agePhases) {
+            let currentAgePhase = agePhases[phase];
+            let expPhase = expPhases[phase];
+
+            let ageRange = currentAgePhase - prevPhase;
+            if (this.age > prevPhase) p += Math.min(this.age - prevPhase, ageRange) * expPhase;
+            prevPhase = currentAgePhase;
+        }
+
         return p;
+    }
+
+    private characterPointsHuman() {
+        return this.characterPoints(300, [18, 26, 40, 70], [16, 12, 8, 4]);
+    }
+
+    private characterPointsMerlion() {
+        return this.characterPoints(200, [16, 24, 50, 90], [20, 16, 12, 6]);
+    }
+
+    private characterPointsKlackon() {
+        return this.characterPoints(100, [10, 20, 40, 80, 160, 320, 640], [6, 8, 10, 12, 16, 18, 18]);
+    }
+
+
+
+    public getStartingPointsAvailable() {
+
+        switch (this.species) {
+            case 'human': return this.characterPointsHuman();
+            case 'merlion': return this.characterPointsMerlion();
+            case 'klackon': return this.characterPointsKlackon();
+            default: return this.characterPointsHuman();
+        }
     }
 
     public getMaximumPointsAvailable() {

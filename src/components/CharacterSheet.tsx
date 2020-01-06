@@ -31,19 +31,19 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
-                <Field enableButtons={edit} max={15} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
-                <Field enableButtons={edit} max={15} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
-                <Field enableButtons={edit} max={15} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
-                <Field enableButtons={edit} max={15} label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
-                <Field enableButtons={edit} max={15} label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
-                <Field enableButtons={edit} max={15} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
+                <Field enableButtons={edit} max={character.getMaxStrength()} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
+                <Field enableButtons={edit} max={character.getMaxAgility()} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
+                <Field enableButtons={edit} max={character.getMaxEndurance()} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
+                <Field enableButtons={edit} max={character.getMaxPerception()} label='perception' value={character.perception} onChange={n => dispatch({ action: 'perception', value: n })}>eyesight, hearing, and how much you smell</Field>
+                <Field enableButtons={edit} max={character.getMaxWillpower()} label='willpower' value={character.willpower} onChange={n => dispatch({ action: 'willpower', value: n })}>ability to say "no" when it's sooo good</Field>
+                <Field enableButtons={edit} max={character.getMaxIntelligence()} label='intelligence' value={character.intelligence} onChange={n => dispatch({ action: 'intelligence', value: n })}>big brainy boy</Field>
             </Grid>
             <Grid item xs={12} sm={6}>
                 <StringField label={'name'} value={character.name} enableEdit={edit} onChange={n => dispatch({ action: 'name', value: 0, name: n })} ></StringField>
                 <StringField label={'gender'} value={character.gender} enableEdit={edit} onChange={n => dispatch({ action: 'gender', value: 0, name: n })} ></StringField>
                 <StringField label={'species'} value={character.species} enableEdit={edit} onChange={n => dispatch({ action: 'species', value: 0, name: n })} ></StringField>
                 <StringField label={'background'} value={character.background} enableEdit={edit} onChange={n => dispatch({ action: 'background', value: 0, name: n })} ></StringField>
-                <Field enableButtons={edit} label='age' max={90} min={15} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
+                <Field enableButtons={edit} label='age' max={900} min={1} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
                 <Paper>mana: {character.getMana()}</Paper>
