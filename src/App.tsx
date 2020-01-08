@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { CharacterSheet } from './components/CharacterSheet';
 import './App.css';
 import { Character, ICharacter } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
-import PlayerManual from './components/PlayerManual';
-import SkillPerkManual from './components/SkillPerkManual';
-import GameMaster from './components/GameMaster';
-import WorldAndLore from './components/WorldAndLore';
-import Wizard from './components/Wizard';
+const SkillPerkManual = lazy(() => import('./components/SkillPerkManual'));
+const GameMaster = lazy(() => import('./components/GameMaster'));
+const WorldAndLore = lazy(() => import('./components/WorldAndLore'));
+const Wizard = lazy(() => import('./components/Wizard'));
+const PlayerManual = lazy(() => import('./components/PlayerManual'));
 
 const App: React.FC = () => {
   const main = 'main';
   const [viewMode, setViewMode] = useState(main);
-  const [character, setCharacter ] = useState(new Character());//new Character();
+  const [character, setCharacter] = useState(new Character());//new Character();
   const characterSheet = 'View Character Sheet';
   const playerManual = 'Player Manual';
   const gameMaster = 'Game Master';
@@ -34,16 +34,15 @@ const App: React.FC = () => {
     try {
       console.info('attempting to load character');
       const charData = prompt('paste character string here');
-      if (charData !== null)
-      {
+      if (charData !== null) {
         const c = JSON.parse(charData) as ICharacter;
-        setCharacter(new Character({...c}));
+        setCharacter(new Character({ ...c }));
         setViewMode(characterSheet);
-        console.log('character was successfully loaded:', {...c});
+        console.log('character was successfully loaded:', { ...c });
       } else console.log('no character info was pasted');
     }
-    catch(error) {
-      console.error({error});
+    catch (error) {
+      console.error({ error });
     }
   };
 
@@ -96,7 +95,7 @@ interface ItemProp {
 }
 
 const Conditional: React.FC<ItemProp> = ({ shouldView, children }) => {
-  if (shouldView) return <div style={{ textAlign: 'left', padding: '15px' }}>{children}</div>;
+  if (shouldView) return <div style={{ textAlign: 'left', padding: '15px' }}><Suspense fallback={<div>Loading...</div>}>{children}</Suspense></div>;
   else return null;
 }
 
