@@ -3,6 +3,7 @@ import FTLHyperDrive from './Lore/FTLHyperDrive';
 import History from './Lore/History';
 import Merlions from './Lore/Merlions';
 import { Button } from '@material-ui/core';
+import Klackons from './Lore/Klackons';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -15,7 +16,7 @@ const WorldAndLore: React.FC = () => {
         <WALSection headline='The other colonies'>work in progress...</WALSection>
         <WALSection headline='The galaxy'>work in progress...</WALSection>
         <WALSection headline='The Merlions'><Merlions /></WALSection>
-        <WALSection headline='The Klackons'>work in progress...</WALSection>
+        <WALSection headline='The Klackons'><Klackons /></WALSection>
         <WALSection headline='Monsters'>work in progress...</WALSection>
     </div>);
 }

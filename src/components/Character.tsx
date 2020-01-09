@@ -152,13 +152,14 @@ export class Character {
     }
 
     public getCalculatedPointsUsed() {
+        const intMultipler = this.species === 'merlion' ? 3 : 4;
         const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost).reduce((a, b) => a + b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4
             + fSum(this.perception) * 4
             + fSum(this.willpower) * 4
-            + fSum(this.intelligence) * 4
+            + fSum(this.intelligence) * intMultipler
             + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0)
             + perkCost;
     }
@@ -184,11 +185,11 @@ export class Character {
     }
 
     private characterPointsMerlion() {
-        return this.characterPoints(200, [16, 24, 50, 90], [20, 16, 12, 6]);
+        return this.characterPoints(200, [16, 24, 50, 90], [20, 16, 12, 8]);
     }
 
     private characterPointsKlackon() {
-        return this.characterPoints(100, [10, 20, 40, 80, 160, 320, 640], [6, 8, 10, 12, 16, 18, 18]);
+        return this.characterPoints(100, [10, 20, 40, 80, 160, 320, 640], [8, 9, 10, 11, 12, 13, 14]);
     }
 
 
