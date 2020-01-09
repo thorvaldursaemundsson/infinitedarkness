@@ -8,17 +8,15 @@ const WorldAndLore: React.FC = () => {
     return (<div>
         <h1>World and Lore</h1>
         <h2>Index</h2>
-        <WALSection headline='headline'><History /></WALSection>
+        <WALSection headline='History'><History /></WALSection>
         <WALSection headline='The FTL Hyperdrive'><FTLHyperDrive /></WALSection>
-        <WALSection headline='The Sol System'></WALSection>
-        <WALSection headline='The Centauri System'></WALSection>
-        <WALSection headline='The other colonies'></WALSection>
-        <WALSection headline='The galaxy'></WALSection>
+        <WALSection headline='The Sol System'>work in progress...</WALSection>
+        <WALSection headline='The Centauri System'>work in progress...</WALSection>
+        <WALSection headline='The other colonies'>work in progress...</WALSection>
+        <WALSection headline='The galaxy'>work in progress...</WALSection>
         <WALSection headline='The Merlions'><Merlions /></WALSection>
-        <WALSection headline='The Klackons'></WALSection>
-        <WALSection headline='Monsters'></WALSection>
-
-        <div></div>
+        <WALSection headline='The Klackons'>work in progress...</WALSection>
+        <WALSection headline='Monsters'>work in progress...</WALSection>
     </div>);
 }
 

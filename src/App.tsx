@@ -20,7 +20,8 @@ const App: React.FC = () => {
   const skillsAndPerks = 'Skills and Perks';
   const wizard = 'Launch Character Creator Wizard';
   const about = 'About';
-  let options = [characterSheet,
+  let options = [main,
+    characterSheet,
     playerManual,
     gameMaster,
     worldAndLore,
@@ -49,9 +50,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <DialogTitle>Infinite Darkness</DialogTitle>
+      <Menu callback={(option) => setViewMode(option)} options={options} current={viewMode} />
       <Conditional shouldView={viewMode === main}>
-        <DialogTitle>Infinite Darkness</DialogTitle>
-        <Menu callback={(option) => setViewMode(option)} options={options} />
         <Button onClick={() => loadCharacter()}>Load Character</Button>
       </Conditional>
       <Conditional shouldView={viewMode === characterSheet}>
@@ -102,10 +103,11 @@ const Conditional: React.FC<ItemProp> = ({ shouldView, children }) => {
 interface MenuProps {
   callback: (option: string) => void;
   options: string[];
+  current: string;
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  return <div>{props.options.map(option => <Button key={option} onClick={() => props.callback(option)}>{option}</Button>)}</div>;
+  return <div>{props.options.map(option => <Button variant={option === props.current ? "outlined" : "text"} key={option} onClick={() => props.callback(option)}>{option}</Button>)}</div>;
 }
 
 export default App;
