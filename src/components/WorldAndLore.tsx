@@ -4,6 +4,7 @@ import History from './Lore/History';
 import Merlions from './Lore/Merlions';
 import { Button } from '@material-ui/core';
 import Klackons from './Lore/Klackons';
+import SolSystem from './Lore/SolSystem';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -11,7 +12,7 @@ const WorldAndLore: React.FC = () => {
         <h2>Index</h2>
         <WALSection headline='History'><History /></WALSection>
         <WALSection headline='The FTL Hyperdrive'><FTLHyperDrive /></WALSection>
-        <WALSection headline='The Sol System'>work in progress...</WALSection>
+        <WALSection headline='The Sol System'><SolSystem /></WALSection>
         <WALSection headline='The Centauri System'>work in progress...</WALSection>
         <WALSection headline='The other colonies'>work in progress...</WALSection>
         <WALSection headline='The galaxy'>work in progress...</WALSection>
@@ -28,7 +29,7 @@ interface IWALSectionProps {
 const WALSection: React.FC<IWALSectionProps> = ({ headline, children }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div>
+        <div style={{borderBottom:'1px dotted lightgrey'}}>
             <h4><Button onClick={() => setIsOpen(!isOpen)}>{headline}</Button></h4>
             {isOpen && children}
         </div>);
