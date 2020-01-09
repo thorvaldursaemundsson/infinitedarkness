@@ -1,16 +1,7 @@
-import { useState } from "react";
 import React from "react";
-import { Button } from "@material-ui/core";
-
 const History: React.FC = () => {
-    const [open, setOpen] = useState(false);
-
-    if (!open)
-        return <Button onClick={() => setOpen(true)}>View history</Button>
-    else
     return <>
-    <Button onClick={() => setOpen(false)}>X</Button>
-    <h2>History</h2>
+    
     <p>
         This section outlines the major events that shaped the world of Infinite Darkness
     </p>

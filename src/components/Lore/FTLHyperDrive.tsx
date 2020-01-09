@@ -1,15 +1,7 @@
-import { useState } from "react";
 import React from "react";
-import { Button } from "@material-ui/core";
 
 const FTLHyperDrive: React.FC = () => {
-    const [open, setOpen] = useState(false);
-
-    if (!open)
-        return <Button onClick={() => setOpen(true)}>View FTL Hyperdrive</Button>
-    else
         return <>
-        <Button onClick={() => setOpen(false)}>X</Button>
         <h2>The FTL Hyperdrive</h2>
         <h5>What is it?</h5>
         <p>The FTL Hyperdrive is the propulsion which allows humans to travel faster than the speed of light and thus visit other stars within a human lifetime.<br/>
