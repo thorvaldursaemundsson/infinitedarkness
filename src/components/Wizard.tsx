@@ -3,6 +3,7 @@ import { Button, TextField } from '@material-ui/core';
 import { Character, ICharacter } from './Character';
 import { CharacterSheet } from './CharacterSheet';
 import { GetSkillList } from './Skills';
+import AutoSelectField from './AutoSelectField';
 
 const Wizard: React.FC = () => {
     const [viewStep, setViewStep] = useState(0);
@@ -65,11 +66,15 @@ const Step1: React.FC<IStepProps> = (props: IStepProps) => {
     const [name, setName] = useState('');
     const step = 1;
     if (props.currentNumber !== step) return null;
+
+    const genderList = (species.toLowerCase() === 'merlion') ? ['linon', 'caion', 'vekon'] : ['male','female'];
+
     return <div>
         <h3>Lets get some basic information</h3>
         <div><b>What is your character's name?</b> <TextField onChange={(e) => setName(e.target.value)} value={name}>{name}</TextField></div>
-        <div><b>What is your character's gender?</b> <TextField onChange={(e) => setGender(e.target.value)} value={gender}>{gender}</TextField></div>
-        <div><b>What is your character's species?</b> <TextField onChange={(e) => setSpecies(e.target.value)} value={species}>{species}</TextField></div>
+        <div><b>What is your character's species?</b> <AutoSelectField value={species} onChange={(n) => setSpecies(n)} values={['human','merlion','klackon']} ></AutoSelectField> </div>
+        <div><b>What is your character's gender?</b> <AutoSelectField values={genderList} value={gender} onChange={(e) => setGender(e)}></AutoSelectField></div>
+
         <Button key='wizard_step1_next' onClick={() => props.callback(step + 1, new Character({ ...props.character, name: name, species: species, gender: gender }))}>Next</Button>
     </div>;
 }
@@ -86,7 +91,7 @@ const Step2: React.FC<IStepProps> = ({ character, currentNumber, callback }) => 
         if (birthPlaceOption1 === 'Coalition of Sol')
             return ['Earth', 'Mars', 'Ceres', 'Saturn Moons', 'Jupiter Moons', 'Space Station', 'Mercury Outpost'];
         else if (birthPlaceOption1 === 'Centauri Imperium')
-        return ['Rigil Bolemia', 'Rigil Phomelara', 'Toliman Lachowei', 'Toliman Auria', 'Toliman Nion', 'Proxima Siugantu'];
+            return ['Rigil Bolemia', 'Rigil Phomelara', 'Toliman Lachowei', 'Toliman Auria', 'Toliman Nion', 'Proxima Siugantu'];
         else return ['Wild wild space west'];
     }
     if (currentNumber !== step) return null;
