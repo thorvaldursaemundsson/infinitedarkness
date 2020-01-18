@@ -8,16 +8,16 @@ export interface Trait extends IHooker {
     description: string;
 }
 
-const Cowardice: Trait = {
-    name: 'cowardice',
+const Coward: Trait = {
+    name: 'cocowardwardice',
     cost: -20,
     description: 'You are a coward that more easily falls vicim to fear. willpower counts as 2 lower for fear',
     applyTo:'fear',
     amount:-2,
 }
 
-const Bravery: Trait = {
-    name: 'bravery',
+const Brave: Trait = {
+    name: 'brave',
     cost: 20,
     description: 'You are brave and are less likely to be phased by fear. willpower counts as 2 higher for fear',
     applyTo:'fear',
@@ -50,8 +50,8 @@ const Resillient: Trait = {
 
 export const GetTraits = ():Trait[] & IHooker[] => {
     return [
-        Cowardice,
-        Bravery,
+        Coward,
+        Brave,
         FoolHardy,
         Frail,
         Resillient
