@@ -47,10 +47,6 @@ class PerkTemplate implements Perk {
 const Skills = GetSkillList();
 export const GetPerkList = (): Perk[] => {
     return [
-        new PerkTemplate({ ...gun1 },{applyTo:'gun', amount:4}),
-        new PerkTemplate({ ...gun2 },{applyTo:'gun', amount:4}),
-        new PerkTemplate({ ...gun3 },{applyTo:'gun', amount:4}),
-        new PerkTemplate({ ...gun4 },{applyTo:'gun', amount:4}),
 
     ].sort(sortPerk);
 }

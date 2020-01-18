@@ -23,7 +23,7 @@ const Step1: React.FC<IStepProps> = (props: IStepProps) => {
         <div><b>What is your character's name?</b> <TextField onChange={(e) => setName(e.target.value)} value={name}>{name}</TextField></div>
         <div><b>What is your character's species?</b> <AutoSelectField value={species} onChange={(n) => setSpecies(n)} values={['human','merlion','klackon']} ></AutoSelectField> </div>
         <div><b>What is your character's gender?</b> <AutoSelectField values={genderList} value={gender} onChange={(e) => setGender(e)}></AutoSelectField></div>
-        <Button key='wizard_step1_next' onClick={() => props.callback(step + 1, new Character({ ...props.character, name: name, species: species, gender: gender }))}>Next</Button>
+        <Button variant='outlined'  key='wizard_step1_next' onClick={() => props.callback(step + 1, new Character({ ...props.character, name: name, species: species, gender: gender }))}>Next</Button>
     </div>;
 }
 export default Step1;

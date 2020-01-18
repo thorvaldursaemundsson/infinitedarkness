@@ -162,8 +162,8 @@ export class Character {
 
     public getCalculatedPointsUsed() {
         const intMultipler = this.species === 'merlion' ? 3 : 4;
-        const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost).reduce((a, b) => a + b) : 0;
-        const traitCost = this.traits.length > 0 ? this.traits.map(t=>t.cost).reduce((a,b) => a+b) : 0;
+        const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost()).reduce((a, b) => a + b) : 0;
+        const traitCost = this.traits.length > 0 ? this.traits.map(t => t.cost).reduce((a, b) => a + b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4

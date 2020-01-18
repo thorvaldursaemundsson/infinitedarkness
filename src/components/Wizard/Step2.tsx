@@ -8,43 +8,120 @@ import { Character } from "../Character";
 import React from "react";
 
 const Step2: React.FC<IStepProps> = ({ character, currentNumber, callback }) => {
-    const [birthPlaceOption1, setBirthPlaceOption1] = useState('');
-    const [birthPlaceOption2, setBirthPlaceOption2] = useState('');
+    const [currentPosition, setCurrentPosition] = useState<string[]>([]);
     const step = 2;
-    const getAddLib = () => {
-        if (birthPlaceOption1 === '') return `${character.name} has no background`;
-        if (birthPlaceOption2 !== '') return `${character.name} was born in ${birthPlaceOption1}, ${birthPlaceOption2}`
-        return `${character.name} was born in ${birthPlaceOption1}`;
+    if (currentNumber !== step) return <></>;
+    const GetOptions = (position: string[]): string[] => {
+        if (position.length === 0) {
+            return optionTree.map(o => o.key);
+        }
+        else if (position.length === 1) {
+            const ot = optionTree.find(o => o.key === position[0]);
+            if (ot !== undefined) return ot.value.map(o => o.key);
+        }
+        else if (position.length === 2) {
+            let ot = optionTree.find(o => o.key === position[0]);
+            if (ot !== undefined){
+                ot = ot.value.find(o => o.key === position[1]);
+                if (ot !== undefined){
+                    return ot.value.map(o => o.key);
+                }
+            } 
+        }
+
+
+        return [];
     }
-    const getBirthPlaceOptions2 = () => {
-        if (birthPlaceOption1 === 'Coalition of Sol')
-            return ['Earth', 'Mars', 'Ceres', 'Saturn Moons', 'Jupiter Moons', 'Space Station', 'Mercury Outpost'];
-        else if (birthPlaceOption1 === 'Centauri Imperium')
-            return ['Rigil Bolemia', 'Rigil Phomelara', 'Toliman Lachowei', 'Toliman Auria', 'Toliman Nion', 'Proxima Siugantu'];
-        else return ['Wild wild space west'];
+    const makeBackground = () => {
+        return `${character.name} was born on/in ${currentPosition.join(', ')}`;
     }
-    if (currentNumber !== step) return null;
     return <div>
         <h3>where was your character born or hatched?</h3>
-        {birthPlaceOption1 === '' ?
-            <div>
-                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Coalition of Sol')}>Coalition of Sol</Button>
-                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Centauri Imperium')}>Centauri Imperium</Button>
-                <Button variant="outlined" onClick={() => setBirthPlaceOption1('Fronteer World')}>Fronteer World</Button>
-            </div>
-            : null}
-        {birthPlaceOption1 !== '' ?
-            <div>
-                {getBirthPlaceOptions2().map(option => {
-                    return <Button variant="outlined" onClick={() => setBirthPlaceOption2(option)}>{option}</Button>
-                })}
-            </div>
-            : null
-        }
-        {getAddLib()}
+        {GetOptions(currentPosition).map(o => {
+            return <Button variant='contained' onClick={() => setCurrentPosition([...currentPosition, o])}>{o}</Button>
+        })}
         <br />
-        <Button key='wizard_step2_next' onClick={() => callback(step + 1, new Character({ ...character, background: getAddLib() }))}>Next</Button>
+        Background: {makeBackground()}
+        <br />
+        <Button variant='outlined' key='wizard_step2_next' onClick={() => callback(step + 1, new Character({ ...character, background: '' }))}>Next</Button>
     </div>;
 }
+
+interface IOption {
+    key: string;
+    value: IOption[];
+}
+
+const optionTree: IOption[] = [];
+
+optionTree.push({
+    key: 'Coalition of sol',
+    value: [
+        {
+            key: 'Earth',
+            value: [
+                {
+                    key: 'Euroasia',
+                    value:[]
+                },
+                {
+                    key: 'North America',
+                    value:[]
+                },
+                {
+                    key: 'South America',
+                    value:[]
+                },
+                {
+                    key: 'Africa',
+                    value:[]
+                },
+                {
+                    key: 'Greenland',
+                    value:[]
+                },
+                {
+                    key: 'Australia',
+                    value:[]
+                },
+                {
+                    key: 'Antarctica',
+                    value:[]
+                },
+            ]
+        },
+        {
+            key: 'Mars',
+            value: []
+        },
+        {
+            key: 'Ceres',
+            value: []
+        },
+        {
+            key: 'Jupiter moon colony',
+            value: []
+        },
+        {
+            key: 'Saturn moon coloy',
+            value: []
+        },
+        {
+            key: 'Outer planets station or spaceborn',
+            value: []
+        }
+    ]
+});
+
+optionTree.push({
+    key: 'Centauri Imperium',
+    value: []
+})
+
+optionTree.push({
+    key: 'Fronteer World',
+    value: []
+})
+
 
 export default Step2;

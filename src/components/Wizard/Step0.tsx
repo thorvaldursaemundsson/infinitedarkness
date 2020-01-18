@@ -10,7 +10,7 @@ const Step0: React.FC<IStepProps> = (props: IStepProps) => {
     return <div>
         <h3>Press Next to start the wizard</h3>
         <p>This wizard will ask you a series of questions which will progressively build your character from birth to current state, you can press toggle to view your character at any point</p>
-        <Button key='wizard_step0_next' onClick={() => props.callback(step + 1, props.character)}>Next</Button>
+        <Button variant='outlined' key='wizard_step0_next' onClick={() => props.callback(step + 1, props.character)}>Next</Button>
     </div>;
 }
 
