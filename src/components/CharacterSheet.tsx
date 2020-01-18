@@ -13,23 +13,13 @@ interface CharacterSheetProps {
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
-    const [charJSON, setCharJSON] = useState('');
     const [edit, setEdit] = useState(false);
     const [viewTraitList, setViewTraitList] = useState(false);
 
     const perksList = GetPerkList();
 
-    const makeJSONText = () => {
-        const json = JSON.stringify({ ...character });
-        setCharJSON(json);
-    };
-
     return <Paper style={{ textAlign: 'left' }}>
-        <Button key='charactersheet_exit_and_save' onClick={() => props.characterCallback(character)}>exit</Button>
-        {charJSON !== '' ? <Button key='charactersheet_close_character_data' onClick={() => setCharJSON('')}>Close character data</Button> : null}
-        <Button key='charactersheet_make_json_text' onClick={() => makeJSONText()}>Save character data</Button>
         <Button key='charactersheet_edit' onClick={() => setEdit(!edit)}>edit</Button>
-        <Paper>{charJSON}</Paper>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
                 Character points left {character.getCalculatedPointsLeft()}
