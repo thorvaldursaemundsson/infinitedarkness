@@ -1,5 +1,6 @@
 import { Skill, GetSkillList } from "./Skills";
 import { Perk } from './Perks';
+import { Trait } from "./traits/Traits";
 
 const fSum = (n: number): number => {
     let x = 0;
@@ -8,6 +9,11 @@ const fSum = (n: number): number => {
     }
     return x;
 };
+
+export interface IHooker {
+    applyTo: string;
+    amount: number;
+}
 
 export interface ICharacter {
     name: string;
@@ -23,6 +29,7 @@ export interface ICharacter {
     intelligence: number;
     skills: Skill[];
     perks: Perk[];
+    traits: Trait[];
 }
 
 export class Character {
@@ -39,6 +46,7 @@ export class Character {
     intelligence: number;
     skills: Skill[];
     perks: Perk[];
+    traits: Trait[];
     constructor(copy?: ICharacter) {
         this.name = (copy && copy.name) || "";
         this.species = (copy && copy.species) || "";
@@ -51,6 +59,7 @@ export class Character {
         this.willpower = (copy && copy.willpower) || 4;
         this.intelligence = (copy && copy.intelligence) || 4;
         this.skills = (copy && copy.skills) || GetSkillList();
+        this.traits = (copy && copy.traits) || [];
         if (copy !== undefined && copy.perks !== undefined) this.perks = copy.perks;
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
@@ -154,6 +163,7 @@ export class Character {
     public getCalculatedPointsUsed() {
         const intMultipler = this.species === 'merlion' ? 3 : 4;
         const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost).reduce((a, b) => a + b) : 0;
+        const traitCost = this.traits.length > 0 ? this.traits.map(t=>t.cost).reduce((a,b) => a+b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4
@@ -161,7 +171,12 @@ export class Character {
             + fSum(this.willpower) * 4
             + fSum(this.intelligence) * intMultipler
             + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0)
-            + perkCost;
+            + perkCost
+            + traitCost;
+    }
+
+    public getCalculatedPointsLeft() {
+        return this.getStartingPointsAvailable() - this.getCalculatedPointsUsed();
     }
 
     private characterPoints(start: number, agePhases: number[], expPhases: number[]): number {
@@ -209,31 +224,45 @@ export class Character {
     }
 
     public getExperienceMultiplier() {
-        if (this.age < 16) return 3;
-        if (this.age < 20) return 2.5;
-        if (this.age < 24) return 2;
-        if (this.age < 28) return 1.75;
-        if (this.age < 32) return 1.5;
-        if (this.age < 36) return 1.25;
+        if (this.age < 16) return 3 * + (this.getHook('exp') + 1);
+        if (this.age < 20) return 2.5 * + (this.getHook('exp') + 1);
+        if (this.age < 24) return 2 * + (this.getHook('exp') + 1);
+        if (this.age < 28) return 1.75 * + (this.getHook('exp') + 1);
+        if (this.age < 32) return 1.5 * + (this.getHook('exp') + 1);
+        if (this.age < 36) return 1.25 * + (this.getHook('exp') + 1);
         return 1;
     }
 
     public getHitpoints() {
-        return this.strength + this.endurance * 2;
+        return this.strength + this.endurance * 2 + this.getHook('hitpoints');
     }
 
     public getMana() {
-        return this.endurance + this.willpower * 2
+        return this.endurance + this.willpower * 2 + this.getHook('mana');
+    }
+
+    public getFearResistence() {
+        return this.willpower + 2 + this.getHook('fear');
     }
 
     public getDamageBonusSmall() {
-        return Math.floor(this.strength / 4);
+        return Math.floor(this.strength / 4) + this.getHook('dmgSmall');
     }
 
     public getDamageBonusMedium() {
-        return Math.floor(this.strength / 3);
+        return Math.floor(this.strength / 3) + this.getHook('dmgMedium');
     }
     public getDamageBonusLarge() {
-        return Math.floor(this.strength / 2);
+        return Math.floor(this.strength / 2) + this.getHook('dmgLarge');
+    }
+
+    private getHook(applyTo: string): number {
+        return this.sumOr(applyTo, this.perks, 0) + this.sumOr(applyTo, this.traits, 0);
+    }
+
+    private sumOr(applyTo: string, sum: IHooker[], or: number): number {
+        let s = sum.filter(perk => perk.applyTo == applyTo).map(p => p.amount);
+        if (s.length > 0) return s.reduce((a, b) => a + b);
+        else return or;
     }
 }

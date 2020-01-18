@@ -4,6 +4,7 @@ import { Paper, Grid, Button } from '@material-ui/core';
 import { Character } from './Character';
 import { GetPerkList, Perk } from './Perks';
 import StringField from './StringField';
+import { GetTraits, Trait } from './traits/Traits';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -14,6 +15,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [charJSON, setCharJSON] = useState('');
     const [edit, setEdit] = useState(false);
+    const [viewTraitList, setViewTraitList] = useState(false);
 
     const perksList = GetPerkList();
 
@@ -30,7 +32,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         <Paper>{charJSON}</Paper>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
-                Character points used {character.getCalculatedPointsUsed()} / {character.getStartingPointsAvailable()} ({character.getMaximumPointsAvailable()})
+                Character points left {character.getCalculatedPointsLeft()}
                 <Field enableButtons={edit} max={character.getMaxStrength()} label='strength' value={character.strength} onChange={n => dispatch({ action: 'strength', value: n })}>Raw muscle strength</Field>
                 <Field enableButtons={edit} max={character.getMaxAgility()} label='agility' value={character.agility} onChange={n => dispatch({ action: 'agility', value: n })}>Steady hands, reflexes</Field>
                 <Field enableButtons={edit} max={character.getMaxEndurance()} label='endurance' value={character.endurance} onChange={n => dispatch({ action: 'endurance', value: n })}>Ability to last long</Field>
@@ -46,10 +48,11 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <Field enableButtons={edit} label='age' max={900} min={1} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
                 <Paper>Hit points: {character.getHitpoints()}</Paper>
-                <Paper>mana: {character.getMana()}</Paper>
-                <Paper>damage bonus small: {character.getDamageBonusSmall()}</Paper>
-                <Paper>damage bonus medium: {character.getDamageBonusMedium()}</Paper>
-                <Paper>damage bonus large: {character.getDamageBonusLarge()}</Paper>
+                <Paper>Mana: {character.getMana()}</Paper>
+                <Paper>Fear resistence: {character.getFearResistence()}</Paper>
+                <Paper>Damage bonus small: {character.getDamageBonusSmall()}</Paper>
+                <Paper>Damage bonus medium: {character.getDamageBonusMedium()}</Paper>
+                <Paper>Damage bonus large: {character.getDamageBonusLarge()}</Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
                 {character.skills.map(s => {
@@ -77,12 +80,37 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     </Field>
                 })}
             </Grid>
+
             <Grid item xs={12} sm={6}>
+                <h1>Traits</h1>
+                {character.traits.map(trait => {
+                    return (<div>
+                        <b>{trait.name}</b> {trait.description} ({trait.cost})
+                        <Button key={'removetrait_' + trait.name} onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>X</Button>
+                    </div>)
+                })}
+                {edit === true ?
+                    <>
+                        {viewTraitList === true ?
+                            <>
+                                <Button key='traitsbutton' onClick={() => setViewTraitList(false)}>Hide Traits</Button>
+                                {GetTraits().map(trait => {
+                                    return <div style={{paddingBottom:'6px'}}>
+                                        <Button size='small' variant='contained' onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</Button>
+                                        ({trait.cost})
+                                        {trait.description} 
+                                        </div>
+                                })}
+                            </>
+                            : <Button key='traitsbutton' onClick={() => setViewTraitList(true)}>View Traits</Button>}
+                    </>
+                    : null
+                }
                 <h1>Perks</h1>
                 {character.perks.map(perk => {
-                    return (<p><b>{perk.name}</b> ({perk.cost}) {perk.description()}
+                    return (<><b>{perk.name}</b> ({perk.cost}) {perk.description()}
                         <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>
-                    </p>)
+                    </>)
                 })}
             </Grid>
         </Grid>
@@ -94,6 +122,7 @@ interface dispatcher {
     name?: string;
     value: number;
     perkToAdd?: Perk;
+    traitToAdd?: Trait;
 }
 
 const useCharacter = (state: Character, action: dispatcher): Character => {
@@ -117,11 +146,8 @@ const useCharacter = (state: Character, action: dispatcher): Character => {
         case 'background': return new Character({ ...state, background: action.name || '' });
     }
     if (action.action === 'addperk') {
-        let r = new Character({
-            ...state
-        });
-        if (action.perkToAdd !== undefined) r.perks.push(action.perkToAdd);
-        return r;
+        if (action.perkToAdd !== undefined)
+            return new Character({ ...state, perks: [...state.perks, action.perkToAdd] });
     }
     else if (action.action === 'removeperk') {
         let r = new Character({
@@ -130,6 +156,21 @@ const useCharacter = (state: Character, action: dispatcher): Character => {
         if (action.perkToAdd !== undefined) {
             let pta = action.perkToAdd;
             r.perks = r.perks.filter(p => p.name !== pta.name);
+        }
+        return r;
+    }
+    else if (action.action === 'addtrait') {
+        if (action.traitToAdd !== undefined)
+            return new Character({ ...state, traits: [...state.traits, action.traitToAdd] });
+    }
+
+    else if (action.action === 'removetrait') {
+        let r = new Character({
+            ...state
+        });
+        if (action.traitToAdd !== undefined) {
+            let pta = action.traitToAdd;
+            r.traits = r.traits.filter(p => p.name !== pta.name);
         }
         return r;
     }

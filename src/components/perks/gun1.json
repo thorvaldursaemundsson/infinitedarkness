@@ -1,6 +1,6 @@
 {
     "name": "Gun Initiate",
     "skill": "combat",
-    "cost": 10,
+    "level": 1,
     "description": "+4 to hit with guns"
 }

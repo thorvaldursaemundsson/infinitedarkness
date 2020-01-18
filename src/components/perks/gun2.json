@@ -1,6 +1,6 @@
 {
     "name": "Gun Adept",
     "skill": "combat",
-    "cost": 20,
+    "level": 2,
     "description": "+4 to hit with guns (stacks with gun initiate)"
 }

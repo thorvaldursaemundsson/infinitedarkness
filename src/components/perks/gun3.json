@@ -1,6 +1,6 @@
 {
     "name": "Gun Mastery",
     "skill": "combat",
-    "cost": 30,
+    "level": 3,
     "description": "+4 to hit with guns"
 }
