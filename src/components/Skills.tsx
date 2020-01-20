@@ -1,4 +1,5 @@
 import combat from './skills/combat.json';
+import firearms from './skills/firearms.json';
 import pilot from './skills/pilot.json';
 import spells from './skills/spells.json';
 import investigation from './skills/investigation.json';
@@ -28,6 +29,7 @@ export interface Skill {
 export const GetSkillList = (): Skill[] => {
     return [
         { ...combat },
+        { ...firearms},
         { ...pilot },
         { ...spells },
         { ...investigation },

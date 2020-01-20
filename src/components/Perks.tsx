@@ -1,10 +1,6 @@
-import gun1 from './perks/gun1.json';
-import gun2 from './perks/gun2.json';
-import gun3 from './perks/gun3.json';
-import gun4 from './perks/gun4.json';
 import React from 'react';
-import { GetSkillList } from './Skills';
 import { IHooker } from './Character.js';
+import Deflection from './perks/Deflection.js';
 
 
 export interface Perk extends IHooker {
@@ -22,7 +18,7 @@ interface IPerk {
     description: string;
 }
 
-class PerkTemplate implements Perk {
+export class PerkTemplate implements Perk {
     name: string;
     skill: string;
     level:1|2|3|4|5;
@@ -44,10 +40,10 @@ class PerkTemplate implements Perk {
         this.amount = hook.amount;
     }
 }
-const Skills = GetSkillList();
 export const GetPerkList = (): Perk[] => {
     return [
-
+        Deflection
+        
     ].sort(sortPerk);
 }
 
