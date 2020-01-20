@@ -16,7 +16,6 @@ import subtrefuge from './skills/subtrefuge.json';
 import athletics from './skills/athletics.json';
 import acrobatics from './skills/acrobatics.json';
 import search from './skills/search.json';
-import slightOfHand from './skills/slightOfHand.json';
 import persuation from './skills/persuation.json';
 
 
@@ -47,6 +46,5 @@ export const GetSkillList = (): Skill[] => {
         { ...athletics },
         { ...acrobatics },
         { ...search },
-        {  ...slightOfHand }
     ].sort((a, b) => a.attribute < b.attribute ? -1 : 1);
 }

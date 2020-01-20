@@ -246,14 +246,14 @@ export class Character {
     }
 
     public getDamageBonusSmall() {
-        return Math.floor(this.strength / 4) + this.getHook('dmgSmall');
+        return Math.floor(this.strength / 4) + this.getHook('lightmelee');
     }
 
     public getDamageBonusMedium() {
-        return Math.floor(this.strength / 3) + this.getHook('dmgMedium');
+        return Math.floor(this.strength / 3) + this.getHook('mediummelee');
     }
     public getDamageBonusLarge() {
-        return Math.floor(this.strength / 2) + this.getHook('dmgLarge');
+        return Math.floor(this.strength / 2) + this.getHook('largemelee');
     }
 
     private getHook(applyTo: string): number {
