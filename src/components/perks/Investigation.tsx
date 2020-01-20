@@ -19,3 +19,13 @@ export const Enigmas = new PerkTemplate({
     applyTo: 'enigma',
     amount: 3
 });
+
+export const Search = new PerkTemplate({
+    name: 'search',
+    skill: 'investigation',
+    level: 1,
+    description: 'finding hidden objects'
+},{
+    applyTo: 'search',
+    amount: 3
+});

@@ -8,6 +8,14 @@ import { Forensics, Enigmas } from './perks/Investigation.js';
 import { Interrogator, Frighten, Spook } from './perks/Intimidation.js';
 import { LockPick, SlightOfHand } from './perks/Larceny.js';
 import { Shadow, Camouflage, Detection } from './perks/Stealth.js';
+import { ImprovedForaging, ShelterBuilder, BetterNavigation } from './perks/Survival.js';
+import { Hacking, AdvancedHacking, ExpertHacking, Networking, Programmer } from './perks/Computer.js';
+import { MedicineExpert, Healer, Surgeon } from './perks/Medicine.js';
+import { DetectLies, DetectMotives, DetectPersonality } from './perks/Empathy.js';
+import { Deception, HideEmotion } from './perks/Subtrefuge.js';
+import { Runner, Climber, Jumper, DeepLungs, GoodFortitude, GreatFortitude } from './perks/Athletics.js';
+import { Balance, Throwing, Dodger, Tumbler } from './perks/Acrobatics.js';
+import { InspireCourage, ArtOfDeal, MotivationalSpeaker, PeaceMaker } from './perks/Persuation.js';
 
 
 export interface Perk extends IHooker {
@@ -91,7 +99,37 @@ export const GetPerkList = (): Perk[] => {
         SlightOfHand,
         Shadow,
         Camouflage,
-        Detection
+        Detection,
+        ImprovedForaging,
+        ShelterBuilder,
+        BetterNavigation,
+        Hacking,
+        AdvancedHacking,
+        ExpertHacking,
+        Programmer,
+        Networking,
+        MedicineExpert,
+        Healer,
+        Surgeon,
+        DetectLies,
+        DetectMotives,
+        DetectPersonality,
+        Deception,
+        HideEmotion,
+        Runner,
+        Climber,
+        Jumper,
+        DeepLungs,
+        GoodFortitude,
+        GreatFortitude,
+        Balance,
+        Throwing,
+        Dodger,
+        Tumbler,
+        InspireCourage,
+        ArtOfDeal,
+        MotivationalSpeaker,
+        PeaceMaker
 
     ].sort(sortPerk);
 }

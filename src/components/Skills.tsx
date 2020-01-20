@@ -10,12 +10,10 @@ import survival from './skills/survival.json';
 import science from './skills/science.json';
 import computer from './skills/computer.json';
 import medicine from './skills/medicine.json';
-import surgery from './skills/surgery.json';
 import empathy from './skills/empathy.json';
 import subtrefuge from './skills/subtrefuge.json';
 import athletics from './skills/athletics.json';
 import acrobatics from './skills/acrobatics.json';
-import search from './skills/search.json';
 import persuation from './skills/persuation.json';
 
 
@@ -40,11 +38,9 @@ export const GetSkillList = (): Skill[] => {
         { ...science },
         { ...computer },
         { ...medicine },
-        { ...surgery },
         { ...empathy },
         { ...subtrefuge },
         { ...athletics },
         { ...acrobatics },
-        { ...search },
     ].sort((a, b) => a.attribute < b.attribute ? -1 : 1);
 }

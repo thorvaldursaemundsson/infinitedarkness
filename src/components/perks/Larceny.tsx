@@ -19,3 +19,13 @@ export const LockPick = new PerkTemplate({
     applyTo: 'slightofhand',
     amount: 6
 });
+
+export const HideObject = new PerkTemplate({
+    name: 'hide object',
+    skill: 'larceny',
+    level: 1,
+    description: 'Your character is good at finding spots to hide objects, +3 to make object hidden'
+},{
+    applyTo: 'slightofhand',
+    amount: 3
+});
