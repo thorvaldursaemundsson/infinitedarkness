@@ -2,9 +2,10 @@ import React, { useReducer, useState } from 'react';
 import { Field } from './Field';
 import { Paper, Grid, Button } from '@material-ui/core';
 import { Character } from './Character';
-import { GetPerkList, Perk } from './Perks';
+import { Perk } from './Perks';
 import StringField from './StringField';
 import { GetTraits, Trait } from './traits/Traits';
+import { GetPerkList } from './GetPerkList';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -64,6 +65,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         value={s.level}
                         onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
                         {s.description}
+                        <br />
                         {perksList.filter(p => p.skill === s.name).map(p => {
                             return <Button key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
                         })}
@@ -85,11 +87,11 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <>
                                 <Button key='traitsbutton' onClick={() => setViewTraitList(false)}>Hide Traits</Button>
                                 {GetTraits().map(trait => {
-                                    return <div style={{paddingBottom:'6px'}}>
+                                    return <div style={{ paddingBottom: '6px' }}>
                                         <Button size='small' variant='contained' onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</Button>
                                         ({trait.cost})
-                                        {trait.description} 
-                                        </div>
+                                        {trait.description}
+                                    </div>
                                 })}
                             </>
                             : <Button key='traitsbutton' onClick={() => setViewTraitList(true)}>View Traits</Button>}
@@ -98,7 +100,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 }
                 <h1>Perks</h1>
                 {character.perks.map(perk => {
-                    return (<><b>{perk.name}</b> ({perk.cost}) {perk.description()}
+                    return (<><b>{perk.name}</b> ({perk.cost()}) {perk.description()}
                         <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>
                     </>)
                 })}

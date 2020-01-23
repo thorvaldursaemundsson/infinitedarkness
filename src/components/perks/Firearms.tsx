@@ -51,7 +51,7 @@ export const LaserSpecialization = new PerkTemplate({
 });
 
 export const PlasmaSpecialization = new PerkTemplate({
-    name: 'laser specialization',
+    name: 'plasma specialization',
     skill: 'firearms',
     level: 1,
     description: 'gain +3 to hit with all plasma based weapons'

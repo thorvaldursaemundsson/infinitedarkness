@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { GetSkillList } from './Skills';
 import { Button } from '@material-ui/core';
-import { GetPerkList } from './Perks';
 import { GetTraits } from './traits/Traits';
+import { GetPerkList } from './GetPerkList';
 
 const SkillPerkManual:React.FC = () => {
     return <div>

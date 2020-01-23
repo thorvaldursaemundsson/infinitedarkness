@@ -7,7 +7,10 @@ import intimidation from './skills/intimidation.json';
 import larceny from './skills/larceny.json';
 import stealth from './skills/stealth.json';
 import survival from './skills/survival.json';
-import science from './skills/science.json';
+import sciencePhysics from './skills/science_physics.json';
+import scienceChemistry from './skills/science_chemistry.json';
+import scienceBiology from './skills/science_biology.json';
+import scienceSociety from './skills/science_society.json';
 import computer from './skills/computer.json';
 import medicine from './skills/medicine.json';
 import empathy from './skills/empathy.json';
@@ -35,7 +38,10 @@ export const GetSkillList = (): Skill[] => {
         { ...larceny },
         { ...stealth },
         {  ...survival },
-        { ...science },
+        { ...sciencePhysics },
+        { ...scienceChemistry },
+        { ...scienceBiology },
+        { ...scienceSociety },
         { ...computer },
         { ...medicine },
         { ...empathy },
