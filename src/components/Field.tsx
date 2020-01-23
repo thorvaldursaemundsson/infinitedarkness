@@ -22,9 +22,9 @@ export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, 
         {enableButtons === true ? <Button key={'fieldbutton_increase_'+label} size="small" variant="contained" onClick={() => onChange(ma <= value ? value : value + 1)}>+</Button> : null}
         {enableButtons === true ? <Button key={'fieldbutton_decrease_'+label}  size="small" variant="contained" onClick={() => onChange(mi >= value ? value : value - 1)}>-</Button> : null}
 
-        {children !== undefined ? viewChildren === true ?
-            <Paper><Button  key={'fieldbutton_children_'+label}  size="small" variant="contained" onClick={() => setViewChildren(false)}>X</Button>{children} </Paper>
-            : (enableButtons === true ? <Button  key={'fieldbutton_children_2_'+label}  size="small" variant="contained" onClick={() => setViewChildren(true)}>?</Button> : null)
+        {children !== undefined ? ((viewChildren === true && enableButtons) ?
+            <><Button  key={'fieldbutton_children_'+label}  size="small" variant="contained" onClick={() => setViewChildren(false)}>X</Button><Paper>{children} </Paper></>
+            : (enableButtons === true ? <Button  key={'fieldbutton_children_2_'+label}  size="small" variant="contained" onClick={() => setViewChildren(true)}>?</Button> : null))
             : null}
     </Paper>
 }

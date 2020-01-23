@@ -56,19 +56,21 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         case 'willpower': modifier = character.willpower; break;
                         case 'intelligence': modifier = character.intelligence; break;
                     }
-                    return <Field key={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()}
+                    return <Field key={s.name}
                         enableButtons={edit}
                         modifier={modifier}
                         max={40}
                         min={0}
-                        label={s.name + ' ' + s.attribute.substring(0, 3).toUpperCase()}
+                        label={s.name}
                         value={s.level}
                         onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
-                        {s.description}
-                        <br />
-                        {perksList.filter(p => p.skill === s.name).map(p => {
-                            return <Button key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
-                        })}
+                        ({s.attribute.substring(0, 3).toUpperCase()}) {s.description}
+                        <div>
+                            <h5 style={{ marginTop: '12px', marginBottom: '6px' }}>Perks</h5>
+                            {perksList.filter(p => p.skill === s.name).map(p => {
+                                return <Button key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
+                            })}
+                        </div>
                     </Field>
                 })}
             </Grid>
@@ -78,7 +80,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 {character.traits.map(trait => {
                     return (<div>
                         <b>{trait.name}</b> {trait.description} ({trait.cost})
-                        <Button key={'removetrait_' + trait.name} onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>X</Button>
+                        {edit && <Button key={'removetrait_' + trait.name} onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>X</Button>}
                     </div>)
                 })}
                 {edit === true ?
@@ -101,7 +103,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <h1>Perks</h1>
                 {character.perks.map(perk => {
                     return (<><b>{perk.name}</b> ({perk.cost()}) {perk.description()}
-                        <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>
+                        {edit && <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>}
                     </>)
                 })}
             </Grid>
