@@ -69,3 +69,5 @@ export const QualifiedForFTL = new PerkTemplate({
     applyTo: 'ftl',
     amount: 12
 });
+
+export const PilotPerks = [QualifiedForAirplane, QualifiedForBoat, QualifiedForCar, QualifiedForFTL, QualifiedForShip, QualifiedForSpaceship, QualifiedForSubmarine];

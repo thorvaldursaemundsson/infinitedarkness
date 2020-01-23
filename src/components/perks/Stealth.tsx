@@ -29,3 +29,5 @@ export const Detection = new PerkTemplate({
     applyTo: 'detection',
     amount: 3
 });
+
+export const StealthPerks = [Shadow, Camouflage, Detection];

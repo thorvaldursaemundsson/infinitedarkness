@@ -29,3 +29,5 @@ export const Search = new PerkTemplate({
     applyTo: 'search',
     amount: 3
 });
+
+export const InvestigationPerks = [Forensics, Enigmas, Search];

@@ -19,3 +19,5 @@ export const Deception = new PerkTemplate({
     applyTo: 'lies',
     amount: 3
 });
+
+export const SubtreFugePerks = [HideEmotion, Deception];

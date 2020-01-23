@@ -20,17 +20,6 @@ export const AdvancedHacking = new PerkTemplate({
     amount: 3
 });
 
-export const ExpertHacking = new PerkTemplate({
-    name: 'expert hacking',
-    skill: 'computer',
-    level: 3,
-    description: 'Your character is an expert hacker, gain extra +3 vs software protection'
-},{
-    applyTo: 'hack',
-    amount: 3
-});
-
-
 export const Programmer = new PerkTemplate({
     name: 'programmer',
     skill: 'computer',
@@ -49,3 +38,5 @@ export const Networking = new PerkTemplate({
     applyTo: 'networking',
     amount: 3
 });
+
+export const ComputerPerks = [Hacking, AdvancedHacking, Programmer, Networking];

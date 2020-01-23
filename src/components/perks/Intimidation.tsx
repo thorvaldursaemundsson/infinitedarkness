@@ -29,3 +29,5 @@ export const Spook = new PerkTemplate({
     applyTo: 'spook',
     amount: 3
 });
+
+export const IntimidationPerks = [Interrogator, Frighten, Spook];

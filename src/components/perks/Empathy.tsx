@@ -29,3 +29,5 @@ export const DetectPersonality = new PerkTemplate({
     applyTo: 'detectpersonality',
     amount: 3
 });
+
+export const EmpathyPerks = [DetectMotives, DetectLies, DetectPersonality];

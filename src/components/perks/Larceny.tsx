@@ -29,3 +29,5 @@ export const HideObject = new PerkTemplate({
     applyTo: 'slightofhand',
     amount: 3
 });
+
+export const LarcenyPerks = [SlightOfHand, LockPick, HideObject];

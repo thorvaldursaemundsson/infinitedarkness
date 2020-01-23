@@ -69,3 +69,5 @@ export const GreatFortitude = new PerkTemplate({
     applyTo: 'hitpoints',
     amount: 2
 });
+
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude];

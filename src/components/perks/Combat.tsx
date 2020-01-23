@@ -39,3 +39,5 @@ export const LargeWeaponSpecialization = new PerkTemplate({
     applyTo: 'largemelee',
     amount: 1
 });
+
+export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization];

@@ -39,3 +39,5 @@ export const Tumbler = new PerkTemplate({
     applyTo: 'tumble',
     amount: 3
 });
+
+export const AcrobaticsPerks = [Balance, Throwing, Dodger, Tumbler];

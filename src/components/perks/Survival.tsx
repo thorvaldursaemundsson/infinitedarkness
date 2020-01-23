@@ -29,3 +29,5 @@ export const ShelterBuilder = new PerkTemplate({
     applyTo: 'shelter',
     amount: 3
 });
+
+export const SurvivalPerks = [ImprovedForaging, BetterNavigation, ShelterBuilder];

@@ -59,3 +59,5 @@ export const PlasmaSpecialization = new PerkTemplate({
     applyTo: 'plasma',
     amount: 3
 });
+
+export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization, LaserSpecialization, PlasmaSpecialization];

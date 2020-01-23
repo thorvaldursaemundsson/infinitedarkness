@@ -39,3 +39,5 @@ export const PeaceMaker = new PerkTemplate({
     applyTo: 'peacemaker',
     amount: 0
 });
+
+export const PersuationPerks = [ArtOfDeal, MotivationalSpeaker, InspireCourage, PeaceMaker];
