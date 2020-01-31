@@ -1,13 +1,13 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { CharacterSheet } from './components/CharacterSheet';
+import { CharacterSheet } from './views/CharacterSheet';
 import './App.css';
 import { Character, ICharacter } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
-const SkillPerkManual = lazy(() => import('./components/SkillPerkManual'));
-const GameMaster = lazy(() => import('./components/GameMaster'));
-const WorldAndLore = lazy(() => import('./components/WorldAndLore'));
-const Wizard = lazy(() => import('./components/Wizard'));
-const PlayerManual = lazy(() => import('./components/PlayerManual'));
+const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
+const GameMaster = lazy(() => import('./views/GameMaster'));
+const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
+const Wizard = lazy(() => import('./views/Wizard'));
+const PlayerManual = lazy(() => import('./views/PlayerManual'));
 
 const App: React.FC = () => {
   const main = 'main';

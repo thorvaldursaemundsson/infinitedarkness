@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import FTLHyperDrive from './Lore/FTLHyperDrive';
-import History from './Lore/History';
-import Merlions from './Lore/Merlions';
+import FTLHyperDrive from './../components/Lore/FTLHyperDrive';
+import History from './../components/Lore/History';
+import Merlions from './../components/Lore/Merlions';
 import { Button } from '@material-ui/core';
-import Klackons from './Lore/Klackons';
-import SolSystem from './Lore/SolSystem';
-import CentauriSystem from './Lore/CenturiSystem';
+import Klackons from './../components/Lore/Klackons';
+import SolSystem from './../components/Lore/SolSystem';
+import CentauriSystem from './../components/Lore/CenturiSystem';
 
 const WorldAndLore: React.FC = () => {
     return (<div>

@@ -1,11 +1,11 @@
 import React, { useReducer, useState } from 'react';
-import { Field } from './Field';
+import { Field } from '../components/Field';
 import { Paper, Grid, Button } from '@material-ui/core';
-import { Character } from './Character';
-import { Perk } from './Perks';
-import StringField from './StringField';
-import { GetTraits, Trait } from './traits/Traits';
-import { GetPerkList } from './GetPerkList';
+import { Character } from '../components/Character';
+import { Perk } from '../components/Perks';
+import StringField from '../components/StringField';
+import { GetTraits, Trait } from '../components/traits/Traits';
+import { GetPerkList } from '../components/GetPerkList';
 
 interface CharacterSheetProps {
     initialCharacter: Character;

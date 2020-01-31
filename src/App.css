@@ -38,3 +38,7 @@ body {
 .extraPadding {
   padding:4px;
 }
+
+p {
+  padding-left: 3px;
+}
