@@ -42,3 +42,9 @@ body {
 p {
   padding-left: 3px;
 }
+
+tr:hover {
+  border-top: #aaaaaa 1px dashed;
+  border-bottom: #aaaaaa 1px dashed;
+  background-color: #f9f9f9;
+}
