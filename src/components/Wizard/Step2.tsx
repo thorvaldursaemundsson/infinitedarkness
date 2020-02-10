@@ -28,69 +28,85 @@ const Step2: React.FC<IStepProps> = ({ character, currentNumber, callback }) => 
 
 const optionTree: IOption[] = [{
     key: 'Coalition of sol',
+    dispatch: { action: '', value: 0 },
     value: [
         {
             key: 'Earth',
+            dispatch: { action: '', value: 0 },
             value: [
                 {
                     key: 'Euroasia',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'North America',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'South America',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'Africa',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'Greenland',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'Australia',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
                 {
                     key: 'Antarctica',
-                    value:[]
+                    value:[],
+                    dispatch: { action: '', value: 0 }
                 },
-            ]
+            ],
         },
         {
             key: 'Mars',
-            value: []
+            value: [],
+            dispatch: { action: '', value: 0 }
         },
         {
             key: 'Ceres',
-            value: []
+            value: [],
+            dispatch: { action: '', value: 0 }
         },
         {
             key: 'Jupiter moon colony',
-            value: []
+            value: [],
+            dispatch: { action: '', value: 0 }
         },
         {
             key: 'Saturn moon coloy',
-            value: []
+            value: [],
+            dispatch: { action: '', value: 0 }
         },
         {
             key: 'Outer planets station or spaceborn',
-            value: []
+            value: [],
+            dispatch: { action: '', value: 0 }
         }
     ]
 },
 {
     key: 'Centauri Imperium',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 }
 },
 {
     key: 'Fronteer World',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 }
 }];
 
 export default Step2;

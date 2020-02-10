@@ -24,23 +24,28 @@ const Step3: React.FC<IStepProps> = (props: IStepProps) => {
 
 const optionTree: IOption[] = [{
     key: 'good family',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 },
 },
 {
     key: 'bad family',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 },
 },
 {
     key: 'foster family',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 },
 },
 {
     key: 'orphanage',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 },
 },
 {
     key: 'homeless',
-    value: []
+    value: [],
+    dispatch: { action: '', value: 0 },
 }];
 
 export default Step3;

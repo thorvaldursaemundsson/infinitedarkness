@@ -1,9 +1,11 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import { dispatcher } from "../useCharacter";
 
 export interface IOption {
     key: string;
     value: IOption[];
+    dispatch: dispatcher;
 }
 
 const GetOptions = (position: string[], optionTree:IOption[]): string[] => {
@@ -30,6 +32,7 @@ interface IOptionButtons {
     position: string[];
     tree: IOption[];
     onSelectCallback: (n:string[]) => void;
+    
 }
 
 const OptionButtons: React.FC<IOptionButtons> = ({position, tree, onSelectCallback}) => {
