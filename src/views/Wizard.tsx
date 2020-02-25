@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { Character, ICharacter } from './../components/Character';
 import { CharacterSheet } from './CharacterSheet';
-import { GetSkillList } from './../components/Skills';
 import Step0 from './../components/Wizard/Step0';
 import Step1 from './../components/Wizard/Step1';
 import Step2 from './../components/Wizard/Step2';
@@ -13,6 +12,7 @@ import Step6 from './../components/Wizard/Step6';
 import Step7 from './../components/Wizard/Step7';
 import Step8 from './../components/Wizard/Step8';
 import Step9 from './../components/Wizard/Step9';
+import { GetSkillList } from '../components/GetSkillList';
 
 const Wizard: React.FC = () => {
     const [viewStep, setViewStep] = useState(0);

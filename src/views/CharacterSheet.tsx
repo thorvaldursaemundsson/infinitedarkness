@@ -2,7 +2,6 @@ import React, { useReducer, useState } from 'react';
 import { Field } from '../components/Field';
 import { Paper, Grid, Button } from '@material-ui/core';
 import { Character } from '../components/Character';
-import { Perk } from '../components/Perks';
 import StringField from '../components/StringField';
 import { GetTraits, Trait } from '../components/traits/Traits';
 import { GetPerkList } from '../components/GetPerkList';
@@ -15,7 +14,7 @@ interface CharacterSheetProps {
 
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(true);
     const [viewTraitList, setViewTraitList] = useState(false);
 
     const perksList = GetPerkList();
@@ -39,7 +38,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <StringField label={'background'} value={character.background} enableEdit={edit} onChange={n => dispatch({ action: 'background', value: 0, name: n })} ></StringField>
                 <Field enableButtons={edit} label='age' max={900} min={1} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
                 <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
-                <Paper>Hit points: {character.getHitpoints()}</Paper>
+                <Paper>Life: {character.getLife()}</Paper>
                 <Paper>Mana: {character.getMana()}</Paper>
                 <Paper>Fear resistence: {character.getFearResistence()}</Paper>
                 <Paper>Damage bonus small: {character.getDamageBonusSmall()}</Paper>
@@ -48,24 +47,23 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
             </Grid>
             <Grid item xs={12} sm={6}>
                 {character.skills.map(s => {
-                    let modifier: number = 0;
-                    switch (s.attribute) {
-                        case 'strength': modifier = character.strength; break;
-                        case 'agility': modifier = character.agility; break;
-                        case 'endurance': modifier = character.endurance; break;
-                        case 'perception': modifier = character.perception; break;
-                        case 'willpower': modifier = character.willpower; break;
-                        case 'intelligence': modifier = character.intelligence; break;
-                    }
+
                     return <Field key={s.name}
                         enableButtons={edit}
-                        modifier={modifier}
                         max={40}
                         min={0}
                         label={s.name}
                         value={s.level}
                         onChange={(n => dispatch({ action: 'skill', name: s.name, value: n }))}>
-                        ({s.attribute.substring(0, 3).toUpperCase()}) {s.description}
+                        {s.description}
+                        {s.useCases.map(uc => {
+                            return (<div>
+                                <b>{uc.name}</b><br />
+                                ({uc.attribute} - {uc.type})<br/>
+                                Current: {s.level + character.getAttributeValueByName(uc.attribute)}
+                                <br />{uc.description}
+                            </div>);
+                        })}
                         <div>
                             <h5 style={{ marginTop: '12px', marginBottom: '6px' }}>Perks</h5>
                             {perksList.filter(p => p.skill === s.name).map(p => {

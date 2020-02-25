@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { dispatcher } from "../useCharacter";
 
 export interface IOption {
@@ -8,37 +8,21 @@ export interface IOption {
     dispatch: dispatcher;
 }
 
-const GetOptions = (position: string[], optionTree:IOption[]): string[] => {
-    if (position.length === 0) {
-        return optionTree.map(o => o.key);
-    }
-    else if (position.length === 1) {
-        const ot = optionTree.find(o => o.key === position[0]);
-        if (ot !== undefined) return ot.value.map(o => o.key);
-    }
-    else if (position.length === 2) {
-        let ot = optionTree.find(o => o.key === position[0]);
-        if (ot !== undefined){
-            ot = ot.value.find(o => o.key === position[1]);
-            if (ot !== undefined){
-                return ot.value.map(o => o.key);
-            }
-        } 
-    }
-    return [];
+interface IOptionsExplorer {
+    tree: IOption;
+    dispatchCallback: (d: dispatcher) => void;
+    parentCallback: () => void;
+    hideButton:boolean;
 }
 
-interface IOptionButtons {
-    position: string[];
-    tree: IOption[];
-    onSelectCallback: (n:string[]) => void;
-    
+export const OptionsExplorer: React.FC<IOptionsExplorer> = ({ tree, dispatchCallback, parentCallback, hideButton }) => {
+    const [hasAnswered, setHasAnswered] = useState(false);
+    const [parentHasAnswered, setParentHasAnswered] = useState(false);
+    if (!hasAnswered && hideButton === false) return <Button variant='outlined'  onClick={() => { dispatchCallback(tree.dispatch); setHasAnswered(true); parentCallback(); }}>{tree.key}</Button>;
+    return (<>
+        {hideButton && tree.key + '->'}
+        {tree.value.map(v => {
+                return (<OptionsExplorer hideButton={parentHasAnswered} parentCallback={() => setParentHasAnswered(true)} tree={v} dispatchCallback={dispatchCallback} ></OptionsExplorer>);
+            })}
+    </>);
 }
-
-const OptionButtons: React.FC<IOptionButtons> = ({position, tree, onSelectCallback}) => {
-    return <>{GetOptions(position, tree).map(o => {
-        return <Button variant='contained' onClick={() => onSelectCallback([...position, o])}>{o}</Button>
-    })}</>;
-}
-
-export default OptionButtons;

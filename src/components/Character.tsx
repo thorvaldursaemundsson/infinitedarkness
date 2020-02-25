@@ -1,6 +1,7 @@
-import { Skill, GetSkillList } from "./Skills";
+import { Skill } from "./Skills";
 import { Perk } from './Perks';
 import { Trait } from "./traits/Traits";
+import { GetSkillList } from "./GetSkillList";
 
 const fSum = (n: number): number => {
     let x = 0;
@@ -64,7 +65,17 @@ export class Character {
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
     }
-
+    public getAttributeValueByName(attribute:string):number{
+        switch (attribute){
+            case 'strength': return this.strength;
+            case 'agility': return this.agility;
+            case 'endurance': return this.endurance;
+            case 'perception': return this.perception;
+            case 'willpower': return this.willpower;
+            case 'intelligence': return this.intelligence;
+            default: return 0;
+        }
+    }
     public getMaxStrength() {
         switch (this.species) {
             case 'human':
@@ -233,8 +244,8 @@ export class Character {
         return 1;
     }
 
-    public getHitpoints() {
-        return this.strength + this.endurance * 2 + this.getHook('hitpoints');
+    public getLife() {
+        return this.strength + this.endurance * 2 + this.getHook('life');
     }
 
     public getMana() {
