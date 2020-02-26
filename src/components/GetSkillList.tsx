@@ -13,6 +13,8 @@ import Persuation from './skills/persuation';
 import Pilot from './skills/pilot';
 import Spells from './skills/spells';
 import Stealth from './skills/stealth';
+import Subtrefuge from './skills/subtrefuge';
+import Survival from './skills/survival';
 
 export const GetSkillList = (): Skill[] => {
     return [
@@ -30,6 +32,8 @@ export const GetSkillList = (): Skill[] => {
         Pilot,
         Spells,
         Stealth,
+        Subtrefuge,
+        Survival
         
     ].sort((a, b) => a.name < b.name ? -1 : 1);
 }
