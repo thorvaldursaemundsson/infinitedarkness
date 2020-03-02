@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h3 {
+  border-top: 1px dashed lightblue;
+  margin-top: 8px;
+}
+h5 {
+  padding-left: 2px;
+}

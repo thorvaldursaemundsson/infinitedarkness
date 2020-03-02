@@ -56,7 +56,7 @@ export const GoodFortitude = new PerkTemplate({
     level: 1,
     description: 'Your character has great fortitude, gain +1 hitpoints'
 },{
-    applyTo: 'hitpoints',
+    applyTo: 'life',
     amount: 1
 });
 
@@ -66,7 +66,7 @@ export const GreatFortitude = new PerkTemplate({
     level: 2,
     description: 'Your character has great fortitude, gain +2 hitpoints'
 },{
-    applyTo: 'hitpoints',
+    applyTo: 'life',
     amount: 2
 });
 

@@ -58,9 +58,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         {s.description}
                         {s.useCases.map(uc => {
                             return (<div>
-                                <b>{uc.name}</b><br />
-                                ({uc.attribute} - {uc.type})<br/>
-                                Current: {s.level + character.getAttributeValueByName(uc.attribute)}
+                                <b>{uc.name}</b>
+                                ({uc.attribute} - {uc.type}) =
+                                {s.level + character.getAttributeValueByName(uc.attribute) + character.getHook(uc.name)}
                                 <br />{uc.description}
                             </div>);
                         })}
@@ -80,6 +80,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     return (<div>
                         <b>{trait.name}</b> {trait.description} ({trait.cost})
                         {edit && <Button key={'removetrait_' + trait.name} onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>X</Button>}
+                        <br />
                     </div>)
                 })}
                 {edit === true ?
@@ -103,6 +104,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 {character.perks.map(perk => {
                     return (<><b>{perk.name}</b> ({perk.cost()}) {perk.description()}
                         {edit && <Button key={'removeperk_' + perk.name} size="small" onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>X</Button>}
+                        <br />
                     </>)
                 })}
             </Grid>

@@ -25,6 +25,8 @@ const Combat: React.FC = () => {
         <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
         <h3>Melee attacking</h3>
         <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets passive defense then you hit</p>
+        <h5>Overextend</h5>
+        <p>Some enemies may be extremely difficult to hit, once a turn you may overextend your attack, you can add up to as much as +10 to your attack roll but this leaves you open to counter attacks, you take twice negative on all skill rolls and passives until it's your turn again</p>
         <h5>Flanking</h5>
         <p>When you are facing two or more opponents attacking you, you will have a penalty to your passive defense by -2 per attacker after the first. 2 attackers is -2, 3 is -4, 4 is -6 and so on.</p>
         <h3>Blocking</h3>
@@ -66,6 +68,8 @@ const Combat: React.FC = () => {
         <p>more than 2/rds of your body is covered, you gain +12 passive defense</p>
         <h5>total cover</h5>
         <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they simply automatically miss</p>
+        <h3>Critical hits</h3>
+        <p>Every attack involves 2d10 rolls, if either dice rolls 10 then you add 50% damage (rounded down), if both roll 10 then you double the damage.</p>
     </Section>;
 }
 

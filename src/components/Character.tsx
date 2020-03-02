@@ -65,8 +65,8 @@ export class Character {
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
     }
-    public getAttributeValueByName(attribute:string):number{
-        switch (attribute){
+    public getAttributeValueByName(attribute: string): number {
+        switch (attribute) {
             case 'strength': return this.strength;
             case 'agility': return this.agility;
             case 'endurance': return this.endurance;
@@ -171,19 +171,34 @@ export class Character {
         }
     }
 
-    public getCalculatedPointsUsed() {
+    public getCharacterPointsCostPerks() {
+        return this.perks.length > 0 ? this.perks.map(p => p.cost()).reduce((a, b) => a + b) : 0;
+    }
+
+    public getCharacterPointsCostTraits() {
+        return this.traits.length > 0 ? this.traits.map(t => t.cost).reduce((a, b) => a + b) : 0;
+    }
+
+    public getCharacterPointsCostSkills() {
+        return this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0);
+    }
+
+    public getCharacterPointsCostAttribute() {
         const intMultipler = this.species === 'merlion' ? 3 : 4;
-        const perkCost = this.perks.length > 0 ? this.perks.map(p => p.cost()).reduce((a, b) => a + b) : 0;
-        const traitCost = this.traits.length > 0 ? this.traits.map(t => t.cost).reduce((a, b) => a + b) : 0;
         return fSum(this.strength) * 4
             + fSum(this.agility) * 4
             + fSum(this.endurance) * 4
             + fSum(this.perception) * 4
             + fSum(this.willpower) * 4
-            + fSum(this.intelligence) * intMultipler
-            + this.skills.map(s => fSum(s.level)).reduce((a, b) => a + b, 0)
-            + perkCost
-            + traitCost;
+            + fSum(this.intelligence) * intMultipler;
+    }
+
+    public getCalculatedPointsUsed(){
+        return this.getCharacterPointsCostPerks() + this.getCharacterPointsCostSkills() + this.getCharacterPointsCostTraits();
+    }
+
+    public getCalculatedPointsUsedPointBuy() {
+        return this.getCalculatedPointsUsed() + this.getCharacterPointsCostAttribute();
     }
 
     public getCalculatedPointsLeft() {
@@ -207,11 +222,11 @@ export class Character {
     }
 
     private characterPointsHuman() {
-        return this.characterPoints(300, [18, 26, 40, 70], [16, 12, 8, 4]);
+        return this.characterPoints(100, [18, 26, 40, 70], [10, 8, 6, 4]);
     }
 
     private characterPointsMerlion() {
-        return this.characterPoints(200, [16, 24, 50, 90], [20, 16, 12, 8]);
+        return this.characterPoints(0, [16, 24, 50, 90], [20, 16, 12, 8]);
     }
 
     private characterPointsKlackon() {
@@ -267,7 +282,7 @@ export class Character {
         return Math.floor(this.strength / 2) + this.getHook('largemelee');
     }
 
-    private getHook(applyTo: string): number {
+    public getHook(applyTo: string): number {
         return this.sumOr(applyTo, this.perks, 0) + this.sumOr(applyTo, this.traits, 0);
     }
 
