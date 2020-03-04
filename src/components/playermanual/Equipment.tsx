@@ -38,7 +38,7 @@ const Equipment: React.FC = () => {
         <p>Close quarters is defined as being adjecent to 2 or more walls or large obstacles, open quarters is empty space around you (nothing to take cover behind)</p>
 
         <h4>Guns</h4>
-        
+
         <FirearmTable data={[
             { class: 'handgun', name: 'revolver', damage: '1d10', range: '200m', ammo: '10mm', capacity: 6, fireAction: ['double action revolver'], armorpiercing: 2, weight: 200, value: 3500 },
             { class: 'handgun', name: 'Grevvy light', damage: '1d10', range: '250m', ammo: '10mm', capacity: 19, fireAction: ['semi-automatic'], armorpiercing: 3, weight: 260, value: 3200 },
@@ -59,12 +59,101 @@ const Equipment: React.FC = () => {
         ]} />
 
         <h3>Body Armors</h3>
-        <h4></h4>
+        <p>Armors come in many forms, anything that offers either damage reduction or armor penalty counts as body armor. Damage reduction is applied to any incoming damage, armor penalty is applied to all agility based rolls. Every time an armor fails to absorb all damage it loses damage reduction by 1. If it hits 0 then it is no longer able to offer protection</p>
+        <table>
+            <thead><tr>
+                <th>name</th><th>damage reduction</th><th>armor penalty</th><th>value</th><th>weight</th><th>description</th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td>heavy jacket</td>
+                    <td>1</td>
+                    <td>-2</td>
+                    <td>2000</td>
+                    <td>4</td>
+                    <td>most winter jackets, thick layers of clothing, etc counts in this category. also tends to protect against exposure</td>
+                </tr>
+                <tr>
+                    <td>soft kevlar vest</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>4000</td>
+                    <td>1</td>
+                    <td>soft thin kevlar fabric made from nylon-like polymers gives some protection</td>
+                </tr>
+                <tr>
+                    <td>ceramic plated kevlar body armor</td>
+                    <td>6</td>
+                    <td>-1</td>
+                    <td>10000</td>
+                    <td>3</td>
+                    <td>soft kevlar over light ceramic plates gives strong protection from all sources</td>
+                </tr>
+                <tr>
+                    <td>carbon polymer suit</td>
+                    <td>5</td>
+                    <td>0</td>
+                    <td>9000</td>
+                    <td>2</td>
+                    <td>thin and flexible and very strong vest that offers maximum protection without interfering with any movement and can be worn under clothes</td>
+                </tr>
+                <tr>
+                    <td>Powered exoskeleton</td>
+                    <td>4</td>
+                    <td>1</td>
+                    <td>12000</td>
+                    <td>5</td>
+                    <td>Exoskeletal frame worn over body that helps movement and offers some protection, increases strength by +1 up to 7</td>
+                </tr>
+                <tr>
+                    <td>Powered Armor</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>22000</td>
+                    <td>7</td>
+                    <td>Heavy exoskeletal frame with cermic plates to offer additional protection, increases strength by +2 up to 8</td>
+                </tr>
+                <tr>
+                    <td>Personal Tank Suit</td>
+                    <td>12</td>
+                    <td>-2</td>
+                    <td>36000</td>
+                    <td>9</td>
+                    <td>A personal tank suit is more like a person shaped tank you enter than a body armor, offers complete environmental protection, increases strength by +3 up to 9</td>
+                </tr>
+                <tr>
+                    <td>Merlion warrior armor</td>
+                    <td>9</td>
+                    <td>2</td>
+                    <td>52000</td>
+                    <td>4</td>
+                    <td>Light exoskeletal frame covered by a complex and extremely durable alloy wireframe, offers substantial movement benefits as well as +3 strength and +2 perception</td>
+                </tr>
+            </tbody>
+        </table>
         <h3>Tools</h3>
-        <h4></h4>
+        <table>
+            <thead><tr>
+                <th> </th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
         <h3>Vehicles</h3>
-        <h4></h4>
-        
+        <table>
+            <thead><tr>
+                <th> </th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
+
     </Section>);
 }
 

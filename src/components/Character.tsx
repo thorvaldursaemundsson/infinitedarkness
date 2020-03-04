@@ -218,8 +218,6 @@ export class Character {
         return this.characterPoints(100, [10, 20, 40, 80, 160, 320, 640], [8, 9, 10, 11, 12, 13, 14]);
     }
 
-
-
     public getStartingPointsAvailable() {
 
         switch (this.species) {
@@ -265,6 +263,10 @@ export class Character {
     }
     public getDamageBonusLarge() {
         return Math.floor(this.strength / 2) + this.getHook('largemelee');
+    }
+
+    public getSequence() {
+        return this.perception + this.agility + this.getHook('sequence');
     }
 
     private getHook(applyTo: string): number {

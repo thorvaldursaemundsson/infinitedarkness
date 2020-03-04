@@ -3,13 +3,13 @@ const useCases: UseCase[] = [
     {
         name: 'unarmed attack',
         attribute: 'agility',
-        description: 'punching kicking',
-        type: 'passive'
+        description: 'punching kicking, deals 1d2 + strength / 4 (rounded down)',
+        type: 'active'
     },
     {
         name: 'weapon attack',
         attribute: 'agility',
-        description: 'weapons',
+        description: 'weapons, damage based on weapon type',
         type: 'active'
     },
     {

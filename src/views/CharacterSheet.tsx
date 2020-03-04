@@ -41,6 +41,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <Paper>Life: {character.getLife()}</Paper>
                 <Paper>Mana: {character.getMana()}</Paper>
                 <Paper>Fear resistence: {character.getFearResistence()}</Paper>
+                <Paper>Sequence: {character.getSequence()}</Paper>
                 <Paper>Damage bonus small: {character.getDamageBonusSmall()}</Paper>
                 <Paper>Damage bonus medium: {character.getDamageBonusMedium()}</Paper>
                 <Paper>Damage bonus large: {character.getDamageBonusLarge()}</Paper>
@@ -59,8 +60,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         {s.useCases.map(uc => {
                             return (<div>
                                 <b>{uc.name}</b><br />
-                                ({uc.attribute} - {uc.type})<br/>
-                                Current: {s.level + character.getAttributeValueByName(uc.attribute)}
+                                ({uc.attribute} - {uc.type})<br />
+                                {uc.type === 'active' ? 'roll 2d10 + ' : ''}
+                                {character.getAttributeValueByName(uc.attribute) + s.level}
                                 <br />{uc.description}
                             </div>);
                         })}

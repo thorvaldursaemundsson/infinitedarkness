@@ -21,7 +21,21 @@ const SkillSection = () => {
             return (<div><h3><span style={{ display: 'inline-block', width: '200px' }}>{skill.name}</span> {currentSkill !== skill.name ?
                 <Button onClick={() => setCurrentSkill(skill.name)}>?</Button> :
                 <Button onClick={() => setCurrentSkill('')}>X</Button>} </h3>
-                {currentSkill === skill.name ? <div>{skill.description}</div> : null}</div>);
+                {currentSkill === skill.name ? <div>
+                    
+                    {skill.description}
+                    {skill.useCases.map(uc => {
+                            return (<div>
+                                <b>{uc.name}</b><br />
+                                ({uc.attribute} - {uc.type})<br />
+                                {uc.type === 'active' ? 'roll 2d10 + attribute + level' : ''} 
+                                
+                                <br />{uc.description}
+                            </div>);
+                        })}
+                </div> : null}
+                
+                </div>);
         })}
     </div>);
 }
