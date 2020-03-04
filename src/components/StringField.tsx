@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Paper } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { Label } from './Label';
 
 interface FieldProps {
@@ -10,11 +10,11 @@ interface FieldProps {
 }
 
 const StringField: React.FC<FieldProps> = (props: FieldProps) => {
-    if (props.enableEdit !== true) return <Paper><Label>{props.label}:</Label><Label>{props.value}</Label></Paper>
-    else return <Paper>
+    if (props.enableEdit !== true) return <div><Label>{props.label}:</Label><Label>{props.value}</Label></div>
+    else return <div>
         <Label>{props.label}:</Label>
         <TextField value={props.value} onChange={(e) => props.onChange(e.target.value)} >{props.value}</TextField>
-    </Paper>
+    </div>
 }
 
 export default StringField;

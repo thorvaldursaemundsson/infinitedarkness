@@ -6,12 +6,14 @@ import StringField from '../components/StringField';
 import { GetTraits, Trait } from '../components/traits/Traits';
 import { GetPerkList } from '../components/GetPerkList';
 import { useCharacter } from '../components/useCharacter';
+import { Label } from '../components/Label';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
-
+const smallLabel = {
+};
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [edit, setEdit] = useState(true);
@@ -35,16 +37,20 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <StringField label={'name'} value={character.name} enableEdit={edit} onChange={n => dispatch({ action: 'name', value: 0, name: n })} ></StringField>
                 <StringField label={'gender'} value={character.gender} enableEdit={edit} onChange={n => dispatch({ action: 'gender', value: 0, name: n })} ></StringField>
                 <StringField label={'species'} value={character.species} enableEdit={edit} onChange={n => dispatch({ action: 'species', value: 0, name: n })} ></StringField>
-                <StringField label={'background'} value={character.background} enableEdit={edit} onChange={n => dispatch({ action: 'background', value: 0, name: n })} ></StringField>
+
                 <Field enableButtons={edit} label='age' max={900} min={1} value={character.age} onChange={n => dispatch({ action: 'age', value: n })}>Your age determines your starting, maximum experience, as well as experience multiplier</Field>
-                <Paper>Experience multiplier: {character.getExperienceMultiplier()}</Paper>
-                <Paper>Life: {character.getLife()}</Paper>
-                <Paper>Mana: {character.getMana()}</Paper>
-                <Paper>Fear resistence: {character.getFearResistence()}</Paper>
-                <Paper>Sequence: {character.getSequence()}</Paper>
-                <Paper>Damage bonus small: {character.getDamageBonusSmall()}</Paper>
-                <Paper>Damage bonus medium: {character.getDamageBonusMedium()}</Paper>
-                <Paper>Damage bonus large: {character.getDamageBonusLarge()}</Paper>
+                <div>Experience multiplier: {character.getExperienceMultiplier()}</div>
+                <div>
+                    <Label style={smallLabel}>Life:</Label><Label style={smallLabel}> {character.getLife()}</Label>
+                    <Label style={smallLabel}>Mana:</Label><Label style={smallLabel}> {character.getMana()}</Label>
+                </div>
+                <div>
+                    <Label style={smallLabel}>Fear resistence:</Label><Label style={smallLabel}> {character.getFearResistence()}</Label>
+                    <Label style={smallLabel}>Sequence:</Label><Label style={smallLabel}> {character.getSequence()}</Label>
+                </div>
+
+                <div><Label>Melee damage (small/medium/large):</Label> {character.getDamageBonusSmall()} / {character.getDamageBonusMedium()} / {character.getDamageBonusLarge()}</div>
+                <StringField label={'background'} value={character.background} enableEdit={edit} onChange={n => dispatch({ action: 'background', value: 0, name: n })} ></StringField>
             </Grid>
             <Grid item xs={12} sm={6}>
                 {character.skills.map(s => {
@@ -59,17 +65,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         {s.description}
                         {s.useCases.map(uc => {
                             return (<div>
-                                <b>{uc.name}</b>
-                                ({uc.attribute} - {uc.type}) =
-                                {s.level + character.getAttributeValueByName(uc.attribute) + character.getHook(uc.name)}
-
+                                <b>{uc.name}</b> ({uc.attribute} - {uc.type}) = {s.level + character.getAttributeValueByName(uc.attribute) + character.getHook(uc.name)}
                                 <br />{uc.description}
                             </div>);
                         })}
                         <div>
                             <h5 style={{ marginTop: '12px', marginBottom: '6px' }}>Perks</h5>
                             {perksList.filter(p => p.skill === s.name).map(p => {
-                                return <Button key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
+
+                                return <Button disabled={p.level * 4 > s.level} key={'addperk_' + p.name} onClick={() => dispatch({ action: 'addperk', name: p.name, value: 0, perkToAdd: p })}>{p.name}</Button>;
                             })}
                         </div>
                     </Field>

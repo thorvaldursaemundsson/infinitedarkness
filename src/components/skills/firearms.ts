@@ -21,7 +21,7 @@ const useCases: UseCase[] = [
     {
         name: 'snipe',
         attribute: 'perception',
-        description: 'fire a single shot with a handgun, rifle or rocket launcher',
+        description: 'fire a single shot with a handgun, rifle or rocket launcher, if you roll 10 or below you take no action',
         type: 'active'
     },
     {

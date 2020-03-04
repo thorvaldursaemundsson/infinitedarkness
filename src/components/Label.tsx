@@ -1,6 +1,10 @@
-    import React from 'react';
+    import React, { CSSProperties } from 'react';
 
-export const Label: React.FC<{}> = ({children}) => {
-    return <label style={{display:'inline-block', minWidth:'140px'}}>{children}</label>;
+interface LabelInterface{
+    style?:CSSProperties;
+}
+
+export const Label: React.FC<LabelInterface> = ({children, style}) => {
+    return <label style={{ display:'inline-block', minWidth:'140px',...style}}>{children}</label>;
 }
 

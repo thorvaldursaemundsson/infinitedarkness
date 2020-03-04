@@ -9,19 +9,19 @@ const useCases: UseCase[] = [
     {
         name: 'lockpick',
         attribute: 'agility',
-        description: 'pick a conventional lock',
+        description: 'pick a conventional lock, lever-tumblers range from 15-25, disk-tumblers and pin-tumblers range from 20-30',
         type: 'active'
     },
     {
         name: 'electronic lockpick',
         attribute: 'intelligence',
-        description: 'pick an electronic lock',
+        description: 'pick an electronic lock, needs a highly specialized electronic lockpicking tool, might involve a hacking roll (computer). Difficulty ranges from 20-40',
         type: 'active'
     },
     {
         name: 'pick pocket',
         attribute: 'agility',
-        description: 'lift an item out of someones pocket without them realizing',
+        description: 'remove or add an item to someones inventory without them realizing, they make a perception roll. Big and heavy items are harder to transfer, take -1 to your roll for every 10cl bulk and -1 for every 100grams of weight',
         type: 'active'
     }
     

@@ -17,14 +17,14 @@ export const Field: React.FC<FieldProps> = ({ label, value, onChange, max, min, 
     let ma = max !== undefined ? max : 10;
     let mi = min !== undefined ? min : 1;
     let total = modifier !== undefined ? value + modifier : value;
-    return <Paper className="extraPadding">
+    return <div className="extraPadding">
         <Label>{label}:</Label> <Label>{value} {modifier !== undefined ? ` | ${modifier} | ${total}` : null}</Label>
         {enableButtons === true ? <Button key={'fieldbutton_increase_'+label} size="small" variant="contained" onClick={() => onChange(ma <= value ? value : value + 1)}>+</Button> : null}
         {enableButtons === true ? <Button key={'fieldbutton_decrease_'+label}  size="small" variant="contained" onClick={() => onChange(mi >= value ? value : value - 1)}>-</Button> : null}
 
         {children !== undefined ? ((viewChildren === true && enableButtons) ?
-            <><Button  key={'fieldbutton_children_'+label}  size="small" variant="contained" onClick={() => setViewChildren(false)}>X</Button><Paper>{children} </Paper></>
+            <><Button  key={'fieldbutton_children_'+label}  size="small" variant="contained" onClick={() => setViewChildren(false)}>X</Button><div>{children} </div></>
             : (enableButtons === true ? <Button  key={'fieldbutton_children_2_'+label}  size="small" variant="contained" onClick={() => setViewChildren(true)}>?</Button> : null))
             : null}
-    </Paper>
+    </div>
 }

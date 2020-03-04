@@ -15,7 +15,7 @@ const useCases: UseCase[] = [
     {
         name: 'block',
         attribute: 'agility',
-        description: 'use unarmed or weapon to block attack, if successful only take 1/2 damage (round down, applied before damage reduction)',
+        description: 'use unarmed or weapon to block any attack, if successful only take 1/2 damage (round down, applied before damage reduction). Blocking firearms takes -10 on your roll vs their roll',
         type: 'active'
     }
 ];

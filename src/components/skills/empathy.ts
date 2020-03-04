@@ -3,13 +3,13 @@ const useCases: UseCase[] = [
     {
         name: 'detect motive',
         attribute: 'intelligence',
-        description: 'find out what people want',
+        description: 'find out what people want, if this is higher than "hide emotion" (subtrefuge) then you gain information, if it is significantly below you gain false information',
         type: 'passive'
     },
     {
         name: 'detect lies',
         attribute: 'intelligence',
-        description: 'see through lies',
+        description: 'see through lies, rolls in the background everytime someone lies to you, role against "deception" (subtrefuge)',
         type: 'passive'
     },
 ];
