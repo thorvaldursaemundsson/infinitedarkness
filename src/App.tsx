@@ -12,13 +12,14 @@ const PlayerManual = lazy(() => import('./views/PlayerManual'));
 const App: React.FC = () => {
   const main = 'main';
   const [viewMode, setViewMode] = useState(main);
-  const [character, setCharacter] = useState(new Character());//new Character();
-  const characterSheet = 'View Character Sheet';
+  const [character, setCharacter] = useState(new Character());
+  const [hideButtons, setHideButtons] = useState(false);
+  const characterSheet = 'Character Sheet';
   const playerManual = 'Player Manual';
   const gameMaster = 'Game Master';
-  const worldAndLore = 'World and Lore';
-  const skillsAndPerks = 'Skills and Perks';
-  const wizard = 'Launch Character Creator Wizard';
+  const worldAndLore = 'World & Lore';
+  const skillsAndPerks = 'Skills & Perks';
+  const wizard = 'Character Wizard';
   const about = 'About';
   let options = [main,
     characterSheet,
@@ -29,66 +30,53 @@ const App: React.FC = () => {
     wizard,
     about
   ];
-  const MainButton = () => <Button onClick={() => setViewMode('main')}>EXIT</Button>;
-
-  const loadCharacter = () => {
-    try {
-      console.info('attempting to load character');
-      const charData = prompt('paste character string here');
-      if (charData !== null) {
-        const c = JSON.parse(charData) as ICharacter;
-        setCharacter(new Character({ ...c }));
-        setViewMode(characterSheet);
-        console.log('character was successfully loaded:', { ...c });
-      } else console.log('no character info was pasted');
-    }
-    catch (error) {
-      console.error({ error });
-    }
-  };
-
+  const parseMenu = (choice:string) => {
+    if (choice === 'setHideButtons')setHideButtons(true);
+    else setViewMode(choice);
+  }
 
   return (
-    <div className="App">
-      <DialogTitle>Infinite Darkness</DialogTitle>
-      <Menu callback={(option) => setViewMode(option)} options={options} current={viewMode} />
-      <Conditional shouldView={viewMode === main}>
-        <Button onClick={() => loadCharacter()}>Load Character</Button>
+    <>
+      <Conditional shouldView={hideButtons == false}>
+        <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
+        
       </Conditional>
-      <Conditional shouldView={viewMode === characterSheet}>
-        <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
-      </Conditional>
-      <Conditional shouldView={viewMode === playerManual}>
-        <MainButton />
-        <PlayerManual />
-      </Conditional>
-      <Conditional shouldView={viewMode === gameMaster}>
-        <MainButton />
-        <GameMaster></GameMaster>
-      </Conditional>
-      <Conditional shouldView={viewMode === worldAndLore}>
-        <MainButton />
-        <WorldAndLore></WorldAndLore>
-      </Conditional>
-      <Conditional shouldView={viewMode === skillsAndPerks}>
-        <MainButton />
-        <SkillPerkManual />
-      </Conditional>
-      <Conditional shouldView={viewMode === wizard}>
-        <MainButton />
-        <Wizard />
-      </Conditional>
-      <Conditional shouldView={viewMode === about}>
-        <MainButton />
-        <h2>About</h2>
-        <h3>This is a work in progress</h3>
-        <p>Author: Thorvaldur Saemundsson</p>
-        <p>Technology: ReactJS, github pages</p>
-        <p>Project: Infinite Darkness, a sci-fi and fantasy game</p>
-        <p>Please formulate any complaints and suggestions in the form of a pull request ;)</p>
-        <span style={{ float: 'right', fontSize: '11px' }}>Copyright Thorvaldur Saemundsson</span>
-      </Conditional>
-    </div>
+
+      <div className="page">
+
+        <Conditional shouldView={viewMode === main}>
+          <DialogTitle>Infinite Darkness</DialogTitle>
+          {hideButtons == true ? 'refresh the page to get the buttons back' : null}
+        </Conditional>
+        <Conditional shouldView={viewMode === characterSheet}>
+          <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
+        </Conditional>
+        <Conditional shouldView={viewMode === playerManual}>
+          <PlayerManual />
+        </Conditional>
+        <Conditional shouldView={viewMode === gameMaster}>
+          <GameMaster></GameMaster>
+        </Conditional>
+        <Conditional shouldView={viewMode === worldAndLore}>
+          <WorldAndLore></WorldAndLore>
+        </Conditional>
+        <Conditional shouldView={viewMode === skillsAndPerks}>
+          <SkillPerkManual />
+        </Conditional>
+        <Conditional shouldView={viewMode === wizard}>
+          <Wizard />
+        </Conditional>
+        <Conditional shouldView={viewMode === about}>
+          <h2>About</h2>
+          <h3>This is a work in progress</h3>
+          <p>Author: Thorvaldur Saemundsson</p>
+          <p>Technology: ReactJS, github pages</p>
+          <p>Project: Infinite Darkness, a sci-fi and fantasy game</p>
+          <p>Please formulate any complaints and suggestions in the form of a pull request ;)</p>
+          <span style={{ float: 'right', fontSize: '11px' }}>Copyright Thorvaldur Saemundsson</span>
+        </Conditional>
+      </div>
+    </>
   );
 }
 interface ItemProp {
@@ -96,7 +84,7 @@ interface ItemProp {
 }
 
 const Conditional: React.FC<ItemProp> = ({ shouldView, children }) => {
-  if (shouldView) return <div style={{ textAlign: 'left', padding: '15px' }}><Suspense fallback={<div>Loading...</div>}>{children}</Suspense></div>;
+  if (shouldView) return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
   else return null;
 }
 
@@ -107,7 +95,21 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  return <div>{props.options.map(option => <Button variant={option === props.current ? "outlined" : "text"} key={option} onClick={() => props.callback(option)}>{option}</Button>)}</div>;
+  return <div className="pageTop">
+    <Button onClick={() => props.callback('setHideButtons')}>Hide buttons for print view</Button><br/>
+    {props.options.map(option =>
+      <Tab active={option === props.current} key={option} onClick={() => props.callback(option)}>{option}</Tab>
+    )}
+  </div>;
+}
+
+interface ITabPRops {
+  onClick: Function;
+  active: boolean;
+}
+
+const Tab: React.FC<ITabPRops> = (props) => {
+  return <button className={props.active ? 'tab tabActive' : 'tab'} onClick={() => props.onClick()}>{props.children}</button>
 }
 
 export default App;
