@@ -126,6 +126,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [edit, setEdit] = useState<"true" | "false" | "hide">("true");
     const [viewTraitList, setViewTraitList] = useState(false);
+    const [viewPerkList, setViewPerkList] = useState(false);
 
     const setNext = () => {
         switch (edit) {
@@ -185,13 +186,26 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
+                                {Pad(49, character.skills.length).map(i => {
+                                    return <tr>
+                                        <td> <label> </label></td>
+                                    </tr>
+                                })}
                             </tbody>
                         </table>
                     </td>
                     <td>
                         <h5>Perks</h5>
+                        {(edit === "true") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}
                         <table>
                             <tbody>
+                                {viewPerkList ? GetPerkList().map(perk => {
+                                    return <tr>
+                                        <td>
+                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
+                                        </td>
+                                    </tr>
+                                }) : null}
                                 {character.perks.map(perk => {
                                     return <tr>
                                         <td>
@@ -199,18 +213,37 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
+                                {Pad(viewPerkList ? 0 : 49, character.perks.length).map(i => {
+                                    return <tr>
+                                        <td> <label> </label></td>
+                                    </tr>
+                                })}
                             </tbody>
                         </table>
                     </td>
                     <td>
                         <h5>Traits</h5>
+                        {(edit === "true") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}
+
                         <table>
                             <tbody>
+                                {viewTraitList ? GetTraits().map(trait => {
+                                    return <tr>
+                                        <td>
+                                            <button onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
+                                        </td>
+                                    </tr>
+                                }) : null}
                                 {character.traits.map(trait => {
                                     return <tr>
                                         <td>
                                             {trait.name}
                                         </td>
+                                    </tr>
+                                })}
+                                {Pad(viewTraitList ? 0 : 49, character.traits.length).map(i => {
+                                    return <tr>
+                                        <td> <label> </label></td>
                                     </tr>
                                 })}
                             </tbody>
@@ -243,3 +276,11 @@ const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt }) => {
     else return <HideText txt={txt} isEdit={isEdit} />
 }
 
+const Pad = (minSize: number, size: number) => {
+    const i = Math.max(minSize - size, 0);
+    let ar = new Array<number>();
+    for (let counter = 0; counter < i; counter++) {
+        ar.push(counter);
+    }
+    return ar;
+}
