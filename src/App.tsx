@@ -30,8 +30,8 @@ const App: React.FC = () => {
     wizard,
     about
   ];
-  const parseMenu = (choice:string) => {
-    if (choice === 'setHideButtons')setHideButtons(true);
+  const parseMenu = (choice: string) => {
+    if (choice === 'setHideButtons') setHideButtons(true);
     else setViewMode(choice);
   }
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     <>
       <Conditional shouldView={hideButtons == false}>
         <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
-        
+
       </Conditional>
 
       <div className="page">
@@ -47,6 +47,13 @@ const App: React.FC = () => {
         <Conditional shouldView={viewMode === main}>
           <DialogTitle>Infinite Darkness</DialogTitle>
           {hideButtons == true ? 'refresh the page to get the buttons back' : null}
+          <p>This webpage is a resource for both players and game masters to run a tabletop game of Infinite Darkness.</p>
+          <p>Infinite Darkness is a sci-fi roleplaying game set in a future where humanity has begun to take to the stars, aliens and humans co exist.</p>
+          <p>With the discovery of faster than light travel- the ability to visit distant stars became a possibility. But space is still vast beyond imagining, the time it takes to travel is still long.
+            Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
+            <br/>
+            No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid
+          </p>
         </Conditional>
         <Conditional shouldView={viewMode === characterSheet}>
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
@@ -96,10 +103,12 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = (props) => {
   return <div className="pageTop">
-    <Button onClick={() => props.callback('setHideButtons')}>Hide buttons for print view</Button><br/>
-    {props.options.map(option =>
-      <Tab active={option === props.current} key={option} onClick={() => props.callback(option)}>{option}</Tab>
-    )}
+    <div className="pageTopInner">
+      <Button onClick={() => props.callback('setHideButtons')}>Hide buttons for print view</Button><br />
+      {props.options.map(option =>
+        <Tab active={option === props.current} key={option} onClick={() => props.callback(option)}>{option}</Tab>
+      )}
+    </div>
   </div>;
 }
 
