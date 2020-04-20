@@ -12,11 +12,6 @@ tr {
 }
 
 td {
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid black;
-    width: 33%;
-    vertical-align: top;
 }
 
 label {
@@ -36,7 +31,7 @@ input {
 }
 table.skillTable {
     margin: 0;
-    padding: 0;
+    padding: 0  ;
 }
 table.skillTable td {
     min-width: 61px;
@@ -48,6 +43,10 @@ table.skillTable label  {
 
 div.characterSheet table tbody td {
     width: 280.8px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
+    vertical-align: top;
 }
 
 div.characterSheet h4 {

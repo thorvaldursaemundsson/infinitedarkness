@@ -155,6 +155,9 @@ table.th20 th {
   text-align: right;
   border-bottom: 1px dotted lightgrey;
 }
+th {
+  text-align: left;
+}
 
 table.th20 td {
   width: 2%;

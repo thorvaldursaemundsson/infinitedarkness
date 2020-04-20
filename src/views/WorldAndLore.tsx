@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 import Klackons from './../components/Lore/Klackons';
 import SolSystem from './../components/Lore/SolSystem';
 import CentauriSystem from './../components/Lore/CenturiSystem';
+import Humans from '../components/Lore/Humans';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -17,6 +18,7 @@ const WorldAndLore: React.FC = () => {
         <WALSection headline='The Centauri System'><CentauriSystem /></WALSection>
         <WALSection headline='The other colonies'>work in progress...</WALSection>
         <WALSection headline='The galaxy'>work in progress...</WALSection>
+        <WALSection headline='The Humans'><Humans /></WALSection>
         <WALSection headline='The Merlions'><Merlions /></WALSection>
         <WALSection headline='The Klackons'><Klackons /></WALSection>
         <WALSection headline='Monsters'>work in progress...</WALSection>

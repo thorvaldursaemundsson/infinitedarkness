@@ -222,15 +222,15 @@ export class Character {
     }
 
     private characterPointsHuman() {
-        return this.characterPoints(60, [18, 26, 40, 70], [10, 8, 6, 4]);
+        return this.characterPoints(0, [18, 26, 40, 80], [10, 8, 6, 4]);
     }
 
     private characterPointsMerlion() {
-        return this.characterPoints(0, [16, 24, 50, 90], [12, 10, 6, 4]);
+        return this.characterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4]);
     }
 
     private characterPointsKlackon() {
-        return this.characterPoints(0, [10, 20, 40, 80, 160, 320, 640], [8, 9, 10, 11, 12, 13, 14]);
+        return this.characterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12]);
     }
 
     public getStartingPointsAvailable() {
