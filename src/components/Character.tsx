@@ -3,7 +3,7 @@ import { Perk } from './Perks';
 import { Trait } from "./traits/Traits";
 import { GetSkillList } from "./GetSkillList";
 
-const fSum = (n: number): number => {
+export const fSum = (n: number): number => {
     let x = 0;
     for (let i = 0; i <= n; i++) {
         x += i;

@@ -3,6 +3,9 @@ import { Button } from '@material-ui/core';
 import MakeCharacter from '../components/playermanual/MakeCharacter';
 import Combat from '../components/playermanual/Combat';
 import Equipment from '../components/playermanual/Equipment';
+import Wealth from '../components/playermanual/Wealth';
+import Experience from '../components/playermanual/Experience';
+import Vehicles from '../components/playermanual/Vehicles';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -10,6 +13,9 @@ const PlayerManual: React.FC = () => {
         <ul>
             <li>
                 How to make a character
+            </li>
+            <li>
+                Character points and experience
             </li>
             <li>
                 Combat
@@ -27,15 +33,19 @@ const PlayerManual: React.FC = () => {
         <hr />
         <MakeCharacter />
         <hr />
+        <Wealth />
+        <hr />
+        <Experience />
+        <hr />
         <Combat />
-        <hr/>
+        <hr />
         <Equipment />
-        <hr/>
-        
+        <hr />
+        <Vehicles />
+        <hr />
+
     </div>);
 }
-
-
 
 
 export default PlayerManual;

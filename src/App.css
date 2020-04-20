@@ -148,3 +148,21 @@ body {
   font-weight: 900;
   border-bottom: none;
 }
+
+table.th20 th {
+  width: 2%;
+  border: none;
+  text-align: right;
+  border-bottom: 1px dotted lightgrey;
+}
+
+table.th20 td {
+  width: 2%;
+  border: none;
+  text-align: right;
+  border-bottom: 1px dotted lightgrey;
+}
+
+table.th20 {
+  background-color: aliceblue;
+}
