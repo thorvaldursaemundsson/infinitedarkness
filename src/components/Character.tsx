@@ -270,14 +270,14 @@ export class Character {
     }
 
     public getDamageBonusSmall() {
-        return Math.floor(this.strength / 4) + this.getHook('lightmelee');
+        return Math.floor(this.strength / 5) + this.getHook('lightmelee');
     }
 
     public getDamageBonusMedium() {
-        return Math.floor(this.strength / 3) + this.getHook('mediummelee');
+        return Math.floor(this.strength / 4) + this.getHook('mediummelee');
     }
     public getDamageBonusLarge() {
-        return Math.floor(this.strength / 2) + this.getHook('largemelee');
+        return Math.floor(this.strength / 3) + this.getHook('largemelee');
     }
 
     public getSequence() {
@@ -287,6 +287,28 @@ export class Character {
     public getHook(applyTo: string): number {
 
         return this.sumOr(applyTo, this.perks, 0) + this.sumOr(applyTo, this.traits, 0);
+    }
+
+    public explain(what:string):string {
+        switch (what){
+            case 'strength': return 'muscle power';
+            case 'endurance': return 'stamina';
+            case 'agility': return 'speed, coordination';
+            case 'perception': return 'seeing, hearing';
+            case 'intelligence': return 'brain power';
+            case 'willpower': return 'brain stamina';
+            case 'life': return 'STR + 2x END';
+            case 'mana': return 'END +2x WILL';
+            case 'fearResistence': return 'WILL + 2';
+            case 'age': return 'how old';
+            case 'damageBonus': return 'STR /5, /4, /3';
+            case 'name': return '';
+            case 'gender': return '';
+            case 'species': return '';
+            case 'pointsLeft': return 'points remaining';
+            case 'experienceMultiplier': return 'exp bonus';
+            default: return '';
+        }
     }
 
     private sumOr(applyTo: string, sum: IHooker[], or: number): number {

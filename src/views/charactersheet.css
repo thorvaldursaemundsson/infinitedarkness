@@ -29,8 +29,27 @@ input {
     height: 14px;
     margin: 0;
     padding: 0;
-    width: 90px;
+    width: 110px;
     border: 0;
     font-style: italic;
     background-color: #CCDDFF;
+}
+table.skillTable {
+    margin: 0;
+    padding: 0;
+}
+table.skillTable td {
+    min-width: 61px;
+}
+
+table.skillTable label  {
+    width: 10   0px;
+}
+
+div.characterSheet table tbody td {
+    width: 280.8px;
+}
+
+div.characterSheet h4 {
+    text-align: center;
 }

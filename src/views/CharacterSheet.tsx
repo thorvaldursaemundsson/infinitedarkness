@@ -10,58 +10,97 @@ interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
+const padSize = 25;
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
-    const [edit, setEdit] = useState<"true" | "false" | "hide">("true");
+    const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
     const [viewTraitList, setViewTraitList] = useState(false);
     const [viewPerkList, setViewPerkList] = useState(false);
 
-    const setNext = () => {
-        switch (edit) {
-            case "true": setEdit("false"); return;
-            case "false": setEdit("hide"); return;
-            case "hide": setEdit("true"); return;
-
-        }
-    };
     return (<div className="characterSheet">
-        <button onClick={() => setNext()}>edit</button>
+        {viewState !== "hide" ? <>
+            <button onClick={() => setViewState("edit")}>edit</button>
+            <button onClick={() => setViewState("print")}>print</button>
+            <button onClick={() => setViewState("explain")}>explain</button>
+            <button onClick={() => setViewState("hide")}>hide buttons</button></>
+            : null}
+
         <table>
+            <thead>
+                <tr>
+                    <th colSpan={3}><h4>Infinite Darkness</h4></th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-                    <td><label>Name</label> <EditText txt={character.name} isEdit={edit} onChange={(str) => dispatch({ name: str, action: 'name', value: 0 })} /></td>
-                    <td><label>Life</label> <HideText txt={character.getLife()} isEdit={edit} /></td>
-                    <td><label>Strength</label> <EditText txt={character.strength} isEdit={edit} onChange={(str) => dispatch({ action: 'strength', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Name</label> <EditText txt={character.name} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'name', value: 0 })} explain={character.explain('name')} />
+                    </td>
+                    <td>
+                        <label>Life</label> <HideText txt={character.getLife()} isEdit={viewState} explain={character.explain('life')} />
+                    </td>
+                    <td>
+                        <label>Strength</label> <EditText txt={character.strength} isEdit={viewState} onChange={(str) => dispatch({ action: 'strength', value: parseInt(str) })} explain={character.explain('strength')} />
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Gender</label> <EditText txt={character.gender} isEdit={edit} onChange={(str) => dispatch({ name: str, action: 'gender', value: 0 })} /></td>
-                    <td><label>Mana</label> <HideText txt={character.getMana()} isEdit={edit} /> </td>
-                    <td><label>Endurance</label> <EditText txt={character.endurance} isEdit={edit} onChange={(str) => dispatch({ action: 'endurance', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Gender</label> <EditText txt={character.gender} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'gender', value: 0 })} explain={character.explain('gender')} />
+                    </td>
+                    <td>
+                        <label>Mana</label> <HideText txt={character.getMana()} isEdit={viewState} explain={character.explain('mana')} /> </td>
+                    <td>
+                        <label>Endurance</label> <EditText txt={character.endurance} isEdit={viewState} onChange={(str) => dispatch({ action: 'endurance', value: parseInt(str) })} explain={character.explain('endurance')} />
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Species</label> <EditText txt={character.species} isEdit={edit} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} /></td>
-                    <td><label>Fear Resistence</label> <HideText txt={character.getFearResistence()} isEdit={edit} /> </td>
-                    <td><label>Agility</label> <EditText txt={character.agility} isEdit={edit} onChange={(str) => dispatch({ action: 'agility', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Species</label> <EditText txt={character.species} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} explain={character.explain('species')} />
+                    </td>
+                    <td>
+                        <label>Fear Resistence</label> <HideText txt={character.getFearResistence()} isEdit={viewState} explain={character.explain('fearResistence')} />
+                    </td>
+                    <td>
+                        <label>Agility</label> <EditText txt={character.agility} isEdit={viewState} onChange={(str) => dispatch({ action: 'agility', value: parseInt(str) })} explain={character.explain('agility')} />
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Age</label> <EditText txt={character.age} isEdit={edit} onChange={(str) => dispatch({ action: 'age', value: parseInt(str) })} /></td>
-                    <td><label>Melee DB s / m / l</label>  <HideText txt={character.getDamageBonusSmall() + '/' + character.getDamageBonusMedium() + '/' + character.getDamageBonusLarge()} isEdit={edit} /> </td>
-                    <td><label>Perception</label> <EditText txt={character.perception} isEdit={edit} onChange={(str) => dispatch({ action: 'perception', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Age</label> <EditText txt={character.age} isEdit={viewState} onChange={(str) => dispatch({ action: 'age', value: parseInt(str) })} explain={character.explain('age')} />
+                    </td>
+                    <td>
+                        <label>Melee DB s / m / l</label>  <HideText txt={character.getDamageBonusSmall() + '/' + character.getDamageBonusMedium() + '/' + character.getDamageBonusLarge()} isEdit={viewState} explain={character.explain('damageBonus')} />
+                    </td>
+                    <td>
+                        <label>Perception</label> <EditText txt={character.perception} isEdit={viewState} onChange={(str) => dispatch({ action: 'perception', value: parseInt(str) })} explain={character.explain('perception')} />
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Character points</label> <HideText txt={character.getCalculatedPointsLeft()} isEdit={edit} /> </td>
-                    <td><label>Homeworld</label> <EditText txt={character.background} isEdit={edit} onChange={(str) => dispatch({ action: 'background', value: 0, name: str })} /> </td>
-                    <td><label>Intelligence</label> <EditText txt={character.intelligence} isEdit={edit} onChange={(str) => dispatch({ action: 'intelligence', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Character points</label> <HideText txt={character.getCalculatedPointsLeft()} explain={character.explain('pointsLeft')} isEdit={viewState} />
+                    </td>
+                    <td>
+                        <label>Homeworld</label> <EditText txt={character.background} isEdit={viewState} onChange={(str) => dispatch({ action: 'background', value: 0, name: str })} explain={character.explain('background')} />
+                    </td>
+                    <td>
+                        <label>Intelligence</label> <EditText txt={character.intelligence} isEdit={viewState} onChange={(str) => dispatch({ action: 'intelligence', value: parseInt(str) })} explain={character.explain('intelligence')} />
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Experience multiplier</label>  <HideText txt={character.getExperienceMultiplier()} isEdit={edit} /> </td>
-                    <td></td>
-                    <td><label>Willpower</label> <EditText txt={character.willpower} isEdit={edit} onChange={(str) => dispatch({ action: 'willpower', value: parseInt(str) })} /></td>
+                    <td>
+                        <label>Experience multiplier</label>  <HideText txt={character.getExperienceMultiplier()} isEdit={viewState} explain={character.explain('experienceMultiplier')} />
+                    </td>
+                    <td>
+                        <label>Player</label>
+                    </td>
+                    <td>
+                        <label>Willpower</label> <EditText txt={character.willpower} isEdit={viewState} onChange={(str) => dispatch({ action: 'willpower', value: parseInt(str) })} explain={character.explain('willpower')} />
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <h5>Skills</h5>
-                        <table>
+                        <table className="skillTable">
                             <thead>
                                 <tr>
                                     <th><label>Skill</label></th>
@@ -77,20 +116,22 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                         <td></td>
                                         <td>
-                                            <EditText txt={skill.level} isEdit={edit} onChange={(str) => dispatch({ action: 'skill', name: skill.name, value: parseInt(str) })} />
+                                            <EditText txt={skill.level} isEdit={viewState} onChange={(str) => dispatch({ action: 'skill', name: skill.name, value: parseInt(str) })} explain={character.explain('skill:' + skill.name)} />
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(45, character.skills.length).map(i => {
+                                {Pad(padSize, character.skills.length).map(i => {
                                     return <tr>
                                         <td > <label> </label></td>
+                                        <td> </td>
+                                        <td> </td>
                                     </tr>
                                 })}
                             </tbody>
                         </table>
                     </td>
                     <td>
-                        <h5>Perks {(edit === "true") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
+                        <h5>Perks {(viewState === "edit") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
@@ -107,7 +148,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewPerkList ? 0 : 45, character.perks.length).map(i => {
+                                {Pad(viewPerkList ? 0 : padSize, character.perks.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
@@ -116,7 +157,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                     <td>
-                        <h5>Traits {(edit === "true") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
+                        <h5>Traits {(viewState === "edit") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
 
 
                         <table>
@@ -135,7 +176,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewTraitList ? 0 : 45, character.traits.length).map(i => {
+                                {Pad(viewTraitList ? 0 : padSize, character.traits.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
@@ -144,19 +185,39 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <h4>Inventory</h4>
+                    </td>
+                    <td>
+                        <h4>Equipment</h4>
+                    </td>
+                    <td>
+                        <h4>Stash</h4>
+                    </td>
+                </tr>
+                
+                {Pad(15,0).map(i => 
+                           <tr>
+                               <td> &nbsp;</td>
+                               <td> </td>
+                               <td> </td>
+                           </tr> 
+                        )}
             </tbody>
         </table></div>);
 }
 
 interface IHideText {
-    isEdit: "true" | "false" | "hide";
+    isEdit: "edit" | "print" | "explain" | "hide";
+    explain: string;
     txt: string | number;
 }
-const HideText: React.FC<IHideText> = ({ isEdit, txt }) => {
-    if (isEdit === "true")
+const HideText: React.FC<IHideText> = ({ isEdit, txt, explain }) => {
+    if (isEdit === "edit")
         return <>{txt}</>;
-    else if (isEdit === "false")
-        return <>{txt}</>;
+    else if (isEdit === "explain")
+        return <>{explain}</>;
     else return null;
 }
 
@@ -164,10 +225,10 @@ interface IEditText extends IHideText {
     onChange: (str: string) => void;
 }
 
-const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt }) => {
-    if (isEdit === "true")
+const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt, explain }) => {
+    if (isEdit === "edit")
         return <input type="text" onChange={(e) => onChange(e.target.value)} value={txt}></input>
-    else return <HideText txt={txt} isEdit={isEdit} />
+    else return <HideText txt={txt} isEdit={isEdit} explain={explain} />
 }
 
 const Pad = (minSize: number, size: number) => {
