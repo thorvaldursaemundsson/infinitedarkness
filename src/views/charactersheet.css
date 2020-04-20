@@ -1,0 +1,36 @@
+table {
+    border: none;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+tr {
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
+    width: 33%;
+    vertical-align: top;
+}
+
+label {
+    background-color: lightgrey;
+    display: inline-block;
+    width: 120px;
+}
+
+input {
+    height: 14px;
+    margin: 0;
+    padding: 0;
+    width: 130px;
+    border: 0;
+    font-style: italic;
+    background-color: #CCDDFF;
+}
