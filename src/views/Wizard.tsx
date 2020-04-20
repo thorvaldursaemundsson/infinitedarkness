@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { Character, ICharacter } from './../components/Character';
 import { CharacterSheet } from './CharacterSheet';
 import Step0 from './../components/Wizard/Step0';

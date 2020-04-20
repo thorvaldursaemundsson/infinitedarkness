@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Paper, TextField } from '@material-ui/core';
-import { Label } from './Label';
 
 interface IAutoSelectFieldProps {
     values: string[];

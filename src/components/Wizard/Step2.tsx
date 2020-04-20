@@ -1,10 +1,9 @@
 import IStepProps from "./WizardSteps";
 
-import { useState, useReducer } from "react";
+import {useReducer } from "react";
 
 import { Button } from "@material-ui/core";
 
-import { Character } from "../Character";
 import React from "react";
 import { IOption, OptionsExplorer } from "./OptionExplorer";
 import { useCharacter } from "../useCharacter";

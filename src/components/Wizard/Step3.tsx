@@ -1,8 +1,7 @@
 import IStepProps from "./WizardSteps";
 
 import { Button } from "@material-ui/core";
-import React, { useState } from "react";
-import { IOption } from "./OptionExplorer";
+import React from "react";
 import { Character } from "../Character";
 
 const Step3: React.FC<IStepProps> = (props: IStepProps) => {

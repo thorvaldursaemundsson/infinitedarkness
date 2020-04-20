@@ -290,7 +290,7 @@ export class Character {
     }
 
     private sumOr(applyTo: string, sum: IHooker[], or: number): number {
-        let s = sum.filter(perk => perk.applyTo == applyTo).map(p => p.amount);
+        let s = sum.filter(perk => perk.applyTo === applyTo).map(p => p.amount);
         if (s.length > 0) return s.reduce((a, b) => a + b);
         else return or;
     }

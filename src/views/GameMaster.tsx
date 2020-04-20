@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import React from 'react';
 import Section from '../components/playermanual/Section';
 import Sequencer from '../components/gamemaster/Sequencer';
 

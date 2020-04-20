@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { CharacterSheet } from './views/CharacterSheet';
 import './App.css';
-import { Character, ICharacter } from './components/Character';
+import { Character } from './components/Character';
 import { Button, DialogTitle } from '@material-ui/core';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Conditional shouldView={hideButtons == false}>
+      <Conditional shouldView={hideButtons === false}>
         <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
 
       </Conditional>
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
         <Conditional shouldView={viewMode === main}>
           <DialogTitle>Infinite Darkness</DialogTitle>
-          {hideButtons == true ? 'refresh the page to get the buttons back' : null}
+          {hideButtons === true ? 'refresh the page to get the buttons back' : null}
           <p>This webpage is a resource for both players and game masters to run a tabletop game of Infinite Darkness.</p>
           <p>Infinite Darkness is a sci-fi roleplaying game set in a future where humanity has begun to take to the stars, aliens and humans co exist.</p>
           <p>With the discovery of faster than light travel- the ability to visit distant stars became a possibility. But space is still vast beyond imagining, the time it takes to travel is still long.

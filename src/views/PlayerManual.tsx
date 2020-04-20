@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import React from 'react';
 import MakeCharacter from '../components/playermanual/MakeCharacter';
 import Combat from '../components/playermanual/Combat';
 import Equipment from '../components/playermanual/Equipment';
