@@ -23,7 +23,7 @@ export const CharacterSheet2: React.FC<CharacterSheetProps> = (props) => {
 
     const perksList = GetPerkList();
 
-    return <Paper style={{ textAlign: 'left' }}>
+    return <Paper className="characterSheet">
         <Button key='charactersheet_edit' onClick={() => setEdit(!edit)}>edit</Button>
         <Grid container spacing={3} >
             <Grid item xs={12} sm={6}>
@@ -139,7 +139,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
     const perksList = GetPerkList();
 
-    return (<>
+    return (<div className="characterSheet">
         <button onClick={() => setNext()}>edit</button>
         <table>
             <tbody>
@@ -177,26 +177,35 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     <td>
                         <h5>Skills</h5>
                         <table>
+                            <thead>
+                                <tr>
+                                    <th><label>Skill</label></th>
+                                    <th>Exp</th>
+                                    <th>Rank</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 {character.skills.map(skill => {
                                     return <tr>
-                                        <td>
+                                        <td >
                                             <label>{skill.name}</label>
+                                        </td>
+                                        <td></td>
+                                        <td>
                                             <EditText txt={skill.level} isEdit={edit} onChange={(str) => dispatch({ action: 'skill', name: skill.name, value: parseInt(str) })} />
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(49, character.skills.length).map(i => {
+                                {Pad(45, character.skills.length).map(i => {
                                     return <tr>
-                                        <td> <label> </label></td>
+                                        <td > <label> </label></td>
                                     </tr>
                                 })}
                             </tbody>
                         </table>
                     </td>
                     <td>
-                        <h5>Perks</h5>
-                        {(edit === "true") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}
+                        <h5>Perks {(edit === "true") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
@@ -213,7 +222,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewPerkList ? 0 : 49, character.perks.length).map(i => {
+                                {Pad(viewPerkList ? 0 : 45, character.perks.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
@@ -222,8 +231,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                     <td>
-                        <h5>Traits</h5>
-                        {(edit === "true") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}
+                        <h5>Traits {(edit === "true") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
+
 
                         <table>
                             <tbody>
@@ -241,7 +250,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewTraitList ? 0 : 49, character.traits.length).map(i => {
+                                {Pad(viewTraitList ? 0 : 45, character.traits.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
@@ -251,7 +260,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     </td>
                 </tr>
             </tbody>
-        </table></>);
+        </table></div>);
 }
 
 interface IHideText {
