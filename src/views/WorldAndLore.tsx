@@ -7,6 +7,7 @@ import Klackons from './../components/Lore/Klackons';
 import SolSystem from './../components/Lore/SolSystem';
 import CentauriSystem from './../components/Lore/CenturiSystem';
 import Humans from '../components/Lore/Humans';
+import FringeWorlds from '../components/Lore/FringeWorlds';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -16,7 +17,7 @@ const WorldAndLore: React.FC = () => {
         <WALSection headline='The FTL Hyperdrive'><FTLHyperDrive /></WALSection>
         <WALSection headline='The Sol System'><SolSystem /></WALSection>
         <WALSection headline='The Centauri System'><CentauriSystem /></WALSection>
-        <WALSection headline='The other colonies'>work in progress...</WALSection>
+        <WALSection headline='The other colonies'><FringeWorlds /></WALSection>
         <WALSection headline='The galaxy'>work in progress...</WALSection>
         <WALSection headline='The Humans'><Humans /></WALSection>
         <WALSection headline='The Merlions'><Merlions /></WALSection>
@@ -32,7 +33,7 @@ interface IWALSectionProps {
 const WALSection: React.FC<IWALSectionProps> = ({ headline, children }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div style={{borderBottom:'1px dotted lightgrey'}}>
+        <div style={{ borderBottom: '1px dotted lightgrey' }}>
             <h4><Button onClick={() => setIsOpen(!isOpen)}>{headline}</Button></h4>
             {isOpen && children}
         </div>);
