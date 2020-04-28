@@ -8,36 +8,32 @@ import SolSystem from './../components/Lore/SolSystem';
 import CentauriSystem from './../components/Lore/CenturiSystem';
 import Humans from '../components/Lore/Humans';
 import FringeWorlds from '../components/Lore/FringeWorlds';
+import Section from '../components/playermanual/Section';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
         <h1>World and Lore</h1>
         <h2>Index</h2>
-        <WALSection headline='History'><History /></WALSection>
-        <WALSection headline='The FTL Hyperdrive'><FTLHyperDrive /></WALSection>
-        <WALSection headline='The Sol System'><SolSystem /></WALSection>
-        <WALSection headline='The Centauri System'><CentauriSystem /></WALSection>
-        <WALSection headline='The other colonies'><FringeWorlds /></WALSection>
-        <WALSection headline='The galaxy'>work in progress...</WALSection>
-        <WALSection headline='The Humans'><Humans /></WALSection>
-        <WALSection headline='The Merlions'><Merlions /></WALSection>
-        <WALSection headline='The Klackons'><Klackons /></WALSection>
-        <WALSection headline='Monsters'>work in progress...</WALSection>
+        <Section title='History'><History /></Section>
+        <hr />
+        <Section title='The FTL Hyperdrive'><FTLHyperDrive /></Section>
+        <hr />
+        <Section title='The Sol System'><SolSystem /></Section>
+        <hr />
+        <Section title='The Centauri System'><CentauriSystem /></Section>
+        <hr />
+        <Section title='The other colonies'><FringeWorlds /></Section>
+        <hr />
+        <Section title='The galaxy'>work in progress...</Section>
+        <hr />
+        <Section title='The Humans'><Humans /></Section>
+        <hr />
+        <Section title='The Merlions'><Merlions /></Section>
+        <hr />
+        <Section title='The Klackons'><Klackons /></Section>
+        <hr />
+        <Section title='Monsters'>work in progress...</Section>
     </div>);
 }
-
-interface IWALSectionProps {
-    headline: string;
-}
-
-const WALSection: React.FC<IWALSectionProps> = ({ headline, children }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div style={{ borderBottom: '1px dotted lightgrey' }}>
-            <h4><Button onClick={() => setIsOpen(!isOpen)}>{headline}</Button></h4>
-            {isOpen && children}
-        </div>);
-}
-
 
 export default WorldAndLore;

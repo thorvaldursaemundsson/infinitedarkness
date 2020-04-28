@@ -8,7 +8,7 @@ interface ISection {
 const Section: React.FC<ISection> = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
     return <div>
-        <Button onClick={() => setIsOpen(!isOpen)}>{title}</Button>
+        <Button onClick={() => setIsOpen(!isOpen)}>{title} {isOpen ? '-' : '+'}</Button>
         {isOpen && children}
     </div>;
 }
