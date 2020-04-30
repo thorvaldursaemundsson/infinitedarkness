@@ -1,4 +1,10 @@
 import React from "react";
+import { Character } from "../Character";
+
+const experienceAges = [...Array(90)]
+    .map((v: any, index: number, arr: any[]) => {
+        return { age: index, exp: Character.CharacterPointsMerlion(index) };
+    });
 
 const Merlions: React.FC = () => {
     return <>
@@ -41,6 +47,13 @@ const Merlions: React.FC = () => {
                 <tr>
                     <td> WILL</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d10</td>  
                 </tr>
+            </tbody>
+        </table>
+        
+        Starting merlion experience per age is as following
+        <table>
+            <tbody>
+                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> </tr>)}
             </tbody>
         </table>
     </>

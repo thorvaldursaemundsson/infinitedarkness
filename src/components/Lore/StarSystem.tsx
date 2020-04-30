@@ -1,5 +1,4 @@
-import React, { CSSProperties } from 'react';
-import Section from '../playermanual/Section';
+import React from 'react';
 
 interface IHeavelyBody {
 
@@ -40,43 +39,52 @@ const StarSystem: React.FC<IStarSystem> = ({ stars, roguePlanetoids, name, descr
     </>;
 
 const Star = (star: IStar) => <>
-    <h4>{star.name} - {star.classification} class</h4>
-    <p>{star.description}</p>
-    <Section title='info'>
-        <b>Mass: </b>{star.mass} solar masses<br />
-        <b>age: </b>{star.age} billion years old
-    </Section>
-    {star.planetoids.map(planet => Planet(planet))}
+    <h4>{star.name} - {star.classification} class Star</h4>
+    <div className="divcol2">
+        <div>{star.description}</div>
+        <div>
+            <b>Mass: </b>{star.mass} solar masses<br />
+            <b>age: </b>{star.age} billion years old
+    </div>
+    </div>
+
+    {star.planetoids.map(planet => Planet(planet, 0))}
+</>;
+const descriptionCuttOff = 400;
+const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `${planet.name} - ${planet.classification}`)}
+    <div className="divcol2">
+        <div>{cropOrAll(planet.description, descriptionCuttOff)}</div>
+        <div>
+            <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
+            <b>Average temperature range</b>: {planet.temperatureRange}g<br />
+            <b>Atmosphere</b>: {planet.atmosphere}<br />
+            <b>Hydrosphere</b>: {planet.hydrosphere}<br />
+            <b>Distance</b>: {planet.orbitDistance}<br />
+            <b>Age</b>: {planet.age} billion years<br />
+            <b>Mass</b>: {planet.mass} earths<br />
+            {planet.feature && <><b>Feature</b>: {planet.feature}</>}
+        </div>
+    </div>
+    {planet.description.length > descriptionCuttOff ? <div>{leftOrNone(planet.description, descriptionCuttOff)}</div> : null}
+    {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => Planet(sat, gen + 1))}</> : null}
 </>;
 
-const Planet = (planet: IPlanetoid): JSX.Element => <> <h4>{planet.name} - {planet.classification}</h4>
-    <p>{planet.description}</p>
-    <Section title='info'>
-        <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
-        <b>Average temperature range</b>: {planet.temperatureRange}g<br />
-        <b>Atmosphere</b>: {planet.atmosphere}<br />
-        <b>Hydrosphere</b>: {planet.hydrosphere}<br />
-        <b>Distance</b>: {planet.orbitDistance}<br />
-        <b>Age</b>: {planet.age} billion years<br />
-        <b>Mass</b>: {planet.mass} earths<br />
-        {planet.feature && <><b>Feature</b>: {planet.feature}</>}
-    </Section>
-    {planet.satelites.length > 0 ? <><b>Satelites</b><br />{planet.satelites.map(sat => Satelite(sat))}</> : null}
-</>;
+const cropOrAll = (text:string, length:number) => {
+    if (text.length >= length) return text.substr(0,length);
+    else return text;
+}
+const leftOrNone = (text:string, length:number) => {
+    if (text.length >= length) return text.substr(length,text.length-length) ;
+    else return 'blarg';
+}
 
-const Satelite = (planet: IPlanetoid): JSX.Element => <> <h5>{planet.name} - {planet.classification}</h5>
-    <p>{planet.description}</p>
-    <Section title='info'>
-        <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
-        <b>Average temperature range</b>: {planet.temperatureRange}g<br />
-        <b>Atmosphere</b>: {planet.atmosphere}<br />
-        <b>Hydrosphere</b>: {planet.hydrosphere}<br />
-        <b>Distance</b>: {planet.orbitDistance}<br />
-        <b>Age</b>: {planet.age} billion years<br />
-        <b>Mass</b>: {planet.mass} earths<br />
-        {planet.feature && <><b>Feature</b>: {planet.feature}</>}
-    </Section>
-    {planet.satelites.length > 0 ? <><b>Satelites</b><br />{planet.satelites.map(sat => Satelite(sat))}</> : null}
-</>;
+const HGen = (gen: number, children: string) => {
+    switch (gen) {
+        case 0: return <h4>{children}</h4>;
+        case 1: return <h5>{children}</h5>;
+        default: return <h6>{children}</h6>;
+    }
+}
+
 
 export default StarSystem;

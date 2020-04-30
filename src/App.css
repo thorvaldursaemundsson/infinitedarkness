@@ -100,17 +100,16 @@ body {
     background: initial;
     page-break-after: always;
   }
-  
 }
 
-.characterSheet{
+.characterSheet {
   text-align: left;
 }
 
 .characterSheet button {
   height: 18px;
 
-  font-size: 11px; 
+  font-size: 11px;
 }
 
 .characterSheet h5 {
@@ -168,4 +167,23 @@ table.th20 td {
 
 table.th20 {
   background-color: aliceblue;
+}
+
+div.divcol2 {
+  width: 100%;
+  margin: 0 auto;
+  display: -webkit-flex; /* Safari */
+  display: flex; /* Standard syntax */
+}
+
+div.divcol2 div {
+  padding: 10px;
+  background: #dbdfe5;
+  -webkit-flex: 1; /* Safari */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1; /* Standard syntax */
+  width: 300px;
+}
+div.divcol2 div:first-child {
+  background: white;
 }

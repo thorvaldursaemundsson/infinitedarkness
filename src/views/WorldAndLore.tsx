@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FTLHyperDrive from './../components/Lore/FTLHyperDrive';
 import History from './../components/Lore/History';
 import Merlions from './../components/Lore/Merlions';
-import { Button } from '@material-ui/core';
 import Klackons from './../components/Lore/Klackons';
 import SolSystem from './../components/Lore/SolSystem';
 import CentauriSystem from './../components/Lore/CenturiSystem';

@@ -9,34 +9,116 @@ const FringeWorlds = () => <>
     <Section title='Tonati'><Tonati /> </Section>
 </>;
 
+const Tonati = () => <StarSystem
+    name='Star System Tonati'
+    description='One of many fringe worlds, Tonati considerably advanced with two habitable planets'
+    roguePlanetoids={[]}
+    stars={[{
+        name: 'Tonati',
+        description: 'Intense radiation makes the innermost part of the system mostly inaccessible. With a staggering luminosity of 15 times that of the Sun also means that the zone of habitabilty is much larger and farther out.',
+        classification: 'F',
+        mass: 2.7,
+        age: 4.1,
+        planetoids: [{
+            name: 'Chantico',
+            description: 'Chantico rotates extremely quickly, a day lasting only 160 minutes. This planet is a smoldering radioactive hellscape under the Tonati sun, rivers of magma flow across the surface that is never able to cool down',
+            mass: 0.09,
+            age: 3.8,
+            classification: 'rocky metallic',
+            satelites: [],
+            atmosphere: "none",
+            hydrosphere: "none",
+            surfaceGravity: 0.5,
+            temperatureRange: "1000 - 1300",
+            orbitDistance: "0.2 AU",
+            feature: 'extreme radiation'
+        },
+        {
+            name: 'Teylaloc',
+            description: 'Large rocky planet with a powerful magnetic field to protect it from the intense solar radiation. Constant thunderstorms and rains of molten lead and graphite makes this planets surface inaccessible.',
+            mass: 1.8,
+            age: 3.9,
+            classification: 'rocky',
+            satelites: [],
+            atmosphere: "thick carbon dioxide",
+            hydrosphere: "none",
+            surfaceGravity: 1.5,
+            temperatureRange: "320 - 360",
+            orbitDistance: "0.7 AU",
+            feature: 'constant planetwide thunderstorms'
+        },
+        {
+            name: 'Atlahua',
+            description: 'Small rocky planet with a thin atmosphere of carbondioxide and radiogenic neon (formed by the radiation hitting the magnesium rich surface). Additionally two rings orbit this planet, the inner ring is mostly made of iron and the outer made of silicates. Indicating that they were formed from a failed planet.',
+            mass: 0.7,
+            age: 3.8,
+            classification: 'rocky',
+            satelites: [],
+            atmosphere: "thin 80% carbon dioxide, 19% neon, 1% argon",
+            hydrosphere: "none",
+            surfaceGravity: 1.5,
+            temperatureRange: "190 - 370 celsius",
+            orbitDistance: "1.5 AU",
+            feature: 'rings'
+        },
+        {
+            name: 'Ehecatl',
+            description: 'Orange moss like flora covers the surface of this world, though the planet has no oceans or large bodies of surface water underground streams can be found. The atmosphere is composed of nitrogen and enough oxygen to breathe, however trace amounts of sulfides in the lower atmosphere makes long term exposure risky.  A small number of settlements exist on this planet, most of them depend on resources from space.',
+            mass: 0.5,
+            age: 3.7,
+            classification: 'rocky',
+            satelites: [],
+            atmosphere: "thin 60% nitrogen 38% oxygen, 1% argon, 1% ozone, trace sulfides",
+            hydrosphere: "salt water",
+            surfaceGravity: 0.65,
+            temperatureRange: " 20 - 70 celsius",
+            orbitDistance: "3.5 AU",
+            feature: 'settlements'
+        },
+        {
+            name: 'Meztil',
+            description: 'WIP',
+            mass: 0.9,
+            age: 3.7,
+            classification: 'rocky',
+            satelites: [],
+            atmosphere: "thin 70% nitrogen 29% oxygen, 1% argon",
+            hydrosphere: "salt water",
+            surfaceGravity: 0.9,
+            temperatureRange: " -30 - 40 celsius",
+            orbitDistance: "4.2 AU",
+            feature: 'settlements'
+        },
+        {
+            name: 'Toci',
+            description: 'WIP',
+            mass: 65,
+            age: 3.9,
+            classification: 'gas giant',
+            satelites: [],
+            atmosphere: "hydrogen helium",
+            hydrosphere: "liquid hydrogen",
+            surfaceGravity: 4,
+            temperatureRange: " -130 - 80 celsius",
+            orbitDistance: "30 AU",
+        },
+        {
+            name: 'Xolotl',
+            description: 'WIP',
+            mass: 1.2,
+            age: 6.1,
+            classification: 'rocky',
+            satelites: [],
+            atmosphere: "hydrogen",
+            hydrosphere: "liquid methane",
+            surfaceGravity: 4,
+            temperatureRange: " -190 - -170 celsius",
+            orbitDistance: "79 AU",
+        }
+        ]
 
-
-const Tonati = () => <>
-    <h3>Star System Tonati</h3>
-    <i>One of many fringe worlds, Tonati considerably advanced with two habitable planets</i>
-    <h4>Tonati</h4>
-    <p>Tonati is a blue white F class main sequence star, intense radiation makes the innermost part of the system mostly inaccessible. With a staggering luminosity of 15 times that of the Sun also means that the zone of habitabilty is much larger and farther out.</p>
-    <h5>Chantico</h5>
-    <p>Barren rocky metallic planet, smoldering radioactive hellscape under the Tonati sun, rivers of magma flow across the surface that is never able to cool down. Average temperature of 1000 - 1300 celsius</p>
-    <h5>Teylaloc</h5>
-    <p>Large rocky planet with a powerful magnetic field to protect it from the intense solar radiation. Constant thunderstorms and rains of molten lead and graphite makes this planet's surface inaccessible.</p>
-    <h5>Atlahua</h5>
-    <p>Small rocky planet with a thin atmosphere of carbondioxide and radiogenic neon (formed by the radiation hitting the magnesium rich surface).
-    Additionally two rings orbit this planet, the inner ring is mostly made of iron and the outer made of silicates. Indicating that they were formed from a failed planet.
-    </p>
-    <h5>Ehecatl</h5>
-    <p>Orange moss like flora covers the surface of this world, though the planet has no oceans or large bodies of surface water underground streams can be found.
-    The atmosphere is composed of nitrogen and enough oxygen to breathe, however trace amounts of sulfides in the lower atmosphere makes long term exposure risky.
-    Surface gravity 0.65g, average temperature range 20 - 70 celsius
-    A small number of settlements exist on this planet, most of them depend on resources from space.
-    </p>
-    <h5>Meztil</h5>
-    <p>Also habitable world</p>
-    <h5>Toci</h5>
-    <p>Big gas planet</p>
-    <h5>Xolotl</h5>
-    <p>Dark outer rocky planet</p>
-</>;
+    }]}
+/>
 
 const Ashra = () => <StarSystem
     name='Star System Ashra'

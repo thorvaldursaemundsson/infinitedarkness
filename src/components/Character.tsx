@@ -221,16 +221,44 @@ export class Character {
         return p;
     }
 
+    private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age:number) {
+        let p = start;
+        if (agePhases.length !== expPhases.length) console.error('age Phases and expPhases must be of equal length!');
+        let prevPhase = 0;
+        for (var phase in agePhases) {
+            let currentAgePhase = agePhases[phase];
+            let expPhase = expPhases[phase];
+
+            let ageRange = currentAgePhase - prevPhase;
+            if (age > prevPhase) p += Math.min(age - prevPhase, ageRange) * expPhase;
+            prevPhase = currentAgePhase;
+        }
+
+        return p;
+    }
+
+    public static CharacterPointsHuman(age:number) {
+        return Character.CharacterPoints(0, [18, 26, 40, 80], [10, 8, 6, 4], age);
+    }
+
+    public static CharacterPointsMerlion(age:number) {
+        return Character.CharacterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4], age);
+    }
+
+    public static CharacterPointsKlackon(age:number) {
+        return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
+    }
+
     private characterPointsHuman() {
-        return this.characterPoints(0, [18, 26, 40, 80], [10, 8, 6, 4]);
+        return Character.CharacterPointsHuman(this.age);
     }
 
     private characterPointsMerlion() {
-        return this.characterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4]);
+        return  Character.CharacterPointsMerlion(this.age);
     }
 
     private characterPointsKlackon() {
-        return this.characterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12]);
+        return Character.CharacterPointsKlackon(this.age);
     }
 
     public getStartingPointsAvailable() {
