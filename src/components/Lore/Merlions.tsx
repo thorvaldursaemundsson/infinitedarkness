@@ -3,7 +3,7 @@ import { Character } from "../Character";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsMerlion(index) };
+        return { age: index, exp: Character.CharacterPointsMerlion(index), mult: Character.ExperienceMultiplerMerlion(index) };
     });
 
 const Merlions: React.FC = () => {
@@ -30,30 +30,35 @@ const Merlions: React.FC = () => {
             </thead>
             <tbody>
                 <tr>
-                    <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>  
+                    <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>
                 </tr>
                 <tr>
-                    <td> AGI</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>  
+                    <td> AGI</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
                 </tr>
                 <tr>
-                    <td> END</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td>  
+                    <td> END</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td>
                 </tr>
                 <tr>
-                    <td> PER</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>  
+                    <td> PER</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
                 </tr>
                 <tr>
-                    <td> INT</td>  <td> 4d4</td> <td> 4d4</td> <td> 4d4</td>  <td> 4d4</td>  
+                    <td> INT</td>  <td> 4d4</td> <td> 4d4</td> <td> 4d4</td>  <td> 4d4</td>
                 </tr>
                 <tr>
-                    <td> WILL</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d10</td>  
+                    <td> WILL</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d10</td>
                 </tr>
             </tbody>
         </table>
-        
-        Starting merlion experience per age is as following
+
+        Merlion experience per age is as following
         <table>
+            <thead>
+                <tr>
+                    <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
+                </tr>
+            </thead>
             <tbody>
-                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> </tr>)}
+                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
             </tbody>
         </table>
     </>

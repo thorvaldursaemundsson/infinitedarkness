@@ -249,6 +249,38 @@ export class Character {
         return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
     }
 
+    public static ExperienceMultiplerHuman(age:number) {
+        if (age > 60) return 1;
+        if (age > 50) return 1.5;
+        if (age > 40) return 2;
+        if (age > 35) return 2.5;
+        if (age > 30) return 3;
+        if (age > 26) return 3.5;
+        if (age > 22) return 4;
+        if (age > 18) return 4.5;
+        return 5;
+    }
+
+    public static ExperienceMultiplerMerlion(age:number) {
+        if (age > 70) return 1;
+        if (age > 60) return 1.5;
+        if (age > 50) return 2;
+        if (age > 35) return 2.5;
+        if (age > 30) return 3;
+        if (age > 26) return 3.5;
+        if (age > 22) return 4;
+        if (age > 18) return 4.5;
+        return 5;
+    }
+
+    public static ExperienceMultiplerKlackon(age:number) {
+        if (age > 100) return 3;
+        if (age > 80) return 2.5;
+        if (age > 60) return 2;
+        if (age > 40) return 1.5;
+        return 1;
+    }
+
     private characterPointsHuman() {
         return Character.CharacterPointsHuman(this.age);
     }

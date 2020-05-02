@@ -187,3 +187,12 @@ div.divcol2 div {
 div.divcol2 div:first-child {
   background: white;
 }
+
+.flexbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexContainer {
+  width: 25%;
+}

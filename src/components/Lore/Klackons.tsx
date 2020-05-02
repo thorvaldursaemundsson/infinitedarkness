@@ -3,7 +3,7 @@ import { Character } from '../Character';
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsKlackon(index) };
+        return { age: index, exp: Character.CharacterPointsKlackon(index), mult: Character.ExperienceMultiplerKlackon(index) };
     });
 
 const Klackons: React.FC = () => {
@@ -50,10 +50,15 @@ const Klackons: React.FC = () => {
             </tbody>
         </table>
         
-        Starting merlion experience per age is as following
+        Klackon experience per age is as following
         <table>
+            <thead>
+                <tr>
+                    <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
+                </tr>
+            </thead>
             <tbody>
-                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> </tr>)}
+                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
             </tbody>
         </table>
     </>
