@@ -50,8 +50,8 @@ const Humans: React.FC = () => {
 
         <CharacterRollerHuman />
 
-
         <Section title='Human experience per age is as following'>
+
             <table>
                 <thead>
                     <tr>
@@ -70,6 +70,7 @@ const getStrength = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     if (age > 26) return { sides: 10, numberOfDice: 1 };
     return { sides: 8, numberOfDice: 1 };
+
 }
 const getAgility = (age: number) => {
     if (age > 80) return { sides: 6, numberOfDice: 1 };
@@ -86,6 +87,7 @@ const getPerception = (age: number) => {
     if (age > 40) return { sides: 8, numberOfDice: 1 };
     if (age > 26) return { sides: 10, numberOfDice: 1 };
     return { sides: 12, numberOfDice: 1 };
+
 }
 const getIntelligence = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
@@ -101,6 +103,7 @@ const getWillpower = (age: number) => {
 const CharacterRollerHuman = () => {
     const [age, setAge] = useState(24);
     return <>
+        <hr />
         Age: {age}<br />
     Starting Exp: {Character.CharacterPointsHuman(age)}<br />
     Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
