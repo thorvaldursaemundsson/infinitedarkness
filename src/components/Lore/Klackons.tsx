@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Character } from '../Character';
-import EditText from '../HideText';
-import CharacterRoller from './CharacterRoller';
+import { CharacterRollerKlackon } from './CharacterRoller';
 import Section from '../playermanual/Section';
 
 const experienceAges = [...Array(90)]
@@ -68,57 +67,5 @@ const Klackons: React.FC = () => {
         </Section>
     </>
 };
-
-
-
-const getStrength = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
-}
-const getAgility = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
-}
-const getEndurance = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
-}
-const getPerception = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
-}
-const getIntelligence = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
-}
-const getWillpower = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
-}
-
-
-const CharacterRollerKlackon = () => {
-    const [age, setAge] = useState(24);
-    return <>
-        Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsHuman(age)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
-        <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
-        <CharacterRoller
-            strength={getStrength(age)}
-            agility={getAgility(age)}
-            endurance={getEndurance(age)}
-            intelligence={getIntelligence(age)}
-            willpower={getWillpower(age)}
-            perception={getPerception(age)}
-        />
-    </>
-}
 
 export default Klackons;
