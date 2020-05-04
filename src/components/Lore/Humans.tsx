@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Character } from "../Character";
 import EditText from "../HideText";
 import CharacterRoller from "./CharacterRoller";
+import Section from "../playermanual/Section";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -50,41 +51,43 @@ const Humans: React.FC = () => {
         <CharacterRollerHuman />
 
         Human experience per age is as following
-        <table>
-            <thead>
-                <tr>
-                    <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
-                </tr>
-            </thead>
-            <tbody>
-                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
-            </tbody>
-        </table>
-        
+        <Section title='experience'>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                </tbody>
+            </table>
+        </Section>
     </>
 }
 
-const getStrength = (age:number) => {
-    if (age > 80) return {sides: 8, numberOfDice: 1};
-    if (age > 26) return {sides: 10, numberOfDice: 1};
-    return {sides: 8, numberOfDice: 1};
+const getStrength = (age: number) => {
+    if (age > 80) return { sides: 8, numberOfDice: 1 };
+    if (age > 26) return { sides: 10, numberOfDice: 1 };
+    return { sides: 8, numberOfDice: 1 };
 }
 
 const CharacterRollerHuman = () => {
     const [age, setAge] = useState(24);
     return <>
-    Age: {age}<br/>
-    Starting Exp: {Character.CharacterPointsHuman(age)}<br/>
-    Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br/>
-    <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
-    <CharacterRoller 
-        strength={getStrength(age)}
-        agility={getStrength(age)}
-        endurance={getStrength(age)}
-        intelligence={getStrength(age)}
-        willpower={getStrength(age)}
-        perception={getStrength(age)}
-    />
+        <hr />
+        Age: {age}<br />
+    Starting Exp: {Character.CharacterPointsHuman(age)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
+        <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
+        <CharacterRoller
+            strength={getStrength(age)}
+            agility={getStrength(age)}
+            endurance={getStrength(age)}
+            intelligence={getStrength(age)}
+            willpower={getStrength(age)}
+            perception={getStrength(age)}
+        />
     </>
 }
 

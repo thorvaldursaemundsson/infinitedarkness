@@ -56,7 +56,7 @@ const sumN = (n:number[]) => ` ${n.join(' + ')} = ${n.reduce(function(a, b) { re
 const rollCharacterData = (dice: ICharacterRoller, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
     let charData: ICharacterData[] = [];
 
-    for (let counter = 0; counter < 3; counter++) {
+    for (let counter = 0; counter < 4; counter++) {
         charData.push({
             strength: roll(dice.strength),
             agility: roll(dice.agility),
