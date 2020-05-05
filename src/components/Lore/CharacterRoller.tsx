@@ -42,18 +42,18 @@ const CharacterRoller: React.FC<ICharacterRoller> = (props) => {
 
         {characterData.map(cd => {
             return <div className="flexContainer">
-                STR -> {sumN(cd.strength)}<br />
-                AGI -> {sumN(cd.agility)}<br />
-                END -> {sumN(cd.endurance)}<br />
-                PER -> {sumN(cd.perception)}<br />
-                WIL -> {sumN(cd.willpower)}<br />
-                INT -> {sumN(cd.intelligence)}<br />
+                {sumN(cd.strength)}<br />
+                {sumN(cd.agility)}<br />
+                {sumN(cd.endurance)}<br />
+                {sumN(cd.perception)}<br />
+                {sumN(cd.willpower)}<br />
+                {sumN(cd.intelligence)}<br />
             </div>
         })}
     </div>);
 }
 
-const sumN = (n: number[]) => ` ${n.join(' + ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
+const sumN = (n: number[]) => ` ${n.join(', ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
 
 const rollCharacterData = (dice: ICharacterRoller, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
     let charData: ICharacterData[] = [];
@@ -169,8 +169,8 @@ export const CharacterRollerKlackon = () => {
     const [age, setAge] = useState(24);
     return <>
         Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsHuman(age)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
+    Starting Exp: {Character.CharacterPointsKlackon(age)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplerKlackon(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
             strength={getStrengthKlackon(age)}
@@ -184,34 +184,26 @@ export const CharacterRollerKlackon = () => {
 }
 
 const getStrengthMerlion = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
+    if (age > 40) return { sides: 8, numberOfDice: 1 };
+    return { sides: 6, numberOfDice: 1 };
 }
 const getAgilityMerlion = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
     if (age > 40) return { sides: 8, numberOfDice: 1 };
     return { sides: 10, numberOfDice: 1 };
 }
 const getEnduranceMerlion = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    if (age > 40) return { sides: 6, numberOfDice: 1 };
+    return { sides: 8, numberOfDice: 1 };
 }
 const getPerceptionMerlion = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
     if (age > 40) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
-}
-const getIntelligenceMerlion = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
     return { sides: 10, numberOfDice: 1 };
 }
+const getIntelligenceMerlion = (age: number) => {
+    return { sides: 4, numberOfDice: 4 };
+}
 const getWillpowerMerlion = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    return { sides: 10, numberOfDice: 1 };
 }
 
 export const CharacterRollerMerlion = () => {
