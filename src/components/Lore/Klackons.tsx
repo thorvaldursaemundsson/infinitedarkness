@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Character } from '../Character';
 import { CharacterRollerKlackon } from './CharacterRoller';
 import Section from '../playermanual/Section';

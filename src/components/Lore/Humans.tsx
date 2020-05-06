@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Character } from "../Character";
-import EditText from "../HideText";
-import CharacterRoller from "./CharacterRoller";
 import Section from "../playermanual/Section";
 
 const experienceAges = [...Array(90)]

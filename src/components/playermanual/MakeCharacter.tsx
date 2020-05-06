@@ -1,6 +1,5 @@
 import Section from "./Section";
-import React, { useState } from "react";
-import { Button } from "@material-ui/core";
+import React from "react";
 import { CharacterRollerHuman, CharacterRollerKlackon,CharacterRollerMerlion } from "../Lore/CharacterRoller";
 
 const MakeCharacter: React.FC =() => {
@@ -45,53 +44,5 @@ const MakeCharacter: React.FC =() => {
 
     </Section>;
 }
-
-const AttributeRoller: React.FC = () => {
-    const [dices, setDices] = useState<number[]>([]);
-    const [diceSize, setDiceSize] = useState(8);
-
-    const rollDice = (size:number) => {
-        return Math.floor((Math.random() * size))+1;
-    }
-
-    const reroll = ()=>{
-        let d:number[] = [];
-        for (let i = 0; i < 10; i++){
-            d.push(rollDice(diceSize));
-        }
-        d = d.sort((a,b) => b - a);
-        setDices(d);
-    };
-
-    const setDiceSizeAndReset = (ds:number) => {
-        setDiceSize(ds);
-        setDices([]);
-    }
-
-    let diceBonus = 0;
-    switch (diceSize) {
-        case 10: diceBonus = 0; break;
-        case 8: diceBonus = 1; break;
-        case 6: diceBonus = 2; break;
-        case 4: diceBonus = 3; break;
-        default: break;
-    }
-    const ignore = {color: 'red'};
-    const normal = {};
-    return (<div>
-        <p>Choose between extreme or average or tame, 10 sided dice, 8 sided bonus 1, 6 sided bonus 2</p>
-        <p>Roll 10 times, discard the two highest and two lowest, assign attribute freely</p>
-        <p>You may reroll once if the game master agrees. Rolls are only valid if the game master supervises rolls. This tool lets you roll on the screen</p>
-        <Button onClick={() => reroll()}>Roll</Button><br/>
-        <Button variant='contained' size='small' onClick={() => setDiceSizeAndReset(6)}>1d6+2</Button>
-        <Button variant='contained' size='small' onClick={() => setDiceSizeAndReset(8)}>1d8+1</Button>
-        <Button variant='contained' size='small' onClick={() => setDiceSizeAndReset(10)}>1d10</Button>
-        <br/>
-        {dices.map((dice,index, array) => {
-            return <span style={(index >= dices.length-2 || index <= 1) ? ignore : normal}>1d{diceSize} ({dice}) + {diceBonus} = {dice+diceBonus}<br/></span>
-        })}
-    </div>);
-}
-
 
 export default MakeCharacter;
