@@ -76,8 +76,47 @@ const Equipment: React.FC = () => {
                 <tr>  <td>Silencer</td><td>600 c</td><td>250g</td><td>Attaches to the end of ballistic firearms, reduces sound by 90%, -1 damage</td> </tr>
             </tbody>
         </table>
-
-
+        <h3>Quality and Condition</h3>
+        <p>Quality and condition are optional rules that can increase variety and make items feel more personal.</p>
+        <h4>Condition</h4>
+        <p>Condition refers to the wear and tear of an item that is used in skill checks, it is also affected by direct damage and repair.</p>
+        <table>
+            <thead>
+                <tr><th>Condition</th><th>Effect</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr> <td>Pristine</td><td>+2</td><td>100%</td></tr>
+                <tr><td>Intact</td><td>+1</td><td>90%</td></tr>
+                <tr><td>Normal</td><td>+/-0</td><td>80%</td></tr>
+                <tr><td>Used</td><td>-1</td><td>70%</td></tr>
+                <tr><td>Worn</td><td>-2</td><td>60%</td></tr>
+                <tr><td>Damaged</td><td>-3</td><td>50%</td></tr>
+                <tr><td>Broken</td><td>-4</td><td>40%</td></tr>
+            </tbody>
+        </table>
+        <p>When an item has been used a number of times equal to the users skill it drops in condition by 1 step, a repair skill check can prevent this. A failed repair can cause the quality to drop.</p>
+        <p>Someone who knows how to repair an item can always choose to repair them, each time lets you increase the condition by 1 step.</p>
+        <p>An item that is allowed to deteriorate below broken can no longer be used for its intended purpose, it is completely ruined.</p>
+        <p>Any item is always assumed to be at pristine quality if possible, the player may choose to buy a used item, at which it will cost less. Multiplie factors aways appy multiplicative, a broken trash item costs x 0.4 x 0.4 = 0.16, or 16% of its base value, buying it at start costs therefore 8%.</p>
+        <p>Players choosing to buy a house using these factors will take the combined effects to their mental health.</p>
+        <h4>Quality</h4>
+        <p>Quality refers to the materials used, the precision of the craft and it can even refer to if it's made for one person in particular</p>
+        <table>
+            <thead>
+                <tr><th>Quality</th><th>Effect</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Superb</td><td>+3</td><td> 1000%</td></tr>
+                <tr><td>Great</td><td>+2</td><td> 300%</td></tr>
+                <tr><td>Good</td><td>+1</td><td> 150%</td></tr>
+                <tr><td>Normal</td><td>+/-0</td><td> 100%</td></tr>
+                <tr><td>Poor</td><td>-1</td><td>90%</td></tr>
+                <tr><td>Bad</td><td>-2</td><td> 70%</td></tr>
+                <tr><td>Awful</td><td>-3</td><td>50%</td></tr>
+                <tr><td>Trash</td><td>-4</td><td> 40%</td></tr>
+            </tbody>
+        </table>
+        <p>Improving the quality of an item is not possible without supplying new material, these materials need to be of equivalent or higher quality, a failed attempt will consume the materials. A badly failed will reduce condition.</p>
     </Section>);
 }
 
