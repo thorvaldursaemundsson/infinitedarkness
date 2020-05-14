@@ -117,6 +117,8 @@ const Equipment: React.FC = () => {
             </tbody>
         </table>
         <p>Improving the quality of an item is not possible without supplying new material, these materials need to be of equivalent or higher quality, a failed attempt will consume the materials. A badly failed will reduce condition.</p>
+        <p>Items with quality below trash can not be used.</p>
+        <p>Items with quality great, superb, awful and trash can generally not be bought on the mainstream market.</p>
     </Section>);
 }
 

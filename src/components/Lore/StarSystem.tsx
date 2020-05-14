@@ -25,6 +25,7 @@ interface IPlanetoid extends IHeavelyBody {
     surfaceGravity: number;
     temperatureRange: string;
     atmosphere: string;
+    atmosphericPressure:number;
     hydrosphere: string;
     satelites: IPlanetoid[];
     orbitDistance: string;
@@ -56,8 +57,8 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
         <div>{cropOrAll(planet.description, descriptionCuttOff)}</div>
         <div>
             <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
-            <b>Average temperature range</b>: {planet.temperatureRange}g<br />
-            <b>Atmosphere</b>: {planet.atmosphere}<br />
+            <b>Average temperature range</b>: {planet.temperatureRange}c<br />
+            <b>Atmosphere</b>: {planet.atmosphericPressure > 0 ? `${floor4(planet.atmosphericPressure/101.325)}x ea` : null } {planet.atmosphere}<br />
             <b>Hydrosphere</b>: {planet.hydrosphere}<br />
             <b>Distance</b>: {planet.orbitDistance}<br />
             <b>Age</b>: {planet.age} billion years<br />
@@ -85,6 +86,8 @@ const HGen = (gen: number, children: string) => {
         default: return <h6>{children}</h6>;
     }
 }
+
+const floor4 = (n:number) => (Math.floor(n*10)/10).toPrecision(2);
 
 
 export default StarSystem;
