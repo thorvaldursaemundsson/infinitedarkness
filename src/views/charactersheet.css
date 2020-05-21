@@ -11,8 +11,7 @@ tr {
     padding: 0;
 }
 
-td {
-}
+td {}
 
 label {
     background-color: lightgrey;
@@ -29,16 +28,18 @@ input {
     font-style: italic;
     background-color: #CCDDFF;
 }
+
 table.skillTable {
     margin: 0;
-    padding: 0  ;
+    padding: 0;
 }
+
 table.skillTable td {
     min-width: 61px;
 }
 
-table.skillTable label  {
-    width: 10   0px;
+table.skillTable label {
+    width: 10 0px;
 }
 
 div.characterSheet table tbody td {

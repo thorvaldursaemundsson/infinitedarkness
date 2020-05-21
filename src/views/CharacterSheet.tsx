@@ -11,7 +11,7 @@ interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
-const padSize = 25;
+const padSize = 44;
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
@@ -25,7 +25,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
             <button onClick={() => setViewState("explain")}>explain</button>
             <button onClick={() => setViewState("hide")}>hide buttons</button></>
             : null}
-
+        {/* page 1 */}
         <table>
             <thead>
                 <tr>
@@ -100,11 +100,29 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 <tr>
                     <td>
+                        Background
+                    </td>
+                    <td>
+                        Apperance traits
+                    </td>
+                    <td>
+                        Personality traits
+                    </td>
+                </tr>
+                {Pad(5,0).map(i => 
+                           <tr>
+                               <td> &nbsp;</td>
+                               <td> &nbsp;</td>
+                               <td> &nbsp;</td>
+                           </tr> 
+                        )}
+                <tr>
+                    <td style={{border:'none'}}>
                         <h5>Skills</h5>
                         <table className="skillTable">
                             <thead>
                                 <tr>
-                                    <th><label>Skill</label></th>
+                                    <th>Skill</th>
                                     <th>Exp</th>
                                     <th>Rank</th>
                                 </tr>
@@ -112,7 +130,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <tbody>
                                 {character.skills.map(skill => {
                                     return <tr>
-                                        <td >
+                                        <td>
                                             <label>{skill.name}</label>
                                         </td>
                                         <td></td>
@@ -186,6 +204,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                 </tr>
+                {/* page 2 */}
                 <tr>
                     <td>
                         <h4>Inventory</h4>
@@ -198,7 +217,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     </td>
                 </tr>
                 
-                {Pad(15,0).map(i => 
+                {Pad(50,0).map(i => 
                            <tr>
                                <td> &nbsp;</td>
                                <td> </td>
