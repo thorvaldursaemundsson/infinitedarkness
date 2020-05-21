@@ -59,7 +59,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Species</label> <EditText txt={character.species} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} explain={character.explain('species')} />
                     </td>
                     <td>
-                        <label>Fear Resistence</label> <HideText txt={character.getFearResistence()} isEdit={viewState} explain={character.explain('fearResistence')} />
+                        <label>Mental Health</label> <HideText txt={character.getMentalHealth()} isEdit={viewState} explain={character.explain('mentalHealth')} />
                     </td>
                     <td>
                         <label>Agility</label> <EditText txt={character.agility} isEdit={viewState} onChange={(str) => dispatch({ action: 'agility', value: parseInt(str) })} explain={character.explain('agility')} />

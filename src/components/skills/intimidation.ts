@@ -9,7 +9,7 @@ const useCases: UseCase[] = [
     {
         name: 'frighten',
         attribute: 'willpower',
-        description: 'emit a terrifying display of power and ill intent to cause viewers to fear you, enemies must roll willpower vs your roll or take 1d6 fear damage (plus 1 per 5 you exceed their roll). This only works once, the situation can give you penalites or bonuses',
+        description: 'emit a terrifying display of power and ill intent to cause viewers to fear you, enemies must roll willpower vs your roll or take 1d6 fear damage (plus 1 per 5 you exceed their roll). This only works once, the situation can give you penalites or bonuses.',
         type: 'active'
     },
     {

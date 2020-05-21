@@ -65,111 +65,6 @@ export class Character {
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
     }
-    public getAttributeValueByName(attribute: string): number {
-        switch (attribute) {
-            case 'strength': return this.strength;
-            case 'agility': return this.agility;
-            case 'endurance': return this.endurance;
-            case 'perception': return this.perception;
-            case 'willpower': return this.willpower;
-            case 'intelligence': return this.intelligence;
-            default: return 0;
-        }
-    }
-    public getMaxStrength() {
-        switch (this.species) {
-            case 'human':
-                if (this.age < 14) return Math.min(Math.floor(this.age / 18) + 1, 11);
-                if (this.age < 26) return 11;
-                if (this.age < 36) return 12;
-                if (this.age < 50) return 10;
-                if (this.age < 66) return 9;
-                if (this.age < 90) return 8;
-                return 7;
-            case 'merlion':
-                if (this.age < 12) return Math.min(Math.floor(this.age / 14) + 1, 10);
-                if (this.age < 26) return 10;
-                if (this.age < 40) return 11;
-                if (this.age < 70) return 10;
-                if (this.age < 90) return 9;
-                return 8;
-            case 'klackon':
-                return 4 + Math.floor(Math.sqrt(this.age));
-            default: return 10;
-        }
-    }
-    public getMaxAgility() {
-        switch (this.species) {
-            case 'human':
-                return 10;
-            case 'merlion':
-                return 12;
-            case 'klackon':
-                return 9;
-            default: return 10;
-        }
-    }
-    public getMaxEndurance() {
-        switch (this.species) {
-            case 'human':
-                if (this.age < 14) return Math.min(Math.floor(this.age / 18) + 2, 11);
-                if (this.age < 26) return 12;
-                if (this.age < 36) return 13;
-                if (this.age < 50) return 12;
-                if (this.age < 66) return 11;
-                if (this.age < 90) return 10;
-                return 9;
-            case 'merlion':
-                if (this.age < 12) return Math.min(Math.floor(this.age / 14) + 1, 10);
-                if (this.age < 26) return 10;
-                if (this.age < 40) return 11;
-                if (this.age < 70) return 10;
-                if (this.age < 90) return 9;
-                return 8;
-            case 'klackon':
-                return 12
-            default: return 10;
-        }
-    }
-    public getMaxPerception() {
-        switch (this.species) {
-            case 'human':
-                if (this.age < 18) return Math.min(Math.floor(this.age / 18) + 1, 13);
-                if (this.age < 26) return 12;
-                if (this.age < 30) return 11;
-                if (this.age < 36) return 9;
-                if (this.age < 42) return 8;
-                if (this.age < 50) return 7;
-                return 6;
-            case 'merlion':
-                return 11;
-            case 'klackon':
-                return 12;
-            default: return 10;
-        }
-    }
-    public getMaxWillpower() {
-        switch (this.species) {
-            case 'human':
-                return 12;
-            case 'merlion':
-                return 8;
-            case 'klackon':
-                return 9;
-            default: return 10;
-        }
-    }
-    public getMaxIntelligence() {
-        switch (this.species) {
-            case 'human':
-                return 10;
-            case 'merlion':
-                return 16;
-            case 'klackon':
-                return 5 + Math.floor(Math.sqrt(Math.sqrt(this.age)));
-            default: return 10;
-        }
-    }
 
     public getCharacterPointsCostPerks() {
         return this.perks.length > 0 ? this.perks.map(p => p.cost()).reduce((a, b) => a + b) : 0;
@@ -303,10 +198,6 @@ export class Character {
         }
     }
 
-    public getMaximumPointsAvailable() {
-        return this.getStartingPointsAvailable() * 2;
-    }
-
     public getExperienceMultiplier() {
         if (this.age < 16) return 3 * + (this.getHook('exp') + 1);
         if (this.age < 20) return 2.5 * + (this.getHook('exp') + 1);
@@ -325,8 +216,8 @@ export class Character {
         return this.endurance + this.willpower * 2 + this.getHook('mana');
     }
 
-    public getFearResistence() {
-        return this.willpower + 2 + this.getHook('fear');
+    public getMentalHealth() {
+        return this.willpower * 2 + this.getHook('mentalHealth');
     }
 
     public getDamageBonusSmall() {
@@ -357,9 +248,9 @@ export class Character {
             case 'perception': return 'seeing, hearing';
             case 'intelligence': return 'brain power';
             case 'willpower': return 'brain stamina';
-            case 'life': return 'STR + 2x END';
-            case 'mana': return 'END +2x WILL';
-            case 'fearResistence': return 'WILL + 2';
+            case 'life': return 'STR + 2 x END';
+            case 'mana': return 'END + 2 x WILL';
+            case 'mentalHealth': return 'WILL x 2';
             case 'age': return 'how old';
             case 'damageBonus': return 'STR /5, /4, /3';
             case 'name': return '';
