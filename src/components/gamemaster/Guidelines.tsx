@@ -11,7 +11,7 @@ const Guidelines = () =>
         <p>These generally concern what happens before session zero and long term planning in general. Some of these also apply when planning or running a session.</p>
         <ol>
             <li>Don’t make it flammable if you don’t want it burnt.</li>
-            <li>The DM cannot make the PCs more complex than the players do. No matter what the character sheet says, there are usually only three PC alignments – Lawful Snotty, Neutral Greedy, and Chaotic Backstabbing.</li>
+            <li>The GM cannot make the PCs more complex than the players do. No matter what the character sheet says, there are usually only three PC characters – Snotty, Greedy, and Backstabbing.</li>
             <li>What the players want today is a quick, easy victory. But what they will want tomorrow is to have brilliantly and bravely turned the tables to barely survive a deadly encounter where it looked like they were all about to die.</li>
             <li>Never base a campaign on something you are more excited about than your players are. You may have a great idea for a story based around Andalusian left-handed barbed-wire weaving, but by definition, your players are less interested in it, and less knowledgeable about it, and won't get your clues or references. And they won't care.</li>
         </ol>
@@ -78,11 +78,18 @@ const Guidelines = () =>
             <li>Reward good tactics, consistent characterization, and brilliant ideas more than lucky die rolls.</li>
             <li>A role-playing game is run by rules. But it isn't made out of rules; it's made out of ideas, characters, and imagination.</li>
             <li>
+                Consistency regarding rules and rulings is vital, if the players feel like they are being disadvantaged they may take it personally, you may be unknowigly playing favorites.
+                <ol type='A'>
+                    <li>If you dislike how one of the players is conducting themselves then take that up with them outside of the game, if you punish one character you make the other players collateral.</li>
+                </ol>
+            </li>
+            <li>
                 The more completely you know the rules, the better you can be at ignoring them when necessary.
                 <ol type='a'>
                     <li>"When necessary" means it should be rare, forced by an unusual situation, and non-intrusive. [And some people believe it should not happen even then.]</li>
                     <li>Applying the rules is like eating food. That should always happen. Ignoring the rules is like taking medicine; it's only a good idea if something is wrong.</li>
                     <li>Never change a rule unless you know why it was written.</li>
+                    <li>When you change a rule, or make a rule, stick with it. This is the new rule. Write it down</li>
                 </ol>
             </li>
             <li>
@@ -102,6 +109,7 @@ const Guidelines = () =>
                 The DM does not have the right to screw up the PC's story. He does have the right to screw up the PCs' plans. Don’t confuse the two.
                 <ol type='a'>
                     <li>The player does have the right to screw up the PC's story -- even by accident. If a 2nd level PC chooses to attack a dragon, then the PC's death is his doing, not the DM's.</li>
+                    <li>When in doubt, talk to the player about how to incorporate their story</li>
                 </ol>
             </li>
             <li>
@@ -121,7 +129,7 @@ const Guidelines = () =>
                 </ol>
             </li>
             <li>
-                The purpose of wandering monsters is to prevent the game from bogging down. If the players spend over five real minutes in useless discussion, then it's ghoul o'clock.
+                The purpose of a random hostile encounter is to prevent the game from bogging down. If the players spend over five real minutes in useless discussion, then it's pirate o'clock.
                 <ol type='a'>
                     <li>Be careful with this. Not all discussion is useless.</li>
                     <li>There should be encounters that have nothing to do with the main quest, or there is no world – just a party and a quest.</li>
@@ -133,6 +141,14 @@ const Guidelines = () =>
                     <li>Remember, the NPCs don’t want to die; they would usually rather flee, negotiate, or surrender.</li>
                     <li>One round earlier, when you know the PCs have won and they don’t yet, is a great time for the NPCs to offer to negotiate.</li>
                     <li>This is your opportunity to force-feed them that obvious fact they’ve been missing, and let them believe they earned it.</li>
+                </ol>
+            </li>
+            <li>
+                Only mindless enemies fight to the death.
+                <ol type='a'>
+                    <li>Enemies should have a reason to fight, and a desire to live</li>
+                    <li>Surrender should only be a non-option if the losing side is conviced they'll be killed if they surrender</li>
+                    <li>Likewise retreat or fleeing should only be non-options if the losing side is convinced that will lead to death</li>
                 </ol>
             </li>
             <li>
@@ -149,9 +165,10 @@ const Guidelines = () =>
                 </ol>
             </li>
             <li>
-                The player identifies with the PC, and will take what happens to the PC personally. If the PC wants to defeat the orcs, then the player wants to defeat the orcs. The DM does not have that luxury. The orcs want to kill the PCs, but the DM should not.
+                The player identifies with the PC, and will take what happens to the PC personally. If the PC wants to defeat the pirate, then the player wants to defeat the pirates. The GM does not have that luxury. The pirates want to kill the PCs, but the GM should not.
                 <ol type='a'>
-                    <li>Follow Matt Dillon’s principle: “I never hang anybody. The law does.” The DM should never kill a PC. Sometimes the game might.</li>
+                    <li>Follow Matt Dillon’s principle: “I never hang anybody. The law does.” The GM should never kill a PC. Sometimes the game might.</li>
+                    <li>The players should also have an inkling that death is a possible outcome.</li>
                 </ol>
             </li>
             <li>
@@ -163,8 +180,11 @@ const Guidelines = () =>
             <li>
                 Remind them of things that their characters would not have forgotten, but not things that characters will forget.
                 <ol type='a'>
-                    <li>The PCs can’t forget that they picked up a magic glaive, so if they start looking around for a long weapon, remind them that they have it. And they won’t forget the face of the sorceress who destroyed their village. But if they forgot that the blacksmith said he heard about ogres in the hills, then the PCs weren’t paying attention.</li>
+                    <li>The PCs can’t forget that they picked up an experimental plasma rifle, so if they start looking around for a strong weapon, remind them that they have it.
+                        And they won’t forget the face of the pirate who destroyed their village.
+                        But if they forgot that the shopkeep said he heard about alien monsters in the hills, then the PCs weren’t paying attention.</li>
                     <li>This can require some careful judgment calls.</li>
+                    <li>It's never wrong to remind players they're allowed to keep notes.</li>
                 </ol>
             </li>
             <li>
