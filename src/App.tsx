@@ -13,7 +13,6 @@ const App: React.FC = () => {
   const main = 'main';
   const [viewMode, setViewMode] = useState(main);
   const [character, setCharacter] = useState(new Character());
-  const [hideButtons, setHideButtons] = useState(false);
   const characterSheet = 'Character Sheet';
   const playerManual = 'Player Manual';
   const gameMaster = 'Game Master';
@@ -30,23 +29,15 @@ const App: React.FC = () => {
     wizard,
     about
   ];
-  const parseMenu = (choice: string) => {
-    if (choice === 'setHideButtons') setHideButtons(true);
-    else setViewMode(choice);
-  }
+  const parseMenu = (choice: string) => setViewMode(choice);
 
   return (
     <>
-      <Conditional shouldView={hideButtons === false}>
-        <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
-
-      </Conditional>
-
+      <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
       <div className="page">
 
         <Conditional shouldView={viewMode === main}>
           <DialogTitle>Infinite Darkness</DialogTitle>
-          {hideButtons === true ? 'refresh the page to get the buttons back' : null}
           <p>This webpage is a resource for both players and game masters to run a tabletop game of Infinite Darkness.</p>
           <p>Infinite Darkness is a sci-fi roleplaying game set in a future where humanity has begun to take to the stars, aliens and humans co exist.</p>
           <p>With the discovery of faster than light travel- the ability to visit distant stars became a possibility. But space is still vast beyond imagining, the time it takes to travel is still long.
@@ -103,7 +94,6 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = (props) => {
   return <div className="pageTop">
     <div className="pageTopInner">
-      <Button onClick={() => props.callback('setHideButtons')}>Hide buttons for print view</Button><br />
       {props.options.map(option =>
         <Tab active={option === props.current} key={option} onClick={() => props.callback(option)}>{option}</Tab>
       )}
@@ -117,7 +107,7 @@ interface ITabPRops {
 }
 
 const Tab: React.FC<ITabPRops> = (props) => {
-  return <button className={props.active ? 'tab tabActive' : 'tab'} onClick={() => props.onClick()}>{props.children}</button>
+  return <button className={props.active ? 'tab tabActive no-print' : 'tab no-print'} onClick={() => props.onClick()}>{props.children}</button>
 }
 
 export default App;

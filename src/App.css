@@ -132,6 +132,14 @@ body {
   right: auto;
 }
 
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
 .tab {
   background: none;
   border-top: 1px solid black;

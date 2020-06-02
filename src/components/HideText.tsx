@@ -7,9 +7,9 @@ interface IHideText {
 }
 export const HideText: React.FC<IHideText> = ({ isEdit, txt, explain }) => {
     if (isEdit === "edit")
-        return <>{txt}</>;
+        return <span className='no-print'>{txt}</span>;
     else if (isEdit === "explain")
-        return <>{explain}</>;
+        return <span className='no-print'>{explain}</span>;
     else return null;
 }
 
@@ -19,7 +19,7 @@ interface IEditText extends IHideText {
 
 const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt, explain }) => {
     if (isEdit === "edit")
-        return <input type="text" onChange={(e) => onChange(e.target.value)} value={txt}></input>
+        return <input className='no-print' type="text" onChange={(e) => onChange(e.target.value)} value={txt}></input>
     else return <HideText txt={txt} isEdit={isEdit} explain={explain} />
 }
 

@@ -19,12 +19,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [viewPerkList, setViewPerkList] = useState(false);
 
     return (<div className="characterSheet">
-        {viewState !== "hide" ? <>
-            <button onClick={() => setViewState("edit")}>edit</button>
-            <button onClick={() => setViewState("print")}>print</button>
-            <button onClick={() => setViewState("explain")}>explain</button>
-            <button onClick={() => setViewState("hide")}>hide buttons</button></>
-            : null}
+        {viewState !== "edit" ? 
+            <button className='no-print' onClick={() => setViewState("edit")}>edit</button>
+            : 
+            <button className='no-print' onClick={() => setViewState("explain")}>explain</button>}
         {/* page 1 */}
         <table>
             <thead>
@@ -150,13 +148,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                     <td>
-                        <h5>Perks {(viewState === "edit") ? <button onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
+                        <h5>Perks {(viewState === "edit") ? <button className='no-print' onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
-                                    return <tr>
+                                    return <tr className='no-print'>
                                         <td>
-                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
+                                            <button  onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
                                         </td>
                                     </tr>
                                 }) : null}
@@ -176,15 +174,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </table>
                     </td>
                     <td>
-                        <h5>Traits {(viewState === "edit") ? <button onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
-
-
+                        <h5>Traits {(viewState === "edit") ? <button className='no-print' onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewTraitList ? GetTraits().map(trait => {
-                                    return <tr>
+                                    return <tr className='no-print'>
                                         <td>
-                                            <button onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
+                                            <button  onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
                                         </td>
                                     </tr>
                                 }) : null}
@@ -195,11 +191,19 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewTraitList ? 0 : padSize, character.traits.length).map(i => {
+                                {Pad(viewTraitList ? 0 : padSize-38, character.traits.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
                                 })}
+                            </tbody>
+                        </table>
+                        <h5>Reputation</h5>
+                        <table>
+                            <tbody>
+                                {Pad(35,0).map(i => <tr>
+                                        <td> <label> </label></td>
+                                    </tr>)}
                             </tbody>
                         </table>
                     </td>
