@@ -14,6 +14,7 @@ const Guidelines = () =>
             <li>The GM cannot make the PCs more complex than the players do. No matter what the character sheet says, there are usually only three PC characters – Snotty, Greedy, and Backstabbing.</li>
             <li>What the players want today is a quick, easy victory. But what they will want tomorrow is to have brilliantly and bravely turned the tables to barely survive a deadly encounter where it looked like they were all about to die.</li>
             <li>Never base a campaign on something you are more excited about than your players are. You may have a great idea for a story based around Andalusian left-handed barbed-wire weaving, but by definition, your players are less interested in it, and less knowledgeable about it, and won't get your clues or references. And they won't care.</li>
+            <li>Rules are for the players, not for world building. Theme, versimilitude and inspiration should be the driving forces when you construct a campaign.</li>
         </ol>
         <h2>Planning a session</h2>
         <p>These generally concern what you want to/expect to happen the very next session.</p>
