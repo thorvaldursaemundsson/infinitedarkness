@@ -227,7 +227,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     <td> Credits:</td>
                 </tr>
 
-                {Pad(49, 0).map(i =>
+                {Pad(48, 0).map(i =>
                     <tr>
                         <td> &nbsp;</td>
                         <td> </td>
