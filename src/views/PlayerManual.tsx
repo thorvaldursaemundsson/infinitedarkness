@@ -6,12 +6,15 @@ import Wealth from '../components/playermanual/Wealth';
 import Experience from '../components/playermanual/Experience';
 import Vehicles from '../components/playermanual/Vehicles';
 import Section from '../components/playermanual/Section';
+import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
 
 const PlayerManual: React.FC = () => {
     return (<div>
         <hr />
         <MakeCharacter />
         <hr />
+        <CharacterSheetOverview />
+        <hr/>
         <Wealth />
         <hr />
         <Experience />

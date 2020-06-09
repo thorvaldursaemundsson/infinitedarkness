@@ -11,7 +11,7 @@ interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
-const padSize = 44;
+const padSize = 35;
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
@@ -19,9 +19,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [viewPerkList, setViewPerkList] = useState(false);
 
     return (<div className="characterSheet">
-        {viewState !== "edit" ? 
+        {viewState !== "edit" ?
             <button className='no-print' onClick={() => setViewState("edit")}>edit</button>
-            : 
+            :
             <button className='no-print' onClick={() => setViewState("explain")}>explain</button>}
         {/* page 1 */}
         <table>
@@ -107,15 +107,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         Personality traits
                     </td>
                 </tr>
-                {Pad(5,0).map(i => 
-                           <tr>
-                               <td> &nbsp;</td>
-                               <td> &nbsp;</td>
-                               <td> &nbsp;</td>
-                           </tr> 
-                        )}
+                {Pad(5, 0).map(i =>
+                    <tr>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                    </tr>
+                )}
                 <tr>
-                    <td style={{border:'none'}}>
+                    <td style={{ border: 'none' }}>
                         <h5>Skills</h5>
                         <table className="skillTable">
                             <thead>
@@ -147,14 +147,14 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             </tbody>
                         </table>
                     </td>
-                    <td>
+                    <td style={{ border: 'none' }}>
                         <h5>Perks {(viewState === "edit") ? <button className='no-print' onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
                                     return <tr className='no-print'>
                                         <td>
-                                            <button  onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
+                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
                                         </td>
                                     </tr>
                                 }) : null}
@@ -165,7 +165,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewPerkList ? 0 : padSize, character.perks.length).map(i => {
+                                {Pad(viewPerkList ? 0 : padSize+1, character.perks.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
@@ -173,14 +173,14 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             </tbody>
                         </table>
                     </td>
-                    <td>
+                    <td style={{ border: 'none' }}>
                         <h5>Traits {(viewState === "edit") ? <button className='no-print' onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
                         <table>
                             <tbody>
                                 {viewTraitList ? GetTraits().map(trait => {
                                     return <tr className='no-print'>
                                         <td>
-                                            <button  onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
+                                            <button onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
                                         </td>
                                     </tr>
                                 }) : null}
@@ -191,43 +191,49 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                     </tr>
                                 })}
-                                {Pad(viewTraitList ? 0 : padSize-38, character.traits.length).map(i => {
+                                {Pad(viewTraitList ? 0 : padSize - 28, character.traits.length).map(i => {
                                     return <tr>
                                         <td> <label> </label></td>
                                     </tr>
                                 })}
                             </tbody>
                         </table>
-                        <h5>Reputation</h5>
+                        <h5 style={{marginTop:'20px'}}>Reputation</h5>
                         <table>
                             <tbody>
-                                {Pad(35,0).map(i => <tr>
-                                        <td> <label> </label></td>
-                                    </tr>)}
+                                {Pad(padSize - 8, 0).map(i => <tr>
+                                    <td> <label> </label></td>
+                                </tr>)}
                             </tbody>
                         </table>
                     </td>
                 </tr>
                 {/* page 2 */}
                 <tr>
-                    <td>
+                    <td style={{ border: 'none' }}>
                         <h4>Inventory</h4>
                     </td>
-                    <td>
+                    <td style={{ border: 'none' }}>
                         <h4>Equipment</h4>
                     </td>
-                    <td>
+                    <td style={{ border: 'none' }}>
                         <h4>Stash</h4>
                     </td>
                 </tr>
-                
-                {Pad(50,0).map(i => 
-                           <tr>
-                               <td> &nbsp;</td>
-                               <td> </td>
-                               <td> </td>
-                           </tr> 
-                        )}
+
+                <tr>
+                    <td> Credits:</td>
+                    <td> </td>
+                    <td> Credits:</td>
+                </tr>
+
+                {Pad(49, 0).map(i =>
+                    <tr>
+                        <td> &nbsp;</td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                )}
             </tbody>
         </table></div>);
 }
