@@ -10,6 +10,8 @@ import CharacterSheetOverview from '../components/playermanual/CharacterSheetOve
 
 const PlayerManual: React.FC = () => {
     return (<div>
+        <h1>The Player Manual</h1>
+        <p>This page is to help the player create characters and play the game, view each section below for more details.</p>
         <hr />
         <MakeCharacter />
         <hr />
