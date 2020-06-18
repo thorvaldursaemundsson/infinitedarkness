@@ -17,64 +17,26 @@ const SkillSection = () => {
         <h2>Skills</h2>
         <p>Skills are the generic things a character can learn to do, every skill gains a bonus from it's main ability.</p>
         {GetSkillList().map(skill =>
-            <Section title={skill.name}>
-                <p>{skill.description}</p>
-                <h4>Uses</h4>
-                {skill.useCases.map(uc => <>
-                    <b>{uc.name}</b> - ({uc.attribute} {uc.type})
+            <><Section title={skill.name}>
+                <Section tab={5} title='uses'>
+                    <p>{skill.description}</p>
+                    <h4>Uses</h4>
+                    {skill.useCases.map(uc => <>
+                        <b>{uc.name}</b> - ({uc.attribute} {uc.type})
                     <p>{uc.description}</p>
-                </>)}
-                <hr/>
-                <h4>Perks</h4>
-                {perks.filter(p => p.skill == skill.name).map(perk => <>
-                    <h5>{perk.name}</h5>
-                    <b>Amount</b>:{perk.amount}<br />
-                    <b>Cost</b>: {perk.level * 10}
-                    {perk.description()}
+                    </>)}
+                </Section>
+                <Section tab={5}  title='perks'>
+                    <h4>Perks</h4>
+                    {perks.filter(p => p.skill == skill.name).map(perk => <>
+                        <h5>{perk.name}</h5>
+                        <b>Cost</b>: {perk.level * 10}<br/>
+                        {perk.description()}
 
-                </>)}
-            </Section>)}
-
-        {/*{
-            return (<div><h3><span style={{ display: 'inline-block', width: '200px' }}>{skill.name}</span> {currentSkill !== skill.name ?
-                <Button onClick={() => setCurrentSkill(skill.name)}>?</Button> :
-                <Button onClick={() => setCurrentSkill('')}>X</Button>} </h3>
-                {currentSkill === skill.name ? <div>
-                    
-                    {skill.description}
-                    {skill.useCases.map(uc => {
-                            return (<div>
-                                <b>{uc.name}</b><br />
-                                ({uc.attribute} - {uc.type})<br />
-                                {uc.type === 'active' ? 'roll 2d10 + attribute + level' : ''} 
-                                
-                                <br />{uc.description}
-                            </div>);
-                        })}
-                </div> : null}
-                
-                </div>);
-        })}*/}
+                    </>)}
+                </Section>
+            </Section><hr/></>)}
     </div>);
-}
-
-const PerkSection = () => {
-    const [currentPerk, setCurrentPerk] = useState('');
-    return (<div>
-        <h2>Perks</h2>
-        <p>Perks are specializations and special abilities from skills, every perk either makes a specific usage of a skill better or enables the character to perform some extraordinary feat</p>
-        {GetPerkList().map(perk => {
-            return (<div>
-                <h3><span style={{ display: 'inline-block', width: '200px' }}>{perk.name}</span> {currentPerk !== perk.name ?
-                    <Button onClick={() => setCurrentPerk(perk.name)}>?</Button> :
-                    <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
-                {currentPerk === perk.name ? <div>
-                    <p><b>Cost</b>: {perk.cost}</p>
-                    <p><b>Skill</b>: {perk.skill}</p>
-                    {perk.description()}</div> : null}
-            </div>);
-        })}
-    </div>)
 }
 
 const TraitSection = () => {
