@@ -1,8 +1,8 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { CharacterSheet } from './views/CharacterSheet';
 import './App.css';
 import { Character } from './components/Character';
-import { Button, DialogTitle } from '@material-ui/core';
+import {  DialogTitle } from '@material-ui/core';
+import { CharacterSheet } from './views/CharacterSheet';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));

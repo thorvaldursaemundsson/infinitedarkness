@@ -3,21 +3,39 @@ import { Button } from '@material-ui/core';
 import { GetTraits } from '../components/traits/Traits';
 import { GetPerkList } from '../components/GetPerkList';
 import { GetSkillList } from '../components/GetSkillList';
+import Section from '../components/playermanual/Section';
 
-const SkillPerkManual:React.FC = () => {
+const SkillPerkManual: React.FC = () => {
     return <div>
-            <SkillSection />
-            <PerkSection />
-            <TraitSection />
-        </div>;
+        <SkillSection />
+        <TraitSection />
+    </div>;
 }
-
+const perks = GetPerkList();
 const SkillSection = () => {
-    const [currentSkill, setCurrentSkill] = useState('');
     return (<div>
         <h2>Skills</h2>
         <p>Skills are the generic things a character can learn to do, every skill gains a bonus from it's main ability.</p>
-        {GetSkillList().map(skill => {
+        {GetSkillList().map(skill =>
+            <Section title={skill.name}>
+                <p>{skill.description}</p>
+                <h4>Uses</h4>
+                {skill.useCases.map(uc => <>
+                    <b>{uc.name}</b> - ({uc.attribute} {uc.type})
+                    <p>{uc.description}</p>
+                </>)}
+                <hr/>
+                <h4>Perks</h4>
+                {perks.filter(p => p.skill == skill.name).map(perk => <>
+                    <h5>{perk.name}</h5>
+                    <b>Amount</b>:{perk.amount}<br />
+                    <b>Cost</b>: {perk.level * 10}
+                    {perk.description()}
+
+                </>)}
+            </Section>)}
+
+        {/*{
             return (<div><h3><span style={{ display: 'inline-block', width: '200px' }}>{skill.name}</span> {currentSkill !== skill.name ?
                 <Button onClick={() => setCurrentSkill(skill.name)}>?</Button> :
                 <Button onClick={() => setCurrentSkill('')}>X</Button>} </h3>
@@ -36,7 +54,7 @@ const SkillSection = () => {
                 </div> : null}
                 
                 </div>);
-        })}
+        })}*/}
     </div>);
 }
 
@@ -48,12 +66,12 @@ const PerkSection = () => {
         {GetPerkList().map(perk => {
             return (<div>
                 <h3><span style={{ display: 'inline-block', width: '200px' }}>{perk.name}</span> {currentPerk !== perk.name ?
-                <Button onClick={() => setCurrentPerk(perk.name)}>?</Button> :
-                <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
+                    <Button onClick={() => setCurrentPerk(perk.name)}>?</Button> :
+                    <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
                 {currentPerk === perk.name ? <div>
                     <p><b>Cost</b>: {perk.cost}</p>
                     <p><b>Skill</b>: {perk.skill}</p>
-                {perk.description()}</div> : null}
+                    {perk.description()}</div> : null}
             </div>);
         })}
     </div>)
@@ -69,11 +87,11 @@ const TraitSection = () => {
         {GetTraits().map(trait => {
             return (<div>
                 <h3><span style={{ display: 'inline-block', width: '200px' }}>{trait.name}</span> {currentPerk !== trait.name ?
-                <Button onClick={() => setCurrentPerk(trait.name)}>?</Button> :
-                <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
+                    <Button onClick={() => setCurrentPerk(trait.name)}>?</Button> :
+                    <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
                 {currentPerk === trait.name ? <div>
                     <p><b>Cost</b>: {trait.cost}</p>
-                {trait.description}</div> : null}
+                    {trait.description}</div> : null}
             </div>);
         })}
     </div>)

@@ -22,14 +22,14 @@ th {
 label {
     background-color: lightgrey;
     display: inline-block;
-    width: 120px;
+    width: 100%;
 }
 
 input {
-    height: 14px;
+    height: 100%;
     margin: 0;
     padding: 0;
-    width: 110px;
+    width: 100%;
     border: 0;
     font-style: italic;
     background-color: #CCDDFF;
@@ -66,10 +66,8 @@ td h4 {
     margin-top: 19px;
 }
 
-
 td h5 {
     height: 19px;
     margin-bottom: 0;
     margin-top: 19px;
 }
-

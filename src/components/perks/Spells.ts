@@ -6,13 +6,6 @@ const spellhook: IHooker = {
     amount: 0
 }
 
-export const Xorg = new PerkTemplate({
-    name: 'SC: Xorg',
-    skill: 'spells',
-    level: 1,
-    description: 'Spell Component: In the shape of fangs'
-}, spellhook);
-
 export const Bevloc = new PerkTemplate({
     name: 'M: Bevloc',
     skill: 'spells',
@@ -34,4 +27,4 @@ export const Biopod =new PerkTemplate({
     description: 'Mutation: Nails and hair fall out and stop growing, a thin film of slick slime covers your skin, your pores turn into suckers which allow you to grab ahold of things, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow'
 }, spellhook)
 
-export const SpellsPerks = [Xorg, Bevloc, Ocultos, Biopod];
+export const SpellsPerks = [Bevloc, Ocultos, Biopod];
