@@ -55,20 +55,28 @@ const Combat: React.FC = () => {
         <p>Blocking is an active action that can be done against melee attacks. You roll 2d10 + Combat (skill), if you successfully block then you only take half damage (round down)</p>
         
         <h3>Ranged attacks & guns</h3>
-        <p>When you shoot someone your roll must hit the targets passive defense to hit. Guns have multiple types of attacks, snipe shots, aimed shots, semi-burst, burst and oppressive fire</p>
+        <p>When you shoot someone your roll must hit the targets passive defense to hit.
+            Guns have multiple types of attacks, snipe shots, aimed shots, semi-burst, burst and oppressive fire</p>
         <h5>Snipe shot</h5>
-        <p>A snipe shot is the slowest kind, you roll 2d10 + Fireams (skill), if you roll below 8 you do nothing (and your action is spent), if you roll 8 or above you shoot. Available on lever action, bolt action, semi-automatic. Requires concentration</p>
+        <p>A snipe shot is the slowest kind, you roll 2d10 + Fireams (skill), if you roll below 8 you do nothing (and your action is spent),
+            if you roll 8 or above you shoot. Available on lever action, bolt action, semi-automatic.
+            Requires concentration, no other action may be performed on the same round</p>
         <h5>Aimed shot</h5>
-        <p>Aimed shot is the simplest, you roll 2d10 + Firearms (skill) and shoot 1 bullet, available on lever action, bolt action, semi-automatic</p>
+        <p>Aimed shot is the simplest, you roll 2d10 + Firearms (skill) and shoot 1 bullet, available on lever action, bolt action, semi-automatic and pump action</p>
         <h5>Semi-burst</h5>
-        <p>You shoot multiple bullets, you roll 2d10 + Firearms (skill) + 10, shoot 4 bullets, if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits. Available to semi-automatic guns only.</p>
+        <p>You shoot multiple bullets, you roll 2d10 + Firearms (skill) + 10, shoot 4 bullets,
+            if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits.
+            Available to semi-automatic guns only.</p>
         <h5>Burst</h5>
-        <p>You hold down fully-automatic for a short burst, you roll 2d10 + Firearms (skill) + 15, shoot 10 bullets, if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits. Available only to fully-automatic guns</p>
+        <p>You hold down fully-automatic for a short burst, you roll 2d10 + Firearms (skill) + 15, shoot 10 bullets,
+            if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits. Available only to fully-automatic guns</p>
         <h5>Oppressive Fire</h5>
-        <p>You hold down fully-automatic for a long oppressive burst, the number of bullets depend on the gun, you roll 2d10 + Firearms (skill) + 20, if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits. Only available to fully-automatic guns. Requires concentration</p>
+        <p>You hold down fully-automatic for a long oppressive burst, the number of bullets depend on the gun,
+            you roll 2d10 + Firearms (skill) + 20, if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits.
+            Only available to fully-automatic guns. Requires concentration, no other action may be performed on the same round</p>
         
         <h3>Distance</h3>
-        <p>Targets become harder to hit when they are further away, each 4 meters away gives you a -1 to hit penalty</p>
+        <p>Targets become harder to hit when they are further away, each 5 meters away gives you a -1 to hit penalty</p>
         <p>Guns have a maximum range, beyond this it's impossible to hit</p>
         <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage</p>
         
@@ -87,10 +95,10 @@ const Combat: React.FC = () => {
         </table>
         <h5>Low cover</h5>
         <p>less than 1/3rd of your body is covered, you gain +4 passive defense</p>
-        <h5>high cover</h5>
+        <h5>High cover</h5>
         <p>less than 2/3rds of your body is covered, you gain +8 passive defense</p>
-        <h5>massive cover</h5>
-        <p>more than 2/rds of your body is covered, you gain +12 passive defense</p>
+        <h5>Massive cover</h5>
+        <p>More than 2/3rds of your body is covered, you gain +12 passive defense</p>
         <h5>total cover</h5>
         <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they simply automatically miss</p>
         

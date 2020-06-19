@@ -1,4 +1,5 @@
 import React from 'react';
+import Ellipsis from '../Ellipsis';
 
 interface IHeavelyBody {
 
@@ -54,7 +55,7 @@ const Star = (star: IStar) => <>
 const descriptionCuttOff = 400;
 const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `${planet.name} - ${planet.classification}`)}
     <div className="divcol2">
-        <div>{cropOrAll(planet.description, descriptionCuttOff)}</div>
+        <div><Ellipsis text={planet.description} cutOff={descriptionCuttOff} /></div>
         <div>
             <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
             <b>Average temperature range</b>: {planet.temperatureRange}c<br />
@@ -66,17 +67,12 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
             {planet.feature && <><b>Feature</b>: {planet.feature}</>}
         </div>
     </div>
-    {planet.description.length > descriptionCuttOff ? <div>{leftOrNone(planet.description, descriptionCuttOff)}</div> : null}
     {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => Planet(sat, gen + 1))}</> : null}
 </>;
 
 const cropOrAll = (text:string, length:number) => {
     if (text.length >= length) return text.substr(0,length);
     else return text;
-}
-const leftOrNone = (text:string, length:number) => {
-    if (text.length >= length) return text.substr(length,text.length-length) ;
-    else return 'blarg';
 }
 
 const HGen = (gen: number, children: string) => {

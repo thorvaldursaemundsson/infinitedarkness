@@ -1,9 +1,10 @@
 
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
 import Firearms, { FireArm } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Armors from "../equipment/Armors";
+import Ellipsis from "../Ellipsis";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -186,27 +187,34 @@ const FirearmTable: React.FC<FirearmTableProps> = ({ data }) => {
                 <th>Ammo/Cap</th>
                 <th>Weight</th>
                 <th>Value</th>
-                <th>notes</th>
             </tr>
         </thead>
         <tbody>
-            {data.map(f => {
-                return (<tr>
-                    <td>{f.fireArmClass}</td>
-                    <td>{f.name}</td>
-                    <td>{f.damage}</td>
-                    <td>{f.armorpiercing}</td>
-                    <td>{f.hitbonus}</td>
-                    <td>{f.range}</td>
-                    <td>{f.fireAction.join(', ')}</td>
-                    <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
-                    <td>{weightConverter(f.weight)}</td>
-                    <td>{f.value} c</td>
-                    <td>{f.description}</td>
-                </tr>);
-            })}
+            {data.map(f => FireArmRow(f))}
         </tbody>
     </table>)
+}
+
+const firearmRowStyle: CSSProperties = {
+    cursor: 'pointer'
+};
+
+const FireArmRow = (f: FireArm) => {
+    const [descriptionOpen, setDescriptionOpen] = useState(false);
+    return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
+        <td>{f.fireArmClass}</td>
+        <td>{f.name}</td>
+        <td>{f.damage}</td>
+        <td>{f.armorpiercing || 0}</td>
+        <td>{f.hitbonus || 0}</td>
+        <td>{f.range}</td>
+        <td>{f.fireAction.join(', ')}</td>
+        <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
+        <td>{weightConverter(f.weight)}</td>
+        <td>{f.value} c</td>
+    </tr>
+        {descriptionOpen && <tr><td colSpan={10}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
+    </>);
 }
 
 export default Equipment;
