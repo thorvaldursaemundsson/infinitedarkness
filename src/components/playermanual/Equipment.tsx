@@ -1,7 +1,7 @@
 
 import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
-import Firearms, { FireArm } from "../equipment/Firearms";
+import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Armors from "../equipment/Armors";
 import Ellipsis from "../Ellipsis";
@@ -35,6 +35,52 @@ const Equipment: React.FC = () => {
         <h4>Guns</h4>
 
         <FirearmTable data={Firearms} />
+
+        <h5>Firearm modifications</h5>
+        <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
+        <ul>
+            <li>
+                <b>Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
+                Sound reduced by 75%<br />
+                Armor piercing reduced by 1 (minimum 0)<br />
+                Range reduced by 10%<br />
+                Cost bonus +400
+            </li>
+            <li>
+                <b>Heavy Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
+                Sound reduced by 95%<br />
+                Armor Piercing reduced by 2 (minimum 0)<br />
+                Ragne reduced by 25%<br />
+                Cost bonus +500
+            </li>
+            <li>
+                <b>Laser Target</b> Adds a laser target which helps aiming<br />
+                Aim Bonus +2<br />
+                Everyone can see where you're aiming<br />
+                Cost bonus +600
+            </li>
+            <li>
+                <b>Heavy Stock</b> Improves recoil control<br />
+                Aim Bonus +1<br />
+                Damage bonus +1<br />
+                Weight bonus +40%<br />
+                Cost bonus +20%
+            </li>
+        </ul>
+
+        <h4>Ammunition</h4>
+        <p>All ammunition comes various forms and serve different purposes and come in different costs</p>
+        {AmmoTable(AmmoTypesInformation)}
+        <b>Modifications</b>
+        <ul>
+            <li><b>Tracer</b>, tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit. Cost +100%</li>
+            <li><b>Hollow point</b>, hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor</li>
+            <li><b>Armor Piercing</b> bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage, cost +10%</li>
+            <li><b>Incendiary</b> bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage. Cost +250%</li>
+            <li><b>Shell</b>, contains multiple pellets which spread and gives to hit bonus</li>
+            <li><b>Slug</b>, contains a single metal slug, doubles shotgun range, adds +1 armor piercing, removes all to hit bonus.</li>
+            <li><b>Explosive</b>, contains an alloy which explodes on contact, adds +2 damage, +1 armor piercing, removes all to hit bonus. Cost +100%</li>
+        </ul>
 
         <h3>Body Armors</h3>
         <p>Armors come in many forms, anything that offers either damage reduction or armor penalty counts as body armor. Damage reduction is applied to any incoming damage, armor penalty is applied to all agility based rolls. Every time an armor fails to absorb all damage it loses damage reduction by 1. If it hits 0 then it is no longer able to offer protection</p>
@@ -125,12 +171,12 @@ const Equipment: React.FC = () => {
 
 
 const weightConverter = (grams: number) => {
-    if (grams < 1000) return `${max5(grams.toString())} g`;
-    if (grams < 10000) return `${max5((Math.floor(grams / 100) * 0.10).toString())} kg`;
-    else return `${max5((Math.floor(grams / 100000) * 0.10).toString())} tons`;
+    if (grams < 1000) return `${max4(grams.toString())} g`;
+    if (grams < 10000) return `${max4((Math.floor(grams / 100) * 0.10).toString())} kg`;
+    else return `${max4((Math.floor(grams / 100000) * 0.10).toString())} tons`;
 }
 
-const max5 = (str: string) => str.length >= 5 ? str.substring(0, 5) : str;
+const max4 = (str: string) => str.length >= 4 ? str.substring(0, 4) : str;
 
 interface WeaponTableProps {
     data: MeleeWeapon[];
@@ -216,5 +262,34 @@ const FireArmRow = (f: FireArm) => {
         {descriptionOpen && <tr><td colSpan={10}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
     </>);
 }
+const bottomStyle:CSSProperties = {
+    borderBottom: '1px dotted black'
+}
+const AmmoTable = (ammo: AmmoInformation[]) =>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Cost (per 1)</th>
+                <th>Weight (pet 1)</th>
+                <th>Modifications</th>
+            </tr>
+        </thead>
+        <tbody>
+            {ammo.map(a =>
+                <><tr>
+                    <td>{a.ammo}</td>
+                    <td>{a.cost}</td>
+                    <td>{a.weight}</td>
+                    <td>
+                        {a.types.map(t => <span>{t} </span>)}
+                    </td>
+                </tr>
+                    <tr>
+                        <td style={bottomStyle} colSpan={4}>{a.description}</td>
+                    </tr>
+                </>)}
+        </tbody>
+    </table>;
 
 export default Equipment;
