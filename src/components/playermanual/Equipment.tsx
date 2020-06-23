@@ -73,13 +73,17 @@ const Equipment: React.FC = () => {
         {AmmoTable(AmmoTypesInformation)}
         <b>Modifications</b>
         <ul>
+            <li><b>Standard</b>, default version of the ammo, assumes the weapons stats unchanged</li>
             <li><b>Tracer</b>, tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit. Cost +100%</li>
             <li><b>Hollow point</b>, hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor</li>
             <li><b>Armor Piercing</b> bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage, cost +10%</li>
             <li><b>Incendiary</b> bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage. Cost +250%</li>
             <li><b>Shell</b>, contains multiple pellets which spread and gives to hit bonus</li>
-            <li><b>Slug</b>, contains a single metal slug, doubles shotgun range, adds +1 armor piercing, removes all to hit bonus.</li>
-            <li><b>Explosive</b>, contains an alloy which explodes on contact, adds +2 damage, +1 armor piercing, removes all to hit bonus. Cost +100%</li>
+            <li><b>Slug</b>, contains a single metal slug, doubles shotgun range, adds +1 armor piercing, removes base hit bonus from weapon.</li>
+            <li><b>Explosive</b>, contains an alloy which explodes on contact, adds +2 damage, +1 armor piercing, removes base hit bonus from weapon. Cost +100%</li>
+            <li><b>Plasma Bomb</b>, Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect. Cost +400%</li>
+            <li><b>Frag</b>, releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover.</li>
+            <li><b>Homing</b>, homes in on target, requires snipe shot. Adds +4 to hit. cost +50%.</li>
         </ul>
 
         <h3>Body Armors</h3>
@@ -282,7 +286,7 @@ const AmmoTable = (ammo: AmmoInformation[]) =>
                     <td>{a.cost}</td>
                     <td>{a.weight}</td>
                     <td>
-                        {a.types.map(t => <span>{t} </span>)}
+                        {a.types.join(',')}
                     </td>
                 </tr>
                     <tr>
