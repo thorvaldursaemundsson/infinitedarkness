@@ -40,6 +40,11 @@ const Equipment: React.FC = () => {
         <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
         <ul>
             <li>
+                <b>Scope</b> reduces long range penalties to half when using snipe or aimed shot<br/>
+                Weight +200g<br/>
+                Cost +300c
+            </li>
+            <li>
                 <b>Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
                 Sound reduced by 75%<br />
                 Armor piercing reduced by 1 (minimum 0)<br />
