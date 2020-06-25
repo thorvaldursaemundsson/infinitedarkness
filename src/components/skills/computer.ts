@@ -3,19 +3,19 @@ const useCases: UseCase[] = [
     {
         name: 'hacking',
         attribute: 'intelligence',
-        description: 'hack into computers "Im in"',
+        description: 'hack into computers, unlock digital locks',
         type: 'active'
     },
     {
         name: 'craft software',
         attribute: 'intelligence',
-        description: 'make computer programs, drivers, services, etc',
+        description: 'make computer programs, apps, drivers, services, etc',
         type: 'active'
     },
     {
         name: 'use computer',
         attribute: 'intelligence',
-        description: 'use computer in any normal capacity, like looking up pictures of cats, or posting angry stuff on forums',
+        description: 'You can use a computer to do research on the use of another skill, takes 10 minutes and gain a one time use +2',
         type: 'active'
     }
 ];
