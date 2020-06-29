@@ -1,12 +1,7 @@
 import React from 'react';
-import FTLHyperDrive from './../components/Lore/FTLHyperDrive';
-import History from './../components/Lore/History';
-import Merlions from './../components/Lore/Merlions';
-import Klackons from './../components/Lore/Klackons';
-import SolSystem from './../components/Lore/SolSystem';
-import CentauriSystem from './../components/Lore/CenturiSystem';
-import Humans from '../components/Lore/Humans';
-import FringeWorlds from '../components/Lore/FringeWorlds';
+
+import {FTLHyperDrive,History,Merlions, SolSystem, CentauriSystem, FringeWorlds, Humans, Klackons, Nekovian} from './../components/Lore/Lore'
+
 import Section from '../components/playermanual/Section';
 
 const WorldAndLore: React.FC = () => {
@@ -30,6 +25,8 @@ const WorldAndLore: React.FC = () => {
         <Section title='The Merlions'><Merlions /></Section>
         <hr />
         <Section title='The Klackons'><Klackons /></Section>
+        <hr/>
+        <Section title='The Nekovians'><Nekovian /></Section>
         <hr />
         <Section title='Monsters'>work in progress...</Section>
     </div>);
