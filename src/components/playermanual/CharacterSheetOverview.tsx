@@ -12,7 +12,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>Your characters sex and gender, note that Merlions have different sexes and genders than humans and klackons</p>
 
     <h4>Species</h4>
-    <p>Which species is your character? Human, Klackon and Merlion are the valid options. See more under World & Lore -> Humans/Merlions/Klackons</p>
+    <p>Which species is your character? Human, Shambra, Merlion, Nekovian and Synthoid are the valid options. See more under World & Lore -{">"} Humans/Merlions/Shambras/Nekovians/Synthoids</p>
 
     <h4>Age</h4>
     <p>The age of your character in Earth Years</p>

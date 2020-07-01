@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FTLHyperDrive,History,Merlions, SolSystem, CentauriSystem, FringeWorlds, Humans, Klackons, Nekovian} from './../components/Lore/Lore'
+import {FTLHyperDrive,History,Merlions, SolSystem, CentauriSystem, FringeWorlds, Humans, Shambra, Nekovian} from './../components/Lore/Lore'
 
 import Section from '../components/playermanual/Section';
 
@@ -24,7 +24,7 @@ const WorldAndLore: React.FC = () => {
         <hr />
         <Section title='The Merlions'><Merlions /></Section>
         <hr />
-        <Section title='The Klackons'><Klackons /></Section>
+        <Section title='The Shambras'><Shambra /></Section>
         <hr/>
         <Section title='The Nekovians'><Nekovian /></Section>
         <hr />

@@ -133,52 +133,52 @@ export const CharacterRollerHuman = () => {
     </>
 }
 
-const getStrengthKlackon = (age: number) => {
+const getStrengthShambra = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     if (age > 26) return { sides: 10, numberOfDice: 1 };
     return { sides: 8, numberOfDice: 1 };
 }
-const getAgilityKlackon = (age: number) => {
+const getAgilityShambra = (age: number) => {
     if (age > 80) return { sides: 6, numberOfDice: 1 };
     if (age > 40) return { sides: 8, numberOfDice: 1 };
     return { sides: 10, numberOfDice: 1 };
 }
-const getEnduranceKlackon = (age: number) => {
+const getEnduranceShambra = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     if (age > 40) return { sides: 10, numberOfDice: 1 };
     return { sides: 12, numberOfDice: 1 };
 }
-const getPerceptionKlackon = (age: number) => {
+const getPerceptionShambra = (age: number) => {
     if (age > 80) return { sides: 6, numberOfDice: 1 };
     if (age > 40) return { sides: 8, numberOfDice: 1 };
     if (age > 26) return { sides: 10, numberOfDice: 1 };
     return { sides: 12, numberOfDice: 1 };
 }
-const getIntelligenceKlackon = (age: number) => {
+const getIntelligenceShambra = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     return { sides: 10, numberOfDice: 1 };
 }
-const getWillpowerKlackon = (age: number) => {
+const getWillpowerShambra = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     if (age > 40) return { sides: 10, numberOfDice: 1 };
     return { sides: 6, numberOfDice: 1 };
 }
 
 
-export const CharacterRollerKlackon = () => {
+export const CharacterRollerShambra = () => {
     const [age, setAge] = useState(24);
     return <>
         Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsKlackon(age)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplerKlackon(age)}<br />
+    Starting Exp: {Character.CharacterPointsShambra(age)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplerShambra(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
-            strength={getStrengthKlackon(age)}
-            agility={getAgilityKlackon(age)}
-            endurance={getEnduranceKlackon(age)}
-            intelligence={getIntelligenceKlackon(age)}
-            willpower={getWillpowerKlackon(age)}
-            perception={getPerceptionKlackon(age)}
+            strength={getStrengthShambra(age)}
+            agility={getAgilityShambra(age)}
+            endurance={getEnduranceShambra(age)}
+            intelligence={getIntelligenceShambra(age)}
+            willpower={getWillpowerShambra(age)}
+            perception={getPerceptionShambra(age)}
         />
     </>
 }

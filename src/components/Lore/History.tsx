@@ -30,8 +30,8 @@ const History: React.FC = () => {
     <HistorySection title='2229'>By this time most of the planets and moons in the Alpha Centauri system have some form of permanent presence, the population finally reach one hundred thousand</HistorySection>
     <HistorySection title='2240'>Deep in interstellar space Humans find a probe, it contains a message to come to a set of coordinates according to the galaxy, it's 180 light years from Sol.
     It will take 12 years to reach, an automated ship is built programmed to represent humanity, 16 years later a ship arrives at Sol where again aliens send a message
-    "Greetings Humans, we come in peace, we are Klackon, we are delighted to make contact, we seek to know you"</HistorySection>
-    <HistorySection title='2296'>Humans are welcome in the Klackon home world, having travelled on the much faster Klackon ship</HistorySection>
+    "Greetings Humans, we come in peace, we are Shambra, we are delighted to make contact, we seek to know you"</HistorySection>
+    <HistorySection title='2296'>Humans are welcome in the Shambra home world, having travelled on the much faster Shambra ship</HistorySection>
     <HistorySection title='2257'>Marks the date when half of humanity lives outside of the planet Earth.</HistorySection>
     <HistorySection title='2261'>Centauri system declares independence from the Coalition of Sol, Centauri Imperium is formed, due to severe isolation between the two systems relations are becoming more strained over time.</HistorySection>
     <HistorySection title='2284'>A deep space exploration craft arrives at Alpha Herculis, there they discover a small yet extremely advanced outpost, it sends communications in an alien langauge, after they decipher it they are able to communicate. From there it is revealed that the outpost belongs to Merlions.

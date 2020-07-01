@@ -140,7 +140,7 @@ export class Character {
         return Character.CharacterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4], age);
     }
 
-    public static CharacterPointsKlackon(age: number) {
+    public static CharacterPointsShambra(age: number) {
         return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
     }
 
@@ -172,7 +172,7 @@ export class Character {
         return 5;
     }
 
-    public static ExperienceMultiplerKlackon(age: number) {
+    public static ExperienceMultiplerShambra(age: number) {
         if (age > 100) return 3;
         if (age > 80) return 2.5;
         if (age > 60) return 2;
@@ -200,8 +200,12 @@ export class Character {
         return Character.CharacterPointsMerlion(this.age);
     }
 
-    private characterPointsKlackon() {
-        return Character.CharacterPointsKlackon(this.age);
+    private characterPointsShambra() {
+        return Character.CharacterPointsShambra(this.age);
+    }
+
+    private characterPointsNekovian(){
+        return Character.CharacterPointsNekovian(this.age);
     }
 
     public getStartingPointsAvailable() {
@@ -209,7 +213,8 @@ export class Character {
         switch (this.species) {
             case 'human': return this.characterPointsHuman();
             case 'merlion': return this.characterPointsMerlion();
-            case 'klackon': return this.characterPointsKlackon();
+            case 'shambra': return this.characterPointsShambra();
+            case 'nekovian': return this.characterPointsNekovian();
             default: return this.characterPointsHuman();
         }
     }

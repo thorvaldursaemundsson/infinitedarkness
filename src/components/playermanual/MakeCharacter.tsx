@@ -1,12 +1,12 @@
 import Section from "./Section";
 import React from "react";
-import { CharacterRollerHuman, CharacterRollerKlackon,CharacterRollerMerlion } from "../Lore/CharacterRoller";
+import { CharacterRollerHuman, CharacterRollerShambra,CharacterRollerMerlion } from "../Lore/CharacterRoller";
 
 const MakeCharacter: React.FC =() => {
     return <Section title='How to make a character'>
 
 <Section title='Human dice roller'><CharacterRollerHuman /></Section>
-        <Section title='Klackon dice roller'><CharacterRollerKlackon /></Section>
+        <Section title='Shambra dice roller'><CharacterRollerShambra /></Section>
         <Section title='Merlion dice roller'><CharacterRollerMerlion /></Section>
 
         <h3>Step 1 - concept</h3>
