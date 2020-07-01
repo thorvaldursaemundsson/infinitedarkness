@@ -3,6 +3,7 @@ export interface UseCase {
     attribute: 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
     name: string;
     description: string;
+    results?: string[];
     type: 'active' | 'passive';
 }
 

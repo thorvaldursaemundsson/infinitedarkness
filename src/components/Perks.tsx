@@ -15,7 +15,10 @@ interface IPerk {
     level: 1 | 2 | 3 | 4 | 5;
     description: string;
 }
-
+const def:IHooker ={
+    amount: 0,
+    applyTo: ''
+};
 export class PerkTemplate implements Perk {
     name: string;
     skill: string;
@@ -29,7 +32,7 @@ export class PerkTemplate implements Perk {
     cost(): number {
         return this.level * 10;
     }
-    constructor(data: IPerk, hook: IHooker) {
+    constructor(data: IPerk, hook: IHooker = def) {
         this.name = data.name;
         this.skill = data.skill;
         this.level = data.level;
