@@ -9,7 +9,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>The name of the character, this should be what you want other players and the game master to refer to you in when they address you in character</p>
 
     <h4>Gender</h4>
-    <p>Your characters sex and gender, note that Merlions have different sexes and genders than humans and klackons</p>
+    <p>Your characters sex and gender, note that Merlions have different sexes and genders than humans and shambras</p>
 
     <h4>Species</h4>
     <p>Which species is your character? Human, Shambra, Merlion, Nekovian and Synthoid are the valid options. See more under World & Lore -{">"} Humans/Merlions/Shambras/Nekovians/Synthoids</p>

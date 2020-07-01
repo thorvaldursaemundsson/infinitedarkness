@@ -33,7 +33,7 @@ const Step1: React.FC<IStepProps> = (props: IStepProps) => {
     return <div>
         <Case condition={innerStep === 1}><h3>Lets get some basic information</h3>
             <div><b>What is your character's name?</b> <TextField onChange={(e) => setName(e.target.value)} value={name}>{name}</TextField></div>
-            <div><b>What is your character's species?</b> <AutoSelectField value={species} onChange={(n) => setSpecies(n)} values={['human', 'merlion', 'klackon']} ></AutoSelectField> </div>
+            <div><b>What is your character's species?</b> <AutoSelectField value={species} onChange={(n) => setSpecies(n)} values={['human', 'merlion', 'shambra']} ></AutoSelectField> </div>
             <div><b>What is your character's gender?</b> <AutoSelectField values={genderList} value={gender} onChange={(e) => setGender(e)}></AutoSelectField></div></Case>
         <Case condition={innerStep === 2}>
             <h3>Basic stats</h3>
