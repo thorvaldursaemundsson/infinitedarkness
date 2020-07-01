@@ -88,7 +88,7 @@ export class Character {
             + fSum(this.intelligence) * intMultipler;
     }
 
-    public getCalculatedPointsUsed(){
+    public getCalculatedPointsUsed() {
         return this.getCharacterPointsCostPerks() + this.getCharacterPointsCostSkills() + this.getCharacterPointsCostTraits();
     }
 
@@ -116,7 +116,7 @@ export class Character {
         return p;
     }
 
-    private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age:number) {
+    private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number) {
         let p = start;
         if (agePhases.length !== expPhases.length) console.error('age Phases and expPhases must be of equal length!');
         let prevPhase = 0;
@@ -132,19 +132,23 @@ export class Character {
         return p;
     }
 
-    public static CharacterPointsHuman(age:number) {
+    public static CharacterPointsHuman(age: number) {
         return Character.CharacterPoints(0, [18, 26, 40, 80], [10, 8, 6, 4], age);
     }
 
-    public static CharacterPointsMerlion(age:number) {
+    public static CharacterPointsMerlion(age: number) {
         return Character.CharacterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4], age);
     }
 
-    public static CharacterPointsKlackon(age:number) {
+    public static CharacterPointsKlackon(age: number) {
         return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
     }
 
-    public static ExperienceMultiplerHuman(age:number) {
+    public static CharacterPointsNekovian(age: number) {
+        return Character.CharacterPoints(0, [16, 24, 36, 80], [10, 8, 6, 4], age);
+    }
+
+    public static ExperienceMultiplerHuman(age: number) {
         if (age > 60) return 1;
         if (age > 50) return 1.5;
         if (age > 40) return 2;
@@ -156,7 +160,7 @@ export class Character {
         return 5;
     }
 
-    public static ExperienceMultiplerMerlion(age:number) {
+    public static ExperienceMultiplerMerlion(age: number) {
         if (age > 70) return 1;
         if (age > 60) return 1.5;
         if (age > 50) return 2;
@@ -168,7 +172,7 @@ export class Character {
         return 5;
     }
 
-    public static ExperienceMultiplerKlackon(age:number) {
+    public static ExperienceMultiplerKlackon(age: number) {
         if (age > 100) return 3;
         if (age > 80) return 2.5;
         if (age > 60) return 2;
@@ -176,12 +180,24 @@ export class Character {
         return 1;
     }
 
+    public static ExperienceMultiplerNekovian(age: number) {
+        if (age > 60) return 1;
+        if (age > 50) return 1.5;
+        if (age > 40) return 2;
+        if (age > 30) return 2.5;
+        if (age > 26) return 3;
+        if (age > 24) return 3.5;
+        if (age > 20) return 4;
+        if (age > 16) return 4.5;
+        return 5;
+    }
+
     private characterPointsHuman() {
         return Character.CharacterPointsHuman(this.age);
     }
 
     private characterPointsMerlion() {
-        return  Character.CharacterPointsMerlion(this.age);
+        return Character.CharacterPointsMerlion(this.age);
     }
 
     private characterPointsKlackon() {
@@ -240,8 +256,8 @@ export class Character {
         return this.sumOr(applyTo, this.perks, 0) + this.sumOr(applyTo, this.traits, 0);
     }
 
-    public explain(what:string):string {
-        switch (what){
+    public explain(what: string): string {
+        switch (what) {
             case 'strength': return 'muscle power';
             case 'endurance': return 'stamina';
             case 'agility': return 'speed, coordination';

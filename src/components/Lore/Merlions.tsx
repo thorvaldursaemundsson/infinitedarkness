@@ -1,5 +1,6 @@
 import React from "react";
 import { Character } from "../Character";
+import Section from "../playermanual/Section";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -49,18 +50,18 @@ const Merlions: React.FC = () => {
                 </tr>
             </tbody>
         </table>
-
-        Merlion experience per age is as following
-        <table>
-            <thead>
-                <tr>
-                    <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
-                </tr>
-            </thead>
-            <tbody>
-                {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
-            </tbody>
-        </table>
+        <Section title='Merlion experience per age is as following'>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Age</th> <th>Starting experience</th> <th>Experience Multiplier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                </tbody>
+            </table>
+        </Section>
     </>
 }
 
