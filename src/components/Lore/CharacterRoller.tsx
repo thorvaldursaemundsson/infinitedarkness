@@ -224,4 +224,52 @@ export const CharacterRollerMerlion = () => {
     </>
 }
 
+const getStrengthNekovian = (age: number) => {
+    if (age > 36) return { sides: 10, numberOfDice: 1 };
+    return { sides: 12, numberOfDice: 1 };
+}
+const getAgilityNekovian = (age: number) => {
+    if (age > 61) return { sides: 8, numberOfDice: 1 };
+    if (age > 24) return { sides: 10, numberOfDice: 1 };
+    return { sides: 12, numberOfDice: 1 };
+}
+const getEnduranceNekovian = (age: number) => {
+    if (age > 60) return { sides: 8, numberOfDice: 1 };
+    if (age > 36) return { sides: 10, numberOfDice: 1 };
+    if (age > 24) return { sides: 12, numberOfDice: 1 };
+    return { sides: 10, numberOfDice: 1 };
+}
+const getPerceptionNekovian = (age: number) => {
+    if (age > 60) return { sides: 4, numberOfDice: 1 };
+    if (age > 36) return { sides: 6, numberOfDice: 1 };
+    return { sides: 8, numberOfDice: 1 };
+}
+const getIntelligenceNekovian = (age: number) => {
+    if (age > 60) return { sides: 8, numberOfDice: 1 };
+    if (age > 36) return { sides: 8, numberOfDice: 1 };
+    if (age > 24) return { sides: 10, numberOfDice: 1 };
+    return { sides: 8, numberOfDice: 1 };
+}
+const getWillpowerNekovian = (age: number) => {
+    return { sides: 12, numberOfDice: 1 };
+}
+
+export const CharacterRollerNekovian = () => {
+    const [age, setAge] = useState(24);
+    return <>
+        Age: {age}<br />
+    Starting Exp: {Character.CharacterPointsNekovian(age)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplerNekovian(age)}<br />
+        <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
+        <CharacterRoller
+            strength={getStrengthNekovian(age)}
+            agility={getAgilityNekovian(age)}
+            endurance={getEnduranceNekovian(age)}
+            intelligence={getIntelligenceNekovian(age)}
+            willpower={getWillpowerNekovian(age)}
+            perception={getPerceptionNekovian(age)}
+        />
+    </>
+}
+
 export default CharacterRoller;

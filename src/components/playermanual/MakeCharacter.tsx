@@ -1,6 +1,6 @@
 import Section from "./Section";
 import React from "react";
-import { CharacterRollerHuman, CharacterRollerShambra,CharacterRollerMerlion } from "../Lore/CharacterRoller";
+import { CharacterRollerHuman, CharacterRollerShambra,CharacterRollerMerlion, CharacterRollerNekovian } from "../Lore/CharacterRoller";
 
 const MakeCharacter: React.FC =() => {
     return <Section title='How to make a character'>
@@ -8,6 +8,7 @@ const MakeCharacter: React.FC =() => {
 <Section title='Human dice roller'><CharacterRollerHuman /></Section>
         <Section title='Shambra dice roller'><CharacterRollerShambra /></Section>
         <Section title='Merlion dice roller'><CharacterRollerMerlion /></Section>
+        <Section title='Nekovian dice roller'><CharacterRollerNekovian /></Section>
 
         <h3>Step 1 - concept</h3>
         <h4>Roll attributes</h4>
