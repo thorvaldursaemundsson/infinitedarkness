@@ -24,7 +24,7 @@ const useCases: UseCase[] = [
         description: 'you try to talk someone down from fighting you, gain +3 to your roll if you know their motives or if they fear you. Does not work on everyone',
         type: 'active'
     },
-    
+
 ];
 const Persuation = new SkillTemplate('persuation', 'making people see it your way', useCases);
 export default Persuation;

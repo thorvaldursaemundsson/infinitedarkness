@@ -38,6 +38,6 @@ export const GetSkillList = (): Skill[] => {
         Survival,
         Streetwise,
         Mechanics
-        
+
     ].sort((a, b) => a.name < b.name ? -1 : 1);
 }

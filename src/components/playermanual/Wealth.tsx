@@ -119,7 +119,7 @@ const Wealth: React.FC = () => {
         <h4>An adventurer job</h4>
         <p>Once the game starts the DM may choose to give your character an adventuring job of some description, the recommended amount is 10,000 c per month plus bonus based on performance. Or 4,000 c if housing and food is provided by the job.</p>
         <h4>Grand Larceny</h4>
-        <p>Crime generally doesn't pay, but your character may choose to start off with a criminal record. Roll 1d6 if you choose to be a criminal.<br/>
+        <p>Crime generally doesn't pay, but your character may choose to start off with a criminal record. Roll 1d6 if you choose to be a criminal.<br />
         It is also expected that your character has spent at least 30 points into the larceny skill</p>
         <table>
             <tbody>

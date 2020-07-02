@@ -5,7 +5,7 @@ export const ImprovedForaging = new PerkTemplate({
     skill: 'survival',
     level: 1,
     description: 'Your character is better at foraging for food, gain +3 to foraging rolls'
-},{
+}, {
     applyTo: 'forage',
     amount: 3
 });
@@ -15,7 +15,7 @@ export const BetterNavigation = new PerkTemplate({
     skill: 'survival',
     level: 1,
     description: 'Your character is better at finding their way in the wild, +3 to navigation rolls'
-},{
+}, {
     applyTo: 'navigate',
     amount: 3
 });
@@ -25,7 +25,7 @@ export const ShelterBuilder = new PerkTemplate({
     skill: 'survival',
     level: 1,
     description: 'your character can build shelters that offer protection against exposure'
-},{
+}, {
     applyTo: 'shelter',
     amount: 3
 });

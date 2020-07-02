@@ -204,7 +204,7 @@ export class Character {
         return Character.CharacterPointsShambra(this.age);
     }
 
-    private characterPointsNekovian(){
+    private characterPointsNekovian() {
         return Character.CharacterPointsNekovian(this.age);
     }
 

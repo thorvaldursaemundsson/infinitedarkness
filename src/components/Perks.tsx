@@ -15,7 +15,7 @@ interface IPerk {
     level: 1 | 2 | 3 | 4 | 5;
     description: string;
 }
-const def:IHooker ={
+const def: IHooker = {
     amount: 0,
     applyTo: ''
 };

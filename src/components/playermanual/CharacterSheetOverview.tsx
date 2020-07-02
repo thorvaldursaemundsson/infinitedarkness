@@ -45,7 +45,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>The name of you, you is the player.</p>
 
     <h4>Apperance traits</h4>
-    <p>How does your character look? Intensive eyes? Purple hair? Green pincers? Different colored tail? Tattoos? What would people notice if they saw your character. See more under Skills & Perks -> Traits -> Appearence Traits</p>
+    <p>How does your character look? Intensive eyes? Purple hair? Green pincers? Different colored tail? Tattoos? What would people notice if they saw your character. See more under Skills & Perks -{">"} Traits -{">"} Appearence Traits</p>
 
     <h4>Strength</h4>
     <p>Raw muscle strength, this affects health, carrying capacity, punching power.</p>
@@ -66,13 +66,13 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>Willpower refers to your sense of personality, force of will and self determination as well as natural leadership</p>
 
     <h4>Personality traits</h4>
-    <p>What is your personality like? See more under Skills & Perks -> Traits -> Personality Traits</p>
+    <p>What is your personality like? See more under Skills & Perks -{">"} Traits -{">"} Personality Traits</p>
 
     <h4>Skills</h4>
-    <p>This is a non-exhaustive list of skills, Exp refers to how much experience points you have for the skill, rank is the number of points you have for it, most skills gain bonuses also from your base attributes (str/dex/end/int/will/per), see Perks & Traits -> Skills for more information about each skill.</p>
+    <p>This is a non-exhaustive list of skills, Exp refers to how much experience points you have for the skill, rank is the number of points you have for it, most skills gain bonuses also from your base attributes (str/dex/end/int/will/per), see Perks & Traits -{">"} Skills for more information about each skill.</p>
 
     <h4>Perks</h4>
-    <p>Perks are skill specializations, special abilities and modifiers you've acquired. See more under Skills & Perks -> Perks</p>
+    <p>Perks are skill specializations, special abilities and modifiers you've acquired. See more under Skills & Perks -{">"} Perks</p>
 
     <h4>Traits</h4>
     <p>Traits are special mental and physical traits that modify how your character behaves and works, for the most part can only be aqcuired at character creation.</p>

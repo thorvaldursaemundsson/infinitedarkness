@@ -24,7 +24,7 @@ const useCases: UseCase[] = [
         description: 'reduce someones fear level, treat mental illness.',
         type: 'active'
     },
-    
+
 ];
 const Medicine = new SkillTemplate('medicine', 'giving people insulin, knowing insulin is not crack', useCases);
 export default Medicine;

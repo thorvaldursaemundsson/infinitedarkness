@@ -26,16 +26,16 @@ const SkillSection = () => {
                     <p>{uc.description}</p>
                     </>)}
                 </Section>
-                <Section tab={5}  title='perks'>
+                <Section tab={5} title='perks'>
                     <h4>Perks</h4>
                     {perks.filter(p => p.skill == skill.name).map(perk => <>
                         <h5>{perk.name}</h5>
-                        <b>Cost</b>: {perk.level * 10}<br/>
+                        <b>Cost</b>: {perk.level * 10}<br />
                         {perk.description()}
 
                     </>)}
                 </Section>
-            </Section><hr/></>)}
+            </Section><hr /></>)}
     </div>);
 }
 

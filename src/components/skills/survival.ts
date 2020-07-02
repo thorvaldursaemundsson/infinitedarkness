@@ -18,7 +18,7 @@ const useCases: UseCase[] = [
         description: 'build a shelter that protects you from exposure',
         type: 'active'
     },
-    
+
 ];
 const Survival = new SkillTemplate('survival', '', useCases);
 export default Survival;

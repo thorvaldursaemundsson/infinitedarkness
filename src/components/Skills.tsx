@@ -15,12 +15,12 @@ export interface Skill {
 }
 
 
-export class SkillTemplate implements Skill{
+export class SkillTemplate implements Skill {
     name: string;
     level: number;
     description: string;
     useCases: UseCase[];
-    constructor(name:string, description: string, useCases:UseCase[], level = 0){
+    constructor(name: string, description: string, useCases: UseCase[], level = 0) {
         this.name = name;
         this.level = level;
         this.description = description;

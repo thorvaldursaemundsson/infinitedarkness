@@ -80,7 +80,7 @@ const Armors: Armor[] = [
         damageReduction: 12,
         armorPenalty: -2,
         value: 36000,
-        weight:9000,
+        weight: 9000,
         description: "A personal tank suit is more like a person shaped tank you enter than a body armor, offers complete environmental protection, increases strength by +3 up to 9",
     },
     {

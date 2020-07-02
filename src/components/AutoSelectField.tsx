@@ -21,20 +21,20 @@ const AutoSelectField: React.FC<IAutoSelectFieldProps> = ({ values, value, onCha
         if (al.match(bl) || bl.match(al)) return true;
         return false;
     }
-    const pressEnter = (e:React.KeyboardEvent<HTMLDivElement>):void => {
+    const pressEnter = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         setToolTip(e.key);
         switch (e.key.toUpperCase()) {
-            case 'ENTER' :
-            case 'ESCAPE' : setIsOpen(false); return;
-            default : setIsOpen(true); return;
+            case 'ENTER':
+            case 'ESCAPE': setIsOpen(false); return;
+            default: setIsOpen(true); return;
         }
     };
     return <>
         <TextField title={toolTip} value={value} onChange={(e) => onChange(e.target.value)} onFocus={() => setIsOpen(true)} onKeyUp={(e) => pressEnter(e)} ></TextField>
-        {(isOpen) && <Paper style={{position:'absolute', background:'white', zIndex:999}}>
+        {(isOpen) && <Paper style={{ position: 'absolute', background: 'white', zIndex: 999 }}>
             {values.map(v => {
                 if (!intersectString(v, value)) return null;
-                else return (<Paper style={{background:'white', cursor:'pointer', margin:'6px', padding:'4px'}} onClick={() => {onChange(v); setIsOpen(false)}}>{v}</Paper>)
+                else return (<Paper style={{ background: 'white', cursor: 'pointer', margin: '6px', padding: '4px' }} onClick={() => { onChange(v); setIsOpen(false) }}>{v}</Paper>)
             })}
         </Paper>}
     </>

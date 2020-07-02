@@ -5,7 +5,7 @@ export const SlightOfHand = new PerkTemplate({
     skill: 'larceny',
     level: 1,
     description: 'Your character gains +3 to all sight of hand rolls'
-},{
+}, {
     applyTo: 'slightofhand',
     amount: 3
 });
@@ -15,7 +15,7 @@ export const LockPick = new PerkTemplate({
     skill: 'larceny',
     level: 2,
     description: 'Your character is well able to pick locks, +6 to all lockinging rolls'
-},{
+}, {
     applyTo: 'slightofhand',
     amount: 6
 });
@@ -25,7 +25,7 @@ export const HideObject = new PerkTemplate({
     skill: 'larceny',
     level: 1,
     description: 'Your character is good at finding spots to hide objects, +3 to make object hidden'
-},{
+}, {
     applyTo: 'slightofhand',
     amount: 3
 });

@@ -26,7 +26,7 @@ interface IPlanetoid extends IHeavelyBody {
     surfaceGravity: number;
     temperatureRange: string;
     atmosphere: string;
-    atmosphericPressure:number;
+    atmosphericPressure: number;
     hydrosphere: string;
     satelites: IPlanetoid[];
     orbitDistance: string;
@@ -59,7 +59,7 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
         <div>
             <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
             <b>Average temperature range</b>: {planet.temperatureRange}c<br />
-            <b>Atmosphere</b>: {planet.atmosphericPressure > 0 ? `${floor4(planet.atmosphericPressure/101.325)}x ea` : null } {planet.atmosphere}<br />
+            <b>Atmosphere</b>: {planet.atmosphericPressure > 0 ? `${floor4(planet.atmosphericPressure / 101.325)}x ea` : null} {planet.atmosphere}<br />
             <b>Hydrosphere</b>: {planet.hydrosphere}<br />
             <b>Distance</b>: {planet.orbitDistance}<br />
             <b>Age</b>: {planet.age} billion years<br />
@@ -70,8 +70,8 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
     {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => Planet(sat, gen + 1))}</> : null}
 </>;
 
-const cropOrAll = (text:string, length:number) => {
-    if (text.length >= length) return text.substr(0,length);
+const cropOrAll = (text: string, length: number) => {
+    if (text.length >= length) return text.substr(0, length);
     else return text;
 }
 
@@ -83,7 +83,7 @@ const HGen = (gen: number, children: string) => {
     }
 }
 
-const floor4 = (n:number) => (Math.floor(n*10)/10).toPrecision(2);
+const floor4 = (n: number) => (Math.floor(n * 10) / 10).toPrecision(2);
 
 
 export default StarSystem;

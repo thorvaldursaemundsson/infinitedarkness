@@ -5,7 +5,7 @@ export const Forensics = new PerkTemplate({
     skill: 'investigation',
     level: 1,
     description: 'You know how to better investigate a crime scene, you gain +3 to investigation'
-},{
+}, {
     applyTo: 'crimescene',
     amount: 3
 });
@@ -15,7 +15,7 @@ export const Enigmas = new PerkTemplate({
     skill: 'investigation',
     level: 1,
     description: 'Mysteries, riddles, codes, clues- Your character can analyze them with +3 to investigation'
-},{
+}, {
     applyTo: 'enigma',
     amount: 3
 });
@@ -25,7 +25,7 @@ export const Search = new PerkTemplate({
     skill: 'investigation',
     level: 1,
     description: 'finding hidden objects'
-},{
+}, {
     applyTo: 'search',
     amount: 3
 });

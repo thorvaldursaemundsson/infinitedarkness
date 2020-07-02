@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import './App.css';
 import { Character } from './components/Character';
-import {  DialogTitle } from '@material-ui/core';
+import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
@@ -41,7 +41,7 @@ const App: React.FC = () => {
           <p>This webpage is a resource for both players and game masters to run a tabletop game of Infinite Darkness.</p>
           <p>Infinite Darkness is a sci-fi roleplaying game set in a future where humanity has begun to take to the stars, aliens and humans co exist.</p>
           <p>With the discovery of faster than light travel- the ability to visit distant stars became a possibility. But space is still vast beyond imagining, the time it takes to travel is still long.
-            Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
+          Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
           </p>
           <p>No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid</p>
         </Conditional>

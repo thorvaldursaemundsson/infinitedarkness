@@ -18,9 +18,9 @@ const Experience: React.FC = () => {
         </ul>
         <p>You can only gain 1 experience point per day, if you gain experience in multiple skills then you choose which</p>
         <p>Experience multipler is applied to the maximum amount you may get, but you always only get 1 per skill, so if you hav a multipler of 2 then you can choose two skills that you qualify for</p>
-        <p>If the experience multipler is a fractional number then the experienced gained is carried over to the next day, but only if you get it. 
-            <br/>
-            For example you have multiplier of 1.5, you gain experience in 2 skills on day 1, at the end of day 1 you may choose which of the two you gain a point in.<br/>
+        <p>If the experience multipler is a fractional number then the experienced gained is carried over to the next day, but only if you get it.
+            <br />
+            For example you have multiplier of 1.5, you gain experience in 2 skills on day 1, at the end of day 1 you may choose which of the two you gain a point in.<br />
             On day 2 the 0.5 surplus carries over and you have 2 possible on this day. One of which has to be the other skill you didn't choose.
         </p>
     </Section>
@@ -32,18 +32,18 @@ interface CostLevel {
     nextRanks: number[];
 }
 
-const costLevels:CostLevel[] = [];
+const costLevels: CostLevel[] = [];
 
 for (let counter = 0; counter < max; counter++) {
     const cl = {
         rank: counter,
-        nextRanks: Array.from(Array(max-1), (x, index) => 0),
+        nextRanks: Array.from(Array(max - 1), (x, index) => 0),
     };
-    for (let innerCounter = counter; innerCounter < max-1; innerCounter++){
-        cl.nextRanks[innerCounter] = innerCounter +1;
-        for (let innerSummer = innerCounter; innerSummer < max-1; innerSummer++){
+    for (let innerCounter = counter; innerCounter < max - 1; innerCounter++) {
+        cl.nextRanks[innerCounter] = innerCounter + 1;
+        for (let innerSummer = innerCounter; innerSummer < max - 1; innerSummer++) {
             if (innerSummer === 0) continue;
-            cl.nextRanks[innerSummer] += cl.nextRanks[innerSummer-1];
+            cl.nextRanks[innerSummer] += cl.nextRanks[innerSummer - 1];
         }
     }
     costLevels.push(cl);
@@ -55,11 +55,11 @@ const CostChart: React.FC = () => {
         <thead>
             <tr>
                 <th>from/to</th>
-                {costLevels.map(r=>r.rank !== 0 ? <th>{r.rank}</th> : null)}
+                {costLevels.map(r => r.rank !== 0 ? <th>{r.rank}</th> : null)}
             </tr>
         </thead>
         <tbody>
-            {costLevels.map(cl => cl.rank !== 20 ?  <tr>
+            {costLevels.map(cl => cl.rank !== 20 ? <tr>
                 <td>{cl.rank}</td>
                 {cl.nextRanks.map(nr => <td>{nr !== 0 ? nr : '-'}</td>)}
             </tr> : null)}

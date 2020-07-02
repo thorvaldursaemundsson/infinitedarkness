@@ -32,7 +32,7 @@ const FTLHyperDrive: React.FC = () => {
         Transport ships are always empowered to represent their origin, they must make decisions on their own, communication back is not possible until they return.<br />
         Distant systems are often very isolated as a result</p>
         <Section title='badly drawn sketches of FTL space ships'>
-            <br/>
+            <br />
             <img src='/infinitedarkness/ftl_sketch_3.jpg' />
             <img src='/infinitedarkness/ftl_sketch_4.jpg' />
         </Section>

@@ -40,8 +40,8 @@ const Equipment: React.FC = () => {
         <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
         <ul>
             <li>
-                <b>Scope</b> reduces long range penalties to half when using snipe or aimed shot<br/>
-                Weight +200g<br/>
+                <b>Scope</b> reduces long range penalties to half when using snipe or aimed shot<br />
+                Weight +200g<br />
                 Cost +300c
             </li>
             <li>
@@ -271,7 +271,7 @@ const FireArmRow = (f: FireArm) => {
         {descriptionOpen && <tr><td colSpan={10}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
     </>);
 }
-const bottomStyle:CSSProperties = {
+const bottomStyle: CSSProperties = {
     borderBottom: '1px dotted black'
 }
 const AmmoTable = (ammo: AmmoInformation[]) =>

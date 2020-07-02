@@ -28,7 +28,7 @@ export class MeleeWeapon implements IMeleeWeapon {
     }
 }
 
-const MeleeWeapons:MeleeWeapon[] = [
+const MeleeWeapons: MeleeWeapon[] = [
     { size: 'small', name: 'Batons/hammers/sticks', damage: '1d4', weight: 500, value: 10 },
     { size: 'small', name: 'Knife', damage: '1d4 + 1', weight: 100, value: 15 },
     { size: 'medium', name: 'Machete', damage: '1d6 + 1 ', hitbonus: '+1', weight: 300, value: 200 },

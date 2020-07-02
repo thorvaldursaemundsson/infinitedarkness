@@ -15,8 +15,8 @@ const useCases: UseCase[] = [
     {
         name: 'balance',
         attribute: 'agility',
-        description: 'anything balance related such as walking on slippery surfaces, walking tight rope, staying upright on shaky ground, etc.'+
-        'Walking on ice: if roll is 9 or less you slip and fall, 10-14 walk slowly, 15-19, walk normal, 20-24 jog, 25-29 run, 30+ sprint',
+        description: 'anything balance related such as walking on slippery surfaces, walking tight rope, staying upright on shaky ground, etc.' +
+            'Walking on ice: if roll is 9 or less you slip and fall, 10-14 walk slowly, 15-19, walk normal, 20-24 jog, 25-29 run, 30+ sprint',
         type: 'active'
     },
     {

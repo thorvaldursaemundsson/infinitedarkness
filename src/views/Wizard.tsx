@@ -38,7 +38,7 @@ const Wizard: React.FC = () => {
     return <div>
         <h2>Character Creator Wizard</h2>
         <p>Answering these questions will produce a template of a character with a set of abilities and matching backstory that makes some kind of sense.
-            <br/>
+            <br />
             But you are expected to modify and correct it.
         </p>
         <hr />

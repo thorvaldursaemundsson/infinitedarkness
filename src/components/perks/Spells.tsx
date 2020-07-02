@@ -32,7 +32,7 @@ class SpellTemplate implements PerkTemplate {
 
 export const DimensionalSwap = new SpellTemplate(
     'Dimensional Swap',
-    'Spell: You can cause an object to being to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.'+
+    'Spell: You can cause an object to being to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
     'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you'
 );
 

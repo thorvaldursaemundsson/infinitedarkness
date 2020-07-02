@@ -182,7 +182,7 @@ const Guidelines = () =>
                 Remind them of things that their characters would not have forgotten, but not things that characters will forget.
                 <ol type='a'>
                     <li>The PCs can’t forget that they picked up an experimental plasma rifle, so if they start looking around for a strong weapon, remind them that they have it.
-                        And they won’t forget the face of the pirate who destroyed their village.
+                    And they won’t forget the face of the pirate who destroyed their village.
                         But if they forgot that the shopkeep said he heard about alien monsters in the hills, then the PCs weren’t paying attention.</li>
                     <li>This can require some careful judgment calls.</li>
                     <li>It's never wrong to remind players they're allowed to keep notes.</li>

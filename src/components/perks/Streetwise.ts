@@ -5,7 +5,7 @@ export const CriminalTrader = new PerkTemplate({
     skill: 'streetwise',
     level: 1,
     description: 'Your character gains +3 to all fencing rolls, +3 to all black market rolls involving illegal goods'
-},{
+}, {
     applyTo: 'fencing',
     amount: 3
 });

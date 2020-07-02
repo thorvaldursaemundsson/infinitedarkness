@@ -12,7 +12,7 @@ const useCases: UseCase[] = [
         description: 'telling outright lies or knowingly leading others to a false conclusion through omission of the truth',
         type: 'active'
     },
-    
+
 ];
 const Subtrefuge = new SkillTemplate('subtrefuge', '', useCases);
 export default Subtrefuge;

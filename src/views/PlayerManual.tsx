@@ -16,7 +16,7 @@ const PlayerManual: React.FC = () => {
         <MakeCharacter />
         <hr />
         <CharacterSheetOverview />
-        <hr/>
+        <hr />
         <Wealth />
         <hr />
         <Experience />

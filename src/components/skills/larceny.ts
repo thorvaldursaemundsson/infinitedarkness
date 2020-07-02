@@ -24,7 +24,7 @@ const useCases: UseCase[] = [
         description: 'remove or add an item to someones inventory without them realizing, they make a perception roll. Big and heavy items are harder to transfer, take -1 to your roll for every 10cl bulk and -1 for every 100grams of weight',
         type: 'active'
     }
-    
+
 ];
 const Larceny = new SkillTemplate('larceny', '', useCases);
 export default Larceny;
