@@ -39,5 +39,5 @@ export const GetSkillList = (): Skill[] => {
         Streetwise,
         Mechanics
 
-    ].sort((a, b) => a.name < b.name ? -1 : 1);
+    ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
 }

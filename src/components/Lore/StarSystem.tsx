@@ -70,11 +70,6 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
     {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => Planet(sat, gen + 1))}</> : null}
 </>;
 
-const cropOrAll = (text: string, length: number) => {
-    if (text.length >= length) return text.substr(0, length);
-    else return text;
-}
-
 const HGen = (gen: number, children: string) => {
     switch (gen) {
         case 0: return <h4>{children}</h4>;

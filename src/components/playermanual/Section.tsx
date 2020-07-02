@@ -4,14 +4,15 @@ import { Button } from "@material-ui/core";
 interface ISection {
     title: string;
     tab?: number;
+    border?: boolean | undefined;
 }
 
-const Section: React.FC<ISection> = ({ title, tab, children }) => {
+const Section: React.FC<ISection> = ({ title, tab, border, children }) => {
     const [isOpen, setIsOpen] = useState(false);
     let tabSize = '0';
     if (tab !== undefined)
         tabSize = tab + 'px';
-    return <div style={{ paddingLeft: tabSize }}>
+    return <div className={border === true ? 'bordersection' : ''} style={{ paddingLeft: tabSize }}>
         <Button onClick={() => setIsOpen(!isOpen)}>{title} {isOpen ? '-' : '+'}</Button>
         {isOpen && children}
     </div>;

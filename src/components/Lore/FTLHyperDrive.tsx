@@ -33,8 +33,8 @@ const FTLHyperDrive: React.FC = () => {
         Distant systems are often very isolated as a result</p>
         <Section title='badly drawn sketches of FTL space ships'>
             <br />
-            <img src='/infinitedarkness/ftl_sketch_3.jpg' />
-            <img src='/infinitedarkness/ftl_sketch_4.jpg' />
+            <img src='/infinitedarkness/ftl_sketch_3.jpg' alt='sketch 1' />
+            <img src='/infinitedarkness/ftl_sketch_4.jpg' alt='sketch 2' />
         </Section>
 
     </>;

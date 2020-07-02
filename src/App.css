@@ -213,3 +213,7 @@ div.divcol2 div:first-child {
 .flexContainer {
     width: 25%;
 }
+
+div.bordersection {
+    border: 1px black dotted;
+}

@@ -17,8 +17,8 @@ const SkillSection = () => {
         <h2>Skills</h2>
         <p>Skills are the generic things a character can learn to do, every skill gains a bonus from it's main ability.</p>
         {GetSkillList().map(skill =>
-            <><Section title={skill.name}>
-                <Section tab={5} title='uses'>
+            <><Section title={skill.name} border={true}>
+                <Section tab={5} title='uses' border={true}>
                     <p>{skill.description}</p>
                     <h4>Uses</h4>
                     {skill.useCases.map(uc => <>
@@ -26,16 +26,16 @@ const SkillSection = () => {
                     <p>{uc.description}</p>
                     </>)}
                 </Section>
-                <Section tab={5} title='perks'>
+                <Section tab={5} title='perks' border={true}>
                     <h4>Perks</h4>
-                    {perks.filter(p => p.skill == skill.name).map(perk => <>
+                    {perks.filter(p => p.skill === skill.name).map(perk => <>
                         <h5>{perk.name}</h5>
                         <b>Cost</b>: {perk.level * 10}<br />
                         {perk.description()}
 
                     </>)}
                 </Section>
-            </Section><hr /></>)}
+            </Section></>)}
     </div>);
 }
 
