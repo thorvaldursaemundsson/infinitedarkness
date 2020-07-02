@@ -30,6 +30,18 @@ const useCases: UseCase[] = [
         description: 'empty the entire magazine',
         type: 'active'
     },
+    {
+        name: 'maintain weapon',
+        attribute: 'intelligence',
+        description: 'keep it clean and good',
+        results: [
+            'service: 9 or lower: damage weapon, firearm drops condition by 1 step',
+            'service: 14 or lower: firearm condition countdown is reset',
+            'service: 25-29: firearm condition is improved by 1 step',
+            'service: 30+: firearm condition is improved by 2 steps'
+        ],
+        type: 'active'
+    }
 ];
 const Firearms = new SkillTemplate('firearms', 'shooting things', useCases);
 export default Firearms;

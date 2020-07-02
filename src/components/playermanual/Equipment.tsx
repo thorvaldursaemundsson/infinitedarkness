@@ -33,7 +33,7 @@ const Equipment: React.FC = () => {
         <p>Close quarters is defined as being adjecent to 2 or more walls or large obstacles, open quarters is empty space around you (nothing to take cover behind)</p>
 
         <h4>Guns</h4>
-
+        <p>All firearms cause bleeding</p>
         <FirearmTable data={Firearms} />
 
         <h5>Firearm modifications</h5>

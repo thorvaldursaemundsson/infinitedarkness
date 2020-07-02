@@ -23,7 +23,8 @@ const SkillSection = () => {
                     <h4>Uses</h4>
                     {skill.useCases.map(uc => <>
                         <b>{uc.name}</b> - ({uc.attribute} {uc.type})
-                    <p>{uc.description}</p>
+                        {uc.results !== undefined ? <ul>{uc.results.map(r => <li>{r}</li>)}</ul> : null}
+                        <p>{uc.description}</p>
                     </>)}
                 </Section>
                 <Section tab={5} title='perks' border={true}>

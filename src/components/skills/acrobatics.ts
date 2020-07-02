@@ -15,8 +15,16 @@ const useCases: UseCase[] = [
     {
         name: 'balance',
         attribute: 'agility',
-        description: 'anything balance related such as walking on slippery surfaces, walking tight rope, staying upright on shaky ground, etc.' +
-            'Walking on ice: if roll is 9 or less you slip and fall, 10-14 walk slowly, 15-19, walk normal, 20-24 jog, 25-29 run, 30+ sprint',
+        description: 'anything balance related such as walking on slippery surfaces, walking tight rope, staying upright on shaky ground, etc.',
+        results: [
+            'Walk on slippery surface: 9 or less: failure',
+            'Walk on slippery surface: 10-14: walk slowly',
+            'Walk on slippery surface: 15-19: walk normal',
+            'Walk on slippery surface: 20-24: job',
+            'Walk on slippery surface: 25-29: run',
+            'Walk on slippery surface: 30: unimpeded movement',
+            'Walk on tightrope: same as slippery but 5 points harder',
+        ],
         type: 'active'
     },
     {
@@ -29,6 +37,15 @@ const useCases: UseCase[] = [
         name: 'tumbling',
         attribute: 'agility',
         description: 'tumbling is a form of gymnastics, this can be used to reduce to reduce fall damage, jump quickly through hoops or any general fast movement through difficult terrain',
+        results: [
+            '4 or lower: worse outcome',
+            'Reduce fall damage 1d6: 15',
+            'Reduce fall damage 2d6: 25',
+            'Move through difficult terrain: 9 or less: slow',
+            'Move through difficult terrain: 10-14: normal speed',
+            'Move through difficult terrain: 15-20: jog speed',
+            'Move through difficult terrain: 21+: can move any speed'
+        ],
         type: 'active'
     }
 ];

@@ -3,7 +3,10 @@ const useCases: UseCase[] = [
     {
         name: 'hacking',
         attribute: 'intelligence',
-        description: 'hack into computers, unlock digital locks',
+        description: 'hack into computers',
+        results: [
+            'hack password: 24 or higher to succeed',
+        ],
         type: 'active'
     },
     {

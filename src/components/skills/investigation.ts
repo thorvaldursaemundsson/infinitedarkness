@@ -9,7 +9,12 @@ const useCases: UseCase[] = [
     {
         name: 'crime scene investigation',
         attribute: 'intelligence',
-        description: 'you examine a crime scene, every hour of investigation has a chance to find a clue, roll vs 16 to find the first one, each clue raises difficulty by 4, maximum 10 attempts can be made no matter how few or many clues you have found',
+        description: 'you examine a crime scene, every hour of investigation has a chance to find a clue, roll vs 16 to find the first one, each clue raises difficulty by 5, maximum 10 attempts can be made no matter how few or many clues you have found',
+        results: [
+            'find clues: 9 or lower: find wrong clues',
+            'find clues: 15 or lower: no clues',
+            'find clues: 16+ (+4 per clue): find one clue'
+        ],
         type: 'active'
     },
 

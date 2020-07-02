@@ -16,6 +16,10 @@ const useCases: UseCase[] = [
         name: 'inspire courage',
         attribute: 'willpower',
         description: 'you say a few heart warming words that strengthen the resolve of anyone hearing you gain +1 to fear resistance up to your roll',
+        results: [
+            '15-24: +1 to fear resistence',
+            '25+: +1 to fear resistence, restore 1 mental health (can only restore from this benefit once a day)'
+        ],
         type: 'active'
     },
     {

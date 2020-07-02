@@ -40,6 +40,15 @@ const Combat: React.FC = () => {
             <li>You can activate this at any time, so long as you have not acted yet</li>
             <li>If you have already acted this turn you may "borrow" your next turn's action, your next turn is then spent</li>
         </ul>
+        <h3>Bleeding</h3>
+        <p>Bleeding occurs when your life is reduced to 0 or if injured by weapon which causes bleeding</p>
+        <p>If you take less than 6 damage then the bleeding is light, 7-14 is intermediate bleeding, 15+ is heavy bleeding</p>
+        <p>If you take bleeding causing injuries multiple times then the bleeding rate increases by 1 step, from light to intermediate, and intermediate to heavy</p>
+        <ul>
+            <li>Light bleeding deals 1 damage every 10 minutes, lasts 1d100 minutes</li>
+            <li>Intermediate bleeding deals 1 damage every 3 minute, lasts 5d6 minutes</li>
+            <li>Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
+        </ul>
 
         <h3>Armor & damage reduction</h3>
         <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
