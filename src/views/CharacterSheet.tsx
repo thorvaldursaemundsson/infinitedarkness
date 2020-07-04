@@ -6,6 +6,7 @@ import { useCharacter } from '../components/useCharacter';
 
 import './charactersheet.css';
 import EditText, { HideText } from '../components/HideText';
+import { Skill } from '../components/Skills';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -206,9 +207,14 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <table>
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
+                                    const skillRanks: Skill | undefined = character.skills.find(s => s.name === perk.skill);
+                                    if (skillRanks === undefined || skillRanks.level < perk.level * 6)
+                                        return null;
+                                    if (character.perks.find(p => p.name === perk.name)) return null;
+
                                     return <tr className='no-print'>
                                         <td>
-                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> {perk.description()}
+                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> ({perk.level}) {perk.description()}
                                         </td>
                                     </tr>
                                 }) : null}
@@ -216,6 +222,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     return <tr>
                                         <td>
                                             {perk.name}
+                                            <button onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>x</button>
                                         </td>
                                     </tr>
                                 })}

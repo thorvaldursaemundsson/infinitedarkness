@@ -54,7 +54,7 @@ export const MartialArtsExpert = new PerkTemplate({
     name: 'martial arts expert',
     skill: 'combat',
     level: 2,
-    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage'
+    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage.'
 }, {
     applyTo: 'unarmed',
     amount: 2

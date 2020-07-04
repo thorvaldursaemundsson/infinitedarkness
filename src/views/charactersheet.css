@@ -53,6 +53,7 @@ div.characterSheet table tbody td {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid black;
+    border-right: 1px solid black;
     vertical-align: top;
 }
 

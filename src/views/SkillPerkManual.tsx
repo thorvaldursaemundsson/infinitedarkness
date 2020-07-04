@@ -14,8 +14,15 @@ const SkillPerkManual: React.FC = () => {
 const perks = GetPerkList();
 const SkillSection = () => {
     return (<div>
-        <h2>Skills</h2>
+        <h2>Skills & Perks</h2>
         <p>Skills are the generic things a character can learn to do, every skill gains a bonus from it's main ability.</p>
+        <p>Perks are specializations and special capabilities related to skills, each perk has a level, starting at 1.
+            <br />
+            Perks cost 10 x level
+            <br/>
+            Perks require 6 x level points in their skill
+        </p>
+        
         {GetSkillList().map(skill =>
             <><Section title={skill.name} border={true}>
                 <Section tab={5} title='uses' border={true}>
