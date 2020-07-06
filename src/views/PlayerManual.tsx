@@ -13,21 +13,21 @@ const PlayerManual: React.FC = () => {
         <h1>The Player Manual</h1>
         <p>This page is to help the player create characters and play the game, view each section below for more details.</p>
         <hr />
-        <MakeCharacter />
+        <MakeCharacter key='pm1' />
         <hr />
-        <CharacterSheetOverview />
+        <CharacterSheetOverview key='pm2' />
         <hr />
-        <Wealth />
+        <Wealth key='pm3' />
         <hr />
-        <Experience />
+        <Experience key='pm4' />
         <hr />
-        <Combat />
+        <Combat key='pm5' />
         <hr />
-        <Equipment />
+        <Equipment key='pm6' />
         <hr />
-        <Vehicles />
+        <Vehicles key='pm7' />
         <hr />
-        <Health />
+        <Health key='pm8' />
     </div>);
 }
 

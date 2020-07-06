@@ -217,3 +217,9 @@ div.divcol2 div:first-child {
 div.bordersection {
     border: 1px black dotted;
 }
+
+a.notalink {
+    text-decoration: none;
+    color: black;
+    cursor: auto;
+}

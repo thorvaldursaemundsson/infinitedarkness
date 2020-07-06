@@ -7,7 +7,7 @@ interface IIndexedProps {
 
 export const Indexed: React.FC<IIndexedProps> = ({ title, children, source }) => {
     return <>
-        <h3>{title} <a id={title}></a> <a href={'#' + source}>^</a></h3>
+        <h3><a className='notalink' href={'#' + title} id={title}>{title}</a> <a href={'#' + source}>^</a></h3>
         {children}
     </>;
 }
@@ -39,10 +39,10 @@ const Indexer: React.FC<IIndexerProps> = ({ children, title }) => {
     }
 
     return <>
-        <h4>Table of contents<a id={title}></a></h4>
-        {index.map(i => <h5> <a href={'#' + i}>{i}</a>  </h5>)}
+        <h4><a className='notalink' href={'#' + title} id={title}>Table of contents </a></h4>
+        {index.map(i => <h5> <a href={'#' + i}>{i}</a> </h5>)}
         <hr />
-        {indexedItems.map(js=>js)}
+        {indexedItems.map(js => js)}
     </>;
 }
 
