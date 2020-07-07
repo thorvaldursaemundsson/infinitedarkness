@@ -100,20 +100,16 @@ export class Character {
         return this.getStartingPointsAvailable() - this.getCalculatedPointsUsed();
     }
 
-    private characterPoints(start: number, agePhases: number[], expPhases: number[]): number {
-        let p = start;
-        if (agePhases.length !== expPhases.length) console.error('age Phases and expPhases must be of equal length!');
-        let prevPhase = 0;
-        for (var phase in agePhases) {
-            let currentAgePhase = agePhases[phase];
-            let expPhase = expPhases[phase];
+    private getSkillLevel(skillName: string) {
+        var skill = this.skills.find(s => s.name === skillName);
+        if (skill !== undefined) return skill.level;
+        return 0;
+    }
 
-            let ageRange = currentAgePhase - prevPhase;
-            if (this.age > prevPhase) p += Math.min(this.age - prevPhase, ageRange) * expPhase;
-            prevPhase = currentAgePhase;
-        }
-
-        return p;
+    public getPassiveDefense() {
+        const combat = this.getSkillLevel('combat');
+        const acrobatics = this.getSkillLevel('acrobatics');
+        return 10 + this.agility + Math.max(combat, acrobatics);
     }
 
     private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number) {
@@ -279,6 +275,7 @@ export class Character {
             case 'species': return '';
             case 'pointsLeft': return 'points remaining';
             case 'experienceMultiplier': return 'exp bonus';
+            case 'passivedefense': return '10 + AGL + skill';
             default: return '';
         }
     }

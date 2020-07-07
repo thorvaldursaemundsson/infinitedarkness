@@ -99,10 +99,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <EditText txt={character.age} isEdit={viewState} onChange={(str) => dispatch({ action: 'age', value: parseInt(str) })} explain={character.explain('age')} />
                     </td>
                     <td>
-                        <label>Melee DB s / m / l</label>
+                        <label>Damage absorption</label>
                     </td>
                     <td>
-                        <HideText txt={character.getDamageBonusSmall() + '/' + character.getDamageBonusMedium() + '/' + character.getDamageBonusLarge()} isEdit={viewState} explain={character.explain('damageBonus')} />
+
                     </td>
                     <td>
                         <label>Perception</label>
@@ -119,10 +119,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <HideText txt={character.getCalculatedPointsLeft()} explain={character.explain('pointsLeft')} isEdit={viewState} />
                     </td>
                     <td>
-                        <label>Homeworld</label>
+                        <label>Defense</label>
                     </td>
                     <td>
-                        <EditText txt={character.background} isEdit={viewState} onChange={(str) => dispatch({ action: 'background', value: 0, name: str })} explain={character.explain('background')} />
+                        <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Intelligence</label>
@@ -194,7 +194,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 })}
                                 {Pad(padSize, character.skills.length).map(i => {
                                     return <tr>
-                                        <td > <label> </label></td>
+                                        <td > <label> &nbsp;</label></td>
                                         <td> </td>
                                         <td> </td>
                                     </tr>
@@ -228,7 +228,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 })}
                                 {Pad(viewPerkList ? 0 : padSize + 1, character.perks.length).map(i => {
                                     return <tr>
-                                        <td> <label> </label></td>
+                                        <td> </td>
                                     </tr>
                                 })}
                             </tbody>
@@ -254,7 +254,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 })}
                                 {Pad(viewTraitList ? 0 : padSize - 26, character.traits.length).map(i => {
                                     return <tr>
-                                        <td> <label> </label></td>
+                                        <td> </td>
                                     </tr>
                                 })}
                             </tbody>
@@ -263,7 +263,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <table>
                             <tbody>
                                 {Pad(padSize - 9, 0).map(i => <tr>
-                                    <td> <label> </label></td>
+                                    <td> </td>
                                 </tr>)}
                             </tbody>
                         </table>
@@ -271,30 +271,132 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 {/* page 2 */}
                 <tr>
-                    <td style={{ border: 'none' }} colSpan={2}>
-                        <h4>Inventory</h4>
-                    </td>
-                    <td style={{ border: 'none' }} colSpan={2}>
+                    <td style={{ border: 'none' }} colSpan={3}>
                         <h4>Equipment</h4>
                     </td>
-                    <td style={{ border: 'none' }} colSpan={2}>
-                        <h4>Stash</h4>
+                    <td colSpan={3} style={{ verticalAlign: 'bottom' }} >
+                        <b>Credits:</b>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colSpan={2}> Credits:</td>
-                    <td colSpan={2}> </td>
-                    <td colSpan={2}> Credits:</td>
+                    <td style={{ border: 'none' }} colSpan={6}>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className='bigtd'>
+                                        Weapon
+                                    </th>
+                                    <th className='smalltd'>
+                                        HB
+                                    </th>
+                                    <th className='smalltd'>
+                                        AP
+                                    </th>
+                                    <th className='smalltd3'>
+                                        Damage
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Ammo
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Weight
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Pad(6, 0).map(i =>
+                                    <tr>
+                                        <td className='bigtd'>
+
+                                        </td>
+                                        <td className='smalltd'>
+
+                                        </td>
+                                        <td className='smalltd'>
+
+                                        </td>
+                                        <td className='smalltd3'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className='bigtd'>
+                                        Item
+                                    </th>
+                                    <th className='smalltd3'>
+                                        Skill
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Bonus
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Weight
+                                    </th>
+                                    <th className='smalltd2'>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Pad(18, 0).map(i =>
+                                    <tr>
+                                        <td className='bigtd'>
+
+                                        </td>
+                                        <td className='smalltd3'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                        <td className='smalltd2'>
+
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+
+                    </td>
                 </tr>
 
-                {Pad(47, 0).map(i =>
+                <tr>
+                    <td colSpan={3}>
+                        <h4>Stash</h4>
+                    </td>
+                    <td colSpan={3} style={{ verticalAlign: 'bottom' }} >
+                        <b>Credits:</b>
+                    </td>
+                </tr>
+
+                {Pad(10, 0).map(i =>
                     <tr>
-                        <td colSpan={2}> &nbsp;</td>
-                        <td colSpan={2}> </td>
-                        <td colSpan={2}> </td>
-                    </tr>
-                )}
+                        <td colSpan={6}> </td>
+                    </tr>)}
+
             </tbody>
         </table></div>);
 }
