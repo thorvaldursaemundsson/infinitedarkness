@@ -249,6 +249,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     return <tr>
                                         <td>
                                             {trait.name}
+                                            <button onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>x</button>
                                         </td>
                                     </tr>
                                 })}

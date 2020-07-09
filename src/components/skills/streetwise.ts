@@ -38,5 +38,5 @@ const useCases: UseCase[] = [
         type: 'passive'
     }
 ];
-const Streetwise = new SkillTemplate('Streetwise', '', useCases);
+const Streetwise = new SkillTemplate('streetwise', '', useCases);
 export default Streetwise;
