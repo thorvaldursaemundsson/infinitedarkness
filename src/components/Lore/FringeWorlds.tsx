@@ -167,7 +167,8 @@ const Ashra = () => <StarSystem
         },
         {
             name: 'Neke',
-            description: 'A water world rich in oceanic life, a small number of islands have all been settled by humans, as well as many seasteads that catch sea fauna',
+            description: 'A water world rich in oceanic life, a small number of islands have all been settled by humans, as well as many seasteads that catch sea fauna. '
+                + 'Massive space elevators were constructed to facilitate the extraction of water from the planet into space. Neke is also the homeworld of Nekovians, a flying amphibian bipedal race of spaient hunters.',
             mass: 0.7,
             age: 3.6,
             satelites: [],
@@ -176,9 +177,23 @@ const Ashra = () => <StarSystem
             atmosphericPressure: 95,
             hydrosphere: 'salt water',
             surfaceGravity: 0.9,
-            temperatureRange: '0 - 50',
+            temperatureRange: '-10 - 50',
             orbitDistance: '0.8 AU',
             feature: '142 thousand inhabitants'
+        },
+        {
+            name: 'Consini belt',
+            description: 'The Consini belt is an asteroid belt between Neke and the Sylvis Edis pair.',
+            mass: 0.3,
+            age: 4,
+            satelites: [],
+            classification: 'asteroid belt',
+            atmosphere: '',
+            atmosphericPressure: 0,
+            hydrosphere: '',
+            surfaceGravity: 0,
+            temperatureRange: '-182 - 79',
+            orbitDistance: '1.1 - 2.9 au',
         },
         {
             name: 'Sylvis',
@@ -191,7 +206,7 @@ const Ashra = () => <StarSystem
                 mass: 60,
                 age: 9.1,
                 classification: 'gas giant',
-                atmosphere: 'hydrogen',
+                atmosphere: 'hydrogen, helium',
                 atmosphericPressure: 53224,
                 hydrosphere: 'liquid hydrogen',
                 surfaceGravity: 3.6,
@@ -200,14 +215,57 @@ const Ashra = () => <StarSystem
                 satelites: []
             }],
             classification: 'gas giant',
-            atmosphere: 'hydrogen',
+            atmosphere: 'hydrogen, helium',
             atmosphericPressure: 83110,
             hydrosphere: 'liquid hydrogen',
             surfaceGravity: 4,
             temperatureRange: '-90 - 20',
             orbitDistance: '4 AU',
             feature: 'asteroid belt orbiting gas giant binary'
-        }]
+        },
+        {
+            name: 'Nane',
+            description: 'Frozen ice giant',
+            age: 3.8,
+            classification: 'ice giant',
+            atmosphericPressure: 8000,
+            atmosphere: 'hydrogen, helium',
+            mass: 19,
+            surfaceGravity: 4,
+            hydrosphere: 'liquid methane',
+            temperatureRange: '-190 - -40',
+            orbitDistance: '9 AU',
+            satelites: [],
+        },
+        {
+            name: 'Sarma',
+            description: 'A huge ice giant',
+            age: 3.8,
+            classification: 'ice giant',
+            atmosphericPressure: 12000,
+            atmosphere: 'hydrogen, helium',
+            mass: 29,
+            surfaceGravity: 6,
+            hydrosphere: 'liquid methane, liquid nitrogen',
+            temperatureRange: '-210 - -90',
+            orbitDistance: '20 AU',
+            satelites: [],
+        },
+        {
+            name: 'Marzanna',
+            description: 'Deep space ice giant',
+            age: 3.8,
+            classification: 'ice giant',
+            atmosphericPressure: 7000,
+            atmosphere: 'hydrogen, helium',
+            mass: 16,
+            surfaceGravity: 4,
+            hydrosphere: 'liquid methane, liquid nitrogen',
+            temperatureRange: '-220 - -130',
+            orbitDistance: '51 AU',
+            satelites: [],
+        }
+        ]
     }]}
     roguePlanetoids={[]}
 />
