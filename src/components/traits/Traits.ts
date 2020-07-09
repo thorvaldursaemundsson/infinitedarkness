@@ -8,8 +8,8 @@ export interface Trait extends IHooker {
 }
 
 const Coward: Trait = {
-    name: 'cocowardwardice',
-    cost: -20,
+    name: 'cowardwardice',
+    cost: -10,
     description: 'You are a coward that more easily falls vicim to fear. willpower counts as 2 lower for fear',
     applyTo: 'fear',
     amount: -2,
@@ -17,7 +17,7 @@ const Coward: Trait = {
 
 const Brave: Trait = {
     name: 'brave',
-    cost: 20,
+    cost: 10,
     description: 'You are brave and are less likely to be phased by fear. willpower counts as 2 higher for fear',
     applyTo: 'fear',
     amount: 2,
@@ -33,7 +33,7 @@ const FoolHardy: Trait = {
 
 const Frail: Trait = {
     name: 'frail',
-    cost: -20,
+    cost: -10,
     description: 'You are frail and easily damaged, -2 maximum hitpoints',
     applyTo: 'hitpoints',
     amount: -2,
@@ -47,12 +47,75 @@ const Resillient: Trait = {
     amount: 2,
 }
 
+const Reckless: Trait = {
+    name: 'reckless',
+    cost: -10,
+    description: 'You are reckless when using tools, items lose condition at double rate',
+    applyTo: '',
+    amount: 0,
+}
+
+const Gifted: Trait = {
+    name: 'gifted',
+    cost: 80,
+    description: 'you are naturally gifted, gain +1 to your 4 lowest base stats',
+    applyTo: '',
+    amount: 0,
+}
+
+const FastMetabolism: Trait = {
+    name: 'fast metabolism',
+    cost: 20,
+    description: 'You have a very high metabolism, you heal +1 life per day, eat 50% more, poison and drugs acts twice as fast and last half as long',
+    amount: 0,
+    applyTo: ''
+}
+
+const DoubleHanded: Trait = {
+    name: 'double handed',
+    cost: 10,
+    description: 'you are proficient with both hands, can do any task with either hand',
+    amount: 0,
+    applyTo: '',
+}
+
+const Phobia: Trait = {
+    name: 'phobia',
+    cost: -10,
+    description: 'pick one thing, your character has a phobia for that and is forced to make a fear roll when they see it',
+    amount: 0,
+    applyTo: ''
+}
+
+const WealthyFamily: Trait = {
+    name: 'wealthy family',
+    cost: 30,
+    description: 'you come from a wealthy family, you start with an additional 40k credits and you are known in your home town',
+    amount: 0,
+    applyTo: '',
+}
+
+const Aggressive: Trait = {
+    name: 'aggressive',
+    cost: 10,
+    description: 'you are particularly aggressive and fast to fight, +2 to sequence and -2 to all defense',
+    amount: 0,
+    applyTo: ''
+}
+
 export const GetTraits = (): Trait[] & IHooker[] => {
     return [
         Coward,
         Brave,
         FoolHardy,
         Frail,
-        Resillient
-    ]
+        Resillient,
+        Reckless,
+        Gifted,
+        FastMetabolism,
+        DoubleHanded,
+        Phobia,
+        WealthyFamily,
+        Aggressive
+    ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
 };
