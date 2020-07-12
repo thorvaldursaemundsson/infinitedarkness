@@ -118,8 +118,9 @@ const Equipment: React.FC = () => {
                         <th>name</th><th>value</th><th>weight</th><th>description</th>
                     </tr></thead>
                     <tbody>
-                        <tr> <td>Pocket Computer</td><td>2000 c</td><td>1kg</td><td>Basically a futuristic smartphone. Allows user to substitute computer roll for any knowledge roll.</td> </tr>
-                        <tr> <td>Jetpack</td><td>14000 c</td><td>6kg</td><td>Allows for short bursts which propel the user. +20 to jump rolls</td> </tr>
+                        <tr> <td>Pocket Computer</td><td>2000 c</td><td>1kg</td><td>Basically a futuristic smartphone.
+                            Allows user to substitute computer roll for any knowledge roll.</td> </tr>
+                        <tr> <td>Jetpack</td><td>14000 c</td><td>6kg</td><td>Allows for short bursts which propel the user. +20 to jump rolls, prevents fall damage</td> </tr>
                         <tr> <td>Stealth Cover</td><td>19000 c</td><td>1.8kg</td><td>Meta-material which bends light around it as it passes through, giving the illsion of invisibility. Only works for visible light (not infra red or ultra violet). +20 to hide (negated by infra-red or ultra-violet vision)</td> </tr>
                         <tr> <td>Scope</td><td>600 c</td><td>300g</td><td>Scope with 2x/4x/8x/15x/20x zoom</td> </tr>
                         <tr> <td>Infrared googles</td><td>900 c</td><td>200g</td><td>Allows the user to see in infrared</td> </tr>
@@ -129,9 +130,13 @@ const Equipment: React.FC = () => {
                         <tr> <td>Climbing gear</td><td>1700 c</td><td>3kg</td><td>Assorted tools for climbing, allows for climbing on sheer surfaces, gives +10 to climbing rolls</td> </tr>
                         <tr> <td>Medikit</td><td>4100 c</td><td>2.5kg</td><td>Assorted tools for emergency field surgery and aid.</td> </tr>
                         <tr> <td>Ballistic kit</td><td>400 c</td><td>300g</td><td>Assorted tools for maintaining firearms</td>  </tr>
-                        <tr> <td>Laser Sight</td><td>300 c</td><td>50g</td><td>Laser sight attachable to firearms, adds +5 to aimed and snipe shots, gives away your position</td> </tr>
-                        <tr> <td>Sniper Scope</td><td>1500 c</td><td>90g</td><td>Sniper Scope attachable to firearms, halves penalty from range when using snipe shots</td> </tr>
-                        <tr>  <td>Silencer</td><td>600 c</td><td>250g</td><td>Attaches to the end of ballistic firearms, reduces sound by 90%, -1 damage</td> </tr>
+                        <tr> <td>SCUBA suit</td><td>12000 c</td><td>6g</td><td> </td>  </tr>
+                        <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
+                        <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
+                        <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
+                        <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
+                        <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
+                        
                     </tbody>
                 </table>
             </Indexed>
@@ -186,12 +191,13 @@ const Equipment: React.FC = () => {
 
 
 const weightConverter = (grams: number) => {
-    if (grams < 1000) return `${max4(grams.toString())} g`;
-    if (grams < 10000) return `${max4((Math.floor(grams / 100) * 0.10).toString())} kg`;
-    else return `${max4((Math.floor(grams / 100000) * 0.10).toString())} tons`;
+
+    if (grams < 1000) return `${grams.toFixed(0)}g`;
+    if (grams < 1000 * 1000) return `${(grams / 1000).toFixed(1)}kg`;
+    return `${(grams / 100000).toFixed(4)} tons`;
+
 }
 
-const max4 = (str: string) => str.length >= 4 ? str.substring(0, 4) : str;
 
 interface WeaponTableProps {
     data: MeleeWeapon[];

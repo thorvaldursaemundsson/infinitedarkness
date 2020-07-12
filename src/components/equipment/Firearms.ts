@@ -239,7 +239,7 @@ const Firearms: FireArm[] = [
         description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: '1d12', range: '900m', ammo: '9x23', capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 700, value: 18000, hitbonus: 2,
+        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: '1d12', range: '900m', ammo: '9x23', capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 16000, hitbonus: 3,
         description: 'An elegant machine gun used only be the merlion military, take -2 if not using the tripod'
     },
     {
