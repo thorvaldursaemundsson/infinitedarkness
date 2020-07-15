@@ -4,6 +4,7 @@ const useCases: UseCase[] = [
         name: 'passive dodge',
         attribute: 'agility',
         description: 'when someone attacks you they must beat this number to land the hit or shot',
+
         type: 'passive'
     },
     {
@@ -20,7 +21,7 @@ const useCases: UseCase[] = [
             'Walk on slippery surface: 9 or less: failure',
             'Walk on slippery surface: 10-14: walk slowly',
             'Walk on slippery surface: 15-19: walk normal',
-            'Walk on slippery surface: 20-24: job',
+            'Walk on slippery surface: 20-24: jog',
             'Walk on slippery surface: 25-29: run',
             'Walk on slippery surface: 30: unimpeded movement',
             'Walk on tightrope: same as slippery but 5 points harder',
@@ -31,6 +32,13 @@ const useCases: UseCase[] = [
         name: 'throwing',
         attribute: 'agility',
         description: 'throwing an item accurately and precisely at a target. The distance depends on your strength and the weight of the item. This is also used in combat when for example throwing weapons, bombs, etc',
+        results: [
+            '4-10: hit 1 meter object in 5 meters away (to hit a smaller object, assume same difficulty as if it was farther away)',
+            '11-15: hit 1 meter object in 10 meters away',
+            '16-20: hit 1 meter object in 20 meters away',
+            '21-25: hit 1 meter object in 40 meters away',
+            '26-30: hit 1 meter object in 80 meters away',
+        ],
         type: 'active'
     },
     {
