@@ -18,6 +18,7 @@ const Wealth: React.FC = () => {
 
                 <p>Additionally your character gets money from working and saving up over time. Gaining different amounts at different stages</p>
                 <li>
+                    <ul>Age 16-19: 50 c / year</ul>
                     <ul>Age 20-29: 200 c / year</ul>
                     <ul>Age 30-49: 400 c / year</ul>
                     <ul>Age 50-69: 200 c / year</ul>
