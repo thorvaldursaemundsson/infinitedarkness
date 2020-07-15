@@ -4,6 +4,7 @@ type ammo = '9x17' | '9x21' | '9x23' |
     '10x19' | '10x21' |
     '11x17' | '11x21' |
     '12x20' | '12x24' | '12x28' |
+    '4mm ec' |
     '12 gauge' | '20 gauge' |
     '40mm rpg' | '50mm rpg' |
     '1hec' | '2hec' | '10hec';
@@ -77,6 +78,12 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         weight: 25,
         types: ['tracer', 'hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a very long large 12cm bullet'
+    }, {
+        ammo: '4mm ec',
+        cost: 5,
+        weight: 0.2,
+        types: ['standard'],
+        description: 'a tiny caseless ferromagnetic neodymium bullet'
     }, {
         ammo: '12 gauge',
         cost: 3,
@@ -236,6 +243,21 @@ const Firearms: FireArm[] = [
         description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread'
     },
 
+    //magnetic guns
+
+    {
+        fireArmClass: 'rifle', name: 'Night Coil', damage: '1d10', range: '1200m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 9000, hitbonus: 2, armorpiercing: 5, 
+        description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent'
+    },
+    {
+        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: '2d8', range: '1800m', ammo: '4mm ec', strengthRequirement: 8, capacity: 60,fireAction: ['semi-automatic'], weight: 11000, value: 13000, hitbonus: 1, armorpiercing: 6,
+        description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds'
+    },
+    {
+        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60,fireAction: ['semi-automatic'], weight: 9000, value: 17000, hitbonus: 1, armorpiercing: 6,
+        description: 'A strange rifle that exploits the electroweak force in an unknown way'
+    }
+
     //machinegun
     {
         fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: '1d8', range: '250m', ammo: '9x17', strengthRequirement: 8, capacity: 160, fireAction: ['fully-automatic'], rps: 8, weight: 8000, value: 13000,
@@ -261,6 +283,10 @@ const Firearms: FireArm[] = [
     },
 
     //energy weapons
+    {
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: '1d8', range: '1800m', ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic'], armorpiercing: 0, hitbonus: 3, weight: 1100, value: 8000,
+        description: 'the only laser handgun'
+    },
     {
         fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: '1d10', range: '2000m', ammo: '1hec', strengthRequirement: 2, capacity: 100, fireAction: ['semi-automatic'], armorpiercing: 1, hitbonus: 3, weight: 3000, value: 12000,
         description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
