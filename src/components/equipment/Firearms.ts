@@ -256,7 +256,7 @@ const Firearms: FireArm[] = [
     {
         fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60,fireAction: ['semi-automatic'], weight: 9000, value: 17000, hitbonus: 1, armorpiercing: 6,
         description: 'A strange rifle that exploits the electroweak force in an unknown way'
-    }
+    },
 
     //machinegun
     {
