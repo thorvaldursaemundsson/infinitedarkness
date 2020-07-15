@@ -100,4 +100,11 @@ export const Assassination = new PerkTemplate({
     amount: 0
 });
 
-export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization, MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, SneakAttack, Assassination];
+export const Disarm = new PerkTemplate({
+    name: 'disarm',
+    skill: 'combat',
+    level: 1,
+    description: 'You may as an unarmed attack remove someones weapon from their hand, if you succeed by 10 or more you may keep it in your hand'
+});
+
+export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization, MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, SneakAttack, Assassination, Disarm];

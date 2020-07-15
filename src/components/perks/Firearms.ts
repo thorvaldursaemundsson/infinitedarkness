@@ -60,4 +60,33 @@ export const PlasmaSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization, LaserSpecialization, PlasmaSpecialization];
+export const Sniper = new PerkTemplate({
+    name: 'sniper',
+    skill: 'firearms',
+    level: 1,
+    description: 'half range penalties, stacks with all other sources multiplicatively'
+});
+
+export const Marksman = new PerkTemplate({
+    name: 'marksman',
+    skill: 'firearms',
+    level: 2,
+    description: 'half range penalties, stacks with all other sources multiplicatively'
+});
+
+export const FastShooter = new PerkTemplate({
+    name: 'fast shooter',
+    skill: 'firearms',
+    level: 1,
+    description: 'when using semi burst or burst you hit with 1 additional bullet'
+});
+
+export const Suppressor = new PerkTemplate({
+    name: 'suppressor',
+    skill: 'firearms',
+    level: 1,
+    description: 'when you use oppressive fire on a target they take -5 to all rolls even if they dont get hit'
+});
+
+export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization, 
+    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, Suppressor];

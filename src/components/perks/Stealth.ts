@@ -24,7 +24,7 @@ export const Detection = new PerkTemplate({
     name: 'detection',
     skill: 'stealth',
     level: 1,
-    description: 'Your character is harder to hide from, anyone hiding counts as -3 vs your perception'
+    description: 'Your character is harder to hide from, you gain +3 vs shadows and hiders'
 }, {
     applyTo: 'detection',
     amount: 3

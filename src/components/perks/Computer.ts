@@ -7,7 +7,7 @@ export const Hacking = new PerkTemplate({
     description: 'Your character can hack into computer systems, gain +3 vs software protection'
 }, {
     applyTo: 'hacking',
-    amount: 3
+    amount: 5
 });
 
 export const AdvancedHacking = new PerkTemplate({
@@ -17,7 +17,7 @@ export const AdvancedHacking = new PerkTemplate({
     description: 'Your character is an advanced hacker, gain extra +3 vs software protection'
 }, {
     applyTo: 'hacking',
-    amount: 3
+    amount: 5
 });
 
 export const Programmer = new PerkTemplate({
@@ -27,7 +27,7 @@ export const Programmer = new PerkTemplate({
     description: 'Your character can write software'
 }, {
     applyTo: 'craft software',
-    amount: 3
+    amount: 5
 });
 
 export const ComputerPerks = [Hacking, AdvancedHacking, Programmer];

@@ -43,31 +43,31 @@ export const QualifiedForSubmarine = new PerkTemplate({
 export const QualifiedForAirplane = new PerkTemplate({
     name: 'airplane qualified',
     skill: 'pilot',
-    level: 3,
+    level: 2,
     description: 'gain +9 to all airplane piloting rolls, is qualified to drive an airplane'
 }, {
     applyTo: 'pilot airplane',
-    amount: 12
+    amount: 9
 });
 
 export const QualifiedForSpaceship = new PerkTemplate({
     name: 'spaceship qualified',
     skill: 'pilot',
-    level: 3,
-    description: 'gain +12 to all spaceship piloting rolls, is qualified to pilot a spaceship'
+    level: 2,
+    description: 'gain +9 to all spaceship piloting rolls, is qualified to pilot a spaceship'
 }, {
     applyTo: 'pilot spaceship',
-    amount: 12
+    amount: 9
 });
 
 export const QualifiedForFTL = new PerkTemplate({
     name: 'FTL qualified',
     skill: 'pilot',
-    level: 3,
-    description: 'gain +12 to all FTL spaceship piloting rolls, is qualified to engage hyperdrive'
+    level: 2,
+    description: 'gain +9 to all FTL spaceship piloting rolls, is qualified to engage hyperdrive'
 }, {
     applyTo: 'pilot FTL',
-    amount: 12
+    amount: 9
 });
 
 export const PilotPerks = [QualifiedForAirplane, QualifiedForBoat, QualifiedForCar, QualifiedForFTL, QualifiedForShip, QualifiedForSpaceship, QualifiedForSubmarine];

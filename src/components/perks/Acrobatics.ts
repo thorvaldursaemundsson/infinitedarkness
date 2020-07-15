@@ -4,40 +4,40 @@ export const Balance = new PerkTemplate({
     name: 'balance',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent balance, gain +3 to balancing rolls'
+    description: 'Your character has excellent balance, gain +5 to balancing rolls'
 }, {
     applyTo: 'balance',
-    amount: 3
+    amount: 5
 });
 
 export const Throwing = new PerkTemplate({
     name: 'throwing',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent aim while throwing, gain +3 to all throw rolls'
+    description: 'Your character has excellent aim while throwing, gain +5 to all throw rolls'
 }, {
     applyTo: 'throw',
-    amount: 3
+    amount: 5
 });
 
 export const Dodger = new PerkTemplate({
     name: 'dodger',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is a faster dodger, gain +3 to all dodge rolls and passive dodging'
+    description: 'Your character is a faster dodger, gain +5 to all dodge rolls and passive dodging, when active dodging only 1 attack can hit you'
 }, {
     applyTo: 'dodge',
-    amount: 3
+    amount: 5
 });
 
 export const Tumbler = new PerkTemplate({
     name: 'tumbler',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is an avid tumbler, gain +3 to all tumbling rolls'
+    description: 'Your character is an avid tumbler, gain +5 to all tumbling rolls'
 }, {
     applyTo: 'tumble',
-    amount: 3
+    amount: 5
 });
 
 export const AcrobaticsPerks = [Balance, Throwing, Dodger, Tumbler];

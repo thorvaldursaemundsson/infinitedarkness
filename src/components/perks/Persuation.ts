@@ -4,10 +4,10 @@ export const ArtOfDeal = new PerkTemplate({
     name: 'the art of the deal',
     skill: 'persuation',
     level: 1,
-    description: 'Your character is a strong negotiator when it comes to making a deal, +3 to persuation rolls when making deal'
+    description: 'Your character is a strong negotiator when it comes to making a deal, +5 to persuation rolls when making deal'
 }, {
     applyTo: 'deal',
-    amount: 3
+    amount: 5
 });
 
 export const MotivationalSpeaker = new PerkTemplate({
@@ -24,7 +24,7 @@ export const InspireCourage = new PerkTemplate({
     name: 'inspire courage',
     skill: 'persuation',
     level: 1,
-    description: 'your character can inspire courage, speak for 1 minute and roll persuation, any character gains that hears you +2 fear resistence but not more than your result'
+    description: 'your character can inspire courage, speak for 1 minute and roll persuation vs 25, if you succeed they are temporarily immune to mental health damage and penalties (1 hour)'
 }, {
     applyTo: 'inspirecourage',
     amount: 0
@@ -34,10 +34,10 @@ export const PeaceMaker = new PerkTemplate({
     name: 'peace maker',
     skill: 'persuation',
     level: 1,
-    description: 'Your character is known for talking down hostiles and coming to a non-violent outcome, gain +3 when attempting to talk down a hostile'
+    description: 'Your character is known for talking down hostiles and coming to a non-violent outcome, gain +5 when attempting to talk down a hostile'
 }, {
     applyTo: 'peacemaker',
-    amount: 0
+    amount: 5
 });
 
 export const PersuationPerks = [ArtOfDeal, MotivationalSpeaker, InspireCourage, PeaceMaker];

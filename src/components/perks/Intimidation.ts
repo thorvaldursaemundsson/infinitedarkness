@@ -14,7 +14,7 @@ export const Frighten = new PerkTemplate({
     name: 'frighten',
     skill: 'intimidation',
     level: 1,
-    description: 'Your character is able to emit a terrifying display, enemies must roll fear vs intimidation'
+    description: 'When you roll for frighten you gain +3 to your roll and any target that is affected become fearful for as many rounds as their mental health is damaged, fearful imposes -5 to all attacking actions'
 }, {
     applyTo: 'frighten',
     amount: 0
