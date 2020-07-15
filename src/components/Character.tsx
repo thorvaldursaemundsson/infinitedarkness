@@ -136,7 +136,7 @@ export class Character {
         return Character.CharacterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4], age);
     }
 
-    public static CharacterPointsShambra(age: number) {
+    public static CharacterPointsShambras(age: number) {
         return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
     }
 
@@ -168,7 +168,7 @@ export class Character {
         return 5;
     }
 
-    public static ExperienceMultiplerShambra(age: number) {
+    public static ExperienceMultiplerShambras(age: number) {
         if (age > 100) return 3;
         if (age > 80) return 2.5;
         if (age > 60) return 2;
@@ -196,8 +196,8 @@ export class Character {
         return Character.CharacterPointsMerlion(this.age);
     }
 
-    private characterPointsShambra() {
-        return Character.CharacterPointsShambra(this.age);
+    private characterPointsShambras() {
+        return Character.CharacterPointsShambras(this.age);
     }
 
     private characterPointsNekovian() {
@@ -205,24 +205,24 @@ export class Character {
     }
 
     public getStartingPointsAvailable() {
-
         switch (this.species) {
             case 'human': return this.characterPointsHuman();
             case 'merlion': return this.characterPointsMerlion();
-            case 'shambra': return this.characterPointsShambra();
+            case 'shambras': return this.characterPointsShambras();
             case 'nekovian': return this.characterPointsNekovian();
             default: return this.characterPointsHuman();
         }
     }
 
     public getExperienceMultiplier() {
-        if (this.age < 16) return 3 * + (this.getHook('exp') + 1);
-        if (this.age < 20) return 2.5 * + (this.getHook('exp') + 1);
-        if (this.age < 24) return 2 * + (this.getHook('exp') + 1);
-        if (this.age < 28) return 1.75 * + (this.getHook('exp') + 1);
-        if (this.age < 32) return 1.5 * + (this.getHook('exp') + 1);
-        if (this.age < 36) return 1.25 * + (this.getHook('exp') + 1);
-        return 1;
+        switch (this.species) {
+            case 'human': return Character.ExperienceMultiplerHuman(this.age);
+            case 'merlion': return Character.ExperienceMultiplerMerlion(this.age)
+            case 'shambra': return Character.ExperienceMultiplerShambras(this.age)
+            case 'nekovian': return Character.ExperienceMultiplerNekovian(this.age)
+            default: return Character.ExperienceMultiplerHuman(this.age);
+        }
+
     }
 
     public getLife() {

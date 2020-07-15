@@ -21,6 +21,7 @@ const Nekovian = () => <>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
     <p>Nekovians move at double speed in water and can fly</p>
+    <p>Since Nekovians are small they have by default 1 less maximum life and their strength counts as 1 less for weapons</p>
     <table>
         <thead>
             <tr>

@@ -169,8 +169,8 @@ export const CharacterRollerShambra = () => {
     const [age, setAge] = useState(24);
     return <>
         Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsShambra(age)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplerShambra(age)}<br />
+    Starting Exp: {Character.CharacterPointsShambras(age)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplerShambras(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
             strength={getStrengthShambra(age)}

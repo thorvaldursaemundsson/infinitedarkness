@@ -76,82 +76,96 @@ const TraitSection = () => {
     </div>)
 }
 
-const CharacterTraits = () =>
-    <>
+const CharacterTraits: React.FC = (props) => {
+    const [trait, setRandomTrait] = useState('');
+
+    const Roll = () => {
+        const n = Math.floor((Math.random() * 100));
+        if (n <= 66)
+            setRandomTrait(`${personalityTraits[n]} (${n})`);
+        else setRandomTrait(`free choice (${n})`);
+    };
+
+    return (<>
         <h2>Character Traits</h2>
         <p>Character traits describe how your character acts, how you roleplay them. Note that there is always room for interpretation when roleplaying a character whos personality is summed up in 3-5 words. And there is always a choice for which trait to embody at any given time.<br />
         "it's how my character should act" is often not an accepted excuse if your roleplay disrupts the game or causes hurt feelings. Ultimately the player is always the author of the character and always fully responsible for their actions.<br />
         </p>
         <p>Roll 1d100 5 times, results 67-100 means free choice. Pick between 3 and 5, preferably at least one negative and at least one positive</p>
+        <button onClick={() => Roll()}>roll</button> {trait}
         <ol>
-            <li>Generous</li>
-            <li>Integrity</li>
-            <li>Loyal</li>
-            <li>Devoted</li>
-            <li>Loving</li>
-            <li>Kind</li>
-            <li>Sincere</li>
-            <li>Self-controlled</li>
-            <li>Peaceful</li>
-            <li>Faithful</li>
-            <li>Patient</li>
-            <li>Determined</li>
-            <li>Persistence</li>
-            <li>Adventurous</li>
-            <li>Fair</li>
-            <li>Cooperative</li>
-            <li>Tolerant</li>
-            <li>Optimistic</li>
-            <li>Spiritual</li>
-            <li>Dishonest</li>
-            <li>Disloyal</li>
-            <li>Unkind</li>
-            <li>Mean</li>
-            <li>Rude</li>
-            <li>Disrespectful</li>
-            <li>Impatient</li>
-            <li>Greedy</li>
-            <li>Abrasive</li>
-            <li>Pessimistic</li>
-            <li>Cruel</li>
-            <li>Unmerciful</li>
-            <li>Narcissitic</li>
-            <li>Obnoxious</li>
-            <li>Malicious</li>
-            <li>Petty</li>
-            <li>Quarrelsome</li>
-            <li>Selfish</li>
-            <li>Unforgiving</li>
-            <li>Dominant</li>
-            <li>Confident</li>
-            <li>Persuasive</li>
-            <li>Ambitious</li>
-            <li>Bossy</li>
-            <li>Resourceful</li>
-            <li>Decisive</li>
-            <li>Charismatic</li>
-            <li>Authority</li>
-            <li>Enthusiasm</li>
-            <li>Bold</li>
-            <li>Proactive</li>
-            <li>Playful</li>
-            <li>Zany</li>
-            <li>Active</li>
-            <li>Wild</li>
-            <li>Silly</li>
-            <li>Affectionate</li>
-            <li>Funny</li>
-            <li>Rough</li>
-            <li>Talkative</li>
-            <li>Rowdy</li>
-            <li>Smart</li>
-            <li>Fidgety</li>
-            <li>Shy</li>
-            <li>Lively</li>
-            <li>Impatient</li>
-            <li>Stubborn</li>
+            {personalityTraits.map(t => <li>{t}</li>)}
         </ol>
-    </>
+    </>);
+}
+const personalityTraits = [
+    'Generous',
+    'Integrity',
+    'Loyal',
+    'Devoted',
+    'Loving',
+    'Kind',
+    'Sincere',
+    'Self-controlled',
+    'Peaceful',
+    'Faithful',
+    'Patient',
+    'Determined',
+    'Persistence',
+    'Adventurous',
+    'Fair',
+    'Cooperative',
+    'Tolerant',
+    'Optimistic',
+    'Spiritual',
+    'Dishonest',
+    'Disloyal',
+    'Unkind',
+    'Mean',
+    'Rude',
+    'Disrespectful',
+    'Impatient',
+    'Greedy',
+    'Abrasive',
+    'Pessimistic',
+    'Cruel',
+    'Unmerciful',
+    'Narcissitic',
+    'Obnoxious',
+    'Malicious',
+    'Petty',
+    'Quarrelsome',
+    'Selfish',
+    'Unforgiving',
+    'Dominant',
+    'Confident',
+    'Persuasive',
+    'Ambitious',
+    'Bossy',
+    'Resourceful',
+    'Decisive',
+    'Charismatic',
+    'Authority',
+    'Enthusiasm',
+    'Bold',
+    'Proactive',
+    'Playful',
+    'Zany',
+    'Active',
+    'Wild',
+    'Silly',
+    'Affectionate',
+    'Funny',
+    'Rough',
+    'Talkative',
+    'Rowdy',
+    'Smart',
+    'Fidgety',
+    'Shy',
+    'Lively',
+    'Impatient',
+    'Stubborn'
+];
 
 
 export default SkillPerkManual;

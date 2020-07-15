@@ -58,7 +58,7 @@ const Reckless: Trait = {
 const Gifted: Trait = {
     name: 'gifted',
     cost: 80,
-    description: 'you are naturally gifted, gain +1 to your 4 lowest base stats',
+    description: 'you are naturally gifted and everything seems to come easier to you, gain +1 to your 4 lowest base stats, however your experience multiplier is reduced by 1 (min 1)',
     applyTo: '',
     amount: 0,
 }

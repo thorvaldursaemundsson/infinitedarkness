@@ -5,7 +5,7 @@ import Section from '../playermanual/Section';
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsShambra(index), mult: Character.ExperienceMultiplerShambra(index) };
+        return { age: index, exp: Character.CharacterPointsShambras(index), mult: Character.ExperienceMultiplerShambras(index) };
     });
 
 const Shambras: React.FC = () => {
@@ -26,11 +26,11 @@ const Shambras: React.FC = () => {
         <p>Shambras are a playable species, their stats depend greatly on their age</p>
         <p>Shambras take certain penalties as they grow older and bigger</p>
         <ul>
-            <li>Age 26-35: -2 defense, -4 climb and swim -6 climb</li>
-            <li>Age 36-50: -4 defense, -8 climb and swim -12 climb</li>
-            <li>Age 51-70: -6 defense, -12 climb and swim -18 climb</li>
-            <li>Age 71-100: -8 defense, -16 climb and swim -24 climb</li>
-            <li>Age 101+: -10 defense, -20 climb and swim -30 climb</li>
+            <li>Age 26-35: -2 defense, -4 climb and swim -6 jump</li>
+            <li>Age 36-50: -4 defense, -8 climb and swim -12 jump, +1 maximum life</li>
+            <li>Age 51-70: -6 defense, -12 climb and swim -18 jump, +1 maximum life</li>
+            <li>Age 71-100: -8 defense, -16 climb and swim -24 jump, +2 maximum life</li>
+            <li>Age 101+: -10 defense, -20 climb and swim -30 jump, +2 maximum life</li>
         </ul>
         <table>
             <thead>
