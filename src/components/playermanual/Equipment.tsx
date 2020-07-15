@@ -42,36 +42,48 @@ const Equipment: React.FC = () => {
                 <ul>
                     <li>
                         <b>Scope</b> reduces long range penalties to half when using snipe or aimed shot<br />
-                Weight +200g<br />
-                Cost +300c
-            </li>
+                        Weight +200g<br />
+                        Cost +300c
+                            </li>
                     <li>
                         <b>Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                Sound reduced by 75%<br />
-                Armor piercing reduced by 1 (minimum 0)<br />
-                Range reduced by 10%<br />
-                Cost bonus +400
-            </li>
+                        Sound reduced by 75%<br />
+                        Armor piercing reduced by 1 (minimum 0)<br />
+                        Range reduced by 10%<br />
+                        Cost bonus +400
+                    </li>
                     <li>
                         <b>Heavy Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                Sound reduced by 95%<br />
-                Armor Piercing reduced by 2 (minimum 0)<br />
-                Ragne reduced by 25%<br />
-                Cost bonus +500
-            </li>
+                        Sound reduced by 95%<br />
+                        Armor Piercing reduced by 2 (minimum 0)<br />
+                        Ragne reduced by 25%<br />
+                        Cost bonus +500
+                    </li>
                     <li>
                         <b>Laser Target</b> Adds a laser target which helps aiming<br />
-                Aim Bonus +2<br />
-                Everyone can see where you're aiming<br />
-                Cost bonus +600
-            </li>
+                        Aim Bonus +2<br />
+                        Everyone can see where you're aiming<br />
+                        Cost bonus +600
+                    </li>
                     <li>
                         <b>Heavy Stock</b> Improves recoil control<br />
-                Aim Bonus +1<br />
-                Damage bonus +1<br />
-                Weight bonus +40%<br />
-                Cost bonus +20%
-            </li>
+                        Aim Bonus +1<br />
+                        Damage bonus +1<br />
+                        Weight bonus +40%<br />
+                        Cost bonus +20%
+                    </li>
+                    <li>
+                        <b>Tripod</b> Reduces strength requirement, only avalable for rifles and machineguns<br />
+                        Strength requirement -2<br />
+                        Cost: 100c<br />
+                        Weight: 300g
+                    </li>
+                    <li>
+                        <b>Large Tripod</b> Reduces strength requirement, only avalable for rifles and machineguns<br />
+                        Strength requirement -3<br />
+                        Cost: 300c<br />
+                        Weight: 1kg
+                    </li>
                 </ul>
 
                 <h4>Ammunition</h4>
@@ -136,7 +148,7 @@ const Equipment: React.FC = () => {
                         <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
                         <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
                         <tr> <td> </td><td>0 c</td><td>0g</td><td> </td>  </tr>
-                        
+
                     </tbody>
                 </table>
             </Indexed>
@@ -252,6 +264,7 @@ const FirearmTable: React.FC<FirearmTableProps> = ({ data }) => {
                 <th>Range</th>
                 <th>Action</th>
                 <th>Ammo/Cap</th>
+                <th>Str req</th>
                 <th>Weight</th>
                 <th>Value</th>
             </tr>
@@ -277,6 +290,7 @@ const FireArmRow = (f: FireArm) => {
         <td>{f.range}</td>
         <td>{f.fireAction.join(', ')}</td>
         <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
+        <td>{f.strengthRequirement}</td>
         <td>{weightConverter(f.weight)}</td>
         <td>{f.value} c</td>
     </tr>

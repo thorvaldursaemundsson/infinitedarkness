@@ -1,6 +1,7 @@
 import Section from "./Section";
 import React from "react";
 import Indexer, { Indexed } from "../Indexer";
+import Firearms from "../skills/firearms";
 
 const Combat: React.FC = () => {
     return <Section title='Combat'>
@@ -68,25 +69,20 @@ const Combat: React.FC = () => {
                 <p>Blocking is an active action that can be done against melee attacks. You roll 2d10 + Combat (skill), if you successfully block then you only take half damage (round down)</p>
             </Indexed>
             <Indexed title='Ranged attacks and guns'>
-                <p>When you shoot someone your roll must hit the targets passive defense to hit.
-            Guns have multiple types of attacks, snipe shots, aimed shots, semi-burst, burst and oppressive fire</p>
-                <h5>Snipe shot</h5>
-                <p>A snipe shot is the slowest kind, you roll 2d10 + Fireams (skill), if you roll below 8 you do nothing (and your action is spent),
-                if you roll 8 or above you shoot. Available on lever action, bolt action, semi-automatic.
-            Requires concentration, no other action may be performed on the same round, multiple attacks prohibited</p>
-                <h5>Aimed shot</h5>
-                <p>Aimed shot is the simplest, you roll 2d10 + Firearms (skill) and shoot 1 bullet, available on lever action, bolt action, semi-automatic and pump action</p>
-                <h5>Semi-burst</h5>
-                <p>You shoot multiple bullets, you roll 2d10 + Firearms (skill) + 10, shoot 4 bullets,
-                if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits.
-            Available to semi-automatic guns only. Multiple attacks prohibited</p>
-                <h5>Burst</h5>
-                <p>You hold down fully-automatic for a short burst, you roll 2d10 + Firearms (skill) + 15, shoot 10 bullets,
-            if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits. Available only to fully-automatic guns. Multiple attacks prohibited</p>
-                <h5>Oppressive Fire</h5>
-                <p>You hold down fully-automatic for a long oppressive burst, the number of bullets depend on the gun,
-                you roll 2d10 + Firearms (skill) + 20, if you hit passive defense then 1 bullet hits, for each 5 points above passive defense 1 additional bullet hits.
-            Only available to fully-automatic guns. Requires concentration, no other action may be performed on the same round. Multiple attacks prohibited</p>
+                <p>
+                    When you shoot someone your roll must hit the targets passive defense to hit.
+                    Guns have multiple types of attacks, snipe shots, aimed shots, semi-burst, burst and oppressive fire
+                </p>
+                <p>Using a weapon that has a higher strength requirement imposes a burden to your aiming, penalty to aiming is 10x what you are missing</p>
+                {Firearms.useCases.map(uc => <>
+                    <h5>{uc.name} ({uc.attribute})</h5>
+                    <p>{uc.description}</p>
+                    <ul>
+                        {uc.results !== undefined ? uc.results.map(r => <li>{r}</li>) : null}
+                    </ul>
+                </>)}
+
+
             </Indexed>
             <Indexed title='Multiple attacks'>
                 <p>Characters may do more than two or more consecutive attacks in certain circumstances.</p>
