@@ -88,5 +88,12 @@ export const Suppressor = new PerkTemplate({
     description: 'when you use oppressive fire on a target they take -5 to all rolls even if they dont get hit'
 });
 
+export const RapidReload = new PerkTemplate({
+    name: 'rapid reload',
+    skill: 'firearms',
+    level: 1,
+    description: 'you may reload as a move action rather than a primary action'
+})
+
 export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization, 
-    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, Suppressor];
+    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, Suppressor, RapidReload];
