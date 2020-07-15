@@ -15,6 +15,12 @@ const useCases: UseCase[] = [
         type: 'passive'
     },
     {
+        name:'ride',
+        attribute: 'agility',
+        description: 'ride bicycle, ride horse, or spouse',
+        type: 'passive'
+    },
+    {
         name: 'run',
         attribute: 'endurance',
         description: 'how fast you run and how long you can run',
@@ -65,10 +71,10 @@ const useCases: UseCase[] = [
             '6+: climb very steep slope',
             '25+: climb rough wall',
             '60+: climb sheer wall',
-            'reduce difficulty by 5 if rope is present',
-            'reduce difficulty by 10 if knotted rope is present',
-            'increase difficulty by 5 if stuff is wet',
-            'increase difficulty by 10 if stuff is wet and windy',
+            'if using rope: +5 to roll',
+            'if using knotted rope: +10 to rope',
+            'if wet conditions: -5 to roll',
+            'if wet and windy conditions: -10 to roll',
         ],
         type: 'passive'
     },

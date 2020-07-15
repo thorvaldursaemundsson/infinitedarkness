@@ -24,7 +24,7 @@ const useCases: UseCase[] = [
             'Walk on slippery surface: 20-24: jog',
             'Walk on slippery surface: 25-29: run',
             'Walk on slippery surface: 30: unimpeded movement',
-            'Walk on tightrope: same as slippery but 5 points harder',
+            'Walk on tightrope: same as slippery but -5 to roll',
         ],
         type: 'active'
     },

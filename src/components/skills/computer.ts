@@ -5,6 +5,7 @@ const useCases: UseCase[] = [
         attribute: 'intelligence',
         description: 'hack into computers',
         results: [
+            'Improve chances with larceny (electronic lockpick): 25, add roll - 25 to larceny',
             'hack password: 24 or higher to succeed',
             'hack very secure password: 34 or higher to succeed',
         ],
@@ -34,8 +35,8 @@ const useCases: UseCase[] = [
             'search internet: 11-15 -> incomplete information',
             'search internet: 16-20 -> success',
             'search internet: 21-30 -> success and gain added insight',
-            'if information sought is esoteric add 5',
-            'if information sought is criminal or classified add 10'
+            'if information sought is esoteric add -5 to roll',
+            'if information sought is criminal or classified add -10 to roll'
         ],
         type: 'active'
     }
