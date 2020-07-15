@@ -89,3 +89,25 @@ td h5 {
 .bigtd {
     width: auto !important;
 }
+
+table.lifeboxes tbody tr td {
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+    border-left: none;
+    line-height: 15px;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+table.lifeboxes tbody tr td:first-child {
+    border-left: 1px solid black;
+}
+
+table.lifeboxes tbody tr {
+    height: 15px;
+    margin: 0;
+    padding: 0;
+}

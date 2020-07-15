@@ -272,6 +272,28 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 {/* page 2 */}
                 <tr>
+                    <td style={{ border: 'none' }} colSpan={6}>
+                        <table className='lifeboxes'>
+                            <thead>
+                                <tr>
+                                    <th colSpan={50}>Life</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                </tr>
+                                <tr>
+                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                </tr>
+                                <tr>
+                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
                     <td style={{ border: 'none' }} colSpan={3}>
                         <h4>Equipment</h4>
                     </td>
