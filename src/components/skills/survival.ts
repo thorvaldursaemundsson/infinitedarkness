@@ -4,6 +4,12 @@ const useCases: UseCase[] = [
         name: 'forage',
         attribute: 'intelligence',
         description: 'finding drinkable water, items and food in the wild',
+        results: [
+            'fish: 20',
+            'lay trap: 20',
+            'track animal: 25',
+            'find roots and froots: 30'
+        ],
         type: 'active'
     },
     {
