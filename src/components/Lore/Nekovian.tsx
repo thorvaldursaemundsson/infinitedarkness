@@ -20,6 +20,7 @@ const Nekovian = () => <>
     <p>Nekovians have very long arms, up to 2 meters span, with webbed skin both above and below. When stretched out their arms forms wings which allow them to glide in the air.</p>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
+    <p>Nekovians move at double speed in water and can fly</p>
     <table>
         <thead>
             <tr>

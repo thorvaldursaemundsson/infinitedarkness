@@ -23,6 +23,7 @@ const Merlions: React.FC = () => {
         <p>Vekons are slightly smaller, have good social awareness and empathy, merlions born from vekons are natural leaders.</p>
         <h3>Playing a Merlion</h3>
         <p>Merlions are a playable species but not recommended for new players, their stats are slightly affected by their age</p>
+        <p>Merlions gain trait "redolex" which increases all mental skills by +1 during combat</p>
         <table>
             <thead>
                 <tr>
