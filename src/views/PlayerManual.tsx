@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MakeCharacter from '../components/playermanual/MakeCharacter';
 import Combat from '../components/playermanual/Combat';
 import Equipment from '../components/playermanual/Equipment';
@@ -7,6 +7,7 @@ import Experience from '../components/playermanual/Experience';
 import Vehicles from '../components/playermanual/Vehicles';
 import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
+import { SpellsPerks } from '../components/perks/Spells';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -14,6 +15,8 @@ const PlayerManual: React.FC = () => {
         <p>This page is to help the player create characters and play the game, view each section below for more details.</p>
         <hr />
         <MakeCharacter key='pm1' />
+        <hr />
+        <Section title='Spell Roller'><SpellRoller key='pm9' /></Section>
         <hr />
         <CharacterSheetOverview key='pm2' />
         <hr />
@@ -61,5 +64,32 @@ const Health = () =>
         <h5>Recovery</h5>
         <p>Mental health recovery works similar to physical recovery, you recover 1 per day that you do not perform any highly stressful activity, in addition being exposed to a positive environment will increase it to 2 per day</p>
     </Section>;
+
+
+
+const SpellRoller: React.FC = (props) => {
+    const [rolls, setRolls] = useState<number[]>([]);
+    const DRollNot = (n: number) => {
+        while (true) {
+            let x = Math.floor(Math.random() * SpellsPerks.length);
+            if (x !== n) return x;
+        }
+    }
+    const Roll = () => {
+        const a = DRollNot(SpellsPerks.length + 1);
+        const b = DRollNot(a);
+        const c = DRollNot(b);
+        setRolls([a, b, c]);
+    };
+
+    return (<>
+        <p>When you want to acquire a supernatural ability, you roll over all spells and perks 3 times and pick one</p>
+        <button onClick={() => Roll()}>Roll</button>
+        <ol>
+            {rolls.map(r => <li>{SpellsPerks[r].name} ({r})</li>)}
+        </ol>
+    </>);
+}
+
 
 export default PlayerManual;
