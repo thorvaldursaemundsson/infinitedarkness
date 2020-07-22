@@ -30,7 +30,7 @@ const Shambras: React.FC = () => {
             <li>Age 36-50: -4 defense, -8 climb and swim -12 jump, +1 maximum life</li>
             <li>Age 51-70: -6 defense, -12 climb and swim -18 jump, +1 maximum life</li>
             <li>Age 71-100: -8 defense, -16 climb and swim -24 jump, +2 maximum life</li>
-            <li>Age 101+: -10 defense, -20 climb and swim -30 jump, +2 maximum life</li>
+            <li>Age 101+: -10 defense, -20 climb and swim -30 jump, +3 maximum life</li>
         </ul>
         <table>
             <thead>

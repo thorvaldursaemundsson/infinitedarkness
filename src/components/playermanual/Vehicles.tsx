@@ -5,6 +5,8 @@ import Section from "./Section";
 const Vehicles: React.FC = () => {
     return <Section title='Vehicles'>
         <h3>Vehicles</h3>
+
+        {VehicleTable(vehicles)}
         <table>
             <thead><tr>
                 <th>name</th><th>value</th><th>class</th><th>description</th>
@@ -41,5 +43,52 @@ const Vehicles: React.FC = () => {
         </table>
     </Section>
 }
+
+type Medium = 'land' | 'air' | 'water' | 'subwater' | 'space' | 'hyperspace';
+
+interface Vehicle {
+    medium: Medium[];
+    name: string;
+    passengers: number;
+    cargoKg: number;
+    fuelType: string[];
+    cost: number;
+}
+
+const vehicles:Vehicle[] = [
+    {
+        name: 'bicyle',
+        medium: ['land'],
+        passengers: 1,
+        cargoKg: 1,
+        fuelType: [],
+        cost: 1000,
+    }
+];
+
+const VehicleTable = (vehicles: Vehicle[]) =>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Passengers</th>
+                <th>Cargo</th>
+                <th>Fuel</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {vehicles.map(v => <tr>
+                <td>{v.name}</td>
+                <td>{v.medium.map(m => <span>{m}</span>)}</td>
+                <td>{v.passengers}</td>
+                <td>{v.cargoKg} kg</td>
+                <td>{v.fuelType.map(f => <span>{f}</span>)}</td>
+                <td>{v.cost}</td>
+            </tr>)}
+        </tbody>
+    </table>
+
 
 export default Vehicles;

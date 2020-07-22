@@ -122,7 +122,17 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Defense</label>
                     </td>
                     <td>
-                        <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
+                        <SmallLabel>
+                            <HideText txt={character.getBaseDefense()} explain={character.explain('basedefense')} isEdit={viewState} />
+                        </SmallLabel>
+                        /
+                        <SmallLabel>
+                            <HideText txt={character.getLowDefense()} explain={character.explain('lowdefense')} isEdit={viewState} />
+                        </SmallLabel>
+                        /
+                        <SmallLabel>
+                            <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
+                        </SmallLabel>
                     </td>
                     <td>
                         <label>Intelligence</label>
@@ -432,4 +442,8 @@ const Pad = (minSize: number, size: number) => {
         ar.push(counter);
     }
     return ar;
+}
+
+const SmallLabel: React.FC = ({ children }) => {
+    return <span className='smallLabel'>{children}</span>
 }

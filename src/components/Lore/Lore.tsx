@@ -7,6 +7,6 @@ import Humans from './Humans';
 import FringeWorlds from './FringeWorlds';
 import Nekovian from './Nekovian';
 import FTLHyperDrive from './FTLHyperDrive';
+import Credits from './Credits';
 
-
-export { History, Merlions, Shambra, SolSystem, CentauriSystem, Humans, FringeWorlds, Nekovian, FTLHyperDrive };
+export { History, Merlions, Shambra, SolSystem, CentauriSystem, Humans, FringeWorlds, Nekovian, FTLHyperDrive, Credits };

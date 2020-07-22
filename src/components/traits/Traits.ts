@@ -103,6 +103,46 @@ const Aggressive: Trait = {
     applyTo: ''
 }
 
+const YoungShambra: Trait = {
+    name: 'young shambra',
+    cost: 0,
+    description: 'all shambras age 26-35: -2 defense, -4 climb and swim, -6 jump',
+    amount: 0,
+    applyTo: ''
+}
+
+const JuvenileShambra: Trait = {
+    name: 'juvenile shambra',
+    cost: 0,
+    description: 'all shambras age 36-50: -4 defense, -8 climb and swim, -12 jump, +1 life',
+    amount: 0,
+    applyTo: ''
+}
+
+const AdultShambra: Trait = {
+    name: 'adult shambra',
+    cost: 0,
+    description: 'all shambras age 51-70: -6 defense, -12 climb and swim, -18 jump, +1 life',
+    amount: 0,
+    applyTo: ''
+}
+
+const MatureShambra: Trait = {
+    name: 'mature shambra',
+    cost: 0,
+    description: 'all shambras age 71-100: -8 defense, -16 climb and swim, -24 jump, +2 life',
+    amount: 0,
+    applyTo: ''
+}
+
+const VenerableShambra: Trait = {
+    name: 'Venerable shambra',
+    cost: 0,
+    description: 'all shambras age 100+: -10 defense, -20 climb and swim, -30 jump, +3 life',
+    amount: 0,
+    applyTo: ''
+}
+
 export const GetTraits = (): Trait[] & IHooker[] => {
     return [
         Coward,
@@ -116,6 +156,11 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         DoubleHanded,
         Phobia,
         WealthyFamily,
-        Aggressive
+        Aggressive,
+        YoungShambra,
+        JuvenileShambra,
+        AdultShambra,
+        MatureShambra,
+        VenerableShambra
     ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
 };

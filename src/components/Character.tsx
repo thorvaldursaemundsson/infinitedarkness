@@ -109,7 +109,32 @@ export class Character {
     public getPassiveDefense() {
         const combat = this.getSkillLevel('combat');
         const acrobatics = this.getSkillLevel('acrobatics');
-        return 10 + this.agility + Math.max(combat, acrobatics);
+        return this.getBaseDefense() + this.agility + Math.max(combat, acrobatics) + this.getHook('defense');
+    }
+
+    public getLowDefense() {
+        const combat = this.getSkillLevel('combat');
+        const acrobatics = this.getSkillLevel('acrobatics');
+        return this.getBaseDefense() + ((this.agility + Math.max(combat, acrobatics)) / 2) + this.getHook('defense');
+    }
+
+    public getBaseDefense() {
+        return 10 + this.getHook('baseDefense') + this.getRacial();
+    }
+
+    private getRacial() {
+        switch (this.species) {
+            case 'shambras':
+                if (this.age < 25) return 0;
+                if (this.age < 35) return -2;
+                if (this.age < 50) return -4;
+                if (this.age < 70) return -6;
+                if (this.age < 100) return -8;
+                return -10;
+            case 'nekovian': return 2;
+            case 'merlion': return 2;
+            default: return 0;
+        }
     }
 
     private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number) {
@@ -225,8 +250,18 @@ export class Character {
 
     }
 
+    private getRacialLife() {
+        switch (this.species) {
+            case 'shambras':
+                if (this.age < 70) return +1;
+                if (this.age > 100) return +2;
+                return 0;
+            default: return 0;
+        }
+    }
+
     public getLife() {
-        return this.strength + this.endurance * 2 + this.getHook('life');
+        return this.strength + this.endurance * 2 + this.getHook('life') + this.getRacialLife();
     }
 
     public getMana() {
@@ -275,7 +310,9 @@ export class Character {
             case 'species': return '';
             case 'pointsLeft': return 'points remaining';
             case 'experienceMultiplier': return 'exp bonus';
-            case 'passivedefense': return '10 + AGL + skill';
+            case 'basedefense': return '10 + mod';
+            case 'lowdefense': return 'skill/2';
+            case 'passivedefense': return 'skill';
             default: return '';
         }
     }
