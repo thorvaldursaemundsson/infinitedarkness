@@ -74,6 +74,13 @@ export const Marksman = new PerkTemplate({
     description: 'half range penalties, stacks with all other sources multiplicatively'
 });
 
+export const DeadEye = new PerkTemplate({
+    name: 'deadeye',
+    skill: 'firearms',
+    level: 3,
+    description: 'half range penalties, stacks with all other sources multiplicatively'
+});
+
 export const FastShooter = new PerkTemplate({
     name: 'fast shooter',
     skill: 'firearms',
@@ -95,5 +102,5 @@ export const RapidReload = new PerkTemplate({
     description: 'you may reload as a move action rather than a primary action'
 })
 
-export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization, 
-    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, Suppressor, RapidReload];
+export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization,
+    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, DeadEye, Suppressor, RapidReload];

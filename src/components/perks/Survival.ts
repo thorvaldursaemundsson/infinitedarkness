@@ -10,6 +10,27 @@ export const ImprovedForaging = new PerkTemplate({
     amount: 5
 });
 
+export const Fisher = new PerkTemplate({
+    name: 'fisher',
+    skill: 'survival',
+    level: 1,
+    description: 'Your character knows how to fish, gain +5 to all fishing rolls'
+});
+
+export const Hunter = new PerkTemplate({
+    name: 'hunter',
+    skill: 'survival',
+    level: 1,
+    description: 'Your character knows how to hunt, gain +5 to all hunting rolls'
+});
+
+export const Tracker = new PerkTemplate({
+    name:'tracker',
+    skill: 'survival',
+    level: 1,
+    description: 'Your character can track anything through the wilds, gain +5 to tracking'
+});
+
 export const BetterNavigation = new PerkTemplate({
     name: 'better navigation',
     skill: 'survival',

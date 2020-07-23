@@ -136,4 +136,5 @@ export const Beast = new PerkTemplate({
 });
 
 export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization,
-    MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, SneakAttack, Assassination, Disarm, DualWeaponFighter];
+    MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, SneakAttack, Assassination, Disarm, DualWeaponFighter,
+    Barbarian, Berzerker, Beast];

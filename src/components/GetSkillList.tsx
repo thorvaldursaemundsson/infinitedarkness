@@ -17,6 +17,7 @@ import Subtrefuge from './skills/subtrefuge';
 import Survival from './skills/survival';
 import Mechanics from './skills/mechanics';
 import Streetwise from './skills/streetwise';
+import Science from './skills/Science';
 
 export const GetSkillList = (): Skill[] => {
     return [
@@ -37,7 +38,8 @@ export const GetSkillList = (): Skill[] => {
         Subtrefuge,
         Survival,
         Streetwise,
-        Mechanics
+        Mechanics,
+        Science
 
     ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
 }
