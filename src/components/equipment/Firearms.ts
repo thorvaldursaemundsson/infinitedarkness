@@ -284,11 +284,11 @@ const Firearms: FireArm[] = [
 
     //energy weapons
     {
-        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: '1d8', range: '1800m', ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic'], armorpiercing: 0, hitbonus: 3, weight: 1100, value: 8000,
-        description: 'the only laser handgun'
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: '1d8', range: '1800m', ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic'], armorpiercing: 1, hitbonus: 3, weight: 1100, value: 8000,
+        description: 'the only laser handgun, needs protective gear to use, has blinding effect to all within 1 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: '1d10', range: '2000m', ammo: '1hec', strengthRequirement: 2, capacity: 100, fireAction: ['semi-automatic'], armorpiercing: 1, hitbonus: 3, weight: 3000, value: 12000,
+        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: '1d10', range: '2000m', ammo: '1hec', strengthRequirement: 2, capacity: 100, fireAction: ['semi-automatic'], armorpiercing: 2, hitbonus: 3, weight: 3000, value: 12000,
         description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
     },
     {
@@ -298,6 +298,10 @@ const Firearms: FireArm[] = [
     {
         fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: '6d6', range: '100m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 22000,
         description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters'
+    },
+    {
+        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: '4d6', range: '120m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 20000,
+        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters'
     }
 ];
 

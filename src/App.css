@@ -43,6 +43,34 @@ p {
     padding-left: 3px;
 }
 
+p:first-letter {
+    text-transform: capitalize;
+}
+
+h1:first-letter {
+    text-transform: capitalize;
+}
+
+h2:first-letter {
+    text-transform: capitalize;
+}
+
+h3:first-letter {
+    text-transform: capitalize;
+}
+
+h4:first-letter {
+    text-transform: capitalize;
+}
+
+h5:first-letter {
+    text-transform: capitalize;
+}
+
+label:first-letter {
+    text-transform: capitalize;
+}
+
 tr:hover {
     border-top: #aaaaaa 1px dashed;
     border-bottom: #aaaaaa 1px dashed;
@@ -232,4 +260,19 @@ tr.datatableclicker {
     cursor: pointer;
     border-top: 1px dotted blue;
     background-color: #dddddd !important;
+}
+
+table.datatable tbody tr td p {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h5.perkstitle {
+    margin-bottom: 4px;
+}
+
+p.perksdescription {
+    margin-top: 4px;
 }

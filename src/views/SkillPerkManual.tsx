@@ -46,9 +46,8 @@ const SkillSection = () => {
                 <Section tab={5} title='perks' border={true}>
                     <h4>Perks</h4>
                     {perks.filter(p => p.skill === skill.name).map(perk => <>
-                        <h5>{perk.name}</h5>
-                        <b>Cost</b>: {perk.level * 10}<br />
-                        {perk.description()}
+                        <h5 className='perkstitle'>{perk.name} ({perk.level * 10})</h5>
+                        <p className='perksdescription'>{perk.description()}</p>
 
                     </>)}
                 </Section>

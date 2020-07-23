@@ -17,14 +17,15 @@ const Wealth: React.FC = () => {
             <Indexed title='Wealth from age'>
 
                 <p>Additionally your character gets money from working and saving up over time. Gaining different amounts at different stages</p>
-                <li>
-                    <ul>Age 16-19: 50 c / year</ul>
-                    <ul>Age 20-29: 200 c / year</ul>
-                    <ul>Age 30-49: 400 c / year</ul>
-                    <ul>Age 50-69: 200 c / year</ul>
-                    <ul>Age 60-79: 100 c / year</ul>
-                    <ul>Age 80+: 50 c / year</ul>
-                </li>
+                <ul>
+                    <li>Age 16-19: 50 c / year</li>
+                    <li>Age 20-29: 200 c / year</li>
+                    <li>Age 30-49: 400 c / year</li>
+                    <li>Age 50-69: 200 c / year</li>
+                    <li>Age 60-79: 100 c / year</li>
+                    <li>Age 80+: 50 c / year</li>
+                </ul>
+                <WealthCalculator />
                 <p>This is then multiplied by your profession, keep in mind that your your character has different professions over different ages then you need to apply those per category</p>
                 <p>Professions also require a certain amount of skill point investment (perks count), with higher multiplier at higher rates</p>
                 <table>
@@ -175,6 +176,26 @@ const WealthRoller = () => {
         setSecondD100(Roll1D100());
     }
     return <><button onClick={() => ReRoll()}>Roll</button>{firstD100} x {secondD100} = {firstD100 * secondD100} c</>
+}
+
+const WealthCalculator: React.FC = () => {
+    const [age, setAge] = useState(24);
+    const [multiplier, setMultiplier] = useState(1);
+
+    let credits = 0;
+    for (let a = 0; a < age; a++) {
+        if (a < 16) continue;
+        else if (a < 20) credits += 50;
+        else if (a < 30) credits += 200;
+        else if (a < 50) credits += 400;
+        else if (a < 60) credits += 100;
+        else credits += 50;
+    }
+    return <>
+        <input style={{ width: '15%' }} value={age} type='text' onChange={(e) => setAge(parseInt(e.target.value))} ></input> age |
+        <input style={{ width: '15%' }} value={multiplier} type='text' onChange={(e) => setMultiplier(parseFloat(e.target.value))} ></input> multiplier<br />
+        Credits: {credits * multiplier}
+    </>;
 }
 
 export default Wealth;

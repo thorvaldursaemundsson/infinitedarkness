@@ -203,7 +203,7 @@ const vehicles: Vehicle[] = [
         cargoKg: 200,
         fuelType: ['electricity'],
         range: 700,
-        topSpeed: 400,
+        topSpeed: 120,
         acceleration: 18,
         cost: 30000,
         description: 'tiny electric cargoplane with low range and decent speed'
@@ -215,7 +215,7 @@ const vehicles: Vehicle[] = [
         cargoKg: 110,
         fuelType: ['electricity'],
         range: 1500,
-        topSpeed: 420,
+        topSpeed: 130,
         acceleration: 22,
         cost: 50000000,
         description: 'large airplane capable of medium range flight'
