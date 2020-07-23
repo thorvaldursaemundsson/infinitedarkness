@@ -223,3 +223,13 @@ a.notalink {
     color: black;
     cursor: auto;
 }
+
+table.datatable tbody tr {
+    background-color: white;
+}
+
+tr.datatableclicker {
+    cursor: pointer;
+    border-top: 1px dotted blue;
+    background-color: #dddddd !important;
+}
