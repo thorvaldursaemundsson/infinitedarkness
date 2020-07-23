@@ -26,6 +26,12 @@ const useCases: UseCase[] = [
             '50: you make an ephiphany and will be able to further the field of science (gain free correct hypothesis)'
         ],
         type: 'active'
+    },
+    {
+        name: 'analyse life',
+        attribute: 'perception',
+        description: 'the scientist determines species, age, sex and abilities of a plant of creature',
+        type: 'active'
     }
 ];
 const Science = new SkillTemplate('science', 'knowing science, conducting experiments', useCases);
