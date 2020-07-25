@@ -41,6 +41,9 @@ body {
 
 p {
     padding-left: 3px;
+    text-align: justify;
+    text-justify: auto;
+    padding-right: 2px;
 }
 
 p:first-letter {
