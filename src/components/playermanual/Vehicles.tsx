@@ -309,6 +309,20 @@ const vehicles: Vehicle[] = [
         '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
     },
     {
+        name: 'long range spaceship',
+        medium: ['space'],
+        passengers: 80,
+        cargoKg: 500000,
+        fuelType: ['electricity'],
+        range: 0,
+        topSpeed: 26000000,
+        acceleration: 5,
+        cost: 32000000,
+        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.5g for 60 days without refueling, '+
+        'virtually unlimited range within a solar system, but in particular designed for extreme range and interception. '+
+        '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
+    },
+    {
         name: 'large spaceship',
         medium: ['space'],
         passengers: 1000,
@@ -348,7 +362,7 @@ const vehicles: Vehicle[] = [
         cost: 1500000000,
         description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling,'+
         ' virtually unlimited range within a solar system, can enter hyperspace and travel up to 50 times the speed of light. '+
-        '200,000 metric ton dry mass, 480m long, 61m radius, 8300 metric ton fusion fuel'
+        '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel'
     },
 ];
 
