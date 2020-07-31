@@ -3,9 +3,9 @@ import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
 import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
-import Armors from "../equipment/Armors";
 import Ellipsis from "../Ellipsis";
 import Indexer, { Indexed } from "../Indexer";
+import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData } from "../equipment/Armors";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -106,23 +106,14 @@ const Equipment: React.FC = () => {
             </Indexed>
             <Indexed title='Body Armors'>
                 <p>Armors come in many forms, anything that offers either damage reduction or armor penalty counts as body armor. Damage reduction is applied to any incoming damage, armor penalty is applied to all agility based rolls. Every time an armor fails to absorb all damage it loses damage reduction by 1. If it hits 0 then it is no longer able to offer protection</p>
-                <table>
-                    <thead><tr>
-                        <th>name</th><th>damage reduction</th><th>armor penalty</th><th>value</th><th>weight</th><th>description</th>
-                    </tr></thead>
-                    <tbody>
-                        {Armors.map(armor => {
-                            return <tr>
-                                <td> {armor.name} </td>
-                                <td> {armor.damageReduction} </td>
-                                <td> {armor.armorPenalty} </td>
-                                <td> {armor.value} </td>
-                                <td> {weightConverter(armor.weight)} </td>
-                                <td> {armor.description} </td>
-                            </tr>
-                        })}
-                    </tbody>
-                </table>
+                <p>Armor have up to three layers, the inner body suit, the armor plates and the power armor frame</p>
+                <ArmorCrafter />
+                <h5>Body Suit</h5>
+                <ArmorTable armors={bodySuits} />
+                <h5>Armor Plates</h5>
+                <ArmorTable armors={armorPlates} />
+                <h5>Power Armor Frame</h5>
+                <ArmorTable armors={powerArmors} />
             </Indexed>
             <Indexed title='Tools'>
                 <table>
@@ -131,7 +122,7 @@ const Equipment: React.FC = () => {
                     </tr></thead>
                     <tbody>
                         <tr> <td>Pocket Computer</td><td>2000 c</td><td>1kg</td><td>Basically a futuristic smartphone.
-                            Allows user to substitute computer roll for any knowledge roll.<br/>
+                            Allows user to substitute computer roll for any knowledge roll.<br />
                             10TB storage, 12x 5.5GH cpu cores, 512GB ram, 4 cameras, gyrometer, accelerometer, geigercounter, radiobooster. 48h battery
                             </td> </tr>
                         <tr> <td>Jetpack</td><td>14000 c</td><td>6kg</td><td>Allows for short bursts which propel the user. Jump +50 meters up, +100 meters forward, prevents fall damage</td> </tr>
@@ -200,7 +191,127 @@ const Equipment: React.FC = () => {
 
     </Section>);
 }
+interface IArmorTableProps {
+    armors: ArmorData[];
+}
 
+const armorThSizeWide: CSSProperties = {
+    width: '30%'
+}
+
+const ArmorTable: React.FC<IArmorTableProps> = ({ armors }) => {
+    return <table>
+        <thead>
+            <tr>
+                <th style={armorThSizeWide}>Name</th>
+                <th style={armorThSizeWide}>Damage Absorbtion</th>
+                <th>Mod</th>
+                <th>Cost</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            {armors.map(bs => <ArmorRow armor={bs}></ArmorRow>)}
+        </tbody>
+    </table>;
+}
+interface IArmorRow {
+    armor: ArmorData;
+}
+const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
+    const [descriptionOpen, setDescriptionOpen] = useState(false);
+    let extra = '';
+    if (armor.armorType === 'powerArmor') {
+        const pa: PowerArmor = armor as PowerArmor;
+        extra = `| ${pa.strengthMod} | ${pa.perceptionMod}`;
+    }
+    if (descriptionOpen)
+        return <>
+            <tr onClick={() => setDescriptionOpen(false)}>
+                <td>{armor.name}</td>
+                <td>{armor.damageAbsorbtion}</td>
+                <td>{armor.agilityMod} {extra}</td>
+                <td>{armor.cost}</td>
+                <td>{armor.weight}</td>
+            </tr>
+            <tr><td colSpan={5}><Ellipsis text={armor.description} cutOff={120}></Ellipsis></td></tr>
+        </>;
+    else
+        return (<tr onClick={() => setDescriptionOpen(true)}>
+            <td>{armor.name}</td>
+            <td>{armor.damageAbsorbtion}</td>
+            <td>{armor.agilityMod} {extra} </td>
+            <td>{armor.cost}</td>
+            <td>{armor.weight}</td>
+        </tr>);
+}
+
+const ArmorCrafter: React.FC = () => {
+    const [bodySuit, setBodySuit] = useState<BodySuit | undefined>(undefined);
+    const [armorPlate, setArmorPlate] = useState<ArmorPlate | undefined>(undefined);
+    const [powerArmor, setPowerArmor] = useState<PowerArmor | undefined>(undefined);
+
+    let defense = 0;
+    let cost = 0;
+    let weight = 0;
+    let agilityMod = 0;
+    let strengthMod = 0;
+    let perceptionMod = 0;
+    if (bodySuit !== undefined) {
+        defense += bodySuit.damageAbsorbtion;
+        cost += bodySuit.cost;
+        weight += bodySuit.weight;
+        agilityMod += bodySuit.agilityMod;
+    }
+    if (armorPlate !== undefined) {
+        defense += armorPlate.damageAbsorbtion;
+        cost += armorPlate.cost;
+        weight += armorPlate.weight;
+        agilityMod += armorPlate.agilityMod;
+    }
+    if (powerArmor !== undefined) {
+        defense += powerArmor.damageAbsorbtion;
+        cost += powerArmor.cost;
+        weight += powerArmor.weight;
+        agilityMod += powerArmor.agilityMod;
+        strengthMod += powerArmor.strengthMod;
+        perceptionMod += powerArmor.perceptionMod;
+    }
+
+    return (<div>
+        <p>Customize an armor</p>
+        <select onChange={(e) => setBodySuit(bodySuits.find(f => f.name === e.target.value))}>
+            <option selected={null === bodySuit}>none</option>
+            {bodySuits.map(bs => <option value={bs.name} selected={bodySuit !== undefined && bs.name === bodySuit.name}>
+                {bs.name}
+            </option>)}
+        </select>
+        <select onChange={(e) => setArmorPlate(armorPlates.find(f => f.name === e.target.value))}>
+            <option selected={null === armorPlate}>none</option>
+            {armorPlates.map(ap => <option value={ap.name} selected={armorPlate !== undefined && ap.name === armorPlate.name}>
+                {ap.name}
+            </option>)}
+        </select>
+        <select onChange={(e) => setPowerArmor(powerArmors.find(f => f.name === e.target.value))}>
+            <option selected={null === powerArmor}>none</option>
+            {powerArmors.map(pa => <option value={pa.name} selected={powerArmor !== undefined && pa.name === powerArmor.name}>
+                {pa.name}
+            </option>)}
+        </select>
+        <div className='divcol2'>
+            <div>
+                <b>Damage Absorbtion:</b> {defense}<br />
+                <b>Cost:</b> {cost} credits <br />
+                <b>Weight:</b> {weight} kg
+            </div>
+            <div>
+                <b>Agility mod</b>: {agilityMod}<br />
+                <b>Strength mod</b>: {strengthMod}<br />
+                <b>Perception mod</b>: {perceptionMod}
+            </div>
+        </div>
+    </div>);
+}
 
 const weightConverter = (grams: number) => {
     if (grams < 1000) return `${grams.toFixed(0)}g`;

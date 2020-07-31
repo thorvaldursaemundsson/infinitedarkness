@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from '../components/playermanual/Section';
 import Guidelines from '../components/gamemaster/Guidelines';
+import Experience from '../components/gamemaster/Experience';
 
 
 const GameMaster: React.FC = () => {
@@ -9,6 +10,9 @@ const GameMaster: React.FC = () => {
         <p>This holds a collection of tools for the game master</p>
         <Section title='Guidelines'>
             <Guidelines />
+        </Section>
+        <Section title='Experience'>
+            <Experience />
         </Section>
     </div>);
 }
