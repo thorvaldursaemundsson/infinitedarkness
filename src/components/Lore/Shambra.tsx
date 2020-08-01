@@ -24,13 +24,13 @@ const Shambras: React.FC = () => {
         <p>The oldest shambras are several hundred years old and stand 4 meters tall, they can only move around using both their legs and upper arms due to their sheer mass</p>
         <h3>Playing as a shambra</h3>
         <p>Shambras are a playable species, their stats depend greatly on their age</p>
-        <p>Shambras take certain penalties as they grow older and bigger</p>
+        <p>Shambras take certain penalties as they grow older and bigger, players that are close to a previous or next age limit may choose to take adjecent effects instead</p>
         <ul>
             <li>Age 26-35: -2 defense, -4 climb and swim -6 jump</li>
             <li>Age 36-50: -4 defense, -8 climb and swim -12 jump, +1 maximum life</li>
-            <li>Age 51-70: -6 defense, -12 climb and swim -18 jump, +1 maximum life</li>
-            <li>Age 71-100: -8 defense, -16 climb and swim -24 jump, +2 maximum life</li>
-            <li>Age 101+: -10 defense, -20 climb and swim -30 jump, +3 maximum life</li>
+            <li>Age 51-70: -6 defense, -12 climb and swim -18 jump, +1 maximum life, carry capacity and strength req +1 strength</li>
+            <li>Age 71-100: -8 defense, -16 climb and swim -24 jump, +2 maximum life, carry capacity and strength req +1 strength</li>
+            <li>Age 101+: -10 defense, -20 climb and swim -30 jump, +3 maximum life, carry capacity and strength req +2 strength</li>
         </ul>
         <table>
             <thead>

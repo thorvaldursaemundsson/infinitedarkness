@@ -26,7 +26,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 3,
         weight: 30,
         cost: 3500,
-        agilityMod: -2,
+        agilityMod: -1,
         description: 'Composite armor made primarily of nylon and polyester, thick layers give stab and cut protection',
         armorType: 'bodySuit'
     },
