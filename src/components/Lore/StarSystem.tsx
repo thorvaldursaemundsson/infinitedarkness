@@ -1,15 +1,11 @@
 import React from 'react';
 import Ellipsis from '../Ellipsis';
-import { IStellarRendererProps } from './ThreeRenderer';
-//import StellarRenderer from './StellarRenderer';
-
 interface IHeavelyBody {
 
     mass: number;
     age: number;
     name: string;
     description: string;
-    threed?: IStellarRendererProps;
 }
 
 interface IStarSystem {
