@@ -47,7 +47,6 @@ const App: React.FC = () => {
           </p>
           <p>No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid</p>
 
-          <Threejs />
         </Conditional>
         <Conditional shouldView={viewMode === characterSheet}>
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
