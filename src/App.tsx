@@ -3,6 +3,7 @@ import './App.css';
 import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
+import Threejs from './components/Threejs';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
@@ -44,6 +45,8 @@ const App: React.FC = () => {
           Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
           </p>
           <p>No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid</p>
+
+          <Threejs />
         </Conditional>
         <Conditional shouldView={viewMode === characterSheet}>
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />

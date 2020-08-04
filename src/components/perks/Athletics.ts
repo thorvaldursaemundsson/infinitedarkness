@@ -80,4 +80,11 @@ export const SupremeFortitude = new PerkTemplate({
     amount: 4
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude];
+export const StrongBack = new PerkTemplate({
+    name: 'strong back',
+    skill: 'athletics',
+    level: 1,
+    description: 'Your strength counts as +2 for the purposes of carrying capacity'
+});
+
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude,StrongBack];

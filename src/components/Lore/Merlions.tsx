@@ -25,7 +25,7 @@ const Merlions: React.FC = () => {
         <p>Merlions are a playable species but not recommended for new players, their stats are slightly affected by their age</p>
         <p>Merlions gain trait "redolex" which increases all mental skills by +1 during combat</p>
         <p>Merlions gain trait "manaless" which locks them out of spells, they gain +2 to all resistence against spells</p>
-        <p>Since Merlions are small they have by default 1 less maximum life and their strength counts as 1 less for weapons</p>
+        <p>Since Merlions are small they have by default 1 less maximum life and their strength counts as 1 less for weapons and carrying capacity</p>
         <table>
             <thead>
                 <tr>

@@ -100,6 +100,13 @@ export const RapidReload = new PerkTemplate({
     skill: 'firearms',
     level: 1,
     description: 'you may reload as a move action rather than a primary action'
+});
+
+export const HeavyHandle = new PerkTemplate({
+    name: 'heavy handle',
+    skill: 'firearms',
+    level: 1,
+    description: 'your strength counts as +2 higher for the purposes of meeting strength requirements on firearms'
 })
 
 export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization,

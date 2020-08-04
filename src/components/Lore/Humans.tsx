@@ -41,7 +41,7 @@ const Humans: React.FC = () => {
                     <td> INT</td>  <td>1d10</td>  <td>1d10</td>  <td>1d10</td>  <td>1d8</td>
                 </tr>
                 <tr>
-                    <td> WILL</td>  <td>1d6</td>  <td>1d6</td>  <td>1d10</td>  <td>1d8</td>
+                    <td> WILL</td>  <td>1d6</td>  <td>1d8</td>  <td>1d10</td>  <td>1d8</td>
                 </tr>
             </tbody>
         </table>

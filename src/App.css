@@ -44,6 +44,7 @@ p {
     text-align: justify;
     text-justify: auto;
     padding-right: 2px;
+    text-indent: 1.5mm;
 }
 
 p:first-letter {

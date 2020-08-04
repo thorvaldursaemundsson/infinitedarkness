@@ -1,105 +1,188 @@
-import Item from "./Item";
-
-
-interface IArmor extends Item {
-    armorPenalty: number;
-    damageReduction: number;
-}
-
-class Armor implements IArmor {
-    armorPenalty: number;
-    damageReduction: number;
-    weight: number;
-    value: number;
-    description?: string | undefined;
+export interface ArmorData {
     name: string;
-    constructor(name: string, armorPenalty: number, damageReduction: number, weight: number, value: number, description: string | undefined) {
-        this.name = name;
-        this.armorPenalty = armorPenalty;
-        this.damageReduction = damageReduction;
-        this.weight = weight;
-        this.value = value;
-        this.description = description;
-    }
+    damageAbsorbtion: number;
+    weight: number;
+    cost: number;
+    agilityMod: number;
+    description: string;
+    armorType:string;
+}
+
+export interface BodySuit extends ArmorData {
+}
+
+export interface ArmorPlate extends ArmorData {
+}
+
+export interface PowerArmor extends ArmorData {
+    strengthMod: number;
+    perceptionMod: number;
 }
 
 
-const Armors: Armor[] = [
-
-
+const bodySuits: BodySuit[] = [
     {
-        name: "heavy jacket",
-        damageReduction: 2,
-        armorPenalty: -2,
-        value: 2000,
-        weight: 4000,
-        description: "Most winter jackets, thick layers of clothing, etc counts in this category. Also tends to protect against exposure",
+        name: 'Nylon Polyester Composite',
+        damageAbsorbtion: 3,
+        weight: 30,
+        cost: 3500,
+        agilityMod: -1,
+        description: 'Composite armor made primarily of nylon and polyester, thick layers give stab and cut protection',
+        armorType: 'bodySuit'
     },
     {
-        name: "soft kevlar vest",
-        damageReduction: 3,
-        armorPenalty: 0,
-        value: 4000,
-        weight: 1000,
-        description: "Soft thin kevlar fabric made from nylon-like polymers gives some protection, comes with combat helmet.",
+        name: 'Kevlar',
+        damageAbsorbtion: 2,
+        weight: 15,
+        cost: 4500,
+        agilityMod: 0,
+        description: 'Heat resistant synthetic fiber, woven into a flexible and light body suit',
+        armorType: 'bodySuit'
     },
     {
-        name: "ceramic plated kevlar body armor",
-        damageReduction: 8,
-        armorPenalty: -1,
-        value: 10000,
-        weight: 3000,
-        description: "Soft kevlar over light ceramic plates gives strong protection from all sources, comes with combat helmet with face guard.",
+        name: 'Carbon Reinforced Kevlar',
+        damageAbsorbtion: 3,
+        weight: 25,
+        cost: 6000,
+        agilityMod: -1,
+        description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
+        armorType: 'bodySuit'
     },
     {
-        name: "titan alloy plated kevlar body armor",
-        damageReduction: 10,
-        armorPenalty: -1,
-        value: 11000,
-        weight: 5000,
-        description: "Soft kevlar over light ceramic plates gives strong protection from all sources, comes with combat helmet with face guard.",
+        name: 'Carbon Fiber Weave',
+        damageAbsorbtion: 5,
+        weight: 40,
+        cost: 12000,
+        agilityMod: -2,
+        description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
+        armorType: 'bodySuit'
     },
     {
-        name: "carbon polymer suit",
-        damageReduction: 6,
-        armorPenalty: 0,
-        value: 9000,
-        weight: 2000,
-        description: "thin and flexible and very strong vest that offers maximum protection without interfering with any movement and can be worn under clothes",
-    },
-    {
-        name: "Powered exoskeleton",
-        damageReduction: 4,
-        armorPenalty: 1,
-        value: 12000,
-        weight: 5000,
-        description: "Exoskeletal frame worn over body that helps movement and offers some protection, increases strength by +1 up to 7",
-    },
-    {
-        name: "Powered Armor",
-        damageReduction: 10,
-        armorPenalty: 1,
-        value: 22000,
-        weight: 7000,
-        description: "Heavy exoskeletal frame with cermic plates to offer additional protection, increases strength by +2 up to 8",
-    },
-    {
-        name: "Titanic Power Armor",
-        damageReduction: 15,
-        armorPenalty: -1,
-        value: 36000,
-        weight: 9000,
-        description: "A personal tank suit is more like a person shaped tank you enter than a body armor, offers complete environmental protection, increases strength by +3 up to 9",
-    },
-    {
-        name: "Merlion warrior armor",
-        damageReduction: 12,
-        armorPenalty: 3,
-        value: 52000,
-        weight: 4000,
-        description: "Light exoskeletal frame covered by a complex and extremely durable alloy wireframe, offers substantial movement benefits as well as +3 strength and +2 perception",
-    },
-
+        name: 'Nanotube Superstructure Fiber',
+        damageAbsorbtion: 6,
+        weight: 20,
+        cost: 40000,
+        agilityMod: -1,
+        description: 'A kevlar body suit reinforced with graphene nanotube super structures which gives protection against most attacks',
+        armorType: 'bodySuit'
+    }
 ];
 
-export default Armors;
+const armorPlates: ArmorPlate[] = [
+    {
+        name: 'Hard Plast Plates',
+        damageAbsorbtion: 2,
+        weight: 10,
+        cost: 2500,
+        agilityMod: -1,
+        description: 'Hard but elastic plastic plates which reflect impacts, very durable',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Ceramic Plates',
+        damageAbsorbtion: 4,
+        weight: 12,
+        cost: 3500,
+        agilityMod: -1,
+        description: 'Very hard ceramic plates which absorb a lot of damage, however each time the damage is exceeded they lose 1 damage absorbtion. These are replaced after every combat',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Steel Plates',
+        damageAbsorbtion: 5,
+        weight: 16,
+        cost: 4000,
+        agilityMod: -2,
+        description: 'High carbon hardened steel plates, very strong but also heavy',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Titan Alloy Plates',
+        damageAbsorbtion: 6,
+        weight: 16,
+        cost: 8000,
+        agilityMod: -2,
+        description: 'An alloy of titanium and gold, significantly stronger than steel. And significantly more expensive',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Hyper Nanostructure Plates',
+        damageAbsorbtion: 7,
+        weight: 12,
+        cost: 12000,
+        agilityMod: -1,
+        description: 'Titan alloy reinforced by a weave of graphene nanotube super structure',
+        armorType: 'armorPlate'
+    },
+]
+
+const powerArmors: PowerArmor[] = [
+    {
+        name: 'Exo-Servos',
+        damageAbsorbtion: 0,
+        weight: 6,
+        cost: 4000,
+        agilityMod: 1,
+        perceptionMod: 0,
+        strengthMod: 1,
+        description: 'Servos placed on joints aid movement speed, agility and strength',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Exoskeletal Frame',
+        damageAbsorbtion: 1,
+        weight: 16,
+        cost: 7000,
+        agilityMod: 1,
+        perceptionMod: 0,
+        strengthMod: 3,
+        description: 'Frame around the body grants greater strength, speed and agility',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Scout Frame',
+        damageAbsorbtion: 1,
+        weight: 18,
+        cost: 8000,
+        agilityMod: 3,
+        perceptionMod: 0,
+        strengthMod: 2,
+        description: 'Advanced frame around the body, which grants great mobility and strength',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Powered Armor',
+        damageAbsorbtion: 4,
+        weight: 20,
+        cost: 9000,
+        agilityMod: 1,
+        perceptionMod: 1,
+        strengthMod: 4,
+        description: 'This armor frame encapsulates the entire body and greats great strength, as well as visual prowess and mobility',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Titan Power Armor',
+        damageAbsorbtion: 5,
+        weight: 24,
+        cost: 12000,
+        agilityMod: 1,
+        perceptionMod: 1,
+        strengthMod: 5,
+        description: 'This armor frame is almost a vehicle, the strength bonus it grants is beyond belief',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Merlion Warrior Armor',
+        damageAbsorbtion: 4,
+        weight: 20,
+        cost: 15000,
+        agilityMod: 2,
+        perceptionMod: 2,
+        strengthMod: 2,
+        description: 'The fabled merlion warrior armor frame grants a balanced bonus to visual prowess, mobility and strength',
+        armorType: 'powerArmor'
+    },
+]
+
+export { bodySuits, armorPlates, powerArmors }

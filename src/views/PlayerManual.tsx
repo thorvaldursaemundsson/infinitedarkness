@@ -8,6 +8,7 @@ import Vehicles from '../components/playermanual/Vehicles';
 import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
 import { SpellsPerks } from '../components/perks/Spells';
+import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -27,6 +28,8 @@ const PlayerManual: React.FC = () => {
         <Combat key='pm5' />
         <hr />
         <Equipment key='pm6' />
+        <hr/>
+        <CarryingCapacity key='pmcc' />
         <hr />
         <Vehicles key='pm7' />
         <hr />

@@ -1,7 +1,7 @@
 import React from 'react';
 import StarSystem from './StarSystem';
 
-const SolSystem = () => <StarSystem
+const SolSystem = () => <StarSystem key='solsystem'
     stars={[
         {
             name: 'Sun',
@@ -9,6 +9,10 @@ const SolSystem = () => <StarSystem
             age: 4.6,
             description: "Obviously nobody lives on the sun...yet, this however is the place of many Hypermatter factories, in close orbit these massive structures siphon energy from the super hot corona and produce Hypermatter, this is transported to Venus where it can be sold at astronomical cost.",
             classification: 'G',
+            threed: {
+                backgroundColor: 'black',
+                sphereColor: '#FFCCCC'
+            },
             planetoids: [{
                 name: 'Mercury',
                 classification: 'rocky',

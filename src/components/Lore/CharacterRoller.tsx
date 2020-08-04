@@ -111,6 +111,7 @@ const getIntelligenceHuman = (age: number) => {
 const getWillpowerHuman = (age: number) => {
     if (age > 80) return { sides: 8, numberOfDice: 1 };
     if (age > 40) return { sides: 10, numberOfDice: 1 };
+    if (age > 26) return { sides: 8, numberOfDice: 1 };
     return { sides: 6, numberOfDice: 1 };
 }
 

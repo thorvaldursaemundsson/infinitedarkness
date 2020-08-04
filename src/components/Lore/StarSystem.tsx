@@ -1,6 +1,5 @@
 import React from 'react';
 import Ellipsis from '../Ellipsis';
-
 interface IHeavelyBody {
 
     mass: number;
@@ -37,10 +36,13 @@ const StarSystem: React.FC<IStarSystem> = ({ stars, roguePlanetoids, name, descr
     <>
         <h3>{name}</h3>
         <i>{description}</i>
-        {stars.map(star => Star(star))}
+        {stars.map(star => <Star key={'star_'+star.name} star={star} />)}
     </>;
 
-const Star = (star: IStar) => <>
+interface IStarProps {
+    star:IStar;
+}
+const Star:React.FC<IStarProps> = ({star}) => <>
     <h4>{star.name} - {star.classification} class Star</h4>
     <div className="divcol2">
         <div>{star.description}</div>
@@ -49,13 +51,18 @@ const Star = (star: IStar) => <>
             <b>age: </b>{star.age} billion years old
     </div>
     </div>
-
-    {star.planetoids.map(planet => Planet(planet, 0))}
+    {/*star.threed !== undefined ? <StellarRenderer key={`${star.name}${star.classification}`} {...star.threed} /> : null*/}
+    {star.planetoids.map(planet => <Planet key={'plan_'+planet.name} planet={planet} gen={0} />)}
 </>;
 const descriptionCuttOff = 400;
-const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `${planet.name} - ${planet.classification}`)}
+
+interface IPlanetProps {
+    planet:IPlanetoid;
+    gen:number;
+}
+const Planet:React.FC<IPlanetProps> = ({planet, gen}): JSX.Element => <> {HGen(gen, `${planet.name} - ${planet.classification}`)}
     <div className="divcol2">
-        <div><Ellipsis text={planet.description} cutOff={descriptionCuttOff} /></div>
+        <div><Ellipsis key={`${planet.name}${planet.classification}`} text={planet.description} cutOff={descriptionCuttOff} /></div>
         <div>
             <b>Surface gravity</b>: {planet.surfaceGravity}g<br />
             <b>Average temperature range</b>: {planet.temperatureRange}c<br />
@@ -67,7 +74,8 @@ const Planet = (planet: IPlanetoid, gen: number): JSX.Element => <> {HGen(gen, `
             {planet.feature && <><b>Feature</b>: {planet.feature}</>}
         </div>
     </div>
-    {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => Planet(sat, gen + 1))}</> : null}
+    {/*planet.threed !== undefined ? <StellarRenderer key={`d3${planet.name}${planet.classification}`} {...planet.threed} /> : null*/}
+    {planet.satelites.length > 0 ? <><b>Satelites</b> <br /> {planet.satelites.map(sat => <Planet key={'sat_'+sat.name} planet={sat} gen={gen+1} />)}</> : null}
 </>;
 
 const HGen = (gen: number, children: string) => {
