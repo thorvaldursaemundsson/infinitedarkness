@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
+import usePersistentState from "../../utils/usePersistentState";
 
 interface ISection {
     title: string;
@@ -8,7 +9,7 @@ interface ISection {
 }
 
 const Section: React.FC<ISection> = ({ title, tab, border, children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = usePersistentState<boolean>(title + tab, false);
     let tabSize = '0';
     if (tab !== undefined)
         tabSize = tab + 'px';

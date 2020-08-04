@@ -4,6 +4,7 @@ import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
 import Threejs from './components/Threejs';
+import usePersistentState from './utils/usePersistentState';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
@@ -12,7 +13,7 @@ const PlayerManual = lazy(() => import('./views/PlayerManual'));
 
 const App: React.FC = () => {
   const main = 'main';
-  const [viewMode, setViewMode] = useState(main);
+  const [viewMode, setViewMode] = usePersistentState<string>(main, main);
   const [character, setCharacter] = useState(new Character());
   const characterSheet = 'Character Sheet';
   const playerManual = 'Player Manual';
