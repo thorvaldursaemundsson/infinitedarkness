@@ -16,6 +16,8 @@ export interface IHooker {
     amount: number;
 }
 
+export type CharacterSize = 'tiny'|'small'|'medium'|'large'|'huge';
+
 export interface ICharacter {
     name: string;
     species: string;
@@ -31,6 +33,7 @@ export interface ICharacter {
     skills: Skill[];
     perks: Perk[];
     traits: Trait[];
+    size: CharacterSize;
 }
 
 export class Character {
@@ -48,6 +51,7 @@ export class Character {
     skills: Skill[];
     perks: Perk[];
     traits: Trait[];
+    size: CharacterSize;
     constructor(copy?: ICharacter) {
         this.name = (copy && copy.name) || "";
         this.species = (copy && copy.species) || "";
@@ -64,6 +68,7 @@ export class Character {
         if (copy !== undefined && copy.perks !== undefined) this.perks = copy.perks;
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
+        this.size = (copy && copy.size) || 'medium';
     }
 
     public getCharacterPointsCostPerks() {
@@ -119,20 +124,16 @@ export class Character {
     }
 
     public getBaseDefense() {
-        return 10 + this.getHook('baseDefense') + this.getRacial();
+        return 10 + this.getHook('baseDefense') + this.getSize();
     }
 
-    private getRacial() {
-        switch (this.species) {
-            case 'shambras':
-                if (this.age < 25) return 0;
-                if (this.age < 35) return -2;
-                if (this.age < 50) return -4;
-                if (this.age < 70) return -6;
-                if (this.age < 100) return -8;
-                return -10;
-            case 'nekovian': return 2;
-            case 'merlion': return 2;
+    private getSize() {
+        switch (this.size) {
+            case 'tiny': return 4;
+            case 'small': return 2;
+            case 'medium': return 0;
+            case 'large': return -2;
+            case 'huge': return -4;
             default: return 0;
         }
     }
