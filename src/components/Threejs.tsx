@@ -10,7 +10,7 @@ class Threejs extends React.Component<{}, {}> {
         renderer.setSize(760, 760);
         this.mount.appendChild(renderer.domElement);
         var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, reflectivity: 0.1, wireframe: true });
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, reflectivity: 0.1, wireframe: true, });
         var cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
         camera.position.z = 5;

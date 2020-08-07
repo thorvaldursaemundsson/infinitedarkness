@@ -18,6 +18,7 @@ const Humans: React.FC = () => {
         <p>Humans are however very diverse and have a rich history, they live on many planets and make up 95% of the people in the Sol system and 99% of the people in the Centauri system.</p>
         <h3>Playing a human character</h3>
         <p>Humans are the obvious choice for new players but also a good option for experienced players too. These are their stats</p>
+        <p>Humans may choose between small, medium and large size</p>
         <table>
             <thead>
                 <tr>
