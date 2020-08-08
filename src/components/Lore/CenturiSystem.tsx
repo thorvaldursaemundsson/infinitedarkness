@@ -21,7 +21,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 0.2,
             temperatureRange: '700-1000',
             hydrosphere: 'none',
-            orbitDistance: '0.02 AU',
+            orbitDistance: { distance: 0.02, unit: 'AU'},
             feature: 'surface lava rivers, extreme radiation',
             satelites: []
         },
@@ -36,7 +36,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 0.9,
             temperatureRange: '-30 - 50',
             hydrosphere: 'sea water',
-            orbitDistance: '1.09 AU',
+            orbitDistance: { distance: 1.09, unit: 'AU'},
             feature: '10 million people',
             satelites: []
         }]
@@ -58,7 +58,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 0.7,
             temperatureRange: '-200 - 450',
             hydrosphere: 'none',
-            orbitDistance: '0.12 AU',
+            orbitDistance: { distance: 0.12, unit: 'AU'},
             satelites: []
         },
         {
@@ -72,7 +72,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 1.1,
             temperatureRange: '-30 - 40',
             hydrosphere: 'salt water',
-            orbitDistance: '.95 au',
+            orbitDistance: { distance: 0.95, unit: 'AU'},
             satelites: []
         }]
     },
@@ -93,7 +93,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 0.17,
             temperatureRange: '-100 - 200',
             hydrosphere: 'none',
-            orbitDistance: '0.008 AU',
+            orbitDistance: { distance: 0.008, unit: 'AU'},
             satelites: [{
                 name: 'Lakshmi',
                 classification: 'rocky',
@@ -105,7 +105,7 @@ const CentauriStarSystem = () => <StarSystem
                 surfaceGravity: 0.15,
                 temperatureRange: '-100 - 200',
                 hydrosphere: 'none',
-                orbitDistance: '4000km',
+                orbitDistance: { distance: 4000, unit: 'km'},
                 satelites: []
             }]
         },
@@ -120,7 +120,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 1.3,
             temperatureRange: '-90 - 90',
             hydrosphere: 'salt water',
-            orbitDistance: '0.03 au',
+            orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
             satelites: []
         },
@@ -135,7 +135,7 @@ const CentauriStarSystem = () => <StarSystem
             surfaceGravity: 1.3,
             temperatureRange: '-210 - -90',
             hydrosphere: 'amonia, ethane, methane',
-            orbitDistance: '0.03 au',
+            orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
             satelites: []
         }]

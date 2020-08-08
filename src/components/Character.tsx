@@ -314,6 +314,7 @@ export class Character {
             case 'basedefense': return '10 + mod';
             case 'lowdefense': return 'skill/2';
             case 'passivedefense': return 'skill';
+            case 'sequence': return 'AGI+PER';
             default: return '';
         }
     }

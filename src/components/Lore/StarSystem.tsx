@@ -1,42 +1,19 @@
 import React from 'react';
 import Ellipsis from '../Ellipsis';
-interface IHeavelyBody {
-
-    mass: number;
-    age: number;
-    name: string;
-    description: string;
-}
-
-interface IStarSystem {
-    stars: IStar[];
-    roguePlanetoids: IPlanetoid[];
-    name: string;
-    description: string;
-}
-
-interface IStar extends IHeavelyBody {
-    classification: 'A' | 'F' | 'G' | 'K' | 'M';
-    planetoids: IPlanetoid[];
-}
-
-interface IPlanetoid extends IHeavelyBody {
-    classification: string;
-    surfaceGravity: number;
-    temperatureRange: string;
-    atmosphere: string;
-    atmosphericPressure: number;
-    hydrosphere: string;
-    satelites: IPlanetoid[];
-    orbitDistance: string;
-    feature?: string;
-}
+import {IStarSystem, IStar, IPlanetoid} from './IStarSystem'
+import Section from '../playermanual/Section';
+import Threejs from '../Threejs';
 
 const StarSystem: React.FC<IStarSystem> = ({ stars, roguePlanetoids, name, description }) =>
     <>
         <h3>{name}</h3>
         <i>{description}</i>
+        <Section title={`View ${name}`}>
+            <Threejs starSystem={{stars, roguePlanetoids, name, description}}  ></Threejs>
+        </Section>
         {stars.map(star => <Star key={'star_'+star.name} star={star} />)}
+        {roguePlanetoids.length > 0 ? roguePlanetoids.map(p => <Planet planet={p} gen={0} />) : null}
+        
     </>;
 
 interface IStarProps {
@@ -68,7 +45,7 @@ const Planet:React.FC<IPlanetProps> = ({planet, gen}): JSX.Element => <> {HGen(g
             <b>Average temperature range</b>: {planet.temperatureRange}c<br />
             <b>Atmosphere</b>: {planet.atmosphericPressure > 0 ? `${floor4(planet.atmosphericPressure / 101.325)}x ea` : null} {planet.atmosphere}<br />
             <b>Hydrosphere</b>: {planet.hydrosphere}<br />
-            <b>Distance</b>: {planet.orbitDistance}<br />
+            <b>Distance</b>: {planet.orbitDistance.distance} {planet.orbitDistance.unit}<br />
             <b>Age</b>: {planet.age} billion years<br />
             <b>Mass</b>: {planet.mass} earths<br />
             {planet.feature && <><b>Feature</b>: {planet.feature}</>}

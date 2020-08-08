@@ -31,7 +31,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "none",
             surfaceGravity: 0.5,
             temperatureRange: "1000 - 1300",
-            orbitDistance: "0.2 AU",
+            orbitDistance: { distance: 0.2, unit: 'AU'},
             feature: 'extreme radiation'
         },
         {
@@ -46,7 +46,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "none",
             surfaceGravity: 1.5,
             temperatureRange: "320 - 360",
-            orbitDistance: "0.7 AU",
+            orbitDistance: { distance: 0.7, unit: 'AU'},
             feature: 'constant planetwide thunderstorms'
         },
         {
@@ -61,7 +61,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "none",
             surfaceGravity: 1.5,
             temperatureRange: "190 - 370 celsius",
-            orbitDistance: "1.5 AU",
+            orbitDistance: { distance: 1.5, unit: 'AU'},
             feature: 'rings'
         },
         {
@@ -76,7 +76,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "salt water",
             surfaceGravity: 0.65,
             temperatureRange: " 20 - 70 celsius",
-            orbitDistance: "3.5 AU",
+            orbitDistance: { distance: 3.5, unit: 'AU'},
             feature: 'settlements'
         },
         {
@@ -91,7 +91,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "salt water",
             surfaceGravity: 0.9,
             temperatureRange: " -30 - 40 celsius",
-            orbitDistance: "4.2 AU",
+            orbitDistance: { distance: 4.2, unit: 'AU'},
             feature: 'settlements'
         },
         {
@@ -106,7 +106,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "liquid hydrogen",
             surfaceGravity: 4,
             temperatureRange: " -130 - 80 celsius",
-            orbitDistance: "30 AU",
+            orbitDistance: { distance: 30, unit: 'AU'},
         },
         {
             name: 'Xolotl',
@@ -120,7 +120,7 @@ const Tonati = () => <StarSystem
             hydrosphere: "liquid methane",
             surfaceGravity: 4,
             temperatureRange: " -190 - -170 celsius",
-            orbitDistance: "79 AU",
+            orbitDistance: { distance: 79, unit: 'AU'},
         }
         ]
 
@@ -148,7 +148,7 @@ const Ashra = () => <StarSystem
             hydrosphere: "none",
             surfaceGravity: 0.5,
             temperatureRange: "400 - 500",
-            orbitDistance: "0.1 AU"
+            orbitDistance: { distance: 0.1, unit: 'AU'}
         },
         {
             name: 'Noshra',
@@ -162,7 +162,7 @@ const Ashra = () => <StarSystem
             hydrosphere: 'none',
             surfaceGravity: 2.1,
             temperatureRange: '90 - 180',
-            orbitDistance: '0.4 AU',
+            orbitDistance: { distance: 0.4, unit: 'AU'},
             feature: 'large silicate rings'
         },
         {
@@ -178,7 +178,7 @@ const Ashra = () => <StarSystem
             hydrosphere: 'salt water',
             surfaceGravity: 0.9,
             temperatureRange: '-10 - 50',
-            orbitDistance: '0.8 AU',
+            orbitDistance: { distance: 0.8, unit: 'AU'},
             feature: '142 thousand inhabitants'
         },
         {
@@ -193,7 +193,7 @@ const Ashra = () => <StarSystem
             hydrosphere: '',
             surfaceGravity: 0,
             temperatureRange: '-182 - 79',
-            orbitDistance: '1.1 - 2.9 au',
+            orbitDistance: { distance: 1.9, unit: 'AU'},
         },
         {
             name: 'Sylvis',
@@ -211,7 +211,7 @@ const Ashra = () => <StarSystem
                 hydrosphere: 'liquid hydrogen',
                 surfaceGravity: 3.6,
                 temperatureRange: '-120 - 10',
-                orbitDistance: '0.07 AU',
+                orbitDistance: { distance: 0.07, unit: 'AU'},
                 satelites: []
             }],
             classification: 'gas giant',
@@ -220,7 +220,7 @@ const Ashra = () => <StarSystem
             hydrosphere: 'liquid hydrogen',
             surfaceGravity: 4,
             temperatureRange: '-90 - 20',
-            orbitDistance: '4 AU',
+            orbitDistance: { distance: 4, unit: 'AU'},
             feature: 'asteroid belt orbiting gas giant binary'
         },
         {
@@ -234,7 +234,7 @@ const Ashra = () => <StarSystem
             surfaceGravity: 4,
             hydrosphere: 'liquid methane',
             temperatureRange: '-190 - -40',
-            orbitDistance: '9 AU',
+            orbitDistance: { distance: 9, unit: 'AU'},
             satelites: [],
         },
         {
@@ -248,7 +248,7 @@ const Ashra = () => <StarSystem
             surfaceGravity: 6,
             hydrosphere: 'liquid methane, liquid nitrogen',
             temperatureRange: '-210 - -90',
-            orbitDistance: '20 AU',
+            orbitDistance: { distance: 20, unit: 'AU'},
             satelites: [],
         },
         {
@@ -262,7 +262,7 @@ const Ashra = () => <StarSystem
             surfaceGravity: 4,
             hydrosphere: 'liquid methane, liquid nitrogen',
             temperatureRange: '-220 - -130',
-            orbitDistance: '51 AU',
+            orbitDistance: { distance: 51, unit: 'AU'},
             satelites: [],
         }
         ]
