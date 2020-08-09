@@ -22,7 +22,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0.38,
                 orbitDistance: { distance: 0.37, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '-173 - 427',
+                temperatureRange: [-173,400,427],
 
             },
             {
@@ -38,7 +38,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0.904,
                 orbitDistance: { distance: 0.723, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '464',
+                temperatureRange: [440,446,470],
 
             },
             {
@@ -66,9 +66,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                     surfaceGravity: 0.16,
                     orbitDistance: { distance: 375000, unit: 'km'},
                     satelites: [],
-                    temperatureRange: '-173 - 116'
+                    temperatureRange: [-173,0,116],
                 }],
-                temperatureRange: '-86 - 59',
+                temperatureRange: [-86,35,59],
 
             },
             {
@@ -84,7 +84,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0.38,
                 orbitDistance: { distance: 1.52, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '-103 - 41',
+                temperatureRange: [-103,0,40],
 
             },
             {
@@ -100,7 +100,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance:2.7, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-175,0,90],
 
             },
             {
@@ -116,7 +116,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 2.7, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-175,0,90],
 
             },
             {
@@ -132,7 +132,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 5.2, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-100,0,30],
 
             },
             {
@@ -148,7 +148,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 9.6, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-140,0,20],
 
             },
             {
@@ -164,7 +164,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 20, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-190,-50,-10],
 
             },
             {
@@ -180,7 +180,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 30.1, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-210,-100,-20],
 
             },
             {
@@ -196,7 +196,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 0,
                 orbitDistance: { distance: 2000, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-260,-260,-260],
 
             }]
         }
