@@ -13,13 +13,13 @@ interface Coordinates {
 
 class Threejs extends React.Component<IThreejsProps, {}> {
     mount: any;
-    mouseMoving: boolean;
+    mouseMoving: 'none' | 'left' | 'right';
     rotationEuler: THREE.Euler;
     mouseStartCoordinates: Coordinates;
 
     constructor(props: IThreejsProps) {
         super(props);
-        this.mouseMoving = false;
+        this.mouseMoving = 'none';
         this.rotationEuler = new THREE.Euler(0, 0, 0);
         this.mouseStartCoordinates = { x: 0, y: 0 };
     }
@@ -35,7 +35,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         }
     }
 
-    getColorFromPlanet(planet:IPlanetoid): [string, string] {
+    getColorFromPlanet(planet: IPlanetoid): [string, string] {
         let col1 = '#00FF00';
         let col2 = '#0000FF';
 
@@ -85,21 +85,25 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     moveMouse(e: MouseEvent) {
-        if (this.mouseMoving === false) return;
+        if (this.mouseMoving === 'none') return;
         this.rotationEuler.y = (this.mouseStartCoordinates.x - e.offsetX) * .1;
         this.rotationEuler.x = (this.mouseStartCoordinates.y - e.offsetY) * .1;
     }
 
-    startMoveMouse(coordinates: Coordinates) {
-        this.mouseMoving = true;
-        this.mouseStartCoordinates = coordinates;
+    startMoveMouse(e: MouseEvent) {
+        if (e.button === 0) this.mouseMoving = 'left';
+        else if (e.button === 2) this.mouseMoving = 'right';
+        this.mouseStartCoordinates.x = e.offsetX;
+        this.mouseStartCoordinates.y = e.offsetY;
+        e.preventDefault();
+        return false;
     }
 
     endMoveMouse() {
-        this.mouseMoving = false;
-        //this.rotationEuler.y = 0;
-        //this.rotationEuler.x = 0;
-        //this.rotationEuler.z = 0;
+        this.mouseMoving = 'none';
+        this.rotationEuler.y = 0;
+        this.rotationEuler.x = 0;
+        this.rotationEuler.z = 0;
     }
 
 
@@ -121,20 +125,22 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         var animate = () => {
             requestAnimationFrame(animate);
             system.forEach(s => {
-                //s.rotation.x = this.rotationEuler.x;
-                //s.rotation.y = this.rotationEuler.y;
-                s.position.x += -this.rotationEuler.y/200;
-                //s.position.y += -this.rotationEuler.x/200;
+                if (this.mouseMoving === 'left') {
+                    s.position.x += -this.rotationEuler.y / 100;
+                    s.position.y += this.rotationEuler.x / 100;
+                }
+                else if (this.mouseMoving === 'right') {
+                    s.rotation.x = this.rotationEuler.x / 1;
+                    s.rotation.y = this.rotationEuler.y / 1;
+                }
             });
-            //system.rotation.x = this.rotationEuler.x ;
-            //system.rotation.y = this.rotationEuler.y ;
             renderer.render(scene, camera);
         };
         animate();
     }
 
     render() {
-        return <div ref={ref => (this.mount = ref)} />
+        return <div onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)} />
     }
 }
 
