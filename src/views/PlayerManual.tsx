@@ -10,6 +10,7 @@ import CharacterSheetOverview from '../components/playermanual/CharacterSheetOve
 import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 import CharacterSize from '../components/playermanual/CharacterSize';
+import Radiation from '../components/playermanual/Radiation';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -37,6 +38,8 @@ const PlayerManual: React.FC = () => {
         <Vehicles key='pm7' />
         <hr />
         <Health key='pm8' />
+        <hr/>
+        <Radiation key='pmr' />
     </div>);
 }
 
