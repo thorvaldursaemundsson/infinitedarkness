@@ -3,7 +3,6 @@ import './App.css';
 import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
-import Threejs from './components/Threejs';
 import usePersistentState from './utils/usePersistentState';
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));

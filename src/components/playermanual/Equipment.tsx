@@ -1,7 +1,7 @@
 
 import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
-import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation } from "../equipment/Firearms";
+import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../Ellipsis";
 import Indexer, { Indexed } from "../Indexer";
@@ -373,7 +373,6 @@ const FirearmTable: React.FC<FirearmTableProps> = ({ data }) => {
                 <th>Range</th>
                 <th>Action</th>
                 <th>Ammo/Cap</th>
-                <th>Str req</th>
                 <th>Weight</th>
                 <th>Value</th>
             </tr>
@@ -388,6 +387,12 @@ const firearmRowStyle: CSSProperties = {
     cursor: 'pointer'
 };
 
+const getAmmoInfo = (ammo: Ammo): AmmoInformation => {
+    const c = AmmoTypesInformation.find(a => a.ammo === ammo);
+    if (c !== undefined) return c;
+    else throw new Error();
+}
+
 const FireArmRow = (f: FireArm) => {
     const [descriptionOpen, setDescriptionOpen] = useState(false);
     return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
@@ -399,11 +404,11 @@ const FireArmRow = (f: FireArm) => {
         <td>{f.range}</td>
         <td>{f.fireAction.join(', ')}</td>
         <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
-        <td>{f.strengthRequirement}</td>
+
         <td>{weightConverter(f.weight)}</td>
-        <td>{f.value} c</td>
+        <td>{f.value} c + ({(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)})</td>
     </tr>
-        {descriptionOpen && <tr><td colSpan={10}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
+        {descriptionOpen && <tr><td>STR: {f.strengthRequirement}</td><td colSpan={8}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
     </>);
 }
 const bottomStyle: CSSProperties = {
