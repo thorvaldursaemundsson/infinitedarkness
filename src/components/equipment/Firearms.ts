@@ -193,11 +193,11 @@ const Firearms: FireArm[] = [
 
     //submachinegun
     {
-        fireArmClass: 'handgun', name: 'Fantry Sub Model', damage: '1d8', range: '350m', ammo: '9x21', strengthRequirement: 3, capacity: 24, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 1800, value: 1850,
+        fireArmClass: 'handgun', name: 'Fantry Sub Model', damage: '1d8', range: '350m', ammo: '9x21', strengthRequirement: 3, capacity: 24, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 1800, value: 2800,
         description: 'A very light submachine gun, fires relatively slow for a submachine gun on while on full automatic'
     },
     {
-        fireArmClass: 'handgun', name: 'Skolt cleaner', damage: '1d10', range: '300m', ammo: '10x19', strengthRequirement: 4, capacity: 36, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, rps: 10, weight: 2100, value: 2100,
+        fireArmClass: 'handgun', name: 'Skolt cleaner', damage: '1d10', range: '300m', ammo: '10x19', strengthRequirement: 4, capacity: 36, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, rps: 10, weight: 2100, value: 3100,
         description: 'The Skolt Cleaner is a popular submachinegun'
     },
 
@@ -221,11 +221,11 @@ const Firearms: FireArm[] = [
 
     //automatic rifle
     {
-        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: '1d12', range: '700m', ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 2600,
+        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: '1d12', range: '700m', ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 3900,
         description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare '
     },
     {
-        fireArmClass: 'rifle', name: 'Merlion Predator', damage: '2d10', range: '1100m', ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 3400,
+        fireArmClass: 'rifle', name: 'Merlion Predator', damage: '2d10', range: '1100m', ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 5100,
         description: 'This strange merlion designed weapon was originally intended as an anti-human weapon, but when merlions decided that humans were harmless creatures they offered this weapon as a gesture of good will'
     },
 
@@ -260,15 +260,15 @@ const Firearms: FireArm[] = [
 
     //machinegun
     {
-        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: '1d8', range: '250m', ammo: '9x17', strengthRequirement: 8, capacity: 160, fireAction: ['fully-automatic'], rps: 8, weight: 8000, value: 3700,
+        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: '1d8', range: '250m', ammo: '9x17', strengthRequirement: 8, capacity: 160, fireAction: ['fully-automatic'], rps: 8, weight: 8000, value: 5500,
         description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: '1d12', range: '900m', ammo: '9x23', strengthRequirement: 7, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 4500, hitbonus: 3,
+        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: '1d12', range: '900m', ammo: '9x23', strengthRequirement: 7, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 6700, hitbonus: 3,
         description: 'An elegant machine gun used only be the merlion military, take -2 if not using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: '2d10', range: '1600m', ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 5000,
+        fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: '2d10', range: '1600m', ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 7500,
         description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese'
     },
 
