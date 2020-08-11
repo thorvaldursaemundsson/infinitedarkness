@@ -9,6 +9,7 @@ import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
 import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
+import CharacterSize from '../components/playermanual/CharacterSize';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -21,6 +22,8 @@ const PlayerManual: React.FC = () => {
         <hr />
         <CharacterSheetOverview key='pm2' />
         <hr />
+        <CharacterSize key='pmcs' />
+        <hr />
         <Wealth key='pm3' />
         <hr />
         <Experience key='pm4' />
@@ -28,7 +31,7 @@ const PlayerManual: React.FC = () => {
         <Combat key='pm5' />
         <hr />
         <Equipment key='pm6' />
-        <hr/>
+        <hr />
         <CarryingCapacity key='pmcc' />
         <hr />
         <Vehicles key='pm7' />

@@ -19,9 +19,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: 'none',
             atmosphericPressure: 0,
             surfaceGravity: 0.2,
-            temperatureRange: '700-1000',
+            temperatureRange: [700,900,1000],
             hydrosphere: 'none',
-            orbitDistance: '0.02 AU',
+            orbitDistance: { distance: 0.02, unit: 'AU'},
             feature: 'surface lava rivers, extreme radiation',
             satelites: []
         },
@@ -34,9 +34,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: 'nitrogen 69%, oxygen 29%, argon 2%, trace neon',
             atmosphericPressure: 105,
             surfaceGravity: 0.9,
-            temperatureRange: '-30 - 50',
+            temperatureRange: [-30,20,50],
             hydrosphere: 'sea water',
-            orbitDistance: '1.09 AU',
+            orbitDistance: { distance: 1.09, unit: 'AU'},
             feature: '10 million people',
             satelites: []
         }]
@@ -56,9 +56,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: 'none',
             atmosphericPressure: 0,
             surfaceGravity: 0.7,
-            temperatureRange: '-200 - 450',
+            temperatureRange: [-200,100,450],
             hydrosphere: 'none',
-            orbitDistance: '0.12 AU',
+            orbitDistance: { distance: 0.12, unit: 'AU'},
             satelites: []
         },
         {
@@ -70,9 +70,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: 'nitrogen 77%, oxygen 21%, argon 1.2%, rest carbondioxide',
             atmosphericPressure: 131,
             surfaceGravity: 1.1,
-            temperatureRange: '-30 - 40',
+            temperatureRange: [-30,10,40],
             hydrosphere: 'salt water',
-            orbitDistance: '.95 au',
+            orbitDistance: { distance: 0.95, unit: 'AU'},
             satelites: []
         }]
     },
@@ -91,9 +91,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: 'none',
             atmosphericPressure: 0,
             surfaceGravity: 0.17,
-            temperatureRange: '-100 - 200',
+            temperatureRange: [-100,100,200],
             hydrosphere: 'none',
-            orbitDistance: '0.008 AU',
+            orbitDistance: { distance: 0.008, unit: 'AU'},
             satelites: [{
                 name: 'Lakshmi',
                 classification: 'rocky',
@@ -103,9 +103,9 @@ const CentauriStarSystem = () => <StarSystem
                 atmosphere: 'none',
                 atmosphericPressure: 0,
                 surfaceGravity: 0.15,
-                temperatureRange: '-100 - 200',
+                temperatureRange: [-100,100,200],
                 hydrosphere: 'none',
-                orbitDistance: '4000km',
+                orbitDistance: { distance: 4000, unit: 'km'},
                 satelites: []
             }]
         },
@@ -118,9 +118,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: '60% nitrogen, 29% oxygen, 7% argon, 3% neon, 1% carbondioxide',
             atmosphericPressure: 181,
             surfaceGravity: 1.3,
-            temperatureRange: '-90 - 90',
+            temperatureRange: [-90,20,90],
             hydrosphere: 'salt water',
-            orbitDistance: '0.03 au',
+            orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
             satelites: []
         },
@@ -133,9 +133,9 @@ const CentauriStarSystem = () => <StarSystem
             atmosphere: '50% hydrogen, 21% helium, 12% helium,',
             atmosphericPressure: 85200,
             surfaceGravity: 1.3,
-            temperatureRange: '-210 - -90',
+            temperatureRange: [-210,-120,-100],
             hydrosphere: 'amonia, ethane, methane',
-            orbitDistance: '0.03 au',
+            orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
             satelites: []
         }]

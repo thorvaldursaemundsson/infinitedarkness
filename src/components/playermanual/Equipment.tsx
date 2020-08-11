@@ -6,6 +6,7 @@ import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../Ellipsis";
 import Indexer, { Indexed } from "../Indexer";
 import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData } from "../equipment/Armors";
+import { CharacterSize } from "../Character";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -107,6 +108,28 @@ const Equipment: React.FC = () => {
             <Indexed title='Body Armors'>
                 <p>Armors come in many forms, anything that offers either damage reduction or armor penalty counts as body armor. Damage reduction is applied to any incoming damage, armor penalty is applied to all agility based rolls. Every time an armor fails to absorb all damage it loses damage reduction by 1. If it hits 0 then it is no longer able to offer protection</p>
                 <p>Armor have up to three layers, the inner body suit, the armor plates and the power armor frame</p>
+                <p>Additionally armor cost is affected by three factors, quality/condition, size, coverage</p>
+                <p>Quality/condition simply applies to total damage reduction, however pristine and intact give no benefit. They merely act as a buffer</p>
+                <p>Size applies to weight and cost, but not to protection. Armors must often be custom made to the wearer</p>
+                <ul>
+                    <li>Tiny: -20% cost/weight</li>
+                    <li>Small: -10% cost/weight</li>
+                    <li>Medium: no effect</li>
+                    <li>Large: +10% cost/weight</li>
+                    <li>Huge: +20% cost/weight</li>
+                </ul>
+                <p>Coverage is a matter of how much the armor covers the body, as a matter of rule simplification armors are assumed to protect the more vital areas first.
+                When coverage is less than full roll a 1d6 dice and if the dice equals or exceeds the value then you benefit, otherwise you don't.
+                When blocking you always receive protection from armor as it is assumed that the character blocks using armor or shield.
+                </p>
+                <ul>
+                    <li>Full protection: 100% cost/weight and 6/6 protection (no roll needed)</li>
+                    <li>Vast majority protection: 90% cost/weight and 5/6 roll</li>
+                    <li>Major protection: 80% cost/weight and 4/6 roll</li>
+                    <li>Half protection: 70% cost/weight and 3/6 roll</li>
+                    <li>Small protection: 50% cost/weight and 2/6 roll</li>
+                    <li>Minor protection: 30% cost/weight and 1/6 roll</li>
+                </ul>
                 <ArmorCrafter />
                 <h5>Body Suit</h5>
                 <ArmorTable armors={bodySuits} />
@@ -246,10 +269,47 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
         </tr>);
 }
 
+const getSizeMod = (size: CharacterSize) => {
+    switch (size) {
+        case 'tiny': return 0.8;
+        case 'small': return 0.9;
+        case 'medium': return 1;
+        case 'large': return 1.1;
+        case 'huge': return 1.2;
+        default: return 1;
+    }
+}
+
+const getProtectionMod = (n: number) => {
+    switch (n) {
+        case 6: return 1;
+        case 5: return .9;
+        case 4: return .8;
+        case 3: return .7;
+        case 2: return .5;
+        case 1: return .3;
+        default: return 1;
+    }
+}
+
+const getQualityMod = (n: number) => {
+    switch (n) {
+        case 0: return 1;
+        case -1: return .9;
+        case -2: return .8;
+        case -3: return .7;
+        case -4: return .6;
+        default: return 1;
+    }
+}
+
 const ArmorCrafter: React.FC = () => {
     const [bodySuit, setBodySuit] = useState<BodySuit | undefined>(undefined);
     const [armorPlate, setArmorPlate] = useState<ArmorPlate | undefined>(undefined);
     const [powerArmor, setPowerArmor] = useState<PowerArmor | undefined>(undefined);
+    const [qualityMod, setQualityMod] = useState(0);
+    const [size, setSize] = useState<CharacterSize>('medium');
+    const [protectionAmount, setProtectionAmount] = useState(6);
 
     let defense = 0;
     let cost = 0;
@@ -278,31 +338,61 @@ const ArmorCrafter: React.FC = () => {
         perceptionMod += powerArmor.perceptionMod;
     }
 
+    defense += qualityMod;
+
+    cost = cost * getSizeMod(size) * getProtectionMod(protectionAmount) * getQualityMod(qualityMod);
+    weight = weight * getSizeMod(size) * getProtectionMod(protectionAmount);
+
     return (<div>
         <p>Customize an armor</p>
         <select onChange={(e) => setBodySuit(bodySuits.find(f => f.name === e.target.value))}>
-            <option selected={null === bodySuit}>none</option>
+            <option selected={null === bodySuit}>Bodysuit armor/one</option>
             {bodySuits.map(bs => <option value={bs.name} selected={bodySuit !== undefined && bs.name === bodySuit.name}>
                 {bs.name}
             </option>)}
         </select>
         <select onChange={(e) => setArmorPlate(armorPlates.find(f => f.name === e.target.value))}>
-            <option selected={null === armorPlate}>none</option>
+            <option selected={null === armorPlate}>Armor plate/none</option>
             {armorPlates.map(ap => <option value={ap.name} selected={armorPlate !== undefined && ap.name === armorPlate.name}>
                 {ap.name}
             </option>)}
         </select>
         <select onChange={(e) => setPowerArmor(powerArmors.find(f => f.name === e.target.value))}>
-            <option selected={null === powerArmor}>none</option>
+            <option selected={null === powerArmor}>Power armor/none</option>
             {powerArmors.map(pa => <option value={pa.name} selected={powerArmor !== undefined && pa.name === powerArmor.name}>
                 {pa.name}
             </option>)}
+        </select>
+        <br />
+        <select onChange={(e) => setQualityMod(parseInt(e.target.value))}>
+            <option value='0' selected={qualityMod === 0}>Pristine/intact/Normal</option>
+            <option value='-1' selected={qualityMod === -1}>Used</option>
+            <option value='-2' selected={qualityMod === -2}>Worn</option>
+            <option value='-3' selected={qualityMod === -3}>Damaged</option>
+            <option value='-4' selected={qualityMod === -4}>Broken</option>
+        </select>
+
+        <select onChange={(e) => setSize(e.target.value as CharacterSize)}>
+            <option selected={size === 'tiny'} value='tiny'>Tiny</option>
+            <option selected={size === 'small'} value='small'>Small</option>
+            <option selected={size === 'medium'} value='medium'>Medium</option>
+            <option selected={size === 'large'} value='large'>Large</option>
+            <option selected={size === 'huge'} value='huge'>Huge</option>
+        </select>
+
+        <select onChange={(e) => setProtectionAmount(parseInt(e.target.value))}>
+            <option selected={protectionAmount === 6} value='6'>Full</option>
+            <option selected={protectionAmount === 5} value='5'>Vast</option>
+            <option selected={protectionAmount === 4} value='4'>Major</option>
+            <option selected={protectionAmount === 3} value='3'>Half</option>
+            <option selected={protectionAmount === 2} value='2'>Small</option>
+            <option selected={protectionAmount === 1} value='1'>Minor</option>
         </select>
         <div className='divcol2'>
             <div>
                 <b>Damage Absorbtion:</b> {defense}<br />
                 <b>Cost:</b> {cost} credits <br />
-                <b>Weight:</b> {weight} kg
+                <b>Weight:</b> {weightConverter(weight * 1000)}
             </div>
             <div>
                 <b>Agility mod</b>: {agilityMod}<br />

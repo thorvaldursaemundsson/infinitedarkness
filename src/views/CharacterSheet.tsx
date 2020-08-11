@@ -12,7 +12,7 @@ interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
-const padSize = 34;
+const padSize = 33;
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
@@ -60,10 +60,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <EditText txt={character.gender} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'gender', value: 0 })} explain={character.explain('gender')} />
                     </td>
                     <td>
-                        <label>Mana</label>
+                        <label>Mental Health</label>
                     </td>
                     <td>
-                        <HideText txt={character.getMana()} isEdit={viewState} explain={character.explain('mana')} /> </td>
+                        <HideText txt={character.getMentalHealth()} isEdit={viewState} explain={character.explain('mentalHealth')} /> </td>
                     <td>
                         <label>Endurance</label>
                     </td>
@@ -79,10 +79,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <EditText txt={character.species} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} explain={character.explain('species')} />
                     </td>
                     <td>
-                        <label>Mental Health</label>
+                        <label>Sequence</label>
                     </td>
                     <td>
-                        <HideText txt={character.getMentalHealth()} isEdit={viewState} explain={character.explain('mentalHealth')} />
+                        <HideText txt={character.getSequence()} isEdit={viewState} explain={character.explain('sequence')} />
                     </td>
                     <td>
                         <label>Agility</label>
@@ -149,7 +149,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <HideText txt={character.getExperienceMultiplier()} isEdit={viewState} explain={character.explain('experienceMultiplier')} />
                     </td>
                     <td>
-                        <label>Player</label>
+                        <label>Carrying capacity</label>
                     </td>
                     <td>
                         &nbsp;
@@ -160,6 +160,11 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     <td>
                         <EditText txt={character.willpower} isEdit={viewState} onChange={(str) => dispatch({ action: 'willpower', value: parseInt(str) })} explain={character.explain('willpower')} />
                     </td>
+                </tr>
+                <tr>
+                    <td><label>Player</label></td><td>&nbsp;</td>
+                    <td><label>Speed</label></td><td>&nbsp;</td>
+                    <td><label>Size</label></td><td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colSpan={2}>
@@ -273,7 +278,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <h5 style={{ marginTop: '20px' }}>Reputation</h5>
                         <table>
                             <tbody>
-                                {Pad(padSize - 9, 0).map(i => <tr>
+                                {Pad(padSize - 8, 0).map(i => <tr>
                                     <td> </td>
                                 </tr>)}
                             </tbody>

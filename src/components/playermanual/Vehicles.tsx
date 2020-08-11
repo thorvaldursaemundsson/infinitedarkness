@@ -281,7 +281,7 @@ const vehicles: Vehicle[] = [
         description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use'
     },
     {
-        name: 'small spaceship',
+        name: 'Ferry Class Spaceship',
         medium: ['space'],
         passengers: 10,
         cargoKg: 100000,
@@ -295,7 +295,7 @@ const vehicles: Vehicle[] = [
         '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel'
     },
     {
-        name: 'medium spaceship',
+        name: 'Freighter Class Spaceship',
         medium: ['space'],
         passengers: 100,
         cargoKg: 1000000,
@@ -309,7 +309,7 @@ const vehicles: Vehicle[] = [
         '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
     },
     {
-        name: 'long range spaceship',
+        name: 'Interceptor Class Spaceship',
         medium: ['space'],
         passengers: 80,
         cargoKg: 500000,
@@ -323,7 +323,7 @@ const vehicles: Vehicle[] = [
         '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
     },
     {
-        name: 'large spaceship',
+        name: 'Cruiser Class Spaceship',
         medium: ['space'],
         passengers: 1000,
         cargoKg: 10000000,
@@ -337,7 +337,7 @@ const vehicles: Vehicle[] = [
         '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel'
     },
     {
-        name: 'huge spaceship',
+        name: 'Battleship Class Spaceship',
         medium: ['space'],
         passengers: 10000,
         cargoKg: 100000000,
@@ -351,7 +351,7 @@ const vehicles: Vehicle[] = [
         '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel'
     },
     {
-        name: 'huge FTL spaceship',
+        name: 'Hyperspace Class Spaceship',
         medium: ['space', 'hyperspace'],
         passengers: 10000,
         cargoKg: 100000000,

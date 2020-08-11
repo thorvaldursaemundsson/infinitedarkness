@@ -9,10 +9,6 @@ const SolSystem = () => <StarSystem key='solsystem'
             age: 4.6,
             description: "Obviously nobody lives on the sun...yet, this however is the place of many Hypermatter factories, in close orbit these massive structures siphon energy from the super hot corona and produce Hypermatter, this is transported to Venus where it can be sold at astronomical cost.",
             classification: 'G',
-            threed: {
-                backgroundColor: 'black',
-                sphereColor: '#FFCCCC'
-            },
             planetoids: [{
                 name: 'Mercury',
                 classification: 'rocky',
@@ -24,9 +20,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: 'none',
                 feature: 'tidally locked, settlements, over 9000 inhabitants',
                 surfaceGravity: 0.38,
-                orbitDistance: '0.37 AU',
+                orbitDistance: { distance: 0.37, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '-173 - 427',
+                temperatureRange: [-173,400,427],
 
             },
             {
@@ -40,9 +36,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: 'none',
                 feature: 'runaway greenhouse effect',
                 surfaceGravity: 0.904,
-                orbitDistance: '0.723 AU',
+                orbitDistance: { distance: 0.723, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '464',
+                temperatureRange: [440,446,470],
 
             },
             {
@@ -56,7 +52,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: 'salt water',
                 feature: 'birthplace of humanity, 6.2 billion people',
                 surfaceGravity: 1,
-                orbitDistance: '1 AU',
+                orbitDistance: { distance: 1, unit: 'AU'},
                 satelites: [{
                     name: 'Moon',
                     description: 'The surface bases on the moon originally started out as refueling for space travel. Shortly after mining industry began to take root, over time it grew and as it did so did the population. The population gave rise to a lunatic economy which rapidly became the center of space commerce. Many historians consider the moon to be the initial launchpad of humanitys ascent into the stars.',
@@ -68,11 +64,11 @@ const SolSystem = () => <StarSystem key='solsystem'
                     hydrosphere: '',
                     feature: 'settlements, 17 million people',
                     surfaceGravity: 0.16,
-                    orbitDistance: '',
+                    orbitDistance: { distance: 375000, unit: 'km'},
                     satelites: [],
-                    temperatureRange: '-173 - 116'
+                    temperatureRange: [-173,0,116],
                 }],
-                temperatureRange: '-86 - 59',
+                temperatureRange: [-86,35,59],
 
             },
             {
@@ -86,9 +82,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: 'small number of salty lakes',
                 feature: 'settlements, 310 million people',
                 surfaceGravity: 0.38,
-                orbitDistance: '1.523 AU',
+                orbitDistance: { distance: 1.52, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '-103 - 41',
+                temperatureRange: [-103,0,40],
 
             },
             {
@@ -102,9 +98,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance:2.7, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-175,0,90],
 
             },
             {
@@ -118,9 +114,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 2.7, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-175,0,90],
 
             },
             {
@@ -134,9 +130,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 5.2, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-100,0,30],
 
             },
             {
@@ -150,9 +146,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 9.6, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-140,0,20],
 
             },
             {
@@ -166,9 +162,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 20, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-190,-50,-10],
 
             },
             {
@@ -182,9 +178,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 30.1, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-210,-100,-20],
 
             },
             {
@@ -198,9 +194,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 hydrosphere: '',
                 feature: undefined,
                 surfaceGravity: 0,
-                orbitDistance: '',
+                orbitDistance: { distance: 2000, unit: 'AU'},
                 satelites: [],
-                temperatureRange: '',
+                temperatureRange: [-260,-260,-260],
 
             }]
         }
