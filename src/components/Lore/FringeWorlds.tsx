@@ -16,7 +16,7 @@ const Tonati = () => <StarSystem
     stars={[{
         name: 'Tonati',
         description: 'Intense radiation makes the innermost part of the system mostly inaccessible. With a staggering luminosity of 15 times that of the Sun also means that the zone of habitabilty is much larger and farther out.',
-        classification: 'F',
+        classification: 'A',
         mass: 2.7,
         age: 4.1,
         planetoids: [{
@@ -32,7 +32,8 @@ const Tonati = () => <StarSystem
             surfaceGravity: 0.5,
             temperatureRange: [1000,1200,1300],
             orbitDistance: { distance: 0.2, unit: 'AU'},
-            feature: 'extreme radiation'
+            feature: 'extreme radiation',
+            imageURL: 'texture_planet_molten.jpg'
         },
         {
             name: 'Teylaloc',
@@ -47,7 +48,8 @@ const Tonati = () => <StarSystem
             surfaceGravity: 1.5,
             temperatureRange:[320,340,360],
             orbitDistance: { distance: 0.7, unit: 'AU'},
-            feature: 'constant planetwide thunderstorms'
+            feature: 'constant planetwide thunderstorms',
+            imageURL: 'texture_planet_pinkteal.jpg'
         },
         {
             name: 'Atlahua',
@@ -62,7 +64,8 @@ const Tonati = () => <StarSystem
             surfaceGravity: 1.5,
             temperatureRange: [190,250,370],
             orbitDistance: { distance: 1.5, unit: 'AU'},
-            feature: 'rings'
+            feature: 'rings',
+            imageURL: 'texture_planet_rocky.jpg'
         },
         {
             name: 'Ehecatl',
@@ -77,7 +80,8 @@ const Tonati = () => <StarSystem
             surfaceGravity: 0.65,
             temperatureRange: [20,0,70],
             orbitDistance: { distance: 3.5, unit: 'AU'},
-            feature: 'settlements'
+            feature: 'settlements',
+            imageURL: 'texture_planet_orangegreen.jpg'
         },
         {
             name: 'Meztil',
@@ -92,7 +96,8 @@ const Tonati = () => <StarSystem
             surfaceGravity: 0.9,
             temperatureRange: [-30,0,40],
             orbitDistance: { distance: 4.2, unit: 'AU'},
-            feature: 'settlements'
+            feature: 'settlements',
+            imageURL: 'texture_planet_lush.jpg'
         },
         {
             name: 'Toci',
@@ -107,6 +112,7 @@ const Tonati = () => <StarSystem
             surfaceGravity: 4,
             temperatureRange: [-130,0,80],
             orbitDistance: { distance: 30, unit: 'AU'},
+            imageURL: 'texture_planet_lime.jpg'
         },
         {
             name: 'Xolotl',
@@ -121,6 +127,7 @@ const Tonati = () => <StarSystem
             surfaceGravity: 4,
             temperatureRange: [-190,-180,-170],
             orbitDistance: { distance: 79, unit: 'AU'},
+            imageURL: 'texture_planet_cold.jpg'
         }
         ]
 
@@ -148,7 +155,8 @@ const Ashra = () => <StarSystem
             hydrosphere: "none",
             surfaceGravity: 0.5,
             temperatureRange: [400,450,500],
-            orbitDistance: { distance: 0.1, unit: 'AU'}
+            orbitDistance: { distance: 0.1, unit: 'AU'},
+            imageURL: 'texture_planet_rocky.jpg'
         },
         {
             name: 'Noshra',
@@ -163,7 +171,8 @@ const Ashra = () => <StarSystem
             surfaceGravity: 2.1,
             temperatureRange: [90,120,180],
             orbitDistance: { distance: 0.4, unit: 'AU'},
-            feature: 'large silicate rings'
+            feature: 'large silicate rings',
+            imageURL: 'texture_planet_lime.jpg'
         },
         {
             name: 'Neke',
@@ -179,7 +188,8 @@ const Ashra = () => <StarSystem
             surfaceGravity: 0.9,
             temperatureRange: [-20,10,60],
             orbitDistance: { distance: 0.8, unit: 'AU'},
-            feature: '142 thousand inhabitants'
+            feature: '142 thousand inhabitants',
+            imageURL: 'texture_planet_blue.jpg'
         },
         {
             name: 'Consini belt',
@@ -211,8 +221,9 @@ const Ashra = () => <StarSystem
                 hydrosphere: 'liquid hydrogen',
                 surfaceGravity: 3.6,
                 temperatureRange: [-120,0,10],
-                orbitDistance: { distance: 0.07, unit: 'AU'},
-                satelites: []
+                orbitDistance: { distance: 80000, unit: 'km'},
+                satelites: [],
+                imageURL: 'texture_planet_toxic.jpg'
             }],
             classification: 'gas giant',
             atmosphere: 'hydrogen, helium',
@@ -221,7 +232,8 @@ const Ashra = () => <StarSystem
             surfaceGravity: 4,
             temperatureRange: [-90,0,20],
             orbitDistance: { distance: 4, unit: 'AU'},
-            feature: 'asteroid belt orbiting gas giant binary'
+            feature: 'asteroid belt orbiting gas giant binary',
+            imageURL: 'texture_planet_molten.jpg'
         },
         {
             name: 'Nane',
@@ -236,6 +248,7 @@ const Ashra = () => <StarSystem
             temperatureRange:[-190,-160,-140],
             orbitDistance: { distance: 9, unit: 'AU'},
             satelites: [],
+            imageURL: 'texture_planet_cold.jpg'
         },
         {
             name: 'Sarma',
@@ -250,6 +263,7 @@ const Ashra = () => <StarSystem
             temperatureRange: [-210,-180,-90],
             orbitDistance: { distance: 20, unit: 'AU'},
             satelites: [],
+            imageURL: 'texture_planet_cold.jpg'
         },
         {
             name: 'Marzanna',
@@ -264,6 +278,7 @@ const Ashra = () => <StarSystem
             temperatureRange: [-220,-190,-130],
             orbitDistance: { distance: 51, unit: 'AU'},
             satelites: [],
+            imageURL: 'texture_planet_cold.jpg'
         }
         ]
     }]}

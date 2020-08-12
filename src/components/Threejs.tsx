@@ -24,26 +24,20 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         this.mouseStartCoordinates = { x: 0, y: 0 };
     }
 
-    getColorFromStar(star: IStar): [string, string] {
+    getColorFromStar(star: IStar): string {
         switch (star.classification) {
-            case 'A': return ['#FFFFFF', '#9999FF'];
-            case 'F': return ['#FFCCCC', '#FFFFFF'];
-            case 'G': return ['#FFAAAA', '#FFDDDD'];
-            case 'K': return ['#DD8888', '#AA6666'];
-            case 'M': return ['#BB7777', '#995544'];
-            default: return ['#AA0000', '#663333'];
+            case 'A': return 'texture_star_class_a.jpg';
+            case 'F': return 'texture_star_class_f.jpg';
+            case 'G': return 'texture_star_class_g.jpg';
+            case 'K': return 'texture_star_class_k.jpg';
+            case 'M': return 'texture_star_class_m.jpg';
+            default: return 'white.jpg';
         }
     }
 
-    getColorFromPlanet(planet: IPlanetoid): [string, string] {
-        let col1 = '#00FF00';
-        let col2 = '#0000FF';
-
-        if (planet.temperatureRange[0] < -100) col1 = '#FFFFFF';
-        if (planet.temperatureRange[2] > 300) col2 = '#FF3300';
-
-
-        return [col1, col2];
+    getColorFromPlanet(planet: IPlanetoid): string {
+        if (planet.imageURL !== undefined) return planet.imageURL;
+        return 'white.jpg'
     }
 
     getOritalDistanceMod(unit: DistanceType) {
@@ -57,12 +51,12 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     makeSystem() {
         var stars = this.props.starSystem.stars.map((s, si, siar) => {
             var p = s.planetoids.map((p, i, ar) => {
-                var planetSphere = this.makeSphere(.25 + p.mass / 160, p.name, ...this.getColorFromPlanet(p));
+                var planetSphere = this.makeSphere(.25 + p.mass / 160, p.name, this.getColorFromPlanet(p));
                 planetSphere.position.x = i + 1 + p.orbitDistance.distance * (this.getOritalDistanceMod(p.orbitDistance.unit));
                 planetSphere.position.y = si * 2;
 
                 var satelites = p.satelites.map((sat, ix, sar) => {
-                    let sa = this.makeSphere(0.15 + sat.mass / 120, sat.name, ...this.getColorFromPlanet(sat));
+                    let sa = this.makeSphere(0.15 + sat.mass / 120, sat.name, this.getColorFromPlanet(sat));
                     sa.position.x = planetSphere.position.x;
                     sa.position.y = ix + 1 + sat.orbitDistance.distance * (this.getOritalDistanceMod(sat.orbitDistance.unit));
                     sa.position.y += si * 2;
@@ -71,31 +65,43 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                 satelites.forEach(s => planetSphere.attach(s));
                 return planetSphere;
             });
-            var m = this.makeSphere(.5 + s.mass / 30, s.name, ...this.getColorFromStar(s));
+            var m = this.makeSphere(.5 + s.mass / 30, s.name, this.getColorFromStar(s));
             m.position.y = si * 2;
             return [m, ...p];
         });
         return stars.reduce((a, b) => [...a, ...b]);
     }
 
-    makeTexture(color1: string, color2: string) {
-        let size = 512;
+    makeTexture(imgSrc: string): THREE.Texture {
+        let loader = new THREE.TextureLoader().load(imgSrc);
+        loader.wrapS = THREE.RepeatWrapping;
+        loader.wrapT = THREE.RepeatWrapping;
+        loader.repeat.set(16,16);
+        return loader;
+
+
+        /*let size = 16;
         let canvas = document.createElement("canvas");
         canvas.width = size;
         canvas.height = size;
         let context = canvas.getContext("2d");
         if (context === null) throw new Error();
 
-        context.rect(0, 0, size, size);
-        var gradient = context.createLinearGradient(0, 0, size, size);
-        gradient.addColorStop(0, color1); // light blue 
-        gradient.addColorStop(1, color2); // dark blue
-        context.fillStyle = gradient;
-        context.fill();
+        let img = document.createElement('img');
+        img.src = imgSrc;
+
+        context.drawImage(img, size, size);
+        console.log('img src: ' + img.src);
+        //context.rect(0, 0, size, size);
+        //var gradient = context.createLinearGradient(0, 0, size, size);
+        //gradient.addColorStop(0, color1); // light blue 
+        //gradient.addColorStop(1, color2); // dark blue
+        //context.fillStyle = gradient;
+        //context.fill();
 
         let texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
-        return texture;
+        return texture;*/
     }
 
     makeLabelCanvas(x: number, baseWidth: number, size: number, name: string) {
@@ -151,9 +157,9 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         return label;
     }
 
-    makeSphere(radius: number, label: string, color1: string, color2: string) {
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 8, 8),
-            new THREE.MeshBasicMaterial({ map: this.makeTexture(color1, color2) }));
+    makeSphere(radius: number, label: string, img: string) {
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 16, 16),
+            new THREE.MeshBasicMaterial({ map: this.makeTexture(img) }));
         mesh.attach(this.makeLabelCanvas(0, 40, 12, label));
         return mesh;
     }

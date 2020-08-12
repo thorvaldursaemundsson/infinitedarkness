@@ -21,17 +21,18 @@ interface IStar extends IHeavelyBody {
 type DistanceType = 'km' | 'AU' | 'LY';
 interface Distance {
     distance: number;
-    unit:DistanceType;
+    unit: DistanceType;
 }
 
 export interface IPlanetoid extends IHeavelyBody {
     classification: string;
     surfaceGravity: number;
-    temperatureRange: [number,number,number];
+    temperatureRange: [number, number, number];
     atmosphere: string;
     atmosphericPressure: number;
     hydrosphere: string;
     satelites: IPlanetoid[];
     orbitDistance: Distance;
     feature?: string;
+    imageURL?: string;
 }
