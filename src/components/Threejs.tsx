@@ -48,7 +48,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         }
     }
 
-    makeSystem() {
+    makeSystem(rotator: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>[]) {
         var stars = this.props.starSystem.stars.map((s, si, siar) => {
             var p = s.planetoids.map((p, i, ar) => {
                 var planetSphere = this.makeSphere(.25 + p.mass / 160, p.name, this.getColorFromPlanet(p));
@@ -60,16 +60,26 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                     sa.position.x = planetSphere.position.x;
                     sa.position.y = ix + 1 + sat.orbitDistance.distance * (this.getOritalDistanceMod(sat.orbitDistance.unit));
                     sa.position.y += si * 2;
+                    rotator.push(sa);
                     return sa;
                 });
                 satelites.forEach(s => planetSphere.attach(s));
+                rotator.push(planetSphere);
                 return planetSphere;
             });
             var m = this.makeSphere(.5 + s.mass / 30, s.name, this.getColorFromStar(s));
             m.position.y = si * 2;
-            return [m, ...p];
+            p.forEach(plan => m.attach(plan));
+            rotator.push(m);
+            return m;
         });
-        return stars.reduce((a, b) => [...a, ...b]);
+        if (stars.length <= 1) return stars[0];
+        else {
+            let firstStar = stars[0];
+            let otherStars = stars.slice(1);
+            otherStars.forEach(os => firstStar.attach(os));
+            return firstStar;
+        }
     }
 
 
@@ -167,23 +177,31 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         renderer.domElement.addEventListener('mousemove', (e) => this.moveMouse(e));
         renderer.domElement.addEventListener('mouseup', () => this.endMoveMouse());
 
-        var system = this.makeSystem();
+        var rotatorList: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>[] = [];
+        var system = this.makeSystem(rotatorList);
 
-        scene.add(...system);
+        scene.add(system);
         camera.position.z = 5;
         var animate = () => {
             requestAnimationFrame(animate);
-            system.forEach(s => {
-                if (this.mouseMoving === 'left') {
-                    s.position.x += -this.rotationEuler.y / 100;
-                    s.position.y += this.rotationEuler.x / 100;
+            rotatorList.forEach((s, i, ar) => {
+
+                //s.rotation.x += 0.00666;
+                //s.rotation.y += 0.01;
+                s.rotation.z += 0.001;
+                if (i !== 0) {
+                    s.rotation.x += (0.01 );
+                    //s.rotation.y += 0.01;
                 }
-                else if (this.mouseMoving === 'right') {
-                    s.position.z = this.rotationEuler.x / 5;
-                }
-                s.rotation.x += 0.001;
-                s.rotation.y += 0.002;
-            });
+                console.log(i);
+            })
+            if (this.mouseMoving === 'left') {
+                system.position.x = -this.rotationEuler.y / 10;
+                system.position.y = this.rotationEuler.x / 10;
+            }
+            else if (this.mouseMoving === 'right') {
+                system.position.z = this.rotationEuler.x / 5;
+            }
             renderer.render(scene, camera);
         };
         animate();
