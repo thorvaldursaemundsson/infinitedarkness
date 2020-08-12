@@ -53,6 +53,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 feature: 'birthplace of humanity, 6.2 billion people',
                 surfaceGravity: 1,
                 orbitDistance: { distance: 1, unit: 'AU'},
+                imageURL: 'texture_planet_earth.jpg',
                 satelites: [{
                     name: 'Moon',
                     description: 'The surface bases on the moon originally started out as refueling for space travel. Shortly after mining industry began to take root, over time it grew and as it did so did the population. The population gave rise to a lunatic economy which rapidly became the center of space commerce. Many historians consider the moon to be the initial launchpad of humanitys ascent into the stars.',
@@ -67,6 +68,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                     orbitDistance: { distance: 375000, unit: 'km'},
                     satelites: [],
                     temperatureRange: [-173,0,116],
+                    imageURL: 'texture_planet_moon.jpg',
+                    //imageHeight: 505,
+                    //imageWidth: 
                 }],
                 temperatureRange: [-86,35,59],
 

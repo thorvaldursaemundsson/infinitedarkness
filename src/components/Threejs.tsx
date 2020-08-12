@@ -72,37 +72,6 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         return stars.reduce((a, b) => [...a, ...b]);
     }
 
-    makeTexture(imgSrc: string): THREE.Texture {
-        let loader = new THREE.TextureLoader().load(imgSrc);
-        loader.wrapS = THREE.RepeatWrapping;
-        loader.wrapT = THREE.RepeatWrapping;
-        loader.repeat.set(16,16);
-        return loader;
-
-
-        /*let size = 16;
-        let canvas = document.createElement("canvas");
-        canvas.width = size;
-        canvas.height = size;
-        let context = canvas.getContext("2d");
-        if (context === null) throw new Error();
-
-        let img = document.createElement('img');
-        img.src = imgSrc;
-
-        context.drawImage(img, size, size);
-        console.log('img src: ' + img.src);
-        //context.rect(0, 0, size, size);
-        //var gradient = context.createLinearGradient(0, 0, size, size);
-        //gradient.addColorStop(0, color1); // light blue 
-        //gradient.addColorStop(1, color2); // dark blue
-        //context.fillStyle = gradient;
-        //context.fill();
-
-        let texture = new THREE.Texture(canvas);
-        texture.needsUpdate = true;
-        return texture;*/
-    }
 
     makeLabelCanvas(x: number, baseWidth: number, size: number, name: string) {
         const borderSize = 1;
@@ -159,7 +128,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
     makeSphere(radius: number, label: string, img: string) {
         const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 16, 16),
-            new THREE.MeshBasicMaterial({ map: this.makeTexture(img) }));
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(img) }));
         mesh.attach(this.makeLabelCanvas(0, 40, 12, label));
         return mesh;
     }
@@ -212,8 +181,8 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                 else if (this.mouseMoving === 'right') {
                     s.position.z = this.rotationEuler.x / 5;
                 }
-                s.rotation.x += 0.01;
-                s.rotation.y += 0.02;
+                s.rotation.x += 0.001;
+                s.rotation.y += 0.002;
             });
             renderer.render(scene, camera);
         };
