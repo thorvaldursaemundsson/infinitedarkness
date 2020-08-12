@@ -25,16 +25,13 @@ const Indexer: React.FC<IIndexerProps> = ({ children, title }) => {
 
     const indexedItems: JSX.Element[] = [];
 
-    console.log({ children });
     for (var child in anyChildren) {
         var x = anyChildren[child];
         if (x.props.title === undefined) {
-            console.log("Child is not Indexed, it is: ", { x });
         }
         else {
             indexedItems.push(<Indexed title={x.props.title} source={title}>{x.props.children}</Indexed>);
             index.push(x.props.title);
-            console.log("data", { x });
         }
     }
 

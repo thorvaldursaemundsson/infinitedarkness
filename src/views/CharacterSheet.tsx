@@ -229,7 +229,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
                                     return <tr className='no-print'>
                                         <td>
-                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> ({perk.level}) {perk.description()}
+                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> ({perk.level}) {perk.description}
                                         </td>
                                     </tr>
                                 }) : null}

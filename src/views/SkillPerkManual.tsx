@@ -47,8 +47,8 @@ const SkillSection = () => {
                     <h4>Perks</h4>
                     {perks.filter(p => p.skill === skill.name).map(perk => <>
                         <h5 className='perkstitle'>{perk.name} ({perk.level * 10})</h5>
-                        <p className='perksdescription'>{perk.description()}</p>
-
+                        <p className='perksdescription'>{perk.description}</p>
+                        {perk.results !== undefined ? <ul>{perk.results.map(r => <li>{r}</li>)}</ul> : null}
                     </>)}
                 </Section>
             </Section></>)}

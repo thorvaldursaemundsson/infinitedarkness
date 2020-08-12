@@ -1,4 +1,3 @@
-import React from 'react';
 import { IHooker } from './Character';
 
 export interface Perk extends IHooker {
@@ -6,7 +5,8 @@ export interface Perk extends IHooker {
     skill: string;
     level: 1 | 2 | 3 | 4 | 5;
     cost(): number;
-    description(): JSX.Element;
+    description: string;
+    results?: string[]
 }
 
 interface IPerk {
@@ -14,6 +14,7 @@ interface IPerk {
     skill: string;
     level: 1 | 2 | 3 | 4 | 5;
     description: string;
+    results?: string[]
 }
 const def: IHooker = {
     amount: 0,
@@ -25,10 +26,9 @@ export class PerkTemplate implements Perk {
     level: 1 | 2 | 3 | 4 | 5;
     applyTo: string;
     amount: number;
-    _description: string;
-    description(): JSX.Element {
-        return <>{this._description}</>;
-    }
+    description: string;
+    results?: string[]
+    
     cost(): number {
         return this.level * 10;
     }
@@ -36,8 +36,9 @@ export class PerkTemplate implements Perk {
         this.name = data.name;
         this.skill = data.skill;
         this.level = data.level;
-        this._description = data.description;
+        this.description = data.description;
         this.applyTo = hook.applyTo;
         this.amount = hook.amount;
+        this.results = data.results;
     }
 }

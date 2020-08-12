@@ -5,10 +5,11 @@ const useCases: UseCase[] = [
         attribute: 'willpower',
         description: 'cast a spell',
         results: [
-            'roll: 16-20: costs 4 mana to activate spell or ability',
-            'roll: 21-25: costs 3 mana to activate spell or ability',
-            'roll: 26-30: costs 1 mana to activate spell or ability',
-            'roll: 31+: costs 1 mana to activate spell or ability'
+            'Spell mana cost depends on how you use them',
+            'The difficult is 6 x mana cost (1 mana = 6, 3 mana = 18, etc)',
+            'If you roll 1-5 points below difficulty you may choose to have it succeed at double mana cost',
+            'If you roll 10+ points below difficulty the spell fails and you spend 1 additional mana per point of failure below 10 (so if difficulty is 24, you roll 12 you spend 4 + 2 = 6)',
+            'If you roll 10+ above difficulty the spell costs 1 less mana (minimum 1)'
         ],
         type: 'active'
     }

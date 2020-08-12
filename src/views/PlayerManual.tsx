@@ -11,6 +11,7 @@ import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 import CharacterSize from '../components/playermanual/CharacterSize';
 import Radiation from '../components/playermanual/Radiation';
+import Consumables from '../components/Consumables';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -19,27 +20,29 @@ const PlayerManual: React.FC = () => {
         <hr />
         <MakeCharacter key='pm1' />
         <hr />
-        <Section title='Spell Roller'><SpellRoller key='pm9' /></Section>
-        <hr />
         <CharacterSheetOverview key='pm2' />
-        <hr />
-        <CharacterSize key='pmcs' />
-        <hr />
-        <Wealth key='pm3' />
         <hr />
         <Experience key='pm4' />
         <hr />
+        <CharacterSize key='pmcs' />
+        <hr />
         <Combat key='pm5' />
         <hr />
+        <Health key='pm8' />
+        <hr/>
+        <Wealth key='pm3' />
+        <hr />
         <Equipment key='pm6' />
+        <hr/>
+        <Consumables key='pmcons' />
         <hr />
         <CarryingCapacity key='pmcc' />
         <hr />
         <Vehicles key='pm7' />
         <hr />
-        <Health key='pm8' />
-        <hr/>
         <Radiation key='pmr' />
+        <hr />
+        <Section title='Spell Roller'><SpellRoller key='pm9' /></Section>
     </div>);
 }
 

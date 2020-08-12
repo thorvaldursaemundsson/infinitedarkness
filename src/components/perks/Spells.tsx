@@ -1,6 +1,5 @@
 import { PerkTemplate } from "../Perks";
 import { IHooker } from "../Character";
-import React from "react";
 
 const spellhook: IHooker = {
     applyTo: 'spells',
@@ -13,17 +12,16 @@ class SpellTemplate implements PerkTemplate {
     level: 1 | 2 | 3 | 4 | 5;
     applyTo: string;
     amount: number;
-    _description: string;
-    constructor(name: string, description: string) {
+    description: string;
+    results?: string[];
+    constructor(name: string, description: string, results?:string[] | undefined) {
         this.name = name;
         this.skill = 'spells';
         this.level = 1;
-        this._description = description;
+        this.description = description;
         this.applyTo = spellhook.applyTo;
         this.amount = spellhook.amount;
-    }
-    description(): JSX.Element {
-        return <>{this._description}</>;
+        this.results = results;
     }
     cost(): number {
         return this.level * 10;
@@ -33,17 +31,31 @@ class SpellTemplate implements PerkTemplate {
 export const DimensionalSwap = new SpellTemplate(
     'Dimensional Swap',
     'Spell: You can cause an object to being to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
-    'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you'
+    'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you',
+    [
+        'base mana: 2',
+        'object is larger than 1kg: +1 mana',
+        'object is not within visual sight of caser: +2 mana',
+        'object is/was partially used: +2 mana'
+    ]
 );
 
 export const Splinter = new SpellTemplate(
     'Splinter',
-    'Spell: you split into two clones of yourself with all of your capabilities and has shared mana. Lasts 24 hours after which one will die and the other will revert into being the original (players choice). Spend 2 mana every day to keep it alive longer, prevents mana regen while active'
+    'Spell: you split into two clones of yourself with all of your capabilities and has shared mana. Lasts 24 hours after which one will die and the other will revert into being the original (players choice). Spend 2 mana every day to keep it alive longer, prevents mana regen while active',
+    
 );
 
 export const Unmask = new SpellTemplate(
     'Unmask',
-    'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm)'
+    'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm)',
+    [
+        'base mana: 2',
+        'change fingerprint/retina: +1 mana',
+        'change color of skin, eyes or hair: +1 mana',
+        'change gender: +2 mana',
+        'change DNA: +1 mana'
+    ]
 );
 
 export const UmbraConstant = new SpellTemplate(
