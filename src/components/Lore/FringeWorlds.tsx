@@ -19,6 +19,8 @@ const Tonati = () => <StarSystem
         classification: 'A',
         mass: 2.7,
         age: 4.1,
+        axialTilt: 0, 
+        dayPeriod: 3600*24,
         planetoids: [{
             name: 'Chantico',
             description: 'Chantico rotates extremely quickly, a day lasting only 160 minutes. This planet is a smoldering radioactive hellscape under the Tonati sun, rivers of magma flow across the surface that is never able to cool down',
@@ -33,7 +35,9 @@ const Tonati = () => <StarSystem
             temperatureRange: [1000,1200,1300],
             orbitDistance: { distance: 0.2, unit: 'AU'},
             feature: 'extreme radiation',
-            imageURL: 'texture_planet_molten.jpg'
+            imageURL: 'texture_planet_molten.jpg',
+            axialTilt: 6, 
+            dayPeriod: 3600*24*10,
         },
         {
             name: 'Teylaloc',
@@ -49,7 +53,9 @@ const Tonati = () => <StarSystem
             temperatureRange:[320,340,360],
             orbitDistance: { distance: 0.7, unit: 'AU'},
             feature: 'constant planetwide thunderstorms',
-            imageURL: 'texture_planet_pinkteal.jpg'
+            imageURL: 'texture_planet_pinkteal.jpg',
+            axialTilt: 9, 
+            dayPeriod: 3600*11,
         },
         {
             name: 'Atlahua',
@@ -65,7 +71,9 @@ const Tonati = () => <StarSystem
             temperatureRange: [190,250,370],
             orbitDistance: { distance: 1.5, unit: 'AU'},
             feature: 'rings',
-            imageURL: 'texture_planet_rocky.jpg'
+            imageURL: 'texture_planet_rocky.jpg',
+            axialTilt: 8, 
+            dayPeriod: 3600*18,
         },
         {
             name: 'Ehecatl',
@@ -81,7 +89,9 @@ const Tonati = () => <StarSystem
             temperatureRange: [20,0,70],
             orbitDistance: { distance: 3.5, unit: 'AU'},
             feature: 'settlements',
-            imageURL: 'texture_planet_orangegreen.jpg'
+            imageURL: 'texture_planet_orangegreen.jpg',
+            axialTilt: -21, 
+            dayPeriod: 3600*27,
         },
         {
             name: 'Meztil',
@@ -97,7 +107,9 @@ const Tonati = () => <StarSystem
             temperatureRange: [-30,0,40],
             orbitDistance: { distance: 4.2, unit: 'AU'},
             feature: 'settlements',
-            imageURL: 'texture_planet_lush.jpg'
+            imageURL: 'texture_planet_lush.jpg',
+            axialTilt: 17, 
+            dayPeriod: 3600*28,
         },
         {
             name: 'Toci',
@@ -112,7 +124,9 @@ const Tonati = () => <StarSystem
             surfaceGravity: 4,
             temperatureRange: [-130,0,80],
             orbitDistance: { distance: 30, unit: 'AU'},
-            imageURL: 'texture_planet_lime.jpg'
+            imageURL: 'texture_planet_lime.jpg',
+            axialTilt: 65, 
+            dayPeriod: 3600*4,
         },
         {
             name: 'Xolotl',
@@ -127,7 +141,9 @@ const Tonati = () => <StarSystem
             surfaceGravity: 4,
             temperatureRange: [-190,-180,-170],
             orbitDistance: { distance: 79, unit: 'AU'},
-            imageURL: 'texture_planet_cold.jpg'
+            imageURL: 'texture_planet_cold.jpg',
+            axialTilt: -90, 
+            dayPeriod: 3600*240,
         }
         ]
 
@@ -143,6 +159,8 @@ const Ashra = () => <StarSystem
         mass: 0.9,
         age: 4,
         classification: 'K',
+        axialTilt: -90, 
+        dayPeriod: 3600*2,
         planetoids: [{
             name: 'Feshra',
             description: "Innermost planet of Ashra, small planet composed mostly of magnetic iron., it's believed that a stellar event has stripped this planet of its outer mantel leaving only the iron core. The extremely strong magnetic field protects the surface from radiation and allows a dense atmosphere of argon and carbondioxide to persist.",
@@ -156,7 +174,9 @@ const Ashra = () => <StarSystem
             surfaceGravity: 0.5,
             temperatureRange: [400,450,500],
             orbitDistance: { distance: 0.1, unit: 'AU'},
-            imageURL: 'texture_planet_rocky.jpg'
+            imageURL: 'texture_planet_rocky.jpg',
+            axialTilt: -9, 
+            dayPeriod: 3600*600,
         },
         {
             name: 'Noshra',
@@ -172,7 +192,9 @@ const Ashra = () => <StarSystem
             temperatureRange: [90,120,180],
             orbitDistance: { distance: 0.4, unit: 'AU'},
             feature: 'large silicate rings',
-            imageURL: 'texture_planet_lime.jpg'
+            imageURL: 'texture_planet_lime.jpg',
+            axialTilt: 0, 
+            dayPeriod: 3600*18,
         },
         {
             name: 'Neke',
@@ -189,7 +211,9 @@ const Ashra = () => <StarSystem
             temperatureRange: [-20,10,60],
             orbitDistance: { distance: 0.8, unit: 'AU'},
             feature: '142 thousand inhabitants',
-            imageURL: 'texture_planet_blue.jpg'
+            imageURL: 'texture_planet_neke.png',
+            axialTilt: 15, 
+            dayPeriod: 3600*20,
         },
         {
             name: 'Consini belt',
@@ -204,6 +228,8 @@ const Ashra = () => <StarSystem
             surfaceGravity: 0,
             temperatureRange: [-180,-120,79],
             orbitDistance: { distance: 1.9, unit: 'AU'},
+            axialTilt: 0, 
+            dayPeriod: 3600*24,
         },
         {
             name: 'Sylvis',
@@ -223,7 +249,9 @@ const Ashra = () => <StarSystem
                 temperatureRange: [-120,0,10],
                 orbitDistance: { distance: 80000, unit: 'km'},
                 satelites: [],
-                imageURL: 'texture_planet_toxic.jpg'
+                imageURL: 'texture_planet_toxic.jpg',
+                axialTilt: 0, 
+                dayPeriod: 3600*8,
             }],
             classification: 'gas giant',
             atmosphere: 'hydrogen, helium',
@@ -233,7 +261,9 @@ const Ashra = () => <StarSystem
             temperatureRange: [-90,0,20],
             orbitDistance: { distance: 4, unit: 'AU'},
             feature: 'asteroid belt orbiting gas giant binary',
-            imageURL: 'texture_planet_molten.jpg'
+            imageURL: 'texture_planet_molten.jpg',
+            axialTilt: 0, 
+            dayPeriod: 3600*11,
         },
         {
             name: 'Nane',
@@ -248,7 +278,9 @@ const Ashra = () => <StarSystem
             temperatureRange:[-190,-160,-140],
             orbitDistance: { distance: 9, unit: 'AU'},
             satelites: [],
-            imageURL: 'texture_planet_cold.jpg'
+            imageURL: 'texture_planet_cold.jpg',
+            axialTilt: -45, 
+            dayPeriod: 3600*48,
         },
         {
             name: 'Sarma',
@@ -263,7 +295,9 @@ const Ashra = () => <StarSystem
             temperatureRange: [-210,-180,-90],
             orbitDistance: { distance: 20, unit: 'AU'},
             satelites: [],
-            imageURL: 'texture_planet_cold.jpg'
+            imageURL: 'texture_planet_cold.jpg',
+            axialTilt: -30, 
+            dayPeriod: 3600*36,
         },
         {
             name: 'Marzanna',
@@ -278,7 +312,9 @@ const Ashra = () => <StarSystem
             temperatureRange: [-220,-190,-130],
             orbitDistance: { distance: 51, unit: 'AU'},
             satelites: [],
-            imageURL: 'texture_planet_cold.jpg'
+            imageURL: 'texture_planet_cold.jpg',
+            axialTilt: 0, 
+            dayPeriod: 3600*90,
         }
         ]
     }]}

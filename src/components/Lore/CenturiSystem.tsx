@@ -10,6 +10,8 @@ const CentauriStarSystem = () => <StarSystem
         age: 6.1,
         description: "Rigil is the biggest star and has 2 inner planets, it's theorized that if Rigil ever had more planets they would've been slingshotted out of the system from gravitational interaction with Hadar",
         classification: 'G',
+        axialTilt: 0, 
+        dayPeriod: 3600*6,
         planetoids: [{
             name: 'Sheol',
             classification: 'Rocky',
@@ -23,7 +25,9 @@ const CentauriStarSystem = () => <StarSystem
             hydrosphere: 'none',
             orbitDistance: { distance: 0.02, unit: 'AU'},
             feature: 'surface lava rivers, extreme radiation',
-            satelites: []
+            satelites: [],
+            axialTilt: 8, 
+            dayPeriod: 3600*24*1000,
         },
         {
             name: 'Diluvia',
@@ -38,7 +42,9 @@ const CentauriStarSystem = () => <StarSystem
             hydrosphere: 'sea water',
             orbitDistance: { distance: 1.09, unit: 'AU'},
             feature: '10 million people',
-            satelites: []
+            satelites: [],
+            axialTilt: 25, 
+            dayPeriod: 3600*24,
         }]
     },
     {
@@ -47,6 +53,8 @@ const CentauriStarSystem = () => <StarSystem
         age: 6.1,
         description: "Hadar is the middle star, slightly smaller than the sun, has 2 inner planets",
         classification: 'K',
+        axialTilt: 0, 
+        dayPeriod: 3600*11,
         planetoids: [{
             name: 'Epona',
             classification: 'Rocky',
@@ -59,7 +67,9 @@ const CentauriStarSystem = () => <StarSystem
             temperatureRange: [-200,100,450],
             hydrosphere: 'none',
             orbitDistance: { distance: 0.12, unit: 'AU'},
-            satelites: []
+            satelites: [],
+            axialTilt: -7, 
+            dayPeriod: 3600*24*600,
         },
         {
             name: 'Rhiannon',
@@ -73,7 +83,9 @@ const CentauriStarSystem = () => <StarSystem
             temperatureRange: [-30,10,40],
             hydrosphere: 'salt water',
             orbitDistance: { distance: 0.95, unit: 'AU'},
-            satelites: []
+            satelites: [],
+            axialTilt: 19, 
+            dayPeriod: 3600*21,
         }]
     },
     {
@@ -82,6 +94,8 @@ const CentauriStarSystem = () => <StarSystem
         age: 4.8,
         description: "Proxima is the smallest star orbitting both Rigil Kentaurus and Toliman in a huge orbit at 0.4 lightyears out. FTL travel is needed to travel between but is also much faster. The majority of Centauri planets orbit Proxima but population is sparse.",
         classification: 'G',
+        axialTilt: 0, 
+        dayPeriod: 3600*2,
         planetoids: [{
             name: 'Hayagriva',
             classification: 'rocky',
@@ -94,6 +108,8 @@ const CentauriStarSystem = () => <StarSystem
             temperatureRange: [-100,100,200],
             hydrosphere: 'none',
             orbitDistance: { distance: 0.008, unit: 'AU'},
+            axialTilt: -45, 
+            dayPeriod: 3600*24*18,
             satelites: [{
                 name: 'Lakshmi',
                 classification: 'rocky',
@@ -106,7 +122,9 @@ const CentauriStarSystem = () => <StarSystem
                 temperatureRange: [-100,100,200],
                 hydrosphere: 'none',
                 orbitDistance: { distance: 4000, unit: 'km'},
-                satelites: []
+                satelites: [],
+                axialTilt: 45, 
+                dayPeriod: 3600*24*18,
             }]
         },
         {
@@ -122,7 +140,9 @@ const CentauriStarSystem = () => <StarSystem
             hydrosphere: 'salt water',
             orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
-            satelites: []
+            satelites: [],
+            axialTilt: 11, 
+            dayPeriod: 3600*24*90,
         },
         {
             name: 'Drega',
@@ -137,7 +157,9 @@ const CentauriStarSystem = () => <StarSystem
             hydrosphere: 'amonia, ethane, methane',
             orbitDistance: { distance: 0.03, unit: 'AU'},
             feature: 'tidally locked, settlements',
-            satelites: []
+            satelites: [],
+            axialTilt: 31, 
+            dayPeriod: 3600*21,
         }]
     },
     ]}

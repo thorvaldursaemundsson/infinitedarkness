@@ -9,6 +9,8 @@ const SolSystem = () => <StarSystem key='solsystem'
             age: 4.6,
             description: "Obviously nobody lives on the sun...yet, this however is the place of many Hypermatter factories, in close orbit these massive structures siphon energy from the super hot corona and produce Hypermatter, this is transported to Venus where it can be sold at astronomical cost.",
             classification: 'G',
+            axialTilt: 0, 
+            dayPeriod: 3600*6,
             planetoids: [{
                 name: 'Mercury',
                 classification: 'rocky',
@@ -23,6 +25,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 0.37, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-173,400,427],
+                axialTilt: 0, 
+                dayPeriod: 3600*24*80,
 
             },
             {
@@ -39,6 +43,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 0.723, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [440,446,470],
+                axialTilt: 181, 
+                dayPeriod: 3600*24*60,
 
             },
             {
@@ -54,6 +60,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 surfaceGravity: 1,
                 orbitDistance: { distance: 1, unit: 'AU'},
                 imageURL: 'texture_planet_earth.jpg',
+                axialTilt: 21, 
+                dayPeriod: 3600*24,
                 satelites: [{
                     name: 'Moon',
                     description: 'The surface bases on the moon originally started out as refueling for space travel. Shortly after mining industry began to take root, over time it grew and as it did so did the population. The population gave rise to a lunatic economy which rapidly became the center of space commerce. Many historians consider the moon to be the initial launchpad of humanitys ascent into the stars.',
@@ -69,8 +77,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                     satelites: [],
                     temperatureRange: [-173,0,116],
                     imageURL: 'texture_planet_moon.jpg',
-                    //imageHeight: 505,
-                    //imageWidth: 
+                    axialTilt: -11, 
+                    dayPeriod: 3600*24*30,
                 }],
                 temperatureRange: [-86,35,59],
 
@@ -89,7 +97,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 1.52, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-103,0,40],
-
+                axialTilt: 10, 
+                dayPeriod: 3600*25,
             },
             {
                 name: 'The Belt',
@@ -105,7 +114,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance:2.7, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-175,0,90],
-
+                axialTilt: 0, 
+                dayPeriod: 3600*24,
             },
             {
                 name: 'Ceres',
@@ -121,7 +131,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 2.7, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-175,0,90],
-
+                axialTilt: -60, 
+                dayPeriod: 3600*80,
             },
             {
                 name: 'Jupiter',
@@ -137,7 +148,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 5.2, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-100,0,30],
-
+                axialTilt: 0, 
+                dayPeriod: 3600*11,
             },
             {
                 name: 'Saturn',
@@ -153,7 +165,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 9.6, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-140,0,20],
-
+                axialTilt: 0, 
+                dayPeriod: 3600*16,
             },
             {
                 name: 'Uranus',
@@ -169,7 +182,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 20, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-190,-50,-10],
-
+                axialTilt: -60, 
+                dayPeriod: 3600*21,
             },
             {
                 name: 'Neptune',
@@ -185,7 +199,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 30.1, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-210,-100,-20],
-
+                axialTilt: 9, 
+                dayPeriod: 3600*20,
             },
             {
                 name: 'Oort Cloud',
@@ -201,7 +216,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 orbitDistance: { distance: 2000, unit: 'AU'},
                 satelites: [],
                 temperatureRange: [-260,-260,-260],
-
+                axialTilt: 0, 
+                dayPeriod: 3600*24*10000,
             }]
         }
     ]}

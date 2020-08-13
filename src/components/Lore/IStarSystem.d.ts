@@ -1,5 +1,6 @@
 export interface IHeavelyBody {
-
+    dayPeriod: number;
+    axialTilt:number;
     mass: number;
     age: number;
     name: string;

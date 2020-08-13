@@ -1,6 +1,6 @@
 import React from 'react';
 import * as THREE from "three";
-import { IStarSystem, IStar, IPlanetoid, DistanceType } from './Lore/IStarSystem';
+import { IStarSystem, IStar, IPlanetoid, DistanceType, IHeavelyBody } from './Lore/IStarSystem';
 
 interface IThreejsProps {
     starSystem: IStarSystem
@@ -42,44 +42,43 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
     getOritalDistanceMod(unit: DistanceType) {
         switch (unit) {
-            case 'AU': return 1 / 1000;
-            case 'km': return 1 / 100000;
-            case 'LY': return 1;
+            case 'AU': return 1 / .5;
+            case 'km': return 1 / 149597871;
+            case 'LY': return 1 * 100;
         }
     }
 
-    makeSystem(rotator: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>[]) {
+    makeSystem(rotator: IRotator[]) {
+        var base = this.makeSphere(0.0000001, '', '');
         var stars = this.props.starSystem.stars.map((s, si, siar) => {
             var p = s.planetoids.map((p, i, ar) => {
                 var planetSphere = this.makeSphere(.25 + p.mass / 160, p.name, this.getColorFromPlanet(p));
-                planetSphere.position.x = i + 1 + p.orbitDistance.distance * (this.getOritalDistanceMod(p.orbitDistance.unit));
+                planetSphere.position.x = p.orbitDistance.distance * (this.getOritalDistanceMod(p.orbitDistance.unit));
                 planetSphere.position.y = si * 2;
+                planetSphere.rotation.z = p.axialTilt;
 
                 var satelites = p.satelites.map((sat, ix, sar) => {
                     let sa = this.makeSphere(0.15 + sat.mass / 120, sat.name, this.getColorFromPlanet(sat));
                     sa.position.x = planetSphere.position.x;
                     sa.position.y = ix + 1 + sat.orbitDistance.distance * (this.getOritalDistanceMod(sat.orbitDistance.unit));
                     sa.position.y += si * 2;
-                    rotator.push(sa);
+                    sa.rotation.z = sat.axialTilt;
+                    rotator.push({ mesh: sa, body: sat, star: false });
                     return sa;
                 });
-                satelites.forEach(s => planetSphere.attach(s));
-                rotator.push(planetSphere);
+                satelites.forEach(s => base.attach(s));
+                rotator.push({ mesh: planetSphere, body: p, star: false });
                 return planetSphere;
             });
             var m = this.makeSphere(.5 + s.mass / 30, s.name, this.getColorFromStar(s));
             m.position.y = si * 2;
-            p.forEach(plan => m.attach(plan));
-            rotator.push(m);
+            m.rotation.z = s.axialTilt;
+            p.forEach(plan => base.attach(plan));
+            rotator.push({ mesh: m, body: s, star: true });
             return m;
         });
-        if (stars.length <= 1) return stars[0];
-        else {
-            let firstStar = stars[0];
-            let otherStars = stars.slice(1);
-            otherStars.forEach(os => firstStar.attach(os));
-            return firstStar;
-        }
+        stars.forEach(star => base.attach(star));
+        return base;
     }
 
 
@@ -139,30 +138,31 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     makeSphere(radius: number, label: string, img: string) {
         const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 16, 16),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(img) }));
-        mesh.attach(this.makeLabelCanvas(0, 40, 12, label));
+        if (label.length > 0)
+            mesh.attach(this.makeLabelCanvas(0, 40, 12, label));
         return mesh;
     }
 
     moveMouse(e: MouseEvent) {
         if (this.mouseMoving === 'none') return;
-        this.rotationEuler.y = (this.mouseStartCoordinates.x - e.offsetX) * .1;
-        this.rotationEuler.x = (this.mouseStartCoordinates.y - e.offsetY) * .1;
+        this.rotationEuler.y = (this.mouseStartCoordinates.x - e.offsetX);
+        this.rotationEuler.x = (this.mouseStartCoordinates.y - e.offsetY);
     }
 
     startMoveMouse(e: MouseEvent) {
         if (e.button === 0) this.mouseMoving = 'left';
         else if (e.button === 2) this.mouseMoving = 'right';
-        this.mouseStartCoordinates.x = e.offsetX;
-        this.mouseStartCoordinates.y = e.offsetY;
+        this.mouseStartCoordinates.x = e.offsetX + this.rotationEuler.y;
+        this.mouseStartCoordinates.y = e.offsetY + this.rotationEuler.x;
         e.preventDefault();
         return false;
     }
 
     endMoveMouse() {
         this.mouseMoving = 'none';
-        this.rotationEuler.y = 0;
-        this.rotationEuler.x = 0;
-        this.rotationEuler.z = 0;
+        //this.rotationEuler.y = 0;
+        //this.rotationEuler.x = 0;
+        //this.rotationEuler.z = 0;
     }
 
 
@@ -177,7 +177,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         renderer.domElement.addEventListener('mousemove', (e) => this.moveMouse(e));
         renderer.domElement.addEventListener('mouseup', () => this.endMoveMouse());
 
-        var rotatorList: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>[] = [];
+        var rotatorList: IRotator[] = [];
         var system = this.makeSystem(rotatorList);
 
         scene.add(system);
@@ -185,22 +185,14 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         var animate = () => {
             requestAnimationFrame(animate);
             rotatorList.forEach((s, i, ar) => {
-
-                //s.rotation.x += 0.00666;
-                //s.rotation.y += 0.01;
-                s.rotation.z += 0.001;
-                if (i !== 0) {
-                    s.rotation.x += (0.01 );
-                    //s.rotation.y += 0.01;
-                }
-                console.log(i);
+                s.mesh.rotation.y += (360) / s.body.dayPeriod;
             })
             if (this.mouseMoving === 'left') {
-                system.position.x = -this.rotationEuler.y / 10;
-                system.position.y = this.rotationEuler.x / 10;
+                system.position.x = -this.rotationEuler.y / 100;
+                system.position.y = this.rotationEuler.x / 100;
             }
             else if (this.mouseMoving === 'right') {
-                system.position.z = this.rotationEuler.x / 5;
+                system.position.z = this.rotationEuler.x / 25;
             }
             renderer.render(scene, camera);
         };
@@ -213,3 +205,9 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 }
 
 export default Threejs;
+
+interface IRotator {
+    mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
+    body: IHeavelyBody;
+    star: boolean;
+}
