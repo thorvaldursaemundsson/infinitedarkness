@@ -73,7 +73,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                     hydrosphere: '',
                     feature: 'settlements, 17 million people',
                     surfaceGravity: 0.16,
-                    orbitDistance: { distance: 375000, unit: 'km'},
+                    orbitDistance: { distance: 384400, unit: 'km'},
                     satelites: [],
                     temperatureRange: [-173,0,116],
                     imageURL: 'texture_planet_moon.jpg',

@@ -5,6 +5,7 @@ export interface IHeavelyBody {
     age: number;
     name: string;
     description: string;
+    parent?:IHeavelyBody;
 }
 
 export interface IStarSystem {

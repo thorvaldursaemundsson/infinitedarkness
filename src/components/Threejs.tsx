@@ -1,6 +1,6 @@
 import React from 'react';
 import * as THREE from "three";
-import { IStarSystem, IStar, IPlanetoid, DistanceType, IHeavelyBody } from './Lore/IStarSystem';
+import { IStarSystem, IStar, IPlanetoid, IHeavelyBody, Distance } from './Lore/IStarSystem';
 
 interface IThreejsProps {
     starSystem: IStarSystem
@@ -16,12 +16,15 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     mouseMoving: 'none' | 'left' | 'right';
     rotationEuler: THREE.Euler;
     mouseStartCoordinates: Coordinates;
+    zoomEuler: THREE.Euler;
+    speedOfTime: number = 25;
 
     constructor(props: IThreejsProps) {
         super(props);
         this.mouseMoving = 'none';
         this.rotationEuler = new THREE.Euler(0, 0, 0);
         this.mouseStartCoordinates = { x: 0, y: 0 };
+        this.zoomEuler = new THREE.Euler(0, 0, 0);
     }
 
     getColorFromStar(star: IStar): string {
@@ -40,41 +43,37 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         return 'white.jpg'
     }
 
-    getOritalDistanceMod(unit: DistanceType) {
-        switch (unit) {
-            case 'AU': return 1 / .5;
-            case 'km': return 1 / 149597871;
-            case 'LY': return 1 * 100;
+    getOritalDistanceMod(dist: Distance) {
+        switch (dist.unit) {
+            case 'AU': return dist.distance / .5;
+            case 'km': return dist.distance / 149597871;
+            case 'LY': return dist.distance * 100;
         }
     }
 
     makeSystem(rotator: IRotator[]) {
         var base = this.makeSphere(0.0000001, '', '');
         var stars = this.props.starSystem.stars.map((s, si, siar) => {
-            var p = s.planetoids.map((p, i, ar) => {
-                var planetSphere = this.makeSphere(.25 + p.mass / 160, p.name, this.getColorFromPlanet(p));
-                planetSphere.position.x = p.orbitDistance.distance * (this.getOritalDistanceMod(p.orbitDistance.unit));
-                planetSphere.position.y = si * 2;
-                planetSphere.rotation.z = p.axialTilt;
 
+            var m = this.makeSphere(0.5 + s.mass / 5, s.name, this.getColorFromStar(s));
+            let rotStar = { mesh: m, body: s, star: true, satelite: false };
+            var p = s.planetoids.map((p, i, ar) => {
+                var planetSphere = this.makeSphere(0.15 + p.mass / 160, p.name, this.getColorFromPlanet(p));
+                let rotPlan = { mesh: planetSphere, body: p, star: false, parent: rotStar, satelite: false };
+                planetSphere.rotation.z = p.axialTilt;
                 var satelites = p.satelites.map((sat, ix, sar) => {
-                    let sa = this.makeSphere(0.15 + sat.mass / 120, sat.name, this.getColorFromPlanet(sat));
-                    sa.position.x = planetSphere.position.x;
-                    sa.position.y = ix + 1 + sat.orbitDistance.distance * (this.getOritalDistanceMod(sat.orbitDistance.unit));
-                    sa.position.y += si * 2;
+                    let sa = this.makeSphere(0.1 + sat.mass / 240, sat.name, this.getColorFromPlanet(sat));
                     sa.rotation.z = sat.axialTilt;
-                    rotator.push({ mesh: sa, body: sat, star: false });
+                    rotator.push({ mesh: sa, body: sat, star: false, parent: rotPlan, satelite: true });
                     return sa;
                 });
                 satelites.forEach(s => base.attach(s));
-                rotator.push({ mesh: planetSphere, body: p, star: false });
+                rotator.push(rotPlan);
                 return planetSphere;
             });
-            var m = this.makeSphere(.5 + s.mass / 30, s.name, this.getColorFromStar(s));
-            m.position.y = si * 2;
             m.rotation.z = s.axialTilt;
             p.forEach(plan => base.attach(plan));
-            rotator.push({ mesh: m, body: s, star: true });
+            rotator.push(rotStar);
             return m;
         });
         stars.forEach(star => base.attach(star));
@@ -145,24 +144,35 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
     moveMouse(e: MouseEvent) {
         if (this.mouseMoving === 'none') return;
-        this.rotationEuler.y = (this.mouseStartCoordinates.x - e.offsetX);
-        this.rotationEuler.x = (this.mouseStartCoordinates.y - e.offsetY);
+        if (this.mouseMoving === 'left') {
+
+            this.rotationEuler.y = (this.mouseStartCoordinates.x - e.offsetX);
+            this.rotationEuler.x = (this.mouseStartCoordinates.y - e.offsetY);
+            return;
+        }
+        if (this.mouseMoving === 'right') {
+            this.zoomEuler.y = (this.mouseStartCoordinates.x - e.offsetX);
+            this.zoomEuler.x = (this.mouseStartCoordinates.y - e.offsetY);
+        }
     }
 
     startMoveMouse(e: MouseEvent) {
-        if (e.button === 0) this.mouseMoving = 'left';
-        else if (e.button === 2) this.mouseMoving = 'right';
-        this.mouseStartCoordinates.x = e.offsetX + this.rotationEuler.y;
-        this.mouseStartCoordinates.y = e.offsetY + this.rotationEuler.x;
+        if (e.button === 0) {
+            this.mouseMoving = 'left';
+            this.mouseStartCoordinates.x = e.offsetX + this.rotationEuler.y;
+            this.mouseStartCoordinates.y = e.offsetY + this.rotationEuler.x;
+        }
+        else if (e.button === 2) {
+            this.mouseMoving = 'right';
+            this.mouseStartCoordinates.x = e.offsetX + this.zoomEuler.y;
+            this.mouseStartCoordinates.y = e.offsetY + this.zoomEuler.x;
+        }
         e.preventDefault();
         return false;
     }
 
     endMoveMouse() {
         this.mouseMoving = 'none';
-        //this.rotationEuler.y = 0;
-        //this.rotationEuler.x = 0;
-        //this.rotationEuler.z = 0;
     }
 
 
@@ -182,25 +192,45 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
         scene.add(system);
         camera.position.z = 5;
+        let counter = 1;
         var animate = () => {
             requestAnimationFrame(animate);
+            counter += this.speedOfTime;
+            if (counter > 3600000000000) counter = 0;
             rotatorList.forEach((s, i, ar) => {
-                s.mesh.rotation.y += (360) / s.body.dayPeriod;
+                s.mesh.rotation.y += (this.speedOfTime) / s.body.dayPeriod;
+                if (s.star === false) {
+                    let b: IPlanetoid = s.body as IPlanetoid;
+                    if (s.parent === undefined) throw new Error();
+                    const speed = calculateOrbitalSpeed(s.parent.body.mass, b.orbitDistance);
+                    let mult = s.satelite ? 150 : 1;
+                    s.mesh.position.x = Math.sin(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosX(s);
+                    s.mesh.position.y = Math.cos(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosY(s);
+                }
+
             })
             if (this.mouseMoving === 'left') {
                 system.position.x = -this.rotationEuler.y / 100;
                 system.position.y = this.rotationEuler.x / 100;
             }
             else if (this.mouseMoving === 'right') {
-                system.position.z = this.rotationEuler.x / 25;
+                system.position.z = (this.zoomEuler.x + this.zoomEuler.y) / 40;
             }
             renderer.render(scene, camera);
         };
         animate();
     }
 
+    getPosX(rot: IRotator) {
+        if (rot.parent !== undefined) return rot.parent.mesh.position.x;
+        else return 0;
+    } getPosY(rot: IRotator) {
+        if (rot.parent !== undefined) return rot.parent.mesh.position.y;
+        else return 0;
+    }
+
     render() {
-        return <div onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)} />
+        return <div><button onClick={() => this.speedOfTime = (this.speedOfTime === 25 ? 0 : 25)}>{'||>'}</button><div onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)} /></div>
     }
 }
 
@@ -210,4 +240,11 @@ interface IRotator {
     mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
     body: IHeavelyBody;
     star: boolean;
+    satelite: boolean;
+    parent?: IRotator;
+}
+
+const calculateOrbitalSpeed = (sourceMass: number, orbitalRadius: Distance) => {
+    const G = 0.000000000066743;
+    return Math.sqrt(sourceMass * orbitalRadius.distance * G) / orbitalRadius.distance * 2 * Math.PI;
 }

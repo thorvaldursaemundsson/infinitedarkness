@@ -247,7 +247,7 @@ const Ashra = () => <StarSystem
                 hydrosphere: 'liquid hydrogen',
                 surfaceGravity: 3.6,
                 temperatureRange: [-120,0,10],
-                orbitDistance: { distance: 80000, unit: 'km'},
+                orbitDistance: { distance: 684400, unit: 'km'},
                 satelites: [],
                 imageURL: 'texture_planet_toxic.jpg',
                 axialTilt: 0, 
