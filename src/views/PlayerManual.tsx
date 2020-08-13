@@ -11,7 +11,7 @@ import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 import CharacterSize from '../components/playermanual/CharacterSize';
 import Radiation from '../components/playermanual/Radiation';
-import Consumables from '../components/Consumables';
+import Consumables from '../components/playermanual/Consumables';
 
 const PlayerManual: React.FC = () => {
     return (<div>
