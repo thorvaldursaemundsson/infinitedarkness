@@ -6,6 +6,7 @@ export interface IHeavelyBody {
     name: string;
     description: string;
     parent?:IHeavelyBody;
+    imageURL?: string;
 }
 
 export interface IStarSystem {
@@ -36,5 +37,4 @@ export interface IPlanetoid extends IHeavelyBody {
     satelites: IPlanetoid[];
     orbitDistance: Distance;
     feature?: string;
-    imageURL?: string;
 }

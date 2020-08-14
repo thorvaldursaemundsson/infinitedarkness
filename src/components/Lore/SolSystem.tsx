@@ -11,6 +11,7 @@ const SolSystem = () => <StarSystem key='solsystem'
             classification: 'G',
             axialTilt: 0, 
             dayPeriod: 3600*6,
+            imageURL: 'texture_star_sun.jpg',
             planetoids: [{
                 name: 'Mercury',
                 classification: 'rocky',
@@ -27,7 +28,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-173,400,427],
                 axialTilt: 0, 
                 dayPeriod: 3600*24*80,
-
+                imageURL: 'texture_planet_mercury.jpg'
             },
             {
                 name: 'Venus',
@@ -45,7 +46,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [440,446,470],
                 axialTilt: 181, 
                 dayPeriod: 3600*24*60,
-
+                imageURL: 'texture_planet_venus.jpg'
             },
             {
                 name: 'Earth',
@@ -99,8 +100,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-103,0,40],
                 axialTilt: 10, 
                 dayPeriod: 3600*25,
+                imageURL: 'texture_planet_mars.jpg',
             },
-            {
+            /*{
                 name: 'The Belt',
                 classification: 'Asteroids',
                 description: 'The Belt and Ceres are populated mostly by automated robots and a few humans and merlions who operate them, this is the biggest industrial complex spanning the system, most high-end mineral refinement both legal and underground happens here',
@@ -116,7 +118,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-175,0,90],
                 axialTilt: 0, 
                 dayPeriod: 3600*24,
-            },
+            },*/
             {
                 name: 'Ceres',
                 classification: 'rocky',
@@ -133,6 +135,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-175,0,90],
                 axialTilt: -60, 
                 dayPeriod: 3600*80,
+                imageURL: 'texture_planet_ceres.jpg',
             },
             {
                 name: 'Jupiter',
@@ -150,6 +153,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-100,0,30],
                 axialTilt: 0, 
                 dayPeriod: 3600*11,
+                imageURL: 'texture_planet_jupiter.jpg',
             },
             {
                 name: 'Saturn',
@@ -167,6 +171,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-140,0,20],
                 axialTilt: 0, 
                 dayPeriod: 3600*16,
+                imageURL: 'texture_planet_saturn.jpg',
             },
             {
                 name: 'Uranus',
@@ -184,6 +189,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-190,-50,-10],
                 axialTilt: -60, 
                 dayPeriod: 3600*21,
+                imageURL: 'texture_planet_uranus.jpg',
             },
             {
                 name: 'Neptune',
@@ -201,6 +207,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-210,-100,-20],
                 axialTilt: 9, 
                 dayPeriod: 3600*20,
+                imageURL: 'texture_planet_neptune.jpg',
             },
             {
                 name: 'Oort Cloud',

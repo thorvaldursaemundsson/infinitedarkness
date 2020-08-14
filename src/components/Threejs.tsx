@@ -28,6 +28,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     getColorFromStar(star: IStar): string {
+        if (star.imageURL !== undefined && star.imageURL !== '') return star.imageURL;
         switch (star.classification) {
             case 'A': return 'texture_star_class_a.jpg';
             case 'F': return 'texture_star_class_f.jpg';
@@ -55,14 +56,14 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         var base = this.makeSphere(0.0000001, '', '');
         var stars = this.props.starSystem.stars.map((s, si, siar) => {
 
-            var m = this.makeSphere(0.5 + s.mass / 5, s.name, this.getColorFromStar(s));
+            var m = this.makeSphere(0.6 + s.mass / 20, s.name, this.getColorFromStar(s));
             let rotStar = { mesh: m, body: s, star: true, satelite: false };
             var p = s.planetoids.map((p, i, ar) => {
-                var planetSphere = this.makeSphere(0.15 + p.mass / 160, p.name, this.getColorFromPlanet(p));
+                var planetSphere = this.makeSphere(0.3 + p.mass / 240, p.name, this.getColorFromPlanet(p));
                 let rotPlan = { mesh: planetSphere, body: p, star: false, parent: rotStar, satelite: false };
                 planetSphere.rotation.z = p.axialTilt;
                 var satelites = p.satelites.map((sat, ix, sar) => {
-                    let sa = this.makeSphere(0.1 + sat.mass / 240, sat.name, this.getColorFromPlanet(sat));
+                    let sa = this.makeSphere(0.2 + sat.mass / 360, sat.name, this.getColorFromPlanet(sat));
                     sa.rotation.z = sat.axialTilt;
                     rotator.push({ mesh: sa, body: sat, star: false, parent: rotPlan, satelite: true });
                     return sa;
@@ -198,12 +199,12 @@ class Threejs extends React.Component<IThreejsProps, {}> {
             counter += this.speedOfTime;
             if (counter > 3600000000000) counter = 0;
             rotatorList.forEach((s, i, ar) => {
-                s.mesh.rotation.y += (this.speedOfTime) / s.body.dayPeriod;
+                s.mesh.rotation.y += ((25) / s.body.dayPeriod) + 0.001;
                 if (s.star === false) {
                     let b: IPlanetoid = s.body as IPlanetoid;
                     if (s.parent === undefined) throw new Error();
                     const speed = calculateOrbitalSpeed(s.parent.body.mass, b.orbitDistance);
-                    let mult = s.satelite ? 150 : 1;
+                    let mult = (s.satelite ? 150 : 1) + 1;
                     s.mesh.position.x = Math.sin(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosX(s);
                     s.mesh.position.y = Math.cos(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosY(s);
                 }
