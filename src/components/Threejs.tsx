@@ -61,10 +61,10 @@ class Threejs extends React.Component<IThreejsProps, {}> {
             var p = s.planetoids.map((p, i, ar) => {
                 var planetSphere = this.makeSphere(0.3 + p.mass / 240, p.name, this.getColorFromPlanet(p));
                 let rotPlan = { mesh: planetSphere, body: p, star: false, parent: rotStar, satelite: false };
-                planetSphere.rotation.z = p.axialTilt;
+                planetSphere.rotation.x = p.axialTilt;
                 var satelites = p.satelites.map((sat, ix, sar) => {
                     let sa = this.makeSphere(0.2 + sat.mass / 360, sat.name, this.getColorFromPlanet(sat));
-                    sa.rotation.z = sat.axialTilt;
+                    sa.rotation.x = sat.axialTilt;
                     rotator.push({ mesh: sa, body: sat, star: false, parent: rotPlan, satelite: true });
                     return sa;
                 });
@@ -72,7 +72,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                 rotator.push(rotPlan);
                 return planetSphere;
             });
-            m.rotation.z = s.axialTilt;
+            m.rotation.x = s.axialTilt;
             p.forEach(plan => base.attach(plan));
             rotator.push(rotStar);
             return m;
@@ -199,14 +199,14 @@ class Threejs extends React.Component<IThreejsProps, {}> {
             counter += this.speedOfTime;
             if (counter > 3600000000000) counter = 0;
             rotatorList.forEach((s, i, ar) => {
-                s.mesh.rotation.y += ((25) / s.body.dayPeriod) + 0.001;
+                s.mesh.rotation.y += ((25) / s.body.dayPeriod) + 0.01;
                 if (s.star === false) {
                     let b: IPlanetoid = s.body as IPlanetoid;
                     if (s.parent === undefined) throw new Error();
                     const speed = calculateOrbitalSpeed(s.parent.body.mass, b.orbitDistance);
                     let mult = (s.satelite ? 150 : 1) + 1;
-                    s.mesh.position.x = Math.sin(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosX(s);
-                    s.mesh.position.y = Math.cos(counter * speed) * (this.getOritalDistanceMod(b.orbitDistance) * mult) + this.getPosY(s);
+                    s.mesh.position.x = Math.sin(counter * speed) * (1 + i) * mult + this.getPosX(s);
+                    s.mesh.position.y = Math.cos(counter * speed) * (1 + i) * mult + this.getPosY(s);
                 }
 
             })
