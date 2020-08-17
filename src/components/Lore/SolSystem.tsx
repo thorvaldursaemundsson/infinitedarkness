@@ -12,6 +12,7 @@ const SolSystem = () => <StarSystem key='solsystem'
             axialTilt: 0, 
             dayPeriod: 3600*6,
             imageURL: 'texture_star_sun.jpg',
+            bodyType: 'star',
             planetoids: [{
                 name: 'Mercury',
                 classification: 'rocky',
@@ -28,7 +29,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-173,400,427],
                 axialTilt: 0, 
                 dayPeriod: 3600*24*80,
-                imageURL: 'texture_planet_mercury.jpg'
+                imageURL: 'texture_planet_mercury.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Venus',
@@ -46,7 +48,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [440,446,470],
                 axialTilt: 181, 
                 dayPeriod: 3600*24*60,
-                imageURL: 'texture_planet_venus.jpg'
+                imageURL: 'texture_planet_venus.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Earth',
@@ -63,6 +66,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 imageURL: 'texture_planet_earth.jpg',
                 axialTilt: 21, 
                 dayPeriod: 3600*24,
+                bodyType: 'planetoid',
                 satelites: [{
                     name: 'Moon',
                     description: 'The surface bases on the moon originally started out as refueling for space travel. Shortly after mining industry began to take root, over time it grew and as it did so did the population. The population gave rise to a lunatic economy which rapidly became the center of space commerce. Many historians consider the moon to be the initial launchpad of humanitys ascent into the stars.',
@@ -80,6 +84,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                     imageURL: 'texture_planet_moon.jpg',
                     axialTilt: -11, 
                     dayPeriod: 3600*24*30,
+                    bodyType: 'planetoid',
                 }],
                 temperatureRange: [-86,35,59],
 
@@ -101,8 +106,9 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: 10, 
                 dayPeriod: 3600*25,
                 imageURL: 'texture_planet_mars.jpg',
+                bodyType: 'planetoid',
             },
-            /*{
+            {
                 name: 'The Belt',
                 classification: 'Asteroids',
                 description: 'The Belt and Ceres are populated mostly by automated robots and a few humans and merlions who operate them, this is the biggest industrial complex spanning the system, most high-end mineral refinement both legal and underground happens here',
@@ -118,7 +124,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-175,0,90],
                 axialTilt: 0, 
                 dayPeriod: 3600*24,
-            },*/
+                bodyType: 'belt',
+            },
             {
                 name: 'Ceres',
                 classification: 'rocky',
@@ -136,6 +143,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: -60, 
                 dayPeriod: 3600*80,
                 imageURL: 'texture_planet_ceres.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Jupiter',
@@ -154,6 +162,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: 0, 
                 dayPeriod: 3600*11,
                 imageURL: 'texture_planet_jupiter.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Saturn',
@@ -172,6 +181,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: 0, 
                 dayPeriod: 3600*16,
                 imageURL: 'texture_planet_saturn.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Uranus',
@@ -190,6 +200,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: -60, 
                 dayPeriod: 3600*21,
                 imageURL: 'texture_planet_uranus.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Neptune',
@@ -208,6 +219,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 axialTilt: 9, 
                 dayPeriod: 3600*20,
                 imageURL: 'texture_planet_neptune.jpg',
+                bodyType: 'planetoid',
             },
             {
                 name: 'Oort Cloud',
@@ -225,6 +237,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-260,-260,-260],
                 axialTilt: 0, 
                 dayPeriod: 3600*24*10000,
+                bodyType: 'belt',
             }]
         }
     ]}

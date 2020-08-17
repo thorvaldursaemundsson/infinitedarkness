@@ -17,7 +17,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     rotationEuler: THREE.Euler;
     mouseStartCoordinates: Coordinates;
     zoomEuler: THREE.Euler;
-    speedOfTime: number = 25;
+    speedOfTime: number = 15;
 
     constructor(props: IThreejsProps) {
         super(props);
@@ -46,38 +46,56 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
     getOritalDistanceMod(dist: Distance) {
         switch (dist.unit) {
-            case 'AU': return dist.distance / .5;
-            case 'km': return dist.distance / 149597871;
-            case 'LY': return dist.distance * 100;
+            case 'AU': return Math.sqrt(dist.distance / .5) * 3;
+            case 'km': return Math.sqrt(dist.distance / 149597871) * 3;
+            case 'LY': return Math.sqrt(dist.distance * 100) * 3;
         }
     }
 
-    makeSystem(rotator: IRotator[]) {
-        var base = this.makeSphere(0.0000001, '', '');
-        var stars = this.props.starSystem.stars.map((s, si, siar) => {
+    makeStar(star: IStar, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[]) {
+        var m = this.makeSphere(0.6 + star.mass / 20, star.name, this.getColorFromStar(star), star.axialTilt);
+        m.rotation.x = star.axialTilt;
+        parentMesh.attach(m);
+        let starRot: IRotator = { mesh: m, body: star, star: true, satelite: false, periodFactor: 0 };
+        source.push(starRot);
+        star.planetoids.map(planet => this.makePlanet(planet, starRot, parentMesh, source));
+        return starRot;
+    }
 
-            var m = this.makeSphere(0.6 + s.mass / 20, s.name, this.getColorFromStar(s));
-            let rotStar = { mesh: m, body: s, star: true, satelite: false };
-            var p = s.planetoids.map((p, i, ar) => {
-                var planetSphere = this.makeSphere(0.3 + p.mass / 240, p.name, this.getColorFromPlanet(p));
-                let rotPlan = { mesh: planetSphere, body: p, star: false, parent: rotStar, satelite: false };
-                planetSphere.rotation.x = p.axialTilt;
-                var satelites = p.satelites.map((sat, ix, sar) => {
-                    let sa = this.makeSphere(0.2 + sat.mass / 360, sat.name, this.getColorFromPlanet(sat));
-                    sa.rotation.x = sat.axialTilt;
-                    rotator.push({ mesh: sa, body: sat, star: false, parent: rotPlan, satelite: true });
-                    return sa;
-                });
-                satelites.forEach(s => base.attach(s));
-                rotator.push(rotPlan);
-                return planetSphere;
-            });
-            m.rotation.x = s.axialTilt;
-            p.forEach(plan => base.attach(plan));
-            rotator.push(rotStar);
-            return m;
-        });
-        stars.forEach(star => base.attach(star));
+    makePlanet(planet: IPlanetoid, parent: IRotator, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[], isSatelite: boolean = false) {
+        if (planet.bodyType === 'belt') return this.makeBelt(planet, parent, parentMesh, source);
+        if (planet.bodyType === 'ring') return this.makeRings(planet, parent);
+        var planetSphere = this.makeSphere(0.3 + planet.mass / 240, planet.name, this.getColorFromPlanet(planet), planet.axialTilt);
+        parentMesh.attach(planetSphere);
+        let rotPlan: IRotator = { mesh: planetSphere, body: planet, star: false, satelite: isSatelite, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, planet.orbitDistance) };
+        planetSphere.rotation.x = planet.axialTilt;
+        source.push(rotPlan);
+        planet.satelites.map(sat => this.makePlanet(sat, rotPlan, parentMesh, source, true));
+        return rotPlan;
+    }
+
+    makeBelt(belt: IPlanetoid, parent: IRotator, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[]) {
+        if (belt.bodyType !== 'belt') throw new Error('whoops');
+        let innerRadius = this.getOritalDistanceMod(belt.orbitDistance) - 0.5;
+        let outerRadius = innerRadius * 1.25 + 1;
+        var beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'texture_planet_belt.png', 0);
+        let beltPlan: IRotator = { mesh: beltDisk, body: belt, star: false, satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance) };
+        source.push(beltPlan);
+        parentMesh.attach(beltDisk);
+        return beltPlan;
+    }
+
+    makeRings(ring: IPlanetoid, parent: IRotator) {
+        if (ring.bodyType !== 'ring') throw new Error('whoops');
+        const inner = 0.5 + parent.body.mass / 240;
+        const outer = inner + 0.3;
+        let rings = this.makeHolyDisk(inner, outer, 'texture_planet_rings.png', parent.body.axialTilt);
+        parent.mesh.attach(rings);
+    }
+
+    makeSystem(rotator: IRotator[]) {
+        let base = this.makeSphere(0.0000001, '', '', 0);
+        this.props.starSystem.stars.map((star) => this.makeStar(star, base, rotator));
         return base;
     }
 
@@ -85,7 +103,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     makeLabelCanvas(x: number, baseWidth: number, size: number, name: string) {
         const borderSize = 1;
         const ctx = document.createElement('canvas').getContext('2d');
-        if (ctx === null) throw new Error();
+        if (ctx === null) throw new Error('something went terribly wrong sorry');
         const font = `${size}px bold sans-serif`;
         ctx.font = font;
         // measure how long the name will be
@@ -135,12 +153,29 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         return label;
     }
 
-    makeSphere(radius: number, label: string, img: string) {
+    makeSphere(radius: number, label: string, img: string, negativeTilt: number) {
         const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 16, 16),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(img) }));
-        if (label.length > 0)
-            mesh.attach(this.makeLabelCanvas(0, 40, 12, label));
+        if (label.length > 0) {
+            let canvas = this.makeLabelCanvas(0, 40, 12, label);
+            mesh.attach(canvas);
+        }
         return mesh;
+    }
+
+    makeHolyDisk(innerRadius: number, outerRadius: number, img: string, tilt: number) {
+        const map = new THREE.TextureLoader().load(img);
+        map.wrapS = THREE.RepeatWrapping;
+        map.wrapT = THREE.RepeatWrapping;
+        map.repeat.set(4, 4);
+        map.needsUpdate = true;
+
+        const bigDisk = new THREE.Mesh(new THREE.RingGeometry(innerRadius, outerRadius, 16, 8),
+            new THREE.MeshBasicMaterial({ map: map }));
+
+        bigDisk.material.side = THREE.DoubleSide;
+        bigDisk.rotation.x = tilt * -0.5;
+        return bigDisk;
     }
 
     moveMouse(e: MouseEvent) {
@@ -199,20 +234,21 @@ class Threejs extends React.Component<IThreejsProps, {}> {
             counter += this.speedOfTime;
             if (counter > 3600000000000) counter = 0;
             rotatorList.forEach((s, i, ar) => {
-                s.mesh.rotation.y += ((25) / s.body.dayPeriod) + 0.01;
-                if (s.star === false) {
-                    let b: IPlanetoid = s.body as IPlanetoid;
-                    if (s.parent === undefined) throw new Error();
-                    const speed = calculateOrbitalSpeed(s.parent.body.mass, b.orbitDistance);
-                    let mult = (s.satelite ? 150 : 1) + 1;
-                    s.mesh.position.x = Math.sin(counter * speed) * (1 + i) * mult + this.getPosX(s);
-                    s.mesh.position.y = Math.cos(counter * speed) * (1 + i) * mult + this.getPosY(s);
+                if (s.mesh.geometry instanceof THREE.RingGeometry) {
+                    s.mesh.rotation.z -= ((5 + this.speedOfTime) / s.body.dayPeriod);
+                    return;
                 }
-
+                else if (s.star === false) {
+                    let planet: IPlanetoid = s.body as IPlanetoid;
+                    let distMod = this.getOritalDistanceMod(planet.orbitDistance) * (s.satelite ? 150 : 1) + 1;
+                    s.mesh.position.x = Math.sin(counter * s.periodFactor) * distMod + this.getPosX(s);
+                    s.mesh.position.y = Math.cos(counter * s.periodFactor) * distMod + this.getPosY(s);
+                }
+                s.mesh.rotation.y += ((5 + this.speedOfTime) / s.body.dayPeriod);
             })
             if (this.mouseMoving === 'left') {
-                system.position.x = -this.rotationEuler.y / 100;
-                system.position.y = this.rotationEuler.x / 100;
+                system.position.x = (-this.rotationEuler.y / 100) * Math.max((1 + -system.position.z / 10), 0.1);
+                system.position.y = this.rotationEuler.x / 100 * Math.max((1 + -system.position.z / 10), 0.1);
             }
             else if (this.mouseMoving === 'right') {
                 system.position.z = (this.zoomEuler.x + this.zoomEuler.y) / 40;
@@ -231,21 +267,22 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     render() {
-        return <div><button onClick={() => this.speedOfTime = (this.speedOfTime === 25 ? 0 : 25)}>{'||>'}</button><div onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)} /></div>
+        return <div><button onClick={() => this.speedOfTime = (this.speedOfTime === 15 ? 0 : 15)}>{'||>'}</button><div onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)} /></div>
     }
 }
 
 export default Threejs;
 
 interface IRotator {
-    mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
+    mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> | THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
     body: IHeavelyBody;
     star: boolean;
     satelite: boolean;
     parent?: IRotator;
+    periodFactor: number;
 }
 
-const calculateOrbitalSpeed = (sourceMass: number, orbitalRadius: Distance) => {
+const calculateOrbitalPeriod = (sourceMass: number, orbitalRadius: Distance) => {
     const G = 0.000000000066743;
     return Math.sqrt(sourceMass * orbitalRadius.distance * G) / orbitalRadius.distance * 2 * Math.PI;
 }

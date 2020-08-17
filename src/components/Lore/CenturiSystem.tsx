@@ -12,6 +12,7 @@ const CentauriStarSystem = () => <StarSystem
         classification: 'G',
         axialTilt: 0, 
         dayPeriod: 3600*6,
+        bodyType: 'star',
         planetoids: [{
             name: 'Sheol',
             classification: 'Rocky',
@@ -28,6 +29,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: 8, 
             dayPeriod: 3600*24*1000,
+            bodyType: 'planetoid',
         },
         {
             name: 'Diluvia',
@@ -45,6 +47,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: 25, 
             dayPeriod: 3600*24,
+            bodyType: 'planetoid',
         }]
     },
     {
@@ -55,6 +58,7 @@ const CentauriStarSystem = () => <StarSystem
         classification: 'K',
         axialTilt: 0, 
         dayPeriod: 3600*11,
+        bodyType: 'star',
         planetoids: [{
             name: 'Epona',
             classification: 'Rocky',
@@ -70,6 +74,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: -7, 
             dayPeriod: 3600*24*600,
+            bodyType: 'planetoid',
         },
         {
             name: 'Rhiannon',
@@ -86,6 +91,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: 19, 
             dayPeriod: 3600*21,
+            bodyType: 'planetoid',
         }]
     },
     {
@@ -96,6 +102,7 @@ const CentauriStarSystem = () => <StarSystem
         classification: 'G',
         axialTilt: 0, 
         dayPeriod: 3600*2,
+        bodyType: 'star',
         planetoids: [{
             name: 'Hayagriva',
             classification: 'rocky',
@@ -110,6 +117,7 @@ const CentauriStarSystem = () => <StarSystem
             orbitDistance: { distance: 0.008, unit: 'AU'},
             axialTilt: -45, 
             dayPeriod: 3600*24*18,
+            bodyType: 'planetoid',
             satelites: [{
                 name: 'Lakshmi',
                 classification: 'rocky',
@@ -125,6 +133,7 @@ const CentauriStarSystem = () => <StarSystem
                 satelites: [],
                 axialTilt: 45, 
                 dayPeriod: 3600*24*18,
+                bodyType: 'planetoid',
             }]
         },
         {
@@ -143,6 +152,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: 11, 
             dayPeriod: 3600*24*90,
+            bodyType: 'planetoid',
         },
         {
             name: 'Drega',
@@ -160,6 +170,7 @@ const CentauriStarSystem = () => <StarSystem
             satelites: [],
             axialTilt: 31, 
             dayPeriod: 3600*21,
+            bodyType: 'planetoid',
         }]
     },
     ]}

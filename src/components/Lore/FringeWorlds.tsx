@@ -22,6 +22,7 @@ const Tonati = () => <StarSystem
         axialTilt: 0, 
         dayPeriod: 3600*24,
         imageURL: 'texture_star_tonati.png',
+        bodyType: 'star',
         planetoids: [{
             name: 'Chantico',
             description: 'Chantico rotates extremely quickly, a day lasting only 160 minutes. This planet is a smoldering radioactive hellscape under the Tonati sun, rivers of magma flow across the surface that is never able to cool down',
@@ -39,6 +40,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_molten.jpg',
             axialTilt: 6, 
             dayPeriod: 3600*24*10,
+            bodyType: 'planetoid',
         },
         {
             name: 'Teylaloc',
@@ -57,6 +59,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_pinkteal.jpg',
             axialTilt: 9, 
             dayPeriod: 3600*11,
+            bodyType: 'planetoid',
         },
         {
             name: 'Atlahua',
@@ -64,7 +67,23 @@ const Tonati = () => <StarSystem
             mass: 0.7,
             age: 3.8,
             classification: 'rocky',
-            satelites: [],
+            satelites: [{
+                name: 'Atlahua rings',
+                classification: 'rings',
+                description: 'rings',
+                atmosphere: '',
+                atmosphericPressure: 0,
+                hydrosphere: '',
+                surfaceGravity: 0,
+                temperatureRange: [-190, 100, 120],
+                orbitDistance: {distance: 600, unit: 'km'},
+                axialTilt: 0,
+                dayPeriod: 0,
+                bodyType: 'ring',
+                mass: 0.01,
+                age: 3.7,
+                satelites: []
+            }],
             atmosphere: "80% carbon dioxide, 19% neon, 1% argon",
             atmosphericPressure: 20,
             hydrosphere: "none",
@@ -73,8 +92,9 @@ const Tonati = () => <StarSystem
             orbitDistance: { distance: 1.5, unit: 'AU'},
             feature: 'rings',
             imageURL: 'texture_planet_rocky.jpg',
-            axialTilt: 8, 
+            axialTilt: 1, 
             dayPeriod: 3600*18,
+            bodyType: 'planetoid',
         },
         {
             name: 'Ehecatl',
@@ -93,6 +113,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_orangegreen.jpg',
             axialTilt: -21, 
             dayPeriod: 3600*27,
+            bodyType: 'planetoid',
         },
         {
             name: 'Meztil',
@@ -111,6 +132,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_lush.jpg',
             axialTilt: 17, 
             dayPeriod: 3600*28,
+            bodyType: 'planetoid',
         },
         {
             name: 'Toci',
@@ -128,6 +150,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_lime.jpg',
             axialTilt: 65, 
             dayPeriod: 3600*4,
+            bodyType: 'planetoid',
         },
         {
             name: 'Xolotl',
@@ -145,6 +168,7 @@ const Tonati = () => <StarSystem
             imageURL: 'texture_planet_cold.jpg',
             axialTilt: -90, 
             dayPeriod: 3600*240,
+            bodyType: 'planetoid',
         }
         ]
 
@@ -163,6 +187,7 @@ const Ashra = () => <StarSystem
         axialTilt: -90, 
         dayPeriod: 3600*2,
         imageURL: 'texture_star_ashra.png',
+        bodyType: 'star',
         planetoids: [{
             name: 'Feshra',
             description: "Innermost planet of Ashra, small planet composed mostly of magnetic iron., it's believed that a stellar event has stripped this planet of its outer mantel leaving only the iron core. The extremely strong magnetic field protects the surface from radiation and allows a dense atmosphere of argon and carbondioxide to persist.",
@@ -179,6 +204,7 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_feshra.png',
             axialTilt: -9, 
             dayPeriod: 3600*600,
+            bodyType: 'planetoid',
             
         },
         {
@@ -198,6 +224,7 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_noshra.png',
             axialTilt: 0, 
             dayPeriod: 3600*18,
+            bodyType: 'planetoid',
         },
         {
             name: 'Neke',
@@ -217,8 +244,9 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_neke.png',
             axialTilt: 15, 
             dayPeriod: 3600*20,
+            bodyType: 'planetoid',
         },
-        /*{
+        {
             name: 'Consini belt',
             description: 'The Consini belt is an asteroid belt between Neke and the Sylvis Edis pair.',
             mass: 0.3,
@@ -233,12 +261,14 @@ const Ashra = () => <StarSystem
             orbitDistance: { distance: 1.9, unit: 'AU'},
             axialTilt: 0, 
             dayPeriod: 3600*24,
-        },*/
+            bodyType: 'belt',
+        },
         {
             name: 'Sylvis',
             description: 'Sylvis & Edis are binary gas giants orbiting',
             mass: 81,
             age: 3.6,
+            bodyType: 'planetoid',
             satelites: [{
                 name: 'Edis',
                 description: 'Edis is believed to be a captured failed star or rogue planet',
@@ -255,6 +285,7 @@ const Ashra = () => <StarSystem
                 imageURL: 'texture_planet_edis.png',
                 axialTilt: 0, 
                 dayPeriod: 3600*8,
+                bodyType: 'planetoid',
             }],
             classification: 'gas giant',
             atmosphere: 'hydrogen, helium',
@@ -284,6 +315,7 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_nane.png',
             axialTilt: -45, 
             dayPeriod: 3600*48,
+            bodyType: 'planetoid',
         },
         {
             name: 'Sarma',
@@ -301,6 +333,7 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_sarma.png',
             axialTilt: -30, 
             dayPeriod: 3600*36,
+            bodyType: 'planetoid',
         },
         {
             name: 'Marzanna',
@@ -318,6 +351,7 @@ const Ashra = () => <StarSystem
             imageURL: 'texture_planet_marzanna.png',
             axialTilt: 0, 
             dayPeriod: 3600*90,
+            bodyType: 'planetoid',
         }
         ]
     }]}
