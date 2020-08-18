@@ -154,7 +154,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     makeSphere(radius: number, label: string, img: string, negativeTilt: number) {
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 16, 16),
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 32),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(img) }));
         if (label.length > 0) {
             let canvas = this.makeLabelCanvas(0, 40, 12, label);
@@ -170,7 +170,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         map.repeat.set(4, 4);
         map.needsUpdate = true;
 
-        const bigDisk = new THREE.Mesh(new THREE.RingGeometry(innerRadius, outerRadius, 16, 8),
+        const bigDisk = new THREE.Mesh(new THREE.RingGeometry(innerRadius, outerRadius, 32, 32),
             new THREE.MeshBasicMaterial({ map: map }));
 
         bigDisk.material.side = THREE.DoubleSide;
@@ -235,7 +235,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
             if (counter > 3600000000000) counter = 0;
             rotatorList.forEach((s, i, ar) => {
                 if (s.mesh.geometry instanceof THREE.RingGeometry) {
-                    s.mesh.rotation.z -= ((5 + this.speedOfTime) / s.body.dayPeriod);
+                    s.mesh.rotation.z -= ((25 + this.speedOfTime) / s.body.dayPeriod);
                     return;
                 }
                 else if (s.star === false) {
@@ -244,7 +244,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                     s.mesh.position.x = Math.sin(counter * s.periodFactor) * distMod + this.getPosX(s);
                     s.mesh.position.y = Math.cos(counter * s.periodFactor) * distMod + this.getPosY(s);
                 }
-                s.mesh.rotation.y += ((5 + this.speedOfTime) / s.body.dayPeriod);
+                s.mesh.rotation.y += ((25 + this.speedOfTime) / s.body.dayPeriod);
             })
             if (this.mouseMoving === 'left') {
                 system.position.x = (-this.rotationEuler.y / 100) * Math.max((1 + -system.position.z / 10), 0.1);

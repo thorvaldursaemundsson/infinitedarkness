@@ -1,6 +1,6 @@
 import React from 'react';
 import Ellipsis from '../Ellipsis';
-import { IStarSystem, IStar, IPlanetoid } from './IStarSystem'
+import { IStarSystem, IStar, IPlanetoid, Distance, HeavenlyBodyType } from './IStarSystem'
 import Section from '../playermanual/Section';
 import Threejs from '../Threejs';
 
@@ -65,5 +65,28 @@ const HGen = (gen: number, children: string) => {
 
 const floor4 = (n: number) => (Math.floor(n * 10) / 10).toPrecision(2);
 
+export class PlanetRings implements IPlanetoid {
+    classification = 'rings';
+    surfaceGravity = 0;
+    atmosphere = '';
+    atmosphericPressure = 0;
+    hydrosphere = '';
+    satelites = [];
+    temperatureRange: [number, number, number];
+    orbitDistance: Distance;
+    dayPeriod = 0;
+    axialTilt = 0;
+    age: number;
+    mass: number;
+    bodyType: HeavenlyBodyType = 'ring';
+    name = '';
+    description = '';
+    constructor(orbitDistance: Distance, temperatureRange: [number, number, number], age: number, mass: number) {
+        this.orbitDistance = orbitDistance;
+        this.temperatureRange = temperatureRange;
+        this.age = age;
+        this.mass = mass;
+    }
+}
 
 export default StarSystem;

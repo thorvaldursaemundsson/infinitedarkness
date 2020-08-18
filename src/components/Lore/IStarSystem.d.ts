@@ -1,12 +1,12 @@
 export type HeavenlyBodyType = 'star' | 'planetoid' | 'belt' | 'ring';
 export interface IHeavelyBody {
     dayPeriod: number;
-    axialTilt:number;
+    axialTilt: number;
     mass: number;
     age: number;
     name: string;
     description: string;
-    parent?:IHeavelyBody;
+    parent?: IHeavelyBody;
     imageURL?: string;
     bodyType: HeavenlyBodyType;
 }
