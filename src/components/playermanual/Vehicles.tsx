@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import Section from "./Section";
 import Ellipsis from "../Ellipsis";
+import Indexer, { Indexed } from "../Indexer";
+import { Vehicle, Electricity, Synthoil, RocketFuel, HyperMatter } from "../vehicles/Vehicles";
 
 
 const Vehicles: React.FC = () => {
     return <Section title='Vehicles'>
-        <h3>Vehicles</h3>
-
-        {VehicleTable(vehicles)}
+        <Indexer title='Vehicles'>
+            <Indexed title='Land vehicles'>
+                <VehicleTable vehicles={LandVehicles} />
+            </Indexed>
+            <Indexed title='water vehicles'>
+                <VehicleTable vehicles={WaterVehicles} />
+            </Indexed>
+            <Indexed title='air'>
+                <VehicleTable vehicles={AirVehicles} />
+            </Indexed>
+            <Indexed title='space'>
+                <VehicleTable vehicles={SpaceVehicles} />
+            </Indexed>
+        </Indexer>
     </Section>
 }
 
-type Medium = 'land' | 'air' | 'water' | 'subwater' | 'space' | 'hyperspace';
-type FuelType = 'electricity' | 'petrol' | 'jetfuel' | 'lqd methane-oxygen' | 'hypermatter';
 
-interface Vehicle {
-    medium: Medium[];
-    name: string;
-    passengers: number;
-    cargoKg: number;
-    fuelType: FuelType[];
-    range: number;
-    topSpeed: number;
-    acceleration: number;
-    cost: number;
-    description: string;
-}
-
-const vehicles: Vehicle[] = [
+const LandVehicles: Vehicle[] = [
     {
         name: 'bicyle',
         medium: ['land'],
@@ -45,7 +43,7 @@ const vehicles: Vehicle[] = [
         medium: ['land'],
         passengers: 2,
         cargoKg: 10,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 900,
         topSpeed: 55,
         acceleration: 7,
@@ -57,7 +55,7 @@ const vehicles: Vehicle[] = [
         medium: ['land'],
         passengers: 2,
         cargoKg: 20,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 800,
         topSpeed: 35,
         acceleration: 6,
@@ -69,7 +67,7 @@ const vehicles: Vehicle[] = [
         medium: ['land'],
         passengers: 4,
         cargoKg: 100,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 1000,
         topSpeed: 50,
         acceleration: 8,
@@ -81,7 +79,7 @@ const vehicles: Vehicle[] = [
         medium: ['land'],
         passengers: 8,
         cargoKg: 150,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 1200,
         topSpeed: 45,
         acceleration: 7,
@@ -93,13 +91,16 @@ const vehicles: Vehicle[] = [
         medium: ['land'],
         passengers: 8,
         cargoKg: 250,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 2000,
         topSpeed: 40,
         acceleration: 5,
         cost: 90000,
         description: 'truck fitted with housing, huge battery capacity'
     },
+];
+
+const WaterVehicles: Vehicle[] = [
     {
         name: 'paddle boat',
         medium: ['water'],
@@ -117,7 +118,7 @@ const vehicles: Vehicle[] = [
         medium: ['water'],
         passengers: 2,
         cargoKg: 20,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 80,
         topSpeed: 55,
         acceleration: 7,
@@ -129,7 +130,7 @@ const vehicles: Vehicle[] = [
         medium: ['water'],
         passengers: 8,
         cargoKg: 100,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 500,
         topSpeed: 45,
         acceleration: 5,
@@ -141,7 +142,7 @@ const vehicles: Vehicle[] = [
         medium: ['water'],
         passengers: 20,
         cargoKg: 10000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 12000,
         topSpeed: 40,
         acceleration: 3,
@@ -153,7 +154,7 @@ const vehicles: Vehicle[] = [
         medium: ['water'],
         passengers: 1200,
         cargoKg: 20000000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 2000000,
         topSpeed: 14,
         acceleration: 1,
@@ -165,7 +166,7 @@ const vehicles: Vehicle[] = [
         medium: ['water'],
         passengers: 1000,
         cargoKg: 20000000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 2000000,
         topSpeed: 22,
         acceleration: 0.8,
@@ -177,19 +178,22 @@ const vehicles: Vehicle[] = [
         medium: ['water', 'subwater'],
         passengers: 40,
         cargoKg: 10000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 1000000,
         topSpeed: 12,
         acceleration: 1,
         cost: 70000000,
         description: 'fusion powered submarine'
-    },
+    }
+]
+
+const AirVehicles: Vehicle[] = [
     {
         name: 'small plane',
         medium: ['air'],
         passengers: 2,
         cargoKg: 50,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 600,
         topSpeed: 125,
         acceleration: 20,
@@ -201,7 +205,7 @@ const vehicles: Vehicle[] = [
         medium: ['air'],
         passengers: 4,
         cargoKg: 200,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 700,
         topSpeed: 120,
         acceleration: 18,
@@ -213,7 +217,7 @@ const vehicles: Vehicle[] = [
         medium: ['air'],
         passengers: 100,
         cargoKg: 110,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 1500,
         topSpeed: 130,
         acceleration: 22,
@@ -225,7 +229,7 @@ const vehicles: Vehicle[] = [
         medium: ['air'],
         passengers: 200,
         cargoKg: 600,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 1000000,
         topSpeed: 140,
         acceleration: 24,
@@ -237,7 +241,7 @@ const vehicles: Vehicle[] = [
         medium: ['air'],
         passengers: 2,
         cargoKg: 10,
-        fuelType: ['electricity', 'jetfuel'],
+        fuelType: [Electricity, Synthoil],
         range: 600,
         topSpeed: 410,
         acceleration: 40,
@@ -249,19 +253,22 @@ const vehicles: Vehicle[] = [
         medium: ['air'],
         passengers: 2,
         cargoKg: 10,
-        fuelType: ['jetfuel'],
+        fuelType: [Synthoil],
         range: 1200,
         topSpeed: 3400,
         acceleration: 45,
         cost: 60000000,
         description: 'hyper sonic airplane, uses synthetic jetfuel, capable of hypersonic cruise'
     },
+]
+
+const SpaceVehicles: Vehicle[] = [
     {
         name: 'rocketship',
         medium: ['air', 'space'],
         passengers: 4,
         cargoKg: 10000,
-        fuelType: ['lqd methane-oxygen'],
+        fuelType: [RocketFuel],
         range: 0,
         topSpeed: 24000,
         acceleration: 45,
@@ -273,7 +280,7 @@ const vehicles: Vehicle[] = [
         medium: ['air', 'space'],
         passengers: 4,
         cargoKg: 10000,
-        fuelType: ['jetfuel', 'lqd methane-oxygen'],
+        fuelType: [Synthoil, RocketFuel],
         range: 0,
         topSpeed: 36000,
         acceleration: 40,
@@ -285,88 +292,92 @@ const vehicles: Vehicle[] = [
         medium: ['space'],
         passengers: 10,
         cargoKg: 100000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 0,
         topSpeed: 2008000,
         acceleration: 3,
         cost: 10000000,
-        description: 'small sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 8 days without refueling, '+
-        'virtually unlimited range within a solar system. '+
-        '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel'
+        description: 'small sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 8 days without refueling, ' +
+            'virtually unlimited range within a solar system. ' +
+            '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel'
     },
     {
         name: 'Freighter Class Spaceship',
         medium: ['space'],
         passengers: 100,
         cargoKg: 1000000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 0,
         topSpeed: 2600000,
         acceleration: 3,
         cost: 30000000,
-        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 10 days without refueling, '+
-        'virtually unlimited range within a solar system. '+
-        '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
+        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
+            'virtually unlimited range within a solar system. ' +
+            '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
     },
     {
         name: 'Interceptor Class Spaceship',
         medium: ['space'],
         passengers: 80,
         cargoKg: 500000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 0,
         topSpeed: 26000000,
         acceleration: 5,
         cost: 32000000,
-        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.5g for 60 days without refueling, '+
-        'virtually unlimited range within a solar system, but in particular designed for extreme range and interception. '+
-        '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
+        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.5g for 60 days without refueling, ' +
+            'virtually unlimited range within a solar system, but in particular designed for extreme range and interception. ' +
+            '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
     },
     {
         name: 'Cruiser Class Spaceship',
         medium: ['space'],
         passengers: 1000,
         cargoKg: 10000000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 0,
         topSpeed: 2600000,
         acceleration: 3,
         cost: 150000000,
-        description: 'large space ship, fitted with small fusion power, capable of maintaining 0.3g for 10 days without refueling, '+
-        'virtually unlimited range within a solar system. '+
-        '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel'
+        description: 'large space ship, fitted with small fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
+            'virtually unlimited range within a solar system. ' +
+            '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel'
     },
     {
         name: 'Battleship Class Spaceship',
         medium: ['space'],
         passengers: 10000,
         cargoKg: 100000000,
-        fuelType: ['electricity'],
+        fuelType: [Electricity],
         range: 0,
         topSpeed: 2600000,
         acceleration: 3,
         cost: 750000000,
-        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling, '+
-        'virtually unlimited range within a solar system. '+
-        '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel'
+        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
+            'virtually unlimited range within a solar system. ' +
+            '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel'
     },
     {
         name: 'Hyperspace Class Spaceship',
         medium: ['space', 'hyperspace'],
         passengers: 10000,
         cargoKg: 100000000,
-        fuelType: ['electricity', 'hypermatter'],
+        fuelType: [Electricity, HyperMatter],
         range: 0,
         topSpeed: 2600000,
         acceleration: 3,
         cost: 1500000000,
-        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling,'+
-        ' virtually unlimited range within a solar system, can enter hyperspace and travel up to 50 times the speed of light. '+
-        '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel'
+        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling,' +
+            ' virtually unlimited range within a solar system, can enter hyperspace and travel up to 50 times the speed of light. ' +
+            '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel'
     },
 ];
 
-const VehicleTable = (vehicles: Vehicle[]) =>
+interface IVehicleTableProps {
+    vehicles: Vehicle[];
+}
+
+const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) =>
     <table className='datatable'>
         <thead>
             <tr>
@@ -417,7 +428,7 @@ const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle }) => {
                 <td>{vehicle.acceleration}m/s/s</td>
                 <td>{vehicle.topSpeed * 3.6}km/h</td>
                 <td>{vehicle.range}km</td>
-                <td>{vehicle.fuelType.map(m => <span>{m} </span>)}</td>
+                <td>{vehicle.fuelType.map(m => <span>{m.name} </span>)}</td>
             </tr>
             <tr>
                 <td colSpan={5}><Ellipsis text={vehicle.description} cutOff={120} ></Ellipsis></td>
