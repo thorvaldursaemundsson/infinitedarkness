@@ -53,10 +53,10 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     makeStar(star: IStar, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[]) {
-        var m = this.makeSphere(0.6 + star.mass / 20, star.name, this.getColorFromStar(star), star.axialTilt);
-        m.rotation.x = star.axialTilt;
-        parentMesh.attach(m);
-        let starRot: IRotator = { mesh: m, body: star, star: true, satelite: false, periodFactor: 0 };
+        var [starContainer, starSphere, label] = this.makeSphere(0.6 + star.mass / 20, star.name, this.getColorFromStar(star), star.axialTilt);
+        starSphere.rotation.x = star.axialTilt;
+        parentMesh.attach(starContainer);
+        let starRot: IRotator = { mesh: starSphere, body: star, star: true, satelite: false, periodFactor: 0, label: label };
         source.push(starRot);
         star.planetoids.map(planet => this.makePlanet(planet, starRot, parentMesh, source));
         return starRot;
@@ -65,9 +65,12 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     makePlanet(planet: IPlanetoid, parent: IRotator, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[], isSatelite: boolean = false) {
         if (planet.bodyType === 'belt') return this.makeBelt(planet, parent, parentMesh, source);
         if (planet.bodyType === 'ring') return this.makeRings(planet, parent);
-        var planetSphere = this.makeSphere(0.3 + planet.mass / 240, planet.name, this.getColorFromPlanet(planet), planet.axialTilt);
-        parentMesh.attach(planetSphere);
-        let rotPlan: IRotator = { mesh: planetSphere, body: planet, star: false, satelite: isSatelite, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, planet.orbitDistance) };
+        var [planetContainer, planetSphere, label] = this.makeSphere(0.3 + planet.mass / 240, planet.name, this.getColorFromPlanet(planet), planet.axialTilt);
+        parentMesh.attach(planetContainer);
+        let rotPlan: IRotator = {
+            mesh: planetSphere,
+            body: planet, star: false, satelite: isSatelite, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, planet.orbitDistance), label: label
+        };
         planetSphere.rotation.x = planet.axialTilt;
         source.push(rotPlan);
         planet.satelites.map(sat => this.makePlanet(sat, rotPlan, parentMesh, source, true));
@@ -79,7 +82,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         let innerRadius = this.getOritalDistanceMod(belt.orbitDistance) - 0.5;
         let outerRadius = innerRadius * 1.25 + 1;
         var beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'texture_planet_belt.png', 0);
-        let beltPlan: IRotator = { mesh: beltDisk, body: belt, star: false, satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance) };
+        let beltPlan: IRotator = { mesh: beltDisk, body: belt, star: false, satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance), label: undefined };
         source.push(beltPlan);
         parentMesh.attach(beltDisk);
         return beltPlan;
@@ -94,7 +97,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     }
 
     makeSystem(rotator: IRotator[]) {
-        let base = this.makeSphere(0.0000001, '', '', 0);
+        let base: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> = new THREE.Mesh();
         this.props.starSystem.stars.map((star) => this.makeStar(star, base, rotator));
         return base;
     }
@@ -153,14 +156,17 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         return label;
     }
 
-    makeSphere(radius: number, label: string, img: string, negativeTilt: number) {
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 32),
+    makeSphere(radius: number, label: string, img: string, negativeTilt: number): [THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, THREE.Sprite | undefined] {
+        const parent: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> = new THREE.Mesh();
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 32),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(img) }));
+        let canvas: THREE.Sprite | undefined = undefined;;
         if (label.length > 0) {
-            let canvas = this.makeLabelCanvas(0, 40, 12, label);
-            mesh.attach(canvas);
+            canvas = this.makeLabelCanvas(0, 40, 12, label);
+            parent.attach(canvas);
         }
-        return mesh;
+        parent.attach(sphere);
+        return [parent, sphere, canvas];
     }
 
     makeHolyDisk(innerRadius: number, outerRadius: number, img: string, tilt: number) {
@@ -228,7 +234,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
         scene.add(system);
         camera.position.z = 5;
-        let counter = 1;
+        let counter = 10000;
         var animate = () => {
             requestAnimationFrame(animate);
             counter += this.speedOfTime;
@@ -240,9 +246,16 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                 }
                 else if (s.star === false) {
                     let planet: IPlanetoid = s.body as IPlanetoid;
-                    let distMod = this.getOritalDistanceMod(planet.orbitDistance) * (s.satelite ? 150 : 1) + 1;
+                    let distMod = this.getOritalDistanceMod(planet.orbitDistance);
+                    if (s.satelite && s.parent !== undefined) {
+                        distMod += s.parent.body.mass / 1;
+                    }
                     s.mesh.position.x = Math.sin(counter * s.periodFactor) * distMod + this.getPosX(s);
                     s.mesh.position.y = Math.cos(counter * s.periodFactor) * distMod + this.getPosY(s);
+                    if (s.label !== undefined) {
+                        s.label.position.x = s.mesh.position.x;
+                        s.label.position.y = s.mesh.position.y + 0.5 + s.body.mass / 240;
+                    }
                 }
                 s.mesh.rotation.y += ((25 + this.speedOfTime) / s.body.dayPeriod);
             })
@@ -276,6 +289,7 @@ export default Threejs;
 interface IRotator {
     mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> | THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
     body: IHeavelyBody;
+    label: THREE.Sprite | undefined;
     star: boolean;
     satelite: boolean;
     parent?: IRotator;

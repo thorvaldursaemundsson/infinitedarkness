@@ -1,5 +1,5 @@
 import React from 'react';
-import StarSystem from './StarSystem';
+import StarSystem, { PlanetRings } from './StarSystem';
 
 const SolSystem = () => <StarSystem key='solsystem'
     stars={[
@@ -173,10 +173,11 @@ const SolSystem = () => <StarSystem key='solsystem'
                 atmosphere: '',
                 atmosphericPressure: 0,
                 hydrosphere: '',
-                feature: undefined,
                 surfaceGravity: 0,
                 orbitDistance: { distance: 9.6, unit: 'AU'},
-                satelites: [],
+                satelites: [
+                    new PlanetRings({ distance: 600, unit: 'km' }, [-140, -90, 20], 3.6, 0.01)
+                ],
                 temperatureRange: [-140,0,20],
                 axialTilt: 0, 
                 dayPeriod: 3600*16,
@@ -192,10 +193,11 @@ const SolSystem = () => <StarSystem key='solsystem'
                 atmosphere: '',
                 atmosphericPressure: 0,
                 hydrosphere: '',
-                feature: undefined,
                 surfaceGravity: 0,
                 orbitDistance: { distance: 20, unit: 'AU'},
-                satelites: [],
+                satelites: [
+                    new PlanetRings({ distance: 600, unit: 'km' }, [-140, -90, 20], 3.6, 0.01)
+                ],
                 temperatureRange: [-190,-50,-10],
                 axialTilt: -60, 
                 dayPeriod: 3600*21,
