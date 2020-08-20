@@ -9,5 +9,5 @@ const useCases: UseCase[] = [
         type: 'active'
     },
 ];
-const CommonSense = new SkillTemplate('common sense', 'so rare its a superpower', useCases);
-export default CommonSense;
+const GeneralKnowledge = new SkillTemplate('general knowledge', 'so rare its a superpower', useCases);
+export default GeneralKnowledge;
