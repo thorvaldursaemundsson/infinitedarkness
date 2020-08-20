@@ -67,7 +67,7 @@ const Equipment: React.FC = () => {
                         Cost bonus +600
                     </li>
                     <li>
-                        <b>Heavy Stock</b> Improves recoil control<br />
+                        <b>Heavy Stock</b> Improves recoil control, can not be transferred to other firearms<br />
                         Aim Bonus +1<br />
                         Damage bonus +1<br />
                         Weight bonus +40%<br />
@@ -84,6 +84,20 @@ const Equipment: React.FC = () => {
                         Strength requirement -3<br />
                         Cost: 300c<br />
                         Weight: 1kg
+                    </li>
+                    <li>
+                        <b>Arm mount</b> Allows use of two handed firearms with one hand<br/>
+                        Strength requirement +3<br/>
+                        Cost: 200c<br/>
+                        Weight: 1kg
+                    </li>
+                    <li>
+                        <b>Turbo charge</b> (energy weapons) +50% damage, can only fire once per round<br/>
+                        Ammo use: +100%<br/>
+                        Cost: +25%<br/>
+                        Range: -50%<br/>
+                        Weight: 0.5kg<br/>
+                        Overheats: gain 1 heat point every shot, lose 1 heat after 2 rounds of non-use, can't fire if at 8 heat.
                     </li>
                 </ul>
 
