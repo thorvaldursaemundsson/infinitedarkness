@@ -127,8 +127,8 @@ const Equipment: React.FC = () => {
                     <li>Vast majority protection: 90% cost/weight and 5/6 roll</li>
                     <li>Major protection: 80% cost/weight and 4/6 roll</li>
                     <li>Half protection: 70% cost/weight and 3/6 roll</li>
-                    <li>Small protection: 50% cost/weight and 2/6 roll</li>
-                    <li>Minor protection: 30% cost/weight and 1/6 roll</li>
+                    <li>Small protection: 50% cost/weight and 2/6 roll (not available for power armor)</li>
+                    <li>Minor protection: 30% cost/weight and 1/6 roll (not available for power armor)</li>
                 </ul>
                 <ArmorCrafter />
                 <h5>Body Suit</h5>
@@ -339,14 +339,14 @@ const ArmorCrafter: React.FC = () => {
     }
 
     defense += qualityMod;
-
-    cost = cost * getSizeMod(size) * getProtectionMod(protectionAmount) * getQualityMod(qualityMod);
-    weight = weight * getSizeMod(size) * getProtectionMod(protectionAmount);
+    let protectionAmountActual = powerArmor === undefined ? protectionAmount : Math.max(protectionAmount, 3);
+    cost = cost * getSizeMod(size) * getProtectionMod(protectionAmountActual) * getQualityMod(qualityMod);
+    weight = weight * getSizeMod(size) * getProtectionMod(protectionAmountActual);
 
     return (<div>
         <p>Customize an armor</p>
         <select onChange={(e) => setBodySuit(bodySuits.find(f => f.name === e.target.value))}>
-            <option selected={null === bodySuit}>Bodysuit armor/one</option>
+            <option selected={null === bodySuit}>Bodysuit armor/none</option>
             {bodySuits.map(bs => <option value={bs.name} selected={bodySuit !== undefined && bs.name === bodySuit.name}>
                 {bs.name}
             </option>)}

@@ -61,9 +61,18 @@ const bodySuits: BodySuit[] = [
         name: 'Nanotube Superstructure Fiber',
         damageAbsorbtion: 6,
         weight: 20,
-        cost: 40000,
+        cost: 30000,
         agilityMod: -1,
         description: 'A kevlar body suit reinforced with graphene nanotube super structures which gives protection against most attacks',
+        armorType: 'bodySuit'
+    },
+    {
+        name: 'High Yield Nanosuit',
+        damageAbsorbtion: 7,
+        weight: 16,
+        cost: 40000,
+        agilityMod: 0,
+        description: 'A body armor made entirely out of nanotube carbyne weave, incredibly strong, light and expensive',
         armorType: 'bodySuit'
     }
 ];
@@ -74,7 +83,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 2,
         weight: 10,
         cost: 2500,
-        agilityMod: -1,
+        agilityMod: 0,
         description: 'Hard but elastic plastic plates which reflect impacts, very durable',
         armorType: 'armorPlate'
     },
@@ -97,21 +106,48 @@ const armorPlates: ArmorPlate[] = [
         armorType: 'armorPlate'
     },
     {
+        name: 'Steel Fullplate',
+        damageAbsorbtion: 7,
+        weight: 24,
+        cost: 8000,
+        agilityMod: -3,
+        description: 'High carbon hardened steel plates, very strong but also heavy. Fullplate means more thickness and coverage.',
+        armorType: 'armorPlate'
+    },
+    {
         name: 'Titan Alloy Plates',
         damageAbsorbtion: 6,
         weight: 16,
         cost: 8000,
         agilityMod: -2,
-        description: 'An alloy of titanium and gold, significantly stronger than steel. And significantly more expensive',
+        description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Titan Alloy Fullplate',
+        damageAbsorbtion: 8,
+        weight: 24,
+        cost: 16000,
+        agilityMod: -3,
+        description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
     {
         name: 'Hyper Nanostructure Plates',
         damageAbsorbtion: 7,
         weight: 12,
-        cost: 12000,
+        cost: 16000,
         agilityMod: -1,
         description: 'Titan alloy reinforced by a weave of graphene nanotube super structure',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Hyper Nanostructure Fullplates',
+        damageAbsorbtion: 9,
+        weight: 18,
+        cost: 32000,
+        agilityMod: -2,
+        description: 'Titan alloy reinforced by a weave of graphene nanotube super structure. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
 ]
@@ -170,6 +206,17 @@ const powerArmors: PowerArmor[] = [
         perceptionMod: 1,
         strengthMod: 5,
         description: 'This armor frame is almost a vehicle, the strength bonus it grants is beyond belief',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Mecha Titan',
+        damageAbsorbtion: 6,
+        weight: 30,
+        cost: 16000,
+        agilityMod: 1,
+        perceptionMod: 1,
+        strengthMod: 5,
+        description: 'An even larger version of the Titan Power Armor',
         armorType: 'powerArmor'
     },
     {
