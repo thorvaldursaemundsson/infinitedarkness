@@ -145,6 +145,10 @@ body {
     }
 }
 
+input {
+    width: 180px;
+}
+
 .characterSheet {
     text-align: left;
 }
