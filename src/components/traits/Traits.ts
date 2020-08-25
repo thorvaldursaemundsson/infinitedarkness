@@ -59,8 +59,8 @@ const Gifted: Trait = {
     name: 'gifted',
     cost: 80,
     description: 'you are naturally gifted and everything seems to come easier to you, gain +1 to your 4 lowest base stats, however your experience multiplier is reduced by 1 (min 1)',
-    applyTo: '',
-    amount: 0,
+    applyTo: 'experienceMultiplier',
+    amount: -1,
 }
 
 const FastMetabolism: Trait = {
@@ -103,45 +103,79 @@ const Aggressive: Trait = {
     applyTo: ''
 }
 
-const YoungShambra: Trait = {
-    name: 'young shambra',
-    cost: 0,
-    description: 'all shambras age 26-35: -2 defense, -4 climb and swim, -6 jump',
+const Frugal: Trait = {
+    name: 'frugal',
+    cost: 10,
+    description: 'you are always vigilant trying to find the best prices, all purchases below 100 000 credits are 10% off',
     amount: 0,
     applyTo: ''
 }
 
-const JuvenileShambra: Trait = {
-    name: 'juvenile shambra',
-    cost: 0,
-    description: 'all shambras age 36-50: -4 defense, -8 climb and swim, -12 jump, +1 life',
+const Durable: Trait = {
+    name:'durable',
+    cost: 20, 
+    description: 'you are durable and gain +1 damage absorbtion',
     amount: 0,
     applyTo: ''
 }
 
-const AdultShambra: Trait = {
-    name: 'adult shambra',
-    cost: 0,
-    description: 'all shambras age 51-70: -6 defense, -12 climb and swim, -18 jump, +1 life',
+const MentallyFlexible: Trait = {
+    name: 'mentally flexible',
+    cost: 30,
+    description: 'you are highly mentally flexible, you gain +1 to your experience multiplier',
+    amount: 1,
+    applyTo: 'experienceMultiplier'
+}
+
+const Stubborn: Trait = {
+    name: 'stubborn',
+    cost: -10,
+    description: 'you are stubborn and unlikely to change your ways, -1 to experience multiplier (min 1) and you are resistent to being convinced (+2 resist persuation)',
+    amount: -1,
+    applyTo: 'experienceMultiplier'
+}
+
+const ForgetfulFace: Trait = {
+    name: 'forgetful face',
+    cost: -10,
+    description: 'people are less likely to remember your face or your name, you dont tend to stand out in a crowd. 50% chance that you wont get any reputation for your deeds',
     amount: 0,
     applyTo: ''
 }
 
-const MatureShambra: Trait = {
-    name: 'mature shambra',
-    cost: 0,
-    description: 'all shambras age 71-100: -8 defense, -16 climb and swim, -24 jump, +2 life',
+const Blind: Trait = {
+    name: 'blind',
+    cost: -30,
+    description: 'your eyesight is so poor that you are legally blind, your perception counts as -5 for all visual rolls (where you need to see), 0 if you have cybernetic eyes, additionally if you move faster than base speed you risk running into things',
     amount: 0,
     applyTo: ''
 }
 
-const VenerableShambra: Trait = {
-    name: 'Venerable shambra',
-    cost: 0,
-    description: 'all shambras age 100+: -10 defense, -20 climb and swim, -30 jump, +3 life',
+const Deaf: Trait = {
+    name: 'deaf',
+    cost: -20,
+    description: 'your hearing is so poor that you are legally deaf, your perception counts as -5 for all auditory rolls, 0 if you have cybernetic ears. You can speak using sign language',
     amount: 0,
     applyTo: ''
 }
+
+const Mute: Trait = {
+    name: 'mute',
+    cost: -20,
+    description: 'you cant speak, you can only communicate in writing. All skills that involve speaking are impossible for you',
+    amount: 0,
+    applyTo: ''
+}
+
+const NaturalTalent: Trait = {
+    name: 'natural talent',
+    cost: 10,
+    description: 'pick one skill, you have +3 to that skill',
+    amount: 0,
+    applyTo: ''
+}
+
+
 
 export const GetTraits = (): Trait[] & IHooker[] => {
     return [
@@ -157,10 +191,14 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         Phobia,
         WealthyFamily,
         Aggressive,
-        YoungShambra,
-        JuvenileShambra,
-        AdultShambra,
-        MatureShambra,
-        VenerableShambra
+        Frugal,
+        Durable,
+        MentallyFlexible,
+        Stubborn,
+        ForgetfulFace,
+        Blind,
+        Deaf,
+        Mute,
+        NaturalTalent
     ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
 };

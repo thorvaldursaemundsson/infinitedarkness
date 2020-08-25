@@ -11,7 +11,8 @@ const SpaceVehicles: Vehicle[] = [
         topSpeed: 24000,
         acceleration: 45,
         cost: 450000000,
-        description: 'rocket ship capable of taking off and landing on any planet with less than 3g atmosphere, space capable, radiation shield for interplanetary travel, needs refuel and service every trip, service price 20% of total value'
+        description: 'rocket ship capable of taking off and landing on any planet with less than 3g atmosphere, space capable, radiation shield for interplanetary travel, needs refuel and service every trip, service price 20% of total value',
+        parts: []
     },
     {
         name: 'spaceplane',
@@ -23,7 +24,8 @@ const SpaceVehicles: Vehicle[] = [
         topSpeed: 36000,
         acceleration: 40,
         cost: 900000000,
-        description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use'
+        description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use',
+        parts: []
     },
     {
         name: 'Ferry Class Spaceship',
@@ -37,7 +39,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 10000000,
         description: 'small sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 8 days without refueling, ' +
             'virtually unlimited range within a solar system. ' +
-            '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel'
+            '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel',
+            parts: []
     },
     {
         name: 'Freighter Class Spaceship',
@@ -51,7 +54,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 30000000,
         description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
             'virtually unlimited range within a solar system. ' +
-            '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
+            '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel',
+            parts: []
     },
     {
         name: 'Interceptor Class Spaceship',
@@ -65,7 +69,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 32000000,
         description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.5g for 60 days without refueling, ' +
             'virtually unlimited range within a solar system, but in particular designed for extreme range and interception. ' +
-            '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
+            '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel',
+            parts: []
     },
     {
         name: 'Cruiser Class Spaceship',
@@ -79,7 +84,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 150000000,
         description: 'large space ship, fitted with small fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
             'virtually unlimited range within a solar system. ' +
-            '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel'
+            '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel',
+            parts: []
     },
     {
         name: 'Battleship Class Spaceship',
@@ -93,7 +99,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 750000000,
         description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
             'virtually unlimited range within a solar system. ' +
-            '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel'
+            '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel',
+            parts: []
     },
     {
         name: 'Hyperspace Class Spaceship',
@@ -107,7 +114,8 @@ const SpaceVehicles: Vehicle[] = [
         cost: 1500000000,
         description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling,' +
             ' virtually unlimited range within a solar system, can enter hyperspace and travel up to 50 times the speed of light. ' +
-            '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel'
+            '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel',
+            parts: []
     },
 ];
 

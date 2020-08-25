@@ -16,7 +16,7 @@ export interface IHooker {
     amount: number;
 }
 
-export type CharacterSize = 'tiny'|'small'|'medium'|'large'|'huge';
+export type CharacterSize = 'tiny' | 'small' | 'medium' | 'large' | 'huge';
 
 export interface ICharacter {
     name: string;
@@ -242,11 +242,11 @@ export class Character {
 
     public getExperienceMultiplier() {
         switch (this.species) {
-            case 'human': return Character.ExperienceMultiplerHuman(this.age);
-            case 'merlion': return Character.ExperienceMultiplerMerlion(this.age)
-            case 'shambra': return Character.ExperienceMultiplerShambras(this.age)
-            case 'nekovian': return Character.ExperienceMultiplerNekovian(this.age)
-            default: return Character.ExperienceMultiplerHuman(this.age);
+            case 'human': return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'merlion': return Math.max(Character.ExperienceMultiplerMerlion(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'shambra': return Math.max(Character.ExperienceMultiplerShambras(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'nekovian': return Math.max(Character.ExperienceMultiplerNekovian(this.age) + this.getHook('experienceMultiplier'), 1);
+            default: return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
         }
 
     }
