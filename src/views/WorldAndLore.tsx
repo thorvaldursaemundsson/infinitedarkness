@@ -3,6 +3,7 @@ import React from 'react';
 import { FTLHyperDrive, History, Merlions, SolSystem, CentauriSystem, FringeWorlds, Humans, Shambra, Nekovian, Credits } from './../components/Lore/Lore'
 
 import Section from '../components/playermanual/Section';
+import Robotics from '../components/Lore/Robotics';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -29,6 +30,8 @@ const WorldAndLore: React.FC = () => {
         <Section title='The Nekovians'><Nekovian /></Section>
         <hr />
         <Section title='Monsters'>work in progress...</Section>
+        <hr/>
+        <Section title='Robotics'><Robotics /></Section>
         <hr/>
         <Section title='Credits'><Credits /></Section>
     </div>);

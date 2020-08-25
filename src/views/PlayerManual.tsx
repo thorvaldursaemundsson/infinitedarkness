@@ -12,6 +12,7 @@ import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 import CharacterSize from '../components/playermanual/CharacterSize';
 import Radiation from '../components/playermanual/Radiation';
 import Consumables from '../components/playermanual/Consumables';
+import Cybernetics from '../components/playermanual/Cybernetics';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -38,6 +39,8 @@ const PlayerManual: React.FC = () => {
         <hr />
         <CarryingCapacity key='pmcc' />
         <hr />
+        <Cybernetics key='pmcyb' />
+        <hr/>
         <Vehicles key='pm7' />
         <hr />
         <Radiation key='pmr' />
