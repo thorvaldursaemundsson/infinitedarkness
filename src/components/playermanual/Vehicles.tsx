@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import Section from "./Section";
 import Ellipsis from "../Ellipsis";
 import Indexer, { Indexed } from "../Indexer";
-import { Vehicle, Electricity, Synthoil, RocketFuel, HyperMatter } from "../vehicles/Vehicles";
+import { Vehicle } from "../vehicles/Vehicles";
+import LandVehicles from "../vehicles/LandVehicles";
+import WaterVehicles from "../vehicles/WaterVehicles";
+import SpaceVehicles from "../vehicles/SpaceVehicles";
+import AirVehicles from "../vehicles/AirVehicles";
 
 
 const Vehicles: React.FC = () => {
@@ -24,378 +28,40 @@ const Vehicles: React.FC = () => {
     </Section>
 }
 
-
-const LandVehicles: Vehicle[] = [
-    {
-        name: 'bicyle',
-        medium: ['land'],
-        passengers: 1,
-        cargoKg: 1,
-        fuelType: [],
-        range: 0,
-        topSpeed: 15,
-        acceleration: 5,
-        cost: 1000,
-        description: 'simple bicycle, speed and range depends on person using it (see athletics run, add 100% speed and range)'
-    },
-    {
-        name: 'motorcycle',
-        medium: ['land'],
-        passengers: 2,
-        cargoKg: 10,
-        fuelType: [Electricity],
-        range: 900,
-        topSpeed: 55,
-        acceleration: 7,
-        cost: 5000,
-        description: 'electric motorcycle'
-    },
-    {
-        name: 'quadbike',
-        medium: ['land'],
-        passengers: 2,
-        cargoKg: 20,
-        fuelType: [Electricity],
-        range: 800,
-        topSpeed: 35,
-        acceleration: 6,
-        cost: 6000,
-        description: 'electric quadcycle'
-    },
-    {
-        name: 'sedan',
-        medium: ['land'],
-        passengers: 4,
-        cargoKg: 100,
-        fuelType: [Electricity],
-        range: 1000,
-        topSpeed: 50,
-        acceleration: 8,
-        cost: 20000,
-        description: 'basic car'
-    },
-    {
-        name: 'van',
-        medium: ['land'],
-        passengers: 8,
-        cargoKg: 150,
-        fuelType: [Electricity],
-        range: 1200,
-        topSpeed: 45,
-        acceleration: 7,
-        cost: 40000,
-        description: 'large car with lots of space'
-    },
-    {
-        name: 'campervan',
-        medium: ['land'],
-        passengers: 8,
-        cargoKg: 250,
-        fuelType: [Electricity],
-        range: 2000,
-        topSpeed: 40,
-        acceleration: 5,
-        cost: 90000,
-        description: 'truck fitted with housing, huge battery capacity'
-    },
-];
-
-const WaterVehicles: Vehicle[] = [
-    {
-        name: 'paddle boat',
-        medium: ['water'],
-        passengers: 6,
-        cargoKg: 50,
-        fuelType: [],
-        range: 0,
-        topSpeed: 2,
-        acceleration: 1,
-        cost: 2000,
-        description: 'basic paddleboat'
-    },
-    {
-        name: 'jetski',
-        medium: ['water'],
-        passengers: 2,
-        cargoKg: 20,
-        fuelType: [Electricity],
-        range: 80,
-        topSpeed: 55,
-        acceleration: 7,
-        cost: 10000,
-        description: 'fast moving water ski'
-    },
-    {
-        name: 'speed boat',
-        medium: ['water'],
-        passengers: 8,
-        cargoKg: 100,
-        fuelType: [Electricity],
-        range: 500,
-        topSpeed: 45,
-        acceleration: 5,
-        cost: 40000,
-        description: 'electric speed boat'
-    },
-    {
-        name: 'yacht',
-        medium: ['water'],
-        passengers: 20,
-        cargoKg: 10000,
-        fuelType: [Electricity],
-        range: 12000,
-        topSpeed: 40,
-        acceleration: 3,
-        cost: 100000,
-        description: 'luxury boat often fitted with solar panels to allow slow recharge anywhere'
-    },
-    {
-        name: 'cruiser',
-        medium: ['water'],
-        passengers: 1200,
-        cargoKg: 20000000,
-        fuelType: [Electricity],
-        range: 2000000,
-        topSpeed: 14,
-        acceleration: 1,
-        cost: 3500000,
-        description: 'cruiser fitted with on board small fusion generator capable of running for years without refueling'
-    },
-    {
-        name: 'battleship',
-        medium: ['water'],
-        passengers: 1000,
-        cargoKg: 20000000,
-        fuelType: [Electricity],
-        range: 2000000,
-        topSpeed: 22,
-        acceleration: 0.8,
-        cost: 150000000,
-        description: 'battleship fitted with on board small fusion generator, large railguns and laser cannons'
-    },
-    {
-        name: 'submarine',
-        medium: ['water', 'subwater'],
-        passengers: 40,
-        cargoKg: 10000,
-        fuelType: [Electricity],
-        range: 1000000,
-        topSpeed: 12,
-        acceleration: 1,
-        cost: 70000000,
-        description: 'fusion powered submarine'
-    }
-]
-
-const AirVehicles: Vehicle[] = [
-    {
-        name: 'small plane',
-        medium: ['air'],
-        passengers: 2,
-        cargoKg: 50,
-        fuelType: [Electricity],
-        range: 600,
-        topSpeed: 125,
-        acceleration: 20,
-        cost: 15000,
-        description: 'tiny electric airplane with high speed and low range'
-    },
-    {
-        name: 'small cargoplane',
-        medium: ['air'],
-        passengers: 4,
-        cargoKg: 200,
-        fuelType: [Electricity],
-        range: 700,
-        topSpeed: 120,
-        acceleration: 18,
-        cost: 30000,
-        description: 'tiny electric cargoplane with low range and decent speed'
-    },
-    {
-        name: 'large electroplane',
-        medium: ['air'],
-        passengers: 100,
-        cargoKg: 110,
-        fuelType: [Electricity],
-        range: 1500,
-        topSpeed: 130,
-        acceleration: 22,
-        cost: 50000000,
-        description: 'large airplane capable of medium range flight'
-    },
-    {
-        name: 'airship',
-        medium: ['air'],
-        passengers: 200,
-        cargoKg: 600,
-        fuelType: [Electricity],
-        range: 1000000,
-        topSpeed: 140,
-        acceleration: 24,
-        cost: 120000000,
-        description: 'massive electric airplane fitted with micro fusion capable of staying airborne for months'
-    },
-    {
-        name: 'fighterplane',
-        medium: ['air'],
-        passengers: 2,
-        cargoKg: 10,
-        fuelType: [Electricity, Synthoil],
-        range: 600,
-        topSpeed: 410,
-        acceleration: 40,
-        cost: 40000000,
-        description: 'super sonic electric airplane, switches to jetfuel when going super sonic, fitted with laser cannons'
-    },
-    {
-        name: 'hyperplane',
-        medium: ['air'],
-        passengers: 2,
-        cargoKg: 10,
-        fuelType: [Synthoil],
-        range: 1200,
-        topSpeed: 3400,
-        acceleration: 45,
-        cost: 60000000,
-        description: 'hyper sonic airplane, uses synthetic jetfuel, capable of hypersonic cruise'
-    },
-]
-
-const SpaceVehicles: Vehicle[] = [
-    {
-        name: 'rocketship',
-        medium: ['air', 'space'],
-        passengers: 4,
-        cargoKg: 10000,
-        fuelType: [RocketFuel],
-        range: 0,
-        topSpeed: 24000,
-        acceleration: 45,
-        cost: 450000000,
-        description: 'rocket ship capable of taking off and landing on any planet with less than 3g atmosphere, space capable, radiation shield for interplanetary travel, needs refuel and service every trip, service price 20% of total value'
-    },
-    {
-        name: 'spaceplane',
-        medium: ['air', 'space'],
-        passengers: 4,
-        cargoKg: 10000,
-        fuelType: [Synthoil, RocketFuel],
-        range: 0,
-        topSpeed: 36000,
-        acceleration: 40,
-        cost: 900000000,
-        description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use'
-    },
-    {
-        name: 'Ferry Class Spaceship',
-        medium: ['space'],
-        passengers: 10,
-        cargoKg: 100000,
-        fuelType: [Electricity],
-        range: 0,
-        topSpeed: 2008000,
-        acceleration: 3,
-        cost: 10000000,
-        description: 'small sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 8 days without refueling, ' +
-            'virtually unlimited range within a solar system. ' +
-            '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel'
-    },
-    {
-        name: 'Freighter Class Spaceship',
-        medium: ['space'],
-        passengers: 100,
-        cargoKg: 1000000,
-        fuelType: [Electricity],
-        range: 0,
-        topSpeed: 2600000,
-        acceleration: 3,
-        cost: 30000000,
-        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
-            'virtually unlimited range within a solar system. ' +
-            '3,100 metric ton dry mass, 42m long, 19m radius 108 metric ton fusion fuel'
-    },
-    {
-        name: 'Interceptor Class Spaceship',
-        medium: ['space'],
-        passengers: 80,
-        cargoKg: 500000,
-        fuelType: [Electricity],
-        range: 0,
-        topSpeed: 26000000,
-        acceleration: 5,
-        cost: 32000000,
-        description: 'medium sized space ship, fitted with micro fusion power, capable of maintaining 0.5g for 60 days without refueling, ' +
-            'virtually unlimited range within a solar system, but in particular designed for extreme range and interception. ' +
-            '3,100 metric ton dry mass, 42m long, 19m radius, 50000 metric ton fusion fuel'
-    },
-    {
-        name: 'Cruiser Class Spaceship',
-        medium: ['space'],
-        passengers: 1000,
-        cargoKg: 10000000,
-        fuelType: [Electricity],
-        range: 0,
-        topSpeed: 2600000,
-        acceleration: 3,
-        cost: 150000000,
-        description: 'large space ship, fitted with small fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
-            'virtually unlimited range within a solar system. ' +
-            '24,720 metric ton dry mass, 170m long, 30m radius, 820 metric ton fusion fuel'
-    },
-    {
-        name: 'Battleship Class Spaceship',
-        medium: ['space'],
-        passengers: 10000,
-        cargoKg: 100000000,
-        fuelType: [Electricity],
-        range: 0,
-        topSpeed: 2600000,
-        acceleration: 3,
-        cost: 750000000,
-        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling, ' +
-            'virtually unlimited range within a solar system. ' +
-            '180,000 metric ton dry mass, 480m long, 61m radius, 8200 metric ton fusion fuel'
-    },
-    {
-        name: 'Hyperspace Class Spaceship',
-        medium: ['space', 'hyperspace'],
-        passengers: 10000,
-        cargoKg: 100000000,
-        fuelType: [Electricity, HyperMatter],
-        range: 0,
-        topSpeed: 2600000,
-        acceleration: 3,
-        cost: 1500000000,
-        description: 'huge space ship, fitted with fusion power, capable of maintaining 0.3g for 10 days without refueling,' +
-            ' virtually unlimited range within a solar system, can enter hyperspace and travel up to 50 times the speed of light. ' +
-            '200,000 metric ton dry mass, 480m long, 70m radius, 8300 metric ton fusion fuel'
-    },
-];
-
 interface IVehicleTableProps {
     vehicles: Vehicle[];
 }
 
-const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) =>
-    <table className='datatable'>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Passengers</th>
-                <th>Cargo</th>
-                <th>Cost</th>
-            </tr>
-        </thead>
-        <tbody>
-            {vehicles.map(v => <VehicleRow vehicle={v} />)}
-        </tbody>
-    </table>
+const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
+    const [vehicleToEdit, setVehicleToEdit] = useState<Vehicle | undefined>(undefined);
 
+    const viewVehicleToEdit = (v: Vehicle | undefined) => {
+        if (v === undefined) return null;
+        else return <VehicleEditor baseVehicle={v} />;
+    }
+
+    return (<>
+        {viewVehicleToEdit(vehicleToEdit)}
+        <table className='datatable'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Passengers</th>
+                    <th>Cargo</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {vehicles.map(v => <VehicleRow onSelect={(v) => setVehicleToEdit(v)} vehicle={v} />)}
+            </tbody>
+        </table>
+    </>);
+}
 
 interface IVehicleRowProps {
-    vehicle: Vehicle
+    vehicle: Vehicle;
+    onSelect: (v: Vehicle) => void;
 }
 
 const costConverter = (credits: number) => {
@@ -410,8 +76,7 @@ const weightConverter = (kg: number) => {
     return `${(kg / 1000000).toFixed(0)}k tons`;
 }
 
-
-const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle }) => {
+const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle, onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     if (isOpen)
@@ -431,7 +96,8 @@ const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle }) => {
                 <td>{vehicle.fuelType.map(m => <span>{m.name} </span>)}</td>
             </tr>
             <tr>
-                <td colSpan={5}><Ellipsis text={vehicle.description} cutOff={120} ></Ellipsis></td>
+                <td colSpan={4}><Ellipsis text={vehicle.description} cutOff={120} ></Ellipsis></td>
+                <td> <button onClick={() => onSelect(vehicle)}>Edit</button>  </td>
             </tr>
         </>;
     else return <tr className='datatableclicker' onClick={() => setIsOpen(true)}>
@@ -442,5 +108,38 @@ const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle }) => {
         <td>{costConverter(vehicle.cost)}</td>
     </tr>
 }
+
+interface IVehicleEditorProps {
+    baseVehicle: Vehicle;
+}
+
+const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
+    const [vehicle, dispatch] = useReducer(vehicleReducer, baseVehicle);
+
+    return <>
+        <h3>Vehicle Editor</h3>
+        <b>Name</b>: <input type='text' value={vehicle.name} onChange={e => dispatch({ whatToUpdate: 'name', value: e.target.value })} /><br />
+        <b>Cost</b>: {vehicle.cost}<br />
+        <b>Description</b>: <input type='text' value={vehicle.description} onChange={e => dispatch({ whatToUpdate: 'description', value: e.target.value })} /><br />
+        <b>Medium</b>: {vehicle.medium.map(m => <span>{m} </span>)}<br />
+        <b>Max Cargo</b>: {vehicle.cargoKg}kg<br />
+        <b>Fuel</b>: {vehicle.fuelType.map(ft => <span>{ft.name}</span>)}<br />
+        <b>Passengers</b>: {vehicle.passengers}<br />
+    </>;
+}
+
+interface IVehicleDispatcher {
+    whatToUpdate: 'name' | 'description';
+    value: string;
+}
+
+const vehicleReducer = (state: Vehicle, dispatch: IVehicleDispatcher): Vehicle => {
+    switch (dispatch.whatToUpdate) {
+        case 'name': return { ...state, name: dispatch.value };
+        case 'description': return { ...state, description: dispatch.value };
+    }
+    return state;
+}
+
 
 export default Vehicles;

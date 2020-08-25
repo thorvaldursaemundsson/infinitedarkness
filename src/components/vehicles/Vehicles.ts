@@ -11,8 +11,15 @@ export interface Part {
     name:string;
     description:string;
     cost:number;
-    weight:number;
+    weightKg:number;
 }
+
+export const MicroFusionCell:Part = {
+    name: 'Micro Fusion Cell',
+    description: 'uses Tritium Deuterium fusion fuel, can create up to 1 unity of electricity per second',
+    cost: 500000,
+    weightKg: 1000,
+};
 
 export const Electricity:FuelType = {
     name: 'electricity',
@@ -54,8 +61,6 @@ export const AllFuelTypes:FuelType[] =  [
     Electricity, Synthoil, RocketFuel, TritiumDeuterium, DeuteriumLithium, HyperMatter
 ]
 
-
-
 export interface FuelEngine extends FuelType {
     maxUnits?: number;
     maxUsage?: number;
@@ -67,6 +72,7 @@ export interface Vehicle {
     passengers: number;
     cargoKg: number;
     fuelType: FuelEngine[];
+    parts:Part[];
     range: number;
     topSpeed: number;
     acceleration: number;
