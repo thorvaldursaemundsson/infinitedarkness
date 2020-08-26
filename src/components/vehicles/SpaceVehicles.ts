@@ -1,4 +1,4 @@
-import { HyperMatter, Electricity, Synthoil, RocketFuel, Vehicle } from "./Vehicles";
+import { HyperMatter, Electricity, Synthoil, RocketFuel, Vehicle, MicroFusionCell, MicroFusionThruster } from "./Vehicles";
 
 const SpaceVehicles: Vehicle[] = [
     {
@@ -40,7 +40,7 @@ const SpaceVehicles: Vehicle[] = [
         description: 'small sized space ship, fitted with micro fusion power, capable of maintaining 0.3g for 8 days without refueling, ' +
             'virtually unlimited range within a solar system. ' +
             '380 metric ton dry mass 18m long, 7m radius, 11 metric ton fusion fuel',
-            parts: []
+            parts: [MicroFusionCell, MicroFusionThruster]
     },
     {
         name: 'Freighter Class Spaceship',

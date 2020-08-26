@@ -113,6 +113,11 @@ interface IVehicleEditorProps {
     baseVehicle: Vehicle;
 }
 
+const sumVehicleWeight = (vehicle:Vehicle) => {
+    let sum = vehicle.parts.map(p=>p.weightKg).reduce((a,b) => a+b);
+    return sum;
+}
+
 const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
     const [vehicle, dispatch] = useReducer(vehicleReducer, baseVehicle);
 
@@ -125,6 +130,7 @@ const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
         <b>Max Cargo</b>: {vehicle.cargoKg}kg<br />
         <b>Fuel</b>: {vehicle.fuelType.map(ft => <span>{ft.name}</span>)}<br />
         <b>Passengers</b>: {vehicle.passengers}<br />
+        <b>Weight</b>: {sumVehicleWeight(vehicle)} kg
     </>;
 }
 
