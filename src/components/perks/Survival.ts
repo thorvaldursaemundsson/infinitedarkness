@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 
 export const ImprovedForaging = new PerkTemplate({
     name: 'improved foraging',

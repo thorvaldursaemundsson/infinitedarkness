@@ -1,12 +1,12 @@
 import React, { useReducer, useState } from 'react';
 import { Character } from '../components/Character';
 import { GetTraits } from '../components/traits/Traits';
-import { GetPerkList } from '../components/GetPerkList';
-import { useCharacter } from '../components/useCharacter';
+import { GetPerkList } from '../components/general/GetPerkList';
+import { useCharacter } from '../components/general/useCharacter';
 
 import './charactersheet.css';
-import EditText, { HideText } from '../components/HideText';
-import { Skill } from '../components/Skills';
+import EditText, { HideText } from '../components/general/HideText';
+import { Skill } from '../components/general/Skills';
 
 interface CharacterSheetProps {
     initialCharacter: Character;

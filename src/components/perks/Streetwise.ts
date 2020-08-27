@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 
 export const CriminalTrader = new PerkTemplate({
     name: 'criminal trader',

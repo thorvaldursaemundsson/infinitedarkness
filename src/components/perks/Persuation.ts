@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 
 export const ArtOfDeal = new PerkTemplate({
     name: 'the art of the deal',

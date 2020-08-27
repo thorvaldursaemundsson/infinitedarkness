@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from './Section';
-import Indexer, { Indexed } from '../Indexer';
+import Indexer, { Indexed } from '../general/Indexer';
 
 
 const Consumables = () => <Section title='Consumables'>

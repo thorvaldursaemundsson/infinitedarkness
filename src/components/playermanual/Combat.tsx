@@ -1,6 +1,6 @@
 import Section from "./Section";
 import React from "react";
-import Indexer, { Indexed } from "../Indexer";
+import Indexer, { Indexed } from "../general/Indexer";
 import Firearms from "../skills/firearms";
 
 const Combat: React.FC = () => {

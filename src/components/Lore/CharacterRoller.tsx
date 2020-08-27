@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditText from "../HideText";
+import EditText from "../general/HideText";
 import { Character } from "../Character";
 
 interface IDice {

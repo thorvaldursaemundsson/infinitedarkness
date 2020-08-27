@@ -1,6 +1,6 @@
 import { Button } from "@material-ui/core";
 import React, { useState } from "react";
-import { dispatcher } from "../useCharacter";
+import { dispatcher } from "../general/useCharacter";
 
 export interface IOption {
     key: string;

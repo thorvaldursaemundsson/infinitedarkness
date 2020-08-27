@@ -3,8 +3,8 @@ import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
 import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
-import Ellipsis from "../Ellipsis";
-import Indexer, { Indexed } from "../Indexer";
+import Ellipsis from "../general/Ellipsis";
+import Indexer, { Indexed } from "../general/Indexer";
 import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData } from "../equipment/Armors";
 import { CharacterSize } from "../Character";
 

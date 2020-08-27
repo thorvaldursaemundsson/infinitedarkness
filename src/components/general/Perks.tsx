@@ -1,4 +1,4 @@
-import { IHooker } from './Character';
+import { IHooker } from '../Character';
 
 export interface Perk extends IHooker {
     name: string;

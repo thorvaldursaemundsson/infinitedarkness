@@ -1,7 +1,7 @@
-import { Skill } from "./Skills";
-import { Perk } from './Perks';
+import { Skill } from "./general/Skills";
+import { Perk } from './general/Perks';
 import { Trait } from "./traits/Traits";
-import { GetSkillList } from "./GetSkillList";
+import { GetSkillList } from "./general/GetSkillList";
 
 export const fSum = (n: number): number => {
     let x = 0;

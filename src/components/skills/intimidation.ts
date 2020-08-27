@@ -1,4 +1,4 @@
-import { SkillTemplate, UseCase } from "../Skills";
+import { SkillTemplate, UseCase } from "../general/Skills";
 const useCases: UseCase[] = [
     {
         name: 'interrogation',

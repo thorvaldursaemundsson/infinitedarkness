@@ -1,5 +1,5 @@
 import React from 'react';
-import Ellipsis from '../Ellipsis';
+import Ellipsis from '../general/Ellipsis';
 import { IStarSystem, IStar, IPlanetoid, Distance, HeavenlyBodyType } from './IStarSystem'
 import Section from '../playermanual/Section';
 import Threejs from '../Threejs';

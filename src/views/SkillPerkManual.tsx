@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { GetTraits } from '../components/traits/Traits';
-import { GetPerkList } from '../components/GetPerkList';
-import { GetSkillList } from '../components/GetSkillList';
+import { GetPerkList } from '../components/general/GetPerkList';
+import { GetSkillList } from '../components/general/GetSkillList';
 import Section from '../components/playermanual/Section';
-import Indexer, { Indexed } from '../components/Indexer';
+import Indexer, { Indexed } from '../components/general/Indexer';
 
 const SkillPerkManual: React.FC = () => {
     return <div>

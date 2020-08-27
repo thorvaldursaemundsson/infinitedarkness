@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 
 export const HideEmotion = new PerkTemplate({
     name: 'hide emotion',

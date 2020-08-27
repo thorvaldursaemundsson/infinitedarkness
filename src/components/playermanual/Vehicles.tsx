@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 import Section from "./Section";
-import Ellipsis from "../Ellipsis";
-import Indexer, { Indexed } from "../Indexer";
+import Ellipsis from "../general/Ellipsis";
+import Indexer, { Indexed } from "../general/Indexer";
 import { Vehicle } from "../vehicles/Vehicles";
 import LandVehicles from "../vehicles/LandVehicles";
 import WaterVehicles from "../vehicles/WaterVehicles";

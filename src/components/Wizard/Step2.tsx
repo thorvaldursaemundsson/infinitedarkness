@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 
 import React from "react";
 import { IOption, OptionsExplorer } from "./OptionExplorer";
-import { useCharacter } from "../useCharacter";
+import { useCharacter } from "../general/useCharacter";
 
 const Step2: React.FC<IStepProps> = ({ character, currentNumber, callback }) => {
     const [c, dispatch] = useReducer(useCharacter, character);

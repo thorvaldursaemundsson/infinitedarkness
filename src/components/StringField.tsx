@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
-import { Label } from './Label';
+import { Label } from './general/Label';
 
 interface FieldProps {
     label: string;

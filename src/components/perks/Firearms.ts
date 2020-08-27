@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 
 export const HandGunSpecialization = new PerkTemplate({
     name: 'hand gun specialization',

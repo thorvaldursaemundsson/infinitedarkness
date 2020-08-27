@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Section from "./Section";
-import Indexer, { Indexed } from "../Indexer";
+import Indexer, { Indexed } from "../general/Indexer";
 
 
 const Wealth: React.FC = () => {

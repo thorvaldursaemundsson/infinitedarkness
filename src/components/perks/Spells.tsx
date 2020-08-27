@@ -1,4 +1,4 @@
-import { PerkTemplate } from "../Perks";
+import { PerkTemplate } from "../general/Perks";
 import { IHooker } from "../Character";
 
 const spellhook: IHooker = {

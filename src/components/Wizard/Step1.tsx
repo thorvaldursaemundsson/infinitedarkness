@@ -1,9 +1,9 @@
 import IStepProps from "./WizardSteps";
 import { TextField, Button } from "@material-ui/core";
-import AutoSelectField from "./../AutoSelectField";
+import AutoSelectField from "../general/AutoSelectField";
 import { Character } from "./../Character";
 import React, { useState } from "react";
-import { Label } from "../Label";
+import { Label } from "../general/Label";
 
 const Step1: React.FC<IStepProps> = (props: IStepProps) => {
     const [species, setSpecies] = useState('');
