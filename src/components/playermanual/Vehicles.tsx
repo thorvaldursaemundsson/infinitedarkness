@@ -41,7 +41,7 @@ const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
     }
 
     return (<>
-        {viewVehicleToEdit(vehicleToEdit)}
+        
         <table className='datatable'>
             <thead>
                 <tr>
@@ -113,13 +113,26 @@ interface IVehicleEditorProps {
     baseVehicle: Vehicle;
 }
 
-const sumVehicleWeight = (vehicle:Vehicle) => {
-    let sum = vehicle.parts.map(p=>p.weightKg).reduce((a,b) => a+b);
-    return sum;
-}
 
 const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
     const [vehicle, dispatch] = useReducer(vehicleReducer, baseVehicle);
+
+    let passengersCount = 0;
+    let impulseSum = 0;
+    let weight = 0;
+
+    for (let i in vehicle.parts) {
+        let p: any = vehicle.parts[i];
+        if (p.passengerCount !== undefined) { //PassengerSection
+            passengersCount += p.passengerCount;
+        }
+        else if (p.fuelUse !== undefined) { //Thruster
+            impulseSum += p.impulseKn;
+        }
+        weight += vehicle.parts[i].weightKg;
+    }
+
+    let acceleration = impulseSum / weight;
 
     return <>
         <h3>Vehicle Editor</h3>
@@ -129,8 +142,10 @@ const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
         <b>Medium</b>: {vehicle.medium.map(m => <span>{m} </span>)}<br />
         <b>Max Cargo</b>: {vehicle.cargoKg}kg<br />
         <b>Fuel</b>: {vehicle.fuelType.map(ft => <span>{ft.name}</span>)}<br />
-        <b>Passengers</b>: {vehicle.passengers}<br />
-        <b>Weight</b>: {sumVehicleWeight(vehicle)} kg
+        <b>Passengers</b>: {passengersCount}<br />
+        <b>Weight</b>: {weightConverter(weight)} <br />
+        <b>Accelleration</b>: {acceleration.toFixed(3)} m/s/s <br />
+        <b>Part Breakdown</b> {vehicle.parts.map(part => <span>{part.name}, </span>)}
     </>;
 }
 
@@ -143,8 +158,8 @@ const vehicleReducer = (state: Vehicle, dispatch: IVehicleDispatcher): Vehicle =
     switch (dispatch.whatToUpdate) {
         case 'name': return { ...state, name: dispatch.value };
         case 'description': return { ...state, description: dispatch.value };
+        default: return state;
     }
-    return state;
 }
 
 

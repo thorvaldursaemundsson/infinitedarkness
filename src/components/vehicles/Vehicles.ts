@@ -64,6 +64,14 @@ export interface Thruster {
     impulseKn: number;
 }
 
+export interface PassengerSection {
+    passengerCount: number;
+    cargoPerPerson: number;
+    isEnclosed: boolean;
+    isLivingSpace: boolean;
+    meterSquarePerPerson: number;
+}
+
 export const MicroFusionCell: Part & EnergyConverter = {
     name: 'Micro Fusion Cell',
     description: 'uses Tritium Deuterium fusion fuel, can generate up to 1 unity of electricity per second',
@@ -154,10 +162,10 @@ export const MicroFusionThruster: Part & Thruster = {
     name: 'Fusion Thruster',
     description: 'Taps into a fusion power cell to create propulsion',
     cost: 100000,
-    weightKg: 100,
+    weightKg: 1000,
     fuelUse: TritiumDeuterium,
-    fuelUnitsConsumeRate: 0.1,
-    impulseKn: 114
+    fuelUnitsConsumeRate: 1,
+    impulseKn: 1140
 };
 
 export const FusionThruster: Part & Thruster = {
@@ -170,12 +178,90 @@ export const FusionThruster: Part & Thruster = {
     impulseKn: 2280
 };
 
+export const InternalCombusionEngine: Part & Thruster = {
+    name: 'Internal Combusion Engine',
+    description: 'Converts synthoil units into mechanical movement',
+    cost: 900,
+    weightKg: 1,
+    fuelUse: Synthoil,
+    fuelUnitsConsumeRate: 1,
+    impulseKn: 6.5,
+};
+
+export const JetEngine: Part & Thruster = {
+    name: 'Jet Engine',
+    description: 'Converts synthoil units into air propulsion',
+    cost: 2000,
+    weightKg: 2,
+    fuelUse: Synthoil,
+    fuelUnitsConsumeRate: 1,
+    impulseKn: 10,
+};
+
+export const RocketEngine: Part & Thruster = {
+    name: 'Rocket Engine',
+    description: 'Converts rocket fuel units into propulsion',
+    cost: 5000,
+    weightKg: 2,
+    fuelUse: RocketFuel,
+    fuelUnitsConsumeRate: 5,
+    impulseKn: 500,
+};
+
+export const SmallHabitatSection: Part & PassengerSection = {
+    name: 'Small habitat section',
+    description: 'Can house 3 people, includes base amenities and storage, radiation shielding, airtight. 7 meter radius 2.5 meter tall cylinder',
+    cost: 7000,
+    weightKg: 7000,
+    passengerCount: 3,
+    cargoPerPerson: 10,
+    isEnclosed: true,
+    isLivingSpace: true,
+    meterSquarePerPerson: 30,
+};
+
+export const MediumHabitatSection: Part & PassengerSection = {
+    name: 'Small habitat section',
+    description: 'Can house 9 people, includes base amenities and storage, radiation shielding, airtight. 19 meter radius 2.5 meter tall cylinder',
+    cost: 19000,
+    weightKg: 19000,
+    passengerCount: 9,
+    cargoPerPerson: 10,
+    isEnclosed: true,
+    isLivingSpace: true,
+    meterSquarePerPerson: 30,
+};
+
+export const LargeHabitatSection: Part & PassengerSection = {
+    name: 'Small habitat section',
+    description: 'Can house 31 people, includes base amenities and storage, radiation shielding, airtight. 30 meter radius 2.5 meter tall cylinder',
+    cost: 30000,
+    weightKg: 30000,
+    passengerCount: 31,
+    cargoPerPerson: 10,
+    isEnclosed: true,
+    isLivingSpace: true,
+    meterSquarePerPerson: 30,
+};
+
+export const HugeHabitatSection: Part & PassengerSection = {
+    name: 'Small habitat section',
+    description: 'Can house 31 people, includes base amenities and storage, radiation shielding, airtight. 61 meter radius 2.5 meter tall cylinder',
+    cost: 30000,
+    weightKg: 30000,
+    passengerCount: 97,
+    cargoPerPerson: 15,
+    isEnclosed: true,
+    isLivingSpace: true,
+    meterSquarePerPerson: 40,
+};
+
+
+
 export const Parts: Part[] = [
     MicroFusionCell, SmallFusionCell, MediumFusionCell, LargeFusionCell, HugeFusionCell, FusionPowerPlant,
-    ElectricMotor
+    ElectricMotor, ElectricPropeller, MicroFusionThruster, FusionThruster, InternalCombusionEngine, JetEngine, RocketEngine
 ];
-
-
 
 export const AllFuelTypes: FuelType[] = [
     Electricity, Synthoil, RocketFuel, TritiumDeuterium, DeuteriumLithium, HyperMatter
