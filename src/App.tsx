@@ -45,6 +45,8 @@ const App: React.FC = () => {
           Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
           </p>
           <p>No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid</p>
+          <hr/>
+          <p>This page uses session storage (similar to cookies) click <span style={{textDecoration: 'underline', color:'red', cursor:'pointer'}} onClick={() => sessionStorage.clear()}>here</span> to purge session manually.</p>
         </Conditional>
         <Conditional shouldView={viewMode === characterSheet}>
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />

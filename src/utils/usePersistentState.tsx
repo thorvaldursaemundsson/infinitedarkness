@@ -7,10 +7,10 @@ function parseJsonOr<T>(str:string|null, def:T){
 
 function usePersistentState<T>(key:string, defaultValue:T):[T, React.Dispatch<T>] {
     const [state, setState] = useState<T>(
-      () => parseJsonOr<T>(localStorage.getItem(key), defaultValue)
+      () => parseJsonOr<T>(sessionStorage.getItem(key), defaultValue)
     );
     useEffect(() => {
-      localStorage.setItem(key, JSON.stringify(state));
+      sessionStorage.setItem(key, JSON.stringify(state));
     }, [key, state]);
     return [state, setState];
   }
