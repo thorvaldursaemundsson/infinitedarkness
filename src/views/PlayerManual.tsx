@@ -60,7 +60,7 @@ const Health = () =>
         </p>
         <p>If you are injured you take penalty to all physical activities with an equal amount of damage taken.</p>
         <p>If your physical health (life) is reduced to zero you do not immediately die, rather you are partially incapacitated, any extraneous physical activity will cause you to take 1 damage</p>
-        <p>If your physical health reaches full negative (-100%) you become unconcious and start to die, you lose 1 life every x number of minutes (x = you endurance), once it hits -200% you are fully dead</p>
+        <p>If your physical health reaches full negative (-100%) you become unconscious and start to die, you lose 1 life every x number of minutes (x = you endurance), once it hits -200% you are fully dead</p>
         <h5>Pain and adrenaline</h5>
         <p>When you receive an injury during combat your body will produce adrenaline, this prevents penalties to physical activities, it lasts 1 hour, each time it happens you lose 1 mental health.</p>
         <h5>Painkillers</h5>
@@ -78,6 +78,10 @@ const Health = () =>
         <p>While you can not directly die from mental health injury it can debilitate you, if you reach zero you enter a state of depression: mundane tasks require a roll, if you fail you lack the motivation to act and do nothing. Even in life threatening situations since your character has lost the will to live.</p>
         <h5>Recovery</h5>
         <p>Mental health recovery works similar to physical recovery, you recover 1 per day that you do not perform any highly stressful activity, in addition being exposed to a positive environment will increase it to 2 per day</p>
+        <p>Ability damage recovers 1 per rest, if you have ability damage in multiple abilities then the one with the most damage recovers.</p>
+        <h5>Ability damage</h5>
+        <p>Very few things cause direct ability damage, however if one ability is reduced to 0 or less then your character immediately falls unconscious</p>
+        <p></p>
     </Section>;
 
 
