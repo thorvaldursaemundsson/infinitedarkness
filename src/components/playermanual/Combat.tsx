@@ -26,19 +26,19 @@ const Combat: React.FC = () => {
             </Indexed>
             <Indexed title='Dodging and passive defense'>
                 <p>Passive defense is the number that your enemy is required to hit to hit you in combat</p>
-        You have a passive defense of 10 when:
-        <ul>
+                You have a passive defense of 10 when:
+                <ul>
                     <li>You don't see the attack, or</li>
                     <li>You are doing something that requires concentration, or</li>
                     <li>You are doing something that requires stillness</li>
                     <li>You are immobilized</li>
                 </ul>
-        You have a passive defense of 10 + agility + your lowest combat or acrobatics when:
-        <ul>
+                You have a passive defense of 10 + agility + your lowest combat or acrobatics when:
+                <ul>
                     <li>You can see the attack coming</li>
                 </ul>
-        If you have a passive dodge you may choose to do an active dodge.
-        <ul>
+                If you have a passive dodge you may choose to do an active dodge.
+                <ul>
                     <li>An active dodge gives you Acrobatics (active dodge) + Agility + 2d10</li>
                     <li>This applies to ALL incoming attacks</li>
                     <li>You can activate this at any time, so long as you have not acted yet</li>
@@ -81,17 +81,31 @@ const Combat: React.FC = () => {
                         {uc.results !== undefined ? uc.results.map(r => <li>{r}</li>) : null}
                     </ul>
                 </>)}
-
-
             </Indexed>
-            <Indexed title='Multiple attacks'>
-                <p>Characters may do more than two or more consecutive attacks in certain circumstances.</p>
+            <Indexed title='Splash damage'>
+                <p>Some weapons do splash damage, meaning they hit an area, some weapons have a "low damage" zone outside the splash area where damage is reduced to 25%</p>
                 <ul>
-                    <li><b>2 attacks</b>: requires 6 or higher in firearms and/or combat. Take -3 penalty to both attacks</li>
-                    <li><b>3 attacks</b>: requires 12 or higher in firearms and/or combat. Take -6 penalty to all attacks</li>
-                    <li><b>4 attacks</b>: requires 18 or higher in firearms and/or combat. Take -9 penalty to all attacks</li>
-                    <li><b>5 attacks</b>: requires 24 or higher in firearms and/or combat. Take -12 penalty to all attacks</li>
-                    <li><b>6 attacks</b>: requires 30 or higher in firearms and/or combat. Take -15 penalty to all attacks</li>
+                    <li>The area of effect (including low damage zone) is specified by the weapon</li>
+                    <li>All who are caught inside the area of effect roll damage seperately, damage absorbtion applies, defense does not apply</li>
+                    <li>Characters who still have a move action may make an acrobatics roll against the attack roll for half damage
+                        <ul>
+                            <li>Defeating the roll by 10 or more means no damage is taken, but the character moves out of the area</li>
+                        </ul>
+                    </li>
+                    <li>Objects caught within the zone are also damaged</li>
+                    <li>The target to hit an area is 10, standard range penalties apply, missing means you off target</li>
+                </ul>
+                <p>Some weapons that do splash damage are thrown or otherwise follow a ballistic path. These can potentially hit places that are not within direct line of sight. For these situations add +10 and range penalties are doubled.</p>
+            </Indexed>
+            
+            <Indexed title='Multiple attacks'>
+                <p>Characters may do more than two or more consecutive attacks in certain circumstances. Only applies to combat rolls</p>
+                <ul>
+                    <li><b>2 attacks</b>: requires 6 or higher  combat. Take -3 penalty to both attacks</li>
+                    <li><b>3 attacks</b>: requires 12 or higher combat. Take -6 penalty to all attacks</li>
+                    <li><b>4 attacks</b>: requires 18 or higher combat. Take -9 penalty to all attacks</li>
+                    <li><b>5 attacks</b>: requires 24 or higher combat. Take -12 penalty to all attacks</li>
+                    <li><b>6 attacks</b>: requires 30 or higher combat. Take -15 penalty to all attacks</li>
                 </ul>
             </Indexed>
             <Indexed title='Distance'>

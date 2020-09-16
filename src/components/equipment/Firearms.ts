@@ -6,7 +6,7 @@ export type Ammo = '9x17' | '9x21' | '9x23' |
     '12x20' | '12x24' | '12x28' |
     '4mm ec' |
     '12 gauge' | '20 gauge' |
-    '40mm rpg' | '50mm rpg' |
+    '20mm rpg'|'30mm rpg'|'40mm rpg' | '50mm rpg' |
     '1hec' | '2hec' | '10hec';
 
 export interface AmmoInformation {
@@ -97,16 +97,28 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['shell', 'slug'],
         description: 'a 20 gauge shotgun shell'
     }, {
+        ammo: '20mm rpg',
+        cost: 150,
+        weight: 90,
+        types: ['standard', 'grenade'],
+        description: 'a 40mm rocket propelled grenade'
+    }, {
+        ammo: '30mm rpg',
+        cost: 300,
+        weight: 120,
+        types: ['frag', 'standard', 'grenade', 'fire bomb'],
+        description: 'a 40mm rocket propelled grenade'
+    }, {
         ammo: '40mm rpg',
-        cost: 900,
+        cost: 500,
         weight: 160,
-        types: ['plasma bomb', 'frag', 'standard'],
+        types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '50mm rpg',
-        cost: 1200,
+        cost: 750,
         weight: 220,
-        types: ['plasma bomb', 'homing', 'standard'],
+        types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade'
     }, {
         ammo: '1hec',
@@ -134,6 +146,8 @@ interface IFirearm extends Item {
     ammo: Ammo;
     rps?: number;
     strengthRequirement: number;
+    splashRange?:number;
+    lowDamageZone?:number;
 }
 
 export class FireArm implements IFirearm {
@@ -151,8 +165,10 @@ export class FireArm implements IFirearm {
     description?: string | undefined;
     name: string;
     strengthRequirement: number;
+    splashRange?:number;
+    lowDamageZone?:number;
 
-    constructor(name: string, weight: number, value: number, damage: string, fireArmClass: fireArmClass, range: string, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined) {
+    constructor(name: string, weight: number, value: number, damage: string, fireArmClass: fireArmClass, range: string, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange:number|undefined, lowDamageZone:number|undefined) {
         this.fireArmClass = fireArmClass;
         this.name = name;
         this.weight = weight;
@@ -167,6 +183,8 @@ export class FireArm implements IFirearm {
         this.ammo = ammo;
         this.rps = rps;
         this.strengthRequirement = strengthRequirement;
+        this.splashRange = splashRange;
+        this.lowDamageZone = lowDamageZone;
     }
 }
 
@@ -231,16 +249,16 @@ const Firearms: FireArm[] = [
 
     //shotgun
     {
-        fireArmClass: 'rifle', name: 'Skolt Crusher', damage: '2d6', range: '160m', ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2800, value: 2200, hitbonus: 1,
-        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread'
+        fireArmClass: 'rifle', name: 'Skolt Crusher', damage: '2d6', range: '160m', ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2800, value: 2200, hitbonus: 0,
+        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread', splashRange: 0.5, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 3,
-        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting'
+        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 0,
+        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting', splashRange: 0.8, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer (sawed off)', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 6,
-        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread'
+        fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 0,
+        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread', splashRange: 1
     },
 
     //magnetic guns
@@ -274,12 +292,20 @@ const Firearms: FireArm[] = [
 
     //rocket launcher
     {
-        fireArmClass: 'rocketlauncher', name: 'ALV-RL', damage: '12d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 3, capacity: 4, fireAction: ['bolt action'], armorpiercing: 10, weight: 4000, value: 1700,
-        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people'
+        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 4, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 5000, value: 2000, hitbonus: -1,
+        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round', splashRange: .5, lowDamageZone: 2,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AT-RL', damage: '12d10', range: '3500m', ammo: '50mm rpg', strengthRequirement: 3, capacity: 1, fireAction: ['bolt action'], armorpiercing: 12, weight: 5000, value: 2400,
-        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat'
+        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 4, capacity: 3, fireAction: ['bolt action'], armorpiercing: 6, weight: 4000, value: 1500, hitbonus: -2,
+        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover', splashRange: 1, lowDamageZone: 3,
+    },
+    {
+        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 4, capacity: 2, fireAction: ['bolt action'], armorpiercing: 10, weight: 4000, value: 1700, hitbonus: -3,
+        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people', splashRange: 2, lowDamageZone: 4,
+    },
+    {
+        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 5, capacity: 1, fireAction: ['bolt action'], armorpiercing: 12, weight: 5000, value: 2400, hitbonus: -4,
+        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat', splashRange: 2, lowDamageZone: 5,
     },
 
     //energy weapons

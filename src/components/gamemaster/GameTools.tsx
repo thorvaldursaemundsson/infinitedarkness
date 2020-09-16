@@ -1,46 +1,6 @@
 import React, { useState } from 'react'
 import Section from '../playermanual/Section';
-const dicerand = (size: number, dice: number): number => {
-    let sum = 0;
-    for (let i = 0; i < dice; i++) {
-        sum += Math.floor(Math.random() * size + 1);
-    }
-    return sum;
-}
 
-const distanceFactor = (n: number): number => 1 / Math.pow(Math.max(n, 1), 1.2);
-
-const distanceFactors = [...Array(20)].map((v, i, a) => { return { df: distanceFactor(i), d: i }; });
-
-const ExplosiveCalc: React.FC = () => {
-    const [distance, setDistance] = useState(1);
-    const [damage, setDamage] = useState(0);
-
-    const actualDamage = Math.floor(damage * distanceFactor(distance));
-
-    return <div>
-        <p>Damage lowers over distance, the exact equation is distance to the power of 1.2 where distance is minimum 1</p>
-        Distance <input type='text' value={distance} onChange={(e) => setDistance(parseFloat(e.target.value))} /> <br />
-        Damage <input type='text' value={damage} onChange={(e) => setDamage(parseInt(e.target.value))} />
-        <button onClick={() => setDamage(dicerand(8, 12))}>12d8</button>
-        <button onClick={() => setDamage(dicerand(10, 12))}>12d10</button>
-        <button onClick={() => setDamage(dicerand(8, 24))}>24d8</button>
-        <button onClick={() => setDamage(dicerand(10, 24))}>24d10</button>
-
-        <br />
-        Actual damage: {actualDamage}
-        <table>
-            <thead>
-                <tr>
-                    <th>Distance</th><th>Damage taken</th>
-                </tr>
-            </thead>
-            <tbody>
-                {distanceFactors.map(df => <tr><td>{df.d}</td><td>{(df.df * 100).toFixed(1)}%</td></tr>)}
-            </tbody>
-        </table>
-    </div>;
-}
 
 /**
  * returns time in seconds
@@ -93,7 +53,6 @@ const GameTools: React.FC = () => {
     return <>
         <h3>Game master tools</h3>
         <p>This section is an assortment of tools to help the game master run the game</p>
-        <Section title='Explosion damage calculator'><ExplosiveCalc /></Section>
         <Section title='Spacetravel calculator'><DistanceCalculatorSpace /></Section>
     </>;
 }

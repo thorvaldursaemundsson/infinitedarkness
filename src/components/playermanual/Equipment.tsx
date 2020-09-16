@@ -13,7 +13,7 @@ const Equipment: React.FC = () => {
         <h2>Equipment</h2>
         <p>Euipment is everything your character can wear on their body or hold and use.</p>
         <Indexer title='equipment'>
-            <Indexed title='Weapons'>
+            <Indexed title='Melee Weapons'>
                 <h4>Glossary</h4>
                 <table>
                     <thead><tr><th>abbreviation</th><th>meaning</th></tr></thead>
@@ -27,13 +27,14 @@ const Equipment: React.FC = () => {
 
                 <WeaponTable data={MeleeWeapons}></WeaponTable>
                 <p>Small weapons gain 1/4 of your strength (rounded down) as a damage bonus, they are characterized as one handed weapon that can be easily concealed
-            <br />
-            Medium weapons gain 1/3 of your strength (rounded down) as a bonus damage, they are characterized as one handed weapons that are too big to be easily concealed
-            <br />
-            Large weapons gain 1/2 of your strength (rounded down) as bonus damage, they are characterized as two handed weapons and often are too big for close quarter combat
-        </p>
+                    <br />
+                    Medium weapons gain 1/3 of your strength (rounded down) as a bonus damage, they are characterized as one handed weapons that are too big to be easily concealed
+                    <br />
+                    Large weapons gain 1/2 of your strength (rounded down) as bonus damage, they are characterized as two handed weapons and often are too big for close quarter combat
+                </p>
                 <p>Close quarters is defined as being adjecent to 2 or more walls or large obstacles, open quarters is empty space around you (nothing to take cover behind)</p>
-
+            </Indexed>
+            <Indexed title='Firearms'>
                 <h4>Guns</h4>
                 <p>All firearms cause bleeding</p>
                 <FirearmTable data={Firearms} />
@@ -86,17 +87,17 @@ const Equipment: React.FC = () => {
                         Weight: 1kg
                     </li>
                     <li>
-                        <b>Arm mount</b> Allows use of two handed firearms with one hand<br/>
-                        Strength requirement +3<br/>
-                        Cost: 200c<br/>
+                        <b>Arm mount</b> Allows use of two handed firearms with one hand<br />
+                        Strength requirement +3<br />
+                        Cost: 200c<br />
                         Weight: 1kg
                     </li>
                     <li>
-                        <b>Turbo charge</b> (energy weapons) +50% damage, can only fire once per round<br/>
-                        Ammo use: +100%<br/>
-                        Cost: +25%<br/>
-                        Range: -50%<br/>
-                        Weight: 0.5kg<br/>
+                        <b>Turbo charge</b> (energy weapons) +50% damage, can only fire once per round<br />
+                        Ammo use: +100%<br />
+                        Cost: +25%<br />
+                        Range: -50%<br />
+                        Weight: 0.5kg<br />
                         Overheats: gain 1 heat point every shot, lose 1 heat after 2 rounds of non-use, can't fire if at 8 heat.
                     </li>
                 </ul>
@@ -112,11 +113,13 @@ const Equipment: React.FC = () => {
                     <li><b>Armor Piercing</b> bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage, cost +10%</li>
                     <li><b>Incendiary</b> bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage. Cost +250%</li>
                     <li><b>Shell</b>, contains multiple pellets which spread and gives to hit bonus</li>
-                    <li><b>Slug</b>, contains a single metal slug, doubles shotgun range, adds +1 armor piercing, removes base hit bonus from weapon.</li>
-                    <li><b>Explosive</b>, contains an alloy which explodes on contact, adds +2 damage, +1 armor piercing, removes base hit bonus from weapon. Cost +100%</li>
+                    <li><b>Slug</b>, contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range</li>
+                    <li><b>Explosive</b>, contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit. Cost +100%</li>
                     <li><b>Plasma Bomb</b>, Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect. Cost +400%</li>
-                    <li><b>Frag</b>, releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover.</li>
-                    <li><b>Homing</b>, homes in on target, requires snipe shot. Adds +4 to hit. cost +50%.</li>
+                    <li><b>Fire Bomb</b>, The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible with fire or frag</li>
+                    <li><b>Frag</b>, releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma</li>
+                    <li><b>Homing</b>, homes in on target, requires snipe shot. Range penalties are halved. cost +50%. Not compatible with grenade</li>
+                    <li><b>Grenade</b>, non-rocket propelled, reduces range to 80m, adds +2d8 damage</li>
                 </ul>
             </Indexed>
             <Indexed title='Body Armors'>
@@ -499,6 +502,7 @@ const getAmmoInfo = (ammo: Ammo): AmmoInformation => {
 
 const FireArmRow = (f: FireArm) => {
     const [descriptionOpen, setDescriptionOpen] = useState(false);
+
     return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
         <td>{f.fireArmClass}</td>
         <td>{f.name}</td>
@@ -510,9 +514,13 @@ const FireArmRow = (f: FireArm) => {
         <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
 
         <td>{weightConverter(f.weight)}</td>
-        <td>{f.value} c + ({(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)})</td>
+        <td title={(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)}>{f.value}</td>
     </tr>
-        {descriptionOpen && <tr><td>STR: {f.strengthRequirement}</td><td colSpan={8}><i> <Ellipsis text={f.description} cutOff={100} /></i></td></tr>}
+        {descriptionOpen && <tr>
+            <td>STR: {f.strengthRequirement}</td>
+            <td>Splash: {f.splashRange !== undefined ? f.splashRange * 2 : ''}{f.lowDamageZone !== undefined ? `;${f.lowDamageZone * 2}` : ''} m diameter</td>
+            <td colSpan={8}><Ellipsis text={f.description} cutOff={100} /></td>
+        </tr>}
     </>);
 }
 const bottomStyle: CSSProperties = {

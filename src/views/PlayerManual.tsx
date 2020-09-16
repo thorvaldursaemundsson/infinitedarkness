@@ -30,17 +30,17 @@ const PlayerManual: React.FC = () => {
         <Combat key='pm5' />
         <hr />
         <Health key='pm8' />
-        <hr/>
+        <hr />
         <Wealth key='pm3' />
         <hr />
         <Equipment key='pm6' />
-        <hr/>
+        <hr />
         <Consumables key='pmcons' />
         <hr />
         <CarryingCapacity key='pmcc' />
         <hr />
         <Cybernetics key='pmcyb' />
-        <hr/>
+        <hr />
         <Vehicles key='pm7' />
         <hr />
         <Radiation key='pmr' />
@@ -81,7 +81,8 @@ const Health = () =>
         <p>Ability damage recovers 1 per rest, if you have ability damage in multiple abilities then the one with the most damage recovers.</p>
         <h5>Ability damage</h5>
         <p>Very few things cause direct ability damage, however if one ability is reduced to 0 or less then your character immediately falls unconscious</p>
-        <p></p>
+        <h4>Mana</h4>
+        <p>Mana regenerates 1 per 24 hours regardless if you rest or not.</p>
     </Section>;
 
 

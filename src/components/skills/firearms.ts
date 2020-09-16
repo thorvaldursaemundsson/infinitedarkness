@@ -6,7 +6,8 @@ const useCases: UseCase[] = [
         description: 'Fire a single shot at a target, any non fully-automatic weapon',
         results: [
             'If roll equals defense then you hit',
-            'May also make any move action'
+            'May also make any move action',
+            'Gain +1 armor pierce per each 10 over defense'
         ],
         type: 'active'
     },
@@ -19,6 +20,7 @@ const useCases: UseCase[] = [
             'Add +5 to hit',
             'If roll equals defense then you hit with 1d3 bullets',
             'May also make any move action',
+            'Gain +1 bullet hit per each 10 over defense (max 4)'
         ],
         type: 'active'
     },
@@ -32,7 +34,9 @@ const useCases: UseCase[] = [
             'If roll equals defense then you hit with 1d6 bullets',
             'Defense from skill reduced by half',
             'May only make walk move action, move at half speed',
-            'Strength requirement increase by 1'
+            'Strength requirement increase by 1',
+            'Gain +1 bullet hit per each 10 over defense (max 10)',
+            'You may shoot multiple targets using this, -5 to hit for each extra target, all targets roll bullets individually with -1 per extra target (min 0)'
         ],
         type: 'active'
     },
@@ -43,7 +47,8 @@ const useCases: UseCase[] = [
         results: [
             'If roll equals defense then you hit, if roll is less than up to 12 then take no action and simply wait (player may declare in advance the roll)',
             'Defense from skill removed',
-            'May take no move action at all'
+            'May take no move action at all',
+            'Gain +1 armor pierce per each 10 over defense'
         ],
         type: 'active'
     },
@@ -54,10 +59,12 @@ const useCases: UseCase[] = [
         results: [
             'Shoot as many bullets as it uses per round, potentially empying the magazine',
             'Add +15 to hit',
-            'If roll equals defense then you hit with 2d4 bullets',
+            'If roll equals defense then you hit with 1d8 bullets',
             'Defense from skill removed',
             'May take no move action at all',
-            'Strength requirement increase by 2'
+            'Strength requirement increase by 2',
+            'Gain +1 bullet hit per each 10 over defense',
+            'You may shoot multiple targets using this, -5 to hit for each extra target, all targets roll bullets individually with -1 per extra target (min 0)'
         ],
         type: 'active'
     },
