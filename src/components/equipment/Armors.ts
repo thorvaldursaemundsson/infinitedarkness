@@ -24,7 +24,7 @@ const bodySuits: BodySuit[] = [
     {
         name: 'Nylon Polyester Composite',
         damageAbsorbtion: 3,
-        weight: 30,
+        weight: 20,
         cost: 3500,
         agilityMod: -1,
         description: 'Composite armor made primarily of nylon and polyester, thick layers give stab and cut protection',
@@ -51,7 +51,7 @@ const bodySuits: BodySuit[] = [
     {
         name: 'Carbon Fiber Weave',
         damageAbsorbtion: 5,
-        weight: 40,
+        weight: 30,
         cost: 12000,
         agilityMod: -2,
         description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
@@ -118,7 +118,7 @@ const armorPlates: ArmorPlate[] = [
         name: 'Titan Alloy Plates',
         damageAbsorbtion: 6,
         weight: 16,
-        cost: 8000,
+        cost: 9000,
         agilityMod: -2,
         description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive',
         armorType: 'armorPlate'
@@ -127,7 +127,7 @@ const armorPlates: ArmorPlate[] = [
         name: 'Titan Alloy Fullplate',
         damageAbsorbtion: 8,
         weight: 24,
-        cost: 16000,
+        cost: 15000,
         agilityMod: -3,
         description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
