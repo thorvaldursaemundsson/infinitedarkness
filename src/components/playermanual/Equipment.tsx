@@ -165,20 +165,25 @@ const Equipment: React.FC = () => {
                             Allows user to substitute computer roll for any knowledge roll.<br />
                             10TB storage, 12x 5.5GH cpu cores, 512GB ram, 4 cameras, gyrometer, accelerometer, geigercounter, radiobooster. 48h battery
                             </td> </tr>
-                        <tr> <td>Jetpack</td><td>14000 c</td><td>6kg</td><td>Allows for short bursts which propel the user. Jump +50 meters up, +100 meters forward, prevents fall damage</td> </tr>
+                        <tr> <td>Jetpack</td><td>14000 c</td><td>6kg</td><td>Allows for short bursts which propel the user. Jump +50 meters up, +100 meters forward, requires athletics + agility 20 to safely land</td> </tr>
+                        <tr> <td>Flightsuit</td><td>8000 c</td><td>10kg</td><td>Allows for gliding, flying if paired with jetpack. Landing safely requires acrobatics + agility 20. Not compatible with armor plating or power armor</td></tr>
                         <tr> <td>Stealth Cover</td><td>19000 c</td><td>1.8kg</td><td>Meta-material which bends light around it as it passes through, giving the illsion of invisibility. Only works for visible light (not infra red or ultra violet). +20 to hide (negated by infra-red or ultra-violet vision)</td> </tr>
                         <tr> <td>Scope</td><td>600 c</td><td>300g</td><td>Scope with 2x/4x/8x/15x/20x zoom</td> </tr>
-                        <tr> <td>Infrared googles</td><td>900 c</td><td>200g</td><td>Allows the user to see in infrared</td> </tr>
-                        <tr> <td>Ultraviolet googles</td><td>1600 c</td><td>300g</td><td>Allows the user to see in ultra violet</td> </tr>
-                        <tr> <td>X-ray camera</td><td>5000 c</td><td>1.2kg</td><td>Portable x-ray camera, requires source of x rays to see anythign</td> </tr>
+                        <tr> <td>Infrared googles</td><td>900 c</td><td>200g</td><td>Allows the user to see in infrared, can be paired with scope or camera</td> </tr>
+                        <tr> <td>Ultraviolet googles</td><td>1600 c</td><td>300g</td><td>Allows the user to see in ultra violet, can be paired with scope or camera</td> </tr>
+                        <tr> <td>X-ray camera</td><td>5000 c</td><td>1.2kg</td><td>Portable x-ray camera, requires source of x rays to see anything</td> </tr>
                         <tr> <td>Digital hacking tool</td><td>3500 c</td><td>2kg</td><td>Assortment of devices used for hacking digital keys, must be usedin combination with computer</td> </tr>
                         <tr> <td>Climbing gear</td><td>1700 c</td><td>3kg</td><td>Assorted tools for climbing, allows for climbing on sheer surfaces, gives +10 to climbing rolls</td> </tr>
                         <tr> <td>Medikit</td><td>4100 c</td><td>2.5kg</td><td>Assorted tools for emergency field surgery and aid.</td> </tr>
                         <tr> <td>Ballistic kit</td><td>400 c</td><td>300g</td><td>Assorted tools for maintaining firearms</td>  </tr>
-                        <tr> <td>SCUBA suit</td><td>12000 c</td><td>6g</td><td> </td>  </tr>
+                        <tr> <td>SCUBA suit</td><td>12000 c</td><td>6g</td><td>Airbreathing underwater </td>  </tr>
                         <tr> <td>Laser protection gear</td><td>500 c</td><td>100g</td><td>Protective gear against damage from laser, protects against blinding.</td>  </tr>
-                        <tr> <td>Spy drone</td><td>1000 c</td><td>500g</td><td>Small drone, uses propellers to fly but causes little noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km</td>  </tr>
-                        <tr> <td>Carrier drone</td><td>5000 c</td><td>2.5kg</td><td>Medium sized drone, similar to spy drone but can carry 500 grams</td>  </tr>
+                        <tr> <td>Spy drone</td><td>4000 c</td><td>200g</td><td>Small drone, uses propellers to fly but causes virtually no noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km.</td>  </tr>
+                        <tr> <td>Carrier drone</td><td>9000 c</td><td>2kg</td><td>Medium sized drone, similar to spy drone but can carry 1kg and is not silent.</td>  </tr>
+                        <tr> <td>Large carrier drone</td><td>15000 c</td><td>10kg</td><td>Large sized drone, similar to carrier drone, can carry 6kg.</td>  </tr>
+                        <tr> <td>Industrial carrier drone</td><td>25000 c</td><td>80kg</td><td>Large sized drone, similar to large carrier but can carry 52kg.</td>  </tr>
+                        <tr> <td>H.W. Industrial carrier drone</td><td>35000 c</td><td>250kg</td><td>Heavy weight indistrial carrier drone, capacity 175kg. Basically a small hellicopter</td>  </tr>
+                        <tr> <td>Transport drone</td><td>90000 c</td><td>5000kg</td><td>It's a vehicle, capacity 3500kg.</td>  </tr>
                         <tr> <td>Personal solar array</td><td>2000 c</td><td>1kg</td><td>Small scale solar generator, can be used to power any average tool (tools and energy weapons), multiple may be used to recharge small vehicles</td></tr>
                     </tbody>
                 </table>
