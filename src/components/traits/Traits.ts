@@ -90,7 +90,7 @@ const Phobia: Trait = {
 const WealthyFamily: Trait = {
     name: 'wealthy family',
     cost: 30,
-    description: 'you come from a wealthy family, you start with an additional 40k credits and you are known in your home town',
+    description: 'you come from a wealthy family, you start with an additional 60k credits and you are known in your home town, you have innate high society minimum mid success on savoir-faire',
     amount: 0,
     applyTo: '',
 }
@@ -98,7 +98,7 @@ const WealthyFamily: Trait = {
 const Aggressive: Trait = {
     name: 'aggressive',
     cost: 10,
-    description: 'you are particularly aggressive and fast to fight, +2 to sequence and -2 to all defense',
+    description: 'you are particularly aggressive and fast to fight, +2 to sequence and -2 to all defense. If you panic you may choose to instead go berserk',
     amount: 0,
     applyTo: ''
 }

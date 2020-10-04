@@ -17,6 +17,7 @@ import { PersuationPerks } from '../perks/Persuation';
 import { StreetwisePerks } from '../perks/Streetwise';
 import { Perk } from './Perks';
 import { SciencePerks } from '../perks/Science';
+import { SavoirFairePerks } from '../perks/SavoirFaire';
 
 export const GetPerkList = (): Perk[] => {
     return [
@@ -38,7 +39,7 @@ export const GetPerkList = (): Perk[] => {
         ...PersuationPerks,
         ...StreetwisePerks,
         ...SciencePerks,
-
+        ...SavoirFairePerks,
     ].sort(sortPerk);
 }
 
