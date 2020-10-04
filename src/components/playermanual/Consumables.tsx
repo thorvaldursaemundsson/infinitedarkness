@@ -79,6 +79,11 @@ const Food = () => <>
         <li>Cooking 21-25: good food, leaves you in good mood</li>
         <li>Cooking 26-30: great food, it tastes good and is yet very healthy</li>
         <li>Cooking 31+: Outstanding food, this is some gourmet stuff</li>
+        <li>Cooking multiple meals requires an ever larger kitchen, home kitchen is good enough for 5</li>
+        <li>For each meal above 1, take -1 to roll (eg. 8 meals = -7 to roll)</li>
+        <li>Following recipe: +5 to roll (max is great)</li>
+        <li>Cooking fast: 30m, -5 to roll, max quality is great</li>
+        <li>Speed cooking: 15m, -10 to roll, max quality is good</li>
     </ul>
     <h6>Rations</h6>
     <p>Rations, or preserved food works similarly to cooked food. The exception is that the price is trippled and capped at good, great and outstanding rations do not exist (sorry, tactical bacon doesn't count)</p>
