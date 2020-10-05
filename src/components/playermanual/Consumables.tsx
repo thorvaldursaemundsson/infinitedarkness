@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from './Section';
 import Indexer, { Indexed } from '../general/Indexer';
+import Cooking from '../skills/cooking';
 
 
 const Consumables = () => <Section title='Consumables'>
@@ -39,7 +40,7 @@ const Food = () => <>
         <li>Great food: +2 to all rolls for the rest of the day</li>
         <li>Outstanding food: +2 to all rlls for the rest of the day, heal 1 life and mental health at the end of the day</li>
     </ul>
-    <h6>Resturant food</h6>
+    <h5>Resturant food</h5>
     <p>Resturant food works the same as home cooked food, except someone else bought the raw materials, cooked it and served it to you.</p>
     <ul>
         <li>Horrible food: 40 credits</li>
@@ -49,12 +50,12 @@ const Food = () => <>
         <li>Great food: 300 credits (reservations 48h required, Savoir-Faire 20. Skip reservation 30)</li>
         <li>Outstanding food: 500 credits  (reservations 72h required, Savoir-Faire 25. Skip reservation 35)</li>
     </ul>
-    <h6>Street food</h6>
+    <h5>Street food</h5>
     <p>Street food works similar to resturant food with two modifications. Average quality is the highest quality easily available. The price is reduced by 25%.
-        You can find good street food with streetwise 20. Great streetfood with streetwise 30. Outstanding streetfood with streetwise 40.
+    You can find good street food with streetwise 20. Great streetfood with streetwise 30. Outstanding streetfood with streetwise 40.
     </p>
     <p>Note that you can only find resturant food and streetwise food in locations where they exist, a successful role may include travel.</p>
-    <h6>Home cooked food</h6>
+    <h5>Home cooked food</h5>
     <p>To cook food you need ingredients, you also need a kitchen, ingredients can be bought for 20 credits per meal or a survival check</p>
     <ul>
         <li>Low quality ingredients cost 10 credits, cause -5 to cooking roll</li>
@@ -71,22 +72,14 @@ const Food = () => <>
         <li>Survival 35: ingredients for 4 meals</li>
         <li>Rush (4h): take -10 penalty to speed up the process. Still uses the effort of 8h</li>
     </ul>
-    <p>Preparing a meal typically takes 1h and you can make between 1 and 10 meals per chef (each chef rolls cooking individually)</p>
-    <ul>
-        <li>Cooking 10 or less: you spoiled the food, horrible quality</li>
-        <li>Cooking 11-15: it's edible yet unsatisfying</li>
-        <li>Cooking 16-20: average food, it does the job</li>
-        <li>Cooking 21-25: good food, leaves you in good mood</li>
-        <li>Cooking 26-30: great food, it tastes good and is yet very healthy</li>
-        <li>Cooking 31+: Outstanding food, this is some gourmet stuff</li>
-        <li>Cooking multiple meals requires an ever larger kitchen, home kitchen is good enough for 5</li>
-        <li>For each meal above 1, take -1 to roll (eg. 8 meals = -7 to roll)</li>
-        <li>Following recipe: +5 to roll (max is great)</li>
-        <li>Cooking fast: 30m, -5 to roll, max quality is great</li>
-        <li>Speed cooking: 15m, -10 to roll, max quality is good</li>
-    </ul>
-    <h6>Rations</h6>
-    <p>Rations, or preserved food works similarly to cooked food. The exception is that the price is trippled and capped at good, great and outstanding rations do not exist (sorry, tactical bacon doesn't count)</p>
+    {Cooking.useCases.map(uc => {
+        return <><h6>{uc.name} ({uc.attribute})</h6><p>{uc.description}</p>
+            <ul>
+                {uc.results && uc.results.map(u => <li>{u}</li>)}
+            </ul>
+        </>
+    })}
+
 </>;
 
 const Medicine = () => <>
