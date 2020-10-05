@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from '../playermanual/Section';
 import { Character } from '../Character';
+import { CharacterRollerNekovian } from './CharacterRoller';
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -34,10 +35,10 @@ const Nekovian = () => <>
                 <td> STR</td> <td> 1d12</td> <td> 1d12</td> <td> 1d10</td>  <td> 1d10</td>
             </tr>
             <tr>
-                <td> AGI</td>  <td> 1d12</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d8</td>
+                <td> END</td>  <td> 1d10</td> <td> 1d12</td> <td> 1d10</td>  <td> 1d8</td>
             </tr>
             <tr>
-                <td> END</td>  <td> 1d10</td> <td> 1d12</td> <td> 1d10</td>  <td> 1d8</td>
+                <td> AGI</td>  <td> 1d12</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d8</td>
             </tr>
             <tr>
                 <td> PER</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d4</td>
@@ -50,6 +51,7 @@ const Nekovian = () => <>
             </tr>
         </tbody>
     </table>
+    <CharacterRollerNekovian />
 
     <Section title='Nekovian experience per age is as following'>
         <table>

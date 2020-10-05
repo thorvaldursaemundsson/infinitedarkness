@@ -43,10 +43,10 @@ const Shambras: React.FC = () => {
                     <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d12</td>
                 </tr>
                 <tr>
-                    <td> AGI</td> <td> 1d10</td>  <td> 1d10</td> <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td> <td> 1d4</td>
+                    <td> END</td> <td> 1d6</td>  <td> 1d6</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>
                 </tr>
                 <tr>
-                    <td> END</td> <td> 1d6</td>  <td> 1d6</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>
+                    <td> AGI</td> <td> 1d10</td>  <td> 1d10</td> <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td> <td> 1d4</td>
                 </tr>
                 <tr>
                     <td> PER</td> <td> 1d12</td> <td> 1d12</td>  <td> 1d12</td> <td> 1d12</td> <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>

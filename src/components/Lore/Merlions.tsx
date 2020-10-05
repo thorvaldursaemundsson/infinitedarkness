@@ -1,6 +1,7 @@
 import React from "react";
 import { Character } from "../Character";
 import Section from "../playermanual/Section";
+import { CharacterRollerMerlion } from "./CharacterRoller";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -37,10 +38,10 @@ const Merlions: React.FC = () => {
                     <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>
                 </tr>
                 <tr>
-                    <td> AGI</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
+                    <td> END</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td>
                 </tr>
                 <tr>
-                    <td> END</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td>
+                    <td> AGI</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
                 </tr>
                 <tr>
                     <td> PER</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
@@ -53,6 +54,7 @@ const Merlions: React.FC = () => {
                 </tr>
             </tbody>
         </table>
+        <CharacterRollerMerlion />
         <Section title='Merlion experience per age is as following'>
             <table>
                 <thead>

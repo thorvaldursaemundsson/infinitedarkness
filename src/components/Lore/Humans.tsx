@@ -1,6 +1,7 @@
 import React from "react";
 import { Character } from "../Character";
 import Section from "../playermanual/Section";
+import { CharacterRollerHuman } from "./CharacterRoller";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -30,10 +31,10 @@ const Humans: React.FC = () => {
                     <td> STR</td> <td>1d8</td>  <td>1d10</td>  <td>1d10</td>  <td>1d8</td>
                 </tr>
                 <tr>
-                    <td> AGI</td>  <td>1d10</td>  <td>1d10</td>  <td>1d8</td>  <td>1d6</td>
+                    <td> END</td>  <td>1d12</td>  <td>1d12</td>  <td>1d10</td>  <td>1d8</td>
                 </tr>
                 <tr>
-                    <td> END</td>  <td>1d12</td>  <td>1d12</td>  <td>1d10</td>  <td>1d8</td>
+                    <td> AGI</td>  <td>1d10</td>  <td>1d10</td>  <td>1d8</td>  <td>1d6</td>
                 </tr>
                 <tr>
                     <td> PER</td>  <td>1d12</td>  <td>1d10</td>  <td>1d8</td>  <td>1d6</td>
@@ -46,6 +47,7 @@ const Humans: React.FC = () => {
                 </tr>
             </tbody>
         </table>
+        <CharacterRollerHuman />
 
         <Section title='Human experience per age is as following'>
 

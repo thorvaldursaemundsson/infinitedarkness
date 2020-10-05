@@ -33,21 +33,21 @@ const CharacterRoller: React.FC<ICharacterRoller> = (props) => {
 
         {characterData.length > 0 ? <div className="flexContainer">
             Strength<br />
-            Agility<br />
             Endurance<br />
+            Agility<br />
             Perception<br />
-            Willpower<br />
             Intelligence<br />
+            Willpower<br />
         </div> : null}
 
         {characterData.map(cd => {
             return <div className="flexContainer">
                 {sumN(cd.strength)}<br />
-                {sumN(cd.agility)}<br />
                 {sumN(cd.endurance)}<br />
+                {sumN(cd.agility)}<br />
                 {sumN(cd.perception)}<br />
-                {sumN(cd.willpower)}<br />
                 {sumN(cd.intelligence)}<br />
+                {sumN(cd.willpower)}<br />
             </div>
         })}
     </div>);
