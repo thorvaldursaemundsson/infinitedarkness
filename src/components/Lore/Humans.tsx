@@ -56,7 +56,7 @@ const Humans: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {experienceAges.slice(16, 81).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                    {experienceAges.slice(16, 101).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
                 </tbody>
             </table>
         </Section>

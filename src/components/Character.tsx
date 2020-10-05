@@ -38,7 +38,7 @@ export interface ICharacter {
 
 export class Character {
     name: string;
-    species: string;
+    species: string | 'human' | 'merlion' | 'nekovian' | 'shambras';
     gender: string;
     age: number;
     background: string;
@@ -114,17 +114,54 @@ export class Character {
     public getPassiveDefense() {
         const combat = this.getSkillLevel('combat');
         const acrobatics = this.getSkillLevel('acrobatics');
-        return this.getBaseDefense() + this.agility + Math.max(combat, acrobatics) + this.getHook('defense');
+        return this.getLowDefense() + Math.max(combat, acrobatics);
     }
 
     public getLowDefense() {
-        const combat = this.getSkillLevel('combat');
-        const acrobatics = this.getSkillLevel('acrobatics');
-        return this.getBaseDefense() + ((this.agility + Math.max(combat, acrobatics)) / 2) + this.getHook('defense');
+        return this.getBaseDefense() + this.agility + this.getHook('defense');
+    }
+
+    public getBaseCarryingCapacity() {
+        return (this.strength + 1 + this.getHook('carryingCapacity')) * 4;
+    }
+
+    public getBaseSpeed() {
+        let base = 1;
+        switch (this.species) {
+            case 'human':
+            case 'merlion': base = 1; break;
+            case 'nekovian': base = 2; break;
+            case 'shambras': base = 0; break;
+        }
+
+        let size = 0;
+        switch (this.size) {
+            case 'tiny': size = 4; break;
+            case 'small': size = 5; break;
+            case 'medium': size = 6; break;
+            case 'large': size = 7; break;
+            case 'huge': size = 8; break;
+        }
+
+        let athl = 0;
+        let athletics = this.getSkillLevel('athletics');
+        if (athletics >= 18) athl = 3;
+        else if (athletics >= 12) athl = 2;
+        else if (athletics >= 6) athl = 1;
+
+        return base + size + athl;
+
     }
 
     public getBaseDefense() {
-        return 10 + this.getHook('baseDefense') + this.getSize();
+        switch (this.size) {
+            case 'tiny': return 14;
+            case 'small': return 12;
+            case 'medium': return 10;
+            case 'large': return 8;
+            case 'huge': return 6;
+            default: return 10;
+        }
     }
 
     private getSize() {
@@ -244,7 +281,7 @@ export class Character {
         switch (this.species) {
             case 'human': return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
             case 'merlion': return Math.max(Character.ExperienceMultiplerMerlion(this.age) + this.getHook('experienceMultiplier'), 1);
-            case 'shambra': return Math.max(Character.ExperienceMultiplerShambras(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'shambras': return Math.max(Character.ExperienceMultiplerShambras(this.age) + this.getHook('experienceMultiplier'), 1);
             case 'nekovian': return Math.max(Character.ExperienceMultiplerNekovian(this.age) + this.getHook('experienceMultiplier'), 1);
             default: return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
         }
@@ -253,7 +290,7 @@ export class Character {
 
     private getRacialLife() {
         switch (this.species) {
-            case 'shambras':
+            case 'shambra':
                 if (this.age < 70) return +1;
                 if (this.age > 100) return +2;
                 return 0;

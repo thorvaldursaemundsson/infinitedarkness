@@ -152,7 +152,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Carrying capacity</label>
                     </td>
                     <td>
-                        &nbsp;
+                        {character.getBaseCarryingCapacity()}
                     </td>
                     <td>
                         <label>Willpower</label>
@@ -163,8 +163,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 <tr>
                     <td><label>Player</label></td><td>&nbsp;</td>
-                    <td><label>Speed</label></td><td>&nbsp;</td>
-                    <td><label>Size</label></td><td>&nbsp;</td>
+                    <td><label>Speed</label></td><td>{character.getBaseSpeed()}</td>
+                    <td><label>Size</label></td><td>
+                        <EditText txt={character.size} isEdit={viewState} onChange={(size) => dispatch({action:'size', value: 0, name: size}) } explain={character.explain('size')} />
+                    </td>
                 </tr>
                 <tr>
                     <td colSpan={2}>

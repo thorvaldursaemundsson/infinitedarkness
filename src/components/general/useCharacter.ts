@@ -1,4 +1,4 @@
-import { Character } from "../Character";
+import { Character, CharacterSize } from "../Character";
 import { Perk } from "./Perks";
 import { Trait } from "../traits/Traits";
 
@@ -9,6 +9,16 @@ export interface dispatcher {
     perkToAdd?: Perk;
     traitToAdd?: Trait;
 }
+
+const getSizeFromString = (str:string|undefined):CharacterSize => {
+    switch (str) {
+        case 'huge': return 'huge';
+        case 'large': return 'large';
+        case 'small': return 'small';
+        case 'tiny': return 'tiny';
+        default: return 'medium';
+    }
+};
 
 export const useCharacter = (state: Character, action: dispatcher): Character => {
     switch (action.action) {
@@ -29,6 +39,8 @@ export const useCharacter = (state: Character, action: dispatcher): Character =>
         case 'species': return new Character({ ...state, species: action.name || '' });
         case 'gender': return new Character({ ...state, gender: action.name || '' });
         case 'background': return new Character({ ...state, background: action.name || '' });
+        case 'size':
+            return new Character({...state, size: getSizeFromString(action.name)});
     }
     if (action.action === 'addperk') {
         if (action.perkToAdd !== undefined)
