@@ -33,14 +33,15 @@ const CarryingCapacity = () => {
         <h3>Carrying Capacity</h3>
         <p>There is only so much weight you can put on a Shambra before they lay down and give up</p>
         <p>Being over capacity goes in phases, at or below the first you suffer no penalty. Then as you increase in weight you begin to suffer various penalties</p>
+        <p>Penalty applies to swim and half to climb, jump, quarter to acrobatics</p>
         <ul>
             <li>Without effect your maximum speed is Sprint (5x)</li>
-            <li>-1 You can no longer sprint, limited to run (x4)</li>
-            <li>-2 You can no longer run, limited to jog (x3)</li>
-            <li>-2 You can no longer jog, limited to power walk (x2)</li>
-            <li>-4 You can no longer power walk, limited to walk (x1)</li>
-            <li>-8 You can only walk at half speed (x0.5)</li>
-            <li>-16 You can only walk at quarter speed (0.25x)</li>
+            <li>-1 You can no longer sprint, limited to run (x4), -4 penalty</li>
+            <li>-2 You can no longer run, limited to jog (x3), -8 penalty</li>
+            <li>-2 You can no longer jog, limited to power walk (x2), -12 penalty</li>
+            <li>-4 You can no longer power walk, limited to walk (x1), -16 penalty</li>
+            <li>-8 You can only walk at half speed (x0.5), -20 penalty</li>
+            <li>-16 You can only walk at quarter speed (0.25x), -24 penalty</li>
             <li>Max is how much you can deadlift</li>
             <li>Drag is how much you can drag off the ground</li>
         </ul>
