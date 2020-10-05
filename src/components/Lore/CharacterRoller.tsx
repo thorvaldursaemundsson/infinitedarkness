@@ -135,33 +135,35 @@ export const CharacterRollerHuman = () => {
 }
 
 const getStrengthShambra = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
+    if (age > 100) return { sides: 12, numberOfDice: 1 };
+    if (age > 50) return { sides: 10, numberOfDice: 1 };
+    if (age > 25) return { sides: 8, numberOfDice: 1 };
+    return { sides: 6, numberOfDice: 1 };
 }
 const getAgilityShambra = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
+    if (age > 100) return { sides: 4, numberOfDice: 1 };
+    if (age > 50) return { sides: 6, numberOfDice: 1 };
+    if (age > 25) return { sides: 8, numberOfDice: 1 };
     return { sides: 10, numberOfDice: 1 };
 }
 const getEnduranceShambra = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    if (age > 50) return { sides: 10, numberOfDice: 1 };
+    if (age > 25) return { sides: 8, numberOfDice: 1 };
+    return { sides: 6, numberOfDice: 1 };
 }
 const getPerceptionShambra = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
+    if (age > 50) return { sides: 10, numberOfDice: 1 };
     return { sides: 12, numberOfDice: 1 };
 }
 const getIntelligenceShambra = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    if (age > 100) return { sides: 10, numberOfDice: 1 };
+    if (age > 35) return { sides: 8, numberOfDice: 1 };
+    if (age > 25) return { sides: 6, numberOfDice: 1 };
+    return { sides: 4, numberOfDice: 1 };
 }
 const getWillpowerShambra = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
+    if (age > 25) return { sides: 10, numberOfDice: 1 };
+    if (age > 15) return { sides: 8, numberOfDice: 1 };
     return { sides: 6, numberOfDice: 1 };
 }
 
@@ -230,7 +232,7 @@ const getStrengthNekovian = (age: number) => {
     return { sides: 12, numberOfDice: 1 };
 }
 const getAgilityNekovian = (age: number) => {
-    if (age > 61) return { sides: 8, numberOfDice: 1 };
+    if (age > 60) return { sides: 8, numberOfDice: 1 };
     if (age > 24) return { sides: 10, numberOfDice: 1 };
     return { sides: 12, numberOfDice: 1 };
 }
@@ -246,7 +248,6 @@ const getPerceptionNekovian = (age: number) => {
     return { sides: 8, numberOfDice: 1 };
 }
 const getIntelligenceNekovian = (age: number) => {
-    if (age > 60) return { sides: 8, numberOfDice: 1 };
     if (age > 36) return { sides: 8, numberOfDice: 1 };
     if (age > 24) return { sides: 10, numberOfDice: 1 };
     return { sides: 8, numberOfDice: 1 };
