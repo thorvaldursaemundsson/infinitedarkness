@@ -89,21 +89,23 @@ const Health = () =>
 
 const SpellRoller: React.FC = (props) => {
     const [rolls, setRolls] = useState<number[]>([]);
-    const DRollNot = (n: number) => {
+    const DRollNot = (n: number[]) => {
         while (true) {
             let x = Math.floor(Math.random() * SpellsPerks.length);
-            if (x !== n) return x;
+            if (n.filter(p => p === x).length === 0) return x;
         }
     }
+    const fractionOfSpells = 3;
     const Roll = () => {
-        const a = DRollNot(SpellsPerks.length + 1);
-        const b = DRollNot(a);
-        const c = DRollNot(b);
-        setRolls([a, b, c]);
+        let numbers:number[] = [];
+        for (let counter = 0; counter < fractionOfSpells; counter++){
+            numbers.push(DRollNot(numbers));
+        }
+        setRolls(numbers);
     };
 
     return (<>
-        <p>When you want to acquire a supernatural ability, you roll over all spells and perks 3 times and pick one</p>
+        <p>When you want to acquire a supernatural ability, you roll over all spells and perks {fractionOfSpells} times and pick one. There are in total {SpellsPerks.length} spells and mutations.</p>
         <button onClick={() => Roll()}>Roll</button>
         <ol>
             {rolls.map(r => <li>{SpellsPerks[r].name} ({r})</li>)}
