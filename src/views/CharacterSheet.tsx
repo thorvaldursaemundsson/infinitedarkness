@@ -225,7 +225,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <tbody>
                                 {viewPerkList ? GetPerkList().map(perk => {
                                     const skillRanks: Skill | undefined = character.skills.find(s => s.name === perk.skill);
-                                    if (skillRanks === undefined || skillRanks.level < perk.level * 6)
+                                    if (skillRanks === undefined || skillRanks.level < perk.level * 3 + 3)
                                         return null;
                                     if (character.perks.find(p => p.name === perk.name)) return null;
 
