@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "../infinitedarkness/precache-manifest.bb71ec2ed9d0a344af11de5f80e8812c.js"
+  "../infinitedarkness/precache-manifest.4a0a1438e2c86d3f06ac68747bf0db2b.js"
 );
 
 self.addEventListener('message', (event) => {
