@@ -1,8 +1,8 @@
 import { PerkTemplate } from "../general/Perks";
-
+const skill = 'athetics';
 export const Climber = new PerkTemplate({
     name: 'climber',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your character is better at climing, gain +5 to climbing rolls'
 }, {
@@ -12,7 +12,7 @@ export const Climber = new PerkTemplate({
 
 export const Runner = new PerkTemplate({
     name: 'runner',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your character is better at running, gain +5 to running'
 }, {
@@ -22,7 +22,7 @@ export const Runner = new PerkTemplate({
 
 export const Jumper = new PerkTemplate({
     name: 'jumper',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your character is better at jumping, gain +5 to jumping rolls'
 }, {
@@ -32,7 +32,7 @@ export const Jumper = new PerkTemplate({
 
 export const Swimmer = new PerkTemplate({
     name: 'swimmer',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your character is better at swimming, gain +5 to swimming rolls'
 }, {
@@ -42,9 +42,9 @@ export const Swimmer = new PerkTemplate({
 
 export const DeepLungs = new PerkTemplate({
     name: 'deep lungs',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
-    description: 'Your character has deep lungs, gain +5 to holding your breath'
+    description: 'You have trained your body to hold your breath for longer, +5 to holding breath'
 }, {
     applyTo: 'breath',
     amount: 5
@@ -52,7 +52,7 @@ export const DeepLungs = new PerkTemplate({
 
 export const GoodFortitude = new PerkTemplate({
     name: 'good fortitude',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your character has great fortitude, gain +1 hitpoints'
 }, {
@@ -62,7 +62,7 @@ export const GoodFortitude = new PerkTemplate({
 
 export const GreatFortitude = new PerkTemplate({
     name: 'great fortitude',
-    skill: 'athletics',
+    skill: skill,
     level: 2,
     description: 'Your character has great fortitude, gain +2 hitpoints'
 }, {
@@ -72,7 +72,7 @@ export const GreatFortitude = new PerkTemplate({
 
 export const SupremeFortitude = new PerkTemplate({
     name: 'great fortitude',
-    skill: 'athletics',
+    skill: skill,
     level: 3,
     description: 'Your character has supreme fortitude, gain +4 hitpoints'
 }, {
@@ -82,7 +82,7 @@ export const SupremeFortitude = new PerkTemplate({
 
 export const StrongBack = new PerkTemplate({
     name: 'strong back',
-    skill: 'athletics',
+    skill: skill,
     level: 1,
     description: 'Your strength counts as +2 for the purposes of carrying capacity'
 }, {
@@ -90,4 +90,28 @@ export const StrongBack = new PerkTemplate({
     amount: 2
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude,StrongBack];
+export const Fast = new PerkTemplate({
+    name: 'Fast',
+    skill: skill,
+    level: 1,
+    description: 'You are a trained runner, gain +1 base speed and +3 to all running rolls'
+}, {
+    applyTo: 'speed',
+    amount: 1
+});
+
+export const HighMobility = new PerkTemplate({
+    name: 'High mobility',
+    skill: skill,
+    level: 2,
+    description: 'You are highly mobile, gain +1 base speed and can enter sprint in a single round.'
+})
+
+export const Marathoner = new PerkTemplate({
+    name: 'Marathoner',
+    skill:skill,
+    level: 1,
+    description: 'Gain +10 on running'
+});
+
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude,StrongBack, Fast, HighMobility, Marathoner];

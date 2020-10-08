@@ -23,14 +23,18 @@ const useCases: UseCase[] = [
     {
         name: 'run',
         attribute: 'endurance',
-        description: 'how fast you run and how long you can run',
+        description: 'how fast you run and how long you can run. Once you hit the limit you gain one level of exhaustion, each level of exhaustion counts as one step of carry capacity limit',
         results: [
             'jog 15 minutes: 1-5',
             'jog 30 minutes: 6-10',
             'jog 60 minutes: 11-15',
             'jog 2 hours: 16-20',
-            'run: same as jog but with +10 on the roll',
-            'sprint: same as run but with +10 on the roll'
+            'jog, for each +5, double duration',
+            'walk: same as jog but +10 on the roll',
+            'power walk: same as jog but +5 on the roll',
+            'run: same as jog but with -10 on the roll',
+            'sprint: same as run but with -10 on the roll',
+            'above carrying capacity: -5 per step'
         ],
         type: 'passive'
     },
