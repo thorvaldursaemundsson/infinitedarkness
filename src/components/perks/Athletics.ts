@@ -1,5 +1,5 @@
 import { PerkTemplate } from "../general/Perks";
-const skill = 'athetics';
+const skill = 'athletics';
 export const Climber = new PerkTemplate({
     name: 'climber',
     skill: skill,
@@ -48,6 +48,13 @@ export const DeepLungs = new PerkTemplate({
 }, {
     applyTo: 'breath',
     amount: 5
+});
+
+export const FastSwimmer = new PerkTemplate({
+    name:'fast swimmer',
+    skill: skill,
+    level: 1,
+    description: 'When you roll to swim at 100% speed you instead swim at 150%'
 });
 
 export const GoodFortitude = new PerkTemplate({

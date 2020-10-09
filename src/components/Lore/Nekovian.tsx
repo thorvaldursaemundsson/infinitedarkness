@@ -19,10 +19,11 @@ const Nekovian = () => <>
     Their spine is followed by small fins which split into two at the end of their tail.
     </p>
     <p>Nekovians have very long arms, up to 2 meters span, with webbed skin both above and below. When stretched out their arms forms wings which allow them to glide in the air.</p>
+    <p>When nekovians swim they may use the regular run table to determine how fast they swim and how far they can swim.</p>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
     <p>Nekovians move at double speed in water and can fly</p>
-    <p>Merlions may choose between tiny, small and medium size</p>
+    <p>Nekovian may choose between tiny, small and medium size</p>
     <table>
         <thead>
             <tr>

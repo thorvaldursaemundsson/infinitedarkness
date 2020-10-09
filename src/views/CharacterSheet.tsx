@@ -152,7 +152,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Carrying capacity</label>
                     </td>
                     <td>
-                        {character.getBaseCarryingCapacity()}
+                        <HideText isEdit={viewState} txt={character.getBaseCarryingCapacity().toString()} explain={character.explain('carryingCapacity')}/>
                     </td>
                     <td>
                         <label>Willpower</label>
@@ -163,7 +163,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 <tr>
                     <td><label>Player</label></td><td>&nbsp;</td>
-                    <td><label>Speed</label></td><td>{character.getBaseSpeed()}</td>
+                    <td><label>Speed</label></td><td>
+                    <HideText isEdit={viewState} txt={character.getBaseSpeed().toString()} explain={character.explain('speed')}/>
+                        </td>
                     <td><label>Size</label></td><td>
                         <EditText txt={character.size} isEdit={viewState} onChange={(size) => dispatch({action:'size', value: 0, name: size}) } explain={character.explain('size')} />
                     </td>
@@ -293,18 +295,37 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <table className='lifeboxes'>
                             <thead>
                                 <tr>
-                                    <th colSpan={50}>Life</th>
+                                    <th colSpan={80}>Life</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(80, 0).map(i => <td> &nbsp;</td>)}
                                 </tr>
                                 <tr>
-                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(80, 0).map(i => <td> &nbsp;</td>)}
                                 </tr>
+                            </tbody>
+                        </table>
+                        <table className='statboxes'>
+                            <thead>
                                 <tr>
-                                    {Pad(50, 0).map(i => <td> &nbsp;</td>)}
+                                    <th>Mental health</th>
+                                    <th>Mana</th>
+                                    <th>Carry/Exhaustion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {Pad(28,0).map(i=><span className='mentalHealthBoxes'>&nbsp;</span>)}
+                                    </td>
+                                    <td>
+                                        {Pad(80,0).map(i=><span className='manaBoxes'>&nbsp;</span>)}
+                                    </td>
+                                    <td>
+                                        {Pad(8,0).map(i=><span className='exhaustionBoxes'>&nbsp;</span>)}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -349,7 +370,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Pad(6, 0).map(i =>
+                                {Pad(7, 0).map(i =>
                                     <tr>
                                         <td className='bigtd'>
 
@@ -398,7 +419,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Pad(18, 0).map(i =>
+                                {Pad(19, 0).map(i =>
                                     <tr>
                                         <td className='bigtd'>
 
@@ -432,7 +453,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     </td>
                 </tr>
 
-                {Pad(10, 0).map(i =>
+                {Pad(12, 0).map(i =>
                     <tr>
                         <td colSpan={6}> </td>
                     </tr>)}

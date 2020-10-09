@@ -29,7 +29,7 @@ const CarryingCapacity = () => {
     else if (strengthFactor <= 32) penalty = 'drag';
     else  penalty = 'too heavy';
 
-    return (<Section title='Carrying Capacity'>
+    return (<Section title='Carrying Capacity and Exhaustion Levels'>
         <h3>Carrying Capacity</h3>
         <p>There is only so much weight you can put on a Shambra before they lay down and give up</p>
         <p>Being over capacity goes in phases, at or below the first you suffer no penalty. Then as you increase in weight you begin to suffer various penalties</p>
@@ -73,6 +73,8 @@ const CarryingCapacity = () => {
                 </tr>)}
             </tbody>
         </table>
+        <h4>Exhaustion Levels</h4>
+        <p>Exhaustion is caused by over exterting yourself each level of exhaustion counts as one step of carrying capacity. At max you can not move, at drag you fall unconcious. See Health and Recovery for info about recovery.</p>
         <h4>Gravity and weight</h4>
         <p>Characters that live on a planet or system grow accustomed to the local gravity.
             So for as long as characters don't leave their local gravity well all carrying capacity should be assumed to be normalized.</p>
