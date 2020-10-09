@@ -137,15 +137,18 @@ const Equipment: React.FC = () => {
                 </ul>
                 <p>Coverage is a matter of how much the armor covers the body, as a matter of rule simplification armors are assumed to protect the more vital areas first.
                 When coverage is less than full roll a 1d6 dice and if the dice equals or exceeds the value then you benefit, otherwise you don't.
-                When blocking you always receive protection from armor as it is assumed that the character blocks using armor or shield.
+                When blocking you always receive protection from armor as it is assumed that the character blocks using armor or shield.<br />
+                Full plate armors require vast or full protection.<br />
+                Power Armor requires vast or full protection.<br />
+                Armor plates require body suits.
                 </p>
                 <ul>
-                    <li>Full protection: 100% cost/weight and 6/6 protection (no roll needed)</li>
-                    <li>Vast majority protection: 90% cost/weight and 5/6 roll</li>
-                    <li>Major protection: 80% cost/weight and 4/6 roll</li>
-                    <li>Half protection: 70% cost/weight and 3/6 roll</li>
-                    <li>Small protection: 50% cost/weight and 2/6 roll (not available for power armor)</li>
-                    <li>Minor protection: 30% cost/weight and 1/6 roll (not available for power armor)</li>
+                    <li>Full protection: 100% cost/weight and 6/6 protection (no roll needed) - entire body protected</li>
+                    <li>Vast majority protection: 90% cost/weight and 5/6 roll - entire body except for hands</li>
+                    <li>Major protection: 80% cost/weight and 4/6 roll - helmet, body, legs and joints</li>
+                    <li>Half protection: 70% cost/weight and 3/6 roll - helmet, body, joints</li>
+                    <li>Small protection: 50% cost/weight and 2/6 roll (not available for power armor) - helmet and body</li>
+                    <li>Minor protection: 30% cost/weight and 1/6 roll (not available for power armor) - open face helmet and torso</li>
                 </ul>
                 <ArmorCrafter />
                 <h5>Body Suit</h5>
