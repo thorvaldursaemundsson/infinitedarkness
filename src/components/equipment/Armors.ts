@@ -42,9 +42,9 @@ const bodySuits: BodySuit[] = [
     {
         name: 'Carbon Reinforced Kevlar',
         damageAbsorbtion: 3,
-        weight: 25,
+        weight: 20,
         cost: 6000,
-        agilityMod: -1,
+        agilityMod: 0,
         description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
         armorType: 'bodySuit'
     },

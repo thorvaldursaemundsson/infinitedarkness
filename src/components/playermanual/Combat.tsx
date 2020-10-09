@@ -115,25 +115,32 @@ const Combat: React.FC = () => {
             </Indexed>
             <Indexed title='Cover'>
                 <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both passive defense and damage reduction</p>
-                <p>Damage reduction depends on the type of material is covering you, thickness and hardness matter</p>
+                <p>Damage reduction depends on the type of material is covering you, thickness and hardness matter. When damage absorbtion from cover is applied it stacks with all other sources, armor piercing is applied only once to the entire stack.
+                    Cover does not grant any benefits from close range combat rolls or thrown explosive rolls, only firearms and non-explosive thrown like knives.
+                    Firearms that deal splash damage like shotguns and missile launchers always apply passive defense and cover damage absorbtion, but may destroy the cover depending on the damage.
+                </p>
+                <p>Each time damage is taken through damage absorbtion each source drops their damage absorbtion by 1 point, when dropped to zero they no longer provide any benefit.</p>
+                <p>If damage exceeds damage absorbtion x 10 then the cover or armor is instantly destroyed. Damage from multiple bullets count seperately for this purpose.</p>
                 <table>
                     <thead><th>thiccness/material</th><th>wood</th><th>concrete</th><th>metal</th></thead>
                     <tbody>
                         <tr><td>1cm</td><td>1</td><td>2</td><td>4</td></tr>
-                        <tr><td>2cm</td><td>2</td><td>5</td><td>10</td></tr>
-                        <tr><td>5cm</td><td>4</td><td>10</td><td>20</td></tr>
-                        <tr><td>20cm</td><td>8</td><td>20</td><td>40</td></tr>
-                        <tr><td>100m</td><td>16</td><td>40</td><td>100</td></tr>
+                        <tr><td>2cm</td><td>2</td><td>4</td><td>8</td></tr>
+                        <tr><td>5cm</td><td>4</td><td>8</td><td>16</td></tr>
+                        <tr><td>20cm</td><td>8</td><td>16</td><td>60</td></tr>
+                        <tr><td>1m</td><td>16</td><td>40</td><td>200</td></tr>
                     </tbody>
                 </table>
                 <h5>Low cover</h5>
-                <p>less than 1/3rd of your body is covered, you gain +4 passive defense</p>
+                <p>less than 1/3rd of your body is covered, you gain +4 passive defense, 25% chance to apply damage absorbtion from cover</p>
                 <h5>High cover</h5>
-                <p>less than 2/3rds of your body is covered, you gain +8 passive defense</p>
+                <p>less than 2/3rds of your body is covered, you gain +8 passive defense, 50% chance to apply damage absorbtion from cover</p>
                 <h5>Massive cover</h5>
-                <p>More than 2/3rds of your body is covered, you gain +12 passive defense</p>
+                <p>More than 2/3rds of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
                 <h5>total cover</h5>
-                <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they simply automatically miss</p>
+                <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the square, 100% chance to apply damage absorbtion from cover.
+                    Total cover also prevents you from attacking.
+                </p>
             </Indexed>
             <Indexed title='Critical hits'>
                 <p>Every attack involves 2d10 rolls, if either dice rolls 10 then you add 50% damage (rounded down), if both roll 10 then you double the damage.</p>
