@@ -30,4 +30,4 @@ export const Scrambler = new PerkTemplate({
     amount: 0
 });
 
-export const ComputerPerks = [Chef, GourmetChef, Scrambler];
+export const CookingPerks = [Chef, GourmetChef, Scrambler];

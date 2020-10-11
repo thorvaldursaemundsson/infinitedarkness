@@ -1,3 +1,4 @@
+import { Perk } from './Perks';
 import { CombatPerks } from '../perks/Combat';
 import { FirearmsPerks } from '../perks/Firearms';
 import { PilotPerks } from '../perks/Pilot';
@@ -15,13 +16,19 @@ import { AthleticsPerks } from '../perks/Athletics';
 import { AcrobaticsPerks } from '../perks/Acrobatics';
 import { PersuationPerks } from '../perks/Persuation';
 import { StreetwisePerks } from '../perks/Streetwise';
-import { Perk } from './Perks';
 import { SciencePerks } from '../perks/Science';
 import { SavoirFairePerks } from '../perks/SavoirFaire';
+import { CookingPerks } from '../perks/Cooking';
+import { ElectronicsPerks } from '../perks/Electronics';
+import { ExplosivesPerks } from '../perks/Explosives';
+import { GeneralKnowledgePerks } from '../perks/GeneralKnowledge';
+import { MechanicsPerks } from '../perks/Mechanics';
 
 export const GetPerkList = (): Perk[] => {
     return [
         ...CombatPerks,
+        ...CookingPerks,
+        ...ComputerPerks,
         ...FirearmsPerks,
         ...PilotPerks,
         ...SpellsPerks,
@@ -30,9 +37,12 @@ export const GetPerkList = (): Perk[] => {
         ...LarcenyPerks,
         ...StealthPerks,
         ...SurvivalPerks,
-        ...ComputerPerks,
         ...MedicinePerks,
         ...EmpathyPerks,
+        ...ElectronicsPerks,
+        ...ExplosivesPerks,
+        ...GeneralKnowledgePerks,
+        ...MechanicsPerks,
         ...SubtreFugePerks,
         ...AthleticsPerks,
         ...AcrobaticsPerks,
