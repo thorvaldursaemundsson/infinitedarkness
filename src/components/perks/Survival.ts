@@ -1,43 +1,12 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const ImprovedForaging = new PerkTemplate({
-    name: 'improved foraging',
+export const HunterGatherer = new PerkTemplate({
+    name: 'Hunter gatherer',
     skill: 'survival',
     level: 1,
-    description: 'Your character is better at foraging for food, gain +5 to foraging rolls'
+    description: 'Your character is better at foraging for food, gain +5 to foraging rolls, you only take half penalties to unfamiliar biome and harsh biome'
 }, {
     applyTo: 'forage',
-    amount: 5
-});
-
-export const Fisher = new PerkTemplate({
-    name: 'fisher',
-    skill: 'survival',
-    level: 1,
-    description: 'Your character knows how to fish, gain +5 to all fishing rolls'
-});
-
-export const Hunter = new PerkTemplate({
-    name: 'hunter',
-    skill: 'survival',
-    level: 1,
-    description: 'Your character knows how to hunt, gain +5 to all hunting rolls'
-});
-
-export const Tracker = new PerkTemplate({
-    name:'tracker',
-    skill: 'survival',
-    level: 1,
-    description: 'Your character can track anything through the wilds, gain +5 to tracking'
-});
-
-export const BetterNavigation = new PerkTemplate({
-    name: 'better navigation',
-    skill: 'survival',
-    level: 1,
-    description: 'Your character is better at finding their way in the wild, +5 to navigation rolls'
-}, {
-    applyTo: 'navigate',
     amount: 5
 });
 
@@ -45,10 +14,21 @@ export const ShelterBuilder = new PerkTemplate({
     name: 'shelter builder',
     skill: 'survival',
     level: 1,
-    description: 'your character can build shelters that offer protection against exposure, +5 to build shelter roll'
+    description: 'your character can build shelters that offer protection against exposure, +5 to build shelter roll and only suffer half penalty for building shelter for multiple people. Your shelters require only 10 minutes of maintenance'
 }, {
     applyTo: 'shelter',
     amount: 5
 });
 
-export const SurvivalPerks = [ImprovedForaging, BetterNavigation, ShelterBuilder];
+export const HardenedSurvivalist = new PerkTemplate({
+    name: 'hardened survivalist',
+    skill: 'survival',
+    level: 1,
+    description: 'You are resillient to the environment and ignore two factors that reduce sleep quality, when you sleep in a shelter it counts as 1 higher quality for you. You gain 1 maximum mental health.'
+},
+{
+    applyTo: 'mentalHealth',
+    amount: 1
+});
+
+export const SurvivalPerks = [HunterGatherer, ShelterBuilder, HardenedSurvivalist];

@@ -14,7 +14,7 @@ export const Throwing = new PerkTemplate({
     name: 'throwing',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent aim while throwing, gain +5 to all throw rolls'
+    description: 'Your character has excellent aim while throwing, gain +5 to all throw rolls, including thrown weapons and explosives'
 }, {
     applyTo: 'throw',
     amount: 5
@@ -24,7 +24,7 @@ export const Dodger = new PerkTemplate({
     name: 'dodger',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is a faster dodger, gain +3 to all dodge rolls and passive dodging, when active dodging only 1 attack can hit you'
+    description: 'Your character is a faster dodger, gain +3 to all dodge rolls and passive dodging, when active dodging only 1 attack can hit you, the rest automatically fail'
 }, {
     applyTo: 'defense',
     amount: 3

@@ -115,8 +115,8 @@ const Equipment: React.FC = () => {
                     <li><b>Shell</b>, contains multiple pellets which spread and gives to hit bonus</li>
                     <li><b>Slug</b>, contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range</li>
                     <li><b>Explosive</b>, contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit. Cost +100%</li>
-                    <li><b>Plasma Bomb</b>, Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect. Cost +400%</li>
-                    <li><b>Fire Bomb</b>, The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible with fire or frag</li>
+                    <li><b>Plasma Bomb</b>, Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing. Cost +400%</li>
+                    <li><b>Fire Bomb</b>, The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible with fire or frag</li>
                     <li><b>Frag</b>, releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma</li>
                     <li><b>Homing</b>, homes in on target, requires snipe shot. Range penalties are halved. cost +50%. Not compatible with grenade</li>
                     <li><b>Grenade</b>, non-rocket propelled, reduces range to 80m, adds +2d8 damage</li>

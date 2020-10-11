@@ -107,7 +107,14 @@ export const HeavyHandle = new PerkTemplate({
     skill: 'firearms',
     level: 1,
     description: 'your strength counts as +2 higher for the purposes of meeting strength requirements on firearms'
-})
+});
+
+export const StraferShooter = new PerkTemplate({
+    name: 'strafer shooter',
+    skill: 'firearms',
+    level: 2,
+    description: 'No movement or defense penalties from burst. Oppressive fire only apply burst penalties to movement and defense.'
+});
 
 export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization,
-    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, DeadEye, Suppressor, RapidReload];
+    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter];
