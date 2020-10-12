@@ -46,12 +46,11 @@ const Combat: React.FC = () => {
                 </ul>
             </Indexed>
             <Indexed title='Bleeding'>
-                <p>Bleeding occurs when your life is reduced to 0 or if injured by weapon which causes bleeding</p>
-                <p>If you take less than 6 damage then the bleeding is light, 7-14 is intermediate bleeding, 15+ is heavy bleeding</p>
-                <p>If you take bleeding causing injuries multiple times then the bleeding rate increases by 1 step, from light to intermediate, and intermediate to heavy</p>
+                <p>Bleeding occurs when you are severely damaged, if you take 10 points of damage from a single blow or any damage while below 0 (only excluding damage from bleeding).</p>
+                <p>Level of bleeding depends on your life, if you are above 0 then you only take light bleeding. Between -100% and 0 results in intermediate. Below 100% results in heavy bleeding. Below 200% results in death.</p>
                 <ul>
-                    <li>Light bleeding deals 1 damage every 10 minutes, lasts 1d100 minutes</li>
-                    <li>Intermediate bleeding deals 1 damage every 3 minute, lasts 5d6 minutes</li>
+                    <li>Light bleeding deals 1 damage every 10 minutes, lasts 1d100 minutes (round to nearest 10x)</li>
+                    <li>Intermediate bleeding deals 1 damage every 5 minute, lasts 1d100 minutes</li>
                     <li>Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
                 </ul>
             </Indexed>
