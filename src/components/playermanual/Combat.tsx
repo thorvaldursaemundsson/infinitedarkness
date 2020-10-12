@@ -58,11 +58,11 @@ const Combat: React.FC = () => {
                 <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
             </Indexed>
             <Indexed title='Melee attacking'>
-                <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets passive defense then you hit</p>
+                <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets defense then you hit</p>
                 <h5>Overextend</h5>
                 <p>Some enemies may be extremely difficult to hit, once a turn you may overextend your attack, you can add up to as much as +10 to your attack roll but this leaves you open to counter attacks, you take twice negative on all skill rolls and passives until it's your turn again</p>
                 <h5>Flanking</h5>
-                <p>When you are facing two or more opponents attacking you, you will have a penalty to your passive defense by -2 per attacker after the first. 2 attackers is -2, 3 is -4, 4 is -6 and so on.</p>
+                <p>When a target is flanked (facing more than one melee combatant) the attackers will gain bonus to hit equal to the number of flankers x2. This does not apply if they are flanked too.</p>
             </Indexed>
             <Indexed title='Blocking'>
                 <p>Blocking is an active action that can be done against melee attacks. You roll 2d10 + Combat (skill), if you successfully block then you only take half damage (round down)</p>
@@ -108,9 +108,14 @@ const Combat: React.FC = () => {
                 </ul>
             </Indexed>
             <Indexed title='Distance'>
-                <p>Targets become harder to hit when they are further away, each 5 meters away gives you a -1 to hit penalty</p>
+                <p>Targets become harder to hit when they are further away, each 4 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
+                <ul>
+                    <li>No gravity and no atmosphere: range penalties halfed (does not apply to lasers)</li>
+                    <li>Rain or heavy winds: double range penalties</li>
+                    <li>Mist or smoke: quadrouple range penalties</li>
+                </ul>
                 <p>Guns have a maximum range, beyond this it's impossible to hit</p>
-                <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage</p>
+                <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage, as an optional rule you may reduce damage by 25% at half firearm range.</p>
             </Indexed>
             <Indexed title='Cover'>
                 <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both passive defense and damage reduction</p>
@@ -140,9 +145,6 @@ const Combat: React.FC = () => {
                 <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the square, 100% chance to apply damage absorbtion from cover.
                     Total cover also prevents you from attacking.
                 </p>
-            </Indexed>
-            <Indexed title='Critical hits'>
-                <p>Every attack involves 2d10 rolls, if either dice rolls 10 then you add 50% damage (rounded down), if both roll 10 then you double the damage.</p>
             </Indexed>
         </Indexer>
     </Section>;
