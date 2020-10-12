@@ -18,7 +18,7 @@ const useCases: UseCase[] = [
     {
         name: 'crime scene investigation',
         attribute: 'perception',
-        description: 'you examine a crime scene, takes 1 hour to find clues, number of maximum clues depend on criminal larceny skill to hide evidence',
+        description: 'you examine a crime scene, takes 1 hour to find clues, number of maximum clues depend on criminal larceny skill to hide evidence. Takes 1 hour',
         results: [
             'find clues 0-15: find 1 wrong or missleading clue',
             'find clues 16-20: no clues',

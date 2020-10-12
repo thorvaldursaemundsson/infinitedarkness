@@ -32,7 +32,7 @@ const useCases: UseCase[] = [
     {
         name: 'disable timed bomb',
         attribute: 'perception',
-        description: 'you disable a timed bomb, the base difficulty is the resulting roll from when it was set',
+        description: 'you disable a timed bomb, the base difficulty is the resulting roll from when it was set. Takes 10 minutes, can be done in 1 minute at -10 penalty, 1 round -20 penalty',
         results: [
             'critical failure: 15 below target, bomb explodes immediately',
             'severe failure: 10 below target, bomb time left is set to half (if timed, otherwise nothing)',
@@ -45,7 +45,7 @@ const useCases: UseCase[] = [
     {
         name: 'make improvised bomb',
         attribute: 'intelligence',
-        description: 'you make an improvised bomb from non-bomb materials',
+        description: 'you make an improvised bomb from non-bomb materials. Takes 1 hour',
         results: [
             'molotov cocktail: base 15',
             'nitroglycerin: base 25',

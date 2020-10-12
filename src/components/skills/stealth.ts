@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'shadow',
         attribute: 'agility',
-        description: 'follow someone without them knowing youre following them, roll stealth + agility vs their perception + stealth',
+        description: 'follow someone without them knowing youre following them, roll stealth + agility vs their perception + stealth (passive take 10)',
         results: [
             'critical failure: 10 less than their perception roll: they notice you immediately, you dont notice that they notice you',
             'failure: less than their perception roll: they notice you immediately',
@@ -13,6 +13,9 @@ const useCases: UseCase[] = [
             'success: 16-20: you can follow them for 80 minutes undetected',
             'success: 21-25: you can follow them for 160 minutes undetected',
             'success: 26-30: you can follow them for 320 minutes undetected',
+            'Target is paranoid: -5 to roll',
+            'Target knows your face: -10 to roll',
+            'You blend in well: +5 to roll'
         ],
         type: 'active'
     },

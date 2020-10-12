@@ -71,7 +71,7 @@ const useCases: UseCase[] = [
     {
         name: 'maintain weapon',
         attribute: 'intelligence',
-        description: 'keep it clean and good',
+        description: 'keep it clean and good. Takes 2 minute, requires ballistic kit.',
         results: [
             'service: 14 or lower: damage weapon, firearm drops condition by 1 step',
             'service: 21-30 or lower: firearm condition countdown is reset',

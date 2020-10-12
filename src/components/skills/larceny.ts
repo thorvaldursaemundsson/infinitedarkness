@@ -15,13 +15,13 @@ const useCases: UseCase[] = [
     {
         name: 'lockpick',
         attribute: 'agility',
-        description: 'pick a conventional lock takes 10 minutes or less',
+        description: 'pick a conventional lock takes 3 minutes or less',
         results: [
             '15: simple lever tumbler',
             '20: complex lever tumbler and disk tumbler',
             '25: simple pin tumbler',
             '30: complex pin tumbler',
-            'Succeed by 10, do it in 1 minute',
+            'Succeed by 10, do it in 1d6 rounds',
             'Fail by 10, causes damage to lock, raises difficulty by 5 and if damaged twice it will be broken',
             'Some locks are designed to break immediately on any failed lock pick attempt'
         ],
@@ -30,20 +30,22 @@ const useCases: UseCase[] = [
     {
         name: 'electronic lockpick',
         attribute: 'intelligence',
-        description: 'pick an electronic lock, needs a highly specialized electronic lockpicking tool, might involve a hacking roll (computer). Takes 30 minutes',
+        description: 'pick an electronic lock, needs a highly specialized electronic lockpicking tool, might involve a hacking roll (computer). Takes 10 minutes',
         results: [
-            'Infra-red key lock: 20',
-            'Numb-pad key lock: 25',
+            'Infra-red key lock: 25',
+            'Numb-pad key lock: 15',
+            'password key lock: 20',
+            'magnetic key lock: 30',
             'Fingerprint scan: 30',
             'Retina scan: 35',
-            'DNA scan: 40'
+            'DNA scan: 45'
         ],
         type: 'active'
     },
     {
         name: 'pick pocket',
         attribute: 'agility',
-        description: 'remove or add an item to someones inventory without them realizing, they make a perception roll. Big and heavy items are harder to transfer',
+        description: 'remove or add an item to someones inventory without them realizing, they make a perception roll. Big and heavy items are harder to transfer. Takes 1-2 rounds',
         results: [
             '20+perception: tiny light item (single key, card)',
             '25+perception: small light item (keychain, wallet, pocket computer)',
@@ -74,5 +76,5 @@ const useCases: UseCase[] = [
     }
 
 ];
-const Larceny = new SkillTemplate('larceny', '', useCases);
+const Larceny = new SkillTemplate('larceny', 'crimes and stuff', useCases);
 export default Larceny;

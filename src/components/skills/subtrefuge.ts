@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'hide emotion',
         attribute: 'intelligence',
-        description: 'how hard you are to read',
+        description: 'how hard you are to read, always take 10',
         type: 'passive'
     },
     {

@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'hacking',
         attribute: 'intelligence',
-        description: 'hack into computers',
+        description: 'hack into computers, takes 1 hour',
         results: [
             'Improve chances with larceny (electronic lockpick): 25, add roll - 25 to larceny',
             'hack password: 24 or higher to succeed',
@@ -14,15 +14,15 @@ const useCases: UseCase[] = [
     {
         name: 'craft software',
         attribute: 'intelligence',
-        description: 'make computer programs, apps, drivers, services, etc',
+        description: 'make computer programs, apps, drivers, services, etc. Takes 8 hours',
         results: [
             'craft single feature driver or application: 2 points',
             'craft complex software: 6 points',
             'architech software system: 12 points',
             'craft computer OS core or AI core: 40 points',
-            'roll 21-30: add 1 software point, spend 8 hours',
-            'roll 31-40: add 2 software point, spend 6 hours',
-            'roll 41-50: add 3 software point, spend 4 hours',
+            'roll 21-30: add 1 software point',
+            'roll 31-40: add 1d2 software point',
+            'roll 41-50: add 1d3 software point',
         ],
         type: 'active'
     },

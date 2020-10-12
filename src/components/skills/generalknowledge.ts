@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'remember common fact',
         attribute: 'intelligence',
-        description: 'you remember a commonly known helpful fact or gain insight based on facct',
+        description: 'you remember a commonly known helpful fact or gain insight based on fact',
         results: [
         ],
         type: 'active'

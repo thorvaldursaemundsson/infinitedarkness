@@ -9,13 +9,13 @@ const useCases: UseCase[] = [
     {
         name: 'motivational speech',
         attribute: 'willpower',
-        description: 'you make a rousing motivational speech, everyone hearing it gains a +1 to all rolls for the rest of the day to any skill they have lower than your persuation skill',
+        description: 'you make a rousing motivational speech, everyone hearing it gains a +1 to all rolls for the rest of the day to any skill they have lower than your persuation skill. Takes 1 minute',
         type: 'active'
     },
     {
         name: 'inspire courage',
         attribute: 'willpower',
-        description: 'you say a few heart warming words that strengthen the resolve of anyone hearing you gain +1 to fear resistance up to your roll',
+        description: 'you say a few heart warming words that strengthen the resolve of anyone hearing you gain +1 to fear resistance up to your roll. Takes 1 round',
         results: [
             '15-24: +1 to fear resistence',
             '25+: +1 to fear resistence, restore 1 mental health (can only restore from this benefit once a day)'
