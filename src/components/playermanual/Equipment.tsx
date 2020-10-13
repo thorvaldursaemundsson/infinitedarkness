@@ -150,6 +150,7 @@ const Equipment: React.FC = () => {
                     <li>Small protection: 50% cost/weight and 2/6 roll (not available for power armor) - helmet and body</li>
                     <li>Minor protection: 30% cost/weight and 1/6 roll (not available for power armor) - open face helmet and torso</li>
                 </ul>
+                <p>Agility penalty applies to rolls and defense score. Your effective agility score can be reduced below zero for skill rolls but not defense.</p>
                 <ArmorCrafter />
                 <h5>Body Suit</h5>
                 <ArmorTable armors={bodySuits} />

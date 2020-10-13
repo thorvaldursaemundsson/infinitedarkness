@@ -45,6 +45,9 @@ const Combat: React.FC = () => {
                     <li>If you have already acted this turn you may "borrow" your next turn's action, your next turn is then spent</li>
                 </ul>
             </Indexed>
+            <Indexed title='Armor and damage reduction'>
+                <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
+            </Indexed>
             <Indexed title='Bleeding'>
                 <p>Bleeding occurs when you are severely damaged, if you take 10 points of damage from a single blow or any damage while below 0 (only excluding damage from bleeding).</p>
                 <p>Level of bleeding depends on your life, if you are above 0 then you only take light bleeding. Between -100% and 0 results in intermediate. Below 100% results in heavy bleeding. Below 200% results in death.</p>
@@ -54,15 +57,26 @@ const Combat: React.FC = () => {
                     <li>Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
                 </ul>
             </Indexed>
-            <Indexed title='Armor and damage reduction'>
-                <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
-            </Indexed>
             <Indexed title='Melee attacking'>
                 <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets defense then you hit</p>
                 <h5>Overextend</h5>
                 <p>Some enemies may be extremely difficult to hit, once a turn you may overextend your attack, you can add up to as much as +10 to your attack roll but this leaves you open to counter attacks, you take twice negative on all skill rolls and passives until it's your turn again</p>
                 <h5>Flanking</h5>
                 <p>When a target is flanked (facing more than one melee combatant) the attackers will gain bonus to hit equal to the number of flankers x2. This does not apply if they are flanked too.</p>
+                <h5>Two weapon fighting</h5>
+                <p>When you are using two melee weapons you may make one second attack immediately after the first on the same target. This attack does not benefit from your agility bonus to hit or strength bonus to damage. The second weapon must be a light weapon if your strength is 6 or less.
+                    If you use multiple attacks option with two weapons only the first attack gets a bonus attack from the off-hand weapon, multi-attack penalty applies to off-hand weapon.
+                </p>
+            </Indexed>
+            <Indexed title='Multiple attacks'>
+                <p>Characters may do more than two or more consecutive attacks in certain circumstances. Only applies to combat rolls. Additional attacks may be reserved for blocking, unused blocks can not be converted into attacks when it is not your turn.</p>
+                <ul>
+                    <li><b>2 attacks</b>: requires 6 or higher  combat. Take -3 penalty to all attacks</li>
+                    <li><b>3 attacks</b>: requires 12 or higher combat. Take -6 penalty to all attacks</li>
+                    <li><b>4 attacks</b>: requires 18 or higher combat. Take -9 penalty to all attacks</li>
+                    <li><b>5 attacks</b>: requires 24 or higher combat. Take -12 penalty to all attacks</li>
+                    <li><b>6 attacks</b>: requires 30 or higher combat. Take -15 penalty to all attacks</li>
+                </ul>
             </Indexed>
             <Indexed title='Blocking'>
                 <p>Blocking is an active action that can be done against melee attacks. You roll 2d10 + Combat (skill), if you successfully block then you only take half damage (round down)</p>
@@ -96,17 +110,6 @@ const Combat: React.FC = () => {
                 </ul>
                 <p>Some weapons that do splash damage are thrown or otherwise follow a ballistic path. These can potentially hit places that are not within direct line of sight. For these situations add +10 and range penalties are doubled.</p>
             </Indexed>
-            
-            <Indexed title='Multiple attacks'>
-                <p>Characters may do more than two or more consecutive attacks in certain circumstances. Only applies to combat rolls</p>
-                <ul>
-                    <li><b>2 attacks</b>: requires 6 or higher  combat. Take -3 penalty to both attacks</li>
-                    <li><b>3 attacks</b>: requires 12 or higher combat. Take -6 penalty to all attacks</li>
-                    <li><b>4 attacks</b>: requires 18 or higher combat. Take -9 penalty to all attacks</li>
-                    <li><b>5 attacks</b>: requires 24 or higher combat. Take -12 penalty to all attacks</li>
-                    <li><b>6 attacks</b>: requires 30 or higher combat. Take -15 penalty to all attacks</li>
-                </ul>
-            </Indexed>
             <Indexed title='Distance'>
                 <p>Targets become harder to hit when they are further away, each 4 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
                 <ul>
@@ -120,8 +123,8 @@ const Combat: React.FC = () => {
             <Indexed title='Cover'>
                 <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both passive defense and damage reduction</p>
                 <p>Damage reduction depends on the type of material is covering you, thickness and hardness matter. When damage absorbtion from cover is applied it stacks with all other sources, armor piercing is applied only once to the entire stack.
-                    Cover does not grant any benefits from close range combat rolls or thrown explosive rolls, only firearms and non-explosive thrown like knives.
-                    Firearms that deal splash damage like shotguns and missile launchers always apply passive defense and cover damage absorbtion, but may destroy the cover depending on the damage.
+                Cover does not grant any benefits from close range combat rolls or thrown explosive rolls, only firearms and non-explosive thrown like knives.
+                Firearms that deal splash damage like shotguns and missile launchers always apply passive defense and cover damage absorbtion, but may destroy the cover depending on the damage.
                 </p>
                 <p>Each time damage is taken through damage absorbtion each source drops their damage absorbtion by 1 point, when dropped to zero they no longer provide any benefit.</p>
                 <p>If damage exceeds damage absorbtion x 10 then the cover or armor is instantly destroyed. Damage from multiple bullets count seperately for this purpose.</p>
@@ -143,7 +146,7 @@ const Combat: React.FC = () => {
                 <p>More than 2/3rds of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
                 <h5>total cover</h5>
                 <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the square, 100% chance to apply damage absorbtion from cover.
-                    Total cover also prevents you from attacking.
+                Total cover also prevents you from attacking.
                 </p>
             </Indexed>
         </Indexer>

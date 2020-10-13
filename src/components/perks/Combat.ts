@@ -44,7 +44,7 @@ export const MartialArts = new PerkTemplate({
     name: 'martial arts',
     skill: 'combat',
     level: 1,
-    description: 'gain +1 to hit with all unarmed attacks and they now deal 1d4 + strength / 4 damage'
+    description: 'gain +1 to hit with all unarmed attacks and they now deal 1d4 + strength / 4 damage (not compatible with natural attacks or barbarian)'
 }, {
     applyTo: 'unarmed',
     amount: 1
@@ -54,7 +54,7 @@ export const MartialArtsExpert = new PerkTemplate({
     name: 'martial arts expert',
     skill: 'combat',
     level: 2,
-    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage.'
+    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage. (not compatible with natural attacks or barbarian)'
 }, {
     applyTo: 'unarmed',
     amount: 2
@@ -64,7 +64,7 @@ export const MartialArtsMaster = new PerkTemplate({
     name: 'martial arts master',
     skill: 'combat',
     level: 3,
-    description: 'gain +3 to hit with all unarmed attacks and they now deal 1d8 + strength / 3 damage'
+    description: 'gain +3 to hit with all unarmed attacks and they now deal 1d8 + strength / 3 damage. (not compatible with natural attacks or barbarian)'
 }, {
     applyTo: 'unarmed',
     amount: 3
@@ -111,7 +111,14 @@ export const DualWeaponFighter = new PerkTemplate({
     name: 'dual weapon fighter',
     skill: 'combat',
     level: 1,
-    description: 'you can use two weapons simultaneously without penalties'
+    description: 'When you use two weapons the second attack benefits from strength and agility.'
+});
+
+export const DualWeaponMaster = new PerkTemplate({
+    name: 'dual weapon master',
+    skill: 'combat',
+    level: 2,
+    description: 'When you use two weapons you may make second attack with your off-hand weapon on every attack.',
 });
 
 export const Barbarian = new PerkTemplate({

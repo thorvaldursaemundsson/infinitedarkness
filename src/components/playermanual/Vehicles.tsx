@@ -6,23 +6,47 @@ import { Vehicle } from "../vehicles/Vehicles";
 import LandVehicles from "../vehicles/LandVehicles";
 import WaterVehicles from "../vehicles/WaterVehicles";
 import SpaceVehicles from "../vehicles/SpaceVehicles";
-import AirVehicles from "../vehicles/AirVehicles";
+import AirVehicles, { airVehicleParts } from "../vehicles/AirVehicles";
 
 
 const Vehicles: React.FC = () => {
     return <Section title='Vehicles'>
         <Indexer title='Vehicles'>
             <Indexed title='Land vehicles'>
-                <VehicleTable vehicles={LandVehicles} />
+                <VehicleTable vehicles={LandVehicles} parts={landVehicleParts} />
             </Indexed>
             <Indexed title='water vehicles'>
-                <VehicleTable vehicles={WaterVehicles} />
+                <VehicleTable vehicles={WaterVehicles} parts={waterVehicleParts} />
+                <h5>Landing</h5>
+                <p>Whenever you land there is a risk that a part of the airplane takes some damage or is worn. When you crash the risk increases considerably.</p>
+                <p>The first step is to find the part that is damaged, roll 1d100, the second step is to find the amount of damage, 1, 1d4 or 1d6 depending on landing success</p>
+                <h6>Level of damage</h6>
+                <p>There are 6 levels of damage (level 0 being undamaged, pristine). Damages reduce resell value and pilot skill addadtively. Repair is mechanics + intelligence.
+                Some parts are essencial and the certain functions do not work without them.
+                </p>
+                <ol>
+                    <li>Worn: no effect on performance, repair 20. -5% value</li>
+                    <li>Slightly damaged: -2 on pilot, repair 20. -5% value</li>
+                    <li>Moderately damaged: -4 on pilot , repair 25 + 5% of plane value for spare parts. -10% value</li>
+                    <li>Severely damaged: part does not work, -6 on pilot, repair 25 + 10% of plane value for spare parts. -10% value</li>
+                    <li>Extremely damaged: part does not work, -6 on pilot, repair 30 + 10% of plane value for spare parts. -10% value</li>
+                    <li>Obliterated: part is frigg'n gone, -8 on pilot repair 35 + 10% of plane value for spare parts. -10% value </li>
+                </ol>
+                <p></p>
+                <ul>
+                    <li>Land safely with 15 points to spare: no damage to any part</li>
+                    <li>Land safely: roll 1d100, the part takes 1 level of damage</li>
+                    <li>Crashland safely: roll 1d100 2 times, the parts take 1d4 damage</li>
+                    <li>Crashland violently: roll 1d100 4 times, the parts take 1d6 damage</li>
+                    <li>Crashland catastrophically: roll 1d100 8 times, the parts take 1d6 damage</li>
+                </ul>
+                {partLister(airVehicleParts)}
             </Indexed>
             <Indexed title='air'>
-                <VehicleTable vehicles={AirVehicles} />
+                <VehicleTable vehicles={AirVehicles} parts={airVehicleParts} />
             </Indexed>
             <Indexed title='space'>
-                <VehicleTable vehicles={SpaceVehicles} />
+                <VehicleTable vehicles={SpaceVehicles} parts={spaceVehicleParts} />
             </Indexed>
         </Indexer>
     </Section>
@@ -30,7 +54,26 @@ const Vehicles: React.FC = () => {
 
 interface IVehicleTableProps {
     vehicles: Vehicle[];
+    parts: string[];
 }
+
+const landVehicleParts: string[] = [];
+
+const waterVehicleParts: string[] = [];
+
+const partLister = (parts: string[]) => {
+    const spacing = Math.floor(100 / parts.length);
+
+    return <ul>
+        {[...Array(parts.length)].map((v, i) => {
+            return <li>{i * spacing + 1} - {i * spacing + spacing}: {parts[i]}</li>
+        })}
+        <li> {parts.length * spacing} - 100: reroll twice</li>
+    </ul>;
+}
+
+
+const spaceVehicleParts: string[] = [];
 
 const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
     const [vehicleToEdit, setVehicleToEdit] = useState<Vehicle | undefined>(undefined);
@@ -41,7 +84,6 @@ const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
     }
 
     return (<>
-        
         <table className='datatable'>
             <thead>
                 <tr>

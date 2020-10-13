@@ -1,5 +1,10 @@
 import { Synthoil, Electricity, Vehicle } from "./Vehicles";
 
+export const airVehicleParts:string[] = ['cockpit nose', 'cockpit window', 'side window', 'enterance',
+'front landing gear', 'hind left landing gear', 'hind right landing gear', 'pitch stabilizer', 'pitch elevator',
+'yaw stabilizer', 'yaw elevator', 'front or left engine', 'front or right engine', 'left wing', 'left elevator',
+'right wing', 'right elevator', 'left spoiler', 'right spoiler', 'front fuselage', 'mid fuselage', 'hind fuselage'];
+
 const AirVehicles: Vehicle[] = [
     {
         name: 'tiny airplane',

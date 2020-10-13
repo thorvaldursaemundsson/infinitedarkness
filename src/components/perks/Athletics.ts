@@ -61,40 +61,40 @@ export const GoodFortitude = new PerkTemplate({
     name: 'good fortitude',
     skill: skill,
     level: 1,
-    description: 'Your character has great fortitude, gain +1 hitpoints'
-}, {
-    applyTo: 'life',
-    amount: 1
-});
-
-export const GreatFortitude = new PerkTemplate({
-    name: 'great fortitude',
-    skill: skill,
-    level: 2,
     description: 'Your character has great fortitude, gain +2 hitpoints'
 }, {
     applyTo: 'life',
     amount: 2
 });
 
+export const GreatFortitude = new PerkTemplate({
+    name: 'great fortitude',
+    skill: skill,
+    level: 2,
+    description: 'Your character has great fortitude, gain +4 hitpoints'
+}, {
+    applyTo: 'life',
+    amount: 4
+});
+
 export const SupremeFortitude = new PerkTemplate({
     name: 'great fortitude',
     skill: skill,
     level: 3,
-    description: 'Your character has supreme fortitude, gain +4 hitpoints'
+    description: 'Your character has supreme fortitude, gain +6 hitpoints'
 }, {
     applyTo: 'life',
-    amount: 4
+    amount: 6
 });
 
 export const StrongBack = new PerkTemplate({
     name: 'strong back',
     skill: skill,
     level: 1,
-    description: 'Your strength counts as +2 for the purposes of carrying capacity'
+    description: 'Your strength counts as +3 for the purposes of carrying capacity'
 }, {
     applyTo: 'carryingCapacity',
-    amount: 2
+    amount: 3
 });
 
 export const Fast = new PerkTemplate({
@@ -112,13 +112,16 @@ export const HighMobility = new PerkTemplate({
     skill: skill,
     level: 2,
     description: 'You are highly mobile, gain +1 base speed and can enter sprint in a single round.'
-})
+}, {
+    amount: 1,
+    applyTo: 'speed'
+});
 
 export const Marathoner = new PerkTemplate({
     name: 'Marathoner',
     skill:skill,
     level: 1,
-    description: 'Gain +10 on running'
+    description: 'Gain +10 on running, ignore one level of carry capacity or exhaustion'
 });
 
 export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude,StrongBack, Fast, HighMobility, Marathoner];

@@ -149,7 +149,9 @@ export class Character {
         else if (athletics >= 12) athl = 2;
         else if (athletics >= 6) athl = 1;
 
-        return base + size + athl;
+        const hookBonus = this.getHook('speed');
+
+        return base + size + athl + hookBonus;
 
     }
 
