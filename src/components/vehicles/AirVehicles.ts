@@ -1,9 +1,71 @@
-import { Synthoil, Electricity, Vehicle } from "./Vehicles";
+import { Synthoil, Electricity, Vehicle, IRollAmount, IDamageAmount } from "./Vehicles";
 
 export const airVehicleParts:string[] = ['cockpit nose', 'cockpit window', 'side window', 'enterance',
 'front landing gear', 'hind left landing gear', 'hind right landing gear', 'pitch stabilizer', 'pitch elevator',
-'yaw stabilizer', 'yaw elevator', 'front or left engine', 'front or right engine', 'left wing', 'left elevator',
-'right wing', 'right elevator', 'left spoiler', 'right spoiler', 'front fuselage', 'mid fuselage', 'hind fuselage'];
+'yaw stabilizer', 'yaw elevator', 'front or left engine','front or right engine','front or left propeller blades/jet turbine',
+'front or right propeller blades/jet turbine','left or front engine mount','right or front engine mount','left wing', 'left elevator',
+'right wing', 'right elevator', 'left spoiler', 'right spoiler', 'front fuselage', 'mid fuselage', 'hind fuselage',
+'left battery core/fuel tank','right battery core/fuel tank', 'computer', 'antenna', 'speaker', 'cockpit systems display', 'navigation controls',
+'radar display', 'radar', 'navigation display','control wheel','throttle lever', 'altitude meter','gyrometer','compass','internal camera','external camers'];
+
+export const rollAmounts:IRollAmount[] = [
+    {
+        text:'Land safely with 15 points to spare',
+        numberOf1d100: 0,
+        sidesPerDice: 0,
+    },
+    {
+        text: 'Land safely',
+        numberOf1d100: 1,
+        sidesPerDice:1,
+    },
+    {
+        text: 'Crashland safely',
+        numberOf1d100: 2,
+        sidesPerDice:4,
+    },
+    {
+        text: 'Crashland violently',
+        numberOf1d100: 4,
+        sidesPerDice:6,
+    },
+    {
+        text: 'Crashland catastrophically',
+        numberOf1d100: 10,
+        sidesPerDice:6,
+    }
+];
+
+export const airVehicleDamageTexts:IDamageAmount[] = [
+    {
+        damageAmountNumber: 0,
+        damageText: 'pristine',
+    },
+    {
+        damageAmountNumber: 1,
+        damageText: 'worn',
+    },
+    {
+        damageAmountNumber: 2,
+        damageText: 'Slightly damaged',
+    },
+    {
+        damageAmountNumber: 3,
+        damageText: 'Moderately damaged',
+    },
+    {
+        damageAmountNumber: 4,
+        damageText: 'Severely damaged',
+    },
+    {
+        damageAmountNumber: 5,
+        damageText: 'Extremely damaged',
+    },
+    {
+        damageAmountNumber: 6,
+        damageText: 'Obliterated',
+    }
+];
 
 const AirVehicles: Vehicle[] = [
     {

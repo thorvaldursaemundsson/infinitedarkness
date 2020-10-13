@@ -285,3 +285,16 @@ export interface Vehicle {
     cost: number;
     description: string;
 }
+
+
+
+export interface IRollAmount {
+    numberOf1d100:number;
+    sidesPerDice:number;
+    text:string;
+}
+
+export interface IDamageAmount {
+    damageAmountNumber:number;
+    damageText: string,
+}
