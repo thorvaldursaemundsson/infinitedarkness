@@ -5,6 +5,7 @@ import Section from './Section';
 const Radiation = () => <Section title='Radiation'>
     <h3>Radiation</h3>
     <p>Ionizing radiation can be found everywhere. The effects of radiation does are cumulative, meaning each dose adds on the previous levels. Radiation levels can increase beyond 10, each level adds +1 dose per round</p>
+    <p>Radiation naturally drops at the rate of 1 per year, this effect can be accelerated to 1 per month with a medicine check.</p>
     <p>Additionally, radiation doses can go above </p>
     <table style={{ width: '100%' }}>
         <thead>

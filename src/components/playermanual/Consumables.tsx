@@ -84,19 +84,21 @@ const Food = () => <>
 
 const Medicine = () => <>
     <h4>Healing Medicine</h4>
-    <p>Healing medicine concerns all kinds of drugs that restore life, limb and damage, all these require medicine check</p>
+    <p>Healing medicine concerns all kinds of drugs that restore life, limb and damage, all these require medicine check.</p>
+    <p>Dosage matters for size, which means altered credit cost. Tiny: -20%, small: -10, large: +10%, huge: +20%</p>
     <ul>
         <li>Stempack: 200 credits, restores life </li>
         <li>Antibiotics: 400 credits, cures bacterial infection </li>
         <li>Antivirals: 800 credits, cures viral infection </li>
-        <li>Radioflush: 900 credits, removes radioactive materials from body </li>
+        <li>Radioflush: 900 credits, removes radioactive materials from body (does not drop radiation level)</li>
+        <li>Gene therapy detox: 600 credits, accelerates radiation healing to 1 level per month.</li>
         <li>Antivenom: 700 credits, neutralizes (specific) venom</li>
     </ul>
     <h4>Resillience Drugs</h4>
     <p>Resillience drugs are similar to medicine in that they require medicine skill, however they don't heal damage. They prevent it</p>
     <ul>
-        <li>Anti-Radiation drug: 200 credits, reduces accumulation of radiation damage for 30 days</li>
-        <li>Active carbon: 10 credits, reduces effect of poisons recently consumed</li>
+        <li>Anti-Radiation drug: 200 credits, reduces accumulation of radiation damage for 30 days by 1 level</li>
+        <li>Active carbon: 10 credits, reduces effect of poisons recently consumed, neutralizes medicines and drugs</li>
     </ul>
     <h4>Performance Enhancing Drugs</h4>
     <p>Performance enhancing drugs are often illegal and most carry negative effects, some are also addictive</p>
@@ -106,20 +108,277 @@ const Medicine = () => <>
         <li>Intermediate painkiller: 50 credits, reduces penalty from damage by 6 (no skill needed, requires prescription), lasts 8 hours</li>
         <li>Strong painkiller: 200 credits, reduces penalty from damage by 16, requires medicine skill, lasts 8 hours</li>
         <li>Coffee: +1 to all intelligence and perception rolls for 6 hours, no effect if addicted</li>
-        <li>Alcohol (1 beer): 20 credits, reduces penalty from damage by 1, reduces all mental rolls by 1, lasts 2 hours</li>
+        <li>Alcohol (1 beer): 20 credits, reduces penalty from damage by 1, reduces all mental rolls by 1, increases bravery by 2, lasts 2 hours</li>
         <li>Berzerker drops: 1500 credits, gain +1 strength, endurance, +3 to combat for 1 hour, high risk of addiction</li>
         <li>Spirit Elixir: unknown credits, unknown effect</li>
     </ul>
 </>;
 
+interface ITool {
+    name: string;
+    description: string;
+    uses: number;
+    weightKg: number;
+    cost: number;
+}
+
+const tools: ITool[] = [
+    {
+        name: 'med kit',
+        description: 'contains stempacks, antibotics, antivirals, diagnostic tools, antivenom, weak and strong painkillers',
+        uses: 20,
+        weightKg: 2.5,
+        cost: 4000,
+    },
+    {
+        name: 'Climing/Parkour gear',
+        description: 'contains traction cleats, anchors, rope, revo belay',
+        uses: 50,
+        weightKg: 3,
+        cost: 1500,
+    },
+    {
+        name: 'Sports gear',
+        description: 'contains pair of sneakers, towel, water bottle, headband, aerodynamic one-piece',
+        uses: 40,
+        weightKg: 2,
+        cost: 2000,
+    },
+    {
+        name: 'Sharpening tools',
+        description: 'Contains sharpening stick for blades',
+        uses: 1000,
+        weightKg: 0.5,
+        cost: 100,
+    },
+    {
+        name: 'Portable Cooking set',
+        description: 'contains a small pot, a large pot, a light frying pan, one electric stove, portable refrigerator, including batteries for up to 10 meals.',
+        uses: 100,
+        weightKg: 10,
+        cost: 5000,
+    },
+    {
+        name: 'Electronics toolkit',
+        description: 'contains multi meter, spare wires and cables, wireboard, universal screwdriver, soldering tools',
+        uses: 30,
+        weightKg: 4,
+        cost: 2000,
+    },
+    {
+        name: 'Ballistic kit',
+        description: 'contains universal screwdriver, spare screws, oil, small brush, protective eyewear',
+        uses: 40,
+        weightKg: .3,
+        cost: 400,
+    },
+    {
+        name: 'Forensics kit',
+        description: 'contains darklight, fingerprint duster, biosample collector, laser pointer',
+        uses: 40,
+        weightKg: 1,
+        cost: 1200,
+    },
+    {
+        name: 'Lockpick',
+        description: 'contains assortment of lockpicks',
+        uses: 100,
+        weightKg: .2,
+        cost: 500,
+    },
+    {
+        name: 'Electronic lockpick',
+        description: 'contains connector, IR coms, UV coms, micro-hologram projector, adaptor, cryptogram chip',
+        uses: 80,
+        weightKg: 2,
+        cost: 3500,
+    },
+    {
+        name: 'Mechanics kit',
+        description: 'contains universal screwdrivers, hammer, spare nuts, bolts, screws, nails, adjustable wrench',
+        uses: 1000,
+        weightKg: 5,
+        cost: 1500,
+    },
+    {
+        name: 'Batteries',
+        description: 'Rechargeble Lithium ion battery, can be used to recharge energy weapons, computers, tools, even vehicles',
+        uses: 10000,
+        weightKg: 1,
+        cost: 1000,
+    },
+    {
+        name: 'Personal solar array',
+        description: 'A 1x1 meter solar foldable panel, can charge one battery over the course of a day.',
+        uses: 10000,
+        weightKg: .5,
+        cost: 2000,
+    },
+    {
+        name: 'Motion sensor',
+        description: 'detects air movement and vibrations up to 100 meters, can be adjusted to less',
+        uses: 100,
+        weightKg: .2,
+        cost: 200,
+    },
+    {
+        name: 'Tiny tracker',
+        description: 'tiny tracker emits weak long band microwaves, adjustable to an exact frequency and pattern, trackable up to 100km. Illegal',
+        uses: 1,
+        weightKg: .01,
+        cost: 300,
+    },
+    {
+        name: 'Infrared googles',
+        description: 'Googles that track infra-red light, allows visible light to be seen too as an option.',
+        uses: 10000,
+        weightKg: 0.2,
+        cost: 900,
+    },
+    {
+        name: 'Ultraviolet googles',
+        description: 'Googles that track ultra-violet light, allows visible light to be seen too as an option.',
+        uses: 10000,
+        weightKg: 0.3,
+        cost: 1600,
+    },
+    {
+        name: 'Pocket Computer',
+        description: 'Basically a futuristic smartphone. Allows user to substitute computer roll for any knowledge roll. 10TB storage, 12x 5.5GH cpu cores, 512GB ram, 4 cameras, gyrometer, accelerometer, geigercounter, radiobooster. 48h battery',
+        uses: 1000,
+        weightKg: 1,
+        cost: 2000,
+    },
+    {
+        name: 'Jetpack',
+        description: 'Allows for short bursts which propel the user. Jump +50 meters up, +100 meters forward, requires athletics + agility 20 to safely land. Can hover if your total weight is 80kg or less',
+        uses: 100,
+        weightKg: 6,
+        cost: 14000,
+    },
+    {
+        name: 'Flightsuit',
+        description: 'Allows for gliding, flying if paired with jetpack. Landing safely requires acrobatics + agility 20. Not compatible with armor plating or power armor',
+        uses: 80,
+        weightKg: 10,
+        cost: 8000,
+    },
+    {
+        name: 'SCUBA suit',
+        description: 'Airbreathing underwater for 3 hours. Includes wetsuit which protects against cold oceanic water.',
+        uses: 10,
+        weightKg: 6,
+        cost: 12000,
+    },
+    {
+        name: 'Laser protection gear',
+        description: 'Protective gear against damage from laser, protects against blinding.',
+        uses: 1000,
+        weightKg: 0.1,
+        cost: 500,
+    },
+    {
+        name: 'Plasma protection gear',
+        description: 'Protective gear against damage from plasma weapons, protects against blinding and damage, does not offer protection if directly fired upon.',
+        uses: 1000,
+        weightKg: 1,
+        cost: 1600,
+    },
+    {
+        name: 'Spy drone',
+        description: '	Small drone, uses propellers to fly but causes virtually no noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km.',
+        uses: 500,
+        weightKg: 0.2,
+        cost: 4000,
+    },
+    {
+        name: 'Carrier drone',
+        description: 'Medium sized drone, similar to spy drone but can carry 1kg and is not silent.',
+        uses: 500,
+        weightKg: 2,
+        cost: 9000,
+    },
+    {
+        name: 'Large carrier drone',
+        description: 'Large sized drone, similar to carrier drone, can carry 6kg.',
+        uses: 500,
+        weightKg: 10,
+        cost: 15000,
+    },
+    {
+        name: 'Industrial carrier drone',
+        description: 'Large sized drone, similar to large carrier but can carry 52kg.',
+        uses: 500,
+        weightKg: 80,
+        cost: 25000,
+    },
+    {
+        name: 'H.W. Industrial carrier drone',
+        description: 'Heavy weight indistrial carrier drone, capacity 175kg. Basically a small hellicopter',
+        uses: 500,
+        weightKg: 250,
+        cost: 35000,
+    },
+    {
+        name: 'Transport drone',
+        description: 'It\'s a vehicle, capacity 3500kg.',
+        uses: 500,
+        weightKg: 5000,
+        cost: 90000,
+    },
+    {
+        name: 'Camping kit',
+        description: 'contains single person tent, bedroll, igniter, boiler',
+        uses: 50,
+        weightKg: 20,
+        cost: 4000,
+    },
+    {
+        name: 'Field physics kit',
+        description: 'Contains telescope, microscope, spectrometer, scale, thermometer, hydrometer, electrometer',
+        uses: 100,
+        weightKg: 6,
+        cost: 8000,
+    },
+    {
+        name: 'Field chemistry kit',
+        description: 'Contains microscope, ph-meter, tweesers, beakers, heater, condenser',
+        uses: 100,
+        weightKg: 3,
+        cost: 7000,
+    },
+    {
+        name: 'Field biology kit',
+        description: 'Contains high focus microscope, stereliser, sealed strong bags',
+        uses: 100,
+        weightKg: 3,
+        cost: 7000,
+    }
+];
+
 const Tools = () => <>
-    Med kit
-    Ballistic kit
-    Spare parts (of)
-    Batteries
-    Power sources
-    Motion sensor
-    Camera
+    <h3>Tools</h3>
+    <p>Many advanced skills require a tool. Uses is equal to uses + skill rank (if object is transfered then always use lowest rank in history of users). Tools without an obvious related skill simply has a set number of uses. Once the uses has been depleted the quality degrades by one level.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>uses</th>
+                <th>Weight (kg)</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {tools.map(tool => <>
+                <tr>
+                    <td><b>{tool.name}</b></td><td>{tool.uses}</td><td>{tool.weightKg}</td><td>{tool.cost}</td>
+                </tr>
+                <tr>
+                    <td className='univeralBorderBottom' colSpan={4}>{tool.description}</td>
+                </tr>
+            </>)}
+        </tbody>
+    </table>
 </>
 
 const Weapons = () => <>

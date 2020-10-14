@@ -35,14 +35,22 @@ const useCases: UseCase[] = [
     {
         name: 'administer medicine',
         attribute: 'intelligence',
-        description: 'picking out the right medicine and knowing how to administer it correctly, ',
+        description: 'picking out the right medicine and knowing how to administer it correctly, this involves a 15 minute checkup to diagnose the patient and 45 minutes of research and preparation',
         results: [
             'administer light painkillers: 10 (1/2 damage penalty to skills)',
             'administer medium painkillers: 20 (1/4 damage penalty to skills)',
             'administer heavy painkillers: 30 (1/8 damage penalty to skills)',
             'administer adrenaline: 20+ (patient ignores damage penalties to skills up to -100% damage)',
             'administer stempack: 30+ (takes 10 minutes, heal 1 life per hour for 8 hours, max 1 per endurance per week)',
-            'administer stempack: 15 or less cause 1d4 damage and 50% risk of cancer'
+            'administer stempack: 15 or less cause 1d4 damage and 50% risk of cancer',
+            'administer antibiotics: 20',
+            'administer antivirals: 25',
+            'administer radioflush: 20',
+            'administer antivenom: 25',
+            'administer gene therapy detox: 25',
+            'administer anti-radiation: 25',
+            'administer active carbon: 5',
+            'administer performance enhancing drugs: 15',
         ],
         type: 'active'
     },
@@ -51,6 +59,7 @@ const useCases: UseCase[] = [
         attribute: 'intelligence',
         description: 'reduce someones fear level, treat mental illness.',
         results: [
+            'therapy: 5: lose 1 mental health from stress (takes 2 hour, max once per day)',
             'therapy 20: heal 1d2 mental health (takes 2 hour, max once per day)',
             'therapy 25: heal 1d4 mental health (takes 2 hour, max once per day)',
             'therapy 30: heal 1d6 mental health (takes 2 hour, max once per day)',

@@ -159,7 +159,7 @@ const Equipment: React.FC = () => {
                 <h5>Power Armor Frame</h5>
                 <ArmorTable armors={powerArmors} />
             </Indexed>
-            <Indexed title='Tools'>
+            {/*<Indexed title='Tools'>
                 <table>
                     <thead><tr>
                         <th>name</th><th>value</th><th>weight</th><th>description</th>
@@ -191,7 +191,7 @@ const Equipment: React.FC = () => {
                         <tr> <td>Personal solar array</td><td>2000 c</td><td>1kg</td><td>Small scale solar generator, can be used to power any average tool (tools and energy weapons), multiple may be used to recharge small vehicles</td></tr>
                     </tbody>
                 </table>
-            </Indexed>
+</Indexed>*/}
             <Indexed title='Quality and Condition'>
                 <p>Quality and condition are optional rules that can increase variety and make items feel more personal.</p>
                 <h4>Condition</h4>
@@ -532,9 +532,6 @@ const FireArmRow = (f: FireArm) => {
         </tr>}
     </>);
 }
-const bottomStyle: CSSProperties = {
-    borderBottom: '1px dotted black'
-}
 const AmmoTable = (ammo: AmmoInformation[]) =>
     <table>
         <thead>
@@ -556,7 +553,7 @@ const AmmoTable = (ammo: AmmoInformation[]) =>
                     </td>
                 </tr>
                     <tr>
-                        <td style={bottomStyle} colSpan={4}>{a.description}</td>
+                        <td className='univeralBorderBottom' colSpan={4}>{a.description}</td>
                     </tr>
                 </>)}
         </tbody>

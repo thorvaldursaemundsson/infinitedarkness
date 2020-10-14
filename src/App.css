@@ -284,3 +284,7 @@ h5.perkstitle {
 p.perksdescription {
     margin-top: 4px;
 }
+
+.univeralBorderBottom {
+    border-bottom: 1px dotted black;
+}

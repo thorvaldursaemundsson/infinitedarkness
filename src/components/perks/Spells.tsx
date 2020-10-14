@@ -100,22 +100,25 @@ export const DarkVortex = new SpellTemplate(
 
 export const LuminiferousTransubstantiation = new SpellTemplate(
     'Luminiferous Transubstantiation',
-    'Spell: Your body converts into pure ultra high energy light that moves at the speed of light through up to 100m of matter or 100km of air, you travel up 300km. Clothes and equipment not included by default. While in light form you are blind, you must roll 10 points higher to accurately rematerialize where you want to, otherwise you will rematerialize within 1d100 x 10 meters of the target.',
+    'Spell: Your body converts into pure ultra high energy light that moves at the speed of light through up to 1m of solid or liquid matter or 30m of air, you travel up 30m. Clothes and equipment not included by default. While in light form you are blind, you must roll 10 points higher to accurately rematerialize where you want to, otherwise you will rematerialize within 1d6 meters of the target.',
     'personal',
-    ['base mana: 2',
-        'increase distance: +1 mana per 300km',
-        'increase through: +1 mana per 100m or 100km air',
-        'bring additional stuff: +1 mana per 10kg',
-        'if you dont see the target: -10 to your roll']
+    [
+        'base mana: 2',
+        'increase distance: +1 mana per +300m distance and +1m through solid objects',
+        'bring additional stuff: +1 mana per 20kg',
+        'if you dont see the target: -10 to your roll',
+        'if you materialize inside solid matter you are ejected to the nearest empty space and take 1d6 damage per meter traveled',
+        'if you materialize inside liquid matter you take 1d6 damage'
+    ]
 );
 
 export const ColorBias = new SpellTemplate(
     'ColorBias',
-    'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 gram per hour, stops at 2 hours. Max 1kg',
+    'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram per hour, stops at 2 hours. Object weight max 1kg',
     'direct contact',
     [
         'base mana: 3',
-        'increase radiation level: +1 mana per level (+0.1 gram per hour)',
+        'increase radiation level: +1 mana per level (+0.1 microgram per hour)',
         'increase duration: +1 mana per hour',
         'increase max kg: +1 mana per kg'
     ]
@@ -123,8 +126,21 @@ export const ColorBias = new SpellTemplate(
 
 export const Rift = new SpellTemplate(
     'Rift',
-    'Spell: Opens up a tiny rift to another dimension at the palm of your hand, a strange energy leaks out ',
-    'direct contact'
+    'Spell: Opens up a tiny rift to another dimension at the palm of your hand, a strange energy leaks out. This rift can be moved around only by you, you move it freely with your mind. It moves at a rate of up to 600meters per round. It must be within 300 meters of you. Anyone that touches it must roll 1d10 for a random effect. It lasts as long as you want but drains you of 1 mana per turn. To hit a person you must make a combat roll. If two consequtive effects are the same, reroll.',
+    'direct contact',
+    [
+        'base mana: 4',
+        '1: a burst of unknown, shimmering energy escapes, roll 1d6, 1: strength, 2: agility, 3: endurance, 4: perception, 5: intelligence, 6: willpower. Roll 1d6 damage',
+        '2: a burst of invisible kinetic energy escapes, target is violently pushed away from rift, takes 2d6 damage (10 armor piercing), is moved an equal amount of meters away.',
+        '3: a burst of gamma rays escape, target gains 1d8 levels of radiation',
+        '4: a burst of heat escapes, target is ignited, takes 1d6 damage (8 armor piercing) per turn for 10 turns',
+        '5: a bubbling prismatic tentacle lashes out, target is healed 2d6 life but paralyzed for an equal number of rounds, gaining 1 life each round.',
+        '6: a stream of large teeth engulf the target, target takes 1d6 damage (2 armor piercing) and has a -10 penalty to all actions for 1 round',
+        '7: a burst of toxic black ash escapes, all people within 6 meters take 1d4 damage (6 armor piercing) and are blinded for 1 round',
+        '8: a white bolt of lightning escapes and hits the target, the target can take 1 extra action and takes 1 mental health damage for 1d6 rounds',
+        '9: the target gains control of the rift, but mana is drained at a double rate',
+        '10: a burst of otherworldy mental projections escape, target gains 1d6 mana, loses 2d6 mental health, if the target has enough spare points they can gain a spell or mutation immediately.'
+    ]
 );
 
 export const Conversation = new SpellTemplate(
