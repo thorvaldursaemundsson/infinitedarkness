@@ -31,6 +31,7 @@ interface Distance {
 
 export interface IPlanetoid extends IHeavelyBody {
     classification: string;
+    subClassification?:string|undefined;
     surfaceGravity: number;
     temperatureRange: [number, number, number];
     atmosphere: string;

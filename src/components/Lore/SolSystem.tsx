@@ -29,7 +29,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-173, 400, 427],
                 axialTilt: 0,
                 dayPeriod: 3600 * 24 * 80,
-                imageURL: 'texture_planet_mercury.jpg',
+                imageURL: 'images/texture_planet_mercury.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -48,7 +48,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [440, 446, 470],
                 axialTilt: 181,
                 dayPeriod: 3600 * 24 * 60,
-                imageURL: 'texture_planet_venus.jpg',
+                imageURL: 'images/texture_planet_venus.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -63,7 +63,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 feature: 'birthplace of humanity, 6.2 billion people',
                 surfaceGravity: 1,
                 orbitDistance: { distance: 1, unit: 'AU' },
-                imageURL: 'texture_planet_earth.jpg',
+                imageURL: 'images/texture_planet_earth.jpg',
                 axialTilt: 21,
                 dayPeriod: 3600 * 24,
                 bodyType: 'planetoid',
@@ -105,7 +105,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-103, 0, 40],
                 axialTilt: 10,
                 dayPeriod: 3600 * 25,
-                imageURL: 'texture_planet_mars.jpg',
+                imageURL: 'images/texture_planet_mars.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -142,7 +142,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-175, 0, 90],
                 axialTilt: -60,
                 dayPeriod: 3600 * 80,
-                imageURL: 'texture_planet_ceres.jpg',
+                imageURL: 'images/texture_planet_ceres.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -230,7 +230,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-100, 0, 30],
                 axialTilt: 0,
                 dayPeriod: 3600 * 11,
-                imageURL: 'texture_planet_jupiter.jpg',
+                imageURL: 'images/texture_planet_jupiter.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -250,7 +250,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-140, 0, 20],
                 axialTilt: 0,
                 dayPeriod: 3600 * 16,
-                imageURL: 'texture_planet_saturn.jpg',
+                imageURL: 'images/texture_planet_saturn.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -270,7 +270,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-190, -50, -10],
                 axialTilt: -60,
                 dayPeriod: 3600 * 21,
-                imageURL: 'texture_planet_uranus.jpg',
+                imageURL: 'images/texture_planet_uranus.jpg',
                 bodyType: 'planetoid',
             },
             {
@@ -289,7 +289,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                 temperatureRange: [-210, -100, -20],
                 axialTilt: 9,
                 dayPeriod: 3600 * 20,
-                imageURL: 'texture_planet_neptune.jpg',
+                imageURL: 'images/texture_planet_neptune.jpg',
                 bodyType: 'planetoid',
             },
             {

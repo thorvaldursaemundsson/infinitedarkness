@@ -31,11 +31,11 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     getColorFromStar(star: IStar): string {
         if (star.imageURL !== undefined && star.imageURL !== '') return star.imageURL;
         switch (star.classification) {
-            case 'A': return 'texture_star_class_a.jpg';
-            case 'F': return 'texture_star_class_f.jpg';
-            case 'G': return 'texture_star_class_g.jpg';
-            case 'K': return 'texture_star_class_k.jpg';
-            case 'M': return 'texture_star_class_m.jpg';
+            case 'A': return 'images/texture_star_class_a.jpg';
+            case 'F': return 'images/texture_star_class_f.jpg';
+            case 'G': return 'images/texture_star_class_g.jpg';
+            case 'K': return 'images/texture_star_class_k.jpg';
+            case 'M': return 'images/texture_star_class_m.jpg';
             default: return 'white.jpg';
         }
     }
@@ -85,7 +85,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         if (belt.bodyType !== 'belt') throw new Error('whoops');
         let innerRadius = getOritalDistanceMod(belt.orbitDistance) - 0.5;
         let outerRadius = innerRadius * 1.25 + 1;
-        var beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'texture_planet_belt.png', 0);
+        var beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'images/texture_planet_belt.png', 0);
         let beltPlan: IRotator = {
             mesh: beltDisk, body: belt, star: false,
             satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance),
@@ -100,7 +100,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         if (ring.bodyType !== 'ring') throw new Error('whoops');
         const inner = 0.2 + parent.body.mass / 120;
         const outer = inner + 0.2;
-        let rings = this.makeHolyDisk(inner, outer, 'texture_planet_rings.png', parent.body.axialTilt);
+        let rings = this.makeHolyDisk(inner, outer, 'images/texture_planet_rings.png', parent.body.axialTilt);
         rings.rotation.x = 90;
         rings.rotation.y = parent.body.axialTilt;
         parent.mesh.attach(rings);

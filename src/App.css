@@ -288,3 +288,7 @@ p.perksdescription {
 .univeralBorderBottom {
     border-bottom: 1px dotted black;
 }
+
+img.planetImage {
+    width: 100%;
+}
