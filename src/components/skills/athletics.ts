@@ -26,7 +26,7 @@ const useCases: UseCase[] = [
     {
         name: 'run',
         attribute: 'endurance',
-        description: 'how fast you run and how long you can run. Once you hit the limit you gain one level of exhaustion',
+        description: 'how fast you run and how long you can run. Once you hit the limit you gain one level of exhaustion. (take 10)',
         results: [
             'take one single step: -25 (unable to stand if you fail)',
             'walk 2 rounds: -20',

@@ -20,7 +20,7 @@ const useCases: UseCase[] = [
             'Add +5 to hit',
             'If roll equals defense then you hit with 1d3 bullets',
             'May also make any move action',
-            'Gain +1 bullet hit per each 10 over defense (max 4)'
+            'Gain +1 minimum bullets hit per each 10 over defense (max 4)'
         ],
         type: 'active'
     },
@@ -35,7 +35,7 @@ const useCases: UseCase[] = [
             'Defense from skill reduced by half',
             'May only make walk move action, move at half speed',
             'Strength requirement increase by 1',
-            'Gain +1 bullet hit per each 10 over defense (max 10)',
+            'Gain +1 minimum bullets hit per each 10 over defense (max 10)',
             'You may shoot multiple targets using this, -5 to hit for each extra target, all targets roll bullets individually with -1 per extra target (min 0)'
         ],
         type: 'active'

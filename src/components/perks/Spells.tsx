@@ -238,7 +238,7 @@ export const SolarFlare = new SpellTemplate(
         'Gain +2 defense and damage absorbtion while in effect',
         'Move at double speed',
         'Send out jet of hot plasma dealing 2d6, (combat + agility) range 10 meters',
-        'damage absorbtion to fire, lightning and plasma sources: 100'
+        'damage absorbtion from fire, lightning and plasma sources: 100'
     ]
 );
 
@@ -290,7 +290,7 @@ export const Xeropaga = new SpellTemplate(
 export const TwinSoul = new SpellTemplate(
     'Twin Soul',
     'Mutation: You have a guest inside your mind, another entity. This entity has their own mental abilities and skill set. If it is in their interest they can help you, you may use their skills or mental abilities for any check.',
-    undefined,
+    'touch',
     [
         'Interference: This entity can always communicate with you, if it wishes to distract you you have -3 to all rolls',
         'Eject entity: If (and only if) the entity is willing you may eject it, if it has nowhere to go it simply seizes to exist',
@@ -301,15 +301,14 @@ export const TwinSoul = new SpellTemplate(
 
 export const Ferral = new SpellTemplate(
     'Ferral',
-    'Mutation: Your skin turns into a dark shade of grey like iron then grow into small scales that rust and also slowly fall out. Your nails and teeth turn into black hard steel, your hair turn into thin steel wires',
+    'Mutation: Your skin turns into a dark shade of grey like iron then grow into small scales that rust and also slowly fall out. Your nails and teeth turn into black hard steel, your hair turn into thin steel wires. You are not affected by magnetism. Your insides and blood are also black and metallic.',
     undefined,
     [
-        'You gain 3 damage absorbtion at all times',
-        'Your unarmed attacks gain 2 armor piercing and 1 damage',
-        'You can eat and digest iron, if you do you gain +3 damage absorbtion for 1 day per 100 grams of iron',
-        'Your base weight increases by 25%',
-        'You increase strength and endurance by 1, decrease agility by 1',
-        'Electrical weapons deal double damage and always bypass damage absorbtion'
+        'You gain permanenty: 3 damage absorbtion',
+        'You gain permanently: 2 armor piercing and +1 damage on all unarmed attacks',
+        'you gain permanently: 1 strength, 1 endurance, -1 agility (min 1)',
+        'you gain permanently: +25% weight',
+        'You can increase damage absorbtion, strength and damage by 1 by eating 100 grams of pure iron, doing so costs one mana, lasts one 24 hours'
     ]
 );
 
