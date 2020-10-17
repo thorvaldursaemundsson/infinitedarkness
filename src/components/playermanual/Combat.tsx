@@ -111,14 +111,15 @@ const Combat: React.FC = () => {
                 <p>Some weapons that do splash damage are thrown or otherwise follow a ballistic path. These can potentially hit places that are not within direct line of sight. For these situations add +10 and range penalties are doubled.</p>
             </Indexed>
             <Indexed title='Distance'>
-                <p>Targets become harder to hit when they are further away, each 4 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
+                <p>Targets become harder to hit when they are further away, each 3 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
                 <ul>
                     <li>No gravity and no atmosphere: range penalties halfed (does not apply to lasers)</li>
                     <li>Rain or heavy winds: double range penalties</li>
+                    <li>Light mist or smoke: double range penalites</li>
                     <li>Mist or smoke: quadrouple range penalties</li>
                 </ul>
-                <p>Guns have a maximum range, beyond this it's impossible to hit</p>
-                <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage, as an optional rule you may reduce damage by 25% at half firearm range.</p>
+                <p>Guns have a maximum range, beyond this it's impossible to hit. In space this range is 2x</p>
+                <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage, as an optional rule you may reduce damage by 50% at half firearm range, this should stack with any inherit firearm range damage penalty.</p>
             </Indexed>
             <Indexed title='Cover'>
                 <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both passive defense and damage reduction</p>
@@ -139,11 +140,11 @@ const Combat: React.FC = () => {
                     </tbody>
                 </table>
                 <h5>Low cover</h5>
-                <p>less than 1/3rd of your body is covered, you gain +4 passive defense, 25% chance to apply damage absorbtion from cover</p>
+                <p>Low cover (25% +) of your body is covered, you gain +4 passive defense, 25% chance to apply damage absorbtion from cover</p>
                 <h5>High cover</h5>
-                <p>less than 2/3rds of your body is covered, you gain +8 passive defense, 50% chance to apply damage absorbtion from cover</p>
+                <p>Mid cover (50% +) of your body is covered, you gain +8 passive defense, 50% chance to apply damage absorbtion from cover</p>
                 <h5>Massive cover</h5>
-                <p>More than 2/3rds of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
+                <p>High cover (75% +) of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
                 <h5>total cover</h5>
                 <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the square, 100% chance to apply damage absorbtion from cover.
                 Total cover also prevents you from attacking.
