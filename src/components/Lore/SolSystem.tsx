@@ -11,7 +11,7 @@ const SolSystem = () => <StarSystem key='solsystem'
             classification: 'G',
             axialTilt: 0,
             dayPeriod: 3600 * 6,
-            imageURL: 'texture_star_sun.jpg',
+            imageURL: 'images/texture_star_sun.jpg',
             bodyType: 'star',
             planetoids: [{
                 name: 'Mercury',
@@ -81,7 +81,7 @@ const SolSystem = () => <StarSystem key='solsystem'
                     orbitDistance: { distance: 384400, unit: 'km' },
                     satelites: [],
                     temperatureRange: [-173, 0, 116],
-                    imageURL: 'texture_planet_moon.jpg',
+                    imageURL: 'images/texture_planet_moon.jpg',
                     axialTilt: -11,
                     dayPeriod: 3600 * 24 * 30,
                     bodyType: 'planetoid',
@@ -157,6 +157,11 @@ const SolSystem = () => <StarSystem key='solsystem'
                 feature: undefined,
                 surfaceGravity: 10,
                 orbitDistance: { distance: 5.2, unit: 'AU' },
+                temperatureRange: [-100, 0, 30],
+                axialTilt: 0,
+                dayPeriod: 3600 * 11,
+                imageURL: 'images/texture_planet_jupiter.jpg',
+                bodyType: 'planetoid',
                 satelites: [
                     {
                         name: 'io',
@@ -173,7 +178,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                         bodyType: 'planetoid',
                         axialTilt: 0,
                         dayPeriod: 3600 * 24 * 1.77,
-                        temperatureRange: [-183, -163, -143]
+                        temperatureRange: [-183, -163, -143],
+                        imageURL: 'images/texture_planet_io.jpg',
                     },
                     {
                         name: 'Europa',
@@ -190,7 +196,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                         bodyType: 'planetoid',
                         axialTilt: 0,
                         dayPeriod: 3600 * 24 * 3.5,
-                        temperatureRange: [-223, -171, -148]
+                        temperatureRange: [-223, -171, -148],
+                        imageURL: 'images/texture_planet_europa.jpg',
                     },
                     {
                         name: 'Ganymede',
@@ -207,7 +214,8 @@ const SolSystem = () => <StarSystem key='solsystem'
                         bodyType: 'planetoid',
                         axialTilt: 0,
                         dayPeriod: 3600 * 24 * 7.15,
-                        temperatureRange: [-203, -163, -120]
+                        temperatureRange: [-203, -163, -120],
+                        imageURL: 'images/texture_planet_ganymede.jpg',
                     },
                     {
                         name: 'Callisto',
@@ -224,14 +232,10 @@ const SolSystem = () => <StarSystem key='solsystem'
                         bodyType: 'planetoid',
                         axialTilt: 0,
                         dayPeriod: 3600 * 24 * 16.7,
-                        temperatureRange: [-193, -139, -108]
+                        temperatureRange: [-193, -139, -108],
+                        imageURL: 'images/texture_planet_callisto.jpg',
                     }
                 ],
-                temperatureRange: [-100, 0, 30],
-                axialTilt: 0,
-                dayPeriod: 3600 * 11,
-                imageURL: 'images/texture_planet_jupiter.jpg',
-                bodyType: 'planetoid',
             },
             {
                 name: 'Saturn',

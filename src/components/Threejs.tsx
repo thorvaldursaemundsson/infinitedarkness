@@ -51,18 +51,18 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         var [starContainer, starSphere, label] = this.makeSphere(this.calculateStarSize(star), star.name, this.getColorFromStar(star), star.axialTilt);
         starSphere.rotation.x = star.axialTilt;
         parentMesh.attach(starContainer);
-        let starRot: IRotator = { mesh: starSphere, body: star, star: true, satelite: false, periodFactor: 0, label: label, distanceMod: 0 };
+        let starRot: IRotator = { mesh: starSphere, body: star, star: true, satelite: false, periodFactor: 0, label: label, distanceMod: 0, periodMod: 0 };
         source.push(starRot);
         star.planetoids.map(planet => this.makePlanet(planet, starRot, parentMesh, source));
         return starRot;
     }
 
     calculateStarSize(star: IStar) {
-        return 0.6 + star.mass / 20;
+        return 0.6;
     }
 
     calculatePlanetSize(planet: IPlanetoid) {
-        return 0.1 + planet.mass / 60;
+        return 0.2 + Math.floor(Math.sqrt(planet.mass) * 100) / 5000;
     }
 
     makePlanet(planet: IPlanetoid, parent: IRotator, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[], isSatelite: boolean = false) {
@@ -73,7 +73,8 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         let rotPlan: IRotator = {
             mesh: planetSphere,
             body: planet, star: false, satelite: isSatelite, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, planet.orbitDistance),
-            label: label, distanceMod: getOritalDistanceMod(planet.orbitDistance)
+            label: label, distanceMod: getOritalDistanceMod(planet.orbitDistance),
+            periodMod: Math.floor(Math.random() * 100000),
         };
         planetSphere.rotation.x = planet.axialTilt;
         source.push(rotPlan);
@@ -89,7 +90,8 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         let beltPlan: IRotator = {
             mesh: beltDisk, body: belt, star: false,
             satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance),
-            label: undefined, distanceMod: 0
+            label: undefined, distanceMod: 0,
+            periodMod: 0,
         };
         source.push(beltPlan);
         parentMesh.attach(beltDisk);
@@ -262,8 +264,8 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                         let par: IPlanetoid = s.parent.body as IPlanetoid;
                         distMod += this.calculatePlanetSize(planet) + this.calculatePlanetSize(par);
                     }
-                    s.mesh.position.x = Math.sin(counter * s.periodFactor) * distMod + this.getPosX(s);
-                    s.mesh.position.y = Math.cos(counter * s.periodFactor) * distMod + this.getPosY(s);
+                    s.mesh.position.x = Math.sin((counter + s.periodMod) * s.periodFactor) * distMod + this.getPosX(s);
+                    s.mesh.position.y = Math.cos((counter + s.periodMod) * s.periodFactor) * distMod + this.getPosY(s);
                     if (s.label !== undefined) {
                         s.label.position.x = s.mesh.position.x;
                         s.label.position.y = s.mesh.position.y + 0.5 + s.body.mass / 240;
@@ -307,6 +309,7 @@ interface IRotator {
     parent?: IRotator;
     periodFactor: number;
     distanceMod: number;
+    periodMod: number;
 }
 
 const calculateOrbitalPeriod = (sourceMass: number, orbitalRadius: Distance) => {

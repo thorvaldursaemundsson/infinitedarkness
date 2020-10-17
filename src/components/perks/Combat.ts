@@ -142,6 +142,20 @@ export const Beast = new PerkTemplate({
     description: 'You cause absolute wreckage, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block'
 });
 
+export const ArmorSpecialist = new PerkTemplate({
+    name: 'armor specialist',
+    skill: 'combat',
+    description: 'You are a specialist at using armor, armor penalty to agility is reduced by 2 and weight from armor counts as half',
+    level: 1
+});
+
+export const ArmorMaster = new PerkTemplate({
+    name: 'armor master',
+    skill: 'combat',
+    description: 'You have mastered armor using, armor penalty to agility is further reduced by 2 and weight is halved again',
+    level: 2
+});
+
 export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization,
     MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, SneakAttack, Assassination, Disarm, DualWeaponFighter,
-    Barbarian, Berzerker, Beast];
+    Barbarian, Berzerker, Beast, ArmorSpecialist, ArmorMaster];
