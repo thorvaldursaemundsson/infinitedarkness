@@ -98,25 +98,25 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         description: 'a 20 gauge shotgun shell'
     }, {
         ammo: '20mm rpg',
-        cost: 150,
+        cost: 250,
         weight: 90,
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '30mm rpg',
-        cost: 300,
+        cost: 500,
         weight: 120,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '40mm rpg',
-        cost: 500,
+        cost: 800,
         weight: 160,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '50mm rpg',
-        cost: 750,
+        cost: 1250,
         weight: 220,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade'
