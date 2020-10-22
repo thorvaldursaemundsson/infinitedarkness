@@ -150,6 +150,13 @@ const Combat: React.FC = () => {
                 Total cover also prevents you from attacking.
                 </p>
             </Indexed>
+            <Indexed title='Dual wielding'>
+                <p>You can use two weapons, one in each hand, but without an appropriate perk you lose your ability and skill bonuses to the off-hand, and only benefit half of your skill bonus to your main hand. The off-hand also gains no bonus to damage from strength. Your off hand counts as having 2 lower strength</p>
+                <p>With the DoubleHanded trait both hands count as your main hand, you can use either hand for a weapon and if you dual wield they both only take the main hand penalty.</p>
+                <p>Strength requirement also increases by 2 points when you dual wield. If you put medium or large weapon in your off hand then the strength requirement increases to 3. Attempting to use a large weapon with one hand increases strength requirement by 2.</p>
+                <p>Small melee weapons have a default strength requirement of 1. Medium melee weapons have a default strength requirement of 3. Large melee weapons have a default requirement of 5.</p>
+                <p>Two handed firearms (anything but hand-guns and the Fantry Lasergun) can not be dual wielded.</p>
+            </Indexed>
         </Indexer>
     </Section>;
 }

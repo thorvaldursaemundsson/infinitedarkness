@@ -111,14 +111,14 @@ export const DualWeaponFighter = new PerkTemplate({
     name: 'dual weapon fighter',
     skill: 'combat',
     level: 1,
-    description: 'When you use two weapons the second attack benefits from strength and agility.'
+    description: 'When you use two weapons strength requirement increases are reduced by half, your off-hand gains full agility and half skill.'
 });
 
 export const DualWeaponMaster = new PerkTemplate({
     name: 'dual weapon master',
     skill: 'combat',
     level: 2,
-    description: 'When you use two weapons you may make second attack with your off-hand weapon on every attack.',
+    description: 'When you use two weapons strength requirement increases are ignored. Both hands gain full skill and agility bonus.',
 });
 
 export const Barbarian = new PerkTemplate({

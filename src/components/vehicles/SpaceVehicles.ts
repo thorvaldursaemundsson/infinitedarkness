@@ -11,7 +11,7 @@ const SpaceVehicles: Vehicle[] = [
         topSpeed: 24000,
         acceleration: 45,
         cost: 450000000,
-        description: 'rocket ship capable of taking off and landing on any planet with less than 3g atmosphere, space capable, radiation shield for interplanetary travel, needs refuel and service every trip, service price 20% of total value',
+        description: 'rocket ship capable of taking off and landing on any planet with less than 3g atmosphere, space capable, radiation shield for interplanetary travel, single use, mostly used for getting off planets with heavy gravity and without oxygen atmosphe',
         parts: []
     },
     {
@@ -24,7 +24,20 @@ const SpaceVehicles: Vehicle[] = [
         topSpeed: 36000,
         acceleration: 40,
         cost: 900000000,
-        description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use',
+        description: 'hypersonic airplane with rocket switch, capable of both flying through air and space, only needs refuel and basic service after every use. Sufficient for getting into orbit from a runway and back again',
+        parts: []
+    },
+    {
+        name: 'Escape pod',
+        medium: ['space', 'air'],
+        passengers: 2,
+        fuelType: [],
+        range: 0,
+        topSpeed: 0,
+        acceleration: 0,
+        description: 'keeps up to two passengers in cryostasis, considered safe for up to 1 year, contains a parachute so if it hits an atmosphere it will land safely. Air for 1 day prior to cryostasis.',
+        cost: 10000,
+        cargoKg: 100,
         parts: []
     },
     {
