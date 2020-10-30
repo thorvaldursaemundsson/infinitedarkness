@@ -8,9 +8,9 @@ export interface Trait extends IHooker {
 }
 
 const Coward: Trait = {
-    name: 'cowardwardice',
+    name: 'Coward',
     cost: -10,
-    description: 'You are a coward that more easily falls vicim to fear. willpower counts as 2 lower for fear',
+    description: 'You are a coward that more easily falls vicim to fear. Take a -2 to all frighten rolls and defense, frightened status lasts twice as long',
     applyTo: 'fear',
     amount: -2,
 }
@@ -18,7 +18,7 @@ const Coward: Trait = {
 const Brave: Trait = {
     name: 'brave',
     cost: 10,
-    description: 'You are brave and are less likely to be phased by fear. willpower counts as 2 higher for fear',
+    description: 'You are brave and are less likely to be phased by fear. Take +2 to all frighten rolls and defense, frightened always only lasts 1 round.',
     applyTo: 'fear',
     amount: 2,
 }
