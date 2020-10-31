@@ -4,10 +4,10 @@ import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
 import usePersistentState from './utils/usePersistentState';
+const Battleview = lazy(() => import('./views/Battleview'));
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
-const Wizard = lazy(() => import('./views/Wizard'));
 const PlayerManual = lazy(() => import('./views/PlayerManual'));
 
 const App: React.FC = () => {
@@ -19,16 +19,14 @@ const App: React.FC = () => {
   const gameMaster = 'Game Master';
   const worldAndLore = 'World & Lore';
   const skillsAndPerks = 'Skills & Perks';
-  const wizard = 'Character Wizard';
-  const about = 'About';
+  const battleView = 'Battleview';
   let options = [main,
     characterSheet,
     playerManual,
     gameMaster,
     worldAndLore,
     skillsAndPerks,
-    wizard,
-    about
+    battleView
   ];
   const parseMenu = (choice: string) => setViewMode(choice);
 
@@ -45,8 +43,8 @@ const App: React.FC = () => {
           Due to the limitations of telescopes most stars in the local neighborhood are still mostly uncharted, very little is known of each system beyond the classification of the star and occationally limited information of a planet.
           </p>
           <p>No body knows what lurks out there and if you can't take a little bloody nose then perhaps you ought to go home and crawl under you bed. It's not safe out there, it's wonderous with treasures to satiete desires both subtle and gross. But it's not for the timid</p>
-          <hr/>
-          <p>This page uses session storage (similar to cookies) click <span style={{textDecoration: 'underline', color:'red', cursor:'pointer'}} onClick={() => sessionStorage.clear()}>here</span> to purge session manually.</p>
+          <hr />
+          <p>This page uses session storage (similar to cookies) click <span style={{ textDecoration: 'underline', color: 'red', cursor: 'pointer' }} onClick={() => sessionStorage.clear()}>here</span> to purge session manually.</p>
         </Conditional>
         <Conditional shouldView={viewMode === characterSheet}>
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
@@ -63,17 +61,8 @@ const App: React.FC = () => {
         <Conditional shouldView={viewMode === skillsAndPerks}>
           <SkillPerkManual />
         </Conditional>
-        <Conditional shouldView={viewMode === wizard}>
-          <Wizard />
-        </Conditional>
-        <Conditional shouldView={viewMode === about}>
-          <h2>About</h2>
-          <h3>This is a work in progress</h3>
-          <p>Author: Thorvaldur Saemundsson</p>
-          <p>Technology: ReactJS, github pages</p>
-          <p>Project: Infinite Darkness, a sci-fi and fantasy game</p>
-          <p>Please formulate any complaints and suggestions in the form of a pull request ;)</p>
-          <span style={{ float: 'right', fontSize: '11px' }}>Copyright Thorvaldur Saemundsson</span>
+        <Conditional shouldView={viewMode === battleView}>
+          <Battleview />
         </Conditional>
       </div>
     </>
