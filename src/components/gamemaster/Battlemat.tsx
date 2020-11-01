@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties, useState } from 'react';
 
 interface IBattlemapState {
     outputData: string;
@@ -7,6 +7,7 @@ interface IBattlemapState {
 
 interface IBattlemapWrapperState extends IBattlemapState {
     isVisible: boolean;
+    currentEdit: Icon | undefined;
 }
 
 interface IBattlematProps {
@@ -19,7 +20,11 @@ interface Icon {
     symbol: string;
     startX: number;
     startY: number;
+    id: string;
+    sequence: number;
+    speed: number;
 }
+
 
 export default class Battlemap extends React.Component<IBattlematProps, IBattlemapWrapperState> {
     mount: HTMLCanvasElement | undefined | null;
@@ -36,20 +41,72 @@ export default class Battlemap extends React.Component<IBattlematProps, IBattlem
             outputData: ':)',
             currentIcons: props.initialIcons,
             isVisible: false,
+            currentEdit: undefined,
         };
+    }
+
+    componentDidUpdate() {
+        if (this.props.initialIcons.length !== this.state.currentIcons.length)
+            this.setState({ currentIcons: this.props.initialIcons });
     }
 
     showHexmat() {
         if (this.state.isVisible === false) return null;
-        return <Hexmat initialIcons={this.props.initialIcons} boardHeight={this.props.boardHeight} boardWidth={this.props.boardWidth} />;
+        return <Hexmat initialIcons={this.state.currentIcons} boardHeight={this.props.boardHeight} boardWidth={this.props.boardWidth} />;
+    }
+
+    showEditor() {
+        if (this.state.isVisible !== false) return null;
+
+        return <><h5>Character editor</h5><ul>
+            {this.state.currentIcons.map(char => {
+                return <li onClick={() => this.setState({ currentEdit: char })}>{char.symbol}</li>
+            })}
+        </ul>
+            {this.state.currentEdit !== undefined ? <IconEditor onChange={(i) => this.editIcon(i)} icon={this.state.currentEdit} /> : null}
+        </>;
+    }
+
+    editIcon(i: Icon) {
+        let icons = this.state.currentIcons;
+        for (var index in icons) {
+            var icon = icons[index];
+            if (icon.id === i.id) {
+                icon.sequence = i.sequence;
+                icon.speed = i.speed;
+                icon.symbol = i.symbol;
+            }
+        }
+        this.setState({ currentIcons: icons, currentEdit: undefined });
     }
 
     render() {
         return <>
-            <button onClick={() => this.setState({ isVisible: !this.state.isVisible })}>show</button>
+            <button onClick={() => { this.setState({ isVisible: !this.state.isVisible }); this.forceUpdate(); }}>show</button>
             {this.showHexmat()}
+            {this.showEditor()}
         </>;
     }
+}
+
+interface IconEditorProps {
+    icon: Icon;
+    onChange: (i: Icon) => void;
+}
+const inputCss: CSSProperties = {
+    width: '60px'
+};
+const IconEditor: React.FC<IconEditorProps> = ({ icon, onChange }) => {
+    const [symbol, setSymbol] = useState(icon.symbol);
+    const [speed, setSpeed] = useState(icon.speed);
+    const [sequence, setSequence] = useState(icon.sequence);
+    return <>
+        Symbol: <input type='text' style={inputCss} value={symbol} onChange={(e) => setSymbol(e.target.value)} /><br />
+        Speed: <input type='text' style={inputCss} value={speed} onChange={(e) => setSpeed(parseInt(e.target.value))} /><br />
+        Sequence: <input type='text' style={inputCss} value={sequence} onChange={(e) => setSequence(parseInt(e.target.value))} /><br />
+        <button onClick={() => onChange({ ...icon, symbol: symbol, speed: speed, sequence: sequence })}>Save</button>
+
+    </>;
 }
 
 class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
@@ -93,12 +150,40 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
 
                     const screenX = mouseEndY * this.hexRectangleWidth + ((mouseEndX % 2) * this.hexRadius);
                     const screenY = mouseEndX * (this.hexHeight + this.sideLength);
-                    let ctx = this.initializeBoard();
+
+                    var ctx = canvas.getContext('2d');
+                    if (ctx === null) return;
+                    ctx.clearRect(0, 0, this.props.boardWidth * 2 * this.sideLength, this.props.boardHeight * 2 * this.sideLength);
+
+
+                    ctx.fillStyle = "#000000";
+                    ctx.strokeStyle = "#666666";
+                    ctx.lineWidth = 1;
+                    this.drawBoard(ctx, this.props.boardWidth, this.props.boardHeight);
+
                     if (mouseEndX >= 0 && mouseEndX < this.props.boardWidth && mouseEndY >= 0 && mouseEndY < this.props.boardHeight && ctx !== undefined) {
                         ctx.strokeStyle = "#FF0000";
                         ctx.lineWidth = 3;
                         this.drawHexagon(ctx, screenX, screenY, false);
+                        ctx.strokeStyle = "#666666";
+                        ctx.lineWidth = 1;
                     }
+                    if (iconAtHex !== undefined && ctx !== undefined) {
+                        for (var xR = 0; xR < this.props.boardWidth; ++xR) {
+                            for (var yR = 0; yR < this.props.boardHeight; ++yR) {
+                                if (this.distanceBetweenPositions(xR, yR, iconAtHex.startX, iconAtHex.startY) <= iconAtHex.speed) {
+                                    ctx.fillStyle = "#9999FF";
+                                    this.drawHexagon(
+                                        ctx,
+                                        xR * this.hexRectangleWidth + ((yR % 2) * this.hexRadius),
+                                        yR * (this.sideLength + this.hexHeight),
+                                        true//, `${x};${y}`
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    this.drawIconsOnBoard(ctx);
                     hasmoved = true;
                 }
             });
@@ -112,7 +197,6 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
                     mouseStartY = Math.floor(y / (this.hexHeight + this.sideLength));
                     mouseStartX = Math.floor((x - (mouseStartY % 2) * this.hexRadius) / this.hexRectangleWidth);
                     iconAtHex = this.findIconAtHex(mouseStartX, mouseStartY);
-                    console.log(mouseStartX, mouseStartY, iconAtHex);
                 }
             });
             canvas.addEventListener("mouseup", () => {
@@ -120,11 +204,10 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
                     let icons = this.state.currentIcons;
                     for (var index in icons) {
                         var ic = icons[index];
-                        if (ic.symbol === iconAtHex.symbol) {
-                            console.log(`moving ${ic.symbol} from x ${ic.startX} -> ${mouseEndX} & y ${ic.startY} -> ${mouseEndY}`);
-
+                        if (ic.id === iconAtHex.id) {
                             ic.startY = mouseEndX;
                             ic.startX = mouseEndY;
+                            break;
                         }
                     }
                     this.setState({ currentIcons: icons });
@@ -140,16 +223,19 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
         }
     }
 
-    getIconPosition(icon: Icon) {
+    distanceBetweenPositions(x1: number, y1: number, x2: number, y2: number) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
 
+    getIconPosition(icon: Icon) {
         var x = this.hexRadius * 2 * (icon.startX + .25) + (icon.startY % 2 * this.hexRectangleWidth / 2);
         var y = this.hexRectangleHeight * 0.75 * (icon.startY + 0) + this.hexRectangleHeight / 2;
 
-        console.log('position: ', x, y);
         return { x: x, y: y };
     }
-
     componentDidUpdate() {
+        if (this.props.initialIcons.length !== this.state.currentIcons.length)
+            this.setState({ currentIcons: this.props.initialIcons });
         const canvas = this.mount;
         if (canvas === null || canvas === undefined) {
             return;
@@ -241,8 +327,18 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     }
 
     render() {
-        return <div style={{ background: 'white', width: '750px', height: '600px', overflow: 'scroll' }}>
-            <canvas height={this.props.boardHeight * this.sideLength * 1.5} width={this.props.boardWidth * this.sideLength * 1.8} onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)}></canvas>
-        </div>;
+        return <table ><tbody>
+            <tr><td>
+                <div style={{ background: 'white', width: '650px', height: '600px', overflow: 'scroll' }}>
+                    <canvas height={this.props.boardHeight * this.sideLength * 1.5} width={this.props.boardWidth * this.sideLength * 1.8} onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)}></canvas>
+                </div></td>
+                <td>
+                    <ul>
+                        {this.state.currentIcons.sort((a, b) => b.sequence - a.sequence).map(i => {
+                            return <li>{i.symbol}: {i.sequence}</li>
+                        })}
+                    </ul>
+                </td>
+            </tr></tbody></table>;
     }
 }

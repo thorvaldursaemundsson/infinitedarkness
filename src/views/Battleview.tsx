@@ -10,6 +10,17 @@ interface Icon {
     symbol: string;
     startX: number;
     startY: number;
+    id: string;
+    sequence: number;
+    speed: number;
+}
+const alpha = 'qwertyuiopasdfghjklzxcvbnm';
+const randId = () => {
+    let rand = '';
+    for (var counter = 0; counter < 10; counter++) {
+        rand += alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    return rand;
 }
 
 const Battleview: React.FC = () => {
@@ -18,8 +29,10 @@ const Battleview: React.FC = () => {
     const [currentAddingIcon, setCurrentAddingIcon] = useState('');
     const [icons, setIcons] = useState<Icon[]>([]);
 
+
+
     const addIcon = () => {
-        setIcons([...icons, { symbol: currentAddingIcon, startX: 0, startY: 0 }]);
+        setIcons([...icons, { symbol: currentAddingIcon, startX: icons.length, startY: 0, sequence: 0, speed: 0, id: randId() }]);
         setCurrentAddingIcon('');
         console.log({ icons });
     };
