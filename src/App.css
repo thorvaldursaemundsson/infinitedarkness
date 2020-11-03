@@ -292,3 +292,7 @@ p.perksdescription {
 img.planetImage {
     width: 100%;
 }
+
+li.highlightedLi {
+    background-color: beige;
+}

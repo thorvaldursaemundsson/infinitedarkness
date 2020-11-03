@@ -1,9 +1,10 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, lazy } from 'react';
 import './App.css';
 import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
 import usePersistentState from './utils/usePersistentState';
+import Conditional from './utils/Conditional';
 const Battleview = lazy(() => import('./views/Battleview'));
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
@@ -68,14 +69,7 @@ const App: React.FC = () => {
     </>
   );
 }
-interface ItemProp {
-  shouldView: boolean;
-}
 
-const Conditional: React.FC<ItemProp> = ({ shouldView, children }) => {
-  if (shouldView) return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
-  else return null;
-}
 
 interface MenuProps {
   callback: (option: string) => void;

@@ -43,7 +43,7 @@ const TribalChildhood: ITemplate = {
     skillOptions: ['athletics', 'acrobatics', 'cooking', 'empathy', 'stealth', 'survival']
 };
 
-export const Background1: IBackground = {
+export const EarlyChildhoodBackground: IBackground = {
     name: 'Early Childhood',
     description: 'This concerns your early childhood, where you were born and grew up may limit your options.',
     ageRange: [0, 9],
@@ -87,7 +87,7 @@ const TribalYouth: ITemplate = {
     skillOptions: ['athletics', 'acrobatics', 'combat', 'cooking', 'empathy', 'stealth', 'survival']
 }
 
-export const Background2: IBackground = {
+export const YouthBackground: IBackground = {
     name: 'Youth',
     description: 'How you spent your early teens to early adulthood can drastically change your trajectory in life.',
     ageRange: [10, 19],
@@ -125,7 +125,7 @@ const TribalAdult: ITemplate = {
     skillOptions: ['athletics', 'acrobatics', 'combat', 'firearms', 'empathy', 'intimidation', 'persuation', 'stealth', 'subtrefuge', 'survival'],
 };
 
-export const Background3: IBackground = {
+export const AdultBackground: IBackground = {
     name: 'Adulthood',
     description: 'If your character is older than 20 then they must choose an adult background. Beyond 40 is complete free form.',
     ageRange: [20, 39],
@@ -135,6 +135,6 @@ export const Background3: IBackground = {
 
 
 
-const Backgrounds = [Background1, Background2, Background3];
+const Backgrounds = [EarlyChildhoodBackground, YouthBackground, AdultBackground];
 
 export default Backgrounds;

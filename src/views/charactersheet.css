@@ -26,6 +26,24 @@ label {
     height: 100%;
 }
 
+label.shortLabel {
+    width: 160px;
+    margin-left: 20px;
+}
+
+label.veryShortLabel input {
+    width: 20px;
+}
+
+label.veryShortLabel {
+    width: 60px;
+    margin-left: 20px;
+}
+
+label.shortLabel input {
+    width: 40px;
+}
+
 td input {
     height: 100%;
     margin: 0;
