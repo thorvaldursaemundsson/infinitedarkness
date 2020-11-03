@@ -224,7 +224,13 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     }
 
     distanceBetweenPositions(x1: number, y1: number, x2: number, y2: number) {
-        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        const dx = Math.abs(x1 - x2);
+        const dy = Math.abs(y1 - y2);
+        const z1 = 0 - x1 - y1;
+        const z2 = 0 - x2 - y2;
+        const dz = Math.abs(z1 - z2);
+
+        return dx + dy;
     }
 
     getIconPosition(icon: Icon) {
@@ -293,6 +299,10 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
         }
     }
 
+    convertXyToXYZ(x: number, y: number):string {
+        return "";
+    }
+
     drawBoard(ctx: CanvasRenderingContext2D, width: number, height: number) {
         for (var x = 0; x < width; ++x) {
             for (var y = 0; y < height; ++y) {
@@ -300,7 +310,7 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
                     ctx,
                     x * this.hexRectangleWidth + ((y % 2) * this.hexRadius),
                     y * (this.sideLength + this.hexHeight),
-                    false//, `${x};${y}`
+                    false, this.convertXyToXYZ(x,y)
                 );
             }
         }

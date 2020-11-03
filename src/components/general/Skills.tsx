@@ -1,4 +1,6 @@
 
+export type SkillName = 'acrobatics'|'athletics'|'combat'|'computer'|'cooking'|'electronics'|'empathy'|'explosives'|'firearms'|'general knowledge'|'intimidation'|'investigation'|'larceny'|'mechanics'|'medicine'|'persuation'|'pilot'|'savoir-faire'|'science'|'spells'|'stealth'|'streetwise'|'subtrefuge'|'survival';
+
 export interface UseCase {
     attribute: 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
     name: string;
@@ -8,7 +10,7 @@ export interface UseCase {
 }
 
 export interface Skill {
-    name: string;
+    name: SkillName;
     level: number;
     description: string;
     useCases: UseCase[];
@@ -16,11 +18,11 @@ export interface Skill {
 
 
 export class SkillTemplate implements Skill {
-    name: string;
+    name: SkillName;
     level: number;
     description: string;
     useCases: UseCase[];
-    constructor(name: string, description: string, useCases: UseCase[], level = 0) {
+    constructor(name: SkillName, description: string, useCases: UseCase[], level = 0) {
         this.name = name;
         this.level = level;
         this.description = description;
