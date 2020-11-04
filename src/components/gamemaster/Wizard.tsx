@@ -35,6 +35,7 @@ const Wizard: React.FC = () => {
     const [backgroundSkills, setBackgroundSkills] = useState<SkillRankPair[]>([]);
 
     const completeStep1 = (race: race, gender: string, age: number, name: string) => {
+        setBackgroundSkills([]);
         setRace(race);
         setGender(gender);
         setAge(age);
@@ -46,8 +47,6 @@ const Wizard: React.FC = () => {
         setBackgroundSkills(skillData);
         setStep(2);
     }
-
-    
 
     return <div>
         <h2>Character Creator Wizard</h2>

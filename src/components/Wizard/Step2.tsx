@@ -23,23 +23,21 @@ export interface SkillRankPair {
     skill: SkillName;
     rank: number;
 }
-
+const setSkillRank = (skillRanks: SkillRankPair[], setSkillRanks: React.Dispatch<React.SetStateAction<SkillRankPair[]>>, skill: SkillName, rank: number) => {
+    let currentSkillRanks = skillRanks;
+    for (var index in currentSkillRanks) {
+        var skillRank = currentSkillRanks[index];
+        if (skillRank.skill === skill) {
+            console.log(`changing ${skill} from ${skillRank.rank} -> ${rank}`)
+            skillRank.rank = rank;
+            break;
+        }
+    }
+    setSkillRanks(currentSkillRanks);
+};
 const ChoostSkillsInTemplate: React.FC<ITemplateSkillPicker> = ({ inputTemplate, onComplete, pickRaise }) => {
     const [skillRanks, setSkillRanks] = useState<SkillRankPair[]>(inputTemplate.skillOptions.map(skill => { return { skill: skill, rank: 0 } }));
     const distinctPickRaise = [0, ...pickRaise.filter((v, i, a) => a.indexOf(v) === i)];
-
-
-    const setSkillRank = (skill: SkillName, rank: number) => {
-        let currentSkillRanks = skillRanks;
-        for (var index in currentSkillRanks) {
-            var skillRank = currentSkillRanks[index];
-            if (skillRank.skill === skill) {
-                skillRank.rank = rank;
-                break;
-            }
-        }
-        setSkillRanks(currentSkillRanks);
-    };
 
     return (<>
         <p>Please assign at least: {pickRaise.map(pr => `${pr} `)} to skills below.</p>
@@ -47,7 +45,9 @@ const ChoostSkillsInTemplate: React.FC<ITemplateSkillPicker> = ({ inputTemplate,
             {inputTemplate.skillOptions.map(skill => {
                 return <li><label className="veryShortLabel">{skill}</label>
                     {distinctPickRaise.map(rank => {
-                        return <label className="veryShortLabel"><input name={skill} type='radio' onClick={() => setSkillRank(skill, rank)} /> {rank}</label>
+                        return <label key={'ws2csin_l_'+skill+rank} className="veryShortLabel">
+                            <input key={'ws2csin_l_'+skill+rank} name={skill} type='radio' onClick={() => setSkillRank(skillRanks, setSkillRanks, skill, rank)} /> {rank}
+                        </label>
                     })}
                 </li>
             })}
@@ -74,11 +74,16 @@ const ChooseBackground: React.FC<IChooseBackground> = ({ backgroundOptions, onCo
         <p>{backgroundOptions.description}</p>
         <ul>
             {backgroundOptions.templates.map(temp => {
-                return <li className={isHighlighted(temp)}><b onClick={() => setSelectedTemplate(temp)}>{temp.name}</b>. {temp.description}</li>
+                return <li key={'ws2bgt_' + temp.name} className={isHighlighted(temp)}><b onClick={() => setSelectedTemplate(temp)}>{temp.name}</b>. {temp.description}</li>
             })}
         </ul>
-        {selectedTemplate !== undefined ? <ChoostSkillsInTemplate onComplete={(choices) => onComplete(choices)} pickRaise={backgroundOptions.pickRaise} inputTemplate={selectedTemplate} /> : null}
+        {selectedTemplate !== undefined ? <ChoostSkillsInTemplate key='ws2csit' onComplete={(choices) => onComplete(choices)} pickRaise={backgroundOptions.pickRaise} inputTemplate={selectedTemplate} /> : null}
     </>;
+}
+
+const nextBackground = (currentBackground: number, setCurrentBackground: React.Dispatch<React.SetStateAction<number>>, setSkillRanks: React.Dispatch<React.SetStateAction<SkillRankPair[]>>, skills: SkillRankPair[], skillRanks: SkillRankPair[]) => {
+    setCurrentBackground(currentBackground + 1);
+    setSkillRanks([...skillRanks, ...skills]);
 }
 
 const Step2: React.FC<IStep2Props> = ({ age, onComplete }) => {
@@ -86,22 +91,17 @@ const Step2: React.FC<IStep2Props> = ({ age, onComplete }) => {
     const [currentBackground, setCurrentBackground] = useState(0);
     const finalBackground = getFinalBackground(age);
 
-    const nextBackground = (skills: SkillRankPair[]) => {
-        setCurrentBackground(currentBackground + 1);
-        setSkillRanks([...skillRanks, ...skills]);
-    }
-
     const ViewBackgroundOptions = () => {
         switch (currentBackground) {
-            case 0: return <ChooseBackground onComplete={(skillRanks) => nextBackground(skillRanks)} backgroundOptions={EarlyChildhoodBackground} />;
-            case 1: return <ChooseBackground onComplete={(skillRanks) => nextBackground(skillRanks)} backgroundOptions={YouthBackground} />;
-            case 2: return <ChooseBackground onComplete={(skillRanks) => nextBackground(skillRanks)} backgroundOptions={AdultBackground} />;
+            case 0: return <ChooseBackground key='ws2cb1' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={EarlyChildhoodBackground} />;
+            case 1: return <ChooseBackground key='ws2cb2' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={YouthBackground} />;
+            case 2: return <ChooseBackground key='ws2cb3' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={AdultBackground} />;
             default: return null;
         }
     }
 
     return (<>
-        {currentBackground > finalBackground ? <button onClick={() => onComplete(skillRanks)}>Done</button> : <ViewBackgroundOptions />}
+        {currentBackground > finalBackground ? <button onClick={() => onComplete(skillRanks)}>Done</button> : <ViewBackgroundOptions key='ws2vbo' />}
     </>);
 }
 
