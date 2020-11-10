@@ -296,3 +296,19 @@ img.planetImage {
 li.highlightedLi {
     background-color: beige;
 }
+
+.listhighliter li {
+    background-color: lightgray;
+    border: solid lightgray 1px;
+}
+
+.listhighliter li:hover {
+    border: solid #959595 1px;
+}
+
+.listhighliter li label:hover {
+    border-bottom: solid #333333 2px;
+    border-top: solid #333333 2px;
+    margin-bottom: -2px;
+    margin-top: -2px;
+}

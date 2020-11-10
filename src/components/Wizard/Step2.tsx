@@ -28,7 +28,6 @@ const setSkillRank = (skillRanks: SkillRankPair[], setSkillRanks: React.Dispatch
     for (var index in currentSkillRanks) {
         var skillRank = currentSkillRanks[index];
         if (skillRank.skill === skill) {
-            console.log(`changing ${skill} from ${skillRank.rank} -> ${rank}`)
             skillRank.rank = rank;
             break;
         }
@@ -41,12 +40,12 @@ const ChoostSkillsInTemplate: React.FC<ITemplateSkillPicker> = ({ inputTemplate,
 
     return (<>
         <p>Please assign at least: {pickRaise.map(pr => `${pr} `)} to skills below.</p>
-        <ul>
+        <ul className="listhighliter">
             {inputTemplate.skillOptions.map(skill => {
-                return <li><label className="veryShortLabel">{skill}</label>
+                return <li><label className="shortLabel">{skill}</label>
                     {distinctPickRaise.map(rank => {
-                        return <label key={'ws2csin_l_'+skill+rank} className="veryShortLabel">
-                            <input key={'ws2csin_l_'+skill+rank} name={skill} type='radio' onClick={() => setSkillRank(skillRanks, setSkillRanks, skill, rank)} /> {rank}
+                        return <label key={'ws2csin_l_' + skill + rank} className="veryShortLabel">
+                            <input key={'ws2csin_l_' + skill + rank} name={skill} type='radio' onClick={() => setSkillRank(skillRanks, setSkillRanks, skill, rank)} /> {rank}
                         </label>
                     })}
                 </li>
@@ -60,21 +59,20 @@ interface IChooseBackground {
     backgroundOptions: IBackground;
     onComplete: (choices: SkillRankPair[]) => void;
 }
+const isHighlighted = (selectedTemplate: ITemplate | undefined, temp: ITemplate) => {
+    if (selectedTemplate === undefined) return "";
+    else return selectedTemplate.name === temp.name ? "highlightedLi" : "";
+}
+
 
 const ChooseBackground: React.FC<IChooseBackground> = ({ backgroundOptions, onComplete }) => {
     const [selectedTemplate, setSelectedTemplate] = useState<ITemplate | undefined>(undefined);
-
-    const isHighlighted = (temp: ITemplate) => {
-        if (selectedTemplate === undefined) return "";
-        else return selectedTemplate.name === temp.name ? "highlightedLi" : "";
-    }
-
     return <>
         <h4>{backgroundOptions.name}</h4>
         <p>{backgroundOptions.description}</p>
         <ul>
             {backgroundOptions.templates.map(temp => {
-                return <li key={'ws2bgt_' + temp.name} className={isHighlighted(temp)}><b onClick={() => setSelectedTemplate(temp)}>{temp.name}</b>. {temp.description}</li>
+                return <li key={'ws2bgt_' + temp.name} className={isHighlighted(selectedTemplate, temp)}><b onClick={() => setSelectedTemplate(temp)}>{temp.name}</b>. {temp.description}</li>
             })}
         </ul>
         {selectedTemplate !== undefined ? <ChoostSkillsInTemplate key='ws2csit' onComplete={(choices) => onComplete(choices)} pickRaise={backgroundOptions.pickRaise} inputTemplate={selectedTemplate} /> : null}

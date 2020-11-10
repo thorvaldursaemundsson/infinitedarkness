@@ -139,7 +139,7 @@ export const Rift = new SpellTemplate(
         '7: a burst of toxic black ash escapes, all people within 6 meters take 1d4 damage (6 armor piercing) and are blinded for 1 round',
         '8: a white bolt of lightning escapes and hits the target, the target can take 1 extra action and takes 1 mental health damage for 1d6 rounds',
         '9: the target gains control of the rift, but mana is drained at a double rate',
-        '10: a burst of otherworldy mental projections escape, target gains 1d6 mana, loses 2d6 mental health, if the target has enough spare points they can gain a spell or mutation immediately.'
+        '10: a burst of otherworldy mental projections escape, target gains 1d6 mana, loses 2d6 mental health, the target can gain a spell or mutation immediately.'
     ]
 );
 
