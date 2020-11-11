@@ -41,7 +41,7 @@ const ChoostSkillsInTemplate: React.FC<ITemplateSkillPicker> = ({ inputTemplate,
     return (<>
         <p>Please assign at least: {pickRaise.map(pr => `${pr} `)} to skills below.</p>
         <ul className="listhighliter">
-            {inputTemplate.skillOptions.map(skill => {
+            {inputTemplate.skillOptions.sort().map(skill => {
                 return <li><label className="shortLabel">{skill}</label>
                     {distinctPickRaise.map(rank => {
                         return <label key={'ws2csin_l_' + skill + rank} className="veryShortLabel">
