@@ -3,6 +3,7 @@ import React, { CSSProperties, useState } from 'react';
 interface IBattlemapState {
     outputData: string;
     currentIcons: Icon[];
+    currentIconsTurns: Icon | undefined;
 }
 
 interface IBattlemapWrapperState extends IBattlemapState {
@@ -27,13 +28,6 @@ interface Icon {
 
 
 export default class Battlemap extends React.Component<IBattlematProps, IBattlemapWrapperState> {
-    mount: HTMLCanvasElement | undefined | null;
-    hexagonAngle: number = 0;
-    sideLength: number = 25;
-    hexHeight: number = 0;
-    hexRadius: number = 0;
-    hexRectangleHeight: number = 0;
-    hexRectangleWidth: number = 0;
 
     constructor(props: Readonly<IBattlematProps>) {
         super(props);
@@ -42,6 +36,7 @@ export default class Battlemap extends React.Component<IBattlematProps, IBattlem
             currentIcons: props.initialIcons,
             isVisible: false,
             currentEdit: undefined,
+            currentIconsTurns: undefined,
         };
     }
 
@@ -60,7 +55,7 @@ export default class Battlemap extends React.Component<IBattlematProps, IBattlem
 
         return <><h5>Character editor</h5><ul>
             {this.state.currentIcons.map(char => {
-                return <li onClick={() => this.setState({ currentEdit: char })}>{char.symbol}</li>
+                return <li key={`bmceitems_${char.id}`} onClick={() => this.setState({ currentEdit: char })}>{char.symbol}</li>
             })}
         </ul>
             {this.state.currentEdit !== undefined ? <IconEditor onChange={(i) => this.editIcon(i)} icon={this.state.currentEdit} /> : null}
@@ -88,6 +83,57 @@ export default class Battlemap extends React.Component<IBattlematProps, IBattlem
         </>;
     }
 }
+
+interface ISequencerProps {
+    icons: Icon[];
+    onNext: (next: Icon) => void;
+}
+
+const Sequencer: React.FC<ISequencerProps> = ({ icons, onNext }) => {
+    const [currentRound, setCurrentRound] = useState(0);
+    const [currentSequence, setCurrentSequence] = useState(0);
+    const iconsBySequence = icons.sort((a, b) => b.sequence - a.sequence);
+    const maxSequence = icons.length >= 1 ? iconsBySequence[0].sequence : 0;
+    const nextRound = currentRound + 1;
+
+    const nextRoundAt = (roundNumber: number) => {
+        setCurrentSequence(maxSequence);
+        setCurrentRound(roundNumber);
+        if (iconsBySequence.length > 0) {
+            onNext(iconsBySequence[0]);
+        }
+    };
+
+    const next = () => {
+        const remainingIcons = iconsBySequence.filter(i => i.sequence < currentSequence);
+        if (remainingIcons.length > 0) {
+            setCurrentSequence(remainingIcons[0].sequence);
+            onNext(remainingIcons[0]);
+        }
+        else {
+            nextRoundAt(currentRound + 1);
+        }
+    };
+
+    return <>
+        <button onClick={() => nextRoundAt(1)}>Begin/restart</button>
+        <h5>Round {currentRound}</h5>
+        <ul>
+            {iconsBySequence.filter(i => i.sequence <= currentSequence).map(i => {
+                return <li key={`bmsqeuencer_${i.id}`}>{i.symbol} ({i.sequence})
+                {i.sequence === currentSequence ? <button onClick={() => next()}>Done</button> : null}
+                </li>
+            })}
+        </ul>
+        <h5>Round {nextRound}</h5>
+        <ul>
+            {iconsBySequence.filter(i => i.sequence > currentSequence).map(i => {
+                return <li key={`bmsqeuencer_${i.id}`}>{i.symbol} ({i.sequence})</li>
+            })}
+        </ul>
+    </>;
+}
+
 
 interface IconEditorProps {
     icon: Icon;
@@ -119,11 +165,13 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     hexRectangleHeight: number = 0;
     hexRectangleWidth: number = 0;
 
+
     constructor(props: Readonly<IBattlematProps>) {
         super(props);
         this.state = {
             outputData: ':)',
             currentIcons: props.initialIcons,
+            currentIconsTurns: undefined
         };
     }
 
@@ -265,8 +313,8 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
         ctx.fillStyle = "#000000";
         ctx.strokeStyle = "#666666";
         ctx.lineWidth = 1;
-        this.drawIconsOnBoard(ctx);
         this.drawBoard(ctx, this.props.boardWidth, this.props.boardHeight);
+        this.drawIconsOnBoard(ctx);
         return ctx;
     }
     findIconAtHex(x: number, y: number): Icon | undefined {
@@ -293,13 +341,24 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
 
             const { x, y } = this.getIconPosition(icon);
 
+            if (this.state.currentIconsTurns === undefined) {
+            }
+            else if (icon.id === this.state.currentIconsTurns.id) {
+                canvasContext.fillStyle = 'red';
+                this.drawHexagon(canvasContext,
+                    icon.startX * this.hexRectangleWidth + ((icon.startY % 2) * this.hexRadius),
+                    icon.startY * (this.sideLength + this.hexHeight),
+                    true);
+            }
+
             canvasContext.font = "11px arial";
             canvasContext.fillStyle = "black";
             canvasContext.fillText(`${icon.symbol}`, x, y);
+
         }
     }
 
-    convertXyToXYZ(x: number, y: number):string {
+    convertXyToXYZ(x: number, y: number): string {
         return "";
     }
 
@@ -310,7 +369,7 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
                     ctx,
                     x * this.hexRectangleWidth + ((y % 2) * this.hexRadius),
                     y * (this.sideLength + this.hexHeight),
-                    false, this.convertXyToXYZ(x,y)
+                    false, this.convertXyToXYZ(x, y)
                 );
             }
         }
@@ -343,11 +402,7 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
                     <canvas height={this.props.boardHeight * this.sideLength * 1.5} width={this.props.boardWidth * this.sideLength * 1.8} onContextMenu={(e) => e.preventDefault()} ref={ref => (this.mount = ref)}></canvas>
                 </div></td>
                 <td>
-                    <ul>
-                        {this.state.currentIcons.sort((a, b) => b.sequence - a.sequence).map(i => {
-                            return <li>{i.symbol}: {i.sequence}</li>
-                        })}
-                    </ul>
+                    <Sequencer icons={this.props.initialIcons} onNext={(n) => { this.forceUpdate(); this.setState({ currentIconsTurns: n }); }} />
                 </td>
             </tr></tbody></table>;
     }

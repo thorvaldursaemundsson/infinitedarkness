@@ -6,6 +6,10 @@ const inputCss: CSSProperties = {
     width: '60px'
 };
 
+const inputCssTiny: CSSProperties = {
+    width: '40px'
+};
+
 interface Icon {
     symbol: string;
     startX: number;
@@ -27,19 +31,24 @@ const Battleview: React.FC = () => {
     const [width, setWidth] = useState(18);
     const [height, setHeight] = useState(15);
     const [currentAddingIcon, setCurrentAddingIcon] = useState('');
+    const [currentAddingIconSqs, setCurrentAddingIconSqs] = useState(0);
+    const [currentAddingIconSpeed, setCurrentAddingIconSpeed] = useState(0);
     const [icons, setIcons] = useState<Icon[]>([]);
 
 
 
     const addIcon = () => {
-        setIcons([...icons, { symbol: currentAddingIcon, startX: icons.length, startY: 0, sequence: 0, speed: 0, id: randId() }]);
+        setIcons([...icons, { symbol: currentAddingIcon, startX: icons.length, startY: 0, sequence: currentAddingIconSqs, speed: currentAddingIconSpeed, id: randId() }]);
         setCurrentAddingIcon('');
-        console.log({ icons });
+        setCurrentAddingIconSpeed(0);
+        setCurrentAddingIconSqs(0);
     };
 
     return <>
-        <input type='text' title='width' style={inputCss} value={width} onChange={(e) => setWidth(parseInt(e.target.value))} />
-        <input type='text' title='height' style={inputCss} value={height} onChange={(e) => setHeight(parseInt(e.target.value))} /> |
+        <input type='text' title='width' style={inputCssTiny} value={width} onChange={(e) => setWidth(parseInt(e.target.value))} />
+        <input type='text' title='height' style={inputCssTiny} value={height} onChange={(e) => setHeight(parseInt(e.target.value))} /> |
+        <input type='text' title='sequence' style={inputCssTiny} value={currentAddingIconSqs} onChange={(e) => setCurrentAddingIconSqs(parseInt(e.target.value))} />
+        <input type='text' title='speed' style={inputCssTiny} value={currentAddingIconSpeed} onChange={(e) => setCurrentAddingIconSpeed(parseInt(e.target.value))} />
         <input type='text' title='add icon' style={inputCss} value={currentAddingIcon} onChange={(e) => setCurrentAddingIcon(e.target.value)} />
         <button onClick={() => addIcon()} >Add</button>
 
