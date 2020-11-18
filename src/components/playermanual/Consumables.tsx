@@ -353,6 +353,13 @@ const tools: ITool[] = [
         uses: 100,
         weightKg: 3,
         cost: 7000,
+    },
+    {
+        name: 'Neural enhancer',
+        description: 'A neural enhancer uses very precise magnetic fields to speed up brainwaves. Roll science + intelligence vs 25 to adapt it to your brain, the adaption lasts until you gain character points. If you succeed then you add +1 to all intelligence, perception and agility rolls for 4 hours. When the time is elapsed you take a -2 penalty for 4 hours. If you dont wait 16 hours to use it again you take 1 mental health damage.',
+        uses: 1000,
+        weightKg: 1,
+        cost: 8000,
     }
 ];
 
