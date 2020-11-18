@@ -141,6 +141,7 @@ export class Character {
             case 'medium': size = 6; break;
             case 'large': size = 7; break;
             case 'huge': size = 8; break;
+            default: size = 6; break;
         }
 
         let athl = 0;

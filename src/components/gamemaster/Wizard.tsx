@@ -3,20 +3,21 @@ import Conditional from '../../utils/Conditional';
 import { CharacterSheet } from '../../views/CharacterSheet';
 import { Character } from '../Character';
 import { GetSkillList } from '../general/GetSkillList';
-import Step1 from '../Wizard/Step1';
-import Step2, { SkillRankPair } from '../Wizard/Step2';
+import BackgroundChooser, { SkillRankPair } from '../Wizard/BackgroundChooser';
+import BasicChooser from '../Wizard/BasicChooser';
+import PointBuy, { IStats } from '../Wizard/PointBuy';
 
 type race = 'human' | 'shambras' | 'merlion' | 'nekovian';
 
-const getPopulatedSkillList = (backgroundSkills:SkillRankPair[]) => {
+const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
     const allSkills = GetSkillList();
 
-    for (var index in backgroundSkills){
+    for (var index in backgroundSkills) {
         var s = backgroundSkills[index];
-        
-        for (var index2 in allSkills){
+
+        for (var index2 in allSkills) {
             var s2 = allSkills[index2];
-            if (s2.name === s.skill){
+            if (s2.name === s.skill) {
                 s2.level += s.rank;
                 break;
             }
@@ -33,43 +34,58 @@ const Wizard: React.FC = () => {
     const [name, setName] = useState('no name');
     const [step, setStep] = useState(0);
     const [backgroundSkills, setBackgroundSkills] = useState<SkillRankPair[]>([]);
+    const [abilityStats, setAbilityStats] = useState<IStats>({
+        age: 24,
+        species: 'human',
+        strength: 4,
+        agility: 4,
+        endurance: 4,
+        perception: 4,
+        intelligence: 4,
+        willpower: 4,
+        size: 'medium'
+    });
 
-    const completeStep1 = (race: race, gender: string, age: number, name: string) => {
+    const completeStep1 = (changerace: race, gender: string, age: number, name: string) => {
         setBackgroundSkills([]);
-        setRace(race);
+        console.log('changing race from ' + race + ' to ' + changerace)
+        setRace(changerace);
         setGender(gender);
         setAge(age);
         setName(name);
         setStep(1);
     }
 
-    const completeStep2 = (skillData:SkillRankPair[]) => {
+    const completeStep2 = (skillData: SkillRankPair[]) => {
         setBackgroundSkills(skillData);
-        setStep(2);
+        setStep(3);
     }
 
     return <div>
         <h2>Character Creator Wizard</h2>
         <Conditional shouldView={step === 0} >
-            <Step1 onComplete={(race, gender, age, name) => completeStep1(race, gender, age, name)} ></Step1>
+            <BasicChooser onComplete={(race, gender, age, name) => completeStep1(race, gender, age, name)} />
         </Conditional>
-        <Conditional shouldView={step === 1} >
-            <Step2 age={age} onComplete={(skillRanks) => completeStep2(skillRanks)}></Step2>
+        <Conditional shouldView={step === 1}>
+            <PointBuy startingAge={age} startingSpecies={race} onComplete={(output) => { setAbilityStats(output); setStep(2) }} />
         </Conditional>
-        <Conditional shouldView={step === 2}>
+        <Conditional shouldView={step === 2} >
+            <BackgroundChooser age={age} onComplete={(skillRanks) => completeStep2(skillRanks)} />
+        </Conditional>
+        <Conditional shouldView={step === 3}>
             <CharacterSheet characterCallback={(c) => { }}
                 initialCharacter={new Character({
                     name: name,
                     gender: gender,
                     species: race,
                     age: age,
-                    strength: 4,
-                    agility: 4,
-                    endurance: 4,
-                    perception: 4,
-                    intelligence: 4,
-                    willpower: 4,
-                    size: 'medium',
+                    strength: abilityStats.strength,
+                    agility: abilityStats.agility,
+                    endurance: abilityStats.endurance,
+                    perception: abilityStats.perception,
+                    intelligence: abilityStats.intelligence,
+                    willpower: abilityStats.willpower,
+                    size: abilityStats.size,
                     skills: getPopulatedSkillList(backgroundSkills),
                     perks: [],
                     traits: [],
