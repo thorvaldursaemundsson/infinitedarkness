@@ -1,6 +1,6 @@
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import React, { useState } from 'react';
-import Battlemap from '../components/gamemaster/Battlemat';
+import { Battlemap } from '../components/gamemaster/Battlemat';
 
 const inputCss: CSSProperties = {
     width: '60px'

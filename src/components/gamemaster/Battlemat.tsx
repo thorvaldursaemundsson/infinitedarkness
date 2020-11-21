@@ -1,9 +1,16 @@
 import React, { CSSProperties, useState } from 'react';
 
+interface IHex {
+    x: number;
+    y: number;
+    z: number;
+}
+
 interface IBattlemapState {
     outputData: string;
     currentIcons: Icon[];
     currentIconsTurns: Icon | undefined;
+    hexes: IHex[]
 }
 
 interface IBattlemapWrapperState extends IBattlemapState {
@@ -27,61 +34,11 @@ interface Icon {
 }
 
 
-export default class Battlemap extends React.Component<IBattlematProps, IBattlemapWrapperState> {
+export const Battlemap: React.FC<IBattlematProps> = (props) => {
+    return <>
 
-    constructor(props: Readonly<IBattlematProps>) {
-        super(props);
-        this.state = {
-            outputData: ':)',
-            currentIcons: props.initialIcons,
-            isVisible: false,
-            currentEdit: undefined,
-            currentIconsTurns: undefined,
-        };
-    }
-
-    componentDidUpdate() {
-        if (this.props.initialIcons.length !== this.state.currentIcons.length)
-            this.setState({ currentIcons: this.props.initialIcons });
-    }
-
-    showHexmat() {
-        if (this.state.isVisible === false) return null;
-        return <Hexmat initialIcons={this.state.currentIcons} boardHeight={this.props.boardHeight} boardWidth={this.props.boardWidth} />;
-    }
-
-    showEditor() {
-        if (this.state.isVisible !== false) return null;
-
-        return <><h5>Character editor</h5><ul>
-            {this.state.currentIcons.map(char => {
-                return <li key={`bmceitems_${char.id}`} onClick={() => this.setState({ currentEdit: char })}>{char.symbol}</li>
-            })}
-        </ul>
-            {this.state.currentEdit !== undefined ? <IconEditor onChange={(i) => this.editIcon(i)} icon={this.state.currentEdit} /> : null}
-        </>;
-    }
-
-    editIcon(i: Icon) {
-        let icons = this.state.currentIcons;
-        for (var index in icons) {
-            var icon = icons[index];
-            if (icon.id === i.id) {
-                icon.sequence = i.sequence;
-                icon.speed = i.speed;
-                icon.symbol = i.symbol;
-            }
-        }
-        this.setState({ currentIcons: icons, currentEdit: undefined });
-    }
-
-    render() {
-        return <>
-            <button onClick={() => { this.setState({ isVisible: !this.state.isVisible }); this.forceUpdate(); }}>show</button>
-            {this.showHexmat()}
-            {this.showEditor()}
-        </>;
-    }
+        <Hexmat boardHeight={props.boardHeight} boardWidth={props.boardWidth} initialIcons={props.initialIcons} ></Hexmat>
+    </>;
 }
 
 interface ISequencerProps {
@@ -155,7 +112,7 @@ const IconEditor: React.FC<IconEditorProps> = ({ icon, onChange }) => {
     </>;
 }
 
-class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
+export class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
 
     mount: HTMLCanvasElement | undefined | null;
     hexagonAngle: number = 0;
@@ -171,7 +128,8 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
         this.state = {
             outputData: ':)',
             currentIcons: props.initialIcons,
-            currentIconsTurns: undefined
+            currentIconsTurns: undefined,
+            hexes: []
         };
     }
 
@@ -274,11 +232,14 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     distanceBetweenPositions(x1: number, y1: number, x2: number, y2: number) {
         const dx = Math.abs(x1 - x2);
         const dy = Math.abs(y1 - y2);
-        const z1 = 0 - x1 - y1;
-        const z2 = 0 - x2 - y2;
+        if (dy === 0) return dx;
+        if (dy === 1) return dx + 1 - (dy % 2);
+        //const dz = (dx + Math.floor(dy * 0.5 + .5));
+        const z1 = 0 - (x1 + Math.floor(y1 * 0.5 + .5));
+        const z2 = 0 - (x2 + Math.floor(y2 * 0.5 + .5));
         const dz = Math.abs(z1 - z2);
 
-        return dx + dy;
+        return dx + Math.max(dy, dz);
     }
 
     getIconPosition(icon: Icon) {
@@ -359,12 +320,16 @@ class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     }
 
     convertXyToXYZ(x: number, y: number): string {
-        return "";
+        return `${x};${y};${0 - (x + Math.floor(y * 0.5 + .5))}`;
     }
 
     drawBoard(ctx: CanvasRenderingContext2D, width: number, height: number) {
+
+        const hexes: IHex[] = [];
+
         for (var x = 0; x < width; ++x) {
             for (var y = 0; y < height; ++y) {
+                hexes.push({ x: x, y: y, z: 1 - (x + y) });
                 this.drawHexagon(
                     ctx,
                     x * this.hexRectangleWidth + ((y % 2) * this.hexRadius),

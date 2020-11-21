@@ -242,6 +242,21 @@ export const SolarFlare = new SpellTemplate(
     ]
 );
 
+export const QuantumLeap = new SpellTemplate(
+    'Quantum Leap',
+    'Spell: You make the electrons in your body perform a quantum leap, removing their friction from the rest of the world for a split second. While frictionless you can move through solid objects freely and become completely invisible. Gravity still applies so if you stand still and make a quantum leap you will fall through the ground potentially dooming yourself. If you end the spell while inside solid or liquid matter it fuses with your body- destroying it utterly. Lasts up to 1 round.',
+    'personal',
+    [
+        'base mana: 1 entire body or partial, clothes, armor, equipment, inventory is not automatically included',
+        'quantum leap other matter: +1 mana per 20 kg',
+        'extend duration: +1 mana per round (after 2 rounds you take 1 damage per round, this is damage can not be reduced by any means)',
+        'You can use this spell in place of dodge or block, making the attack phase through you. If you are multi-attacking this counts as a melee attack',
+        'To jump through a wall you must also succeed a acrobatics 15 or you will fuse with the wall or floor',
+        'You can make part of your body frictionless',
+        'While frictionless you are immune all photon and material effects.'
+    ]
+);
+
 
 //mutations
 export const MortisAlbum = new SpellTemplate(
@@ -314,7 +329,8 @@ export const Ferral = new SpellTemplate(
 
 
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral,
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, //6
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare];
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap //18
+];
