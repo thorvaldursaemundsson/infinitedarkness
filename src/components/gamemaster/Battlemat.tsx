@@ -13,32 +13,36 @@ interface IBattlemapState {
     hexes: IHex[]
 }
 
-interface IBattlemapWrapperState extends IBattlemapState {
-    isVisible: boolean;
-    currentEdit: Icon | undefined;
-}
-
 interface IBattlematProps {
     boardHeight: number;
     boardWidth: number;
     initialIcons: Icon[];
 }
 
-interface Icon {
+export interface Icon {
     symbol: string;
     startX: number;
     startY: number;
     id: string;
     sequence: number;
     speed: number;
+    maxLife: number;
+    currentLife: number;
 }
 
 
 export const Battlemap: React.FC<IBattlematProps> = (props) => {
-    return <>
-
-        <Hexmat boardHeight={props.boardHeight} boardWidth={props.boardWidth} initialIcons={props.initialIcons} ></Hexmat>
-    </>;
+    const [onlySequencer, setOnlySequencer] = useState(false);
+    if (onlySequencer === true)
+        return (<>
+            <button onClick={() => setOnlySequencer(false)}>View hexgrid</button><br />
+            <Sequencer icons={props.initialIcons} onNext={(n) => { }} />
+        </>);
+    else
+        return <>
+            <button onClick={() => setOnlySequencer(true)}>View only sequencer</button><br />
+            <Hexmat boardHeight={props.boardHeight} boardWidth={props.boardWidth} initialIcons={props.initialIcons} ></Hexmat>
+        </>;
 }
 
 interface ISequencerProps {
@@ -72,45 +76,62 @@ const Sequencer: React.FC<ISequencerProps> = ({ icons, onNext }) => {
         }
     };
 
+    const updateIcon = (icon:Icon) => {
+        const updateIcons = iconsBySequence;
+        for (var index in updateIcons){
+            const _updateIcon = updateIcons[index];
+            if (_updateIcon.id === icon.id) {
+                _updateIcon.currentLife = icon.currentLife;
+            }
+        }
+    };
+
     return <>
         <button onClick={() => nextRoundAt(1)}>Begin/restart</button>
         <h5>Round {currentRound}</h5>
         <ul>
             {iconsBySequence.filter(i => i.sequence <= currentSequence).map(i => {
-                return <li key={`bmsqeuencer_${i.id}`}>{i.symbol} ({i.sequence})
-                {i.sequence === currentSequence ? <button onClick={() => next()}>Done</button> : null}
+                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic =>updateIcon(ic)} icon={i} />
+                    {i.sequence === currentSequence ? <button onClick={() => next()}>Done</button> : null}
                 </li>
             })}
         </ul>
         <h5>Round {nextRound}</h5>
         <ul>
             {iconsBySequence.filter(i => i.sequence > currentSequence).map(i => {
-                return <li key={`bmsqeuencer_${i.id}`}>{i.symbol} ({i.sequence})</li>
+                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic =>updateIcon(ic)} icon={i} /></li>
             })}
         </ul>
     </>;
 }
 
-
-interface IconEditorProps {
-    icon: Icon;
-    onChange: (i: Icon) => void;
-}
 const inputCss: CSSProperties = {
     width: '60px'
 };
-const IconEditor: React.FC<IconEditorProps> = ({ icon, onChange }) => {
-    const [symbol, setSymbol] = useState(icon.symbol);
-    const [speed, setSpeed] = useState(icon.speed);
-    const [sequence, setSequence] = useState(icon.sequence);
-    return <>
-        Symbol: <input type='text' style={inputCss} value={symbol} onChange={(e) => setSymbol(e.target.value)} /><br />
-        Speed: <input type='text' style={inputCss} value={speed} onChange={(e) => setSpeed(parseInt(e.target.value))} /><br />
-        Sequence: <input type='text' style={inputCss} value={sequence} onChange={(e) => setSequence(parseInt(e.target.value))} /><br />
-        <button onClick={() => onChange({ ...icon, symbol: symbol, speed: speed, sequence: sequence })}>Save</button>
 
+interface IIconTrackerProps {
+    icon: Icon;
+    onChange:(icon:Icon)=>void;
+}
+
+const IconTracker: React.FC<IIconTrackerProps> = ({ icon, onChange }) => {
+    const [currentLife, setCurrentLife] = useState(icon.currentLife);
+    const [applyLife, setApplyLife] = useState(0);
+
+    const updateIcon = ( newLife:number) => {
+        setCurrentLife(newLife);
+        onChange({...icon, currentLife:newLife});
+    };
+
+    return <>
+        {icon.symbol} ({icon.sequence})
+        <input style={inputCss} type='text' title='life' value={currentLife} onChange={(e) => updateIcon(parseInt(e.target.value))} /> / {icon.maxLife} |
+        <input style={inputCss} type='text' title='damage' value={applyLife} onChange={(e) => setApplyLife(parseInt(e.target.value))} />
+        <button onClick={() => updateIcon(currentLife - applyLife)}>damage</button>
     </>;
 }
+
+
 
 export class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
 

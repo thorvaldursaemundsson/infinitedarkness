@@ -43,7 +43,8 @@ const Wizard: React.FC = () => {
         perception: 4,
         intelligence: 4,
         willpower: 4,
-        size: 'medium'
+        size: 'medium',
+        restExp: 0,
     });
 
     const completeStep1 = (changerace: race, gender: string, age: number, name: string) => {
@@ -89,7 +90,8 @@ const Wizard: React.FC = () => {
                     skills: getPopulatedSkillList(backgroundSkills),
                     perks: [],
                     traits: [],
-                    background: ''
+                    background: '',
+                    bonusExp: abilityStats.restExp,
                 })}
             />
         </Conditional>

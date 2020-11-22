@@ -129,7 +129,8 @@ export const Rift = new SpellTemplate(
     'Spell: Opens up a tiny rift to another dimension at the palm of your hand, a strange energy leaks out. This rift can be moved around only by you, you move it freely with your mind. It moves at a rate of up to 600meters per round. It must be within 300 meters of you. Anyone that touches it must roll 1d10 for a random effect. It lasts as long as you want but drains you of 1 mana per turn. To hit a person you must make a combat roll. If two consequtive effects are the same, reroll.',
     'direct contact',
     [
-        'base mana: 4',
+        'base mana: 3',
+        'The caster rolls the effect, can reroll for 1 mana',
         '1: a burst of unknown, shimmering energy escapes, roll 1d6, 1: strength, 2: agility, 3: endurance, 4: perception, 5: intelligence, 6: willpower. Roll 1d6 damage',
         '2: a burst of invisible kinetic energy escapes, target is violently pushed away from rift, takes 2d6 damage (10 armor piercing), is moved an equal amount of meters away.',
         '3: a burst of gamma rays escape, target gains 1d8 levels of radiation',
@@ -267,7 +268,8 @@ export const MortisAlbum = new SpellTemplate(
         'you gain 1 radiation resistance at all times',
         'you no longer eat food, drink water or breathe air',
         'you no longer need to sleep to rest, instead sitting still for 4 hours is enough to gain a full nights rest',
-        'you permanently increase perception by 1 and can see normally in darkness'
+        'you permanently increase your perception by 1',
+        'you can see shapes and contours in darkness'
     ]
 );
 
@@ -279,18 +281,24 @@ export const Ocultos = new SpellTemplate(
         'any yes or no question: 2 mana',
         'any single word answer question: 3 mana',
         'any single sentence answer question: 4 mana',
-        'any advanced question: 6 mana'
+        'any advanced question: 6 mana',
+        'you add +5 to your sequence'
     ]
 );
 
 export const Biopod = new SpellTemplate(
     'Biopod',
-    'Mutation: Nails and hair fall out and stop growing, a thin film of slick slime covers your skin, your pores turn into suckers which allow you to grab ahold of things, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow'
+    'Mutation: Nails and hair fall out and stop growing, a thin film of slick slime covers your skin, your pores turn into suckers which allow you to grab ahold of things, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow',
+    undefined,
+    [
+        'you automatically defeat attempts to grapple you, nothing can restrain you',
+        'slashing damage (for example blades) deal only half damage'
+    ]
 );
 
 export const Xeropaga = new SpellTemplate(
     'Xeropaga',
-    'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites. The snake phases through armor as if it was air, damage absorbtion from armor or cover has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, this affect only works once per target per 24h.',
+    'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
     undefined,
     [
         'use spell to hit their defense (standard rules) counts as full round action and you only have base level defense for the rest of the round. If you miss then no effect. No effects on robots',
@@ -310,6 +318,7 @@ export const TwinSoul = new SpellTemplate(
         'Interference: This entity can always communicate with you, if it wishes to distract you you have -3 to all rolls',
         'Eject entity: If (and only if) the entity is willing you may eject it, if it has nowhere to go it simply seizes to exist',
         'Absorb entity: You may absorb the mind of a dying (below -100% life, but not dead) person, the person must be willing',
+        'Slumber: You can enter a passive state where the other mind takes over, if you stay passive for more than 24h then you must succeed battle of wills or permanently become the passive',
         'Battle of wills: if you absorb a mind while already having one then the guest has a chance to force out the host, each roll 2d10+willpower, highest wins, loser is forcefully ejected.'
     ]
 );
@@ -323,11 +332,10 @@ export const Ferral = new SpellTemplate(
         'You gain permanently: 2 armor piercing and +1 damage on all unarmed attacks',
         'you gain permanently: 1 strength, 1 endurance, -1 agility (min 1)',
         'you gain permanently: +25% weight',
+        'you gain permanently: -1 speed',
         'You can increase damage absorbtion, strength and damage by 1 by eating 100 grams of pure iron, doing so costs one mana, lasts one 24 hours'
     ]
 );
-
-
 
 export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, //6
 

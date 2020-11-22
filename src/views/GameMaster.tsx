@@ -4,6 +4,7 @@ import Guidelines from '../components/gamemaster/Guidelines';
 import Experience from '../components/gamemaster/Experience';
 import GameTools from '../components/gamemaster/GameTools';
 import Wizard from '../components/gamemaster/Wizard';
+import CharacterGenerator from '../components/gamemaster/CharacterGenerator';
 
 
 const GameMaster: React.FC = () => {
@@ -18,6 +19,9 @@ const GameMaster: React.FC = () => {
         </Section>
         <Section title='Game Tools'>
             <GameTools />
+        </Section>
+        <Section title='NPC Generator'>
+            <CharacterGenerator />
         </Section>
         <Section title='Character creator wizard'>
             <Wizard />

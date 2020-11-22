@@ -234,6 +234,7 @@ export interface IStats {
     age: number;
     species: race;
     size: CharacterSize;
+    restExp:number;
 }
 
 interface IPointBuyProps {
@@ -281,7 +282,7 @@ const IStatsReducer = (state: IStats, action: IDispatch): IStats => {
 const fSumAbilities = (n: number): number => {
     let x = 0;
     for (let i = 0; i <= n; i++) {
-        x += i + i;
+        x += i * 4;
     }
     return x;
 };
@@ -316,14 +317,16 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
         intelligence: 4,
         perception: 4,
         willpower: 4,
-        size: 'medium'
+        size: 'medium',
+        restExp: 0,
     });
 
     const currentRacialMod = pickRacialMod(startingSpecies, startingAge);
     if (currentRacialMod === undefined) {
         return <>please choose valid species and age range</>;
     }
-    const pointsLeft = 160 - calculateCost(currentStats);
+    const max = 320;
+    const pointsLeft = (max - calculateCost(currentStats));
 
     const complete = () => {
         onComplete({
@@ -334,6 +337,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
             perception: currentStats.perception + currentRacialMod.perceptionMod,
             intelligence: currentStats.intelligence + currentRacialMod.intelligenceMod,
             willpower: currentStats.willpower + currentRacialMod.willpowerMod,
+            restExp: pointsLeft
         });
     }
 
@@ -347,7 +351,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <th style={{ width: '20%' }}>Value</th>
                     <th style={{ width: '20%' }}>Species mod</th>
                     <th style={{ width: '20%' }}>Final value</th>
-                    <th style={{ width: '20%' }}>Points left: {pointsLeft}</th>
+                    <th style={{ width: '20%' }}>Points left: {pointsLeft} / {max}</th>
                 </tr>
             </thead>
             <tbody>

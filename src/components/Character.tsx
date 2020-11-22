@@ -34,6 +34,7 @@ export interface ICharacter {
     perks: Perk[];
     traits: Trait[];
     size: CharacterSize;
+    bonusExp?: number | undefined;
 }
 
 export class Character {
@@ -52,6 +53,7 @@ export class Character {
     perks: Perk[];
     traits: Trait[];
     size: CharacterSize;
+    bonusExp: number;
     constructor(copy?: ICharacter) {
         this.name = (copy && copy.name) || "";
         this.species = (copy && copy.species) || "";
@@ -69,6 +71,7 @@ export class Character {
         else this.perks = [];
         this.age = (copy && copy.age) || 24;
         this.size = (copy && copy.size) || 'medium';
+        this.bonusExp = (copy && copy.bonusExp && copy.bonusExp) || 0;
     }
 
     public getCharacterPointsCostPerks() {
@@ -272,11 +275,11 @@ export class Character {
 
     public getStartingPointsAvailable() {
         switch (this.species) {
-            case 'human': return this.characterPointsHuman();
-            case 'merlion': return this.characterPointsMerlion();
-            case 'shambras': return this.characterPointsShambras();
-            case 'nekovian': return this.characterPointsNekovian();
-            default: return this.characterPointsHuman();
+            case 'human': return this.characterPointsHuman() + this.bonusExp;
+            case 'merlion': return this.characterPointsMerlion() + this.bonusExp;
+            case 'shambras': return this.characterPointsShambras() + this.bonusExp;
+            case 'nekovian': return this.characterPointsNekovian() + this.bonusExp;
+            default: return this.characterPointsHuman() + this.bonusExp;
         }
     }
 
