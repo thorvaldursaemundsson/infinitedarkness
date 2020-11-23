@@ -14,6 +14,8 @@ import Radiation from '../components/playermanual/Radiation';
 import Consumables from '../components/playermanual/Consumables';
 import Cybernetics from '../components/playermanual/Cybernetics';
 import HealthAndRest from '../components/playermanual/HealthAndRest';
+import { d100SpreaderT } from '../utils/d100Spreader';
+import Ellipsis from '../components/general/Ellipsis';
 
 const PlayerManual: React.FC = () => {
     return (<div>
@@ -52,7 +54,7 @@ const PlayerManual: React.FC = () => {
     </div>);
 }
 
-const RollingSkills = () => 
+const RollingSkills = () =>
     <Section title='Making a skill roll'>
         <h3>Rolling a skill</h3>
         <p>When you attempt to do anything that has a possibility of failure the GM will call on the player to make a skill roll. A skill roll involves two 10 sided dice, your skill rank and an appropriate ability (strength, agility, etc).</p>
@@ -81,7 +83,7 @@ const RollingSkills = () =>
         <p>If the situation is such that it allows for Take 10 then the player may opt to take 10 times as long and Take 15.</p>
     </Section>
 
-
+const sortedSpreadedSpells = d100SpreaderT(SpellsPerks.map(sp => { return { label: sp.name, value: sp } }).sort());
 
 const SpellRoller: React.FC = (props) => {
     const [rolls, setRolls] = useState<number[]>([]);
@@ -93,19 +95,29 @@ const SpellRoller: React.FC = (props) => {
     }
     const fractionOfSpells = 3;
     const Roll = () => {
-        let numbers:number[] = [];
-        for (let counter = 0; counter < fractionOfSpells; counter++){
+        let numbers: number[] = [];
+        for (let counter = 0; counter < fractionOfSpells; counter++) {
             numbers.push(DRollNot(numbers));
         }
         setRolls(numbers);
     };
 
     return (<>
+        <h2>Spell roller</h2>
         <p>When you want to acquire a supernatural ability, you roll over all spells and perks {fractionOfSpells} times and pick one. There are in total {SpellsPerks.length} spells and mutations.</p>
         <button onClick={() => Roll()}>Roll</button>
         <ol>
-            {rolls.map(r => <li>{SpellsPerks[r].name} ({r})</li>)}
+            {rolls.map(r => <li>{SpellsPerks[r].name} ({r})
+            <Ellipsis text={SpellsPerks[r].description} cutOff={10} />
+            </li>)}
         </ol>
+        <p>Or if you prefer to roll manually. If you roll the same option twice or a spell or mutation you already posess, just reroll. You should end up with exactly {fractionOfSpells} options.</p>
+        <ul>
+            {sortedSpreadedSpells.map(spread => {
+                return <li><label className="mediumSizedLabel">{spread.low} - {spread.high}: {spread.text} <input type='checkbox' /></label></li>
+            })}
+            <li><label className="mediumSizedLabel">{sortedSpreadedSpells[sortedSpreadedSpells.length - 1].high + 1} - 100: Reroll </label>(if you get this multiple times, just keep rerolling)</li>
+        </ul>
     </>);
 }
 

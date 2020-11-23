@@ -121,7 +121,7 @@ export class Character {
     }
 
     public getLowDefense() {
-        return this.getBaseDefense() + this.agility + this.getHook('defense');
+        return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('defense');
     }
 
     public getBaseCarryingCapacity() {
@@ -167,17 +167,6 @@ export class Character {
             case 'large': return 8;
             case 'huge': return 6;
             default: return 10;
-        }
-    }
-
-    private getSize() {
-        switch (this.size) {
-            case 'tiny': return 4;
-            case 'small': return 2;
-            case 'medium': return 0;
-            case 'large': return -2;
-            case 'huge': return -4;
-            default: return 0;
         }
     }
 
@@ -293,42 +282,20 @@ export class Character {
         }
 
     }
-
-    private getRacialLife() {
-        switch (this.species) {
-            case 'shambra':
-                if (this.age < 70) return +1;
-                if (this.age > 100) return +2;
-                return 0;
-            default: return 0;
-        }
-    }
-
     public getLife() {
-        return this.strength + this.endurance * 2 + this.getHook('life') + this.getRacialLife();
+        return Math.max(this.strength + this.endurance * 2 + this.getHook('life'), 1);
     }
 
     public getMana() {
-        return this.endurance + this.willpower * 2 + this.getHook('mana');
+        return Math.max(this.endurance + this.willpower * 2 + this.getHook('mana'), 1);
     }
 
     public getMentalHealth() {
-        return this.willpower * 2 + this.getHook('mentalHealth');
-    }
-
-    public getDamageBonusSmall() {
-        return Math.floor(this.strength / 5) + this.getHook('lightmelee');
-    }
-
-    public getDamageBonusMedium() {
-        return Math.floor(this.strength / 4) + this.getHook('mediummelee');
-    }
-    public getDamageBonusLarge() {
-        return Math.floor(this.strength / 3) + this.getHook('largemelee');
+        return Math.max(this.willpower * 2 + this.getHook('mentalHealth'), 1);
     }
 
     public getSequence() {
-        return this.perception + this.agility + this.getHook('sequence');
+        return Math.max(this.perception + this.agility + this.getHook('sequence'), 0);
     }
 
     public getHook(applyTo: string): number {

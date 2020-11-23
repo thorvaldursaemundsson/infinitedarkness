@@ -32,8 +32,8 @@ class SpellTemplate implements PerkTemplate {
 //spells
 export const DimensionalSwap = new SpellTemplate(
     'Dimensional Swap',
-    'Spell: You can cause an object to being to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
-    'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you.',
+    'Spell: You can cause an object to begin to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
+    'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you. It is not possible to create paradoxes',
     '10 meters, visual contact',
     [
         'base mana: 2',
@@ -114,7 +114,7 @@ export const LuminiferousTransubstantiation = new SpellTemplate(
 
 export const ColorBias = new SpellTemplate(
     'ColorBias',
-    'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram per hour, stops at 2 hours. Object weight max 1kg',
+    'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram of the object is annihilated per hour, stops at 2 hours. Object weight max 1kg',
     'direct contact',
     [
         'base mana: 3',
@@ -262,7 +262,7 @@ export const QuantumLeap = new SpellTemplate(
 //mutations
 export const MortisAlbum = new SpellTemplate(
     'Mortis Album',
-    'Mutation: body emits no heat (invisible to infrared), nails and hair become white and matte, your skin loses its color and becomes gray',
+    'Mutation: body emits no heat (invisible to infrared), nails and hair become white and matte, your skin loses its color and becomes gray. If injured white powder escapes instead of blood, you are no longer suseptible to the bleed condition.',
     undefined,
     [
         'you gain 1 radiation resistance at all times',
@@ -275,20 +275,20 @@ export const MortisAlbum = new SpellTemplate(
 
 export const Ocultos = new SpellTemplate(
     'Ocultos',
-    'Mutation: Eyes grow all over your body, at the rate of 1 per 1d12 days a new eye opens up somewhere randomly on your skin up to a maximum 33 additional eyes. The eyes are fully functional and grant the ability to gain a glipse of something of your choice, glipse closes the eye forever',
+    'Mutation: Eyes grow all over your body, at the rate of 1 per 1d12 days a new eye opens up somewhere randomly on your skin up to a maximum 33 additional eyes. The eyes are fully functional and grant the ability to gain a glipse of something of your choice, glipse closes an eye of your choice which then disappears. The GM rolls the correctness secretly.',
     undefined,
     [
-        'any yes or no question: 2 mana',
-        'any single word answer question: 3 mana',
-        'any single sentence answer question: 4 mana',
-        'any advanced question: 6 mana',
+        'any yes or no question: 2 mana. Answer correctness 99%',
+        'any single word answer question: 3 mana. Answer correctness 95%',
+        'any single sentence answer question: 4 mana. Answer correctness 90%',
+        'any advanced question: 6 mana. Answer correctness 80%',
         'you add +5 to your sequence'
     ]
 );
 
 export const Biopod = new SpellTemplate(
     'Biopod',
-    'Mutation: Nails and hair fall out and stop growing, a thin film of slick slime covers your skin, your pores turn into suckers which allow you to grab ahold of things, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow',
+    'Mutation: Nails and hair fall out and stop growing, a thin film of slick transparent mucus covers your skin, your pores turn into suckers which allow you to grab ahold of things and stick to hard surfaces, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow',
     undefined,
     [
         'you automatically defeat attempts to grapple you, nothing can restrain you',
@@ -298,7 +298,7 @@ export const Biopod = new SpellTemplate(
 
 export const Xeropaga = new SpellTemplate(
     'Xeropaga',
-    'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
+    'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites its victim. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
     undefined,
     [
         'use spell to hit their defense (standard rules) counts as full round action and you only have base level defense for the rest of the round. If you miss then no effect. No effects on robots',
