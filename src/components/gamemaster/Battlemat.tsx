@@ -76,9 +76,9 @@ const Sequencer: React.FC<ISequencerProps> = ({ icons, onNext }) => {
         }
     };
 
-    const updateIcon = (icon:Icon) => {
+    const updateIcon = (icon: Icon) => {
         const updateIcons = iconsBySequence;
-        for (var index in updateIcons){
+        for (var index in updateIcons) {
             const _updateIcon = updateIcons[index];
             if (_updateIcon.id === icon.id) {
                 _updateIcon.currentLife = icon.currentLife;
@@ -91,7 +91,7 @@ const Sequencer: React.FC<ISequencerProps> = ({ icons, onNext }) => {
         <h5>Round {currentRound}</h5>
         <ul>
             {iconsBySequence.filter(i => i.sequence <= currentSequence).map(i => {
-                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic =>updateIcon(ic)} icon={i} />
+                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic => updateIcon(ic)} icon={i} />
                     {i.sequence === currentSequence ? <button onClick={() => next()}>Done</button> : null}
                 </li>
             })}
@@ -99,7 +99,7 @@ const Sequencer: React.FC<ISequencerProps> = ({ icons, onNext }) => {
         <h5>Round {nextRound}</h5>
         <ul>
             {iconsBySequence.filter(i => i.sequence > currentSequence).map(i => {
-                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic =>updateIcon(ic)} icon={i} /></li>
+                return <li key={`bmsqeuencer_${i.id}`}><IconTracker onChange={ic => updateIcon(ic)} icon={i} /></li>
             })}
         </ul>
     </>;
@@ -111,16 +111,16 @@ const inputCss: CSSProperties = {
 
 interface IIconTrackerProps {
     icon: Icon;
-    onChange:(icon:Icon)=>void;
+    onChange: (icon: Icon) => void;
 }
 
 const IconTracker: React.FC<IIconTrackerProps> = ({ icon, onChange }) => {
     const [currentLife, setCurrentLife] = useState(icon.currentLife);
     const [applyLife, setApplyLife] = useState(0);
 
-    const updateIcon = ( newLife:number) => {
+    const updateIcon = (newLife: number) => {
         setCurrentLife(newLife);
-        onChange({...icon, currentLife:newLife});
+        onChange({ ...icon, currentLife: newLife });
     };
 
     return <>
@@ -341,7 +341,8 @@ export class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     }
 
     convertXyToXYZ(x: number, y: number): string {
-        return `${x};${y};${0 - (x + Math.floor(y * 0.5 + .5))}`;
+        const z = 0 - (x + Math.floor(y * 0.5 + .5));
+        return `${x};${y};${z}`;//`${x};${y};${0 - (x + Math.floor(y * 0.5 + .5))}`;
     }
 
     drawBoard(ctx: CanvasRenderingContext2D, width: number, height: number) {

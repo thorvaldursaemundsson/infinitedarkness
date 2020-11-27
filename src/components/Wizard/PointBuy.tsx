@@ -278,11 +278,11 @@ interface IDispatch {
 const IStatsReducer = (state: IStats, action: IDispatch): IStats => {
     return { ...state, ...action };
 }
-
+const abilityMultiplier = 2;
 const fSumAbilities = (n: number): number => {
     let x = 0;
     for (let i = 0; i <= n; i++) {
-        x += i * 4;
+        x += i * abilityMultiplier;
     }
     return x;
 };
@@ -325,7 +325,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
     if (currentRacialMod === undefined) {
         return <>please choose valid species and age range</>;
     }
-    const max = 320;
+    const max = abilityMultiplier * 80;
     const pointsLeft = (max - calculateCost(currentStats));
 
     const complete = () => {
