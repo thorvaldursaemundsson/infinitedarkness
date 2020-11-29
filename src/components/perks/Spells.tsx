@@ -347,12 +347,23 @@ const Ferral = new SpellTemplate(
         'you gain permanently: 1 strength, 1 endurance, -1 agility (min 1)',
         'you gain permanently: +25% weight',
         'you gain permanently: -1 speed',
-        'You can increase damage absorbtion, strength and damage by 1 by eating 100 grams of pure iron, doing so costs one mana, lasts one 24 hours'
+        'You can increase damage absorbtion, strength and damage by 1 by eating 500 grams of pure iron, doing so costs one mana and every 3rd drops speed by 1, speed cant go below 2, lasts one 24 hours'
     ]
 );
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, //6
+const CursedBlood = new SpellTemplate(
+    'Cursed Blood',
+    'Mutation: Your blood gains the ability to absorb and emit gamma radiation, each dose of radiation you gain heals 1 life, 1 mana and 1 level of exhaustion and 1 dose of radiation when you rest. Additionally you can emit gamma radiation, when you do you lose the ability to heal from radiation for 24 hours. Be warned that 5 levels of radiation or more for 24 hours is likely to kill you even with this mutation.',
+    undefined,
+    [
+        'Per 1 dose: 1 life, 1 mana, 1 exhaustion',
+        'Emit radiation: 3 mana cost, emit 4 level for 24 hours (you gain 1 dose per 12 hours)',
+        'If you bleed, your blood will emit level 5 radiation at 1 meter distance'
+    ]
+);
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, //7
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation //18
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation //19
 ];

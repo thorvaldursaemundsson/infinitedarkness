@@ -18,11 +18,11 @@ const Radiation = () => <Section title='Radiation'>
         <tbody>
             <tr> <td>0</td><td>Safe (drop 1 dose per year)</td> <td>0</td><td>No effect</td> </tr>
             <tr> <td>1</td><td>1 Year</td> <td>1</td><td>Life regen halved</td> </tr>
-            <tr> <td>2</td><td>1 Month</td> <td>2</td><td>-1 to all rolls</td> </tr>
-            <tr> <td>3</td><td>4 Days</td> <td>3</td><td>-2 to all rolls</td> </tr>
-            <tr> <td>4</td><td>12 hours</td> <td>4</td><td>-1 to all stats</td> </tr>
-            <tr> <td>5</td><td>1 hour</td> <td>5</td><td>-2 to all stats</td> </tr>
-            <tr> <td>6</td><td>10 minutes</td> <td>6</td><td>Life regen quartered</td></tr>
+            <tr> <td>2</td><td>1 Month</td> <td>2</td><td>-1 to all rolls, slight dizziness</td> </tr>
+            <tr> <td>3</td><td>4 Days</td> <td>3</td><td>-2 to all rolls, light nausea</td> </tr>
+            <tr> <td>4</td><td>12 hours</td> <td>4</td><td>-1 to all stats, </td> </tr>
+            <tr> <td>5</td><td>1 hour</td> <td>5</td><td>-2 to all stats, moderate nausea</td> </tr>
+            <tr> <td>6</td><td>10 minutes</td> <td>6</td><td>Life regen quartered, vomiting</td></tr>
             <tr> <td>7</td><td>10 rounds</td> <td>7</td><td>Hair falls out, severe nausea, -3 to all rolls</td> </tr>
             <tr> <td>8</td><td>2 rounds</td> <td>8</td><td>10% chance to die every day, tissue decay</td>  </tr>
             <tr> <td>9</td><td>1 rounds </td><td>9</td><td>5% chance to die every hour, lose 1 life every hour</td>  </tr>
