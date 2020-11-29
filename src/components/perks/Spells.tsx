@@ -29,8 +29,9 @@ class SpellTemplate implements PerkTemplate {
         return this.level * 10;
     }
 }
+
 //spells
-export const DimensionalSwap = new SpellTemplate(
+const DimensionalSwap = new SpellTemplate(
     'Dimensional Swap',
     'Spell: You can cause an object to begin to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
     'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you. It is not possible to create paradoxes',
@@ -46,7 +47,7 @@ export const DimensionalSwap = new SpellTemplate(
     ]
 );
 
-export const Splinter = new SpellTemplate(
+const Splinter = new SpellTemplate(
     'Splinter',
     'Spell: you split into two clones of yourself with all of your capabilities and has shared mana. Lasts 24 hours after which one will die and the other will revert into being the original (players choice). Spend 2 mana every day to keep it alive longer, prevents mana regen while active',
     'personal',
@@ -54,7 +55,7 @@ export const Splinter = new SpellTemplate(
         'Increase duration: +1 mana per 24 hour']
 );
 
-export const Unmask = new SpellTemplate(
+const Unmask = new SpellTemplate(
     'Unmask',
     'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm)',
     'personal',
@@ -68,7 +69,7 @@ export const Unmask = new SpellTemplate(
     ]
 );
 
-export const UmbraConstant = new SpellTemplate(
+const UmbraConstant = new SpellTemplate(
     'Umbra Constant',
     'Spell: Your shadow becomes a temporary fixture on the ground, you may also enter the shadow and hide inside it for up to one hour. If the surface is damaged you get pushed out immediately.',
     'direct contact',
@@ -81,7 +82,7 @@ export const UmbraConstant = new SpellTemplate(
         'hide additional stuff: +1 mana per 10 kg']
 );
 
-export const MirrorTrap = new SpellTemplate(
+const MirrorTrap = new SpellTemplate(
     'Mirror Trap',
     'Spell: you trap someone in a mirror when you see them through the mirror directly, they become trapped inside a fake mirror universe, they are automatically freed when the mirror is broken, while inside the mirror they are timeless and immortal, lasts 1 day',
     '10 meters, visual contact',
@@ -89,7 +90,7 @@ export const MirrorTrap = new SpellTemplate(
         'increase by 1 day: +1 mana per day']
 );
 
-export const DarkVortex = new SpellTemplate(
+const DarkVortex = new SpellTemplate(
     'Dark Vortex',
     'Spell: You draw dark matter from all directions into one single point up to 1 meter away from your head, the dark matter creates a gravity well with 1m/s/s pull at 1 meter away, lasts 1 minute. You can interact with this point as if it was a tiny ball',
     '1 meter, visual contact',
@@ -98,7 +99,7 @@ export const DarkVortex = new SpellTemplate(
         'increase distance: +1 mana per 5 meters']
 );
 
-export const LuminiferousTransubstantiation = new SpellTemplate(
+const LuminiferousTransubstantiation = new SpellTemplate(
     'Luminiferous Transubstantiation',
     'Spell: Your body converts into pure ultra high energy light that moves at the speed of light through up to 1m of solid or liquid matter or 30m of air, you travel up 30m. Clothes and equipment not included by default. While in light form you are blind, you must roll 10 points higher to accurately rematerialize where you want to, otherwise you will rematerialize within 1d6 meters of the target.',
     'personal',
@@ -112,7 +113,7 @@ export const LuminiferousTransubstantiation = new SpellTemplate(
     ]
 );
 
-export const ColorBias = new SpellTemplate(
+const ColorBias = new SpellTemplate(
     'ColorBias',
     'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram of the object is annihilated per hour, stops at 2 hours. Object weight max 1kg',
     'direct contact',
@@ -124,7 +125,7 @@ export const ColorBias = new SpellTemplate(
     ]
 );
 
-export const Rift = new SpellTemplate(
+const Rift = new SpellTemplate(
     'Rift',
     'Spell: Opens up a tiny rift to another dimension at the palm of your hand, a strange energy leaks out. This rift can be moved around only by you, you move it freely with your mind. It moves at a rate of up to 600meters per round. It must be within 300 meters of you. Anyone that touches it must roll 1d10 for a random effect. It lasts as long as you want but drains you of 1 mana per turn. To hit a person you must make a combat roll. If two consequtive effects are the same, reroll.',
     'direct contact',
@@ -144,7 +145,7 @@ export const Rift = new SpellTemplate(
     ]
 );
 
-export const Conversation = new SpellTemplate(
+const Conversation = new SpellTemplate(
     'Conversation',
     'Spell: You mentally communicate with anyone youve previously met, you may do at most 4 back/fourth, maximum 100 words each time. Persons who dont know you can do this will experience it as an inner monologue, asking uncomfortable questions may yield no answer',
     'unlimited',
@@ -157,7 +158,7 @@ export const Conversation = new SpellTemplate(
     ]
 );
 
-export const HyperSight = new SpellTemplate(
+const HyperSight = new SpellTemplate(
     'Hyper Sight',
     'Spell: You see things from the vantage point of a higher dimension, allowing you to see through matter as if it were transparent for up to 100 meters. Lasts 10 minutes',
     'personal',
@@ -167,7 +168,7 @@ export const HyperSight = new SpellTemplate(
         'increase time: +1 mana per 10 minutes']
 );
 
-export const Tesseraction = new SpellTemplate(
+const Tesseraction = new SpellTemplate(
     'Tesseraction',
     'Spell: you designate a 1x1x1 cubic meter volume to become the host of a four dimensional tesseract. You add 7 extra cubic meters of volume which only you can interact with, you may rotate the tesserate so that any of the volumes becomes coterminus with reality. Lasts 5 days',
     '1 meter visual contact',
@@ -179,7 +180,7 @@ export const Tesseraction = new SpellTemplate(
     ]
 );
 
-export const HarshEmpathy = new SpellTemplate(
+const HarshEmpathy = new SpellTemplate(
     'Harsh Empathy',
     'Spell: You establish an unrelenting empathic link to another person, which allows you to feel everything they feel, they feel everything you feel. Mental trauma and respite is shared. Lasts 1 day',
     '10 meters, visual contact',
@@ -189,7 +190,7 @@ export const HarshEmpathy = new SpellTemplate(
     ]
 );
 
-export const BrutalEmpathy = new SpellTemplate(
+const BrutalEmpathy = new SpellTemplate(
     'Brutal Empathy',
     'Spell: You establish an immediate empathic link to another person which causes the sum total of your life damage to be redistributed equally',
     '10 meters visual contact',
@@ -199,7 +200,7 @@ export const BrutalEmpathy = new SpellTemplate(
     ]
 );
 
-export const SpiritualRegeneration = new SpellTemplate(
+const SpiritualRegeneration = new SpellTemplate(
     'Spiritual Regeneration',
     'Spell: You are able to convert mana into life and reverse on yourself and others.',
     'personal or direct contact',
@@ -211,7 +212,7 @@ export const SpiritualRegeneration = new SpellTemplate(
     ]
 );
 
-export const Quintessence = new SpellTemplate(
+const Quintessence = new SpellTemplate(
     'Quintessence',
     'Spell: You projectile vomit a stream of a silvery bubbling liquid. When it hits a target the liquid engulfs it completely. After 1 minute the liquid disappates and the target is released, for the target no time has passed.',
     '5 meters',
@@ -228,7 +229,7 @@ export const Quintessence = new SpellTemplate(
     ]
 );
 
-export const SolarFlare = new SpellTemplate(
+const SolarFlare = new SpellTemplate(
     'Solar Flare',
     'Spell: Hot electric plasma engulfs your body, which you can direct at one target. If you are wearing clothes or armor they take damage. Lasts 1 minute',
     'personal, 10 meter range',
@@ -243,7 +244,7 @@ export const SolarFlare = new SpellTemplate(
     ]
 );
 
-export const QuantumLeap = new SpellTemplate(
+const QuantumLeap = new SpellTemplate(
     'Quantum Leap',
     'Spell: You make the electrons in your body perform a quantum leap, removing their friction from the rest of the world for a split second. While frictionless you can move through solid objects freely and become completely invisible. Gravity still applies so if you stand still and make a quantum leap you will fall through the ground potentially dooming yourself. If you end the spell while inside solid or liquid matter it fuses with your body- destroying it utterly. Lasts up to 1 round.',
     'personal',
@@ -258,9 +259,22 @@ export const QuantumLeap = new SpellTemplate(
     ]
 );
 
+const Assimilation = new SpellTemplate(
+    'Assimilation',
+    'Spell: You touch a living being and begin assimilating their body into yours, they roll 2d10 + willpower + spells to contest your roll, the winner steals 1d6 life and 1d4 mana from the loser. Additionally you gain some features from the creature (determined by the GM), if the loser dies then compare the winner and loser attribute, pick the one with the biggest difference and move one step closer. All these effects last 2d10 days.',
+    'touch',
+    [
+        'base mana: 2',
+        'increase damage +1d6 life, +1d4 mana, increase cost mana: +1',
+        'increase duration +1d10 days: increase cost mana: +1',
+        'negate ability loss: +4 mana (no effect if positive ability)',
+        'negate effect if lose: +4 mana (no effect on either if caster loses)'
+    ]
+);
+
 
 //mutations
-export const MortisAlbum = new SpellTemplate(
+const MortisAlbum = new SpellTemplate(
     'Mortis Album',
     'Mutation: body emits no heat (invisible to infrared), nails and hair become white and matte, your skin loses its color and becomes gray. If injured white powder escapes instead of blood, you are no longer suseptible to the bleed condition.',
     undefined,
@@ -273,7 +287,7 @@ export const MortisAlbum = new SpellTemplate(
     ]
 );
 
-export const Ocultos = new SpellTemplate(
+const Ocultos = new SpellTemplate(
     'Ocultos',
     'Mutation: Eyes grow all over your body, at the rate of 1 per 1d12 days a new eye opens up somewhere randomly on your skin up to a maximum 33 additional eyes. The eyes are fully functional and grant the ability to gain a glipse of something of your choice, glipse closes an eye of your choice which then disappears. The GM rolls the correctness secretly.',
     undefined,
@@ -286,7 +300,7 @@ export const Ocultos = new SpellTemplate(
     ]
 );
 
-export const Biopod = new SpellTemplate(
+const Biopod = new SpellTemplate(
     'Biopod',
     'Mutation: Nails and hair fall out and stop growing, a thin film of slick transparent mucus covers your skin, your pores turn into suckers which allow you to grab ahold of things and stick to hard surfaces, you gain the ability to turn your body extremely soft and elastic which allows you to squeeze through any slit at least 1 cm narrow',
     undefined,
@@ -296,7 +310,7 @@ export const Biopod = new SpellTemplate(
     ]
 );
 
-export const Xeropaga = new SpellTemplate(
+const Xeropaga = new SpellTemplate(
     'Xeropaga',
     'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites its victim. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
     undefined,
@@ -310,7 +324,7 @@ export const Xeropaga = new SpellTemplate(
     ]
 );
 
-export const TwinSoul = new SpellTemplate(
+const TwinSoul = new SpellTemplate(
     'Twin Soul',
     'Mutation: You have a guest inside your mind, another entity. This entity has their own mental abilities and skill set. If it is in their interest they can help you, you may use their skills or mental abilities for any check.',
     'touch',
@@ -323,7 +337,7 @@ export const TwinSoul = new SpellTemplate(
     ]
 );
 
-export const Ferral = new SpellTemplate(
+const Ferral = new SpellTemplate(
     'Ferral',
     'Mutation: Your skin turns into a dark shade of grey like iron then grow into small scales that rust and also slowly fall out. Your nails and teeth turn into black hard steel, your hair turn into thin steel wires. You are not affected by magnetism. Your insides and blood are also black and metallic.',
     undefined,
@@ -340,5 +354,5 @@ export const Ferral = new SpellTemplate(
 export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, //6
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap //18
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation //18
 ];
