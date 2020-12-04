@@ -261,11 +261,11 @@ const QuantumLeap = new SpellTemplate(
 
 const Assimilation = new SpellTemplate(
     'Assimilation',
-    'Spell: You touch a living being and begin assimilating their body into yours, they roll 2d10 + willpower + spells to contest your roll, the winner steals 1d6 life and 1d4 mana from the loser. Additionally you gain some features from the creature (determined by the GM), if the loser dies then compare the winner and loser attribute, pick the one with the biggest difference and move one step closer. All these effects last 2d10 days.',
+    'Spell: You touch a living being directly and begin assimilating their body into yours, they roll 2d10 + willpower + spells to contest your roll, the winner steals 1d4 life and 1d2 mana from the loser. Additionally you gain some features from the creature if they are a different species from yours (determined by the GM), if the loser dies then compare the winner and loser attribute, pick the one with the biggest difference and move one step closer. All these effects last 2d10 days.',
     'touch',
     [
         'base mana: 2',
-        'increase damage +1d6 life, +1d4 mana, increase cost mana: +1',
+        'increase damage +1d4 life, +1d2 mana, increase cost mana: +1',
         'increase duration +1d10 days: increase cost mana: +1',
         'negate ability loss: +4 mana (no effect if positive ability)',
         'negate effect if lose: +4 mana (no effect on either if caster loses)'
@@ -353,12 +353,13 @@ const Ferral = new SpellTemplate(
 
 const CursedBlood = new SpellTemplate(
     'Cursed Blood',
-    'Mutation: Your blood gains the ability to absorb and emit gamma radiation, each dose of radiation you gain heals 1 life, 1 mana and 1 level of exhaustion and 1 dose of radiation when you rest. Additionally you can emit gamma radiation, when you do you lose the ability to heal from radiation for 24 hours. Be warned that 5 levels of radiation or more for 24 hours is likely to kill you even with this mutation.',
+    'Mutation: Your blood gains the ability to absorb and emit gamma rays, each dose of radiation you gain heals 1 life and 1 level of exhaustion and 1 dose of radiation when you rest. Additionally you can emit gamma radiation, when you do you lose the ability to heal from radiation for 24 hours. Be warned that you still suffer all negative effects of radiation poisoning, including risk of death.',
     undefined,
     [
-        'Per 1 dose: 1 life, 1 mana, 1 exhaustion',
-        'Emit radiation: 3 mana cost, emit 4 level for 24 hours (you gain 1 dose per 12 hours)',
-        'If you bleed, your blood will emit level 5 radiation at 1 meter distance'
+        'Per 1 dose: 1 life, 1 exhaustion',
+        'If you absorb 7 or more doses of radiation you also regenerate 1 mana when you rest',
+        'Emit radiation: 2 mana cost, emit 4 level for 24 hours (you gain 1 dose per 12 hours), at 1 meter others feel level 3 radiation',
+        'If you bleed, your blood will emit level 5 radiation at 1 meter distance',
     ]
 );
 

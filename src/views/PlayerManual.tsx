@@ -81,6 +81,9 @@ const RollingSkills = () =>
         <p>If there are no harmful consequences, the character is not under duress or stress then the player may choose to take 10. This works similarly to Take 4. Passive skills are encouraged to always use Take 10.</p>
         <h4>Take 15</h4>
         <p>If the situation is such that it allows for Take 10 then the player may opt to take 10 times as long and Take 15.</p>
+        <h4>Critical success and failure</h4>
+        <p>When you roll 2d10 on a skill or ability check and both dice show 10, roll another d10 and add to the roll.</p>
+        <p>When you roll 2d10 on a skill or ability check and both dice show 1, roll another d10 and subtract from the roll.</p>
     </Section>
 
 const sortedSpreadedSpells = d100SpreaderT(SpellsPerks.map(sp => { return { label: sp.name, value: sp } }).sort());

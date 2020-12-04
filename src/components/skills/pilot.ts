@@ -55,10 +55,11 @@ const useCases: UseCase[] = [
     {
         name: 'pilot airplane',
         attribute: 'intelligence',
-        description: 'the second hardest point is takeof, the hardest part is landing. Failure could potentially mean death.',
+        description: 'the second hardest point is takeof, the hardest part is landing. Failure could potentially mean death. For crashland safely etc see Player Manual -> Air Vehicles -> Landing & Crashlanding',
         results: [
             'takeoff: 25',
             'keep airborne: 20',
+            'land perfectly: 45 (requires no maintenence)',
             'land: 30',
             'crashland safely: 25-29 (no harm to passengers, airplane is damaged and can not takeoff again without repair)',
             'crash violently: 20-24 (airplane damaged, each passengers take 4d20 on hills or mountains, 3d20 damage on flatland, 2d20 on water. Roll seperately, if you die you die)',

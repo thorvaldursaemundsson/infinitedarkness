@@ -88,7 +88,7 @@ const RollOMeter: React.FC<IRollOmeterProps> = ({ partsList, amountList, damageA
         <hr />
         {currentRolls.map(r => {
             if (currentParts[r.index] === undefined || partsList[currentParts[r.index].partN] === undefined) return null;
-            return ` ${partsList[currentParts[r.index].partN]} damaged ${currentParts[r.index].dmg}! `;
+            return <>{` ${partsList[currentParts[r.index].partN]} ${convertNumberToText(currentParts[r.index].dmg)} ${currentParts[r.index].dmg}`}<br /></>;
         })}
         <hr />
         <ul>

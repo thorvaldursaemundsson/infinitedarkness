@@ -341,8 +341,8 @@ export class Hexmat extends React.Component<IBattlematProps, IBattlemapState> {
     }
 
     convertXyToXYZ(x: number, y: number): string {
-        const z = 0 - (x + Math.floor(y * 0.5 + .5));
-        return `${x};${y};${z}`;//`${x};${y};${0 - (x + Math.floor(y * 0.5 + .5))}`;
+        //const z = 0 - (x + Math.floor(y * 0.5 + .5));
+        return '';//`${x};${y};${z}`;//`${x};${y};${0 - (x + Math.floor(y * 0.5 + .5))}`;
     }
 
     drawBoard(ctx: CanvasRenderingContext2D, width: number, height: number) {
