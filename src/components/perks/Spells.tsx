@@ -344,10 +344,10 @@ const Ferral = new SpellTemplate(
     [
         'You gain permanenty: 3 damage absorbtion',
         'You gain permanently: 2 armor piercing and +1 damage on all unarmed attacks',
-        'you gain permanently: 1 strength, 1 endurance, -1 agility (min 1)',
+        'you gain permanently: 1 strength, 1 endurance, -1 agility,-1 perception (min 1)',
         'you gain permanently: +25% weight',
         'you gain permanently: -1 speed',
-        'You can increase damage absorbtion, strength and damage by 1 by eating 500 grams of pure iron, doing so costs one mana and every 3rd drops speed by 1, speed cant go below 2, lasts one 24 hours'
+        'You can increase damage absorbtion, strength and damage by 1 by eating 500 grams of pure iron, doing so costs one mana and every 3rd drops speed by 1, speed cant go below 3, lasts one 24 hours'
     ]
 );
 
