@@ -1,0 +1,16 @@
+export const Jobs = [
+    'Accountant', 'Auditor', 'Actor', 'Alternative medicininist', 'Administrator', 'Advertisement', 'Aerospace engineer', 'Agent',
+    'Agricultural scientist/engineer', 'Air crew', 'Air traffic controller', 'Aircraft cargo handler', 'Aircraft engineer', 'Airplane pilot',
+    'Ambulance Driver', 'Animal Control', 'Animal scientist', 'Archeologist', 'Artist', 'Astronomer', 'Athelete', 'Automotive Engineer', 'Automotive mechanic',
+    'Bailif', 'Baker', 'Barber', 'Barista', 'Bartender', 'Biochemist engineer', 'Biochemist scientist', 'Biologist engineer', 'Biologist scientist', 'Brick mason',
+    'Bus driver', 'Business analyst', 'Butcher', 'Camera operator', 'Captain', 'Cardiovascular Technician', 'Carpenter', 'Cartagropher', 
+    'Cashier', 'Cement Mason', 'Chef', 'Chemical Engineer', 'Chemical Scientist', 'Chief Executive', 'Child Care Worker', 'Chiropractor',
+    'City planner', 'Cleaner', 'Clergy', 'Climatologist', 'Clinical Psychologist', 'Clinical Researcher', 'Coach', 'Compliance Manager', 'Compliance Enforcer',
+    'Computer technician', 'Computer scientist', 'Computer Programmer', 'Computer Security Specialist', 'Computer user support', 
+    'Conservation scientist', 'Construction building inspector', 'Construction worker', 'Construction manager', 'Cook', 'Copy Writer', 'Coroner',
+    'Councelor', 'Courier', 'Craft Artisan', 'Credit Checker', 'Criminal Investigator', 'Dancer', 'Dental assistant', 'Dental hygenist', 'Dentist',
+    'Dermatologist', 'Dishwasher', 'Door-to-door salesman', 'Economist', 'Editor', 'Electrician', 'Electrical Engineer', 'Engineer', 
+    'Epidemiologists', 'Explosive Worker', 'Farm laborer', 'Farmhand', 'Farmer', 'Fashion Designer', 'Film and video editor', 'Firefighter',
+    'Fire investigator', 'Flight attendant', 'Forest conservation technician', 'Forester', 'Foundry worker', 'Professional Gamer', 'Gem cutter',
+    'Geneticist', 'Geodecic Surveyor', 'Geographer', 'Geologist', 'Glass blower', 
+];
