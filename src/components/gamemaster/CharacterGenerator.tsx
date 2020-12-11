@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Desires, Needs, Weaknesses } from '../CharacterGenerator/interactives';
+import { Desires, Enemies, Needs, RedeemingQualities, Rumors, Secrets, Weaknesses } from '../CharacterGenerator/interactives';
 import { Jobs } from '../CharacterGenerator/jobs';
 import { humanEyeColors, humanHairColors, humanSkinColors } from '../CharacterGenerator/looks';
 import { femaleHumanNames, maleHumanNames } from '../CharacterGenerator/names';
@@ -16,9 +16,14 @@ interface INonPlayerCharacter {
     height: number;
     weight: number;
     gender: string;
+    enemy: string | undefined;
+    rumors: string | undefined;
+    secret: string | undefined;
+    redeemingQuality: string | undefined;
 }
 
 const randomFromList = (list: string[]): string => list[Math.floor(Math.random() * list.length)];
+const oddsOrRandomFromList = (percentage: number, list: string[]) => (Math.random() * 100) < percentage ? randomFromList(list) : undefined;
 
 const dice = (numberOfDice: number, sidesPerDice: 4 | 6 | 8 | 10 | 12 | 20) => [...Array(numberOfDice)].map(n => Math.floor(Math.random() * sidesPerDice + 1)).reduce((a, b) => a + b);
 
@@ -35,9 +40,13 @@ const randomHuman = (): INonPlayerCharacter => {
         weakness: randomFromList(Weaknesses),
         need: randomFromList(Needs),
         desire: randomFromList(Desires),
-        height: 110 + dice(20, 6),
-        weight: 40 + dice(4, 20),
+        height: 80 + dice(16, 10),
+        weight: 30 + dice(4, 20),
         gender: gender,
+        enemy: oddsOrRandomFromList(25, Enemies),
+        rumors: oddsOrRandomFromList(0, Rumors),
+        secret: oddsOrRandomFromList(66, Secrets),
+        redeemingQuality: oddsOrRandomFromList(66, RedeemingQualities)
     };
 };
 
@@ -54,7 +63,11 @@ const CharacterGenerator: React.FC = () => {
                     <b>Name: </b>{h.name}, {h.gender} - {h.job}<br />
                     {h.about}
                     <br />
-                    {h.quirts}, {h.height} cm {h.weight} kg
+                    {h.quirts}, {h.height} cm {h.weight} kg<br />
+                    {h.enemy && <>Enemy: {h.enemy}<br /></>}
+                    {h.rumors && <>Rumors: {h.rumors}<br /></>}
+                    {h.secret && <>Secret: {h.secret}<br /></>}
+                    {h.redeemingQuality && <>Redeeming quality: {h.redeemingQuality}<br /></>}
                 </div>
                 <div>
                     <b>Weakness</b>: {h.weakness}<br />
