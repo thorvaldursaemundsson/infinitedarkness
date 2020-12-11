@@ -10,27 +10,38 @@ const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
 const PlayerManual = lazy(() => import('./views/PlayerManual'));
-
+const thisOrDefault = (text: string | null, def: string) => text !== null ? text : def;
 const App: React.FC = () => {
-  const main = 'main';
-  const [viewMode, setViewMode] = usePersistentState<string>(main, main);
+  const params = new URLSearchParams(window.location.search);
+  const view = thisOrDefault(params.get('view'), 'main');
+  return <RoutableApp initialView={view} />;
+}
+
+interface IRoutableAppProps {
+  initialView: string;
+}
+const main = 'main';
+const characterSheet = 'Character Sheet';
+const playerManual = 'Player Manual';
+const gameMaster = 'Game Master';
+const worldAndLore = 'World & Lore';
+const skillsAndPerks = 'Skills & Perks';
+const battleView = 'Battleview';
+let options = [main,
+  characterSheet,
+  playerManual,
+  gameMaster,
+  worldAndLore,
+  skillsAndPerks,
+  battleView
+];
+const RoutableApp: React.FC<IRoutableAppProps> = ({ initialView }) => {
+  const [viewMode, setViewMode] = usePersistentState<string>(main, initialView);
   const [character, setCharacter] = useState(new Character());
-  const characterSheet = 'Character Sheet';
-  const playerManual = 'Player Manual';
-  const gameMaster = 'Game Master';
-  const worldAndLore = 'World & Lore';
-  const skillsAndPerks = 'Skills & Perks';
-  const battleView = 'Battleview';
-  let options = [main,
-    characterSheet,
-    playerManual,
-    gameMaster,
-    worldAndLore,
-    skillsAndPerks,
-    battleView
-  ];
+
   const parseMenu = (choice: string) => setViewMode(choice);
 
+  console.log(viewMode, initialView);
   return (
     <>
       <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
