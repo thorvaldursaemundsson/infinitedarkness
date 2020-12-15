@@ -23,6 +23,9 @@ const Combat: React.FC = () => {
             </Indexed>
             <Indexed title='Turns'>
                 <p>Each turn starts with the characters performing one action in order of highest sequence to lowest</p>
+                <p><b>Optional Rule</b>: give players limited time to decide what they do on each of their turns, it discourages players to think they can delibarate and ponder when everyone is waiting for them.
+                The recommended time for that is between 10-30 seconds and maximum one question. Exceeding this means the player character takes the active dodge action.<br />
+                A secondary benefit is that the players feel the tension of battle more intensely.</p>
             </Indexed>
             <Indexed title='Dodging and passive defense'>
                 <p>Passive defense is the number that your enemy is required to hit to hit you in combat</p>
@@ -65,7 +68,7 @@ const Combat: React.FC = () => {
                 <p>When a target is flanked (facing more than one melee combatant) the attackers will gain bonus to hit equal to the number of flankers x2. This does not apply if they are flanked too.</p>
                 <h5>Two weapon fighting</h5>
                 <p>When you are using two melee weapons you may make one second attack immediately after the first on the same target. This attack does not benefit from your agility bonus to hit or strength bonus to damage. The second weapon must be a light weapon if your strength is 6 or less.
-                    If you use multiple attacks option with two weapons only the first attack gets a bonus attack from the off-hand weapon, multi-attack penalty applies to off-hand weapon.
+                If you use multiple attacks option with two weapons only the first attack gets a bonus attack from the off-hand weapon, multi-attack penalty applies to off-hand weapon.
                 </p>
             </Indexed>
             <Indexed title='Multiple attacks'>

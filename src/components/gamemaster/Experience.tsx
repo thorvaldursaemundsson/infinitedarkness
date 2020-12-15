@@ -10,10 +10,13 @@ const Experience: React.FC = () => {
         <p>Note that it's okay to change your character's personality traits if you have a good reason, but the game master must know.</p>
         <ul>
             <li>+0 If the player directly contradicts their traits</li>
-            <li>+0.5 If the player neither contradicts or adheres to their trait</li>
+            <li>+0.5 If the player neither contradicts or adheres to their trait and does</li>
             <li>+1 If the player plays according to their traits most of the time and doesn't contradict them</li>
             <li>+2 If the player plays according to their traits exceptionally well</li>
         </ul>
+        <p><i>Players that disrupt the game by breaking character during important moments, interrupts others out of character, metagames or in any way acts in a toxic way that ruins the fun for everyone should generally not get character points.
+            The game master should consider whether it's appropriate to take them aside or to tell them in front of the whole group whether to tell them how they acted wrong.
+            </i></p>
         <h5>Overcoming adversity</h5>
         <p>If the character overcomes a huge challenge then they should be awarded +1. This can be anything from stopping a bomb from going off, pulling a survivor out of a burning building, defending against pirate attack or becoming elected mayor.</p>
         <h5>MVP Nomination</h5>
