@@ -6,10 +6,11 @@ interface ISection {
     title: string;
     tab?: number;
     border?: boolean | undefined;
+    initiallyOpen?: boolean | undefined;
 }
 
-const Section: React.FC<ISection> = ({ title, tab, border, children }) => {
-    const [isOpen, setIsOpen] = usePersistentState<boolean>(title + tab, false);
+const Section: React.FC<ISection> = ({ title, tab, border, children, initiallyOpen }) => {
+    const [isOpen, setIsOpen] = usePersistentState<boolean>(title + tab, initiallyOpen || false);
     let tabSize = '0';
     if (tab !== undefined)
         tabSize = tab + 'px';

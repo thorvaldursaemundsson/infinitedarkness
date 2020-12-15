@@ -3,7 +3,6 @@ import './App.css';
 import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
-import usePersistentState from './utils/usePersistentState';
 import Conditional from './utils/Conditional';
 const Battleview = lazy(() => import('./views/Battleview'));
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
@@ -11,14 +10,16 @@ const GameMaster = lazy(() => import('./views/GameMaster'));
 const WorldAndLore = lazy(() => import('./views/WorldAndLore'));
 const PlayerManual = lazy(() => import('./views/PlayerManual'));
 const thisOrDefault = (text: string | null, def: string) => text !== null ? text : def;
+const getOrNull = (test: string[], index: number) => test[index];
 const App: React.FC = () => {
   const params = new URLSearchParams(window.location.search);
-  const view = thisOrDefault(params.get('view'), 'main');
-  return <RoutableApp initialView={view} />;
+  const route = thisOrDefault(params.get('v'), 'main').split(';');
+  return <RoutableApp initialView={getOrNull(route, 0)} levelTwo={getOrNull(route, 1)} />;
 }
 
 interface IRoutableAppProps {
   initialView: string;
+  levelTwo: string | undefined;
 }
 const main = 'main';
 const characterSheet = 'Character Sheet';
@@ -35,13 +36,11 @@ let options = [main,
   skillsAndPerks,
   battleView
 ];
-const RoutableApp: React.FC<IRoutableAppProps> = ({ initialView }) => {
-  const [viewMode, setViewMode] = usePersistentState<string>(main, initialView);
+const RoutableApp: React.FC<IRoutableAppProps> = ({ initialView, levelTwo }) => {
+  const [viewMode, setViewMode] = useState(initialView);
   const [character, setCharacter] = useState(new Character());
 
   const parseMenu = (choice: string) => setViewMode(choice);
-
-  console.log(viewMode, initialView);
   return (
     <>
       <Menu callback={(option) => parseMenu(option)} options={options} current={viewMode} />
@@ -62,7 +61,7 @@ const RoutableApp: React.FC<IRoutableAppProps> = ({ initialView }) => {
           <CharacterSheet characterCallback={(c) => { setCharacter(c); setViewMode('main'); }} initialCharacter={character} />
         </Conditional>
         <Conditional shouldView={viewMode === playerManual}>
-          <PlayerManual />
+          <PlayerManual route={levelTwo} />
         </Conditional>
         <Conditional shouldView={viewMode === gameMaster}>
           <GameMaster></GameMaster>

@@ -1,9 +1,10 @@
 import Section from "./Section";
 import React from "react";
 import { CharacterRollerHuman, CharacterRollerShambra, CharacterRollerMerlion, CharacterRollerNekovian } from "../Lore/CharacterRoller";
+import { IOpenableViewItem } from "../../views/IViewProps";
 
-const MakeCharacter: React.FC = () => {
-    return <Section title='How to make a character'>
+const MakeCharacter: React.FC<IOpenableViewItem> = ({initiallyOpen}) => {
+    return <Section title='How to make a character' initiallyOpen={initiallyOpen}>
 
         <Section title='Human dice roller'><CharacterRollerHuman /></Section>
         <Section title='Shambra dice roller'><CharacterRollerShambra /></Section>

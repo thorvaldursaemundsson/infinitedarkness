@@ -16,13 +16,17 @@ import Cybernetics from '../components/playermanual/Cybernetics';
 import HealthAndRest from '../components/playermanual/HealthAndRest';
 import { d100SpreaderT } from '../utils/d100Spreader';
 import Ellipsis from '../components/general/Ellipsis';
+import { IViewProps } from './IViewProps';
 
-const PlayerManual: React.FC = () => {
+
+
+const PlayerManual: React.FC<IViewProps> = ({route}) => {
+    console.log(route);
     return (<div>
         <h1>The Player Manual</h1>
         <p>This page is to help the player create characters and play the game, view each section below for more details.</p>
         <hr />
-        <MakeCharacter key='pm1' />
+        <MakeCharacter initiallyOpen={route === 'makeCharacter'} key='pm1' />
         <hr />
         <CharacterSheetOverview key='pm2' />
         <hr />
