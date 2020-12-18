@@ -16,7 +16,7 @@ const Shambras: React.FC = () => {
         <p>To protect themselves the flora had to evolve to produce PVC plastic, some fauna evolved to have polytetrafluoroethylene (teflon) embedded in their furr or armor. Additionally shambras exhale small amounts of chlorine as a result of their immune system using chlorine to attack infections.</p>
         <h3>Biology and optics</h3>
         <p>Shambras are coverd in a nail like armor embedded with teflon that starts out rainbow refractory color and gets darker and matter over time, it hardens and eventually has to be shed, revealing underneath a new shiny colorful flexible armor</p>
-        <p>Shambras have 4 eyes and 6 limbs, their legs tend to grow in proportion over time, they have two large upper arms equipped with pincers and two smaller lower arms equipped with a hand-like double pincer. The upper arms have strength and stability, the lower arms have fine motor control</p>
+        <p>Shambras have 4 eyes and 8 limbs, their legs tend to grow in proportion over time and have claw like hooves, they have two large upper arms equipped with pincers and two smaller lower arms equipped with a hand-like double pincer. The upper arms have strength and stability, the lower arms have fine motor control</p>
         <p>The Shambras' 4 eyes are located in a square pattern, the lower pair can see in blue and low ultra violet, the upper in green, red and high infra-red, as such the shambras can see 5 base colors, their infra-red allows them to see life forms even in absolute pitch black darkness</p>
         <p>As Shambras grow older they grow in size</p>
         <p>Shambras have no maximum age and grow bigger and smarter as they grow older</p>
