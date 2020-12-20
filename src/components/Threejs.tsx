@@ -314,13 +314,13 @@ interface IRotator {
 
 const calculateOrbitalPeriod = (sourceMass: number, orbitalRadius: Distance) => {
     const G = 0.000000000066743;
-    return (Math.sqrt(sourceMass * getOritalDistanceMod(orbitalRadius, 1, 1) * G) / (orbitalRadius.distance * 2 * Math.PI)) * 30;
+    return (Math.sqrt(sourceMass * getOritalDistanceMod(orbitalRadius, 1, 1) * G) / (orbitalRadius.apoapsis * 2 * Math.PI)) * 30;
 }
 
 const getOritalDistanceMod = (dist: Distance, exponent = .5, factor = 3) => {
     switch (dist.unit) {
-        case 'AU': return Math.pow(dist.distance, exponent) * factor;
-        case 'km': return Math.pow(dist.distance / 149597871, exponent) * factor;
-        case 'LY': return Math.pow(dist.distance * 63239, exponent) * factor;
+        case 'AU': return Math.pow(dist.apoapsis, exponent) * factor;
+        case 'km': return Math.pow(dist.apoapsis / 149597871, exponent) * factor;
+        case 'LY': return Math.pow(dist.apoapsis * 63239, exponent) * factor;
     }
 }

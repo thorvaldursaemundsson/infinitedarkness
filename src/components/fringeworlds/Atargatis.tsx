@@ -1,0 +1,215 @@
+import React from "react";
+import StarSystem, { PlanetRings } from "../Lore/StarSystem";
+
+const Atargatis = () => <StarSystem
+    roguePlanetoids={[]}
+    name='Atargatis'
+    description='One of many fringe worlds, once a promise of a better world, now backwater. The people who live here are unlikely to ever see outside visitors'
+
+    stars={[
+        {
+            name: 'Atargatis',
+            description: '',
+            classification: 'F',
+            axialTilt: 0,
+            dayPeriod: 3600 * 1,
+            mass: 1.35,
+            age: 3.5,
+            bodyType: 'star',
+            imageURL: 'images/texture_star_atargatis.jpg',
+            planetoids: [
+                {
+                    name: 'Moloch',
+                    description: 'A scorched and blasted rock tidaly locked to Atargatis, the dark side is a permanent glacier',
+                    dayPeriod: Infinity,
+                    axialTilt: -2,
+                    mass: 0.7,
+                    age: 3.4,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 0.4,
+                    classification: 'rocky',
+                    temperatureRange: [-162, 60, 521],
+                    atmosphere: '',
+                    atmosphericPressure: 0,
+                    hydrosphere: 'some lakes of methane',
+                    orbitDistance: { apoapsis: .7, periapsis: .7, unit: 'AU' },
+                    satelites: [],
+                    feature: 'abandoned surface base',
+                    imageURL: 'images/texture_planet_moloch.jpg'
+                },
+                {
+                    name: 'Yahweh',
+                    description: 'Named after the god of war due to the extreme winds',
+                    dayPeriod: 3600 * 2,
+                    axialTilt: -16,
+                    mass: .9,
+                    age: 3.35,
+                    bodyType: 'planetoid',
+                    surfaceGravity: .9,
+                    classification: 'rocky',
+                    temperatureRange: [61, 90, 120],
+                    atmosphere: '80% co2, 15% h2s, 5% hci',
+                    atmosphericPressure: 192,
+                    hydrosphere: '',
+                    orbitDistance: { apoapsis: 1.5, periapsis: 1.5, unit: 'AU' },
+                    satelites: []
+                },
+                {
+                    name: 'Salem',
+                    description: 'A planet habitable world with tropics, searing deserts and mild plains. An iron age civilization of natives lives on most of the continents.',
+                    dayPeriod: 3600 * 25,
+                    axialTilt: 17,
+                    mass: .95,
+                    age: 3.4,
+                    bodyType: 'planetoid',
+                    surfaceGravity: .95,
+                    classification: 'rocky earthlike',
+                    temperatureRange: [-20, 15, 95],
+                    atmosphere: '20% oxygen, 78% nitrogen, 2% argon, trace co2',
+                    atmosphericPressure: 100,
+                    hydrosphere: 'salt water ocean',
+                    orbitDistance: { apoapsis: 2.1, periapsis: 2.1, unit: 'AU' },
+                    satelites: [
+                        {
+                            name: 'Ammon',
+                            description: 'large moon orbiting Salem',
+                            dayPeriod: 3600 * 24 * 16,
+                            axialTilt: 8,
+                            mass: .1,
+                            age: 3.1,
+                            bodyType: 'planetoid',
+                            surfaceGravity: .16,
+                            classification: 'rocky',
+                            temperatureRange: [-170, 40, 100],
+                            atmosphere: '',
+                            atmosphericPressure: 0,
+                            hydrosphere: '',
+                            orbitDistance: { apoapsis: 2700000, periapsis: 2700000, unit: 'km' },
+                            satelites: []
+                        }, {
+                            name: 'Qaus',
+                            description: 'tiny moon orbiting salem',
+                            dayPeriod: 3600 * 24 * 2,
+                            axialTilt: 60,
+                            mass: 0.02,
+                            age: 5,
+                            bodyType: 'planetoid',
+                            surfaceGravity: 0.01,
+                            classification: 'rocky',
+                            temperatureRange: [-170, 40, 100],
+                            atmosphere: '',
+                            atmosphericPressure: 0,
+                            hydrosphere: '',
+                            orbitDistance: { apoapsis: 4200000, periapsis: 4200000, unit: 'km' },
+                            satelites: []
+                        },]
+                },
+                {
+                    name: 'Dagon',
+                    description: 'The second habitable planet, settled by humans',
+                    dayPeriod: 3600 * 23,
+                    axialTilt: 12,
+                    mass: 1.1,
+                    age: 3.4,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 1.05,
+                    classification: 'rocky',
+                    temperatureRange: [-80, -5, 31],
+                    atmosphere: '26% oxygen, 72% nitrogen, 2% argon, trace co2',
+                    atmosphericPressure: 115,
+                    hydrosphere: 'salty water oceans',
+                    orbitDistance: { apoapsis: 3.5, periapsis: 3.5, unit: 'AU' },
+                    satelites: [{
+                        name: 'Ishara',
+                        description: 'small moon orbiting Dagon',
+                        dayPeriod: 3600 * 24 * 8,
+                        axialTilt: 8,
+                        mass: .2,
+                        age: 3.2,
+                        bodyType: 'planetoid',
+                        surfaceGravity: .3,
+                        classification: 'rocky',
+                        temperatureRange: [-170, 20, 80],
+                        atmosphere: '',
+                        atmosphericPressure: 0,
+                        hydrosphere: '',
+                        orbitDistance: { apoapsis: 1500000, periapsis: 1500000, unit: 'km' },
+                        satelites: []
+                    }, new PlanetRings({ apoapsis: 600, periapsis: 800, unit: 'km' }, [-170, 20, 80], 3.4, 0)]
+                },
+                {
+                    name: 'Yam',
+                    description: 'Only gas giant in this system',
+                    dayPeriod: 3600 * 3,
+                    axialTilt: 2,
+                    mass: 192,
+                    age: 3.4,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 10,
+                    classification: 'gas giant',
+                    temperatureRange: [-90, 60, 300],
+                    atmosphere: 'hydrogen, helium',
+                    atmosphericPressure: 800,
+                    hydrosphere: '',
+                    orbitDistance: { apoapsis: 7.8, periapsis: 7.8, unit: 'AU' },
+                    satelites: []
+                },
+                {
+                    name: '',
+                    description: '',
+                    dayPeriod: 0,
+                    axialTilt: 0,
+                    mass: 0,
+                    age: 0,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 0,
+                    classification: '',
+                    temperatureRange: [0, 0, 0],
+                    atmosphere: '',
+                    atmosphericPressure: 0,
+                    hydrosphere: '',
+                    orbitDistance: { apoapsis: 9.1, periapsis: 9.1, unit: 'AU' },
+                    satelites: []
+                },
+                {
+                    name: '',
+                    description: '',
+                    dayPeriod: 0,
+                    axialTilt: 0,
+                    mass: 0,
+                    age: 0,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 0,
+                    classification: '',
+                    temperatureRange: [0, 0, 0],
+                    atmosphere: '',
+                    atmosphericPressure: 0,
+                    hydrosphere: '',
+                    orbitDistance: { apoapsis: 13, periapsis: 13, unit: 'AU' },
+                    satelites: []
+                },
+                {
+                    name: '',
+                    description: '',
+                    dayPeriod: 0,
+                    axialTilt: 0,
+                    mass: 0,
+                    age: 0,
+                    bodyType: 'planetoid',
+                    surfaceGravity: 0,
+                    classification: '',
+                    temperatureRange: [0, 0, 0],
+                    atmosphere: '',
+                    atmosphericPressure: 0,
+                    hydrosphere: '',
+                    orbitDistance: { apoapsis: 18, periapsis: 18, unit: 'AU' },
+                    satelites: []
+                },
+
+            ]
+        }
+    ]}
+/>;
+
+
+export default Atargatis;

@@ -25,13 +25,14 @@ interface IStar extends IHeavelyBody {
 
 type DistanceType = 'km' | 'AU' | 'LY';
 interface Distance {
-    distance: number;
+    apoapsis: number;
+    periapsis: number;
     unit: DistanceType;
 }
 
 export interface IPlanetoid extends IHeavelyBody {
     classification: string;
-    subClassification?:string|undefined;
+    subClassification?: string | undefined;
     surfaceGravity: number;
     temperatureRange: [number, number, number];
     atmosphere: string;

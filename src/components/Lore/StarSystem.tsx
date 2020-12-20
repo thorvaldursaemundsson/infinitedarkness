@@ -49,7 +49,7 @@ const Planet: React.FC<IPlanetProps> = ({ planet, gen }) => {
                 <b>Average temperature range</b>: {planet.temperatureRange[0]} - {planet.temperatureRange[2]}c<br />
                 <b>Atmosphere</b>: {planet.atmosphericPressure > 0 ? `${floor4(planet.atmosphericPressure / 101.325)}x ea` : null} {planet.atmosphere}<br />
                 <b>Hydrosphere</b>: {planet.hydrosphere}<br />
-                <b>Distance</b>: {planet.orbitDistance.distance} {planet.orbitDistance.unit}<br />
+                <b>Distance</b>: {planet.orbitDistance.periapsis}/{planet.orbitDistance.apoapsis} {planet.orbitDistance.unit}<br />
                 <b>Age</b>: {planet.age} billion years<br />
                 <b>Mass</b>: {planet.mass} earths<br />
                 {planet.feature && <><b>Feature</b>: {planet.feature}</>}

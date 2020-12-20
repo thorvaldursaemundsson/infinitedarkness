@@ -4,6 +4,7 @@ import { Character } from './components/Character';
 import { DialogTitle } from '@material-ui/core';
 import { CharacterSheet } from './views/CharacterSheet';
 import Conditional from './utils/Conditional';
+import usePersistentState from './utils/usePersistentState';
 const Battleview = lazy(() => import('./views/Battleview'));
 const SkillPerkManual = lazy(() => import('./views/SkillPerkManual'));
 const GameMaster = lazy(() => import('./views/GameMaster'));
@@ -37,7 +38,7 @@ let options = [main,
   battleView
 ];
 const RoutableApp: React.FC<IRoutableAppProps> = ({ initialView, levelTwo }) => {
-  const [viewMode, setViewMode] = useState(initialView);
+  const [viewMode, setViewMode] = usePersistentState(initialView, initialView);
   const [character, setCharacter] = useState(new Character());
 
   const parseMenu = (choice: string) => setViewMode(choice);
