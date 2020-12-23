@@ -16,7 +16,7 @@ const useCases: UseCase[] = [
     {
         name: 'regenerate mana',
         attribute: 'willpower',
-        description: 'you regenerate 1 mana every 24 hours, if your mana goes into the negatives you can not cast any more spells. You also suffer a penalty to all rolls equal to your negative mana. Mana regeneration does not depend on rest.',
+        description: 'you regenerate 1 mana every 24 hours, if your mana goes into the negatives you can not cast any more spells. You also suffer a penalty to all active and passive rolls equal to your negative mana. Mana regeneration does not depend on rest.',
         type: 'passive'
     }
 ];

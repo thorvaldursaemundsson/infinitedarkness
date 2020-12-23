@@ -2,7 +2,7 @@ import { SkillTemplate, UseCase } from "../general/Skills";
 const useCases: UseCase[] = [
     {
         name: 'swim',
-        attribute: 'endurance',
+        attribute: 'strength',
         description: 'how fast you swim, how long you can keep your breath, you need equal amount of rest time to reset timers. When you swim through moving water the movement on the water is added to your movement. If you roll is such that you can not move then you start to drown. Carrying capacity penalties are doubled for swimming',
         results: [
             'hold breath 1 minute: 14-20',
@@ -50,7 +50,7 @@ const useCases: UseCase[] = [
     },
     {
         name: 'jump',
-        attribute: 'endurance',
+        attribute: 'strength',
         description: 'how high and far you can jump, jumping forward requires at least double runway distance for sprinting. Can be done as a part of move action, requires at least 10 meter sprinting or take a -5 to the roll',
         results: [
             '4-10: 50cm up',
@@ -79,7 +79,7 @@ const useCases: UseCase[] = [
     },
     {
         name: 'climb',
-        attribute: 'endurance',
+        attribute: 'strength',
         description: 'climbing up things, done as a move action, you normally move at 25% of your speed vertically/diagonally or 50% horizontally.',
         results: [
             '1+: climb ladder or stairs',

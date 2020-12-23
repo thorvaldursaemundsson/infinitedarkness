@@ -37,8 +37,13 @@ const useCases: UseCase[] = [
     {
         name: 'gangs',
         attribute: 'intelligence',
-        description: 'Finding gangs, talking to gangs, etc',
-        type: 'active'
+        description: 'Finding gangs, talking to gangs, etc. A gang is an informal extrajudicial organization with an implicit or explicit hierarchy. They can be both good and bad',
+        type: 'active',
+        results: [
+            '"Looks like a cop": -10 to roll',
+            'In town youre not familiar with: -3 to roll',
+            'In town youre familiar with: +3 to roll'
+        ]
     },
     {
         name: 'gossip',
@@ -58,7 +63,7 @@ const useCases: UseCase[] = [
     {
         name: 'local culture',
         attribute: 'intelligence',
-        description: 'knowledge of local culture',
+        description: 'knowledge of local culture, for historical knowledge you may substitute a general knowledge',
         type: 'passive'
     }
 ];

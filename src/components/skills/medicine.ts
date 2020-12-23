@@ -2,7 +2,7 @@ import { SkillTemplate, UseCase } from "../general/Skills";
 const useCases: UseCase[] = [
     {
         name: 'first aid',
-        attribute: 'intelligence',
+        attribute: 'agility',
         description: 'if someone has zero or negative hitpoints then you can prevent bleedout by rolling first aid vs their total damage taken, must be applied every turn or until you succeed with a roll of 10 more than the target',
         results: [
             'perform CPR: 15 or higher: keep alive for as long as you keep performign CPR (only needed if heart stopped or breathing stopped)',
@@ -14,6 +14,7 @@ const useCases: UseCase[] = [
             'stop intermediate bleeding: 35+: stop bleeding and heal 1 life',
             'stop heavy bleeding: 14 or lower+: fail and cause 1 point of damage',
             'stop heavy bleeding: 20+: stop bleeding',
+            'patient is different species: -5'
         ],
         type: 'active'
     },
@@ -29,6 +30,7 @@ const useCases: UseCase[] = [
             'remove organ or cancer: 25-40 (depends on organ)',
             'if you fail by 0-5 the surgery is a success but the patient takes 1d6 damage',
             'if you fail by -6 the surgery is a failure and the patient takes 1d8 damage',
+            'patient is different species: -8'
         ],
         type: 'active'
     },
@@ -51,18 +53,35 @@ const useCases: UseCase[] = [
             'administer anti-radiation: 25',
             'administer active carbon: 5',
             'administer performance enhancing drugs: 15',
+            'patient is different species: -8'
         ],
         type: 'active'
     },
     {
-        name: 'psychology',
-        attribute: 'intelligence',
-        description: 'reduce someones fear level, treat mental illness.',
+        name: 'diagnosis',
+        attribute: 'perception',
+        description: 'You perform a rutine health checkup on someone and measure their health and wellbeing.',
         results: [
-            'therapy: 5: lose 1 mental health from stress (takes 2 hour, max once per day)',
-            'therapy 20: heal 1d2 mental health (takes 2 hour, max once per day)',
-            'therapy 25: heal 1d4 mental health (takes 2 hour, max once per day)',
-            'therapy 30: heal 1d6 mental health (takes 2 hour, max once per day)',
+            'wrong diagnosis: 9 or less (you miss something obvious or mistakenly find something that isnt there)',
+            'common result: 20, you find most common diseases and injuries',
+            'uncommon 25: you find uncommon diseases and hard to find internal injuries',
+            'rare 30: you find rare diseases and hidden injuries',
+            'very rare 35: you find very rare diseases, asymptomaic diseases',
+            'patient is different species: -5'
+        ],
+        type: 'active'
+    },
+    {
+        name: 'psychotherapy',
+        attribute: 'intelligence',
+        description: 'reduce someones fear level, treat mental illness. Takes 2 hour, max once per day for the patient.',
+        results: [
+            'therapy: 5: lose 1 mental health from stress',
+            'therapy 20-24: heal 1 mental health',
+            'therapy 25-29: heal 1d2 mental health',
+            'therapy 30-34: heal 1d4 mental health',
+            'therapy 35+: heal 1d6 mental health',
+            'patient is different species: -5'
         ],
         type: 'active'
     },

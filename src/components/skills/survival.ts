@@ -24,8 +24,8 @@ const useCases: UseCase[] = [
         attribute: 'intelligence',
         description: 'find your way through the wilderness',
         results: [
-            'find north: 10',
-            'backtrack: 15'
+            'find north: 10, (-3 if its very cloudy)',
+            'backtrack: 15 (-3 if bad weather, -8 if stormy)'
         ],
         type: 'active'
     },

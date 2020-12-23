@@ -22,7 +22,7 @@ const useCases: UseCase[] = [
     {
         name: 'hide',
         attribute: 'agility',
-        description: 'hide somewhere, roll agility + stealth vs target perception + stealth',
+        description: 'hide somewhere, roll agility + stealth vs target perception + stealth. Requires that you are obscured.',
         results: [
             'critical failure: 10 less than their perception roll: they notice you immediately, you dont notice that they notice you',
             'failure: less than their perception roll: they notice you immediately',

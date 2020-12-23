@@ -173,6 +173,14 @@ const NaturalTalent: Trait = {
     description: 'pick one skill, you have +3 to that skill',
     amount: 0,
     applyTo: ''
+};
+
+const Conspiritorial: Trait = {
+    name: 'Conspiritorial',
+    cost: -10,
+    description: 'You tend to believe in conspiricies and often fall prey to magical thinking. Whenever you roll for general knowledge you suffer a -5, additionally evidence contrary to your beliefs do not cause you to change your beliefs.',
+    amount: 0,
+    applyTo: ''
 }
 
 
@@ -199,6 +207,7 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         Blind,
         Deaf,
         Mute,
-        NaturalTalent
+        NaturalTalent,
+        Conspiritorial
     ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
 };

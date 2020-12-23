@@ -14,20 +14,26 @@ const GameMaster: React.FC = () => {
         <Section title='Guidelines'>
             <Guidelines />
         </Section>
+        <hr />
         <Section title='Experience'>
             <Experience />
         </Section>
+        <hr />
         <Section title='Game Tools'>
             <GameTools />
         </Section>
+        <hr />
         <Section title='NPC Generator'>
             <CharacterGenerator />
         </Section>
+        <hr />
         <Section title='Character creator wizard'>
             <Wizard />
         </Section>
     </div>);
 }
+
+
 
 
 export default GameMaster;

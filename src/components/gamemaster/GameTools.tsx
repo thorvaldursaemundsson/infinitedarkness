@@ -38,8 +38,8 @@ const DistanceCalculatorSpace: React.FC = () => {
         <p>Traveling from one planet to another with constant acceleration allows for reasonably short travel time even for very long distances.</p>
         Acceleration(g) <input type='text' value={acceleration} onChange={(e) => setAcceleration(parseFloat(e.target.value))} /> <br />
         Distance <input type='text' value={length} onChange={(e) => setLength(parseFloat(e.target.value))} />
-        <label style={{ width: '60px' }}>Km <input style={{ width: '20px' }} type='radio' name='distance' onClick={() => setDistanceFactor(1000)} checked={distanceFactor === 1000} /></label>
-        <label style={{ width: '60px' }}>AU <input style={{ width: '20px' }} type='radio' name='distance' onClick={() => setDistanceFactor(149597871000)} checked={distanceFactor === 149597871000} /></label>
+        <label style={{ width: '60px' }}>Km <input className='short' type='radio' name='distance' onClick={() => setDistanceFactor(1000)} checked={distanceFactor === 1000} /></label>
+        <label style={{ width: '60px' }}>AU <input className='short' type='radio' name='distance' onClick={() => setDistanceFactor(149597871000)} checked={distanceFactor === 149597871000} /></label>
         <br />
         Travel time: {timeToNormal(t)} (for passengers) <br />
         Outside perspective time traveled = {timeToNormal(outT)} <br />
@@ -49,11 +49,46 @@ const DistanceCalculatorSpace: React.FC = () => {
     </div>
 }
 
+const d10 = () => Math.floor(Math.random() * 10 + 1);
+
+const EasyRoller: React.FC = () => {
+    const [roll1, setRoll1] = useState(0);
+    const [roll2, setRoll2] = useState(0);
+    const [roll3, setRoll3] = useState(0);
+    const [skill, setSkill] = useState(0);
+    const [attribute, setAttribute] = useState(0);
+    const roll = () => {
+        setRoll1(d10());
+        setRoll2(d10());
+        setRoll3(d10());
+    };
+
+    let results = '';
+    if (roll1 === 10 && roll2 === 10) {
+        results = `(${roll1} + ${roll2} + ${roll3}) + (${skill} + ${attribute})= ${roll1 + roll2 + roll3 + skill + attribute}`;
+    }
+    else if (roll1 === 1 && roll2 === 1) {
+        results = `(${roll1} + ${roll2} - ${roll3}) + (${skill} + ${attribute}) = ${((roll1 + roll2) - roll3) + skill + attribute}`;
+    }
+    else {
+        results = `(${roll1} + ${roll2}) + (${skill} + ${attribute}) = ${roll1 + roll2 + skill + attribute}`
+    }
+
+    return <Section title='Easy Roller'>
+        <input className='short' type='text' value={skill} title='skill' onChange={(e) => setSkill(parseInt(e.target.value))} />
+        <input className='short' type='text' value={attribute} title='attribute' onChange={(e) => setAttribute(parseInt(e.target.value))} />
+        <button onClick={() => roll()}>Roll</button>
+        {results}
+    </Section>;
+
+}
+
 const GameTools: React.FC = () => {
     return <>
         <h3>Game master tools</h3>
         <p>This section is an assortment of tools to help the game master run the game</p>
         <Section title='Spacetravel calculator'><DistanceCalculatorSpace /></Section>
+        <EasyRoller />
     </>;
 }
 

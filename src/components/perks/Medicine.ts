@@ -1,26 +1,26 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Healer = new PerkTemplate({
+const Healer = new PerkTemplate({
     name: 'healer',
     skill: 'medicine',
     level: 1,
-    description: 'Your character knows how to clean wounds and apply bandages, gains +3 to first aid rolls and heal +1 life when successfully stopping bleeding or performing surgery'
+    description: 'Your character is an expert at cleaning wounds and applying bandages, gains +3 to first aid rolls and heal +1 life when successfully stopping bleeding or performing surgery.'
 }, {
     applyTo: 'healing',
     amount: 3
 });
 
-export const MedicineExpert = new PerkTemplate({
+const MedicineExpert = new PerkTemplate({
     name: 'medicine expert',
     skill: 'medicine',
     level: 1,
-    description: 'Your character knows which medicines are best for which situation and how to dose them, +3 to all drug and medicines related rolls, immediately heal +1 life when applying stempack'
+    description: 'Your character knows which medicines are best for which situation and how to dose them, +3 to all drug and medicines related rolls, immediately heal +1 life when applying stempack once per day per patient.'
 }, {
     applyTo: 'medicines',
     amount: 3
 });
 
-export const Surgeon = new PerkTemplate({
+const Surgeon = new PerkTemplate({
     name: 'surgeon',
     skill: 'medicine',
     level: 1,
@@ -30,14 +30,28 @@ export const Surgeon = new PerkTemplate({
     amount: 3
 });
 
-export const Psychiatrist = new PerkTemplate({
+const Diagnostician = new PerkTemplate({
+    name: 'diagnostician',
+    skill: 'medicine',
+    level: 1,
+    description: 'You have much experience diagnosing patients, you gain a +3 to your diagnosis rolls, additionally if you succeed the next following surgery or administer medicine rolls gain +2 if you are involved.',
+});
+
+const Psychiatrist = new PerkTemplate({
     name: 'psychiatrist',
     skill: 'medicine',
     level: 1,
-    description: 'Your character can perform psychiatric diagnostics and treatment, gain +3 to therapy as well'
+    description: 'Your character can perform psychiatric diagnostics and treatment, gain +3 to psychotherapy'
 }, {
     applyTo: 'psychiatry',
     amount: 3
 });
 
-export const MedicinePerks = [Healer, MedicineExpert, Surgeon, Psychiatrist];
+const CrossSpeciesHealer = new PerkTemplate({
+    name: 'cross species healer',
+    skill: 'medicine',
+    level: 1,
+    description: 'You have familiarized yourself with one species outside your own, pick one species, that species no longer "different species" penalty to medicine checks',
+});
+
+export const MedicinePerks = [Healer, MedicineExpert, Surgeon, Psychiatrist, CrossSpeciesHealer, Diagnostician];
