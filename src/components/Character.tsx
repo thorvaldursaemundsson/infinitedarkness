@@ -283,15 +283,29 @@ export class Character {
 
     }
     public getLife() {
-        return Math.max(this.strength + this.endurance * 2 + this.getHook('life'), 1);
+        let athleticsBonus = 0;
+        const athletics = this.getSkillLevel('athletics');
+        if (athletics >= 9) athleticsBonus++;
+        if (athletics >= 18) athleticsBonus++;
+
+        return Math.max(athleticsBonus + this.strength + this.endurance * 2 + this.getHook('life'), 1);
     }
 
     public getMana() {
-        return Math.max(this.endurance + this.willpower * 2 + this.getHook('mana'), 1);
+        let spellsBonus = 0;
+        const spells = this.getSkillLevel('spells');
+        if (spells >= 9) spellsBonus++;
+        if (spells >= 18) spellsBonus++;
+        return Math.max(spellsBonus + this.endurance + this.willpower * 2 + this.getHook('mana'), 1);
     }
 
     public getMentalHealth() {
-        return Math.max(this.willpower * 2 + this.getHook('mentalHealth'), 1);
+        let mentalHealthBonus = 0;
+        const empathy = this.getSkillLevel('empathy');
+        const survival = this.getSkillLevel('survival');
+        if (empathy >= 9) mentalHealthBonus++;
+        if (survival >= 9) mentalHealthBonus++;
+        return Math.max(mentalHealthBonus + this.willpower * 2 + this.getHook('mentalHealth'), 1);
     }
 
     public getSequence() {

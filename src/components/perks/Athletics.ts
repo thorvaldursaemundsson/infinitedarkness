@@ -78,7 +78,7 @@ export const GreatFortitude = new PerkTemplate({
 });
 
 export const SupremeFortitude = new PerkTemplate({
-    name: 'great fortitude',
+    name: 'supreme fortitude',
     skill: skill,
     level: 3,
     description: 'Your character has supreme fortitude, gain +6 hitpoints'

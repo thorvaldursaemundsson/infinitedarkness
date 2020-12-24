@@ -16,12 +16,16 @@ const HealthAndRest = () =>
                 <p>When you receive an injury during combat your body will produce adrenaline, this prevents penalties to physical activities, it lasts 1 hour, each time it happens you lose 1 mental health.</p>
                 <h5>Painkillers</h5>
                 <p>Painkillers can reduce the penalty to physical activities by transfering them into mental penalties. The stronger the painkiller the more it dulls the mind.</p>
+                <h5>Skill bonus</h5>
+                <p>You gain one additional health when your athletics skill rank reaches 9, then again at 18</p>
             </Indexed>
             <Indexed title='Mental Health'>
                 <p>Mental health represents the integrity of the mind.</p>
                 <p>If your mental health is injured you take a penalty to all mental activities equal to the amount of damage.</p>
                 <p>Mental health injuries come from high levels of stress, over time it can accumulate.</p>
                 <p>While you can not directly die from mental health injury it can debilitate you, if you reach zero you enter a state of depression: mundane tasks require a roll, if you fail you lack the motivation to act and do nothing. Even in life threatening situations since your character has lost the will to live.</p>
+                <h5>Skill bonus</h5>
+                <p>You gain one additional mental health when your survival skill rank reaches 9 and when your empathy reaches 9 (these stack)</p>
             </Indexed>
             <Indexed title='Ability damage'>
                 <p>Ability damage recovers 1 per rest, if you have ability damage in multiple abilities then the one with the most damage recovers.</p>
@@ -32,6 +36,8 @@ const HealthAndRest = () =>
             <Indexed title='Mana'>
                 <h4>Mana</h4>
                 <p>Mana is used for spells and activating mutations. A occations may let you expend mana for other purposes. There is no penalty to not having full mana, having below zero mana imposes a penalty equal to negative mana to all skill rolls. This stacks with other penalties.</p>
+                <h5>Skill bonus</h5>
+                <p>You gain one additional mana when your spells skill rank reaches 9, then again at 18</p>
             </Indexed>
             <Indexed title='Recovery'>
                 <p>Recovery of life, mental health and mana generally happens when you rest. Life and mental health depends on the quality of sleep</p>
@@ -77,9 +83,9 @@ const HealthAndRest = () =>
                     </li>
                     <li>Blind Rage<br />
                     While in a blind rage you must attack the target of your fear, you're not allowed to take any defensive actions and must move towards them in a straight line. Lasts as long as frightened</li>
-                    <li>Partially incapacitated<br/>
+                    <li>Partially incapacitated<br />
                     This is what happens when your life is reduced to or below 0 but above -100%. Any straneous activity causes 1 point of damage and you are only allowed either the action or move but not both.</li>
-                    <li>Critically incapacitated<br/>
+                    <li>Critically incapacitated<br />
                     This is what happens when your life is reduced below -100% but above -200%. You are not able to take any action. Roll 2d10 + endurance vs 25, if you fail you fall unconscious.</li>
                 </ul>
             </Indexed>

@@ -21,6 +21,14 @@ const Combat: React.FC = () => {
                 <h5>Counter-ambush</h5>
                 <p>If the defenders know they are going to be attacked and stand prepared for it but the attackers don't know that they know the defenders gain a +10 on their sequence</p>
             </Indexed>
+            <Indexed title='Actions'>
+                <p>During combat characters make take actions on their turn. In some special circumstances a character can take a specific action out of turn. These require that the character has actions left.</p>
+                <h5>Action</h5>
+                <p>You get one action, this can be an attack, interacting with an object, or performing a skill. Some attacking modes lets you attack multiple times. You can also use your action to make a move action.</p>
+                <h5>Move action</h5>
+                <p>Using your move action you can move up to your speed. Move action can be broken up between actions. Some actions specify that you have reduced movement, if its reduced to zero then you may not make any kind of move action.</p>
+                <p>Falling prone costs 1 movement speed, standing up costs half. Swiming, climbing and jumping counts as move, see athletics. Jumping uses half your movement and the distance is not affected by speed. See athletics skill.</p>
+            </Indexed>
             <Indexed title='Turns'>
                 <p>Each turn starts with the characters performing one action in order of highest sequence to lowest</p>
                 <p><b>Optional Rule</b>: give players limited time to decide what they do on each of their turns, it discourages players to think they can delibarate and ponder when everyone is waiting for them.
@@ -73,6 +81,7 @@ const Combat: React.FC = () => {
             </Indexed>
             <Indexed title='Multiple attacks'>
                 <p>Characters may do more than two or more consecutive attacks in certain circumstances. Only applies to combat rolls. Additional attacks may be reserved for blocking, unused blocks can not be converted into attacks when it is not your turn.</p>
+                <p>Each attack after the first also costs one movement, if you are out of movement then you can not perform additional attacks.</p>
                 <ul>
                     <li><b>2 attacks</b>: requires 6 or higher  combat. Take -3 penalty to all attacks</li>
                     <li><b>3 attacks</b>: requires 12 or higher combat. Take -6 penalty to all attacks</li>
@@ -99,10 +108,10 @@ const Combat: React.FC = () => {
                 </>)}
             </Indexed>
             <Indexed title='Splash damage'>
-                <p>Some weapons do splash damage, meaning they hit an area, some weapons have a "low damage" zone outside the splash area where damage is reduced to 25%</p>
+                <p>Some weapons do splash damage, meaning they hit an area, some weapons have a "low damage" zone outside the splash area where damage is reduced to 25% (rounded down)</p>
                 <ul>
                     <li>The area of effect (including low damage zone) is specified by the weapon</li>
-                    <li>All who are caught inside the area of effect roll damage seperately, damage absorbtion applies, defense does not apply</li>
+                    <li>All who are caught inside the area of effect roll damage seperately, damage absorbtion applies, defense does not apply, cover applies</li>
                     <li>Characters who still have a move action may make an acrobatics roll against the attack roll for half damage
                         <ul>
                             <li>Defeating the roll by 10 or more means no damage is taken, but the character moves out of the area</li>
