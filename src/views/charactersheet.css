@@ -1,6 +1,6 @@
 table {
   border: none;
-  font-size: 12px;
+  font-size: 12px !important;
   margin: 0;
   padding: 0;
   width: 100%;

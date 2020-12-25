@@ -298,12 +298,13 @@ const calculateCost = (currentStats: IStats): number => {
 
 const getStrengthMod = (size: CharacterSize): number => {
     switch (size) {
+        case 'diminutiv': return -3;
         case 'tiny': return -2;
         case 'small': return -1;
         case 'medium': return 0;
         case 'large': return 1;
         case 'huge': return 2;
-
+        case 'gigantic': return 3;
     }
 }
 

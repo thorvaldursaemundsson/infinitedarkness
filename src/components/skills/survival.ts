@@ -54,7 +54,12 @@ const useCases: UseCase[] = [
         ],
         type: 'active'
     },
-
+    {
+        name: 'track animal',
+        attribute: 'perception',
+        description: 'roll vs the animals stealth roll. It takes 4 if its not trying to hide. Take a penalty equal to the number of days since the animal has passed through the area you search. If it has rained, snowed, flooed or the tracks have been disturbed then double the penalty.',
+        type: 'active'
+    }
 ];
 const Survival = new SkillTemplate('survival', '', useCases);
 export default Survival;

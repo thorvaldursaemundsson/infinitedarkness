@@ -28,7 +28,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         <table>
             <thead>
                 <tr>
-                    <th colSpan={3}><h4>Infinite Darkness</h4></th>
+                    <th colSpan={6}><h4>Infinite Darkness</h4></th>
                 </tr>
             </thead>
             <tbody>

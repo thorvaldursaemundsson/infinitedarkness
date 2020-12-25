@@ -16,7 +16,7 @@ export interface IHooker {
     amount: number;
 }
 
-export type CharacterSize = 'tiny' | 'small' | 'medium' | 'large' | 'huge';
+export type CharacterSize = 'diminutiv' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' | 'gigantic';
 
 export interface ICharacter {
     name: string;
