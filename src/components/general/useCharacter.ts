@@ -16,6 +16,8 @@ const getSizeFromString = (str:string|undefined):CharacterSize => {
         case 'large': return 'large';
         case 'small': return 'small';
         case 'tiny': return 'tiny';
+        case 'gigantic': return 'gigantic';
+        case 'diminutiv': return 'diminutiv';
         default: return 'medium';
     }
 };

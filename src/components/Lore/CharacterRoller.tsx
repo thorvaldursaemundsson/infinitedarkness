@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import EditText from "../general/HideText";
 import { Character } from "../Character";
+import { humans } from "../races/Humans";
+import { IDice, IRacialMod } from "../races/Races";
+import { shambras } from "../races/Shambras";
+import { merlions } from "../races/Merlions";
+import { nekovian } from "../races/Nekovians";
 
-interface IDice {
-    sides: number;
-    numberOfDice: number;
-}
 
-interface ICharacterRoller {
-    strength: IDice;
-    agility: IDice;
-    endurance: IDice;
-    perception: IDice;
-    willpower: IDice;
-    intelligence: IDice;
-}
 
 interface ICharacterData {
     strength: number[];
@@ -25,7 +18,7 @@ interface ICharacterData {
     intelligence: number[];
 }
 
-const CharacterRoller: React.FC<ICharacterRoller> = (props) => {
+const CharacterRoller: React.FC<IRacialMod> = (props) => {
     const [characterData, setCharacterData] = useState<ICharacterData[]>([]);
 
     return (<div className="flexbox">
@@ -55,7 +48,7 @@ const CharacterRoller: React.FC<ICharacterRoller> = (props) => {
 
 const sumN = (n: number[]) => ` ${n.join(', ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
 
-const rollCharacterData = (dice: ICharacterRoller, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
+const rollCharacterData = (dice: IRacialMod, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
     let charData: ICharacterData[] = [];
 
     for (let counter = 0; counter < 4; counter++) {
@@ -74,7 +67,7 @@ const rollCharacterData = (dice: ICharacterRoller, setter: React.Dispatch<React.
 const roll = (dice: IDice) => {
     let numbers: number[] = [];
     for (let counter = 0; counter < dice.numberOfDice; counter++) {
-        numbers.push(Math.floor((Math.random() * dice.sides)) + 1);
+        numbers.push(Math.floor((Math.random() * dice.sidesPerDice)) + 1);
     }
     return numbers;
 }
@@ -82,37 +75,47 @@ const roll = (dice: IDice) => {
 
 
 const getStrengthHuman = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
-
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.strength;
+    }
+    return humans[0].strength;
 }
 const getAgilityHuman = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.agility;
+    }
+    return humans[0].agility;
 }
 const getEnduranceHuman = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.endurance;
+    }
+    return humans[0].endurance;
 }
 const getPerceptionHuman = (age: number) => {
-    if (age > 80) return { sides: 6, numberOfDice: 1 };
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    if (age > 26) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.perception;
+    }
+    return humans[0].perception;
 
 }
 const getIntelligenceHuman = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.intelligence;
+    }
+    return humans[0].intelligence;
 }
 const getWillpowerHuman = (age: number) => {
-    if (age > 80) return { sides: 8, numberOfDice: 1 };
-    if (age > 40) return { sides: 10, numberOfDice: 1 };
-    if (age > 26) return { sides: 8, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    var x = humans.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.willpower;
+    }
+    return humans[0].willpower;
 }
 
 
@@ -124,6 +127,9 @@ export const CharacterRollerHuman = () => {
     Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
+            ageSpan={[age, age]}
+            species={'human'}
+            sizeOptions={['medium']}
             strength={getStrengthHuman(age)}
             agility={getAgilityHuman(age)}
             endurance={getEnduranceHuman(age)}
@@ -135,36 +141,46 @@ export const CharacterRollerHuman = () => {
 }
 
 const getStrengthShambra = (age: number) => {
-    if (age > 100) return { sides: 12, numberOfDice: 1 };
-    if (age > 50) return { sides: 10, numberOfDice: 1 };
-    if (age > 25) return { sides: 8, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.strength;
+    }
+    return shambras[0].strength;
 }
 const getAgilityShambra = (age: number) => {
-    if (age > 100) return { sides: 4, numberOfDice: 1 };
-    if (age > 50) return { sides: 6, numberOfDice: 1 };
-    if (age > 25) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.agility;
+    }
+    return shambras[0].agility;
 }
 const getEnduranceShambra = (age: number) => {
-    if (age > 50) return { sides: 10, numberOfDice: 1 };
-    if (age > 25) return { sides: 8, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.endurance;
+    }
+    return shambras[0].endurance;
 }
 const getPerceptionShambra = (age: number) => {
-    if (age > 50) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.perception;
+    }
+    return shambras[0].perception;
 }
 const getIntelligenceShambra = (age: number) => {
-    if (age > 100) return { sides: 10, numberOfDice: 1 };
-    if (age > 35) return { sides: 8, numberOfDice: 1 };
-    if (age > 25) return { sides: 6, numberOfDice: 1 };
-    return { sides: 4, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.intelligence;
+    }
+    return shambras[0].intelligence;
 }
 const getWillpowerShambra = (age: number) => {
-    if (age > 25) return { sides: 10, numberOfDice: 1 };
-    if (age > 15) return { sides: 8, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    var x = shambras.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.willpower;
+    }
+    return shambras[0].willpower;
 }
 
 
@@ -176,6 +192,9 @@ export const CharacterRollerShambra = () => {
     Multiplier Exp: {Character.ExperienceMultiplerShambras(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
+            ageSpan={[age, age]}
+            species={'shambras'}
+            sizeOptions={['medium']}
             strength={getStrengthShambra(age)}
             agility={getAgilityShambra(age)}
             endurance={getEnduranceShambra(age)}
@@ -187,26 +206,46 @@ export const CharacterRollerShambra = () => {
 }
 
 const getStrengthMerlion = (age: number) => {
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    return { sides: 6, numberOfDice: 1 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.strength;
+    }
+    return merlions[0].strength;
 }
 const getAgilityMerlion = (age: number) => {
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.agility;
+    }
+    return merlions[0].agility;
 }
 const getEnduranceMerlion = (age: number) => {
-    if (age > 40) return { sides: 6, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.endurance;
+    }
+    return merlions[0].endurance;
 }
 const getPerceptionMerlion = (age: number) => {
-    if (age > 40) return { sides: 8, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.perception;
+    }
+    return merlions[0].perception;
 }
 const getIntelligenceMerlion = (age: number) => {
-    return { sides: 4, numberOfDice: 4 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.intelligence;
+    }
+    return merlions[0].intelligence;
 }
 const getWillpowerMerlion = (age: number) => {
-    return { sides: 10, numberOfDice: 1 };
+    var x = merlions.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined) {
+        return x.willpower;
+    }
+    return merlions[0].willpower;
 }
 
 export const CharacterRollerMerlion = () => {
@@ -217,6 +256,9 @@ export const CharacterRollerMerlion = () => {
     Multiplier Exp: {Character.ExperienceMultiplerMerlion(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
+            species={'merlion'}
+            sizeOptions={['medium']}
+            ageSpan={[age, age]}
             strength={getStrengthMerlion(age)}
             agility={getAgilityMerlion(age)}
             endurance={getEnduranceMerlion(age)}
@@ -228,32 +270,46 @@ export const CharacterRollerMerlion = () => {
 }
 
 const getStrengthNekovian = (age: number) => {
-    if (age > 36) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.strength;
+    }
+    return nekovian[0].strength;
 }
 const getAgilityNekovian = (age: number) => {
-    if (age > 60) return { sides: 8, numberOfDice: 1 };
-    if (age > 24) return { sides: 10, numberOfDice: 1 };
-    return { sides: 12, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.agility;
+    }
+    return nekovian[0].agility;
 }
 const getEnduranceNekovian = (age: number) => {
-    if (age > 60) return { sides: 8, numberOfDice: 1 };
-    if (age > 36) return { sides: 10, numberOfDice: 1 };
-    if (age > 24) return { sides: 12, numberOfDice: 1 };
-    return { sides: 10, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.endurance;
+    }
+    return nekovian[0].endurance;
 }
 const getPerceptionNekovian = (age: number) => {
-    if (age > 60) return { sides: 4, numberOfDice: 1 };
-    if (age > 36) return { sides: 6, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.perception;
+    }
+    return nekovian[0].perception;
 }
 const getIntelligenceNekovian = (age: number) => {
-    if (age > 36) return { sides: 8, numberOfDice: 1 };
-    if (age > 24) return { sides: 10, numberOfDice: 1 };
-    return { sides: 8, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.intelligence;
+    }
+    return nekovian[0].intelligence;
 }
 const getWillpowerNekovian = (age: number) => {
-    return { sides: 12, numberOfDice: 1 };
+    var x = nekovian.find(pred => pred.ageSpan[0] > age && pred.ageSpan[1] < age);
+    if (x !== undefined){
+        return x.willpower;
+    }
+    return nekovian[0].willpower;
 }
 
 export const CharacterRollerNekovian = () => {
@@ -264,6 +320,9 @@ export const CharacterRollerNekovian = () => {
     Multiplier Exp: {Character.ExperienceMultiplerNekovian(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
+            species={'nekovian'}
+            ageSpan={[age,age]}
+            sizeOptions={['medium']}
             strength={getStrengthNekovian(age)}
             agility={getAgilityNekovian(age)}
             endurance={getEnduranceNekovian(age)}

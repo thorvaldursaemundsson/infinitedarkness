@@ -2,6 +2,8 @@ import React from 'react';
 import Section from '../playermanual/Section';
 import { Character } from '../Character';
 import { CharacterRollerNekovian } from './CharacterRoller';
+import RaceTable from '../races/RaceTable';
+import { nekovian } from '../races/Nekovians';
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -22,36 +24,10 @@ const Nekovian = () => <>
     <p>When nekovians swim they may use the regular run table to determine how fast they swim and how far they can swim.</p>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
-    <p>Nekovians move at double speed in water and can fly</p>
-    <p>Nekovian may choose between tiny, small and medium size</p>
-    <table>
-        <thead>
-            <tr>
-                <th> </th> <th>Age 16-24</th> <th>Age 25-36</th> <th>Age 37-60</th> <th>Age 61+</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> STR</td> <td> 1d12</td> <td> 1d12</td> <td> 1d10</td>  <td> 1d10</td>
-            </tr>
-            <tr>
-                <td> END</td>  <td> 1d10</td> <td> 1d12</td> <td> 1d10</td>  <td> 1d8</td>
-            </tr>
-            <tr>
-                <td> AGI</td>  <td> 1d12</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d8</td>
-            </tr>
-            <tr>
-                <td> PER</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d4</td>
-            </tr>
-            <tr>
-                <td> INT</td>  <td> 1d8</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
-            </tr>
-            <tr>
-                <td> WILL</td>  <td> 1d12</td> <td> 1d12</td> <td> 1d12</td>  <td> 1d12</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>Nekovians move at double speed in water and can fly (glide downwards at ~15 degrees)</p>
+    
+    <RaceTable racialData={nekovian} />
+    
     <CharacterRollerNekovian />
 
     <Section title='Nekovian experience per age is as following'>

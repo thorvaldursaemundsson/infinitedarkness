@@ -1,228 +1,10 @@
 import React, { useReducer } from 'react';
 import { CharacterSize } from '../Character';
-
-type race = 'human' | 'shambras' | 'merlion' | 'nekovian';
-interface IRacialMod {
-    ageSpan: [number, number];
-    species: race;
-    strengthMod: number;
-    enduranceMod: number;
-    agilityMod: number;
-    intelligenceMod: number;
-    perceptionMod: number;
-    willpowerMod: number;
-    sizeOptions: CharacterSize[];
-}
-
-const humans: IRacialMod[] = [
-    {
-        ageSpan: [18, 26],
-        species: 'human',
-        strengthMod: 0,
-        enduranceMod: 2,
-        agilityMod: 1,
-        perceptionMod: 2,
-        intelligenceMod: 1,
-        willpowerMod: -1,
-        sizeOptions: ['small', 'medium', 'large']
-    },
-    {
-        ageSpan: [27, 40],
-        species: 'human',
-        strengthMod: 1,
-        enduranceMod: 2,
-        agilityMod: 1,
-        perceptionMod: 1,
-        intelligenceMod: 1,
-        willpowerMod: 0,
-        sizeOptions: ['small', 'medium', 'large']
-    },
-    {
-        ageSpan: [41, 80],
-        species: 'human',
-        strengthMod: 1,
-        enduranceMod: 1,
-        agilityMod: 0,
-        perceptionMod: 0,
-        intelligenceMod: 1,
-        willpowerMod: 1,
-        sizeOptions: ['small', 'medium', 'large']
-    },
-    {
-        ageSpan: [81, 180],
-        species: 'human',
-        strengthMod: 0,
-        enduranceMod: 0,
-        agilityMod: -1,
-        perceptionMod: -1,
-        intelligenceMod: 0,
-        willpowerMod: 0,
-        sizeOptions: ['small', 'medium', 'large']
-    },
-];
-
-const merlions: IRacialMod[] = [
-    {
-        ageSpan: [18, 24],
-        species: 'merlion',
-        strengthMod: -1,
-        enduranceMod: 0,
-        agilityMod: 1,
-        perceptionMod: 1,
-        intelligenceMod: 4,
-        willpowerMod: 1,
-        sizeOptions: ['tiny', 'small', 'medium']
-    },
-    {
-        ageSpan: [25, 40],
-        species: 'merlion',
-        strengthMod: -1,
-        enduranceMod: 0,
-        agilityMod: 1,
-        perceptionMod: 1,
-        intelligenceMod: 4,
-        willpowerMod: 0,
-        sizeOptions: ['tiny', 'small', 'medium']
-    },
-    {
-        ageSpan: [41, 80],
-        species: 'merlion',
-        strengthMod: 0,
-        enduranceMod: -1,
-        agilityMod: 0,
-        perceptionMod: 0,
-        intelligenceMod: 4,
-        willpowerMod: 1,
-        sizeOptions: ['tiny', 'small', 'medium']
-    },
-    {
-        ageSpan: [81, 180],
-        species: 'merlion',
-        strengthMod: 0,
-        enduranceMod: -1,
-        agilityMod: 0,
-        perceptionMod: 0,
-        intelligenceMod: 4,
-        willpowerMod: 1,
-        sizeOptions: ['tiny', 'small', 'medium']
-    },
-];
-
-const shambras: IRacialMod[] = [
-    {
-        ageSpan: [15, 20],
-        species: 'shambras',
-        strengthMod: -1,
-        enduranceMod: -1,
-        agilityMod: 1,
-        perceptionMod: 2,
-        intelligenceMod: -2,
-        willpowerMod: -1,
-        sizeOptions: ['tiny', 'small', 'medium']
-    },
-    {
-        ageSpan: [21, 25],
-        species: 'shambras',
-        strengthMod: -1,
-        enduranceMod: -1,
-        agilityMod: 1,
-        perceptionMod: 2,
-        intelligenceMod: -1,
-        willpowerMod: 0,
-        sizeOptions: ['small', 'medium']
-    },
-    {
-        ageSpan: [26, 35],
-        species: 'shambras',
-        strengthMod: 0,
-        enduranceMod: 0,
-        agilityMod: 0,
-        perceptionMod: 2,
-        intelligenceMod: -1,
-        willpowerMod: 1,
-        sizeOptions: ['small', 'medium', 'large']
-    },
-    {
-        ageSpan: [36, 50],
-        species: 'shambras',
-        strengthMod: 0,
-        enduranceMod: 0,
-        agilityMod: 0,
-        perceptionMod: 2,
-        intelligenceMod: 0,
-        willpowerMod: 1,
-        sizeOptions: ['medium', 'large']
-    },
-    {
-        ageSpan: [51, 100],
-        species: 'shambras',
-        strengthMod: 1,
-        enduranceMod: 1,
-        agilityMod: -1,
-        perceptionMod: 1,
-        intelligenceMod: 0,
-        willpowerMod: 1,
-        sizeOptions: ['medium', 'large', 'huge']
-    },
-    {
-        ageSpan: [101, 300],
-        species: 'shambras',
-        strengthMod: 2,
-        enduranceMod: 1,
-        agilityMod: -2,
-        perceptionMod: 1,
-        intelligenceMod: 1,
-        willpowerMod: 1,
-        sizeOptions: ['large', 'huge']
-    },
-];
-
-const nekovian: IRacialMod[] = [
-    {
-        ageSpan: [16, 24],
-        species: 'nekovian',
-        strengthMod: 2,
-        enduranceMod: 1,
-        agilityMod: 2,
-        perceptionMod: 0,
-        intelligenceMod: 0,
-        willpowerMod: 2,
-        sizeOptions: ['tiny', 'small']
-    },
-    {
-        ageSpan: [25, 36],
-        species: 'nekovian',
-        strengthMod: 2,
-        enduranceMod: 2,
-        agilityMod: 1,
-        perceptionMod: 0,
-        intelligenceMod: 1,
-        willpowerMod: 2,
-        sizeOptions: ['tiny', 'small']
-    },
-    {
-        ageSpan: [37, 60],
-        species: 'nekovian',
-        strengthMod: 1,
-        enduranceMod: 1,
-        agilityMod: 1,
-        perceptionMod: -1,
-        intelligenceMod: 0,
-        willpowerMod: 2,
-        sizeOptions: ['tiny', 'small']
-    },
-    {
-        ageSpan: [61, 120],
-        species: 'nekovian',
-        strengthMod: 1,
-        enduranceMod: 0,
-        agilityMod: 0,
-        perceptionMod: -2,
-        intelligenceMod: 0,
-        willpowerMod: 2,
-        sizeOptions: ['tiny', 'small']
-    },
-];
+import { humans } from '../races/Humans';
+import { merlions } from '../races/Merlions';
+import { nekovian } from '../races/Nekovians';
+import { IRacialMod, race } from '../races/Races';
+import { shambras } from '../races/Shambras';
 
 export interface IStats {
     strength: number;
@@ -332,12 +114,12 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
     const complete = () => {
         onComplete({
             ...currentStats,
-            strength: currentStats.strength + currentRacialMod.strengthMod + getStrengthMod(currentStats.size),
-            agility: currentStats.agility + currentRacialMod.agilityMod,
-            endurance: currentStats.endurance + currentRacialMod.enduranceMod,
-            perception: currentStats.perception + currentRacialMod.perceptionMod,
-            intelligence: currentStats.intelligence + currentRacialMod.intelligenceMod,
-            willpower: currentStats.willpower + currentRacialMod.willpowerMod,
+            strength: currentStats.strength + currentRacialMod.strength.pointBuyMod + getStrengthMod(currentStats.size),
+            agility: currentStats.agility + currentRacialMod.agility.pointBuyMod,
+            endurance: currentStats.endurance + currentRacialMod.endurance.pointBuyMod,
+            perception: currentStats.perception + currentRacialMod.perception.pointBuyMod,
+            intelligence: currentStats.intelligence + currentRacialMod.intelligence.pointBuyMod,
+            willpower: currentStats.willpower + currentRacialMod.willpower.pointBuyMod,
             restExp: pointsLeft
         });
     }
@@ -359,48 +141,48 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                 <tr>
                     <td>Strength</td>
                     <td>{currentStats.strength}</td>
-                    <td>{currentRacialMod.strengthMod + getStrengthMod(currentStats.size)}</td>
-                    <td>{currentStats.strength + currentRacialMod.strengthMod + getStrengthMod(currentStats.size)}</td>
+                    <td>{currentRacialMod.strength.pointBuyMod + getStrengthMod(currentStats.size)}</td>
+                    <td>{currentStats.strength + currentRacialMod.strength.pointBuyMod + getStrengthMod(currentStats.size)}</td>
                     <td><button onClick={() => setCurrentStats({ strength: currentStats.strength + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ strength: Math.max(currentStats.strength - 1, 1) })}>-</button></td>
                 </tr>
                 <tr>
                     <td>Endurance</td>
                     <td>{currentStats.endurance}</td>
-                    <td>{currentRacialMod.enduranceMod}</td>
-                    <td>{currentStats.endurance + currentRacialMod.enduranceMod}</td>
+                    <td>{currentRacialMod.endurance.pointBuyMod}</td>
+                    <td>{currentStats.endurance + currentRacialMod.endurance.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ endurance: currentStats.endurance + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ endurance: Math.max(currentStats.endurance - 1, 1) })}>-</button></td>
                 </tr>
                 <tr>
                     <td>Agility</td>
                     <td>{currentStats.agility}</td>
-                    <td>{currentRacialMod.agilityMod}</td>
-                    <td>{currentStats.agility + currentRacialMod.agilityMod}</td>
+                    <td>{currentRacialMod.agility.pointBuyMod}</td>
+                    <td>{currentStats.agility + currentRacialMod.agility.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ agility: currentStats.agility + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ agility: Math.max(currentStats.agility - 1, 1) })}>-</button></td>
                 </tr>
                 <tr>
                     <td>Perception</td>
                     <td>{currentStats.perception}</td>
-                    <td>{currentRacialMod.perceptionMod}</td>
-                    <td>{currentStats.perception + currentRacialMod.perceptionMod}</td>
+                    <td>{currentRacialMod.perception.pointBuyMod}</td>
+                    <td>{currentStats.perception + currentRacialMod.perception.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ perception: currentStats.perception + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ perception: Math.max(currentStats.perception - 1, 1) })}>-</button></td>
                 </tr>
                 <tr>
                     <td>Intelligence</td>
                     <td>{currentStats.intelligence}</td>
-                    <td>{currentRacialMod.intelligenceMod}</td>
-                    <td>{currentStats.intelligence + currentRacialMod.intelligenceMod}</td>
+                    <td>{currentRacialMod.intelligence.pointBuyMod}</td>
+                    <td>{currentStats.intelligence + currentRacialMod.intelligence.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ intelligence: currentStats.intelligence + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ intelligence: Math.max(currentStats.intelligence - 1, 1) })}>-</button></td>
                 </tr>
                 <tr>
                     <td>Willpower</td>
                     <td>{currentStats.willpower}</td>
-                    <td>{currentRacialMod.willpowerMod}</td>
-                    <td>{currentStats.willpower + currentRacialMod.willpowerMod}</td>
+                    <td>{currentRacialMod.willpower.pointBuyMod}</td>
+                    <td>{currentStats.willpower + currentRacialMod.willpower.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ willpower: currentStats.willpower + 1 })}>+</button>
                         <button onClick={() => setCurrentStats({ willpower: Math.max(currentStats.willpower - 1, 1) })}>-</button></td>
                 </tr>

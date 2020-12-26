@@ -1,6 +1,8 @@
 import React from "react";
 import { Character } from "../Character";
 import Section from "../playermanual/Section";
+import { merlions } from "../races/Merlions";
+import RaceTable from "../races/RaceTable";
 import { CharacterRollerMerlion } from "./CharacterRoller";
 
 const experienceAges = [...Array(90)]
@@ -26,34 +28,9 @@ const Merlions: React.FC = () => {
         <p>Merlions are a playable species but not recommended for new players, their stats are slightly affected by their age</p>
         <p>Merlions gain trait "redolex" which increases all mental skills by +1 during combat</p>
         <p>Merlions gain trait "manaless" which locks them out of spells, they gain +2 to all resistence against spells</p>
-        <p>Merlions may choose between small and medium size</p>
-        <table>
-            <thead>
-                <tr>
-                    <th> </th> <th>Age 18-24</th> <th>Age 25-40</th> <th>Age 41-80</th> <th>Age 81+</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>
-                </tr>
-                <tr>
-                    <td> END</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td>
-                </tr>
-                <tr>
-                    <td> AGI</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
-                </tr>
-                <tr>
-                    <td> PER</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d8</td>  <td> 1d8</td>
-                </tr>
-                <tr>
-                    <td> INT</td>  <td> 4d4</td> <td> 4d4</td> <td> 4d4</td>  <td> 4d4</td>
-                </tr>
-                <tr>
-                    <td> WILL</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d10</td>
-                </tr>
-            </tbody>
-        </table>
+        
+        <RaceTable racialData={merlions} />
+        
         <CharacterRollerMerlion />
         <Section title='Merlion experience per age is as following'>
             <table>

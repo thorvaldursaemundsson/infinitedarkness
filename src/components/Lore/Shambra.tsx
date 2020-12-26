@@ -2,6 +2,8 @@ import React from 'react';
 import { Character } from '../Character';
 import { CharacterRollerShambra } from './CharacterRoller';
 import Section from '../playermanual/Section';
+import RaceTable from '../races/RaceTable';
+import { shambras } from '../races/Shambras';
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -25,40 +27,9 @@ const Shambras: React.FC = () => {
         <h3>Playing as a shambra</h3>
         <p>Shambras are a playable species, their stats depend greatly on their age</p>
         <p>Shambras take certain penalties as they grow older and bigger, players that are close to a previous or next age limit may choose to take adjecent effects instead</p>
-        <ul>
-            <li>Age 26-35: -2 climb and swim -3 jump, size: small or medium</li>
-            <li>Age 36-50: -4 climb and swim -6 jump, size: small, medium or large</li>
-            <li>Age 51-70: -6 climb and swim -9 jump, size: medium or large</li>
-            <li>Age 71-100: -8 climb and swim -12 jump, size: medium, large or huge</li>
-            <li>Age 101+: -10 climb and swim -15 jump, size: large or huge</li>
-        </ul>
-        <table>
-            <thead>
-                <tr>
-                    <th> </th> <th>Age 15-20</th> <th>Age 21-25</th> <th>Age 26-35</th> <th>Age 36-50</th> <th>Age 51-70</th> <th>Age 71-100</th> <th>Age 101+</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> STR</td> <td> 1d6</td> <td> 1d6</td> <td> 1d8</td>  <td> 1d8</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d12</td>
-                </tr>
-                <tr>
-                    <td> END</td> <td> 1d6</td>  <td> 1d6</td>  <td> 1d8</td> <td> 1d8</td> <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>
-                </tr>
-                <tr>
-                    <td> AGI</td> <td> 1d10</td>  <td> 1d10</td> <td> 1d8</td> <td> 1d8</td> <td> 1d6</td>  <td> 1d6</td> <td> 1d4</td>
-                </tr>
-                <tr>
-                    <td> PER</td> <td> 1d12</td> <td> 1d12</td>  <td> 1d12</td> <td> 1d12</td> <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>
-                </tr>
-                <tr>
-                    <td> INT</td> <td> 1d4</td>  <td> 1d6</td> <td> 1d6</td>  <td> 1d8</td>  <td> 1d8</td> <td> 1d8</td>  <td> 1d10</td>
-                </tr>
-                <tr>
-                    <td> WILL</td>  <td> 1d6</td>  <td> 1d8</td>  <td> 1d10</td>  <td> 1d10</td> <td> 1d10</td> <td> 1d10</td>  <td> 1d10</td>
-                </tr>
-            </tbody>
-        </table>
+        
+        <RaceTable racialData={shambras} />
+        
         <CharacterRollerShambra />
 
         <Section title='Shambra experience per age is as following'>
