@@ -1,6 +1,6 @@
 import React from 'react';
 import { Character } from '../Character';
-import { CharacterRollerShambra } from './CharacterRoller';
+import { GenericCharacterRoller } from './CharacterRoller';
 import Section from '../playermanual/Section';
 import RaceTable from '../races/RaceTable';
 import { shambras } from '../races/Shambras';
@@ -30,7 +30,7 @@ const Shambras: React.FC = () => {
         
         <RaceTable racialData={shambras} />
         
-        <CharacterRollerShambra />
+        <GenericCharacterRoller racialMod={shambras} />
 
         <Section title='Shambra experience per age is as following'>
             <table>

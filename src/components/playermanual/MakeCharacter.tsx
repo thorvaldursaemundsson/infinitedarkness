@@ -1,15 +1,19 @@
 import Section from "./Section";
 import React from "react";
-import { CharacterRollerHuman, CharacterRollerShambra, CharacterRollerMerlion, CharacterRollerNekovian } from "../Lore/CharacterRoller";
+import { GenericCharacterRoller } from "../Lore/CharacterRoller";
 import { IOpenableViewItem } from "../../views/IViewProps";
+import { humans } from "../races/Humans";
+import { nekovian } from "../races/Nekovians";
+import { merlions } from "../races/Merlions";
+import { shambras } from "../races/Shambras";
 
 const MakeCharacter: React.FC<IOpenableViewItem> = ({initiallyOpen}) => {
     return <Section title='How to make a character' initiallyOpen={initiallyOpen}>
 
-        <Section title='Human dice roller'><CharacterRollerHuman /></Section>
-        <Section title='Shambra dice roller'><CharacterRollerShambra /></Section>
-        <Section title='Merlion dice roller'><CharacterRollerMerlion /></Section>
-        <Section title='Nekovian dice roller'><CharacterRollerNekovian /></Section>
+        <Section title='Human dice roller'><GenericCharacterRoller racialMod={humans} /></Section>
+        <Section title='Shambra dice roller'><GenericCharacterRoller racialMod={shambras} /></Section>
+        <Section title='Merlion dice roller'><GenericCharacterRoller racialMod={merlions} /></Section>
+        <Section title='Nekovian dice roller'><GenericCharacterRoller racialMod={nekovian} /></Section>
 
         <h3>Step 1 - concept</h3>
         <h4>Roll attributes</h4>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from '../playermanual/Section';
 import { Character } from '../Character';
-import { CharacterRollerNekovian } from './CharacterRoller';
+import { GenericCharacterRoller } from './CharacterRoller';
 import RaceTable from '../races/RaceTable';
 import { nekovian } from '../races/Nekovians';
 
@@ -28,7 +28,7 @@ const Nekovian = () => <>
     
     <RaceTable racialData={nekovian} />
     
-    <CharacterRollerNekovian />
+    <GenericCharacterRoller racialMod={nekovian} />
 
     <Section title='Nekovian experience per age is as following'>
         <table>

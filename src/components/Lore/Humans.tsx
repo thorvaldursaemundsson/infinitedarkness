@@ -3,7 +3,7 @@ import { Character } from "../Character";
 import Section from "../playermanual/Section";
 import { humans } from "../races/Humans";
 import RaceTable from "../races/RaceTable";
-import { CharacterRollerHuman } from "./CharacterRoller";
+import { GenericCharacterRoller } from "./CharacterRoller";
 
 const experienceAges = [...Array(90)]
     .map((v: any, index: number, arr: any[]) => {
@@ -24,7 +24,7 @@ const Humans: React.FC = () => {
 
         <RaceTable racialData={humans} />
 
-        <CharacterRollerHuman />
+        <GenericCharacterRoller racialMod={humans} />
 
         <Section title='Human experience per age is as following'>
 
