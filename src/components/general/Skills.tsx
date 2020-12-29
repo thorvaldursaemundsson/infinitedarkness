@@ -1,8 +1,10 @@
 
 export type SkillName = 'acrobatics'|'athletics'|'combat'|'computer'|'cooking'|'electronics'|'empathy'|'explosives'|'firearms'|'general knowledge'|'intimidation'|'investigation'|'larceny'|'mechanics'|'medicine'|'persuation'|'pilot'|'savoir-faire'|'science'|'spells'|'stealth'|'streetwise'|'subtrefuge'|'survival';
 
+export type abilities = 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
+
 export interface UseCase {
-    attribute: 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
+    attribute: abilities;
     name: string;
     description: string;
     results?: string[];

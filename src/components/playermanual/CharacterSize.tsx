@@ -61,44 +61,9 @@ const CharacterSize = () => <Section title='Character Size & movement speed'>
     <h3>Movement speed</h3>
     <p>Characters have default and maximum movement speeds, and running speeds which are some multiplicative of their default speed. The walking speed is how far a character can walk in a round</p>
     <p>Characters may choose to power walk but take a -5 to all rolls if they do so and lose their skill bonus to their defense, if they jog they take a -10 and lose their agility to their defense</p>
-    <p>To run during combat uses up all actions during combat, they gain a +4 defense while running but forgo skill</p>
-    <p>To sprint the character must have first run, they gain a +6 defense while sprinting but forgo skill and agility</p>
-    <table style={{ width: '480px' }}>
-        <thead>
-            <tr>
-                <th style={tdWidth}>Type</th>
-                <th style={tdWidth}>Speed</th>
-                <th style={tdWidth}>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style={tdWidth}>Walk</td>
-                <td style={tdWidth}>x1</td>
-                <td style={tdWidth}>endurance + athletics hours</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Power Walk</td>
-                <td style={tdWidth}>x2</td>
-                <td style={tdWidth}>endurance + athletics / 4 hours</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Jog</td>
-                <td style={tdWidth}>x3</td>
-                <td style={tdWidth}>endurance + athletics / 8 hours</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Run</td>
-                <td style={tdWidth}>x4</td>
-                <td style={tdWidth}>(endurance + athletics) x 4 minutes</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Sprint</td>
-                <td style={tdWidth}>x5</td>
-                <td style={tdWidth}>endurance + athletics minutes</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>To run during combat uses up all actions during combat, they gain a +4 defense while running but forgo skill (use second defense number in place of third)</p>
+    <p>To sprint the character must have first run, they forgo skill and agility (use only first defense number)</p>
+    
     <p>Speed is determined by size, athletics skill and species</p>
     <h6>Size</h6>
     <table style={{ width: '320px' }}>

@@ -316,3 +316,7 @@ li.highlightedLi {
     margin-bottom: -2px;
     margin-top: -2px;
 }
+
+p.ellipsis {
+    margin: 0;
+}

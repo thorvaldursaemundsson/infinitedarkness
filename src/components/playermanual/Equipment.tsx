@@ -5,7 +5,7 @@ import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo } from "
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
-import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData } from "../equipment/Armors";
+import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData, integratedSystems, IntegratedSystem } from "../equipment/Armors";
 import { CharacterSize } from "../Character";
 
 const Equipment: React.FC = () => {
@@ -158,6 +158,25 @@ const Equipment: React.FC = () => {
                 <ArmorTable armors={armorPlates} />
                 <h5>Power Armor Frame</h5>
                 <ArmorTable armors={powerArmors} />
+                <h5>Integrated systems</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={{ width: '20%' }}>Name</th>
+                            <th>Description</th>
+                            <th style={{ width: '15%' }}>Cost</th>
+                            <th style={{ width: '15%' }}>Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {integratedSystems.map(i => <tr>
+                            <td>{i.name}</td>
+                            <td><Ellipsis text={i.description} cutOff={40} /></td>
+                            <td>{i.cost}</td>
+                            <td>{i.weight}</td>
+                        </tr>)}
+                    </tbody>
+                </table>
             </Indexed>
             <Indexed title='Quality and Condition'>
                 <p>Quality and condition are optional rules that can increase variety and make items feel more personal.</p>
@@ -300,6 +319,7 @@ const ArmorCrafter: React.FC = () => {
     const [bodySuit, setBodySuit] = useState<BodySuit | undefined>(undefined);
     const [armorPlate, setArmorPlate] = useState<ArmorPlate | undefined>(undefined);
     const [powerArmor, setPowerArmor] = useState<PowerArmor | undefined>(undefined);
+    const [integratedSystemsOnArmor, setIntegratedSystemsOnArmor] = useState<IntegratedSystem[]>([]);
     const [qualityMod, setQualityMod] = useState(0);
     const [size, setSize] = useState<CharacterSize>('medium');
     const [protectionAmount, setProtectionAmount] = useState(6);
@@ -331,6 +351,29 @@ const ArmorCrafter: React.FC = () => {
         perceptionMod += powerArmor.perceptionMod;
     }
 
+    for (let index in integratedSystemsOnArmor) {
+        let item = integratedSystemsOnArmor[index];
+        cost += item.cost;
+        weight += item.weight;
+        defense += item.damageAbsorbtion;
+        for (let i in item.abilityModifiers){
+            let abs = item.abilityModifiers[i];
+            switch (abs.ability){
+                case 'strength': strengthMod += abs.modifier; break;
+                case 'agility': agilityMod += abs.modifier; break;
+                case 'perception': perceptionMod += abs.modifier; break;
+            }
+        }
+    }
+
+    const addOrRemoveIntegratedSystem = (add: boolean, item: IntegratedSystem) => {
+        if (add)
+            setIntegratedSystemsOnArmor([...integratedSystemsOnArmor, item]);
+        else
+            setIntegratedSystemsOnArmor(integratedSystemsOnArmor.filter(i => i.name !== item.name));
+
+    }
+
     defense += qualityMod;
     let protectionAmountActual = powerArmor === undefined ? protectionAmount : Math.max(protectionAmount, 3);
     cost = cost * getSizeMod(size) * getProtectionMod(protectionAmountActual) * getQualityMod(qualityMod);
@@ -356,6 +399,11 @@ const ArmorCrafter: React.FC = () => {
                 {pa.name}
             </option>)}
         </select>
+        <Section title='Integrated Systems'>
+            {integratedSystems.map(i => <label>
+                <input type='checkbox' checked={integratedSystemsOnArmor.find(is => is.name === i.name) !== undefined} onChange={(e) => addOrRemoveIntegratedSystem(e.target.checked, i)} /> {i.name}
+            </label>)}
+        </Section>
         <br />
         <select onChange={(e) => setQualityMod(parseInt(e.target.value))}>
             <option value='0' selected={qualityMod === 0}>Pristine/intact/Normal</option>
