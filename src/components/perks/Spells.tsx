@@ -342,12 +342,12 @@ const Ferral = new SpellTemplate(
     'Mutation: Your skin turns into a dark shade of grey like iron then grow into small scales that rust and also slowly fall out. Your nails and teeth turn into black hard steel, your hair turn into thin steel wires. You are not affected by magnetism. Your insides and blood are also black and metallic.',
     undefined,
     [
-        'You gain permanenty: 3 damage absorbtion',
-        'You gain permanently: 2 armor piercing and +1 damage on all unarmed attacks',
-        'you gain permanently: 1 strength, 1 endurance, -1 agility,-1 perception (min 1)',
+        'You gain permanenty: 2 damage absorbtion',
+        'You gain permanently: 1 armor piercing and +1 damage on all unarmed attacks',
+        'you gain permanently: 1 strength, 1 endurance, -1 agility, -1 perception',
         'you gain permanently: +25% weight',
         'you gain permanently: -1 speed',
-        'You can increase damage absorbtion, strength and damage by 1 by eating 500 grams of pure iron, doing so costs one mana and every 3rd drops speed by 1, speed cant go below 3, lasts one 24 hours'
+        'You can increase damage strength by 2 and absorbtion by 1 and damage by 1 by eating 500 grams of pure iron, doing so costs 3 mana and every drops speed by 0.5 (round down), speed cant go below 4, lasts one 24 hours'
     ]
 );
 

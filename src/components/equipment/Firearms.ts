@@ -99,25 +99,25 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '20mm rpg',
         cost: 250,
-        weight: 90,
+        weight: 120,
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '30mm rpg',
         cost: 500,
-        weight: 120,
+        weight: 200,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '40mm rpg',
         cost: 800,
-        weight: 160,
+        weight: 400,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '50mm rpg',
         cost: 1250,
-        weight: 220,
+        weight: 1000,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade'
     }, {
@@ -292,19 +292,19 @@ const Firearms: FireArm[] = [
 
     //rocket launcher
     {
-        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 4, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 5000, value: 2000, hitbonus: -1,
+        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 4, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
         description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round', splashRange: .5, lowDamageZone: 2,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 4, capacity: 3, fireAction: ['bolt action'], armorpiercing: 6, weight: 4000, value: 1500, hitbonus: -2,
+        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 4, capacity: 3, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1500, hitbonus: -2,
         description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover', splashRange: 1, lowDamageZone: 3,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 4, capacity: 2, fireAction: ['bolt action'], armorpiercing: 10, weight: 4000, value: 1700, hitbonus: -3,
+        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 4, capacity: 2, fireAction: ['bolt action'], armorpiercing: 10, weight: 5000, value: 1700, hitbonus: -3,
         description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people', splashRange: 2, lowDamageZone: 4,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 5, capacity: 1, fireAction: ['bolt action'], armorpiercing: 12, weight: 5000, value: 2400, hitbonus: -4,
+        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 5, capacity: 1, fireAction: ['bolt action'], armorpiercing: 12, weight: 7000, value: 2400, hitbonus: -4,
         description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat', splashRange: 2, lowDamageZone: 5,
     },
 

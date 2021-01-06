@@ -92,8 +92,8 @@ export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ raci
     const [age, setAge] = useState(24);
     return <div>
         Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsHuman(age)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplerHuman(age)}<br />
+    Starting Exp: {Character.CharacterPointsSpecies(age, racialMod[0].species)}<br />
+    Multiplier Exp: {Character.ExperienceMultiplierSpecies(age, racialMod[0].species)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
             ageSpan={[age, age]}

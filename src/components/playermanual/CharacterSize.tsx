@@ -10,12 +10,13 @@ const CharacterSize = () => <Section title='Character Size & movement speed'>
     <h3>Character Size</h3>
     <p>Being small or large has different benefits and penalties</p>
     <p>The size range and mass range may be exceeded at the player's and game master's discretion. But it is expected that characters get their size according to their size.</p>
+    <p>Secondary mod refers to base defense and any situation or skill where it is disadvantageous to be large and advantageous to be small, such as hiding, tumbling, etc.</p>
     <table>
         <thead>
             <tr>
                 <th>Size</th>
                 <th>Strength mod</th>
-                <th>Defense mod</th>
+                <th>Secondary mod</th>
                 <th>Size range (cm)</th>
                 <th>Mass range (kg)</th>
             </tr>

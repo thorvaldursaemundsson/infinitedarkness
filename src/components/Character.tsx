@@ -2,6 +2,7 @@ import { Skill } from "./general/Skills";
 import { Perk } from './general/Perks';
 import { Trait } from "./traits/Traits";
 import { GetSkillList } from "./general/GetSkillList";
+import { race } from "./races/Races";
 
 export const fSum = (n: number): number => {
     let x = 0;
@@ -184,6 +185,24 @@ export class Character {
         }
 
         return p;
+    }
+
+    public static CharacterPointsSpecies(age: number, species: race) {
+        switch (species) {
+            case 'human': return Character.CharacterPointsHuman(age);
+            case 'merlion': return Character.CharacterPointsMerlion(age);
+            case 'shambras': return Character.CharacterPointsShambras(age);
+            case 'nekovian': return Character.CharacterPointsNekovian(age);
+        }
+    }
+
+    public static ExperienceMultiplierSpecies(age: number, species: race) {
+        switch (species) {
+            case 'human': return Character.ExperienceMultiplerHuman(age);
+            case 'merlion': return Character.ExperienceMultiplerMerlion(age);
+            case 'shambras': return Character.ExperienceMultiplerShambras(age);
+            case 'nekovian': return Character.ExperienceMultiplerNekovian(age);
+        }
     }
 
     public static CharacterPointsHuman(age: number) {
