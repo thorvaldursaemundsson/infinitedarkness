@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const HandGunSpecialization = new PerkTemplate({
+const HandGunSpecialization = new PerkTemplate({
     name: 'hand gun specialization',
     skill: 'firearms',
     level: 1,
@@ -10,7 +10,7 @@ export const HandGunSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const RifleSpecialization = new PerkTemplate({
+const RifleSpecialization = new PerkTemplate({
     name: 'rifle specialization',
     skill: 'firearms',
     level: 1,
@@ -20,7 +20,7 @@ export const RifleSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const MachineGunSpecialization = new PerkTemplate({
+const MachineGunSpecialization = new PerkTemplate({
     name: 'machine gun specialization',
     skill: 'firearms',
     level: 1,
@@ -30,7 +30,7 @@ export const MachineGunSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const RocketLaunchersSpecialization = new PerkTemplate({
+const RocketLaunchersSpecialization = new PerkTemplate({
     name: 'rocket launcher specialization',
     skill: 'firearms',
     level: 1,
@@ -40,7 +40,7 @@ export const RocketLaunchersSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const LaserSpecialization = new PerkTemplate({
+const LaserSpecialization = new PerkTemplate({
     name: 'laser specialization',
     skill: 'firearms',
     level: 1,
@@ -50,7 +50,7 @@ export const LaserSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const PlasmaSpecialization = new PerkTemplate({
+const PlasmaSpecialization = new PerkTemplate({
     name: 'plasma specialization',
     skill: 'firearms',
     level: 1,
@@ -60,56 +60,71 @@ export const PlasmaSpecialization = new PerkTemplate({
     amount: 3
 });
 
-export const Sniper = new PerkTemplate({
+const Sniper = new PerkTemplate({
     name: 'sniper',
     skill: 'firearms',
     level: 1,
     description: 'half range penalties, stacks with all other sources multiplicatively'
 });
 
-export const Marksman = new PerkTemplate({
+const Marksman = new PerkTemplate({
     name: 'marksman',
     skill: 'firearms',
     level: 2,
     description: 'half range penalties, stacks with all other sources multiplicatively'
 });
 
-export const DeadEye = new PerkTemplate({
+const DeadEye = new PerkTemplate({
     name: 'deadeye',
     skill: 'firearms',
     level: 3,
     description: 'half range penalties, stacks with all other sources multiplicatively'
 });
 
-export const FastShooter = new PerkTemplate({
+const DeadlyShot = new PerkTemplate({
+    name: 'deadly shot',
+    skill: 'firearms',
+    level: 2,
+    description: 'you are particularly deadly, you may either add a +3 to hit or a +1d6 damage when making a snipe shot. Must be declared in advance. Requires Sniper perk'
+});
+
+const AnnihilatingShot = new PerkTemplate({
+    name: 'deadly shot',
+    skill: 'firearms',
+    level: 3,
+    description: 'you are particularly deadly, you may either add a +6 to hit or a +1d10 damage when making a snipe shot. Must be declared in advance. Requires and replaces DeadlyShot perk '
+});
+
+
+const FastShooter = new PerkTemplate({
     name: 'fast shooter',
     skill: 'firearms',
     level: 1,
     description: 'when using semi burst or burst you hit with 1 additional bullet'
 });
 
-export const Suppressor = new PerkTemplate({
+const Suppressor = new PerkTemplate({
     name: 'suppressor',
     skill: 'firearms',
     level: 1,
     description: 'when you use oppressive fire on a target they take -5 to all rolls even if they dont get hit'
 });
 
-export const RapidReload = new PerkTemplate({
+const RapidReload = new PerkTemplate({
     name: 'rapid reload',
     skill: 'firearms',
     level: 1,
-    description: 'you may reload as a move action rather than a primary action'
+    description: 'you may reload as a move action rather than an action'
 });
 
-export const HeavyHandle = new PerkTemplate({
+const HeavyHandle = new PerkTemplate({
     name: 'heavy handle',
     skill: 'firearms',
     level: 1,
     description: 'your strength counts as +2 higher for the purposes of meeting strength requirements on firearms'
 });
 
-export const StraferShooter = new PerkTemplate({
+const StraferShooter = new PerkTemplate({
     name: 'strafer shooter',
     skill: 'firearms',
     level: 2,
@@ -117,4 +132,4 @@ export const StraferShooter = new PerkTemplate({
 });
 
 export const FirearmsPerks = [HandGunSpecialization, RifleSpecialization, MachineGunSpecialization, RocketLaunchersSpecialization,
-    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter];
+    LaserSpecialization, PlasmaSpecialization, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter, HeavyHandle, FastShooter, DeadlyShot, AnnihilatingShot];
