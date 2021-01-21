@@ -35,17 +35,19 @@ const useCases: UseCase[] = [
         type: 'active'
     },
     {
-        name: 'tumbling',
+        name: 'reduce falling damage',
         attribute: 'agility',
-        description: 'tumbling is a form of gymnastics, this can be used to reduce to reduce fall damage, jump quickly through hoops or any general fast movement through difficult terrain',
+        description: 'You can reduce falling damage, either by diving into a liquid or tumbling on the ground.',
         results: [
-            '4 or lower: worse outcome',
-            'Reduce fall damage 1d6: 15',
-            'Reduce fall damage 2d6: 25',
-            'Move through difficult terrain: 9 or less: slow',
-            'Move through difficult terrain: 10-14: normal speed',
-            'Move through difficult terrain: 15-20: jog speed',
-            'Move through difficult terrain: 21+: can move any speed'
+            '5 or less: increase by 1 meter',
+            '15: reduce by 1 meter',
+            '20: reduce by 2 meters',
+            '25: reduce by 3 meters',
+            '30: reduce by 4 meters',
+            '35: reduce by 5 meters',
+            '40: reduce by 6 meters',
+            '45: reduce by 7 meters',
+            '50: reduce by 8 meters'
         ],
         type: 'active'
     }
