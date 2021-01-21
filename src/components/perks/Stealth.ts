@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Shadow = new PerkTemplate({
+const Shadow = new PerkTemplate({
     name: 'shadow',
     skill: 'stealth',
     level: 1,
@@ -10,7 +10,7 @@ export const Shadow = new PerkTemplate({
     amount: 3
 });
 
-export const Camouflage = new PerkTemplate({
+const Camouflage = new PerkTemplate({
     name: 'camouflage',
     skill: 'stealth',
     level: 1,
@@ -20,14 +20,24 @@ export const Camouflage = new PerkTemplate({
     amount: 3
 });
 
-export const Detection = new PerkTemplate({
+const Detection = new PerkTemplate({
     name: 'detection',
     skill: 'stealth',
     level: 1,
-    description: 'Your character is harder to hide from, you gain +3 vs shadows and hiders'
+    description: 'Your character is harder to hide from, you gain +3 vs stealth'
 }, {
     applyTo: 'detection',
     amount: 3
 });
 
-export const StealthPerks = [Shadow, Camouflage, Detection];
+const SixthSense = new PerkTemplate({
+    name: 'sixth sense',
+    skill: 'stealth',
+    level: 2,
+    description: 'You gain +3 vs stealth and automatically use your second defense value when attacked out of combat while you are awake and nothing prevents your movement.'
+}, {
+    applyTo: 'detection',
+    amount: 3
+});
+
+export const StealthPerks = [Shadow, Camouflage, Detection, SixthSense];

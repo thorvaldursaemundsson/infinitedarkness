@@ -125,21 +125,21 @@ export const Barbarian = new PerkTemplate({
     name:'barbarian',
     skill:'combat',
     level: 1,
-    description: 'You are a brutal warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block'
+    description: 'You are a brutal warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical'
 });
 
 export const Berzerker = new PerkTemplate({
     name: 'berzerker',
     skill:'combat',
     level: 2,
-    description: 'You are a savage warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block'
+    description: 'You are a savage warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical'
 });
 
 export const Beast = new PerkTemplate({
     name: 'beast',
     skill:'combat',
     level: 3,
-    description: 'You cause absolute wreckage, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block'
+    description: 'You cause absolute wreckage, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical'
 });
 
 export const ArmorSpecialist = new PerkTemplate({

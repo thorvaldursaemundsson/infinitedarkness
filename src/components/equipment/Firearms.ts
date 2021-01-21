@@ -20,7 +20,7 @@ export interface AmmoInformation {
 export const AmmoTypesInformation: AmmoInformation[] = [
     {
         ammo: '9x17',
-        cost: 1.6,
+        cost: 1.5,
         weight: 7,
         types: ['tracer', 'hollow point', 'standard'],
         description: 'a small short 9mm bullet'
@@ -44,37 +44,37 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         description: 'a standard 10cm bullet'
     }, {
         ammo: '10x21',
-        cost: 3.3,
+        cost: 3.5,
         weight: 11,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a long version of the 10cm bullet'
     }, {
         ammo: '11x17',
-        cost: 3.9,
+        cost: 4,
         weight: 12,
         types: ['incendiary', 'standard'],
         description: 'a short wide 11cm bullet'
     }, {
         ammo: '11x21',
-        cost: 4.5,
+        cost: 6,
         weight: 15,
         types: ['armor piercing', 'incendiary', 'standard'],
         description: 'a normal 11cm bullet'
     }, {
         ammo: '12x20',
-        cost: 4.5,
+        cost: 7,
         weight: 16,
         types: ['armor piercing', 'incendiary', 'standard'],
         description: 'a large 12cm bullet'
     }, {
         ammo: '12x24',
-        cost: 5.4,
+        cost: 7,
         weight: 20,
         types: ['hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a long large 12cm bullet'
     }, {
         ammo: '12x28',
-        cost: 6.6,
+        cost: 8,
         weight: 25,
         types: ['tracer', 'hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a very long large 12cm bullet'
@@ -110,13 +110,13 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '40mm rpg',
-        cost: 800,
+        cost: 900,
         weight: 400,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade'
     }, {
         ammo: '50mm rpg',
-        cost: 1250,
+        cost: 1600,
         weight: 1000,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade'
@@ -201,7 +201,7 @@ const Firearms: FireArm[] = [
         description: 'the light handgun model of the fantry gun manufacturer, has a generous ammo capacity and the design makes it less loud than other handguns'
     },
     {
-        fireArmClass: 'handgun', name: 'Fantry Heavy Model', damage: '2d8', range: '450m', ammo: '11x21', strengthRequirement: 3, capacity: 14, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 1200, value: 1200,
+        fireArmClass: 'handgun', name: 'Fantry Heavy Model', damage: '2d8', range: '450m', ammo: '11x21', strengthRequirement: 4, capacity: 14, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 1200, value: 1200,
         description: 'a large hand gun designed to inflict serious damage'
     },
     {
@@ -225,25 +225,25 @@ const Firearms: FireArm[] = [
         description: 'A light weight assault weapon'
     },
     {
-        fireArmClass: 'rifle', name: 'Skolt Hunter', damage: '2d8', range: '1000m', ammo: '12x20', strengthRequirement: 4, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 2300, value: 2000,
+        fireArmClass: 'rifle', name: 'Skolt Hunter', damage: '2d8', range: '1000m', ammo: '12x20', strengthRequirement: 4, capacity: 8, fireAction: ['bolt action'], armorpiercing: 2, weight: 2300, value: 2000,
         description: 'A rifle primarily designed for hunting'
     },
     {
-        fireArmClass: 'rifle', name: 'Skolt LG', damage: '2d10', range: '1200m', ammo: '12x24', strengthRequirement: 5, capacity: 6, fireAction: ['semi-automatic'], armorpiercing: 3, weight: 3500, value: 2100,
+        fireArmClass: 'rifle', name: 'Skolt LG', damage: '2d10', range: '1200m', ammo: '12x24', strengthRequirement: 5, capacity: 6, fireAction: ['bolt action'], armorpiercing: 3, weight: 3500, value: 2100,
         description: 'The skolt LG (long gun) is primarily designed for hunting large game'
     },
     {
-        fireArmClass: 'rifle', name: 'Night AV Sniper', damage: '2d10', range: '1800m', ammo: '12x28', strengthRequirement: 5, capacity: 4, fireAction: ['bolt action'], armorpiercing: 5, hitbonus: -1, weight: 8200, value: 3100,
+        fireArmClass: 'rifle', name: 'Night AV Sniper', damage: '2d10', range: '1800m', ammo: '12x28', strengthRequirement: 5, capacity: 4, fireAction: ['bolt action'], armorpiercing: 5, hitbonus: -1, weight: 8200, value: 3600,
         description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles'
     },
 
     //automatic rifle
     {
-        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: '1d12', range: '700m', ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 3900,
+        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: '1d12', range: '700m', ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 3600,
         description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare '
     },
     {
-        fireArmClass: 'rifle', name: 'Merlion Predator', damage: '2d10', range: '1100m', ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 5100,
+        fireArmClass: 'rifle', name: 'Merlion Predator', damage: '2d10', range: '1100m', ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 11000,
         description: 'This strange merlion designed weapon was originally intended as an anti-human weapon, but when merlions decided that humans were harmless creatures they offered this weapon as a gesture of good will'
     },
 
@@ -253,11 +253,11 @@ const Firearms: FireArm[] = [
         description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread', splashRange: 0.5, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 0,
+        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 0,
         description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting', splashRange: 0.8, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 5, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 0,
+        fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 0,
         description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread', splashRange: 1
     },
 
@@ -268,17 +268,17 @@ const Firearms: FireArm[] = [
         description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent'
     },
     {
-        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: '2d8', range: '1800m', ammo: '4mm ec', strengthRequirement: 8, capacity: 60,fireAction: ['semi-automatic'], weight: 11000, value: 3700, hitbonus: 1, armorpiercing: 6,
+        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: '2d8', range: '1800m', ammo: '4mm ec', strengthRequirement: 7, capacity: 60,fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 6,
         description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds'
     },
     {
-        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60,fireAction: ['semi-automatic'], weight: 9000, value: 4800, hitbonus: 1, armorpiercing: 6,
+        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60,fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 6,
         description: 'A strange rifle that exploits the electroweak force in an unknown way'
     },
 
     //machinegun
     {
-        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: '1d8', range: '250m', ammo: '9x17', strengthRequirement: 8, capacity: 160, fireAction: ['fully-automatic'], rps: 8, weight: 8000, value: 5500,
+        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: '1d8', range: '600m', ammo: '9x17', strengthRequirement: 8, capacity: 200, fireAction: ['fully-automatic'], rps: 10, weight: 8000, value: 5500,
         description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
     },
     {
@@ -286,26 +286,26 @@ const Firearms: FireArm[] = [
         description: 'An elegant machine gun used only be the merlion military, take -2 if not using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: '2d10', range: '1600m', ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 7500,
-        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese'
+        fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: '2d10', range: '1600m', ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 9500,
+        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action'
     },
 
     //rocket launcher
     {
-        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 4, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
-        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round', splashRange: .5, lowDamageZone: 2,
+        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
+        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round. Reloading takes a full round action', splashRange: .5, lowDamageZone: 2,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 4, capacity: 3, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1500, hitbonus: -2,
-        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover', splashRange: 1, lowDamageZone: 3,
+        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
+        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action', splashRange: 1, lowDamageZone: 3,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 4, capacity: 2, fireAction: ['bolt action'], armorpiercing: 10, weight: 5000, value: 1700, hitbonus: -3,
-        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people', splashRange: 2, lowDamageZone: 4,
+        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
+        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action', splashRange: 2, lowDamageZone: 4,
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 5, capacity: 1, fireAction: ['bolt action'], armorpiercing: 12, weight: 7000, value: 2400, hitbonus: -4,
-        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat', splashRange: 2, lowDamageZone: 5,
+        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
+        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action', splashRange: 2, lowDamageZone: 5,
     },
 
     //energy weapons

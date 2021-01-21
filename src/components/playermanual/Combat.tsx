@@ -59,14 +59,41 @@ const Combat: React.FC = () => {
             <Indexed title='Armor and damage reduction'>
                 <p>Armor gives you damage reduction, this damage reduction is always applied before damage multipliers and after damage reducers. Damage calculation is always calculated to the maximum benefit of the wearer of the armor.</p>
             </Indexed>
-            <Indexed title='Bleeding'>
-                <p>Bleeding occurs when you are severely damaged, if you take 10 points of damage from a single blow or any damage while below 0 (only excluding damage from bleeding).</p>
-                <p>Level of bleeding depends on your life, if you are above 0 then you only take light bleeding. Between -100% and 0 results in intermediate. Below 100% results in heavy bleeding. Below 200% results in death.</p>
+            <Indexed title='Bleeding, critical and dying'>
+                <p>A character has five stages of life</p>
+                <ol>
+                    <li>Undamaged: Life is at 100%, no damage has been taken.</li>
+                    <li>Nominal: Life is above 0, during combat they suffer no negative penalties, after combat they gain one exhaustion and mental health damage.</li>
+                    <li>Critical: Life is 0 or less, but more than -100%. They must roll 2d10 + endurance vs total damage taken to stay conscious, they take damage if they do any physically challenging activity.
+                        <br />A critical character can be forcefully awakened with adrenaline (administer medicine 20). Doing so imposes one exhaustion and mental health damage. They still take damage and can bleed.</li>
+                    <li>Dying: Life is below -100% but above -200%. They are unconscious and can not perform any action.</li>
+                    <li>Dead: This state is permanent and irreversible, there's no coming back, roll up a new character.</li>
+                </ol>
+                <p>Exhaustion and mental health damage is cumulative. So if you are brought to dying you gain 3 levels of exhaustion at the end of combat, 4 if adrenaline was administered.
+                    <br />Note that damage to mental health prevents recovery so if a character is damaged daily with no time for recovery they will break down psychologically.
+                </p>
+                <p>
+                    Bleeding happens when you take a certain amount of damage, bleeding can happen once per turn and can stack. Damage from bleeding does not cause further bleeding even if it takes you below a life threshold.
+                    <br />A single first aid will stop all bleeding.
+                </p>
                 <ul>
-                    <li>Light bleeding deals 1 damage every 10 minutes, lasts 1d100 minutes (round to nearest 10x)</li>
-                    <li>Intermediate bleeding deals 1 damage every 5 minute, lasts 1d100 minutes</li>
-                    <li>Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
+                    <li>While nominal if you take 50% or more of your life in a single round: Light bleeding deals 1d10 damage at the rate of 1 per 10 minutes</li>
+                    <li>While critical if you take any damage: Intermediate bleeding deals 1d20 damage at the rate of 1 per 5 minutes</li>
+                    <li>While dying if you take any damage: Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
                 </ul>
+                <p>If bleeding causes you to go to a different stage then those effects take hold but the bleeding type does not change. Unless you take more damage from any other source than bleeding.</p>
+                <Section title='example'>
+                    <p>Example: Character <b>John Done</b> has 15 total life. He is shot and takes 8 points of damage.</p>
+                    <p>John Doe is reduced to 7 life, and must roll 1d10 bleed damage. John rolls 8.</p>
+                    <p>Combat ends and John takes 1 level of exhaustion and 1 mental health damage</p>
+                    <p>After 70 minutes John has taken enough damage that he is now critical, he immediately must make a check to stay awake, 2d10 + endurance vs 15 (total damage taken at this point)</p>
+                    <p>Luckily John rolls a total of 17 and stays awake, if he performs any action that requires a strength, endurance or agility check (even passive!) he will take 1 damage</p>
+                    <p>John takes 1 more level of exhaustion and mental health damage from entering critical stage.</p>
+                    <p>If he takes damage from any action at this stage he will start bleeding at an intermediate rate.</p>
+                    <p>So it's very important to stop bleeding as soon as possible, even if the bleeding is light!</p>
+                    <p>Another 10 minute passes and John takes the final 8th damage from his initial bleeding, this puts him at -1 life but since the damage was from bleeding he does not have to roll for intermediate bleeding.</p>
+                    
+                </Section>
             </Indexed>
             <Indexed title='Melee attacking'>
                 <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets defense then you hit</p>
@@ -170,7 +197,7 @@ const Combat: React.FC = () => {
                 <p>Two handed firearms (anything but hand-guns and the Fantry Lasergun) can not be dual wielded.</p>
             </Indexed>
         </Indexer>
-    </Section>;
+    </Section >;
 }
 
 export default Combat;

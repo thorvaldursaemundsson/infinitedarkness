@@ -7,15 +7,16 @@ const useCases: UseCase[] = [
         results: [
             'critical failure: 10 less than their perception roll: they notice you immediately, you dont notice that they notice you',
             'failure: less than their perception roll: they notice you immediately',
-            'success: 0-5: you can follow them for 10 minutes undetected',
-            'success: 6-5: you can follow them for 20 minutes undetected',
-            'success: 11-15: you can follow them for 40 minutes undetected',
-            'success: 16-20: you can follow them for 80 minutes undetected',
-            'success: 21-25: you can follow them for 160 minutes undetected',
-            'success: 26-30: you can follow them for 320 minutes undetected',
+            'success: +0-5: you can follow them for 10 minutes undetected',
+            'success: +6-5: you can follow them for 20 minutes undetected',
+            'success: +11-15: you can follow them for 40 minutes undetected',
+            'success: +16-20: you can follow them for 80 minutes undetected',
+            'success: +21-25: you can follow them for 160 minutes undetected',
+            'success: +26-30: you can follow them for 320 minutes undetected',
             'Target is paranoid: -5 to roll',
             'Target knows your face: -10 to roll',
-            'You blend in well: +5 to roll'
+            'You blend in well: +5 to roll',
+            'You stick out: -10 to roll'
         ],
         type: 'active'
     },
@@ -46,5 +47,5 @@ const useCases: UseCase[] = [
         type: 'passive'
     }
 ];
-const Stealth = new SkillTemplate('stealth', '', useCases);
+const Stealth = new SkillTemplate('stealth', 'To be in stealth means that you are not seen and not heard.', useCases);
 export default Stealth;

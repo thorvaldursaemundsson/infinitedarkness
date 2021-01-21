@@ -68,10 +68,11 @@ const Equipment: React.FC = () => {
                         Cost bonus +600
                     </li>
                     <li>
-                        <b>Heavy Stock</b> Improves recoil control, can not be transferred to other firearms<br />
+                        <b>Heavy Stock</b> Improves recoil control, can not be transferred to other firearms.<br />
                         Aim Bonus +1<br />
                         Damage bonus +1<br />
                         Weight bonus +40%<br />
+                        Strength requirement +1<br />
                         Cost bonus +20%
                     </li>
                     <li>
@@ -356,9 +357,9 @@ const ArmorCrafter: React.FC = () => {
         cost += item.cost;
         weight += item.weight;
         defense += item.damageAbsorbtion;
-        for (let i in item.abilityModifiers){
+        for (let i in item.abilityModifiers) {
             let abs = item.abilityModifiers[i];
-            switch (abs.ability){
+            switch (abs.ability) {
                 case 'strength': strengthMod += abs.modifier; break;
                 case 'agility': agilityMod += abs.modifier; break;
                 case 'perception': perceptionMod += abs.modifier; break;
@@ -530,7 +531,7 @@ const FireArmRow = (f: FireArm) => {
     return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
         <td>{f.fireArmClass}</td>
         <td>{f.name}</td>
-        <td>{f.damage}</td>
+        <td>{f.damage} {f.splashRange !== undefined ? `(s)` : ' '}</td>
         <td>{f.armorpiercing || 0}</td>
         <td>{f.hitbonus || 0}</td>
         <td>{f.range}</td>
@@ -542,7 +543,9 @@ const FireArmRow = (f: FireArm) => {
     </tr>
         {descriptionOpen && <tr>
             <td>STR: {f.strengthRequirement}</td>
-            <td>Splash: {f.splashRange !== undefined ? f.splashRange * 2 : ''}{f.lowDamageZone !== undefined ? `;${f.lowDamageZone * 2}` : ''} m diameter</td>
+            <td>
+                {f.splashRange !== undefined ? `Splash: ${f.splashRange}${f.lowDamageZone} m radius` : ' '}
+                </td>
             <td colSpan={8}><Ellipsis text={f.description} cutOff={100} /></td>
         </tr>}
     </>);
