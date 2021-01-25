@@ -84,7 +84,7 @@ const MurderHobo: ITemplate = {
 const TribalYouth: ITemplate = {
     name: 'Tribal',
     description: 'You have become a contributing member of your tribe, you own have a permanent home appropriate for your tribe and have appropriate tribal items.',
-    skillOptions: ['athletics', 'acrobatics', 'combat', 'cooking', 'empathy', 'stealth', 'survival','intimidation','persuation','subtrefuge','investigation']
+    skillOptions: ['athletics', 'acrobatics', 'combat', 'cooking', 'empathy', 'stealth', 'survival', 'intimidation', 'persuation', 'subtrefuge', 'investigation']
 }
 
 export const YouthBackground: IBackground = {

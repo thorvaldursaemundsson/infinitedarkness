@@ -1,26 +1,12 @@
 import React, { useState } from 'react';
+import CharacterExpansion, { INonPlayerCharacter } from '../CharacterGenerator/CharacterExpansion';
 import { Desires, Enemies, Needs, RedeemingQualities, Rumors, Secrets, Weaknesses } from '../CharacterGenerator/interactives';
 import { Jobs } from '../CharacterGenerator/jobs';
 import { humanEyeColors, humanHairColors, humanSkinColors } from '../CharacterGenerator/looks';
 import { femaleHumanNames, maleHumanNames } from '../CharacterGenerator/names';
 import { quirks } from '../CharacterGenerator/quirks';
+import Section from '../playermanual/Section';
 
-interface INonPlayerCharacter {
-    name: string;
-    quirts: string;
-    job: string;
-    about: string;
-    weakness: string;
-    need: string;
-    desire: string;
-    height: number;
-    weight: number;
-    gender: string;
-    enemy: string | undefined;
-    rumors: string | undefined;
-    secret: string | undefined;
-    redeemingQuality: string | undefined;
-}
 
 const randomFromList = (list: string[]): string => list[Math.floor(Math.random() * list.length)];
 const oddsOrRandomFromList = (percentage: number, list: string[]) => (Math.random() * 100) < percentage ? randomFromList(list) : undefined;
@@ -31,12 +17,14 @@ const dice = (numberOfDice: number, sidesPerDice: 4 | 6 | 8 | 10 | 12 | 20) => [
 const randomHuman = (): INonPlayerCharacter => {
     const gender = Math.random() > .5 ? 'M' : 'F';
     const name = (gender === 'M' ? randomFromList(maleHumanNames) : randomFromList(femaleHumanNames)) + ' ' + randomFromList(maleHumanNames);
-
+    const age = dice(4, 12) + 8;
     return {
+        age: age,
+        species: 'human',
         name: name,
         quirts: `${randomFromList(quirks)}, ${randomFromList(quirks)}`,
         job: randomFromList(Jobs),
-        about: `${name} is ${dice(5, 12) + 16} years old, has ${randomFromList(humanSkinColors)} skin, has ${randomFromList(humanHairColors)} hair and ${randomFromList(humanEyeColors)} eyes`,
+        about: `${name} is ${age} years old, has ${randomFromList(humanSkinColors)} skin, has ${randomFromList(humanHairColors)} hair and ${randomFromList(humanEyeColors)} eyes`,
         weakness: randomFromList(Weaknesses),
         need: randomFromList(Needs),
         desire: randomFromList(Desires),
@@ -58,25 +46,29 @@ const CharacterGenerator: React.FC = () => {
     return <>
         <button onClick={() => setRandomCharacters(getRandomHumans())}>New random humans</button>
         {randomCharacters.map(h => {
-            return <div className="divcol2">
-                <div>
-                    <b>Name: </b>{h.name}, {h.gender} - {h.job}<br />
-                    {h.about}
-                    <br />
-                    {h.quirts}, {h.height} cm {h.weight} kg<br />
-                    {h.enemy && <>Enemy: {h.enemy}<br /></>}
-                    {h.rumors && <>Rumors: {h.rumors}<br /></>}
-                    {h.secret && <>Secret: {h.secret}<br /></>}
-                    {h.redeemingQuality && <>Redeeming quality: {h.redeemingQuality}<br /></>}
+            return <>
+                <div className="divcol2">
+                    <div>
+                        <b>Name: </b>{h.name}, {h.gender} - {h.job}<br />
+                        {h.about}
+                        <br />
+                        {h.quirts}, {h.height} cm {h.weight} kg<br />
+                        {h.enemy && <>Enemy: {h.enemy}<br /></>}
+                        {h.rumors && <>Rumors: {h.rumors}<br /></>}
+                        {h.secret && <>Secret: {h.secret}<br /></>}
+                        {h.redeemingQuality && <>Redeeming quality: {h.redeemingQuality}<br /></>}
+                    </div>
+                    <div>
+                        <b>Weakness</b>: {h.weakness}<br />
+                        <b>Need</b>: {h.need}<br />
+                        <b>Desire</b>: {h.desire}<br />
+                    </div>
                 </div>
-                <div>
-                    <b>Weakness</b>: {h.weakness}<br />
-                    <b>Need</b>: {h.need}<br />
-                    <b>Desire</b>: {h.desire}<br />
-                </div>
-            </div>
+                <Section title={`Expand on ${h.name}`}><CharacterExpansion npcBase={h} /></Section>
+            </>
         })}</>
 };
+
 
 export default CharacterGenerator;
 

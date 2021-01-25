@@ -5,7 +5,7 @@ import { IDice, IRacialMod } from "../races/Races";
 
 
 
-interface ICharacterData {
+export interface ICharacterData {
     strength: number[];
     agility: number[];
     endurance: number[];
@@ -18,7 +18,7 @@ const CharacterRoller: React.FC<IRacialMod> = (props) => {
     const [characterData, setCharacterData] = useState<ICharacterData[]>([]);
 
     return (<div className="flexbox">
-        <button onClick={() => rollCharacterData(props, setCharacterData)}>Roll</button>
+        <button onClick={() => rollCharacterDataAndSet(props, setCharacterData)}>Roll</button>
 
         <div className="flexContainer">
             Strength {props.strength.numberOfDice}d{props.strength.sidesPerDice}<br />
@@ -42,11 +42,20 @@ const CharacterRoller: React.FC<IRacialMod> = (props) => {
     </div>);
 }
 
-const sumN = (n: number[]) => ` ${n.join(', ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
+export const sumN = (n: number[]) => ` ${n.join(', ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
 
-const rollCharacterData = (dice: IRacialMod, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
+export const rollCharacterData = (dice: IRacialMod): ICharacterData[] => {
     let charData: ICharacterData[] = [];
-
+    if (dice === undefined) {
+        return [{
+            strength: [4],
+            agility: [4],
+            endurance: [4],
+            perception: [4],
+            intelligence: [4],
+            willpower: [4]
+        }];
+    }
     for (let counter = 0; counter < 4; counter++) {
         charData.push({
             strength: roll(dice.strength),
@@ -57,6 +66,12 @@ const rollCharacterData = (dice: IRacialMod, setter: React.Dispatch<React.SetSta
             intelligence: roll(dice.intelligence),
         });
     }
+    return charData;
+}
+
+
+export const rollCharacterDataAndSet = (dice: IRacialMod, setter: React.Dispatch<React.SetStateAction<ICharacterData[]>>) => {
+    let charData: ICharacterData[] = rollCharacterData(dice);
     setter(charData);
 }
 

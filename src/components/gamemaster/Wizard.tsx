@@ -9,7 +9,7 @@ import PointBuy, { IStats } from '../Wizard/PointBuy';
 
 type race = 'human' | 'shambras' | 'merlion' | 'nekovian';
 
-const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
+export const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
     const allSkills = GetSkillList();
 
     for (var index in backgroundSkills) {
