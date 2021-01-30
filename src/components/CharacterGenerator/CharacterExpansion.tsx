@@ -52,23 +52,32 @@ const randomSkillPicker = (template: ITemplate, pickOptions: number[]) => {
 }
 
 const backgroundPickerHuman = (age: number) => {
-
-    let skills = randomSkillPicker(EarlyChildhoodBackground.templates[Math.floor(Math.random() * 4)], EarlyChildhoodBackground.pickRaise);
+    const backgrounds: string[] = [];
+    const firstBackground = EarlyChildhoodBackground.templates[Math.floor(Math.random() * 4)];
+    backgrounds.push(firstBackground.name);
+    let skills = randomSkillPicker(firstBackground, EarlyChildhoodBackground.pickRaise);
 
     if (age > YouthBackground.ageRange[0]) {
-        skills = [...skills, ...randomSkillPicker(YouthBackground.templates[Math.floor(Math.random() * 4)], EarlyChildhoodBackground.pickRaise)];
+        const secondBackground = YouthBackground.templates[Math.floor(Math.random() * 4)];
+        backgrounds.push(secondBackground.name);
+        skills = [...skills, ...randomSkillPicker(secondBackground, EarlyChildhoodBackground.pickRaise)];
     }
 
     if (age > AdultBackground.ageRange[0]) {
-        skills = [...skills, ...randomSkillPicker(AdultBackground.templates[Math.floor(Math.random() * 4)], EarlyChildhoodBackground.pickRaise)];
+        const thirdBackground = AdultBackground.templates[Math.floor(Math.random() * 4)];
+        backgrounds.push(thirdBackground.name);
+        skills = [...skills, ...randomSkillPicker(thirdBackground, EarlyChildhoodBackground.pickRaise)];
     }
 
-    return getPopulatedSkillList(skills.map(s => {
-        return {
-            skill: s.name,
-            rank: s.level,
-        }
-    }));
+    return {
+        skills: getPopulatedSkillList(skills.map(s => {
+            return {
+                skill: s.name,
+                rank: s.level,
+            }
+        })),
+        backgrounds: backgrounds
+    };
 }
 
 const backgroundPicker = (species: race, age: number) => {
@@ -76,7 +85,7 @@ const backgroundPicker = (species: race, age: number) => {
         case 'human':
             return backgroundPickerHuman(age);
         default:
-            return [];
+            return { skills: [], backgrounds: [] };
     }
 }
 
@@ -95,7 +104,7 @@ const CharacterExpansion: React.FC<ICharacterExpansion> = ({ npcBase }) => {
     const racial = getRacialMod(npcBase.species, npcBase.age);
 
     const characterData = rollCharacterData(racial);
-    const skillsData = backgroundPicker(npcBase.species, npcBase.age).filter(pred => pred.level > 0);
+    const { skills, backgrounds } = backgroundPicker(npcBase.species, npcBase.age);
 
     const character = new Character({
         name: npcBase.name,
@@ -108,8 +117,8 @@ const CharacterExpansion: React.FC<ICharacterExpansion> = ({ npcBase }) => {
         intelligence: parseInt(sumN(characterData[0].intelligence)),
         willpower: parseInt(sumN(characterData[0].willpower)),
         perception: parseInt(sumN(characterData[0].perception)),
-        background: npcBase.about,
-        skills: skillsData,
+        background: backgrounds.reduce((p, c) => `${p}, ${c}`),
+        skills: skills.filter(p => p.level > 0),
         perks: [],
         traits: [],
         size: 'medium',
@@ -123,6 +132,7 @@ const CharacterExpansion: React.FC<ICharacterExpansion> = ({ npcBase }) => {
         <p>
             Life: {character.getLife()}, Defense: {character.getBaseDefense()} / {character.getLowDefense()} / {character.getPassiveDefense()}
         </p>
+        <p>Background: {character.background}</p>
         <h5>Skills</h5>
         <ul>
             {character.skills.map(s => <li>{s.name}: {s.level}</li>)}

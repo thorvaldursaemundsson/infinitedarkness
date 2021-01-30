@@ -249,16 +249,16 @@ const Firearms: FireArm[] = [
 
     //shotgun
     {
-        fireArmClass: 'rifle', name: 'Skolt Crusher', damage: '2d6', range: '160m', ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2800, value: 2200, hitbonus: 0,
-        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread', splashRange: 0.5, lowDamageZone: 1,
+        fireArmClass: 'rifle', name: 'Skolt Crusher', damage: '2d6', range: '160m', ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2600, value: 2400, armorpiercing: 1,
+        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 0.5, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 0,
-        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting', splashRange: 0.8, lowDamageZone: 1,
+        fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 1,
+        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 0.8, lowDamageZone: 1,
     },
     {
-        fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 0,
-        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread', splashRange: 1
+        fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 2,
+        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 1
     },
 
     //magnetic guns
@@ -310,23 +310,23 @@ const Firearms: FireArm[] = [
 
     //energy weapons
     {
-        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: '1d8', range: '1800m', ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic'], armorpiercing: 1, hitbonus: 3, weight: 1100, value: 2300,
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: '2d4', range: '1800m', ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2300,
         description: 'the only laser handgun, needs protective gear to use, has blinding effect to all within 1 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: '1d10', range: '2000m', ammo: '1hec', strengthRequirement: 2, capacity: 100, fireAction: ['semi-automatic'], armorpiercing: 2, hitbonus: 3, weight: 3000, value: 3400,
+        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: '3d4', range: '2000m', ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
         description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Merlion Deathray', damage: '1d12', range: '2400m', ammo: '1hec', strengthRequirement: 2, capacity: 80, fireAction: ['semi-automatic'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 5100,
+        fireArmClass: 'laser', name: 'Merlion Deathray', damage: '3d6', range: '2400m', ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 6100,
         description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 3 meters, half range penalty'
     },
     {
-        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: '6d6', range: '100m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 6200,
+        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: '6d6', range: '100m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 9200,
         description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters'
     },
     {
-        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: '4d6', range: '120m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 5700,
+        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: '4d6', range: '120m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 6700,
         description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters'
     }
 ];
