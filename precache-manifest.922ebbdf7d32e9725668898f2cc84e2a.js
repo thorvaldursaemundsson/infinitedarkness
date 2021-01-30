@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "440f4bc643d2088699d1b870fcada830",
+    "revision": "9f2603d80191fbeb6a340c9058cb94bd",
     "url": "../infinitedarkness/index.html"
   },
   {
-    "revision": "e4db5b5b8420504d3752",
+    "revision": "89a55308baa2271dbc2d",
     "url": "../infinitedarkness/static/css/main.6136575b.chunk.css"
   },
   {
@@ -16,16 +16,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "../infinitedarkness/static/js/3.e553ec3f.chunk.js"
   },
   {
-    "revision": "32586ffdae8280a4e49b",
-    "url": "../infinitedarkness/static/js/4.458c2f4c.chunk.js"
+    "revision": "66b6a8c407f71970ae24",
+    "url": "../infinitedarkness/static/js/4.da456be1.chunk.js"
   },
   {
     "revision": "39b6a753ead3aae71fb6",
     "url": "../infinitedarkness/static/js/5.ec87ab2a.chunk.js"
   },
   {
-    "revision": "37f16ae8ca1d1fcc5d3f",
-    "url": "../infinitedarkness/static/js/6.65f6755b.chunk.js"
+    "revision": "8c77df631dffc4dcfa1f",
+    "url": "../infinitedarkness/static/js/6.51762e0d.chunk.js"
   },
   {
     "revision": "be775c672fd9c99d1c83",
@@ -40,11 +40,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "../infinitedarkness/static/js/9.b57a3e7b.chunk.js"
   },
   {
-    "revision": "e4db5b5b8420504d3752",
-    "url": "../infinitedarkness/static/js/main.8ae8f0df.chunk.js"
+    "revision": "89a55308baa2271dbc2d",
+    "url": "../infinitedarkness/static/js/main.4f2fc908.chunk.js"
   },
   {
-    "revision": "97dcb737682990ca212f",
-    "url": "../infinitedarkness/static/js/runtime-main.561a7962.js"
+    "revision": "5b83943ba6a973a9243a",
+    "url": "../infinitedarkness/static/js/runtime-main.5ed199fd.js"
   }
 ]);
