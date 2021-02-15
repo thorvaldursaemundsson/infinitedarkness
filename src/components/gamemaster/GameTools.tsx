@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Section from '../playermanual/Section';
+import DamageDiceCalc from './DamageDiceCalc';
 
 
 /**
@@ -74,12 +75,12 @@ const EasyRoller: React.FC = () => {
         results = `(${roll1} + ${roll2}) + (${skill} + ${attribute}) = ${roll1 + roll2 + skill + attribute}`
     }
 
-    return <Section title='Easy Roller'>
+    return <>
         <input className='short' type='text' value={skill} title='skill' onChange={(e) => setSkill(parseInt(e.target.value))} />
         <input className='short' type='text' value={attribute} title='attribute' onChange={(e) => setAttribute(parseInt(e.target.value))} />
         <button onClick={() => roll()}>Roll</button>
         {results}
-    </Section>;
+    </>;
 
 }
 
@@ -88,7 +89,8 @@ const GameTools: React.FC = () => {
         <h3>Game master tools</h3>
         <p>This section is an assortment of tools to help the game master run the game</p>
         <Section title='Spacetravel calculator'><DistanceCalculatorSpace /></Section>
-        <EasyRoller />
+        <Section title='Easy Roller'><EasyRoller /></Section>
+        <Section title='Damage Dice Calculator'><DamageDiceCalc /></Section>
     </>;
 }
 
