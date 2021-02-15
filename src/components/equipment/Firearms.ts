@@ -250,15 +250,15 @@ const Firearms: FireArm[] = [
     //shotgun
     {
         fireArmClass: 'rifle', name: 'Skolt Crusher', damage: '2d6', range: '160m', ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2600, value: 2400, armorpiercing: 1,
-        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 0.5, lowDamageZone: 1,
+        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 0.5, lowDamageZone: 1,
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer', damage: '2d6', range: '80m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 1,
-        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 0.8, lowDamageZone: 1,
+        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 0.8, lowDamageZone: 1,
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: '2d6', range: '40m', ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 2,
-        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters roll 1d6+6 instead of normal weapon damage.', splashRange: 1
+        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 1
     },
 
     //magnetic guns

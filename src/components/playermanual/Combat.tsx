@@ -185,7 +185,7 @@ const Combat: React.FC = () => {
                 <h5>Massive cover</h5>
                 <p>High cover (75% +) of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
                 <h5>total cover</h5>
-                <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the square, 100% chance to apply damage absorbtion from cover.
+                <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the hex, 100% chance to apply damage absorbtion from cover.
                 Total cover also prevents you from attacking.
                 </p>
             </Indexed>

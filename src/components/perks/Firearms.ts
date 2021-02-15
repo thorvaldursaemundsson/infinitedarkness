@@ -14,7 +14,7 @@ const HandGunExpert = new PerkTemplate({
     name: 'hand gun expert',
     skill: skill,
     level: 2,
-    description: 'Requires hand gun specialization. Add +1d6 damage when using a handgun once per turn.',
+    description: 'Requires hand gun specialization. Add +1d6 damage when using a handgun once per turn. Must be declared before rolling damage.',
 });
 
 const RifleSpecialization = new PerkTemplate({
@@ -31,7 +31,7 @@ const RifleExpert = new PerkTemplate({
     name: 'rifle expert',
     skill: skill,
     level: 2,
-    description: 'Requires rifle specialization. Add +1d6 damage when using a rifle once per turn.',
+    description: 'Requires rifle specialization. Add +1d6 damage when using a rifle once per turn. Must be declared before rolling damage.',
 });
 
 const MachineGunSpecialization = new PerkTemplate({
@@ -48,7 +48,7 @@ const MachineGunExpert = new PerkTemplate({
     name: 'machien gun expert',
     skill: skill,
     level: 2,
-    description: 'Requires machine gun specialization. Add +1d6 damage when using a machine gun once per turn.',
+    description: 'Requires machine gun specialization. Add +1d6 damage when using a machine gun once per turn. Must be declared before rolling damage.',
 });
 
 const RocketLaunchersSpecialization = new PerkTemplate({
@@ -75,7 +75,7 @@ const LaserExpert = new PerkTemplate({
     name: 'laser expert',
     skill: skill,
     level: 2,
-    description: 'Requires laser specialization. Add +1d6 damage when using a laser once per turn.',
+    description: 'Requires laser specialization. Add +1d6 damage when using a laser once per turn. Must be declared before rolling damage.',
 });
 
 const PlasmaSpecialization = new PerkTemplate({
@@ -89,10 +89,10 @@ const PlasmaSpecialization = new PerkTemplate({
 });
 
 const PlasmaExpert = new PerkTemplate({
-    name: 'laser expert',
+    name: 'plasma expert',
     skill: skill,
     level: 2,
-    description: 'Requires plasma specialization. Add +1d6 damage when using a plasma gun once per turn.',
+    description: 'Requires plasma specialization. Add +1d6 damage when using a plasma gun once per turn. Must be declared before rolling damage.',
 });
 
 const Sniper = new PerkTemplate({

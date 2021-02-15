@@ -42,7 +42,12 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>This number is subtracted from incoming damage.</p>
 
     <h4>Defense</h4>
-    <p>Defense is the number enemies must overcome to hit you. First number is your base (depends on size), second number is base + agility, third number is base + agility + skill (combat or acrobatics, whichever is higher)</p>
+    <p>Defense is the number enemies must overcome to hit you with attacks.<br />
+    First number is your <b>base defense</b>: (depends on size).<br />
+    Second number is your <b>passive defense</b>: <i>base defense</i> + agility.<br />
+    Third number is <b>active defense</b>: <i>passive defense</i> + skill (combat or acrobatics, whichever is higher).<br />
+    Benefits to defense apply at a level, cover applies to base and up. Since passives is based on base it inherits the same benefit, active likewise.
+    </p>
 
     <h4>Carrying capacity</h4>
     <p>How much your character can carry without becoming encumbered. See carrying capacity for more details</p>
@@ -70,6 +75,76 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
 
     <h4>Willpower</h4>
     <p>Willpower refers to your sense of personality, force of will and self determination as well as natural leadership</p>
+
+    <h4>Size</h4>
+    <p>Tiny, small, medium, large and huge are the typical character size range. Size determines speed and how you fit into a hex.</p>
+    <p>Different sizes need different amount of hexes</p>
+    <ul>
+        <li>Minute: 1</li>
+        <li>Tiny: 1</li>
+        <li>Small: 1</li>
+        <li>Medium: 1</li>
+        <li>Large: 1</li>
+        <li>Huge: 2</li>
+        <li>Gigantic: 4</li>
+        <li>Colossal: 7</li>
+        <li>Titanic: 19</li>
+    </ul>
+    <p>Who can move through a hex if someone else is in it? Yes means that you may move through a hex if the other character in it is friendly.
+        Yes * means you can but it uses double movement.<br />
+        Yes + means that you can both occupy the same hex.<br />
+    No means that you must shove the other one aside.</p>
+    <table>
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Minute</th>
+                <th>Tiny</th>
+                <th>Small</th>
+                <th>Medium</th>
+                <th>Large</th>
+                <th>Huge</th>
+                <th>Gigantic</th>
+                <th>Colossal</th>
+                <th>Titanic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Minute</td> <td className="yesP">yes+</td> <td className="yesP">yes+</td> <td className="yesP">yes+</td> <td className="yes">yes</td> <td className="yes">yes</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td> <td>no</td> <td>no</td>
+            </tr>
+            <tr>
+                <td>Tiny</td> <td className="yesP">yes+</td> <td className="yesP">yes+</td> <td className="yes">yes</td> <td className="yes">yes</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Small</td> <td className="yesP">yes+</td> <td className="yes">yes</td> <td className="yes">yes</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td><td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Medium</td> <td className="yes">yes</td> <td className="yes">yes</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td><td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Large</td> <td className="yes">yes</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td><td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Huge</td> <td className="yesX">yes*</td> <td className="yesX">yes*</td><td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Gigantic</td> <td className="yesX">yes*</td><td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+
+            <tr>
+                <td>Colossal</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+            <tr>
+                <td>Titanic</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td> <td>no</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h4>Personality traits</h4>
     <p>What is your personality like? See more under Skills & Perks -{">"} Traits -{">"} Personality Traits. Used to determine if you are roleplaying according to your character.</p>

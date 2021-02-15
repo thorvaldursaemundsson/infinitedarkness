@@ -12,12 +12,14 @@ export interface dispatcher {
 
 const getSizeFromString = (str:string|undefined):CharacterSize => {
     switch (str) {
+        case 'titanic': return 'titanic';
+        case 'colossal': return 'colossal';
+        case 'gigantic': return 'gigantic';
         case 'huge': return 'huge';
         case 'large': return 'large';
         case 'small': return 'small';
         case 'tiny': return 'tiny';
-        case 'gigantic': return 'gigantic';
-        case 'diminutiv': return 'diminutiv';
+        case 'minute': return 'minute';
         default: return 'medium';
     }
 };

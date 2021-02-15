@@ -40,4 +40,24 @@ const SixthSense = new PerkTemplate({
     amount: 3
 });
 
-export const StealthPerks = [Shadow, Camouflage, Detection, SixthSense];
+export const SneakAttack = new PerkTemplate({
+    name: 'sneak attack',
+    skill: 'stealth',
+    level: 1,
+    description: 'you gain +2 to your sequence and +2 damage on all attacks (both combat and firearms) against anyone who is limited to passive defense'
+}, {
+    applyTo: 'sequence',
+    amount: 2
+});
+
+export const Assassination = new PerkTemplate({
+    name: 'assassination',
+    skill: 'stealth',
+    level: 2,
+    description: 'you gain +1d6 damage on all attacks (both combat and firearms) on anyone who is limited to base defense.'
+}, {
+    applyTo: '_',
+    amount: 0
+});
+
+export const StealthPerks = [Shadow, Camouflage, Detection, SixthSense, SneakAttack, Assassination];

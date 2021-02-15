@@ -51,7 +51,7 @@ export const DeepLungs = new PerkTemplate({
 });
 
 export const FastSwimmer = new PerkTemplate({
-    name:'fast swimmer',
+    name: 'fast swimmer',
     skill: skill,
     level: 1,
     description: 'When you roll to swim at 100% speed you instead swim at 150%'
@@ -61,7 +61,7 @@ export const GoodFortitude = new PerkTemplate({
     name: 'good fortitude',
     skill: skill,
     level: 1,
-    description: 'Your character has great fortitude, gain +2 hitpoints'
+    description: 'Your character has great fortitude, gain +2 life'
 }, {
     applyTo: 'life',
     amount: 2
@@ -71,7 +71,7 @@ export const GreatFortitude = new PerkTemplate({
     name: 'great fortitude',
     skill: skill,
     level: 2,
-    description: 'Your character has great fortitude, gain +4 hitpoints'
+    description: 'Your character has great fortitude, gain +4 life'
 }, {
     applyTo: 'life',
     amount: 4
@@ -112,6 +112,7 @@ export const HighMobility = new PerkTemplate({
     skill: skill,
     level: 2,
     description: 'You are highly mobile, gain +1 base speed and can enter sprint in a single round.'
+
 }, {
     amount: 1,
     applyTo: 'speed'
@@ -119,9 +120,24 @@ export const HighMobility = new PerkTemplate({
 
 export const Marathoner = new PerkTemplate({
     name: 'Marathoner',
-    skill:skill,
+    skill: skill,
     level: 1,
     description: 'Gain +10 on running, ignore one level of carry capacity or exhaustion'
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude,StrongBack, Fast, HighMobility, Marathoner];
+export const ArmorSpecialist = new PerkTemplate({
+    name: 'armor specialist',
+    skill: skill,
+    description: 'You are a specialist at using armor, armor penalty to agility is reduced by 2 and weight from armor counts as half',
+    level: 1
+});
+
+export const ArmorMaster = new PerkTemplate({
+    name: 'armor master',
+    skill: skill,
+    description: 'You have mastered armor using, armor penalty to agility is further reduced by 2 and weight is halved again',
+    level: 2
+});
+
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
+    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster];

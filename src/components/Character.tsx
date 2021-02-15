@@ -17,7 +17,7 @@ export interface IHooker {
     amount: number;
 }
 
-export type CharacterSize = 'diminutiv' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' | 'gigantic';
+export type CharacterSize = 'minute' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' | 'gigantic' | 'colossal' | 'titanic';
 
 export interface ICharacter {
     name: string;
@@ -115,14 +115,32 @@ export class Character {
         return 0;
     }
 
-    public getPassiveDefense() {
+    public getActiveDefense() {
         const combat = this.getSkillLevel('combat');
         const acrobatics = this.getSkillLevel('acrobatics');
-        return this.getLowDefense() + Math.max(combat, acrobatics);
+        return this.getPassiveDefense() + Math.max(combat, acrobatics) + this.getHook('activedefense');
     }
 
-    public getLowDefense() {
-        return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('defense');
+    public getPassiveDefense() {
+        return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('passivedefense');
+    }
+
+    private getDefenseFromSize(){
+        switch (this.size) {
+            case 'minute': return 16;
+            case 'tiny': return 14;
+            case 'small': return 12;
+            case 'medium': return 10;
+            case 'large': return 8;
+            case 'huge': return 6;
+            case 'gigantic': return 2;
+            case 'colossal': return -4;
+            case 'titanic': return -10;
+        }
+    }
+
+    public getBaseDefense() {
+        return this.getDefenseFromSize() + this.getHook('basedefense');
     }
 
     public getBaseCarryingCapacity() {
@@ -160,16 +178,7 @@ export class Character {
 
     }
 
-    public getBaseDefense() {
-        switch (this.size) {
-            case 'tiny': return 14;
-            case 'small': return 12;
-            case 'medium': return 10;
-            case 'large': return 8;
-            case 'huge': return 6;
-            default: return 10;
-        }
-    }
+    
 
     private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number) {
         let p = start;
@@ -354,9 +363,9 @@ export class Character {
             case 'species': return '';
             case 'pointsLeft': return 'points remaining';
             case 'experienceMultiplier': return 'exp bonus';
-            case 'basedefense': return '10 + mod';
-            case 'lowdefense': return 'skill/2';
-            case 'passivedefense': return 'skill';
+            case 'basedefense': return 'size';
+            case 'passivedefense': return 'agility';
+            case 'activedefense': return 'skill';
             case 'sequence': return 'AGI+PER';
             default: return '';
         }

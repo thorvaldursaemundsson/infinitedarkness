@@ -127,11 +127,11 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         </SmallLabel>
                         /
                         <SmallLabel>
-                            <HideText txt={character.getLowDefense()} explain={character.explain('lowdefense')} isEdit={viewState} />
+                            <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
                         </SmallLabel>
                         /
                         <SmallLabel>
-                            <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
+                            <HideText txt={character.getActiveDefense()} explain={character.explain('activedefense')} isEdit={viewState} />
                         </SmallLabel>
                     </td>
                     <td>

@@ -35,7 +35,7 @@ const Frail: Trait = {
     name: 'frail',
     cost: -10,
     description: 'You are frail and easily damaged, -2 maximum hitpoints',
-    applyTo: 'hitpoints',
+    applyTo: 'life',
     amount: -2,
 }
 
@@ -43,7 +43,7 @@ const Resillient: Trait = {
     name: 'resillient',
     cost: 20,
     description: 'You are able to withstand more punishment, +2 maximum hitpoints',
-    applyTo: 'hitpoints',
+    applyTo: 'life',
     amount: 2,
 }
 

@@ -130,7 +130,7 @@ const CharacterExpansion: React.FC<ICharacterExpansion> = ({ npcBase }) => {
     Intelligence: {character.intelligence}, Willpower: {character.willpower}, Perception {character.perception}
         </p>
         <p>
-            Life: {character.getLife()}, Defense: {character.getBaseDefense()} / {character.getLowDefense()} / {character.getPassiveDefense()}
+            Life: {character.getLife()}, Defense: {character.getBaseDefense()} / {character.getPassiveDefense()} / {character.getActiveDefense()}
         </p>
         <p>Background: {character.background}</p>
         <h5>Skills</h5>

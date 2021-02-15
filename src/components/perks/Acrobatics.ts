@@ -24,7 +24,7 @@ export const Dodger = new PerkTemplate({
     name: 'dodger',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is a faster dodger, gain +3 to all dodge rolls and passive dodging, when active dodging only 1 attack can hit you, the rest automatically fail'
+    description: 'Your character is a faster dodger, you gain +3 to your passive dodge'
 }, {
     applyTo: 'defense',
     amount: 3

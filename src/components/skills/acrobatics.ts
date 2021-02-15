@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'active dodge',
         attribute: 'agility',
-        description: 'Roll 2d10 + agility + acrobatics to dodge, only the first to hit you while you do this will land, maximum one bullet. Counts as normal action and only normal movement is allowed.',
+        description: 'Roll 2d10, add it to your active defense until its your turn again.',
         type: 'active'
     },
     {

@@ -5,7 +5,7 @@ const useCases: UseCase[] = [
         attribute: 'agility',
         description: 'throw a grenade at a target, grenade will explode at the end of your next turn',
         results: [
-            'base difficulty: 10 (to hit square of target)',
+            'base difficulty: 10 (to hit hex of target)',
             'range penalty: 1 per meter',
             'rain: +2',
             'windy: +2',

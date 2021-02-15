@@ -320,3 +320,19 @@ li.highlightedLi {
 p.ellipsis {
     margin: 0;
 }
+
+td.yesP {
+    background-color: rgb(89, 255, 89);
+}
+
+td.yes {
+    background-color: rgb(185, 238, 185);
+}
+
+td.yesX {
+    background-color: lightblue;
+}
+
+td.no {
+    background-color: rgb(255, 216, 200);
+}
