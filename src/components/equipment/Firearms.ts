@@ -9,12 +9,19 @@ export type Ammo = '9x17' | '9x21' | '9x23' |
     '20mm rpg'|'30mm rpg'|'40mm rpg' | '50mm rpg' |
     '1hec' | '2hec' | '10hec';
 
+export interface ILoudness {
+    deafnessRange:number;
+    deafnessTime:number;
+    hearingRange:number;
+}
+
 export interface AmmoInformation {
     ammo: Ammo;
     cost: number;
     weight: number;
     types: string[];
     description: string;
+    loudness: ILoudness;
 }
 
 export const AmmoTypesInformation: AmmoInformation[] = [
@@ -23,109 +30,199 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         cost: 1.5,
         weight: 7,
         types: ['tracer', 'hollow point', 'standard'],
-        description: 'a small short 9mm bullet'
+        description: 'a small short 9mm bullet',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 1000,
+        }
     }, {
         ammo: '9x21',
         cost: 1.8,
         weight: 9,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
-        description: 'a slightly longer version of the 9mm'
+        description: 'a slightly longer version of the 9mm',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 1500,
+        }
     }, {
         ammo: '9x23',
         cost: 2.1,
         weight: 11,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
-        description: 'a long version of the 9mm'
+        description: 'a long version of the 9mm',
+        loudness: {
+            deafnessRange:1,
+            deafnessTime:1,
+            hearingRange: 2000,
+        }
     }, {
         ammo: '10x19',
         cost: 3,
         weight: 10,
         types: ['hollow point', 'standard'],
-        description: 'a standard 10cm bullet'
+        description: 'a standard 10cm bullet',
+        loudness: {
+            deafnessRange:1,
+            deafnessTime:1,
+            hearingRange: 1500,
+        }
     }, {
         ammo: '10x21',
         cost: 3.5,
         weight: 11,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
-        description: 'a long version of the 10cm bullet'
+        description: 'a long version of the 10cm bullet',
+        loudness: {
+            deafnessRange:1,
+            deafnessTime:2,
+            hearingRange: 2000,
+        }
     }, {
         ammo: '11x17',
         cost: 4,
         weight: 12,
         types: ['incendiary', 'standard'],
-        description: 'a short wide 11cm bullet'
+        description: 'a short wide 11cm bullet',
+        loudness: {
+            deafnessRange:2,
+            deafnessTime:1,
+            hearingRange: 2000,
+        }
     }, {
         ammo: '11x21',
         cost: 6,
         weight: 15,
         types: ['armor piercing', 'incendiary', 'standard'],
-        description: 'a normal 11cm bullet'
+        description: 'a normal 11cm bullet',
+        loudness: {
+            deafnessRange:2,
+            deafnessTime:2,
+            hearingRange: 3000,
+        }
     }, {
         ammo: '12x20',
         cost: 7,
         weight: 16,
         types: ['armor piercing', 'incendiary', 'standard'],
-        description: 'a large 12cm bullet'
+        description: 'a large 12cm bullet',
+        loudness: {
+            deafnessRange:2,
+            deafnessTime:5,
+            hearingRange: 5000,
+        }
     }, {
         ammo: '12x24',
         cost: 7,
         weight: 20,
         types: ['hollow point', 'armor piercing', 'incendiary', 'standard'],
-        description: 'a long large 12cm bullet'
+        description: 'a long large 12cm bullet',
+        loudness: {
+            deafnessRange:3,
+            deafnessTime:10,
+            hearingRange: 10000,
+        }
     }, {
         ammo: '12x28',
         cost: 8,
         weight: 25,
         types: ['tracer', 'hollow point', 'armor piercing', 'incendiary', 'standard'],
-        description: 'a very long large 12cm bullet'
+        description: 'a very long large 12cm bullet',
+        loudness: {
+            deafnessRange:3,
+            deafnessTime:12,
+            hearingRange: 20000,
+        }
     }, {
         ammo: '4mm ec',
         cost: 15,
         weight: 0.2,
         types: ['standard'],
-        description: 'a tiny caseless ferromagnetic neodymium bullet'
+        description: 'a tiny caseless ferromagnetic neodymium bullet',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 900,
+        }
     }, {
         ammo: '12 gauge',
         cost: 9,
         weight: 24,
         types: ['shell', 'slug', 'explosive'],
-        description: 'a 12 gauge shotgun shell'
+        description: 'a 12 gauge shotgun shell',
+        loudness: {
+            deafnessRange:2,
+            deafnessTime:2,
+            hearingRange: 2000,
+        }
     }, {
         ammo: '20 gauge',
         cost: 6.6,
         weight: 22,
         types: ['shell', 'slug'],
-        description: 'a 20 gauge shotgun shell'
+        description: 'a 20 gauge shotgun shell',
+        loudness: {
+            deafnessRange:1,
+            deafnessTime:1,
+            hearingRange: 2000,
+        }
     }, {
         ammo: '20mm rpg',
         cost: 250,
         weight: 120,
         types: ['standard', 'grenade'],
-        description: 'a 40mm rocket propelled grenade'
+        description: 'a 40mm rocket propelled grenade',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 20000,
+        }
     }, {
         ammo: '30mm rpg',
         cost: 500,
         weight: 200,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
-        description: 'a 40mm rocket propelled grenade'
+        description: 'a 40mm rocket propelled grenade',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 25000,
+        }
     }, {
         ammo: '40mm rpg',
         cost: 900,
         weight: 400,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
-        description: 'a 40mm rocket propelled grenade'
+        description: 'a 40mm rocket propelled grenade',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 40000,
+        }
     }, {
         ammo: '50mm rpg',
         cost: 1600,
         weight: 1000,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
-        description: 'a 50mm rocket propelled grenade'
+        description: 'a 50mm rocket propelled grenade',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 100000,
+        }
     }, {
         ammo: '1hec',
         cost: 0,
         weight: 0,
         types: [],
-        description: '1 unit of hyperelectron charge, battery rechargeable'
+        description: '1 unit of hyperelectron charge, battery rechargeable',
+        loudness: {
+            deafnessRange:0,
+            deafnessTime:0,
+            hearingRange: 500,
+        }
     }
 ];
 

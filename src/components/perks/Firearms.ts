@@ -134,15 +134,15 @@ const AnnihilatingShot = new PerkTemplate({
 const FastShooter = new PerkTemplate({
     name: 'fast shooter',
     skill: skill,
-    level: 1,
-    description: 'when using semi burst or burst you hit with 1 additional bullet'
+    level: 2,
+    description: 'you may use burst firemode on semi-automatic firearms'
 });
 
 const Suppressor = new PerkTemplate({
     name: 'suppressor',
     skill: skill,
     level: 1,
-    description: 'when you use oppressive fire on a target they take -5 to all rolls even if they dont get hit'
+    description: 'when you use oppressive fire on a target you can lock them down. They take -5 to all non-defensive rolls even if they dont get hit.'
 });
 
 const RapidReload = new PerkTemplate({

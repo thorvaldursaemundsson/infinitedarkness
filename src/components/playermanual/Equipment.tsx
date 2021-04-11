@@ -48,17 +48,17 @@ const Equipment: React.FC = () => {
                         Cost +300c
                             </li>
                     <li>
-                        <b>Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                        Sound reduced by 75%<br />
+                        <b>Suppressor</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
+                        Sound reduced range by 75% and deadness time by 5 rounds<br />
                         Armor piercing reduced by 1 (minimum 0)<br />
-                        Range reduced by 10%<br />
+                        Range reduced to 90%<br />
                         Cost bonus +400
                     </li>
                     <li>
-                        <b>Heavy Silencer</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                        Sound reduced by 95%<br />
+                        <b>Heavy Suppressor</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
+                        Sound reduced range by 75% and deadness time by 10 rounds<br />
                         Armor Piercing reduced by 2 (minimum 0)<br />
-                        Ragne reduced by 25%<br />
+                        Ragne reduced to 75%<br />
                         Cost bonus +500
                     </li>
                     <li>
@@ -545,7 +545,7 @@ const FireArmRow = (f: FireArm) => {
             <td>STR: {f.strengthRequirement}</td>
             <td>
                 {f.splashRange !== undefined ? `Splash: ${f.splashRange}${f.lowDamageZone} m radius` : ' '}
-                </td>
+            </td>
             <td colSpan={8}><Ellipsis text={f.description} cutOff={100} /></td>
         </tr>}
     </>);
@@ -571,7 +571,8 @@ const AmmoTable = (ammo: AmmoInformation[]) =>
                     </td>
                 </tr>
                     <tr>
-                        <td className='univeralBorderBottom' colSpan={4}>{a.description}</td>
+                        <td className='univeralBorderBottom' colSpan={3}>{a.description}</td>
+                        <td className='universalBorderBottom'> Heard from: {a.loudness.hearingRange}, deaf from:{a.loudness.deafnessRange} for {a.loudness.deafnessTime} rounds </td>
                     </tr>
                 </>)}
         </tbody>

@@ -125,7 +125,7 @@ export class Character {
         return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('passivedefense');
     }
 
-    private getDefenseFromSize(){
+    private getDefenseFromSize() {
         switch (this.size) {
             case 'minute': return 16;
             case 'tiny': return 14;
@@ -147,38 +147,52 @@ export class Character {
         return (this.strength + 1 + this.getHook('carryingCapacity')) * 4;
     }
 
-    public getBaseSpeed() {
-        let base = 1;
-        switch (this.species) {
-            case 'human':
-            case 'merlion': base = 1; break;
-            case 'nekovian': base = 2; break;
-            case 'shambras': base = 0; break;
-        }
-
-        let size = 0;
+    public getSizeSpeed() {
         switch (this.size) {
-            case 'tiny': size = 4; break;
-            case 'small': size = 5; break;
-            case 'medium': size = 6; break;
-            case 'large': size = 7; break;
-            case 'huge': size = 8; break;
-            default: size = 6; break;
+            case 'minute': return 3;
+            case 'tiny': return 4;
+            case 'small': return 5;
+            case 'medium': return 6;
+            case 'large': return 7;
+            case 'huge': return 8;
+            case 'gigantic': return 10;
+            case 'colossal': return 12;
+            case 'titanic': return 15;
         }
+    }
 
-        let athl = 0;
+    public getSpeedFromSkill() {
         let athletics = this.getSkillLevel('athletics');
-        if (athletics >= 18) athl = 3;
-        else if (athletics >= 12) athl = 2;
-        else if (athletics >= 6) athl = 1;
+        if (athletics >= 18) return 3;
+        else if (athletics >= 12) return 2;
+        else if (athletics >= 6) return 1;
+        return 0;
+    }
+
+    public getSpeedFromSpecies() {
+        switch (this.species) {
+            case 'human': return 0;
+            case 'merlion': return 1;
+            case 'nekovian': return 2;
+            case 'shambras': return 0;
+            default: return 0;
+        }
+    }
+
+    public getBaseSpeed() {
+        const base = this.getSpeedFromSpecies();
+
+        const size = this.getSizeSpeed();
+
+        const skill = this.getSpeedFromSkill();
 
         const hookBonus = this.getHook('speed');
 
-        return base + size + athl + hookBonus;
+        return base + size + skill + hookBonus;
 
     }
 
-    
+
 
     private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number) {
         let p = start;

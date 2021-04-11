@@ -317,6 +317,24 @@ const integratedSystems:IntegratedSystem[] = [
         damageAbsorbtion: 0,
         abilityModifiers: [],
         stack: 1,
+    },
+    {
+        name: 'Inertial Stabilizer',
+        description: 'Apply half damage absorbtion to fall and crash damage.',
+        weight: 10,
+        cost: 12000,
+        damageAbsorbtion: 0,
+        abilityModifiers: [],
+        stack: 1,
+    },
+    {
+        name: 'Plate polarizer',
+        description: 'Power armor is not disabled by electrical damage',
+        weight: 4,
+        cost: 8000,
+        damageAbsorbtion: 0,
+        abilityModifiers: [],
+        stack: 1
     }
 ];
 

@@ -133,6 +133,8 @@ const Combat: React.FC = () => {
                         {uc.results !== undefined ? uc.results.map(r => <li>{r}</li>) : null}
                     </ul>
                 </>)}
+                <h5>Firearm loudness and hearing loss</h5>
+                <p>(Optional rule) Firearms can be heard from away, but it varies heavily on the caliber and conditions. Without ear protection firearms can cause temporary hearing loss.</p>
             </Indexed>
             <Indexed title='Splash damage'>
                 <p>Some weapons do splash damage, meaning they hit an area, some weapons have a "low damage" zone outside the splash area where damage is reduced to 25% (rounded down)</p>

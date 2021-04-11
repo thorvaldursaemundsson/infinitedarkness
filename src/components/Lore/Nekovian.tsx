@@ -24,7 +24,8 @@ const Nekovian = () => <>
     <p>When nekovians swim they may use the regular run table to determine how fast they swim and how far they can swim.</p>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
-    <p>Nekovians move at double speed in water and can fly (glide downwards at ~15 degrees)</p>
+    <p>Nekovians move at double speed in water and air, and can fly (glide downwards at ~15 degrees)</p>
+    <p>Nekovians have a bite attack, roll combat + agility vs defense, deals 1d6 + strength/3</p>
     
     <RaceTable racialData={nekovian} />
     
