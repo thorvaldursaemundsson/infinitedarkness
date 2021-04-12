@@ -9,7 +9,6 @@ import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
 import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
-import CharacterSize from '../components/playermanual/CharacterSize';
 import Radiation from '../components/playermanual/Radiation';
 import Consumables from '../components/playermanual/Consumables';
 import Cybernetics from '../components/playermanual/Cybernetics';
@@ -17,6 +16,7 @@ import HealthAndRest from '../components/playermanual/HealthAndRest';
 import { d100SpreaderT } from '../utils/d100Spreader';
 import Ellipsis from '../components/general/Ellipsis';
 import { IViewProps } from './IViewProps';
+import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSpeed';
 
 
 
@@ -34,7 +34,7 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <hr />
         <Experience key='pm4' />
         <hr />
-        <CharacterSize key='pmcs' />
+        <CharacterSizeAndSpeed key='pmcs' />
         <hr />
         <Combat key='pm5' />
         <hr />

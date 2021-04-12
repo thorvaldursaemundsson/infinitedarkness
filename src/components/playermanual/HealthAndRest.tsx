@@ -65,6 +65,7 @@ const HealthAndRest = () =>
                     <li>Sleeping with 3 or more other people in room: drop quality one step</li>
                     <li>No noice or disturbances: raise quality one step</li>
                     <li>Sleeping medication: raise quality one step</li>
+                    <li>Sleeping while enemies are near: you may not</li>
                 </ul>
                 <p>Life recovery rate is equal to endurance / 5 per day, fractions are carried over.</p>
                 <p>Mental health recovery is equal to 1 per day on adequate and good quality sleep, 2 on fantastic sleep quality. It can be accelerated through therapy and meditation</p>
