@@ -18,7 +18,11 @@ const Vehicles: React.FC = () => {
             </Indexed>
             <Indexed title='water vehicles'>
                 <VehicleTable vehicles={WaterVehicles} parts={waterVehicleParts} />
-                <Section title='Landing & crashlanding'>
+                
+
+            </Indexed>
+            <Indexed title='air'>
+            <Section title='Landing & crashlanding'>
                     <h5>Landing</h5>
                     <p>Whenever you land there is a risk that a part of the airplane takes some damage or is worn. When you crash the risk increases considerably.</p>
                     <p>The first step is to find the part that is damaged, roll 1d100, the second step is to find the amount of damage, 1, 1d4 or 1d6 depending on landing success</p>
@@ -37,10 +41,7 @@ const Vehicles: React.FC = () => {
 
                     <RollOMeter partsList={airVehicleParts} amountList={rollAmounts} damageAmounts={airVehicleDamageTexts} />
 
-                </Section>
-
-            </Indexed>
-            <Indexed title='air'>
+                </Section> 
                 <VehicleTable vehicles={AirVehicles} parts={airVehicleParts} />
             </Indexed>
             <Indexed title='space'>

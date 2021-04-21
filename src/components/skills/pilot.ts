@@ -55,7 +55,7 @@ const useCases: UseCase[] = [
     {
         name: 'pilot airplane',
         attribute: 'intelligence',
-        description: 'the second hardest point is takeof, the hardest part is landing. Failure could potentially mean death. For crashland safely etc see Player Manual -> Air Vehicles -> Landing & Crashlanding',
+        description: 'the second hardest point is takeof, the hardest part is landing. Failure could potentially mean death. For crashland safely etc see Player Manual -> Air Vehicles -> Landing & Crashlanding.',
         results: [
             'takeoff: 25',
             'keep airborne: 20',
@@ -105,5 +105,5 @@ const useCases: UseCase[] = [
         type: 'active'
     },
 ];
-const Pilot = new SkillTemplate('pilot', 'driving car, boat, airplane, spaceship, horse', useCases);
+const Pilot = new SkillTemplate('pilot', 'driving car, boat, airplane, spaceship, horse. Damage from crashing a vehicle counts as fall damage (bludgeoning and half damage resistance from armor)', useCases);
 export default Pilot;

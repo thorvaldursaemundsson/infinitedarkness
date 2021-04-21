@@ -320,7 +320,7 @@ const integratedSystems:IntegratedSystem[] = [
     },
     {
         name: 'Inertial Stabilizer',
-        description: 'Apply half damage absorbtion to fall and crash damage.',
+        description: 'Armor gives full damage absorbtion from fall and crash damage',
         weight: 10,
         cost: 12000,
         damageAbsorbtion: 0,
