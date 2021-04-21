@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Forensics = new PerkTemplate({
+const Forensics = new PerkTemplate({
     name: 'forensics',
     skill: 'investigation',
     level: 1,
@@ -10,7 +10,7 @@ export const Forensics = new PerkTemplate({
     amount: 3
 });
 
-export const Enigmas = new PerkTemplate({
+const Enigmas = new PerkTemplate({
     name: 'enigmas',
     skill: 'investigation',
     level: 1,
@@ -20,7 +20,7 @@ export const Enigmas = new PerkTemplate({
     amount: 3
 });
 
-export const Search = new PerkTemplate({
+const Search = new PerkTemplate({
     name: 'search',
     skill: 'investigation',
     level: 1,

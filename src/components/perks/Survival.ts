@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const HunterGatherer = new PerkTemplate({
+const HunterGatherer = new PerkTemplate({
     name: 'Hunter gatherer',
     skill: 'survival',
     level: 1,
@@ -10,7 +10,7 @@ export const HunterGatherer = new PerkTemplate({
     amount: 5
 });
 
-export const ShelterBuilder = new PerkTemplate({
+const ShelterBuilder = new PerkTemplate({
     name: 'shelter builder',
     skill: 'survival',
     level: 1,
@@ -20,7 +20,7 @@ export const ShelterBuilder = new PerkTemplate({
     amount: 5
 });
 
-export const HardenedSurvivalist = new PerkTemplate({
+const HardenedSurvivalist = new PerkTemplate({
     name: 'hardened survivalist',
     skill: 'survival',
     level: 1,

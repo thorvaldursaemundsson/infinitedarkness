@@ -30,7 +30,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>This should be a short synopsis of where you were born, lived and any noteworthy experiences you've had. Having one helps you rolplay and the GM integrate your character into the world.</p>
 
     <h4>Life</h4>
-    <p>Life refers to how much punishment your character can take before dying. Life is caluclated as strength + 2x endurance. See health section for more information</p>
+    <p>Life refers to how much punishment your character can take before dying. Life is caluclated as strength + 2x endurance. At 9 and 18 athletics add +1 life. See health section for more information</p>
 
     <h4>Mental health</h4>
     <p>Mental health refers to the state of your mind, it is caulcated as willpower + willpower. See more under Health</p>
@@ -39,7 +39,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>Sequence is your turn order bonus during combat. Agility + Perception. When combat starts roll 1d20 + sequence, turn goes from highest to lowest. (special rules apply for very high values)</p>
 
     <h4>Damage Absorbtion</h4>
-    <p>This number is subtracted from incoming damage.</p>
+    <p>This number is subtracted from incoming damage. You get it primarily from armor, but also from perks and traits.</p>
 
     <h4>Defense</h4>
     <p>Defense is the number enemies must overcome to hit you with attacks.<br />

@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Deflection = new PerkTemplate({
+const Deflection = new PerkTemplate({
     name: 'deflection',
     skill: 'combat',
     level: 1,
@@ -10,7 +10,7 @@ export const Deflection = new PerkTemplate({
     amount: 1
 });
 
-export const LightWeaponSpecialization = new PerkTemplate({
+const LightWeaponSpecialization = new PerkTemplate({
     name: 'light weapon specialization',
     skill: 'combat',
     level: 1,
@@ -20,7 +20,7 @@ export const LightWeaponSpecialization = new PerkTemplate({
     amount: 1
 });
 
-export const MediumWeaponSpecialization = new PerkTemplate({
+const MediumWeaponSpecialization = new PerkTemplate({
     name: 'medium weapon specialization',
     skill: 'combat',
     level: 1,
@@ -30,7 +30,7 @@ export const MediumWeaponSpecialization = new PerkTemplate({
     amount: 1
 });
 
-export const LargeWeaponSpecialization = new PerkTemplate({
+const LargeWeaponSpecialization = new PerkTemplate({
     name: 'large weapon specialization',
     skill: 'combat',
     level: 1,
@@ -40,7 +40,7 @@ export const LargeWeaponSpecialization = new PerkTemplate({
     amount: 1
 });
 
-export const MartialArts = new PerkTemplate({
+const MartialArts = new PerkTemplate({
     name: 'martial arts',
     skill: 'combat',
     level: 1,
@@ -50,7 +50,7 @@ export const MartialArts = new PerkTemplate({
     amount: 1
 });
 
-export const MartialArtsExpert = new PerkTemplate({
+const MartialArtsExpert = new PerkTemplate({
     name: 'martial arts expert',
     skill: 'combat',
     level: 2,
@@ -60,7 +60,7 @@ export const MartialArtsExpert = new PerkTemplate({
     amount: 2
 });
 
-export const MartialArtsMaster = new PerkTemplate({
+const MartialArtsMaster = new PerkTemplate({
     name: 'martial arts master',
     skill: 'combat',
     level: 3,
@@ -70,7 +70,7 @@ export const MartialArtsMaster = new PerkTemplate({
     amount: 3
 });
 
-export const LightningReflexes = new PerkTemplate({
+const LightningReflexes = new PerkTemplate({
     name: 'lightning reflexes',
     skill: 'combat',
     level: 1,
@@ -80,42 +80,42 @@ export const LightningReflexes = new PerkTemplate({
     amount: 4,
 });
 
-export const Disarm = new PerkTemplate({
+const Disarm = new PerkTemplate({
     name: 'disarm',
     skill: 'combat',
     level: 1,
     description: 'You may as an unarmed attack remove someones weapon from their hand, if you succeed by 10 or more you may keep it in your hand'
 });
 
-export const DualWeaponFighter = new PerkTemplate({
+const DualWeaponFighter = new PerkTemplate({
     name: 'dual weapon fighter',
     skill: 'combat',
     level: 1,
     description: 'When you use two weapons strength requirement increases are reduced by half, your off-hand gains full agility and half skill.'
 });
 
-export const DualWeaponMaster = new PerkTemplate({
+const DualWeaponMaster = new PerkTemplate({
     name: 'dual weapon master',
     skill: 'combat',
     level: 2,
     description: 'When you use two weapons strength requirement increases are ignored. Both hands gain full skill and agility bonus. Requires dual weapon fighter',
 });
 
-export const Barbarian = new PerkTemplate({
+const Barbarian = new PerkTemplate({
     name: 'barbarian',
     skill: 'combat',
     level: 1,
     description: 'You are a brutal warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical'
 });
 
-export const Berzerker = new PerkTemplate({
+const Berzerker = new PerkTemplate({
     name: 'berzerker',
     skill: 'combat',
     level: 2,
     description: 'You are a savage warrior, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical. Requires barbarian'
 });
 
-export const Beast = new PerkTemplate({
+const Beast = new PerkTemplate({
     name: 'beast',
     skill: 'combat',
     level: 3,
@@ -125,5 +125,5 @@ export const Beast = new PerkTemplate({
 
 
 export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization,
-    MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, Disarm, DualWeaponFighter,
+    MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, Disarm, DualWeaponFighter, DualWeaponMaster,
     Barbarian, Berzerker, Beast];

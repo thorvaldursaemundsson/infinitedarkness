@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Mentalist = new PerkTemplate({
+const Mentalist = new PerkTemplate({
     name: 'mentalist',
     skill: 'empathy',
     level: 1,
@@ -10,14 +10,14 @@ export const Mentalist = new PerkTemplate({
     amount: 3
 });
 
-export const EmpathicListener = new PerkTemplate({
+const EmpathicListener = new PerkTemplate({
     name: 'empathic listener',
     skill: 'empathy',
     level: 1,
     description: 'You are easy to talk to and listen well to others. People are more likely to trust you and when you speak to someone you always gain some true information even if the target is being deliberately secretive.',
 })
 
-export const LieDetector = new PerkTemplate({
+const LieDetector = new PerkTemplate({
     name: 'Lie detector',
     skill: 'empathy',
     level: 1,
@@ -27,7 +27,7 @@ export const LieDetector = new PerkTemplate({
     amount: 3
 });
 
-export const ExpertTeamwork = new PerkTemplate({
+const ExpertTeamwork = new PerkTemplate({
     name: 'expert teamwork',
     skill: 'empathy',
     level: 1,

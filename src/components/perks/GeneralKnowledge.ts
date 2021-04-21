@@ -1,13 +1,13 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Trivia = new PerkTemplate({
+const Trivia = new PerkTemplate({
     name: 'trivia',
     skill: 'general knowledge',
     level: 1,
     description: 'You can remember useless but interesting trivia, roll a general knowledge + intelligence vs 15 to raise everyones spirits.'
 });
 
-export const CommonSense = new PerkTemplate({
+const CommonSense = new PerkTemplate({
     name: 'common sense',
     skill: 'general knowledge',
     level: 1,

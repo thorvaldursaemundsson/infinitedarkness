@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const VehicleMechanic = new PerkTemplate({
+const VehicleMechanic = new PerkTemplate({
     name: 'Vehicle Mechanic',
     skill: 'mechanics',
     level: 1,

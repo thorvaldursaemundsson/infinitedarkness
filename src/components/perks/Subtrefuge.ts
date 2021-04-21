@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const HideEmotion = new PerkTemplate({
+const HideEmotion = new PerkTemplate({
     name: 'hide emotion',
     skill: 'subtrefuge',
     level: 1,
@@ -10,7 +10,7 @@ export const HideEmotion = new PerkTemplate({
     amount: 5
 });
 
-export const Deception = new PerkTemplate({
+const Deception = new PerkTemplate({
     name: 'deception',
     skill: 'subtrefuge',
     level: 1,

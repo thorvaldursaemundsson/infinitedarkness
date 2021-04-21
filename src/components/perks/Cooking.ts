@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Chef = new PerkTemplate({
+const Chef = new PerkTemplate({
     name: 'Chef',
     skill: 'cooking',
     level: 1,
@@ -10,7 +10,7 @@ export const Chef = new PerkTemplate({
     amount: 0
 });
 
-export const GourmetChef = new PerkTemplate({
+const GourmetChef = new PerkTemplate({
     name: 'Gourmet Chef',
     skill: 'cooking',
     level: 2,
@@ -20,7 +20,7 @@ export const GourmetChef = new PerkTemplate({
     amount: 3
 });
 
-export const Scrambler = new PerkTemplate({
+const Scrambler = new PerkTemplate({
     name: 'Scrambler',
     skill: 'cooking',
     level: 1,

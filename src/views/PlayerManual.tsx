@@ -36,6 +36,8 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <hr />
         <CharacterSizeAndSpeed key='pmcs' />
         <hr />
+        <CarryingCapacity key='pmcc' />
+        <hr />
         <Combat key='pm5' />
         <hr />
         <HealthAndRest key='pm8' />
@@ -46,11 +48,9 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <hr />
         <Consumables key='pmcons' />
         <hr />
-        <CarryingCapacity key='pmcc' />
+        <Vehicles key='pm7' />
         <hr />
         <Cybernetics key='pmcyb' />
-        <hr />
-        <Vehicles key='pm7' />
         <hr />
         <Radiation key='pmr' />
         <hr />

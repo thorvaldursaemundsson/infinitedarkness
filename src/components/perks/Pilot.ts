@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const QualifiedForCar = new PerkTemplate({
+const QualifiedForCar = new PerkTemplate({
     name: 'car qualified',
     skill: 'pilot',
     level: 1,
@@ -10,7 +10,7 @@ export const QualifiedForCar = new PerkTemplate({
     amount: 6
 });
 
-export const QualifiedForBoat = new PerkTemplate({
+const QualifiedForBoat = new PerkTemplate({
     name: 'boat qualified',
     skill: 'pilot',
     level: 1,
@@ -20,7 +20,7 @@ export const QualifiedForBoat = new PerkTemplate({
     amount: 6
 });
 
-export const QualifiedForShip = new PerkTemplate({
+const QualifiedForShip = new PerkTemplate({
     name: 'ship qualified',
     skill: 'pilot',
     level: 2,
@@ -30,7 +30,7 @@ export const QualifiedForShip = new PerkTemplate({
     amount: 9
 });
 
-export const QualifiedForSubmarine = new PerkTemplate({
+const QualifiedForSubmarine = new PerkTemplate({
     name: 'submarine qualified',
     skill: 'pilot',
     level: 3,
@@ -40,7 +40,7 @@ export const QualifiedForSubmarine = new PerkTemplate({
     amount: 12
 });
 
-export const QualifiedForAirplane = new PerkTemplate({
+const QualifiedForAirplane = new PerkTemplate({
     name: 'airplane qualified',
     skill: 'pilot',
     level: 2,
@@ -50,7 +50,7 @@ export const QualifiedForAirplane = new PerkTemplate({
     amount: 9
 });
 
-export const QualifiedForSpaceship = new PerkTemplate({
+const QualifiedForSpaceship = new PerkTemplate({
     name: 'spaceship qualified',
     skill: 'pilot',
     level: 2,
@@ -60,7 +60,7 @@ export const QualifiedForSpaceship = new PerkTemplate({
     amount: 9
 });
 
-export const QualifiedForFTL = new PerkTemplate({
+const QualifiedForFTL = new PerkTemplate({
     name: 'FTL qualified',
     skill: 'pilot',
     level: 2,

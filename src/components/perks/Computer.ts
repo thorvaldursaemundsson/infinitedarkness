@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Hacking = new PerkTemplate({
+const Hacking = new PerkTemplate({
     name: 'hacking',
     skill: 'computer',
     level: 1,
@@ -10,7 +10,7 @@ export const Hacking = new PerkTemplate({
     amount: 5
 });
 
-export const AdvancedHacking = new PerkTemplate({
+const AdvancedHacking = new PerkTemplate({
     name: 'advanced hacking',
     skill: 'computer',
     level: 2,
@@ -20,7 +20,7 @@ export const AdvancedHacking = new PerkTemplate({
     amount: 5
 });
 
-export const Programmer = new PerkTemplate({
+const Programmer = new PerkTemplate({
     name: 'programmer',
     skill: 'computer',
     level: 1,
@@ -30,7 +30,7 @@ export const Programmer = new PerkTemplate({
     amount: 3
 });
 
-export const SeniorDeveloper = new PerkTemplate({
+const SeniorDeveloper = new PerkTemplate({
     name: 'Senior Developer',
     skill: 'computer',
     level: 2,
@@ -41,4 +41,4 @@ export const SeniorDeveloper = new PerkTemplate({
 });
 
 
-export const ComputerPerks = [Hacking, AdvancedHacking, Programmer];
+export const ComputerPerks = [Hacking, AdvancedHacking, Programmer, SeniorDeveloper];

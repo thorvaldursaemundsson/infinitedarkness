@@ -1,6 +1,7 @@
 import { PerkTemplate } from "../general/Perks";
 const skill = 'athletics';
-export const Climber = new PerkTemplate({
+
+const Climber = new PerkTemplate({
     name: 'climber',
     skill: skill,
     level: 1,
@@ -10,7 +11,7 @@ export const Climber = new PerkTemplate({
     amount: 5
 });
 
-export const Runner = new PerkTemplate({
+const Runner = new PerkTemplate({
     name: 'runner',
     skill: skill,
     level: 1,
@@ -20,7 +21,7 @@ export const Runner = new PerkTemplate({
     amount: 5
 });
 
-export const Jumper = new PerkTemplate({
+const Jumper = new PerkTemplate({
     name: 'jumper',
     skill: skill,
     level: 1,
@@ -30,7 +31,7 @@ export const Jumper = new PerkTemplate({
     amount: 5
 });
 
-export const Swimmer = new PerkTemplate({
+const Swimmer = new PerkTemplate({
     name: 'swimmer',
     skill: skill,
     level: 1,
@@ -40,7 +41,7 @@ export const Swimmer = new PerkTemplate({
     amount: 5
 });
 
-export const DeepLungs = new PerkTemplate({
+const DeepLungs = new PerkTemplate({
     name: 'deep lungs',
     skill: skill,
     level: 1,
@@ -50,14 +51,14 @@ export const DeepLungs = new PerkTemplate({
     amount: 5
 });
 
-export const FastSwimmer = new PerkTemplate({
+const FastSwimmer = new PerkTemplate({
     name: 'fast swimmer',
     skill: skill,
     level: 1,
     description: 'When you roll to swim at 100% speed you instead swim at 150%'
 });
 
-export const GoodFortitude = new PerkTemplate({
+const GoodFortitude = new PerkTemplate({
     name: 'good fortitude',
     skill: skill,
     level: 1,
@@ -67,7 +68,7 @@ export const GoodFortitude = new PerkTemplate({
     amount: 2
 });
 
-export const GreatFortitude = new PerkTemplate({
+const GreatFortitude = new PerkTemplate({
     name: 'great fortitude',
     skill: skill,
     level: 2,
@@ -77,7 +78,7 @@ export const GreatFortitude = new PerkTemplate({
     amount: 4
 });
 
-export const SupremeFortitude = new PerkTemplate({
+const SupremeFortitude = new PerkTemplate({
     name: 'supreme fortitude',
     skill: skill,
     level: 3,
@@ -87,7 +88,7 @@ export const SupremeFortitude = new PerkTemplate({
     amount: 6
 });
 
-export const StrongBack = new PerkTemplate({
+const StrongBack = new PerkTemplate({
     name: 'strong back',
     skill: skill,
     level: 1,
@@ -97,7 +98,7 @@ export const StrongBack = new PerkTemplate({
     amount: 3
 });
 
-export const Fast = new PerkTemplate({
+const Fast = new PerkTemplate({
     name: 'Fast',
     skill: skill,
     level: 1,
@@ -107,7 +108,7 @@ export const Fast = new PerkTemplate({
     amount: 1
 });
 
-export const HighMobility = new PerkTemplate({
+const HighMobility = new PerkTemplate({
     name: 'High mobility',
     skill: skill,
     level: 2,
@@ -118,26 +119,33 @@ export const HighMobility = new PerkTemplate({
     applyTo: 'speed'
 });
 
-export const Marathoner = new PerkTemplate({
+const Marathoner = new PerkTemplate({
     name: 'Marathoner',
     skill: skill,
     level: 1,
     description: 'Gain +10 on running, ignore one level of carry capacity or exhaustion'
 });
 
-export const ArmorSpecialist = new PerkTemplate({
+const ArmorSpecialist = new PerkTemplate({
     name: 'armor specialist',
     skill: skill,
     description: 'You are a specialist at using armor, armor penalty to agility is reduced by 2 and weight from armor counts as half',
     level: 1
 });
 
-export const ArmorMaster = new PerkTemplate({
+const ArmorMaster = new PerkTemplate({
     name: 'armor master',
     skill: skill,
     description: 'You have mastered armor using, armor penalty to agility is further reduced by 2 and weight is halved again',
     level: 2
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
-    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster];
+const Hardy = new PerkTemplate({
+    name: 'Hardy',
+    skill: skill,
+    description: 'You gain +1 damage absorbtion while awake.',
+    level: 2,
+})
+
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, FastSwimmer, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
+    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy];

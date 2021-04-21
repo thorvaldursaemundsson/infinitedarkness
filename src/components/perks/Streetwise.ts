@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const CriminalTrader = new PerkTemplate({
+const CriminalTrader = new PerkTemplate({
     name: 'criminal trader',
     skill: 'streetwise',
     level: 1,
@@ -10,21 +10,21 @@ export const CriminalTrader = new PerkTemplate({
     amount: 3
 });
 
-export const Gangster = new PerkTemplate({
+const Gangster = new PerkTemplate({
     name: 'gangster',
     skill: 'streetwise',
     level: 1,
     description: 'Your character is well experienced with gangs both from the inside and outside, gain +3 to all gang rolls, local culture and you may start out as a gang member'
 });
 
-export const Gossiper = new PerkTemplate({
+const Gossiper = new PerkTemplate({
     name: 'gossiper',
     skill: 'streetwise',
     level: 1,
     description: 'Your character gains +5 to all gossip roles and using the skill does not block other activities.'
 });
 
-export const LocalSlang = new PerkTemplate({
+const LocalSlang = new PerkTemplate({
     name: 'local slang',
     skill: 'streetwise',
     level: 1,

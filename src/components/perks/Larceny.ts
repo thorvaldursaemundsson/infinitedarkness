@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const SlightOfHand = new PerkTemplate({
+const SlightOfHand = new PerkTemplate({
     name: 'slight of hand',
     skill: 'larceny',
     level: 1,
@@ -10,7 +10,7 @@ export const SlightOfHand = new PerkTemplate({
     amount: 3
 });
 
-export const LockPick = new PerkTemplate({
+const LockPick = new PerkTemplate({
     name: 'lockpick',
     skill: 'larceny',
     level: 1,
@@ -20,7 +20,7 @@ export const LockPick = new PerkTemplate({
     amount: 3
 });
 
-export const HideObject = new PerkTemplate({
+const HideObject = new PerkTemplate({
     name: 'hide object',
     skill: 'larceny',
     level: 1,

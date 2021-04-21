@@ -7,14 +7,15 @@ import { nekovian } from "../races/Nekovians";
 import { merlions } from "../races/Merlions";
 import { shambras } from "../races/Shambras";
 
-const MakeCharacter: React.FC<IOpenableViewItem> = ({initiallyOpen}) => {
+const MakeCharacter: React.FC<IOpenableViewItem> = ({ initiallyOpen }) => {
     return <Section title='How to make a character' initiallyOpen={initiallyOpen}>
 
-        <Section title='Human dice roller'><GenericCharacterRoller racialMod={humans} /></Section>
-        <Section title='Shambra dice roller'><GenericCharacterRoller racialMod={shambras} /></Section>
-        <Section title='Merlion dice roller'><GenericCharacterRoller racialMod={merlions} /></Section>
-        <Section title='Nekovian dice roller'><GenericCharacterRoller racialMod={nekovian} /></Section>
-
+        <Section title='Ability roller'>
+            <Section title='Human dice roller'><GenericCharacterRoller racialMod={humans} /></Section>
+            <Section title='Shambra dice roller'><GenericCharacterRoller racialMod={shambras} /></Section>
+            <Section title='Merlion dice roller'><GenericCharacterRoller racialMod={merlions} /></Section>
+            <Section title='Nekovian dice roller'><GenericCharacterRoller racialMod={nekovian} /></Section>
+        </Section>
         <h3>Step 1 - concept</h3>
         <h4>Roll attributes</h4>
         <p>The absolute first step is to roll your base attributes, strength, agility, endurance, perception, intelligence, willpower</p>

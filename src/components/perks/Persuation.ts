@@ -1,16 +1,16 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const ArtOfDeal = new PerkTemplate({
+const ArtOfDeal = new PerkTemplate({
     name: 'the art of the deal',
     skill: 'persuation',
     level: 1,
-    description: 'Your character is a strong negotiator when it comes to making a deal, +5 to persuation rolls when making deal'
+    description: 'Your character is a strong negotiator when it comes to making a deal, +5 to persuation rolls when making deal due to using the best words'
 }, {
     applyTo: 'deal',
     amount: 5
 });
 
-export const MotivationalSpeaker = new PerkTemplate({
+const MotivationalSpeaker = new PerkTemplate({
     name: 'motivational speaker',
     skill: 'persuation',
     level: 1,
@@ -20,7 +20,7 @@ export const MotivationalSpeaker = new PerkTemplate({
     amount: 3
 });
 
-export const InspireCourage = new PerkTemplate({
+const InspireCourage = new PerkTemplate({
     name: 'inspire courage',
     skill: 'persuation',
     level: 1,

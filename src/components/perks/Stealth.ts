@@ -40,7 +40,7 @@ const SixthSense = new PerkTemplate({
     amount: 3
 });
 
-export const SneakAttack = new PerkTemplate({
+const SneakAttack = new PerkTemplate({
     name: 'sneak attack',
     skill: 'stealth',
     level: 1,
@@ -50,7 +50,7 @@ export const SneakAttack = new PerkTemplate({
     amount: 2
 });
 
-export const Assassination = new PerkTemplate({
+const Assassination = new PerkTemplate({
     name: 'assassination',
     skill: 'stealth',
     level: 2,

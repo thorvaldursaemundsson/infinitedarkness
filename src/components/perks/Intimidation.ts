@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Interrogator = new PerkTemplate({
+const Interrogator = new PerkTemplate({
     name: 'interrogator',
     skill: 'intimidation',
     level: 1,
@@ -10,7 +10,7 @@ export const Interrogator = new PerkTemplate({
     amount: 3
 });
 
-export const Frighten = new PerkTemplate({
+const Frighten = new PerkTemplate({
     name: 'frighten',
     skill: 'intimidation',
     level: 1,
@@ -20,7 +20,7 @@ export const Frighten = new PerkTemplate({
     amount: 0
 });
 
-export const Spook = new PerkTemplate({
+const Spook = new PerkTemplate({
     name: 'spook',
     skill: 'intimidation',
     level: 1,
