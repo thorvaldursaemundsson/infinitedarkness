@@ -312,13 +312,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 <tr>
                                     <th>Mental health</th>
                                     <th>Mana</th>
-                                    <th>Carry/Exhaustion</th>
+                                    <th><span className='carry'>Carry</span> <span className='middash'>-</span> <span className='exhaustion'>Exhaustion</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
-                                        {Pad(28,0).map(i=><span className='mentalHealthBoxes'>&nbsp;</span>)}
+                                        {Pad(30,0).map(i=><span className='mentalHealthBoxes'>&nbsp;</span>)}
                                     </td>
                                     <td>
                                         {Pad(80,0).map(i=><span className='manaBoxes'>&nbsp;</span>)}
