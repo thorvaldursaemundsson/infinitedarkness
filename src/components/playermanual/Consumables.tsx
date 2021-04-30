@@ -2,6 +2,7 @@ import React from 'react';
 import Section from './Section';
 import Indexer, { Indexed } from '../general/Indexer';
 import Cooking from '../skills/cooking';
+import { ConsumableTools, ConsumableWeapons } from '../equipment/Consumables';
 
 
 const Consumables = () => <Section title='Consumables'>
@@ -122,246 +123,7 @@ interface ITool {
     cost: number;
 }
 
-const tools: ITool[] = [
-    {
-        name: 'med kit',
-        description: 'contains stempacks, antibotics, antivirals, diagnostic tools, antivenom, weak and strong painkillers',
-        uses: 20,
-        weightKg: 2.5,
-        cost: 4000,
-    },
-    {
-        name: 'Climing/Parkour gear',
-        description: 'contains traction cleats, anchors, rope, revo belay',
-        uses: 50,
-        weightKg: 3,
-        cost: 1500,
-    },
-    {
-        name: 'Sports gear',
-        description: 'contains pair of sneakers, towel, water bottle, headband, aerodynamic one-piece',
-        uses: 40,
-        weightKg: 2,
-        cost: 2000,
-    },
-    {
-        name: 'Sharpening tools',
-        description: 'Contains sharpening stick for blades',
-        uses: 1000,
-        weightKg: 0.5,
-        cost: 100,
-    },
-    {
-        name: 'Portable Cooking set',
-        description: 'contains a small pot, a large pot, a light frying pan, one electric stove, portable refrigerator, including batteries for up to 10 meals.',
-        uses: 100,
-        weightKg: 10,
-        cost: 5000,
-    },
-    {
-        name: 'Electronics toolkit',
-        description: 'contains multi meter, spare wires and cables, wireboard, universal screwdriver, soldering tools',
-        uses: 30,
-        weightKg: 4,
-        cost: 2000,
-    },
-    {
-        name: 'Ballistic kit',
-        description: 'contains universal screwdriver, spare screws, oil, small brush, protective eyewear',
-        uses: 40,
-        weightKg: .3,
-        cost: 400,
-    },
-    {
-        name: 'Forensics kit',
-        description: 'contains darklight, fingerprint duster, biosample collector, laser pointer',
-        uses: 40,
-        weightKg: 1,
-        cost: 1200,
-    },
-    {
-        name: 'Lockpick',
-        description: 'contains assortment of lockpicks',
-        uses: 100,
-        weightKg: .2,
-        cost: 500,
-    },
-    {
-        name: 'Electronic lockpick',
-        description: 'contains connector, IR coms, UV coms, micro-hologram projector, adaptor, cryptogram chip',
-        uses: 80,
-        weightKg: 2,
-        cost: 3500,
-    },
-    {
-        name: 'Mechanics kit',
-        description: 'contains universal screwdrivers, hammer, spare nuts, bolts, screws, nails, adjustable wrench',
-        uses: 1000,
-        weightKg: 5,
-        cost: 1500,
-    },
-    {
-        name: 'Batteries',
-        description: 'Rechargeble Lithium ion battery, can be used to recharge energy weapons, computers, tools, even vehicles',
-        uses: 10000,
-        weightKg: 1,
-        cost: 1000,
-    },
-    {
-        name: 'Personal solar array',
-        description: 'A 1x1 meter solar foldable panel, can charge one battery over the course of a day.',
-        uses: 10000,
-        weightKg: .5,
-        cost: 2000,
-    },
-    {
-        name: 'Motion sensor',
-        description: 'detects air movement and vibrations up to 100 meters, can be adjusted to less',
-        uses: 100,
-        weightKg: .2,
-        cost: 200,
-    },
-    {
-        name: 'Tiny tracker',
-        description: 'tiny tracker emits weak long band microwaves, adjustable to an exact frequency and pattern, trackable up to 100km. Illegal',
-        uses: 1,
-        weightKg: .01,
-        cost: 300,
-    },
-    {
-        name: 'Infrared googles',
-        description: 'Googles that track infra-red light, allows visible light to be seen too as an option.',
-        uses: 10000,
-        weightKg: 0.2,
-        cost: 900,
-    },
-    {
-        name: 'Ultraviolet googles',
-        description: 'Googles that track ultra-violet light, allows visible light to be seen too as an option.',
-        uses: 10000,
-        weightKg: 0.3,
-        cost: 1600,
-    },
-    {
-        name: 'Pocket Computer',
-        description: 'Basically a futuristic smartphone. Allows user to substitute computer roll for any knowledge roll. 10TB storage, 12x 5.5GH cpu cores, 512GB ram, 4 cameras, gyrometer, accelerometer, geigercounter, radiobooster. 48h battery',
-        uses: 1000,
-        weightKg: 1,
-        cost: 2000,
-    },
-    {
-        name: 'Jetpack',
-        description: 'Allows for short bursts which propel the user. Jump +50 meters up, +100 meters forward, requires athletics + agility 20 to safely land. Can hover if your total weight is 80kg or less',
-        uses: 100,
-        weightKg: 6,
-        cost: 14000,
-    },
-    {
-        name: 'Flightsuit',
-        description: 'Allows for gliding, flying if paired with jetpack. Landing safely requires acrobatics + agility 20. Not compatible with armor plating or power armor',
-        uses: 80,
-        weightKg: 10,
-        cost: 8000,
-    },
-    {
-        name: 'SCUBA suit',
-        description: 'Airbreathing underwater for 3 hours. Includes wetsuit which protects against cold oceanic water.',
-        uses: 10,
-        weightKg: 6,
-        cost: 12000,
-    },
-    {
-        name: 'Laser protection gear',
-        description: 'Protective gear against damage from laser, protects against blinding.',
-        uses: 1000,
-        weightKg: 0.1,
-        cost: 500,
-    },
-    {
-        name: 'Plasma protection gear',
-        description: 'Protective gear against damage from plasma weapons, protects against blinding and damage, does not offer protection if directly fired upon.',
-        uses: 1000,
-        weightKg: 1,
-        cost: 1600,
-    },
-    {
-        name: 'Spy drone',
-        description: '	Small drone, uses propellers to fly but causes virtually no noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km.',
-        uses: 500,
-        weightKg: 0.2,
-        cost: 4000,
-    },
-    {
-        name: 'Carrier drone',
-        description: 'Medium sized drone, similar to spy drone but can carry 1kg and is not silent.',
-        uses: 500,
-        weightKg: 2,
-        cost: 9000,
-    },
-    {
-        name: 'Large carrier drone',
-        description: 'Large sized drone, similar to carrier drone, can carry 6kg.',
-        uses: 500,
-        weightKg: 10,
-        cost: 15000,
-    },
-    {
-        name: 'Industrial carrier drone',
-        description: 'Large sized drone, similar to large carrier but can carry 52kg.',
-        uses: 500,
-        weightKg: 80,
-        cost: 25000,
-    },
-    {
-        name: 'H.W. Industrial carrier drone',
-        description: 'Heavy weight indistrial carrier drone, capacity 175kg. Basically a small hellicopter',
-        uses: 500,
-        weightKg: 250,
-        cost: 35000,
-    },
-    {
-        name: 'Transport drone',
-        description: 'It\'s a vehicle, capacity 3500kg.',
-        uses: 500,
-        weightKg: 5000,
-        cost: 90000,
-    },
-    {
-        name: 'Camping kit',
-        description: 'contains single person tent, bedroll, igniter, boiler',
-        uses: 50,
-        weightKg: 20,
-        cost: 4000,
-    },
-    {
-        name: 'Field physics kit',
-        description: 'Contains telescope, microscope, spectrometer, scale, thermometer, hydrometer, electrometer',
-        uses: 100,
-        weightKg: 6,
-        cost: 8000,
-    },
-    {
-        name: 'Field chemistry kit',
-        description: 'Contains microscope, ph-meter, tweesers, beakers, heater, condenser',
-        uses: 100,
-        weightKg: 3,
-        cost: 7000,
-    },
-    {
-        name: 'Field biology kit',
-        description: 'Contains high focus microscope, stereliser, sealed strong bags',
-        uses: 100,
-        weightKg: 3,
-        cost: 7000,
-    },
-    {
-        name: 'Neural enhancer',
-        description: 'A neural enhancer uses very precise magnetic fields to speed up brainwaves. Roll science + intelligence vs 25 to adapt it to your brain, the adaption lasts until you gain character points. If you succeed then you add +1 to all intelligence, perception and agility rolls for 4 hours. When the time is elapsed you take a -2 penalty for 4 hours. If you dont wait 16 hours to use it again you take 1 mental health damage.',
-        uses: 1000,
-        weightKg: 1,
-        cost: 8000,
-    }
-];
+
 
 const Tools = () => <>
     <h3>Tools</h3>
@@ -376,9 +138,9 @@ const Tools = () => <>
             </tr>
         </thead>
         <tbody>
-            {tools.map(tool => <>
+            {ConsumableTools.map(tool => <>
                 <tr>
-                    <td><b>{tool.name}</b></td><td>{tool.uses}</td><td>{tool.weightKg}</td><td>{tool.cost}</td>
+                    <td><b>{tool.name}</b></td><td>{tool.charges}</td><td>{tool.weight/1000}</td><td>{tool.value}</td>
                 </tr>
                 <tr>
                     <td className='univeralBorderBottom' colSpan={4}>{tool.description}</td>
@@ -388,8 +150,35 @@ const Tools = () => <>
     </table>
 </>
 
+
+
 const Weapons = () => <>
-    Hand grenade
-    Remote activated Bomb
-    Traps
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Cost</th>
+                <th>Charges</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {ConsumableWeapons.map(c => <>
+            <tr>
+                <td>{c.name}</td>
+                <td>{c.weight}</td>
+                <td>{c.value}</td>
+                <td>{c.charges}</td>
+            </tr>
+            <tr>
+                    <td className='univeralBorderBottom' colSpan={4}>{c.description}</td>
+                </tr>
+            </>)}
+        </tbody>
+    </table>
 </>;
+
+//Hand grenade
+//Remote activated Bomb
+//Traps

@@ -3,15 +3,16 @@ const useCases: UseCase[] = [
     {
         name: 'throw grenade',
         attribute: 'agility',
-        description: 'throw a grenade at a target, grenade will explode at the end of your next turn',
+        description: 'throw a grenade at a target, grenade will explode at the end of your next turn.',
         results: [
             'base difficulty: 10 (to hit hex of target)',
             'range penalty: 1 per meter',
-            'rain: +2',
-            'windy: +2',
-            'stormwind: +4',
-            'target on slope: +8',
-            'time grenade to explode when it arrives: -10, (if fail by 10 points or more theres is a 50% chance it explodes while youre holding it'
+            'When a grenade lands within range of a target that can see the grenade and is able to move they are allowed to roll a contested acrobatics + agility roll. If they succeed they may move out of range before it explodes. If they fail by less than 10 then they fall to a defensive prone position and take only half damage.',
+            'rain: -2 to roll',
+            'windy: -2 to roll',
+            'stormwind: -4 to roll',
+            'target on slope: -8 to roll',
+            'if you fail then it lands randomly 1 meter away per point of failure. If your total roll is 0 or less the grenade explodes in your hand.'
         ],
         type: 'active'
     },
@@ -45,12 +46,12 @@ const useCases: UseCase[] = [
     {
         name: 'make improvised bomb',
         attribute: 'intelligence',
-        description: 'you make an improvised bomb from non-bomb materials. Takes 1 hour',
+        description: 'you make an improvised bomb from non-bomb materials.',
         results: [
-            'molotov cocktail: base 15',
-            'nitroglycerin: base 25',
-            'dynomite: base 25',
-            'battery bomb: 20',
+            'molotov cocktail: base 15, 5 minutes per',
+            'nitroglycerin: base 25, 1 hour per litre',
+            'dynomite: base 25, 2 hours per kg',
+            'battery bomb: 20, 1 hour',
         ],
         type: 'active'
     }

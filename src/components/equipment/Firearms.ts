@@ -18,6 +18,7 @@ export interface ILoudness {
 export interface AmmoInformation {
     ammo: Ammo;
     cost: number;
+    /** grams */
     weight: number;
     types: string[];
     description: string;
@@ -170,7 +171,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '20mm rpg',
-        cost: 250,
+        cost: 1500,
         weight: 120,
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade',
@@ -181,7 +182,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '30mm rpg',
-        cost: 500,
+        cost: 2500,
         weight: 200,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
@@ -192,7 +193,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '40mm rpg',
-        cost: 900,
+        cost: 4000,
         weight: 400,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
@@ -203,7 +204,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '50mm rpg',
-        cost: 1600,
+        cost: 8000,
         weight: 1000,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade',
