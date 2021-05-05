@@ -18,7 +18,7 @@ const useCases: UseCase[] = [
     {
         name: 'frighten',
         attribute: 'willpower',
-        description: 'emit a terrifying display of power and ill intent to cause viewers to fear you. It is contested by a 10 + willpower + intimidation',
+        description: 'emit a terrifying display of power and ill intent to cause viewers to fear you and view you as more threatening. It is contested by a 10 + willpower + intimidation. May substitute willpower with strength',
         results: [
             'Fail by 10 or more: they gain confidence against you, +2 to all rolls vs you, you take 1 mental health damage from humiliation',
             'Fail by less than 10: no effect, they are not afraid of you',
@@ -38,7 +38,7 @@ const useCases: UseCase[] = [
     },
     {
         name: 'spook',
-        attribute: 'willpower',
+        attribute: 'intelligence',
         description: 'while talking to someone for a while you instill in them a sense of dread, every 10 minutes they must roll willpower vs your roll or take 1d4 fear damage (plus 1 per 5 you exceed their roll)',
         type: 'active'
     }
