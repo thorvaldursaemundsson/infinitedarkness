@@ -130,7 +130,7 @@ const MentallyFlexible: Trait = {
 const Stubborn: Trait = {
     name: 'stubborn',
     cost: -10,
-    description: 'you are stubborn and unlikely to change your ways, -1 to experience multiplier (min 1) and you are resistent to being convinced (+2 resist persuation)',
+    description: 'you are stubborn and unlikely to change your ways, -1 to experience multiplier (min 1) and you are resistent to being convinced (+2 resist persuasion)',
     amount: -1,
     applyTo: 'experienceMultiplier'
 }

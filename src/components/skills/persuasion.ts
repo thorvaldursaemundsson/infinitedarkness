@@ -9,7 +9,7 @@ const useCases: UseCase[] = [
     {
         name: 'motivational speech',
         attribute: 'willpower',
-        description: 'you make a rousing motivational speech, everyone hearing it gains a +1 to all rolls for the rest of the day to any skill they have lower than your persuation skill. Takes 1 minute',
+        description: 'you make a rousing motivational speech, everyone hearing it gains a +1 to all rolls for the rest of the day to any skill they have lower than your persuasion skill. Takes 1 minute',
         type: 'active'
     },
     {
@@ -30,5 +30,5 @@ const useCases: UseCase[] = [
     },
 
 ];
-const Persuation = new SkillTemplate('persuation', 'making people see it your way', useCases);
-export default Persuation;
+const Persuasion = new SkillTemplate('persuasion', 'making people see it your way', useCases);
+export default Persuasion;

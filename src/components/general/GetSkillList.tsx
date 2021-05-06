@@ -9,7 +9,7 @@ import Intimidation from '../skills/intimidation';
 import Investigation from '../skills/investigation';
 import Larceny from '../skills/larceny';
 import Medicine from '../skills/medicine';
-import Persuation from '../skills/persuation';
+import Persuasion from '../skills/persuasion';
 import Pilot from '../skills/pilot';
 import Spells from '../skills/spells';
 import Stealth from '../skills/stealth';
@@ -36,7 +36,7 @@ export const GetSkillList = (): Skill[] => {
         Investigation,
         Larceny,
         Medicine,
-        Persuation,
+        Persuasion,
         Pilot,
         Spells,
         Stealth,

@@ -4,7 +4,7 @@ const Aristocrat = new PerkTemplate({
     name: 'aristocrat',
     skill: 'savoir-faire',
     level: 1,
-    description: 'Your character gains +5 to all high society related savoir-faire rolls, +2 to persuation'
+    description: 'Your character gains +5 to all high society related savoir-faire rolls, +2 to persuasion'
 }, {
     applyTo: 'highsociety',
     amount: 5

@@ -14,7 +14,7 @@ import { EmpathyPerks } from '../perks/Empathy';
 import { SubtreFugePerks } from '../perks/Subtrefuge';
 import { AthleticsPerks } from '../perks/Athletics';
 import { AcrobaticsPerks } from '../perks/Acrobatics';
-import { PersuationPerks } from '../perks/Persuation';
+import { PersuasionPerks } from '../perks/Persuasion';
 import { StreetwisePerks } from '../perks/Streetwise';
 import { SciencePerks } from '../perks/Science';
 import { SavoirFairePerks } from '../perks/SavoirFaire';
@@ -46,7 +46,7 @@ export const GetPerkList = (): Perk[] => {
         ...SubtreFugePerks,
         ...AthleticsPerks,
         ...AcrobaticsPerks,
-        ...PersuationPerks,
+        ...PersuasionPerks,
         ...StreetwisePerks,
         ...SciencePerks,
         ...SavoirFairePerks,

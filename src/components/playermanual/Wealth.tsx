@@ -82,7 +82,7 @@ const Wealth: React.FC = () => {
                         </tr>
                         <tr>
                             <td>Salesman</td>
-                            <td>persuation, empathy</td>
+                            <td>persuasion, empathy</td>
                             <td>60</td>
                             <td>x1.5</td>
                             <td>90</td>
@@ -98,7 +98,7 @@ const Wealth: React.FC = () => {
                         </tr>
                         <tr>
                             <td>Attorney</td>
-                            <td>empathy, intimidation, persuation, subtrefuge</td>
+                            <td>empathy, intimidation, persuasion, subtrefuge</td>
                             <td>160</td>
                             <td>x2</td>
                             <td>240</td>
@@ -106,7 +106,7 @@ const Wealth: React.FC = () => {
                         </tr>
                         <tr>
                             <td>Entrepreneur/Trader/Middle Management</td>
-                            <td>empathy, intimidation, investigation, persuation, subtrefuge</td>
+                            <td>empathy, intimidation, investigation, persuasion, subtrefuge</td>
                             <td>150</td>
                             <td>x1.5</td>
                             <td>250</td>
