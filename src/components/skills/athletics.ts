@@ -96,5 +96,5 @@ const useCases: UseCase[] = [
         type: 'passive'
     },
 ];
-const Athletics = new SkillTemplate('athletics', 'skillful use of stamina', useCases);
+const Athletics = new SkillTemplate('athletics', 'skillful use of stamina. You increase speed by 1 at rank 6, 12 and 18. You increase life at rank 9 and 18', useCases);
 export default Athletics;
