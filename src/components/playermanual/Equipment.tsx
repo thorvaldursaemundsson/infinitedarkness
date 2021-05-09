@@ -1,7 +1,7 @@
 
 import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
-import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo } from "../equipment/Firearms";
+import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoModifications, FirearmModifications } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
@@ -42,65 +42,11 @@ const Equipment: React.FC = () => {
                 <h5>Firearm modifications</h5>
                 <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
                 <ul>
-                    <li>
-                        <b>Scope</b> reduces long range penalties to half when using snipe or aimed shot<br />
-                        Weight +200g<br />
-                        Cost +300c
-                            </li>
-                    <li>
-                        <b>Suppressor</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                        Sound reduced range by 75% and deadness time by 5 rounds<br />
-                        Armor piercing reduced by 1 (minimum 0)<br />
-                        Range reduced to 90%<br />
-                        Cost bonus +400
-                    </li>
-                    <li>
-                        <b>Heavy Suppressor</b> Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)<br />
-                        Sound reduced range by 75% and deadness time by 10 rounds<br />
-                        Armor Piercing reduced by 2 (minimum 0)<br />
-                        Ragne reduced to 75%<br />
-                        Cost bonus +500
-                    </li>
-                    <li>
-                        <b>Laser Target</b> Adds a laser target which helps aiming<br />
-                        Aim Bonus +2<br />
-                        Everyone can see where you're aiming<br />
-                        Cost bonus +600
-                    </li>
-                    <li>
-                        <b>Heavy Stock</b> Improves recoil control, can not be transferred to other firearms.<br />
-                        Aim Bonus +1<br />
-                        Damage bonus +1<br />
-                        Weight bonus +40%<br />
-                        Strength requirement +1<br />
-                        Cost bonus +20%
-                    </li>
-                    <li>
-                        <b>Tripod</b> Reduces strength requirement, only avalable for rifles and machineguns<br />
-                        Strength requirement -2<br />
-                        Cost: 100c<br />
-                        Weight: 300g
-                    </li>
-                    <li>
-                        <b>Large Tripod</b> Reduces strength requirement, only avalable for rifles and machineguns<br />
-                        Strength requirement -3<br />
-                        Cost: 300c<br />
-                        Weight: 1kg
-                    </li>
-                    <li>
-                        <b>Arm mount</b> Allows use of two handed firearms with one hand<br />
-                        Strength requirement +3<br />
-                        Cost: 200c<br />
-                        Weight: 1kg
-                    </li>
-                    <li>
-                        <b>Turbo charge</b> (energy weapons) +50% damage, can only fire once per round<br />
-                        Ammo use: +100%<br />
-                        Cost: +25%<br />
-                        Range: -50%<br />
-                        Weight: 0.5kg<br />
-                        Overheats: gain 1 heat point every shot, lose 1 heat after 2 rounds of non-use, can't fire if at 8 heat.
-                    </li>
+                    {FirearmModifications.map(fm => <li><b>{fm.name}</b>: {fm.description}
+                        <br />{fm.effects.map(e => <>{e}<br /></>)}
+                        <br />Weight: {fm.weight}
+                        <br />Cost: {fm.cost}
+                    </li>)}
                 </ul>
 
                 <h4>Ammunition</h4>
@@ -108,19 +54,7 @@ const Equipment: React.FC = () => {
                 {AmmoTable(AmmoTypesInformation)}
                 <b>Modifications</b>
                 <ul>
-                    <li><b>Standard</b>, default version of the ammo, assumes the weapons stats unchanged</li>
-                    <li><b>Tracer</b>, tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit. Cost +100%</li>
-                    <li><b>Hollow point</b>, hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor</li>
-                    <li><b>Armor Piercing</b> bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage, cost +10%</li>
-                    <li><b>Incendiary</b> bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage. Cost +250%</li>
-                    <li><b>Shell</b>, contains multiple pellets which spread and gives to hit bonus</li>
-                    <li><b>Slug</b>, contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range</li>
-                    <li><b>Explosive</b>, contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit. Cost +100%</li>
-                    <li><b>Plasma Bomb</b>, Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing. Cost +400%</li>
-                    <li><b>Fire Bomb</b>, The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible with fire or frag</li>
-                    <li><b>Frag</b>, releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma</li>
-                    <li><b>Homing</b>, homes in on target, requires snipe shot. Range penalties are halved. cost +50%. Not compatible with grenade</li>
-                    <li><b>Grenade</b>, non-rocket propelled, reduces range to 80m, adds +2d8 damage</li>
+                    {AmmoModifications.map(am => <li><b>{am.name}</b>{am.description}<br />cost: {am.cost * 100}%</li>)}
                 </ul>
             </Indexed>
             <Indexed title='Body Armors'>
@@ -178,6 +112,27 @@ const Equipment: React.FC = () => {
                         </tr>)}
                     </tbody>
                 </table>
+
+                <h5>Armor Degradation</h5>
+                <i>Armor is degraded every time it is penetrated, ie whenver the wearer takes damage.</i>
+                <p>When you take damage while wearing armor roll a d20, if the roll is equal or above then the armor takes no damage.
+                    Otherwise the armor permanently loses 1 point of damage absorbtion (keep track of original value when this happens).<br/>
+                    Since you can't roll a zero on a d20 you only need to roll if more than one point of damage goes through.<br/>
+                    To repair it requires spare parts, the spare parts cost an equal fraction of total loss divided by half.<br/>
+                    Repair requires a mechanics roll equal to repair cost / 200 rounded down. And if it is a power armor, an equal roll for electronics.<br/>
+                    It takes 1 hour per point to repair.<br/>
+                    If damage absorbtion is reduced to zero then the power armor effects no longer work. However some effects like hermetic seal will immediately stop working if even one point is reduced.
+                </p>
+                <p>
+                    For example, a Carbon Reinforced Kevlar, Fullplate Steel armor has 10 damage absorbtion. If you then receive 12 damage points, 10 is subtracted for a total of 2.<br/>
+                    If you roll 1 on a d20 the damage absorbtion will be reduced to 9.<br/>
+                    The armor costed 14000 credits, so (14000 * (1 / 10)) / 2) = 700 credits, DC 3, 1 hour.
+                </p>
+                <p>
+                    A  Carbon Reinforced Kevlar, Fullplate Titan Alloy, Titan Power Armor has 16 damage absorbtion. If you then receive 20 damage points five times, 16 is subtracted for a total of 4 x 5.<br/>
+                    If you roll 3 on a d20 the damage absorbtion will be reduced to 15, 14, 13, 12 then 11.<br/>
+                    The armor costed 33000 credits, so (33000 * (5 / 16)) / 2) = 1030, 2060, 3090, 4125, 5150 credits, DC 5, 10, 15, 20, 25 taking 1,2,3,4,5 hour.
+                </p>
             </Indexed>
             <Indexed title='Quality and Condition'>
                 <p>Quality and condition are optional rules that can increase variety and make items feel more personal.</p>

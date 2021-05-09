@@ -42,7 +42,7 @@ const bodySuits: BodySuit[] = [
         name: 'Nylon Polyester Composite',
         damageAbsorbtion: 3,
         weight: 10,
-        cost: 3500,
+        cost: 3000,
         agilityMod: -1,
         description: 'Composite armor made primarily of nylon and polyester, thick layers give stab and cut protection',
         armorType: 'bodySuit'
@@ -153,7 +153,7 @@ const armorPlates: ArmorPlate[] = [
         name: 'Hyper Nanostructure Plates',
         damageAbsorbtion: 7,
         weight: 8,
-        cost: 16000,
+        cost: 18000,
         agilityMod: -1,
         description: 'Titan alloy reinforced by a weave of graphene nanotube super structure',
         armorType: 'armorPlate'

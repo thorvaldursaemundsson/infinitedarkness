@@ -227,6 +227,27 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }
 ];
 
+interface IAmmoModification {
+    name: string;
+    description: string;
+    cost: number;
+}
+
+export const AmmoModifications:IAmmoModification[] = [
+    { name: 'Standard',  description: 'default version of the ammo, assumes the weapons stats unchanged', cost: 1 },
+    { name: 'Tracer',  description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit.', cost: 2 },
+    { name: 'Hollow point',  description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', cost: 1 },
+    { name: 'Armor Piercing', description: 'bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage.', cost: 1.1 },
+    { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', cost: 2.5 },
+    { name: 'Shell',  description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
+    { name: 'Slug',  description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', cost: 1 },
+    { name: 'Explosive',  description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', cost: 2 },
+    { name: 'Plasma Bomb',  description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing.', cost: 5 },
+    { name: 'Fire Bomb',  description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
+    { name: 'Frag',  description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
+    { name: 'Homing',  description: 'homes in on target, requires snipe shot. Range penalties are halved. Not compatible with grenade', cost: 1.5 },
+    { name: 'Grenade',  description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage', cost: 1 },
+];
 
 
 type fireAction = 'single action revolver' | 'double action revolver' | 'bolt action' | 'pump action' | 'semi-automatic' | 'fully-automatic' | 'continuous';
@@ -395,15 +416,15 @@ const Firearms: FireArm[] = [
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
-        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action', splashRange: 1, lowDamageZone: 3,
+        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action', splashRange: 2, lowDamageZone: 3,
     },
     {
         fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
-        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action', splashRange: 2, lowDamageZone: 4,
+        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action', splashRange: .5, lowDamageZone: 1,
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
-        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action', splashRange: 2, lowDamageZone: 5,
+        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action', splashRange: .5, lowDamageZone: 1,
     },
 
     //energy weapons
@@ -427,6 +448,83 @@ const Firearms: FireArm[] = [
         fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: '4d6', range: '120m', ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 6700,
         description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters'
     }
+];
+
+interface IFirearmModification {
+    name:string;
+    description: string;
+    cost: number | string;
+    /**
+     * grams
+     */
+    weight:number | string;
+    effects: string[];
+}
+
+export const FirearmModifications:IFirearmModification[] = [
+    {
+        name: 'Scope',
+        description: 'Reduces long range penalties to half when using snipe or aimed shot',
+        effects: [],
+        cost: 300,
+        weight: 200,
+    },
+    {
+        name: 'Suppressor',
+        description: 'Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)',
+        effects: ['sound -50%', 'deafness -1 round', '-20% range', '-1 armor piercing'],
+        cost: 400,
+        weight: 100,
+    },
+    {
+        name: 'Heavy Suppressor',
+        description: 'Reduces the sound of a ballistic firearm (handguns, submachine guns, rifles, machineguns)',
+        effects: ['sound -75%', 'deafness -2 round', '-40% range', '-2 armor piercing'],
+        cost: 500,
+        weight: 200,
+    },
+    {
+        name: 'Laser Target',
+        description: 'Adds a laser target which helps aiming.',
+        effects: ['+2 hit bonus'],
+        cost: 600,
+        weight: 0,
+    },
+    {
+        name: 'Heavy Stock',
+        description: 'Improves recoil control, can not be transferred to other firearms.',
+        effects: ['+1 hit bonus', '+1 damage bonus'],
+        cost: '+20%',
+        weight: '+40%',
+    },
+    {
+        name: 'Tripod',
+        description: 'Reduces strength requirement, only avalable for rifles and machineguns. Placing tripod uses move action',
+        effects: ['-2 strength requirement'],
+        cost: 100,
+        weight: 300,
+    },
+    {
+        name: 'Large Tripod',
+        description: 'Reduces strength requirement, only avalable for rifles and machineguns. Placing tripod uses move action',
+        effects: ['-3 strength requirement'],
+        cost: 200,
+        weight: 1000,
+    },
+    {
+        name: 'Arm mount',
+        description: 'Allows use of two handed firearms with one hand',
+        effects: ['+3 strength requirement'],
+        cost: 200,
+        weight: 1000,
+    },
+    {
+        name: 'Turbo charge',
+        description: '(energy weapons) +50% damage, can only fire once per round.',
+        effects: ['ammo use +100%', '-25% range', 'Overheats: gain 1 heat point every shot, lose 1 heat after 2 rounds of non-use, can\'t fire if at 8 heat.'],
+        cost: '+25%',
+        weight: 500,
+    },
 ];
 
 export default Firearms;
