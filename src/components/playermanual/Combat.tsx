@@ -63,16 +63,16 @@ const Combat: React.FC = () => {
 
 const DamageTypes = () => {
     return <>
-    <p>Damage types oftend do not matter. In a case when they do some extra effect may come into play. If a damage source counts as two or more then protection needs to protect against both.</p>
-    <ul>
-        <li><b>Slashing</b> - Done by blade weapons like knives, swords, claws, teeth</li>
-        <li><b>Piercing </b> - Done by pointy weapons like spears, crossbows, bows, also when stabbing with a blade weapon, horns (when impaling)</li>
-        <li><b>Bludgeoning</b> - Done by blunt weapons, clubs, fists, horns. Falling damage counts as bludgeoing</li>
-        <li><b>Ballistic</b> - Done by firearms that fire projectiles</li>
-        <li><b>Thermal</b> - Done by flame, lasers, heat, plasma</li>
-        <li><b>Electrical</b> - Done by lightning bolts, shocks, plasma</li>
-        <li><b>Blast</b> - Done by explosives and shockwaves</li>
-    </ul>
+        <p>Damage types oftend do not matter. In a case when they do some extra effect may come into play. If a damage source counts as two or more then protection needs to protect against both.</p>
+        <ul>
+            <li><b>Slashing</b> - Done by blade weapons like knives, swords, claws, teeth</li>
+            <li><b>Piercing </b> - Done by pointy weapons like spears, crossbows, bows, also when stabbing with a blade weapon, horns (when impaling)</li>
+            <li><b>Bludgeoning</b> - Done by blunt weapons, clubs, fists, horns. Falling damage counts as bludgeoing</li>
+            <li><b>Ballistic</b> - Done by firearms that fire projectiles</li>
+            <li><b>Thermal</b> - Done by flame, lasers, heat, plasma</li>
+            <li><b>Electrical</b> - Done by lightning bolts, shocks, plasma</li>
+            <li><b>Blast</b> - Done by explosives and shockwaves</li>
+        </ul>
     </>;
 };
 
@@ -83,8 +83,8 @@ const Terrain = () => {
         <p>Normal terrain typically means flat hard ground that you can easily travel across and stand on. Terrain is assumed normal if not stated otherwise</p>
         <h5>Difficult Terrain</h5>
         <p>Difficult terain is any kind of terrain that is difficult to traverse, it may be uneven or soft or sticky. Difficult terrain requires 2 meters of movement for each 1 meter traveled.
-            To move faster you need to make an 2d10 + agility + acrobatics roll, DC depends on speed. If you fail by 10 points or more you stumble and fall prone, with your movement and action used up.
-            <br/>
+        To move faster you need to make an 2d10 + agility + acrobatics roll, DC depends on speed. If you fail by 10 points or more you stumble and fall prone, with your movement and action used up.
+            <br />
             If you have penalties from exhaustion or carrying too much then these apply here too. (-5 per level) Note that exhaustion and carrying over capacity limits maximum speed.
         </p>
         <ul>
@@ -278,8 +278,12 @@ const SplashDamage = () => {
     </>;
 }
 
-const Distance = () => {
+const Distance: React.FC = () => {
+    const [n, setN] = useState(6);
+    const strs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const weights = [0.2, 0.5, 1, 2, 4, 5, 8, 10, 15, 20, 25, 30, 50, 75, 100];
     return <>
+        <h5>Range penalty</h5>
         <p>Targets become harder to hit when they are further away, each 3 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
         <ul>
             <li>No gravity and no atmosphere: range penalties halfed (does not apply to lasers)</li>
@@ -289,6 +293,25 @@ const Distance = () => {
         </ul>
         <p>Guns have a maximum range, beyond this it's impossible to hit. In space this range is 2x</p>
         <p>Bullets slow down and lose energy to the air, depending on the gun you may deal lower damage, as an optional rule you may reduce damage by 50% at half firearm range, this should stack with any inherit firearm range damage penalty.</p>
+        <h5>Throwing</h5>
+        <p>
+            Throwing maximum distance is a matter of strength, each meter adds -1 hit penalty. Throwing an object that is not balanced may impose double or more penalty.
+            <br />Maximum range is N x strength / Square root of mass of object in kg. However some objects may allow you to exceed this by swinging it around your body to build momentum. Using your entire turn you can up to double maximum distance.
+            <br />Where N depends on your species. For <button onClick={() => setN(6)}>humans</button> it is 6, for <button onClick={() => setN(5)}>Merlions and Nekovians</button> it is 5, for <button onClick={() => setN(4)}>Shambras</button> it is 4.
+            <br />You may consult the following table
+        </p>
+        <p>Humans have half distance penalty when throwing.</p>
+        <table>
+            <thead>
+                <tr><th>Weights Strengths</th>{strs.map(s => <th>{s}</th>)}</tr>
+            </thead>
+            {weights.map(w => <tr>
+                <td>{w}</td>
+                {strs.map(s => <td>
+                    {Math.floor(((s / Math.sqrt(w)) * n))}
+                </td>)}
+            </tr>)}
+        </table>
     </>;
 }
 

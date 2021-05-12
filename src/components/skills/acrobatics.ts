@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'active dodge',
         attribute: 'agility',
-        description: 'Roll 2d10, add it to your active defense until its your turn again.',
+        description: 'Roll 1d10, add it to your active defense until its your turn again. Can be done as a reaction if you see that someone is attempting to attack you.',
         type: 'active'
     },
     {
@@ -18,19 +18,6 @@ const useCases: UseCase[] = [
             'Walk on slippery surface: 25-29: run',
             'Walk on slippery surface: 30: unimpeded movement',
             'Walk on tightrope: same as slippery but -5 to roll',
-        ],
-        type: 'active'
-    },
-    {
-        name: 'throwing',
-        attribute: 'agility',
-        description: 'throwing an item accurately and precisely at a target. The distance depends on your strength and the weight of the item. This is also used in combat when for example throwing weapons, bombs, etc',
-        results: [
-            '4-10: hit 1 meter object in 5 meters away (to hit a smaller object, assume same difficulty as if it was farther away)',
-            '11-15: hit 1 meter object in 10 meters away',
-            '16-20: hit 1 meter object in 20 meters away',
-            '21-25: hit 1 meter object in 40 meters away',
-            '26-30: hit 1 meter object in 80 meters away',
         ],
         type: 'active'
     },

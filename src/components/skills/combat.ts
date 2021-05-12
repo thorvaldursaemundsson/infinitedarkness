@@ -21,6 +21,15 @@ const useCases: UseCase[] = [
         ]
     },
     {
+        name: 'throw weapon',
+        attribute: 'agility',
+        description: 'Throwing an weapon accurately and precisely at a target, for example a knife into a person. The distance depends on your strength and the weight of the item.',
+        results: [
+            
+        ],
+        type: 'active'
+    },
+    {
         name: 'block',
         attribute: 'agility',
         description: 'use unarmed or weapon to block any attack, if successful only take 1/2 damage (round down, applied before damage reduction). Blocking ranged attacks takes -10 on your roll vs their roll. If you block with a weapon, shield or object it takes the damage. Requires that you see the attack.',

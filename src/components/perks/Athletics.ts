@@ -5,17 +5,27 @@ const Climber = new PerkTemplate({
     name: 'climber',
     skill: skill,
     level: 1,
-    description: 'Your character is better at climing, gain +5 to climbing rolls'
+    description: 'Your character is better at climing, when you climb you move at half rather than quarter speed.'
 }, {
     applyTo: 'climb',
     amount: 5
+});
+
+const DistanceThrower = new PerkTemplate({
+    name: 'Distance Thrower',
+    skill: 'acrobatics',
+    level: 1,
+    description: 'Your character is experienced with building momentum. Add +25% maximum distance to all throwing. (using either athletics, combat or explosives)'
+}, {
+    applyTo: '',
+    amount: 0
 });
 
 const Runner = new PerkTemplate({
     name: 'runner',
     skill: skill,
     level: 1,
-    description: 'Your character is better at running, gain +5 to running'
+    description: 'Your character is better at running, gain +5 to running (effectively doubling your maximum range)'
 }, {
     applyTo: 'run',
     amount: 5
@@ -25,7 +35,7 @@ const Jumper = new PerkTemplate({
     name: 'jumper',
     skill: skill,
     level: 1,
-    description: 'Your character is better at jumping, gain +5 to jumping rolls'
+    description: 'Your character is better at jumping, gain +5 to jumping rolls and falling counts as 1 less meter.'
 }, {
     applyTo: 'jump',
     amount: 5
@@ -45,7 +55,7 @@ const DeepLungs = new PerkTemplate({
     name: 'deep lungs',
     skill: skill,
     level: 1,
-    description: 'You have trained your body to hold your breath for longer, +5 to holding breath'
+    description: 'You have trained your body to hold your breath for longer, you hold your breath for twice as long.'
 }, {
     applyTo: 'breath',
     amount: 5
@@ -147,5 +157,5 @@ const Hardy = new PerkTemplate({
     level: 2,
 })
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DeepLungs, FastSwimmer, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, FastSwimmer, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
     Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy];

@@ -18,6 +18,15 @@ const useCases: UseCase[] = [
         type: 'passive'
     },
     {
+        name: 'throwing',
+        attribute: 'agility',
+        description: 'Throwing an item accurately and precisely at a target, for example a ball into a hoop. The distance depends on your strength and the weight of the item.',
+        results: [
+            
+        ],
+        type: 'active'
+    },
+    {
         name:'ride',
         attribute: 'agility',
         description: 'ride bicycle, ride horse, or spouse',

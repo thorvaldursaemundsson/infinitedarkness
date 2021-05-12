@@ -1,6 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 
-export const Balance = new PerkTemplate({
+const Balance = new PerkTemplate({
     name: 'balance',
     skill: 'acrobatics',
     level: 1,
@@ -10,27 +10,47 @@ export const Balance = new PerkTemplate({
     amount: 5
 });
 
-export const Throwing = new PerkTemplate({
-    name: 'throwing',
+const AccurateThrower = new PerkTemplate({
+    name: 'Accurate Thrower',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent aim while throwing, gain +5 to all throw rolls, including thrown weapons and explosives'
+    description: 'Your character has excellent aim while throwing, when throwing (using either athletics, combat or explosives) you suffer only half penalties to throwing'
 }, {
-    applyTo: 'throw',
-    amount: 5
+    applyTo: '',
+    amount: 0
 });
 
-export const Dodger = new PerkTemplate({
+const Dodger = new PerkTemplate({
     name: 'dodger',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is a faster dodger, you gain +3 to your passive dodge'
+    description: 'Your character is a faster dodger, you gain +3 to your active defense'
 }, {
-    applyTo: 'defense',
+    applyTo: 'activedefense',
     amount: 3
 });
 
-export const Tumbler = new PerkTemplate({
+const Evasive = new PerkTemplate({
+    name: 'evasive',
+    skill: 'acrobatics',
+    level: 2,
+    description: 'Your character is trained in evasive maneuvers, you gain +3 to your passive defense. Prerequisite: Dodger perk'
+}, {
+    applyTo: 'passivedefense',
+    amount: 3
+});
+
+const Elusive = new PerkTemplate({
+    name: 'elusive',
+    skill: 'acrobatics',
+    level: 3,
+    description: 'Your character is naturally elusive, while awake you have +3 to your base defense. Prerequisite: Evasive perk'
+}, {
+    applyTo: 'basedefense',
+    amount: 3
+});
+
+const Tumbler = new PerkTemplate({
     name: 'tumbler',
     skill: 'acrobatics',
     level: 1,
@@ -40,4 +60,4 @@ export const Tumbler = new PerkTemplate({
     amount: 5
 });
 
-export const AcrobaticsPerks = [Balance, Throwing, Dodger, Tumbler];
+export const AcrobaticsPerks = [Balance, AccurateThrower, Dodger, Evasive, Elusive, Tumbler];
