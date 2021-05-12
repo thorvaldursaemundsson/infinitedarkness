@@ -43,8 +43,9 @@ const Equipment: React.FC = () => {
                 <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
                 <ul>
                     {FirearmModifications.map(fm => <li><b>{fm.name}</b>: {fm.description}
-                        <br />{fm.effects.map(e => <>{e}<br /></>)}
-                        <br />Weight: {fm.weight}
+                        <br />
+                        <ul>{fm.effects.map(e => <li>{e}</li>)}</ul>
+                        Weight: {fm.weight}
                         <br />Cost: {fm.cost}
                     </li>)}
                 </ul>
@@ -54,7 +55,7 @@ const Equipment: React.FC = () => {
                 {AmmoTable(AmmoTypesInformation)}
                 <b>Modifications</b>
                 <ul>
-                    {AmmoModifications.map(am => <li><b>{am.name}</b>{am.description}<br />cost: {am.cost * 100}%</li>)}
+                    {AmmoModifications.map(am => <li><b>{am.name}</b>: {am.description}<br /> cost: {am.cost * 100}%</li>)}
                 </ul>
             </Indexed>
             <Indexed title='Body Armors'>
@@ -116,21 +117,21 @@ const Equipment: React.FC = () => {
                 <h5>Armor Degradation</h5>
                 <i>Armor is degraded every time it is penetrated, ie whenver the wearer takes damage.</i>
                 <p>When you take damage while wearing armor roll a d20, if the roll is equal or above then the armor takes no damage.
-                    Otherwise the armor permanently loses 1 point of damage absorbtion (keep track of original value when this happens).<br/>
-                    Since you can't roll a zero on a d20 you only need to roll if more than one point of damage goes through.<br/>
-                    To repair it requires spare parts, the spare parts cost an equal fraction of total loss divided by half.<br/>
-                    Repair requires a mechanics roll equal to repair cost / 200 rounded down. And if it is a power armor, an equal roll for electronics.<br/>
-                    It takes 1 hour per point to repair.<br/>
+                    Otherwise the armor permanently loses 1 point of damage absorbtion (keep track of original value when this happens).<br />
+                    Since you can't roll a zero on a d20 you only need to roll if more than one point of damage goes through.<br />
+                    To repair it requires spare parts, the spare parts cost an equal fraction of total loss divided by half.<br />
+                    Repair requires a mechanics roll equal to repair cost / 200 rounded down. And if it is a power armor, an equal roll for electronics.<br />
+                    It takes 1 hour per point to repair.<br />
                     If damage absorbtion is reduced to zero then the power armor effects no longer work. However some effects like hermetic seal will immediately stop working if even one point is reduced.
                 </p>
                 <p>
-                    For example, a Carbon Reinforced Kevlar, Fullplate Steel armor has 10 damage absorbtion. If you then receive 12 damage points, 10 is subtracted for a total of 2.<br/>
-                    If you roll 1 on a d20 the damage absorbtion will be reduced to 9.<br/>
+                    For example, a Carbon Reinforced Kevlar, Fullplate Steel armor has 10 damage absorbtion. If you then receive 12 damage points, 10 is subtracted for a total of 2.<br />
+                    If you roll 1 on a d20 the damage absorbtion will be reduced to 9.<br />
                     The armor costed 14000 credits, so (14000 * (1 / 10)) / 2) = 700 credits, DC 3, 1 hour.
                 </p>
                 <p>
-                    A  Carbon Reinforced Kevlar, Fullplate Titan Alloy, Titan Power Armor has 16 damage absorbtion. If you then receive 20 damage points five times, 16 is subtracted for a total of 4 x 5.<br/>
-                    If you roll 3 on a d20 the damage absorbtion will be reduced to 15, 14, 13, 12 then 11.<br/>
+                    A  Carbon Reinforced Kevlar, Fullplate Titan Alloy, Titan Power Armor has 16 damage absorbtion. If you then receive 20 damage points five times, 16 is subtracted for a total of 4 x 5.<br />
+                    If you roll 3 on a d20 the damage absorbtion will be reduced to 15, 14, 13, 12 then 11.<br />
                     The armor costed 33000 credits, so (33000 * (5 / 16)) / 2) = 1030, 2060, 3090, 4125, 5150 credits, DC 5, 10, 15, 20, 25 taking 1,2,3,4,5 hour.
                 </p>
             </Indexed>
@@ -499,12 +500,16 @@ const FireArmRow = (f: FireArm) => {
         {descriptionOpen && <tr>
             <td>STR: {f.strengthRequirement}</td>
             <td>
-                {f.splashRange !== undefined ? `Splash: ${f.splashRange}${f.lowDamageZone} m radius` : ' '}
+                {f.splashRange !== undefined ? `Splash: ${f.splashRange}${f.lowDamageZone !== undefined ? `/${f.lowDamageZone}` : ``} m radius` : ' '}
             </td>
             <td colSpan={8}><Ellipsis text={f.description} cutOff={100} /></td>
         </tr>}
     </>);
 }
+
+const capitalize = (str: string): string =>
+    str.charAt(0).toUpperCase() + str.slice(1);
+
 const AmmoTable = (ammo: AmmoInformation[]) =>
     <table>
         <thead>
@@ -522,12 +527,12 @@ const AmmoTable = (ammo: AmmoInformation[]) =>
                     <td>{a.cost}</td>
                     <td>{a.weight}</td>
                     <td>
-                        {a.types.join(',')}
+                        {a.types.map(t => capitalize(t)).join(', ')}
                     </td>
                 </tr>
                     <tr>
                         <td className='univeralBorderBottom' colSpan={3}>{a.description}</td>
-                        <td className='universalBorderBottom'> Heard from: {a.loudness.hearingRange}, deaf from:{a.loudness.deafnessRange} for {a.loudness.deafnessTime} rounds </td>
+                        <td className='univeralBorderBottom'> Heard from: {a.loudness.hearingRange}, deaf from:{a.loudness.deafnessRange} for {a.loudness.deafnessTime} rounds </td>
                     </tr>
                 </>)}
         </tbody>

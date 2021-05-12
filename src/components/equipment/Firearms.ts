@@ -172,7 +172,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '20mm rpg',
         cost: 1500,
-        weight: 120,
+        weight: 400,
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
@@ -183,7 +183,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '30mm rpg',
         cost: 2500,
-        weight: 200,
+        weight: 1000,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
@@ -194,7 +194,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '40mm rpg',
         cost: 4000,
-        weight: 400,
+        weight: 2200,
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
@@ -205,7 +205,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '50mm rpg',
         cost: 8000,
-        weight: 1000,
+        weight: 3000,
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade',
         loudness: {
@@ -246,7 +246,7 @@ export const AmmoModifications:IAmmoModification[] = [
     { name: 'Fire Bomb',  description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
     { name: 'Frag',  description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
     { name: 'Homing',  description: 'homes in on target, requires snipe shot. Range penalties are halved. Not compatible with grenade', cost: 1.5 },
-    { name: 'Grenade',  description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage', cost: 1 },
+    { name: 'Grenade',  description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage, adds +1 strength requirement due to recoil', cost: 1 },
 ];
 
 
@@ -412,19 +412,19 @@ const Firearms: FireArm[] = [
     //rocket launcher
     {
         fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: '6d8', range: '600m', ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
-        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round. Reloading takes a full round action', splashRange: .5, lowDamageZone: 2,
+        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 2,
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: '8d8', range: '1000m', ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
-        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action', splashRange: 2, lowDamageZone: 3,
+        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action.', splashRange: 2, lowDamageZone: 3,
     },
     {
         fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: '10d8', range: '2500m', ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
-        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action', splashRange: .5, lowDamageZone: 1,
+        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: '12d8', range: '3500m', ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
-        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action', splashRange: .5, lowDamageZone: 1,
+        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
     },
 
     //energy weapons
