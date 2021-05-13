@@ -7,28 +7,35 @@ interface IConsumable extends Item {
 export const ConsumableWeapons:IConsumable[] = [
     {
         name: 'Frag Grenade',
-        description: 'Does 6d8 damage in a radius of 2 meters (hexes) and half one radius more.',
+        description: 'Does 6d8 damage in a radius of 2 meters (hexes) and quarter 1 meter radius more. Destroys objects. Deafness in blast area for 4 rounds.',
         value: 1400,
         weight: 900,
         charges: 1
     },
     {
         name: 'Incendiary Grenade',
-        description: 'Does 2d6 thermal damage in a radius of 3 meters to everyone starting in or moving through the area. Lasts 10 rounds.',
+        description: 'Does 2d6 thermal damage in a radius of 3 meters to everyone starting in or moving through the area. Lasts 10 rounds. Anyone standing in the area when the incendiary grenade detonates will also burn for 10 rounds, taking 2d6 at the start of their turn. Being on fire imposes a -10 to all perception based rolls and the burning creature must succeed a DC 15 willpower roll or become paniced.',
         value: 1300,
         weight: 950,
         charges: 1
     },
     {
         name: 'Plasma Grenade',
-        description: 'Does 10d6 thermal and electrical damage in a radius of 3 meters. Disables electronics.',
+        description: 'Does 10d6 thermal and electrical damage in a radius of 3 meters.',
         value: 3000,
         weight: 1500,
         charges: 1
     },
     {
+        name: 'Electric Pulse Grenade',
+        description: 'Does 2d4 electric damage with 10 armor piercing in a radius of 6 meters. Double damage to electronics.',
+        value: 3000,
+        weight: 1200,
+        charges: 1,
+    },
+    {
         name: 'Flash grenade',
-        description: 'Blinds and deafens everyone within 5 meters for 4+2d6 rounds and everyone within 10 meters for 2+1d6 rounds. Make a contested acrobatics + agility to protect your eyes or your ears.',
+        description: 'Blinds and deafens everyone within 5 meters for 2d6+4 rounds and everyone within 10 meters for 1d6+2 rounds. Make a contested acrobatics + agility to protect your eyes OR your ears.',
         value: 700,
         weight: 750,
         charges: 1

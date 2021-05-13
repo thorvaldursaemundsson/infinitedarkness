@@ -1,5 +1,6 @@
 import React from "react";
 import { useReducer } from "react";
+import { weightConverter } from "../../utils/utilFunctions";
 import { Vehicle } from "./Vehicles";
 
 interface IVehicleEditorProps {
@@ -58,10 +59,5 @@ const VehicleEditor: React.FC<IVehicleEditorProps> = ({ baseVehicle }) => {
     </>;
 }
 
-export const weightConverter = (kg: number) => {
-    if (kg < 1000) return `${kg.toFixed(0)}kg`;
-    if (kg < 1000 * 1000) return `${(kg / 1000).toFixed(0)}tons`;
-    return `${(kg / 1000000).toFixed(0)}k tons`;
-};
 
 export default VehicleEditor;

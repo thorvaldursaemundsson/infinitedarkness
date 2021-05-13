@@ -91,6 +91,24 @@ const bodySuits: BodySuit[] = [
         agilityMod: 0,
         description: 'A body armor made entirely out of nanotube carbyne weave, incredibly strong, light and expensive',
         armorType: 'bodySuit'
+    },
+    {
+        name: 'High Yield Nanosuit MKII',
+        damageAbsorbtion: 8,
+        weight: 8,
+        cost: 400000,
+        agilityMod: 0,
+        description: 'MKII version of high yield nanosuit',
+        armorType: 'bodySuit'
+    },
+    {
+        name: 'High Yield Nanosuit MKIII',
+        damageAbsorbtion: 9,
+        weight: 8,
+        cost: 4000000,
+        agilityMod: 0,
+        description: 'MKII version of high yield nanosuit',
+        armorType: 'bodySuit'
     }
 ];
 
@@ -167,6 +185,24 @@ const armorPlates: ArmorPlate[] = [
         description: 'Titan alloy reinforced by a weave of graphene nanotube super structure. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
+    {
+        name: 'Hyper Nanostructure Fullplates MKII',
+        damageAbsorbtion: 10,
+        weight: 12,
+        cost: 320000,
+        agilityMod: -2,
+        description: 'MKII version of the Hyper Nanostructure Fullplates',
+        armorType: 'armorPlate'
+    },
+    {
+        name: 'Hyper Nanostructure Fullplates MKIII',
+        damageAbsorbtion: 11,
+        weight: 12,
+        cost: 3200000,
+        agilityMod: -2,
+        description: 'MKIII version of the Hyper Nanostructure Fullplates',
+        armorType: 'armorPlate'
+    },
 ]
 
 const powerArmors: PowerArmor[] = [
@@ -237,6 +273,28 @@ const powerArmors: PowerArmor[] = [
         armorType: 'powerArmor'
     },
     {
+        name: 'Mecha Titan MKII',
+        damageAbsorbtion: 7,
+        weight: 30,
+        cost: 160000,
+        agilityMod: 1,
+        perceptionMod: 1,
+        strengthMod: 6,
+        description: 'MKII version of the Mecha Titan',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Mecha Titan MKIII',
+        damageAbsorbtion: 8,
+        weight: 30,
+        cost: 1600000,
+        agilityMod: 1,
+        perceptionMod: 1,
+        strengthMod: 8,
+        description: 'MKIII version of the Mecha Titan',
+        armorType: 'powerArmor'
+    },
+    {
         name: 'Merlion Warrior Armor',
         damageAbsorbtion: 4,
         weight: 12,
@@ -245,6 +303,28 @@ const powerArmors: PowerArmor[] = [
         perceptionMod: 2,
         strengthMod: 2,
         description: 'The fabled merlion warrior armor frame grants a balanced bonus to visual prowess, mobility and strength',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Merlion Warrior Armor MKII',
+        damageAbsorbtion: 5,
+        weight: 12,
+        cost: 150000,
+        agilityMod: 3,
+        perceptionMod: 3,
+        strengthMod: 3,
+        description: 'The MKII version of the merlion warrior armor',
+        armorType: 'powerArmor'
+    },
+    {
+        name: 'Merlion Warrior Armor MKIII',
+        damageAbsorbtion: 6,
+        weight: 12,
+        cost: 150000,
+        agilityMod: 4,
+        perceptionMod: 4,
+        strengthMod: 4,
+        description: 'The MKIII version of the merlion warrior armor',
         armorType: 'powerArmor'
     },
 ];
@@ -302,7 +382,7 @@ const integratedSystems:IntegratedSystem[] = [
     },
     {
         name: 'Mule Servos',
-        description: 'Improves carrying capacity, you count as 2 strengths higher for carrying capacity, can be stacked twice',
+        description: 'Improves carrying capacity, you count as 4 strengths higher for carrying capacity, can be stacked twice',
         weight: 3,
         cost: 3000,
         damageAbsorbtion: 0,
@@ -335,7 +415,16 @@ const integratedSystems:IntegratedSystem[] = [
         damageAbsorbtion: 0,
         abilityModifiers: [],
         stack: 1
-    }
+    },
+    {
+        name: 'Extra Battery',
+        description: 'Increases power armor battery life time by 5 days (or exactly 80 hours). Adds equivalent time to recharge.',
+        weight: 5,
+        cost: 6000,
+        damageAbsorbtion: 0,
+        abilityModifiers: [],
+        stack: 2
+    },
 ];
 
 export { bodySuits, armorPlates, powerArmors, integratedSystems }
