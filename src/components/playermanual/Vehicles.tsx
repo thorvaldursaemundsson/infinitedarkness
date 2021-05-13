@@ -7,7 +7,7 @@ import LandVehicles from "../vehicles/LandVehicles";
 import WaterVehicles from "../vehicles/WaterVehicles";
 import SpaceVehicles from "../vehicles/SpaceVehicles";
 import AirVehicles, { airVehicleDamageTexts, airVehicleParts, rollAmounts } from "../vehicles/AirVehicles";
-import { weightConverter } from "../vehicles/VehicleEditor";
+import { weightConverter } from "../../utils/utilFunctions";
 
 
 const Vehicles: React.FC = () => {

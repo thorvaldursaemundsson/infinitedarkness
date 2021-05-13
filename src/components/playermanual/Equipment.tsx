@@ -5,8 +5,7 @@ import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoMod
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
-import { bodySuits, armorPlates, BodySuit, ArmorPlate, PowerArmor, powerArmors, ArmorData, integratedSystems, IntegratedSystem } from "../equipment/Armors";
-import { CharacterSize } from "../Character";
+import { bodySuits, armorPlates, PowerArmor, powerArmors, ArmorData, integratedSystems } from "../equipment/Armors";
 import ArmorCrafter from "../equipment/ArmorCrafter";
 import { weightConverter } from "../../utils/utilFunctions";
 

@@ -320,7 +320,7 @@ const powerArmors: PowerArmor[] = [
         name: 'Merlion Warrior Armor MKIII',
         damageAbsorbtion: 6,
         weight: 12,
-        cost: 150000,
+        cost: 1500000,
         agilityMod: 4,
         perceptionMod: 4,
         strengthMod: 4,
