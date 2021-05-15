@@ -19,7 +19,6 @@ import { IViewProps } from './IViewProps';
 import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSpeed';
 
 
-
 const PlayerManual: React.FC<IViewProps> = ({route}) => {
     console.log(route);
     return (<div>
@@ -41,7 +40,7 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <Combat key='pm5' />
         <hr />
         <HealthAndRest key='pm8' />
-        <hr />
+        <hr/>
         <Wealth key='pm3' />
         <hr />
         <Equipment key='pm6' />

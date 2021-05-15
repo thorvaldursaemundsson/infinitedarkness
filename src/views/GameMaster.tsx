@@ -6,6 +6,7 @@ import GameTools from '../components/gamemaster/GameTools';
 import Wizard from '../components/gamemaster/Wizard';
 import CharacterGenerator from '../components/gamemaster/CharacterGenerator';
 import Weather from '../components/gamemaster/Weather';
+import EnvironmentalDamage from '../components/playermanual/EnvironmentalDamage';
 
 
 const GameMaster: React.FC = () => {
@@ -23,9 +24,12 @@ const GameMaster: React.FC = () => {
         <Section title='Game Tools'>
             <GameTools />
         </Section>
+        <hr />
         <Section title='Weather'>
             <Weather />
         </Section>
+        <hr />
+        <EnvironmentalDamage key='pmenvdmg' />
         <hr />
         <Section title='NPC Generator'>
             <CharacterGenerator />

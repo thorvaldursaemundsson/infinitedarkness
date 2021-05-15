@@ -48,9 +48,6 @@ const Combat: React.FC = () => {
             <Indexed title='Dual wielding'>
                 <DualWielding />
             </Indexed>
-            <Indexed title='Falling damage'>
-                <FallingDamage />
-            </Indexed>
             <Indexed title='Terrain'>
                 <Terrain />
             </Indexed>
@@ -355,56 +352,6 @@ const DualWielding = () => {
         <p>Small melee weapons have a default strength requirement of 1. Medium melee weapons have a default strength requirement of 3. Large melee weapons have a default requirement of 5.</p>
         <p>Two handed firearms (anything but hand-guns and the Fantry Lasergun) can not be dual wielded.</p>
     </>;
-}
-
-interface IFallingData {
-    height: number;
-    sides: number;
-    numberOfDice: number;
-}
-
-const fallingDamageConstant = (height: number, gravity: number, atmosphere: number): IFallingData => {
-    const effectiveHeight = Math.floor(height * gravity);
-    const numberOfDice = effectiveHeight <= 4 ?
-        1
-        : Math.floor(Math.sqrt(effectiveHeight) + .5 - (Math.pow(effectiveHeight, .5) * atmosphere * atmosphere * 0.1));
-    let sides = 4;
-    if (effectiveHeight < 1) return { height: height, sides: 4, numberOfDice: 0 }
-    else if (effectiveHeight < 3) sides = 6;
-    else if (effectiveHeight < 4) sides = 8;
-    else sides = 10;
-    return { height: height, sides: sides, numberOfDice: numberOfDice };
-}
-
-
-const FallingDamage: React.FC = () => {
-    const [gravity, setGravity] = useState(1);
-    const [atmopshere, setAtmosphere] = useState(1);
-
-    const maxHeight = Math.min(atmopshere !== 0 ? 1 / atmopshere * (Math.sqrt(gravity) * 450) : 10000, 10000);
-
-    const values = [...Array(Math.floor(maxHeight))]
-        .map((v: any, index: number, arr: any[]) => fallingDamageConstant(index + 1, gravity, atmopshere))
-        .filter((v) => v.numberOfDice > 0);
-
-    let distinctValues: IFallingData[] = [];
-    for (var index in values) {
-        var val = values[index];
-        distinctValues[val.sides * 100 + val.numberOfDice] = val;
-    }
-
-    return <>
-        <p>Falling damage is affected by two things, gravity and atmosphere. The thicker the atmopshere the lower the terminal velocity. The higher the gravity the faster you fall and therefore take damage.</p>
-        <p>The following table assumes 1g with earth like atmosphere. Damage absorbtion from armor is half.</p>
-        <p>If you fall onto a soft surface you count as having fallen 2 meters less. A very soft surface counts as 3 meters less. An extremely soft counts as 4 meters less.</p>
-        <p>You can also use acrobatics to reduce effective height, see acrobatics.</p>
-        <p>It takes about 2 rounds to reach terminal velocity, after that you fall 300 meters per round.</p>
-        <input type='text' value={gravity} onChange={(e) => setGravity(parseFloat(e.target.value))} title='gravity' />
-        <input type='text' value={atmopshere} onChange={(e) => setAtmosphere(parseFloat(e.target.value))} title='atmosphere' />
-        <ul>
-            {distinctValues.map(h => <li>{h.height} meters: {h.numberOfDice}d{h.sides}</li>)}
-        </ul>
-    </>
 }
 
 export default Combat;
