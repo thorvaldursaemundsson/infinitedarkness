@@ -66,7 +66,7 @@ const DamageTypes = () => {
             <li><b>Piercing </b> - Done by pointy weapons like spears, crossbows, bows, also when stabbing with a blade weapon, horns (when impaling)</li>
             <li><b>Bludgeoning</b> - Done by blunt weapons, clubs, fists, horns. Falling damage counts as bludgeoing</li>
             <li><b>Ballistic</b> - Done by firearms that fire projectiles</li>
-            <li><b>Thermal</b> - Done by flame, lasers, heat, plasma</li>
+            <li><b>Thermal</b> - Done by flame, lasers, heat, plasma.</li>
             <li><b>Electrical</b> - Done by lightning bolts, shocks, plasma</li>
             <li><b>Blast</b> - Done by explosives and shockwaves</li>
         </ul>

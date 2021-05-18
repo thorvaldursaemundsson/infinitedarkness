@@ -13,7 +13,7 @@ import Persuasion from '../skills/persuasion';
 import Pilot from '../skills/pilot';
 import Spells from '../skills/spells';
 import Stealth from '../skills/stealth';
-import Subtrefuge from '../skills/subtrefuge';
+import Subterfuge from '../skills/subterfuge';
 import Survival from '../skills/survival';
 import Mechanics from '../skills/mechanics';
 import Streetwise from '../skills/streetwise';
@@ -40,7 +40,7 @@ export const GetSkillList = (): Skill[] => {
         Pilot,
         Spells,
         Stealth,
-        Subtrefuge,
+        Subterfuge,
         Survival,
         Streetwise,
         Mechanics,

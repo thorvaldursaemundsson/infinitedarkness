@@ -11,7 +11,7 @@ import { SurvivalPerks } from '../perks/Survival';
 import { ComputerPerks } from '../perks/Computer';
 import { MedicinePerks } from '../perks/Medicine';
 import { EmpathyPerks } from '../perks/Empathy';
-import { SubtreFugePerks } from '../perks/Subtrefuge';
+import { SubtreFugePerks } from '../perks/Subterfuge';
 import { AthleticsPerks } from '../perks/Athletics';
 import { AcrobaticsPerks } from '../perks/Acrobatics';
 import { PersuasionPerks } from '../perks/Persuasion';

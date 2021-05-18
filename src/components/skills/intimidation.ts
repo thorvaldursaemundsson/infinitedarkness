@@ -6,12 +6,12 @@ const useCases: UseCase[] = [
         description: 'force someone to give you answers to questions, you roll intimidation + willpower, they roll willpower',
         results: [
             'Less than equal: no answer, they resist for the day',
-            'Equal up to +10: they give one answer in 1 hours (may choose to lie, gain +5 to their subtrefuge)',
-            'Equal up to +20: they give one answer in 15 minutes (may choose to lie, gain +5 to their subtrefuge)',
-            'Equal up to +30: they give one answer in 1 minute (may choose to lie, gain +5 to their subtrefuge)',
+            'Equal up to +10: they give one answer in 1 hours (may choose to lie, gain +5 to their subterfuge)',
+            'Equal up to +20: they give one answer in 15 minutes (may choose to lie, gain +5 to their subterfuge)',
+            'Equal up to +30: they give one answer in 1 minute (may choose to lie, gain +5 to their subterfuge)',
             'If they are able to escape or fight back they can choose to cancel the interrogation',
-            'If you employ credible threat of torture or violence gain +5, they gain +5 to subtrefuge',
-            'If you employ violence or torture, gain +10, they gain +10 to subtrefuge'
+            'If you employ credible threat of torture or violence gain +5, they gain +5 to subterfuge',
+            'If you employ violence or torture, gain +10, they gain +10 to subterfuge'
         ],
         type: 'active'
     },

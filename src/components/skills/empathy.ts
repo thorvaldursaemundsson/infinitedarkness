@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'detect motive',
         attribute: 'intelligence',
-        description: 'find out what people want, if this is higher than "hide emotion" (subtrefuge) then you gain information, if it is significantly below you gain false information. May take 4 at a glance, take 10 from 1 minute interaction or observation. May take 15 if youve spent multiple days with them at GM discretion.',
+        description: 'find out what people want, if this is higher than "hide emotion" (subterfuge) then you gain information, if it is significantly below you gain false information. May take 4 at a glance, take 10 from 1 minute interaction or observation. May take 15 if youve spent multiple days with them at GM discretion.',
         type: 'active',
         results: [
             'Cant see their face: -5',
@@ -16,7 +16,7 @@ const useCases: UseCase[] = [
     {
         name: 'detect lies',
         attribute: 'intelligence',
-        description: 'see through lies, always take 10 vs "deception" (subtrefuge). When detecting lies at a penalty you should be automatically distrustful due to inability to tell truth from fiction.',
+        description: 'see through lies, always take 10 vs "deception" (subterfuge). When detecting lies at a penalty you should be automatically distrustful due to inability to tell truth from fiction.',
         type: 'passive',
         results: [
             'Cant see their face: -5',

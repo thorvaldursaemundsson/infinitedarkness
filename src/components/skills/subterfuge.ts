@@ -14,5 +14,5 @@ const useCases: UseCase[] = [
     },
 
 ];
-const Subtrefuge = new SkillTemplate('subtrefuge', '', useCases);
-export default Subtrefuge;
+const Subterfuge = new SkillTemplate('subterfuge', '', useCases);
+export default Subterfuge;

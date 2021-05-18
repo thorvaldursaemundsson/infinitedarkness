@@ -8,6 +8,7 @@ import Indexer, { Indexed } from "../general/Indexer";
 import { bodySuits, armorPlates, PowerArmor, powerArmors, ArmorData, integratedSystems } from "../equipment/Armors";
 import ArmorCrafter from "../equipment/ArmorCrafter";
 import { weightConverter } from "../../utils/utilFunctions";
+import FirearmCrafter from "../equipment/FirearmCrafter";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -38,6 +39,8 @@ const Equipment: React.FC = () => {
             <Indexed title='Firearms'>
                 <h4>Guns</h4>
                 <p>All firearms cause bleeding</p>
+                <FirearmCrafter />
+                <hr />
                 <FirearmTable data={Firearms} />
 
                 <h5>Firearm modifications</h5>

@@ -16,25 +16,25 @@ export interface IBackground {
 const Starborn: ITemplate = {
     name: 'starborn',
     description: 'You grew among the stars, living on space stations and star ships has given you a unique perspective.',
-    skillOptions: ['acrobatics', 'computer', 'electronics', 'general knowledge', 'mechanics', 'pilot', 'science', 'explosives', 'investigation', 'intimidation', 'persuasion', 'subtrefuge']
+    skillOptions: ['acrobatics', 'computer', 'electronics', 'general knowledge', 'mechanics', 'pilot', 'science', 'explosives', 'investigation', 'intimidation', 'persuasion', 'subterfuge']
 };
 
 const Schooled: ITemplate = {
     name: 'schooled',
     description: 'Your formative years was spent in public or private school. You were forced to interact with strangers and made friends',
-    skillOptions: ['athletics', 'computer', 'cooking', 'empathy', 'general knowledge', 'science', 'streetwise', 'survival', 'intimidation', 'persuasion', 'subtrefuge']
+    skillOptions: ['athletics', 'computer', 'cooking', 'empathy', 'general knowledge', 'science', 'streetwise', 'survival', 'intimidation', 'persuasion', 'subterfuge']
 };
 
 const Homeschooled: ITemplate = {
     name: 'homeschooled',
     description: 'You went to school, but it was through a private tutor, a parent or a program that taught you everyting. You had to sneak out if you wanted to interact with the wider world',
-    skillOptions: ['athletics', 'acrobatics', 'cooking', 'investigation', 'science', 'streetwise', 'survival', 'computer', 'subtrefuge']
+    skillOptions: ['athletics', 'acrobatics', 'cooking', 'investigation', 'science', 'streetwise', 'survival', 'computer', 'subterfuge']
 };
 
 const Orphan: ITemplate = {
     name: 'street orphan',
     description: 'You were a street orphan and didnt benefit from formal education. Youve learned what you know in lifes hard school of reality.',
-    skillOptions: ['athletics', 'combat', 'cooking', 'empathy', 'intimidation', 'larceny', 'stealth', 'survival', 'subtrefuge', 'persuasion']
+    skillOptions: ['athletics', 'combat', 'cooking', 'empathy', 'intimidation', 'larceny', 'stealth', 'survival', 'subterfuge', 'persuasion']
 };
 
 const TribalChildhood: ITemplate = {
@@ -60,7 +60,7 @@ const ScientificHighschool: ITemplate = {
 const LiberalArtsHighschool: ITemplate = {
     name: 'Liberal Arts Highschool',
     description: 'You went to study the liberal arts. You get items based on skills and may have a rented apartment. You may enter into debt x10',
-    skillOptions: ['computer', 'general knowledge', 'investigation', 'medicine', 'persuasion', 'subtrefuge', 'savoir-faire', 'science', 'athletics', 'pilot']
+    skillOptions: ['computer', 'general knowledge', 'investigation', 'medicine', 'persuasion', 'subterfuge', 'savoir-faire', 'science', 'athletics', 'pilot']
 }
 
 const TradeSchool: ITemplate = {
@@ -78,13 +78,13 @@ const UnskilledLabor: ITemplate = {
 const MurderHobo: ITemplate = {
     name: 'Penhandler/Hobo',
     description: 'You either finished mandatory grade school or dropped out or never attended, either way you are now homeless. You have either begged for money or traveled from place to place doing gig jobs. You get items based on skill.',
-    skillOptions: ['combat', 'computer', 'cooking', 'firearms', 'general knowledge', 'larceny', 'stealth', 'streetwise', 'survival', 'acrobatics', 'athletics', 'intimidation', 'persuasion', 'subtrefuge']
+    skillOptions: ['combat', 'computer', 'cooking', 'firearms', 'general knowledge', 'larceny', 'stealth', 'streetwise', 'survival', 'acrobatics', 'athletics', 'intimidation', 'persuasion', 'subterfuge']
 }
 
 const TribalYouth: ITemplate = {
     name: 'Tribal',
     description: 'You have become a contributing member of your tribe, you own have a permanent home appropriate for your tribe and have appropriate tribal items.',
-    skillOptions: ['athletics', 'acrobatics', 'combat', 'cooking', 'empathy', 'stealth', 'survival', 'intimidation', 'persuasion', 'subtrefuge', 'investigation']
+    skillOptions: ['athletics', 'acrobatics', 'combat', 'cooking', 'empathy', 'stealth', 'survival', 'intimidation', 'persuasion', 'subterfuge', 'investigation']
 }
 
 export const YouthBackground: IBackground = {
@@ -116,13 +116,13 @@ const UnskilledLaborAdult: ITemplate = {
 const AdultManchild: ITemplate = {
     name: 'Penhandler / MurderHobo',
     description: 'Either through choice or bad luck you are homeless and beg for money or travel to do gig jobs. No privileges.',
-    skillOptions: ['athletics', 'combat', 'cooking', 'firearms', 'empathy', 'investigation', 'larceny', 'pilot', 'streetwise', 'subtrefuge'],
+    skillOptions: ['athletics', 'combat', 'cooking', 'firearms', 'empathy', 'investigation', 'larceny', 'pilot', 'streetwise', 'subterfuge'],
 };
 
 const TribalAdult: ITemplate = {
     name: 'Tribal',
     description: 'You continue to be a contributing member of your tribe, working your way up to elder soon. Your position may afford you tribal privileges and items.',
-    skillOptions: ['athletics', 'acrobatics', 'combat', 'firearms', 'empathy', 'intimidation', 'persuasion', 'stealth', 'subtrefuge', 'survival'],
+    skillOptions: ['athletics', 'acrobatics', 'combat', 'firearms', 'empathy', 'intimidation', 'persuasion', 'stealth', 'subterfuge', 'survival'],
 };
 
 export const AdultBackground: IBackground = {

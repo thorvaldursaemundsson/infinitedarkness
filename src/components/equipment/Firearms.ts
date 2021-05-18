@@ -6,13 +6,13 @@ export type Ammo = '9x17' | '9x21' | '9x23' |
     '12x20' | '12x24' | '12x28' |
     '4mm ec' |
     '12 gauge' | '20 gauge' |
-    '20mm rpg'|'30mm rpg'|'40mm rpg' | '50mm rpg' |
+    '20mm rpg' | '30mm rpg' | '40mm rpg' | '50mm rpg' |
     '1hec' | '2hec' | '10hec';
 
 export interface ILoudness {
-    deafnessRange:number;
-    deafnessTime:number;
-    hearingRange:number;
+    deafnessRange: number;
+    deafnessTime: number;
+    hearingRange: number;
 }
 
 export interface AmmoInformation {
@@ -33,8 +33,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['tracer', 'hollow point', 'standard'],
         description: 'a small short 9mm bullet',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 1000,
         }
     }, {
@@ -44,8 +44,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a slightly longer version of the 9mm',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 1500,
         }
     }, {
@@ -55,8 +55,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a long version of the 9mm',
         loudness: {
-            deafnessRange:1,
-            deafnessTime:1,
+            deafnessRange: 1,
+            deafnessTime: 1,
             hearingRange: 2000,
         }
     }, {
@@ -66,8 +66,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['hollow point', 'standard'],
         description: 'a standard 10cm bullet',
         loudness: {
-            deafnessRange:1,
-            deafnessTime:1,
+            deafnessRange: 1,
+            deafnessTime: 1,
             hearingRange: 1500,
         }
     }, {
@@ -77,8 +77,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a long version of the 10cm bullet',
         loudness: {
-            deafnessRange:1,
-            deafnessTime:2,
+            deafnessRange: 1,
+            deafnessTime: 2,
             hearingRange: 2000,
         }
     }, {
@@ -88,8 +88,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['incendiary', 'standard'],
         description: 'a short wide 11cm bullet',
         loudness: {
-            deafnessRange:2,
-            deafnessTime:1,
+            deafnessRange: 2,
+            deafnessTime: 1,
             hearingRange: 2000,
         }
     }, {
@@ -99,8 +99,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['armor piercing', 'incendiary', 'standard'],
         description: 'a normal 11cm bullet',
         loudness: {
-            deafnessRange:2,
-            deafnessTime:2,
+            deafnessRange: 2,
+            deafnessTime: 2,
             hearingRange: 3000,
         }
     }, {
@@ -110,8 +110,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['armor piercing', 'incendiary', 'standard'],
         description: 'a large 12cm bullet',
         loudness: {
-            deafnessRange:2,
-            deafnessTime:5,
+            deafnessRange: 2,
+            deafnessTime: 5,
             hearingRange: 5000,
         }
     }, {
@@ -121,8 +121,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a long large 12cm bullet',
         loudness: {
-            deafnessRange:3,
-            deafnessTime:10,
+            deafnessRange: 3,
+            deafnessTime: 10,
             hearingRange: 10000,
         }
     }, {
@@ -132,8 +132,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['tracer', 'hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a very long large 12cm bullet',
         loudness: {
-            deafnessRange:3,
-            deafnessTime:12,
+            deafnessRange: 3,
+            deafnessTime: 12,
             hearingRange: 20000,
         }
     }, {
@@ -143,8 +143,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['standard'],
         description: 'a tiny caseless ferromagnetic neodymium bullet',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 900,
         }
     }, {
@@ -154,8 +154,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['shell', 'slug', 'explosive'],
         description: 'a 12 gauge shotgun shell',
         loudness: {
-            deafnessRange:2,
-            deafnessTime:2,
+            deafnessRange: 2,
+            deafnessTime: 2,
             hearingRange: 2000,
         }
     }, {
@@ -165,8 +165,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['shell', 'slug'],
         description: 'a 20 gauge shotgun shell',
         loudness: {
-            deafnessRange:1,
-            deafnessTime:1,
+            deafnessRange: 1,
+            deafnessTime: 1,
             hearingRange: 2000,
         }
     }, {
@@ -176,8 +176,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 20000,
         }
     }, {
@@ -187,8 +187,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 25000,
         }
     }, {
@@ -198,8 +198,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['plasma bomb', 'frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 40000,
         }
     }, {
@@ -209,8 +209,8 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: ['plasma bomb', 'homing', 'standard', 'grenade', 'fire bomb'],
         description: 'a 50mm rocket propelled grenade',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 100000,
         }
     }, {
@@ -220,33 +220,40 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         types: [],
         description: '1 unit of hyperelectron charge, battery rechargeable',
         loudness: {
-            deafnessRange:0,
-            deafnessTime:0,
+            deafnessRange: 0,
+            deafnessTime: 0,
             hearingRange: 500,
         }
     }
 ];
 
-interface IAmmoModification {
+export interface IAmmoModification {
     name: string;
     description: string;
     cost: number;
+    armorPiercingAdd?: number | undefined;
+    armorPiercingMultiplier?: number | undefined;
+    damageAdd?: number | undefined;
+    damageMultiplier?: number | undefined;
+    splashAdd?: number | undefined;
+    splashMultiplier?: number | undefined;
+    hitAdd?: number | undefined;
 }
 
-export const AmmoModifications:IAmmoModification[] = [
-    { name: 'Standard',  description: 'default version of the ammo, assumes the weapons stats unchanged', cost: 1 },
-    { name: 'Tracer',  description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit.', cost: 2 },
-    { name: 'Hollow point',  description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', cost: 1 },
-    { name: 'Armor Piercing', description: 'bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage.', cost: 1.1 },
-    { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', cost: 2.5 },
-    { name: 'Shell',  description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
-    { name: 'Slug',  description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', cost: 1 },
-    { name: 'Explosive',  description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', cost: 2 },
-    { name: 'Plasma Bomb',  description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing.', cost: 5 },
-    { name: 'Fire Bomb',  description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
-    { name: 'Frag',  description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
-    { name: 'Homing',  description: 'homes in on target, requires snipe shot. Range penalties are halved. Not compatible with grenade', cost: 1.5 },
-    { name: 'Grenade',  description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage, adds +1 strength requirement due to recoil', cost: 1 },
+export const AmmoModifications: IAmmoModification[] = [
+    { name: 'Standard', description: 'default version of the ammo, assumes the weapons stats unchanged', cost: 1 },
+    { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +1 to hit.', hitAdd: 1, cost: 2 },
+    { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1 },
+    { name: 'Armor Piercing', description: 'bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage.', armorPiercingAdd: 4, damageAdd: -1, cost: 1.1 },
+    { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', damageAdd: 2, armorPiercingAdd: 1, cost: 2.5 },
+    { name: 'Shell', description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
+    { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 4, hitAdd: 1, cost: 1 },
+    { name: 'Explosive', description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', damageAdd: 2, armorPiercingAdd: 3, hitAdd: 1, cost: 2 },
+    { name: 'Plasma Bomb', description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing.', damageMultiplier: 2, splashMultiplier: 2, cost: 5 },
+    { name: 'Fire Bomb', description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
+    { name: 'Frag', description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
+    { name: 'Homing', description: 'homes in on target, requires snipe shot. Range penalties are halved. Not compatible with grenade', cost: 1.5 },
+    { name: 'Grenade', description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage, adds +1 strength requirement due to recoil', cost: 1 },
 ];
 
 
@@ -265,8 +272,8 @@ interface IFirearm extends Item {
     ammo: Ammo;
     rps?: number;
     strengthRequirement: number;
-    splashRange?:number;
-    lowDamageZone?:number;
+    splashRange?: number;
+    lowDamageZone?: number;
 }
 
 export class FireArm implements IFirearm {
@@ -284,10 +291,10 @@ export class FireArm implements IFirearm {
     description?: string | undefined;
     name: string;
     strengthRequirement: number;
-    splashRange?:number;
-    lowDamageZone?:number;
+    splashRange?: number;
+    lowDamageZone?: number;
 
-    constructor(name: string, weight: number, value: number, damage: string, fireArmClass: fireArmClass, range: string, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange:number|undefined, lowDamageZone:number|undefined) {
+    constructor(name: string, weight: number, value: number, damage: string, fireArmClass: fireArmClass, range: string, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined) {
         this.fireArmClass = fireArmClass;
         this.name = name;
         this.weight = weight;
@@ -312,7 +319,7 @@ export class FireArm implements IFirearm {
 const Firearms: FireArm[] = [
     //hand guns
     {
-        fireArmClass: 'handgun', name: 'revolver', damage: '1d10', range: '300m', ammo: '10x19', strengthRequirement: 2, capacity: 6, fireAction: ['double action revolver'], armorpiercing: 1, weight: 800, value: 1000 ,
+        fireArmClass: 'handgun', name: 'revolver', damage: '1d10', range: '300m', ammo: '10x19', strengthRequirement: 2, capacity: 6, fireAction: ['double action revolver'], armorpiercing: 1, weight: 800, value: 1000,
         description: 'basic revolver, this antique weapon design is mostly considered a collectors item for gun and antique enthusiasts. It still works.'
     },
     {
@@ -383,15 +390,15 @@ const Firearms: FireArm[] = [
     //magnetic guns
 
     {
-        fireArmClass: 'rifle', name: 'Night Coil', damage: '1d10', range: '1200m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 5, 
+        fireArmClass: 'rifle', name: 'Night Coil', damage: '1d10', range: '1200m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 5,
         description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent'
     },
     {
-        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: '2d8', range: '1800m', ammo: '4mm ec', strengthRequirement: 7, capacity: 60,fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 6,
+        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: '2d8', range: '1800m', ammo: '4mm ec', strengthRequirement: 7, capacity: 60, fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 6,
         description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds'
     },
     {
-        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60,fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 6,
+        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: '2d8', range: '2000m', ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 6,
         description: 'A strange rifle that exploits the electroweak force in an unknown way'
     },
 
@@ -450,18 +457,18 @@ const Firearms: FireArm[] = [
     }
 ];
 
-interface IFirearmModification {
-    name:string;
+export interface IFirearmModification {
+    name: string;
     description: string;
     cost: number | string;
     /**
      * grams
      */
-    weight:number | string;
+    weight: number | string;
     effects: string[];
 }
 
-export const FirearmModifications:IFirearmModification[] = [
+export const FirearmModifications: IFirearmModification[] = [
     {
         name: 'Scope',
         description: 'Reduces long range penalties to half when using snipe or aimed shot',

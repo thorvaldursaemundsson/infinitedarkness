@@ -6,7 +6,7 @@ import GameTools from '../components/gamemaster/GameTools';
 import Wizard from '../components/gamemaster/Wizard';
 import CharacterGenerator from '../components/gamemaster/CharacterGenerator';
 import Weather from '../components/gamemaster/Weather';
-import EnvironmentalDamage from '../components/playermanual/EnvironmentalDamage';
+import EnvironmentalDamage from '../components/gamemaster/EnvironmentalDamage';
 
 
 const GameMaster: React.FC = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { RollDice, Selector } from "../../utils/utilFunctions";
 import Indexer, { Indexed } from "../general/Indexer";
-import Section from "./Section";
+import Section from "../playermanual/Section";
 
 const EnvironmentalDamage: React.FC = () => {
 
@@ -11,14 +11,32 @@ const EnvironmentalDamage: React.FC = () => {
             <Indexed title='Falling Damage'>
                 <FallingDamage />
             </Indexed>
-            <Indexed title='Jumping out'>
+            <Indexed title='Jumping out of a vehicle'>
                 <VehicleJump />
+            </Indexed>
+            <Indexed title='Hazardous terrain'>
+                <HazardousTerrain />
             </Indexed>
         </Indexer>
     </Section>)
 };
 
 export default EnvironmentalDamage;
+
+const HazardousTerrain = () => {
+    return <>
+    Being on fire
+    Standing on fire
+    Standing in an inferno
+    Wading in freezing water
+    Swimming in freezing water
+    Wading in weak/strong acid
+    Swimming in weak/strong acid
+    Walking over spikes
+    Falling on spikes
+    Collapsing structures
+    </>;
+}
 
 const VehicleJump = () => {
     return <>

@@ -1,5 +1,5 @@
 
-export type SkillName = 'acrobatics'|'athletics'|'combat'|'computer'|'cooking'|'electronics'|'empathy'|'explosives'|'firearms'|'general knowledge'|'intimidation'|'investigation'|'larceny'|'mechanics'|'medicine'|'persuasion'|'pilot'|'savoir-faire'|'science'|'spells'|'stealth'|'streetwise'|'subtrefuge'|'survival';
+export type SkillName = 'acrobatics'|'athletics'|'combat'|'computer'|'cooking'|'electronics'|'empathy'|'explosives'|'firearms'|'general knowledge'|'intimidation'|'investigation'|'larceny'|'mechanics'|'medicine'|'persuasion'|'pilot'|'savoir-faire'|'science'|'spells'|'stealth'|'streetwise'|'subterfuge'|'survival';
 
 export type abilities = 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
 
