@@ -1,7 +1,7 @@
 
 import React, { CSSProperties, useState } from "react";
 import Section from "./Section"
-import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoModifications, FirearmModifications } from "../equipment/Firearms";
+import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoModifications, FirearmModifications, writeDamageDice } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
@@ -323,7 +323,7 @@ const FireArmRow = (f: FireArm) => {
     return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
         <td>{f.fireArmClass}</td>
         <td>{f.name}</td>
-        <td>{f.damage} {f.splashRange !== undefined ? `(s)` : ' '}</td>
+        <td>{writeDamageDice(f.damage, 0)} {f.splashRange !== undefined ? `(s)` : ' '}</td>
         <td>{f.armorpiercing || 0}</td>
         <td>{f.hitbonus || 0}</td>
         <td>{f.range}</td>
