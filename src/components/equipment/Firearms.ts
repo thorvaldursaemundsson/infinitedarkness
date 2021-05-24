@@ -270,7 +270,7 @@ interface IDamageDice {
 export const writeDamageDice = (d: IDamageDice, b: number) => {
     if (d.bonus + b === 0) return `${d.numberOfDice}d${d.sides}`;
     else if (d.bonus + b > 0) return `${d.numberOfDice}d${d.sides} + ${d.bonus + b}`;
-    if (d.bonus + b < 0) return `${d.numberOfDice}d${d.sides} - ${d.bonus + b}`;
+    if (d.bonus + b < 0) return `${d.numberOfDice}d${d.sides} - ${Math.abs(d.bonus + b)}`;
 }
 /**
  * 

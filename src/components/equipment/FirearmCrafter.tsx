@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { weightConverter } from "../../utils/utilFunctions";
 import Firearms, { Ammo, AmmoInformation, AmmoModifications, AmmoTypesInformation, FireArm, FirearmModifications, IAmmoModification, IFirearmModification, writeDamageDice } from "./Firearms";
+import { Condition, ICondition, IQuality, Quality } from "./Item";
 
 const selectFirearm = (firearmName: string, setter: React.Dispatch<React.SetStateAction<FireArm | null>>) => {
     if (firearmName === 'null') setter(null);
@@ -34,12 +35,15 @@ const addFirearmsModifications = (add: boolean,
     }
 };
 
+
+
 const numberOrZero = (numb: number | undefined) => numb === undefined ? 0 : numb;
 
 const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const [ammoType, setAmmoType] = useState<string>(ammo.types[ammo.types.length - 1]);
     const [selectedFirearmMods, setSelectedFirearmMods] = useState<IFirearmModification[]>([]);
-    const [qualityMod, setQualityMod] = useState(2);
+    const [quality, setQuality] = useState<IQuality>(Quality[2]);
+    const [condition, setCondition] = useState<ICondition>(Condition[0]);
 
     const ammoMod = ammoModGetter(ammoType);
     const ammoCost = firearm.capacity * ammo.cost * ammoMod.cost;
@@ -80,6 +84,15 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     })}
                 </td>
                 <td style={{ width: '25%' }} rowSpan={11}>
+
+                    <select onChange={(e) => setCondition(Condition[parseInt(e.target.value)])}>
+                        {Condition.map((c, i, a) => <option selected={c.effect === condition.effect} value={i} >{c.label}</option>)}
+                    </select>
+                    <br />
+                    <select onChange={(e) => setQuality(Quality[parseInt(e.target.value)])}>
+                        {Quality.map((q, i, a) => <option selected={q.effect === quality.effect} value={i} >{q.label}</option>)}
+                    </select>
+                    <br />
                     <select onChange={(e) => setAmmoType(e.target.value)}>
                         {ammo.types.map(a => <option selected={a === ammoType} value={a}>{a}</option>)}
                     </select>
@@ -92,7 +105,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Hit bonus
                 </td>
                 <td>
-                    {numberOrZero(firearm.hitbonus) + numberOrZero(ammoMod.hitAdd) + firearmModsHitMod}
+                    {numberOrZero(firearm.hitbonus) + numberOrZero(ammoMod.hitAdd) + firearmModsHitMod + quality.effect + condition.effect}
                 </td>
             </tr>
             <tr>
@@ -108,7 +121,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Damage
                 </td>
                 <td>
-                    {writeDamageDice(firearm.damage, firearmModsDamageMod + numberOrZero(ammoMod.damageAdd))}
+                    {writeDamageDice(firearm.damage, firearmModsDamageMod + numberOrZero(ammoMod.damageAdd) + quality.effect)}
                     {ammoMod.damageMultiplier === undefined ? null : `x ${ammoMod.damageMultiplier}`}
                 </td>
             </tr>
@@ -117,7 +130,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Value
                 </td>
                 <td>
-                    {(firearm.value + firearmModsCost) * firearmModsCostMultiplier}
+                    {(firearm.value + firearmModsCost) * firearmModsCostMultiplier * quality.valueModifier * condition.valueModifier}
                 </td>
             </tr>
             <tr>

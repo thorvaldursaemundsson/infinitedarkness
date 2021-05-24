@@ -9,6 +9,7 @@ import { bodySuits, armorPlates, PowerArmor, powerArmors, ArmorData, integratedS
 import ArmorCrafter from "../equipment/ArmorCrafter";
 import { weightConverter } from "../../utils/utilFunctions";
 import FirearmCrafter from "../equipment/FirearmCrafter";
+import { Condition, Quality } from "../equipment/Item";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -149,13 +150,7 @@ const Equipment: React.FC = () => {
                         <tr><th>Condition</th><th>Effect</th><th>Value</th></tr>
                     </thead>
                     <tbody>
-                        <tr> <td>Pristine</td><td>+2</td><td>100%</td></tr>
-                        <tr><td>Intact</td><td>+1</td><td>90%</td></tr>
-                        <tr><td>Normal</td><td>+/-0</td><td>80%</td></tr>
-                        <tr><td>Used</td><td>-1</td><td>70%</td></tr>
-                        <tr><td>Worn</td><td>-2</td><td>60%</td></tr>
-                        <tr><td>Damaged</td><td>-3</td><td>50%</td></tr>
-                        <tr><td>Broken</td><td>-4</td><td>40%</td></tr>
+                        {Condition.map(c => <tr> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
                     </tbody>
                 </table>
                 <p>When an item has been used a number of times equal to the users skill it drops in condition by 1 step, a repair skill check can prevent this. A failed repair can cause the quality to drop.</p>
@@ -170,14 +165,7 @@ const Equipment: React.FC = () => {
                         <tr><th>Quality</th><th>Effect</th><th>Value</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Superb</td><td>+3</td><td> 1000%</td></tr>
-                        <tr><td>Great</td><td>+2</td><td> 300%</td></tr>
-                        <tr><td>Good</td><td>+1</td><td> 150%</td></tr>
-                        <tr><td>Normal</td><td>+/-0</td><td> 100%</td></tr>
-                        <tr><td>Poor</td><td>-1</td><td>90%</td></tr>
-                        <tr><td>Bad</td><td>-2</td><td> 70%</td></tr>
-                        <tr><td>Awful</td><td>-3</td><td>50%</td></tr>
-                        <tr><td>Trash</td><td>-4</td><td> 40%</td></tr>
+                        {Quality.map(c => <tr> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
                     </tbody>
                 </table>
                 <p>Improving the quality of an item is not possible without supplying new material, these materials need to be of equivalent or higher quality, a failed attempt will consume the materials. A badly failed will reduce condition.</p>
@@ -188,6 +176,13 @@ const Equipment: React.FC = () => {
 
     </Section>);
 }
+
+const plusMinus = (n: number) => {
+    if (n === 0) return '+/- 0';
+    else if (n > 0) return `+${n}`;
+    else return `-${Math.abs(n)}`;
+};
+
 interface IArmorTableProps {
     armors: ArmorData[];
 }
