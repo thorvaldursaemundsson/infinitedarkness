@@ -43,7 +43,9 @@ const Equipment: React.FC = () => {
                 <FirearmCrafter />
                 <hr />
                 <FirearmTable data={Firearms} />
-
+                <p>
+                    Condition adds to to hit modifier, quality adds to both to hit and damage.
+                </p>
                 <h5>Firearm modifications</h5>
                 <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
                 <ul>
@@ -140,9 +142,10 @@ const Equipment: React.FC = () => {
                     If you roll 3 on a d20 the damage absorbtion will be reduced to 15, 14, 13, 12 then 11.<br />
                     The armor costed 33000 credits, so (33000 * (5 / 16)) / 2) = 1030, 2060, 3090, 4125, 5150 credits, DC 5, 10, 15, 20, 25 taking 1,2,3,4,5 hour.
                 </p>
+                <p>Armor quality is applied to agility penalty per piece, penalty can not be reduced below zero so a better than normal quality power armor does nothing.</p>
             </Indexed>
             <Indexed title='Quality and Condition'>
-                <p>Quality and condition are optional rules that can increase variety and make items feel more personal.</p>
+                <p>Quality and condition are optional rules that can increase variety and make items feel more personal. Unless stated otherwise quality and condition effects apply to skill rolls using tools.</p>
                 <h4>Condition</h4>
                 <p>Condition refers to the wear and tear of an item that is used in skill checks, it is also affected by direct damage and repair.</p>
                 <table>
