@@ -250,17 +250,19 @@ const Quintessence = new SpellTemplate(
 
 const SolarFlare = new SpellTemplate(
     'Solar Flare',
-    'Spell: Hot electric plasma engulfs your body, which you can direct at one target. If you are wearing clothes or armor they take damage. Lasts 1 minute',
+    'Spell: Hot electric plasma engulfs your body, which you can direct at one target, damage counts as heat and electric, as such non-fire resistant armor only applies half damage absorbtion, power armor and electric devices have no effect while in contact with flame. If you are wearing clothes they are immediately incinirated, armor loses 1 condition (1 DA) per turn. Fire resistant materials instead take 4 times longer to damage. Lasts 1 minute',
     '1 action',
     'personal, 10 meter range',
     [
-        'base mana: 2',
-        'each extra mana spent gives: +1 defense, damage absorbtion, +1d6 damage',
-        'Anyone standing within 1 meter, or attacks you in melee takes 1d6 damage every round',
-        'Gain +2 defense and damage absorbtion while in effect',
-        'Move at double speed',
+        'While active add spells skill to base defense, add +2 damage absorbtion, increase speed by +3',
+        'Anyone who attacks you in melee takes 1d6 damage (this damage applies even if they miss!)',
+        'Anyone who starts their turn within 1 meter takes 1d6 damage',
         'Send out jet of hot plasma dealing 2d6, (combat + agility) range 10 meters',
-        'damage absorbtion from fire, lightning and plasma sources: 100'
+        'damage absorbtion from fire, lightning and plasma sources: 100',
+        'base mana: 2',
+        'can spend extra mana: +1 damage absorbtion, +1d6 damage per 1 mana',
+        'can spend extra mana: +3 speed per 1 mana',
+        'can spend extra mana: +1 meter area of effect per 2 mana'
     ]
 );
 
@@ -292,6 +294,20 @@ const Assimilation = new SpellTemplate(
         'negate ability loss: +4 mana (no effect if positive ability)',
         'negate effect if lose: +4 mana (no effect on either if caster loses)',
         'You can exceed your maximum life and mana using this. You lose 1 of each every 24 hours until they are normal again.'
+    ]
+);
+
+const ManipulateSpacetime = new SpellTemplate(
+    'Manipulate Spacetime',
+    'Spell: you change the fabric of spacetime to create a unidirectional field of gravity in the shape of a cylinder 1 meter across, directed away from you, the direction of gravity can be in any direction of your choosing. It does not cancel out existing gravity fields but rather adds to them. The field lasts for 6 seconds and propagates at the speed of light. Anything caught in this field is accelerated by 10m/s/s. Each time you use this ability you become 1d10 days younger (over the course of a minute) per mana spent.',
+    '1 action',
+    '100 meters',
+    [
+        'base mana: 1',
+        'can spend extra mana: double the length per 1 mana (may be applied multiple times, each time doubling length)',
+        'can spend extra mana: increase cylinder diameter by 1 meter per 1 mana',
+        'can spend extra mana: increase duration by 6 seconds per 1 mana',
+        'can spend extra mana: increase field strength of 10/s/s per 1 mana',
     ]
 );
 
@@ -393,8 +409,22 @@ const CursedBlood = new SpellTemplate(
     ]
 );
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, //7
+const XRayVision = new SpellTemplate(
+    'X-Ray Vision',
+    'Mutation: your visual band changes from normal visible light (400nm - 700nm wavelength) to x rays (0.01nm - 10nm), as such low density materials become nearly invisible to you, high density remain visible. Additionally whenever your eyes are open you emmit x rays in all directions, this counts as illumination for you up to 100 meters, and as a level 1 radiation source to everyone within 2 meters. You also gain +2 radiation resistance.',
+    undefined,
+    undefined,
+    [
+        'You can stop the radiation by closing your eyes, however it does not matter if you are conscious as long as you are alive',
+        'You can temporarily extend your x-ray vision length by two for 1 hour, costs 1 mana, increases radiation level by 1 (this can be stacked)',
+        'You can temporarily increase your radiation resistance by 1 for 1 hour, cost 1 mana'
+    ]
+);
+
+
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, XRayVision,//8
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation //19
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime //20
 ];
