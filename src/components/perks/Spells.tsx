@@ -416,7 +416,7 @@ const XRayVision = new SpellTemplate(
     undefined,
     [
         'You can stop the radiation by closing your eyes, however it does not matter if you are conscious as long as you are alive',
-        'You can temporarily extend your x-ray vision length by two for 1 hour, costs 1 mana, increases radiation level by 1 (this can be stacked)',
+        'You can temporarily extend your x-ray vision length by two for 1 hour, costs 1 mana, increases radiation level by 1 (this can be stacked), when doing so radiation source counts as 1 level lower per 2 meters',
         'You can temporarily increase your radiation resistance by 1 for 1 hour, cost 1 mana'
     ]
 );
