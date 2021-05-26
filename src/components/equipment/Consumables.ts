@@ -199,7 +199,7 @@ export const ConsumableTools: IConsumable[] = [
     },
     {
         name: 'Flightsuit',
-        description: 'Allows for gliding, flying if paired with jetpack. Landing safely requires acrobatics + agility 20. Not compatible with armor plating or power armor',
+        description: 'Allows for gliding, flying if paired with jetpack. Landing safely requires acrobatics + agility 20. Not compatible with armor plating or power armor. Maximum capacity 90kg',
         charges: 80,
         weight: 10000,
         value: 8000,
@@ -210,6 +210,20 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10,
         weight: 6000,
         value: 12000,
+    },
+    {
+        name: 'Parachute',
+        description: 'Includes parachute, altimeter, jumpsuit, parachute container, oxygenator. Must be repackaged (10 minutes) and refueled every time. Maximum capacity 140kg. Each kg over maximum capacity counts as up to 1 meter falling damage',
+        charges: 100,
+        weight: 5000,
+        value: 7000,
+    },
+    {
+        name: 'Massive Parachute',
+        description: 'Includes four parachutes, drogue chute, altimeter, jumpsuit, parachute container, oxygenator. Must be repackaged (1 hour) and refueled every time. Maximum capacity 300kg. Each kg over maximum capacity counts as up to 1 meter falling damage',
+        charges: 50,
+        weight: 10000,
+        value: 20000,
     },
     {
         name: 'Laser protection gear',

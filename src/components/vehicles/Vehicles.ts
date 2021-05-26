@@ -49,6 +49,10 @@ export interface Part {
     description: string;
     cost: number;
     weightKg: number;
+    /**
+     * one if not defined
+     */
+    quantity?:number|undefined;
 }
 
 export interface EnergyConverter {
@@ -275,12 +279,18 @@ export interface FuelEngine extends FuelType {
 export interface Vehicle {
     medium: Medium[];
     name: string;
+    /** passenger/crew stations and life support */
     passengers: number;
+    /** total carry weight mass */
     cargoKg: number;
     fuelType: FuelEngine[];
     parts: Part[];
     range: number;
+    /**
+     * meters per second
+     */
     topSpeed: number;
+    /** meters per second per second */
     acceleration: number;
     cost: number;
     description: string;
