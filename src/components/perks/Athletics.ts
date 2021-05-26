@@ -155,7 +155,20 @@ const Hardy = new PerkTemplate({
     skill: skill,
     description: 'You gain +1 damage absorbtion while awake.',
     level: 2,
-})
+}, {
+    amount: 1,
+    applyTo: 'damageAbsorption'
+});
+
+const Robust = new PerkTemplate({
+    name: 'Robust',
+    skill: skill,
+    description: 'You gain +1 damage absorbtion while awake. Prerequisite: Hardy',
+    level: 3,
+}, {
+    amount: 1,
+    applyTo: 'damageAbsorption'
+});
 
 export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, FastSwimmer, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
-    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy];
+    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy, Robust];

@@ -45,6 +45,27 @@ const useCases: UseCase[] = [
             'Active hidden person search: +5 to your roll, hidden person knows you are searching for a hiding person',
         ],
         type: 'passive'
+    },
+    {
+        name: 'conceal weapon',
+        attribute: 'agility',
+        description: 'You attempt to hide a weapon on your body. This is contested by a passive stealth + perception (10 + stealth + perception). Depending on the weight you will receive a modifier',
+        type: 'active',
+        results: [
+            '99 grams or less: +10',
+            '100-250 grams: +8',
+            '251-500 grams: +6',
+            '501-750 grams: +4',
+            '751-1000 grams: +2',
+            '1-1.5 kg: +/-0',
+            '1.5-2 kg: -2',
+            '2-3 kg: -4',
+            '3-4 kg: -8',
+            '4-6 kg: -16',
+            '6-8 kg: -32',
+            '8-10 kg: -64',
+            '10+ kg: impossible',
+        ]
     }
 ];
 const Stealth = new SkillTemplate('stealth', 'To be in stealth means that you are not seen and not heard.', useCases);

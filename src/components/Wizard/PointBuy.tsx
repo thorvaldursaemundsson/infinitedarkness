@@ -117,8 +117,9 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
     if (currentRacialMod === undefined) {
         return <>please choose valid species and age range</>;
     }
-    const max = abilityMultiplier * 80;
+    const max = abilityMultiplier * 100;
     const pointsLeft = (max - calculateCost(currentStats));
+    const pointsLeftValid = pointsLeft > -20 && pointsLeft < 20;
 
     const complete = () => {
         onComplete({
@@ -143,7 +144,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <th style={{ width: '20%' }}>Value</th>
                     <th style={{ width: '20%' }}>Species mod</th>
                     <th style={{ width: '20%' }}>Final value</th>
-                    <th style={{ width: '20%' }}>Points left: {pointsLeft} / {max}</th>
+                    <th style={{ width: '20%', color: pointsLeftValid ? 'green' : 'red' }}>Points left: {pointsLeft} / {max}</th>
                 </tr>
             </thead>
             <tbody>
@@ -202,7 +203,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
             return <label className="shortLabel"> <input type='radio' name='size' checked={currentStats.size === size} onClick={() => setCurrentStats({ size: size })}></input> {size}</label>;
         })}
         <br />
-        <button onClick={() => complete()}>Done</button>
+        <button onClick={() => complete()} disabled={!pointsLeftValid}>Done</button>
     </>;
 }
 

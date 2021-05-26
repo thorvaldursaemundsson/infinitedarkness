@@ -115,6 +115,10 @@ export class Character {
         return 0;
     }
 
+    public getDamageAbsorption() {
+        return this.getHook('damageAbsorption');
+    }
+
     public getActiveDefense() {
         const combat = this.getSkillLevel('combat');
         const acrobatics = this.getSkillLevel('acrobatics');

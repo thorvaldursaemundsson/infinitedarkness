@@ -102,7 +102,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Damage absorption</label>
                     </td>
                     <td>
-
+                        <HideText txt={character.getDamageAbsorption()} explain={'damage absorbtion'} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Perception</label>

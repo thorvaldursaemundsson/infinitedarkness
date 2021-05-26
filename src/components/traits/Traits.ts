@@ -115,8 +115,8 @@ const Durable: Trait = {
     name:'durable',
     cost: 20, 
     description: 'you are durable and gain +1 damage absorbtion',
-    amount: 0,
-    applyTo: ''
+    amount: 1,
+    applyTo: 'damageAbsorption'
 }
 
 const MentallyFlexible: Trait = {
