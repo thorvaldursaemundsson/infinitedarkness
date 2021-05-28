@@ -42,7 +42,7 @@ const numberOrZero = (numb: number | undefined) => numb === undefined ? 0 : numb
 const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const [ammoType, setAmmoType] = useState<string>(ammo.types[ammo.types.length - 1]);
     const [selectedFirearmMods, setSelectedFirearmMods] = useState<IFirearmModification[]>([]);
-    const [quality, setQuality] = useState<IQuality>(Quality[2]);
+    const [quality, setQuality] = useState<IQuality>(Quality[3]);
     const [condition, setCondition] = useState<ICondition>(Condition[0]);
 
     const firearmModsCost = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.cost).reduce((a, b) => a + b);
@@ -160,6 +160,14 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
             </tr>
             <tr>
                 <td>
+                    Splash?
+                </td>
+                <td>
+                    {firearm.splashRange === undefined ? 'no splash' : `${firearm.splashRange} / ${firearm.lowDamageZone}`}
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Caliber
                 </td>
                 <td>
@@ -171,7 +179,15 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Capacity / Reload
                 </td>
                 <td>
-                    {firearm.capacity * firearmModsAmmoMultMod} / Reload
+                    {firearm.capacity * firearmModsAmmoMultMod} / {firearm.reload || 'move'}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fire rate
+                </td>
+                <td>
+                    {firearm.rps !== undefined ? firearm.rps * 6 : 1} per round
                 </td>
             </tr>
             <tr>
@@ -182,6 +198,16 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     {ammoCost} / {ammo.weight * firearm.capacity * firearmModsAmmoMultMod}
                 </td>
             </tr>
+            <tr>
+                <td>
+                    Classification & Fire action
+                </td>
+                <td>
+                    {firearm.fireArmClass} & {firearm.fireAction.join(', ')}
+                </td>
+            </tr>
+
+
 
 
             <tr>
