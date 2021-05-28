@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MakeCharacter from '../components/playermanual/MakeCharacter';
 import Combat from '../components/playermanual/Combat';
 import Equipment from '../components/playermanual/Equipment';
@@ -7,16 +7,14 @@ import Experience from '../components/playermanual/Experience';
 import Vehicles from '../components/playermanual/Vehicles';
 import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
-import { SpellsPerks } from '../components/perks/Spells';
 import CarryingCapacity from '../components/playermanual/CarryingCapacity';
 import Radiation from '../components/playermanual/Radiation';
 import Consumables from '../components/playermanual/Consumables';
 import Cybernetics from '../components/playermanual/Cybernetics';
 import HealthAndRest from '../components/playermanual/HealthAndRest';
-import { d100SpreaderT } from '../utils/d100Spreader';
-import Ellipsis from '../components/general/Ellipsis';
 import { IViewProps } from './IViewProps';
 import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSpeed';
+import SpellRoller from '../components/playermanual/SpellRoller';
 
 
 const PlayerManual: React.FC<IViewProps> = ({route}) => {
@@ -89,43 +87,6 @@ const RollingSkills = () =>
         <p>When you roll 2d10 on a skill or ability check and both dice show 1, roll another d10 and subtract from the roll.</p>
     </Section>
 
-const sortedSpreadedSpells = d100SpreaderT(SpellsPerks.map(sp => { return { label: sp.name, value: sp } }).sort());
-
-const SpellRoller: React.FC = (props) => {
-    const [rolls, setRolls] = useState<number[]>([]);
-    const DRollNot = (n: number[]) => {
-        while (true) {
-            let x = Math.floor(Math.random() * SpellsPerks.length);
-            if (n.filter(p => p === x).length === 0) return x;
-        }
-    }
-    const fractionOfSpells = 3;
-    const Roll = () => {
-        let numbers: number[] = [];
-        for (let counter = 0; counter < fractionOfSpells; counter++) {
-            numbers.push(DRollNot(numbers));
-        }
-        setRolls(numbers);
-    };
-
-    return (<>
-        <h2>Spell roller</h2>
-        <p>When you want to acquire a supernatural ability, you roll over all spells and perks {fractionOfSpells} times and pick one. There are in total {SpellsPerks.length} spells and mutations.</p>
-        <button onClick={() => Roll()}>Roll</button>
-        <ol>
-            {rolls.map(r => <li>{SpellsPerks[r].name} ({r})
-            <Ellipsis text={SpellsPerks[r].description} cutOff={10} />
-            </li>)}
-        </ol>
-        <p>Or if you prefer to roll manually. If you roll the same option twice or a spell or mutation you already posess, just reroll. You should end up with exactly {fractionOfSpells} options.</p>
-        <ul>
-            {sortedSpreadedSpells.map(spread => {
-                return <li><label className="mediumSizedLabel">{spread.low} - {spread.high}: {spread.text} <input type='checkbox' /></label></li>
-            })}
-            <li><label className="mediumSizedLabel">{sortedSpreadedSpells[sortedSpreadedSpells.length - 1].high + 1} - 100: Reroll </label>(if you get this multiple times, just keep rerolling)</li>
-        </ul>
-    </>);
-}
 
 
 export default PlayerManual;

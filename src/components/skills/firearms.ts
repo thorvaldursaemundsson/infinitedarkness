@@ -38,7 +38,7 @@ const useCases: UseCase[] = [
     {
         name: 'burst',
         attribute: 'agility',
-        description: 'Hold down the trigger on a fully-automatic weapon for a short burst',
+        description: 'Hold down the trigger on a fully-automatic weapon for a short burst. Requires full-auto or continuous',
         results: [
             'Fire 10 bullets',
             'Add +10 to hit',
@@ -54,7 +54,7 @@ const useCases: UseCase[] = [
     {
         name: 'oppressive fire',
         attribute: 'strength',
-        description: 'Hold down the trigger on a fully automatic firearm for the whole round, can spray across multiple targets',
+        description: 'Hold down the trigger on a fully automatic firearm for the whole round, can spray across multiple targets. Requires full-auto or continuous',
         results: [
             'Shoot as many bullets as it uses per round, potentially empying the magazine',
             'Add +15 to hit',

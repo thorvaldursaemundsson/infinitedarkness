@@ -311,6 +311,44 @@ const ManipulateSpacetime = new SpellTemplate(
     ]
 );
 
+const MoteOfPureEntropy = new SpellTemplate(
+    'Mote of Pure Entropy',
+    'Spell: You produce a mote in the palm of your hand which you can then move freely once per round at the rate of 10 meters/round, the mote gives of white light when in contact with air. If it comes into contact with a solid object roll a 1d10, the mote then evaporates. The mote will evaporate at the end of your turn, you can prevent evaporation with a spell + willpower roll vs 5 x number of turns the mote has been active. If you have multiple motes then you must keep track of them seperately, if two motes touch then they annihilate each other.',
+    '1 action',
+    '40 meters',
+    [
+        'base mana: 1',
+        'add effect: +2 mana (per effect)',
+        'to hit an unwilling creature you must defeat their defense with your spell roll',
+        '1: The target takes 1d10 falling damage and is flung 1d6 meters in a random direction, 1 meter if the object is 200kg or heavier, 500kg or heavier not flung',
+        '2: The target ages 4d12 days, creatures experience this trauma as 2d6 mental health damage, it does not regenerate life from this',
+        '3: The surface area where contact is made is disintegrated, creatures and objects take 2d4 damage which cant be reduced, if the creature is wearing armor the armor damage absorbtion is reduced by 2d4 instead',
+        '4: The surface area where contact is made heats up and catches fire, 2d6 thermal damage for 4 rounds',
+        '5: The target briefly glows brightly and then cools down, 3d6 thermal damage, the creature loses its move action on its next 1d4 rounds',
+        '6: The targete speeds up, objects operate at double speed, creatures gain 1 extra action, lasts 1d6 rounds at the end the creature gains one exhaustion level',
+        '7: The target swap place with the caster of the mote',
+        '8: The target is restored to previous state, restore 1d3 condition (max pristine) or regenerate 1d6 life instantly.',
+        '9: The target begins to glow brightly for 1d4 rounds, the target has +10 base defense and -10 to all rolls based on sight',
+        '10: The target becomes completelybn  insvisible (entire spectrum) and blind for 2d12 rounds.',
+    ]
+);
+
+const Precognition = new SpellTemplate(
+    'Precognition',
+    'Spell: You learn the outcome of your next action. Before you take an action that takes no more than 1 round you may attempt to see the outcome before it happens. First you roll for precognition, then you roll for your skill, you find out the outcome of your result and may choose whether to move forward or do something else. If you don\'t proceed then you end your turn.',
+    'free action',
+    undefined,
+    [
+        'for an action that takes 1 action: 2 mana',
+        'for an action that takes 1 minute: 4 mana',
+        'for an action that takes 10 minutes: 6 mana',
+        'for an action that takes 1 hour: 8 mana',
+        'for an action that takes 4 hours: 10 mana',
+        'for an action that takes 8 hours: 12 mana',
+        'for an action that takes 16 hours: 14 mana',
+        'for an action that takes 24 hours: 16 mana'
+    ]
+)
 
 //mutations
 const MortisAlbum = new SpellTemplate(
@@ -426,5 +464,5 @@ const XRayVision = new SpellTemplate(
 export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, XRayVision,//8
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime //20
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition //22
 ];

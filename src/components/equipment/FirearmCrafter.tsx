@@ -45,9 +45,6 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const [quality, setQuality] = useState<IQuality>(Quality[2]);
     const [condition, setCondition] = useState<ICondition>(Condition[0]);
 
-    const ammoMod = ammoModGetter(ammoType);
-    const ammoCost = firearm.capacity * ammo.cost * ammoMod.cost;
-
     const firearmModsCost = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.cost).reduce((a, b) => a + b);
     const firearmModsCostMultiplier = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.costMultiplier).reduce((a, b) => a * b);
 
@@ -58,6 +55,10 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const firearmModsRangeMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.rangeMod || 1).reduce((a, b) => a * b);
     const firearmModsWeightMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.weight || 0).reduce((a, b) => a + b);
     const firearmModsWeightMultMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.weightMultiplier || 1).reduce((a, b) => a * b);
+    const firearmModsAmmoMultMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.ammoCapacityMod || 1).reduce((a, b) => a * b);
+
+    const ammoMod = ammoModGetter(ammoType);
+    const ammoCost = (firearm.capacity * firearmModsAmmoMultMod) * ammo.cost * ammoMod.cost;
 
     return (<table>
         <thead>
@@ -154,7 +155,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Maximum range
                 </td>
                 <td>
-                    {firearm.range * firearmModsRangeMod}
+                    {Math.floor(firearm.range * firearmModsRangeMod)}
                 </td>
             </tr>
             <tr>
@@ -167,18 +168,18 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
             </tr>
             <tr>
                 <td>
-                    Capacity
+                    Capacity / Reload
                 </td>
                 <td>
-                    {firearm.capacity}
+                    {firearm.capacity * firearmModsAmmoMultMod} / Reload
                 </td>
             </tr>
             <tr>
                 <td>
-                    Clip cost
+                    Clip cost / weight
                 </td>
                 <td>
-                    {ammoCost}
+                    {ammoCost} / {ammo.weight * firearm.capacity * firearmModsAmmoMultMod}
                 </td>
             </tr>
 

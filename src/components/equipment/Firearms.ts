@@ -138,10 +138,10 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '4mm ec',
-        cost: 15,
+        cost: 3,
         weight: 0.2,
-        types: ['standard'],
-        description: 'a tiny caseless ferromagnetic neodymium bullet',
+        types: ['standard', 'neodymium'],
+        description: 'a tiny caseless ferromagnetic iron bullet',
         loudness: {
             deafnessRange: 0,
             deafnessTime: 0,
@@ -151,7 +151,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         ammo: '12 gauge',
         cost: 9,
         weight: 24,
-        types: ['shell', 'slug', 'explosive'],
+        types: ['shell', 'slug', 'explosive', 'wolf'],
         description: 'a 12 gauge shotgun shell',
         loudness: {
             deafnessRange: 2,
@@ -162,7 +162,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         ammo: '20 gauge',
         cost: 6.6,
         weight: 22,
-        types: ['shell', 'slug'],
+        types: ['shell', 'slug', 'wolf'],
         description: 'a 20 gauge shotgun shell',
         loudness: {
             deafnessRange: 1,
@@ -238,17 +238,20 @@ export interface IAmmoModification {
     splashAdd?: number | undefined;
     splashMultiplier?: number | undefined;
     hitAdd?: number | undefined;
+    rangeMultiplier?: number | undefined;
 }
 
 export const AmmoModifications: IAmmoModification[] = [
     { name: 'Standard', description: 'default version of the ammo, assumes the weapons stats unchanged', cost: 1 },
-    { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +3 to hit.', hitAdd: 3, cost: 2 },
-    { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1 },
+    { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +3 to hit.', hitAdd: 3, cost: 1.5 },
+    { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1.2 },
     { name: 'Armor Piercing', description: 'bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage.', armorPiercingAdd: 4, damageAdd: -1, cost: 1.1 },
     { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', damageAdd: 2, armorPiercingAdd: 1, cost: 2.5 },
     { name: 'Shell', description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
-    { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 4, hitAdd: 1, cost: 1 },
+    { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 2, damageAdd: 1, hitAdd: 1, cost: 1, rangeMultiplier: 2 },
     { name: 'Explosive', description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', damageAdd: 2, armorPiercingAdd: 3, hitAdd: 1, cost: 2 },
+    { name: 'Wolf', description: 'tungsten slug, named after the old name of tungsten, extremely hard and heavy slug, double range', armorPiercingAdd: 5, damageAdd: 1, cost: 10, rangeMultiplier: 2 },
+    { name: 'Neodymium', description: 'ferromagnetic neodymium bullet, stronger magnet results in more force', armorPiercingAdd: 1, damageAdd: 1, cost: 10 },
     { name: 'Plasma Bomb', description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing.', damageMultiplier: 2, splashMultiplier: 2, cost: 5 },
     { name: 'Fire Bomb', description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
     { name: 'Frag', description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
@@ -285,6 +288,8 @@ const D = (n: number, s: number): IDamageDice => {
     };
 }
 
+type reloadType = 'move action' | 'action' | 'full round' | 'two full rounds';
+
 interface IFirearm extends Item {
     fireArmClass: fireArmClass,
     damage: IDamageDice;
@@ -301,6 +306,8 @@ interface IFirearm extends Item {
     strengthRequirement: number;
     splashRange?: number;
     lowDamageZone?: number;
+    /** default move action */
+    reload?: reloadType;
 }
 
 
@@ -322,8 +329,10 @@ export class FireArm implements IFirearm {
     strengthRequirement: number;
     splashRange?: number;
     lowDamageZone?: number;
+    reload?: reloadType;
 
-    constructor(name: string, weight: number, value: number, damage: IDamageDice, fireArmClass: fireArmClass, range: number, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined) {
+
+    constructor(name: string, weight: number, value: number, damage: IDamageDice, fireArmClass: fireArmClass, range: number, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined, reload: reloadType | undefined) {
         this.fireArmClass = fireArmClass;
         this.name = name;
         this.weight = weight;
@@ -340,6 +349,7 @@ export class FireArm implements IFirearm {
         this.strengthRequirement = strengthRequirement;
         this.splashRange = splashRange;
         this.lowDamageZone = lowDamageZone;
+        this.reload = reload || 'move action';
     }
 }
 
@@ -347,15 +357,15 @@ const Firearms: FireArm[] = [
     //hand guns
     {
         fireArmClass: 'handgun', name: 'revolver', damage: D(1, 10), range: 300, ammo: '10x19', strengthRequirement: 2, capacity: 6, fireAction: ['double action revolver'], armorpiercing: 1, weight: 800, value: 1000,
-        description: 'basic revolver, this antique weapon design is mostly considered a collectors item for gun and antique enthusiasts. It still works.'
+        description: 'basic revolver, this antique weapon design is mostly considered a collectors item for gun and antique enthusiasts. It still works.', reload: 'full round'
     },
     {
         fireArmClass: 'handgun', name: 'Fantry Light Model', damage: D(2, 6), range: 350, ammo: '10x21', strengthRequirement: 1, capacity: 19, fireAction: ['semi-automatic'], armorpiercing: 1, weight: 950, value: 900,
-        description: 'the light handgun model of the fantry gun manufacturer, has a generous ammo capacity and the design makes it less loud than other handguns'
+        description: 'the light handgun model of the fantry gun manufacturer, has a generous ammo capacity and the design makes it less loud than other handguns',
     },
     {
         fireArmClass: 'handgun', name: 'Fantry Heavy Model', damage: D(2, 8), range: 450, ammo: '11x21', strengthRequirement: 4, capacity: 14, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 1200, value: 1200,
-        description: 'a large hand gun designed to inflict serious damage'
+        description: 'a large hand gun designed to inflict serious damage', reload: 'action'
     },
     {
         fireArmClass: 'handgun', name: 'Merlion Atomic', damage: D(2, 6), range: 400, ammo: '10x21', strengthRequirement: 2, capacity: 12, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 850, hitbonus: 2, value: 1700,
@@ -365,11 +375,11 @@ const Firearms: FireArm[] = [
     //submachinegun
     {
         fireArmClass: 'handgun', name: 'Fantry Sub Model', damage: D(1, 8), range: 350, ammo: '9x21', strengthRequirement: 3, capacity: 24, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 1800, value: 2800,
-        description: 'A very light submachine gun, fires relatively slow for a submachine gun on while on full automatic'
+        description: 'A very light submachine gun, fires relatively slow for a submachine gun on while on full automatic',
     },
     {
         fireArmClass: 'handgun', name: 'Skolt cleaner', damage: D(1, 10), range: 300, ammo: '10x19', strengthRequirement: 4, capacity: 36, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, rps: 10, weight: 2100, value: 3100,
-        description: 'The Skolt Cleaner is a popular submachinegun'
+        description: 'The Skolt Cleaner is a popular submachinegun', reload: 'action'
     },
 
     //rifle
@@ -379,15 +389,15 @@ const Firearms: FireArm[] = [
     },
     {
         fireArmClass: 'rifle', name: 'Skolt Hunter', damage: D(2, 8), range: 100, ammo: '12x20', strengthRequirement: 4, capacity: 8, fireAction: ['bolt action'], armorpiercing: 2, weight: 2300, value: 2000,
-        description: 'A rifle primarily designed for hunting'
+        description: 'A rifle primarily designed for hunting', reload: 'full round'
     },
     {
         fireArmClass: 'rifle', name: 'Skolt LG', damage: D(2, 10), range: 1200, ammo: '12x24', strengthRequirement: 5, capacity: 6, fireAction: ['bolt action'], armorpiercing: 3, weight: 3500, value: 2100,
-        description: 'The skolt LG (long gun) is primarily designed for hunting large game'
+        description: 'The skolt LG (long gun) is primarily designed for hunting large game', reload: 'full round'
     },
     {
         fireArmClass: 'rifle', name: 'Night AV Sniper', damage: D(2, 10), range: 1800, ammo: '12x28', strengthRequirement: 5, capacity: 4, fireAction: ['bolt action'], armorpiercing: 5, hitbonus: -1, weight: 8200, value: 3600,
-        description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles'
+        description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles', reload: 'full round'
     },
 
     //automatic rifle
@@ -403,30 +413,31 @@ const Firearms: FireArm[] = [
     //shotgun
     {
         fireArmClass: 'rifle', name: 'Skolt Crusher', damage: D(2, 6), range: 160, ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2600, value: 2400, armorpiercing: 1,
-        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 0.5, lowDamageZone: 1,
+        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.5, lowDamageZone: 1,
+        reload: 'action'
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer', damage: D(2, 6), range: 80, ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 1,
-        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 0.8, lowDamageZone: 1,
+        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.8, lowDamageZone: 1,
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: D(2, 6), range: 40, ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 2,
-        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters roll 1d6+6 instead of normal weapon damage. Double range penalty to accuracy.', splashRange: 1
+        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 1,
     },
 
     //magnetic guns
 
     {
-        fireArmClass: 'rifle', name: 'Night Coil', damage: D(2, 6), range: 1200, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 5,
-        description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent'
+        fireArmClass: 'rifle', name: 'Night Coil', damage: D(2, 6), range: 1200, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 4,
+        description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent', reload: 'full round'
     },
     {
-        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: D(2, 8), range: 1800, ammo: '4mm ec', strengthRequirement: 7, capacity: 60, fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 6,
-        description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds'
+        fireArmClass: 'rifle', name: 'Skolt Railgun', damage: D(2, 8), range: 1800, ammo: '4mm ec', strengthRequirement: 7, capacity: 60, fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 5,
+        description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds', reload: 'full round'
     },
     {
-        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: D(2, 8), range: 2000, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 6,
-        description: 'A strange rifle that exploits the electroweak force in an unknown way'
+        fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: D(2, 8), range: 2000, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 5,
+        description: 'A strange rifle that exploits the electroweak force in an unknown way', reload: 'action'
     },
 
     //machinegun
@@ -440,47 +451,51 @@ const Firearms: FireArm[] = [
     },
     {
         fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: D(2, 10), range: 1600, ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 9500,
-        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action'
+        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action', reload: 'two full rounds'
     },
 
     //rocket launcher
     {
         fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: D(6, 8), range: 600, ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
         description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 2,
+        reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
         description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action.', splashRange: 2, lowDamageZone: 3,
+        reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
         description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
+        reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
         description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
+        reload: 'two full rounds'
     },
 
     //energy weapons
     {
-        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2300,
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2300,
         description: 'the only laser handgun, needs protective gear to use, has blinding effect to all within 1 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
+        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
         description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 6100,
+        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 6100,
         description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 3 meters, half range penalty'
     },
     {
         fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 9200,
-        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters'
+        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters', reload: 'action'
     },
     {
         fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 6700,
-        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters'
+        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action'
     }
 ];
 
@@ -500,16 +515,25 @@ export interface IFirearmModification {
     damageMod?: number | undefined;
     armorPiercingMod?: number | undefined;
     rangeMod?: number | undefined;
+    ammoCapacityMod?: number | undefined;
 }
 
 export const FirearmModifications: IFirearmModification[] = [
     {
         name: 'Scope',
-        description: 'Reduces long range penalties to half when using snipe or aimed shot',
+        description: 'Reduces long range penalties by half when using snipe or aimed shot',
         effects: [],
         cost: 300,
         costMultiplier: 1,
         weight: 200,
+    },
+    {
+        name: 'Targeting gyro scope',
+        description: 'Reduces long range penalties by quarter when using snipe shot or half when using aimed shot.',
+        effects: [],
+        cost: 2200,
+        costMultiplier: 1,
+        weight: 400,
     },
     {
         name: 'Suppressor',
@@ -541,6 +565,34 @@ export const FirearmModifications: IFirearmModification[] = [
         hitMod: 2,
     },
     {
+        name: 'Extended magazine',
+        description: 'Double clip size',
+        effects: ['ammo +100%'],
+        cost: 0,
+        costMultiplier: 1.2,
+        weight: 0,
+        weightMultiplier: 1.1,
+        ammoCapacityMod: 2,
+    },
+    {
+        name: 'Auto-loader',
+        description: 'Converts a semi-automatic firearm into a fully-automatic one, removes semi-auto mode, adds full-auto mode. Not available for energy weapons',
+        effects: ['remove semi-auto', 'add full-auto', 'hit bonus -4', 'armor piercing -1'],
+        cost: 100,
+        weight: 0,
+        costMultiplier: 1,
+        hitMod: -4,
+        armorPiercingMod: -1,
+    },
+    {
+        name: 'Extra barrel',
+        description: 'Adds a secondary barrel (often 20mm rpg), single ammo capacity, reduces accuracy slightly. Only available to rifle type weapons.',
+        effects: ['hit bonus -1'],
+        cost: 200,
+        weight: 500,
+        costMultiplier: 1,
+    },
+    {
         name: 'Heavy Stock',
         description: 'Improves recoil control, can not be transferred to other firearms.',
         effects: ['+1 hit bonus', '+1 damage bonus'],
@@ -550,6 +602,33 @@ export const FirearmModifications: IFirearmModification[] = [
         weightMultiplier: 1.4,
         hitMod: 1,
         damageMod: 1,
+    },
+    {
+        name: 'Bayonet',
+        description: 'Adds a spear at the end of your firearm turning it into a spear, not available to handguns and machineguns. Uses long spear stats',
+        effects: [],
+        cost: 600,
+        costMultiplier: 1,
+        weight: 800,
+    },
+    {
+        name: 'Long barrel',
+        description: 'Longer barrel range for increased range, not available to machineguns and energy weapons.',
+        effects: ['+50% maximum range'],
+        cost: 0,
+        costMultiplier: 1.1,
+        weight: 0,
+        weightMultiplier: 1.1,
+        rangeMod: 1.5
+    },
+    {
+        name: 'Environmental shielding',
+        description: 'This weapon is protected from environmental damages including water, salt, acid, heat, emp.',
+        effects: [],
+        cost: 0,
+        costMultiplier: 1.2,
+        weight: 0,
+        weightMultiplier: 1,
     },
     {
         name: 'Tripod',

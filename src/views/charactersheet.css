@@ -39,6 +39,7 @@ label.mediumSizedLabel input {
 label.shortLabel {
   width: 160px;
   margin-left: 6px;
+  max-height: 18px;
 }
 
 label.veryShortLabel input {

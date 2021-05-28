@@ -156,15 +156,22 @@ const HeavyHandle = new PerkTemplate({
     name: 'heavy handle',
     skill: skill,
     level: 1,
-    description: 'your strength counts as +2 higher for the purposes of meeting strength requirements on firearms'
+    description: 'your strength counts as +4 higher for the purposes of meeting strength requirements on firearms'
 });
 
 const StraferShooter = new PerkTemplate({
     name: 'strafer shooter',
     skill: skill,
     level: 2,
-    description: 'No movement or defense penalties from burst. Oppressive fire only apply burst penalties to movement and defense.'
+    description: 'Burst no longer uses half movement speed, oppressive fire only uses half movement.',
+});
+
+const RapidBoltAction = new PerkTemplate({
+    name: 'Rapid Bolt Action',
+    skill: skill,
+    level: 2,
+    description: 'If you use aimed shot with a bolt action or semi-automatic firearm you may also use your move action shoot the same target. Doing so drops your defense to base.',
 });
 
 export const FirearmsPerks = [HandGunSpecialization, HandGunExpert, RifleSpecialization, RifleExpert, MachineGunSpecialization, MachineGunExpert, RocketLaunchersSpecialization,
-    LaserSpecialization, LaserExpert, PlasmaSpecialization, PlasmaExpert, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter, HeavyHandle, FastShooter, DeadlyShot, AnnihilatingShot];
+    LaserSpecialization, LaserExpert, PlasmaSpecialization, PlasmaExpert, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter, RapidBoltAction, HeavyHandle, FastShooter, DeadlyShot, AnnihilatingShot];
