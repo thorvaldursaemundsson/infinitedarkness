@@ -50,7 +50,7 @@ const DimensionalSwap = new SpellTemplate(
 
 const Splinter = new SpellTemplate(
     'Splinter',
-    'Spell: You cover yourself in a cocoon, after a minute the cocoon splits open revealing two clones of yourself with all of your capabilities and has shared mana, both think they are the original, your equipment and inventory is duplicated. Lasts 24 hours after which one will die and whoever is left is the original (players choice). The duplicate will slowly disintigrate into nothing after death (including equipment which immediately becomes innert and useless). Spend 2 mana every day to keep it alive longer, prevents mana regen while active. Skills gained by a clone is gained by the original too, experience multiplier applies across the whole set.',
+    'Spell: You cover yourself in a cocoon, after a minute the cocoon splits open revealing two clones of yourself with all of your capabilities and has shared mana, both think they are the original, your equipment and inventory is duplicated. Lasts 24 hours after which one will die and whoever is left is the original (players choice). The duplicate will slowly disintigrate into nothing after death (including equipment which immediately becomes innert and useless). Spend 2 mana every day to keep it alive longer, prevents mana regen while active. Skills gained by a clone is gained by the original too, experience multiplier applies across the whole set. Mana is shared between clones',
     '1 minute',
     'personal',
     [

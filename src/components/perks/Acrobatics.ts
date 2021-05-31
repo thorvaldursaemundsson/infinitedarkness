@@ -4,20 +4,19 @@ const Balance = new PerkTemplate({
     name: 'balance',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent balance, gain +5 to balancing rolls'
-}, {
-    applyTo: 'balance',
-    amount: 5
+    description: 'You gain the following benefits ',
+    results: [
+        'You can move across difficult terrain without movement penalty',
+        'When you stand up from a prone position it costs only 1 meter movement',
+        'You take only half damage from hazardous terrain'
+    ]
 });
 
 const AccurateThrower = new PerkTemplate({
     name: 'Accurate Thrower',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character has excellent aim while throwing, when throwing (using either athletics, combat or explosives) you suffer only half penalties to throwing'
-}, {
-    applyTo: '',
-    amount: 0
+    description: 'Your character has excellent aim while throwing, when throwing (using either athletics, combat or explosives) you suffer only half penalties range to throwing'
 });
 
 const Dodger = new PerkTemplate({
@@ -54,10 +53,13 @@ const Tumbler = new PerkTemplate({
     name: 'tumbler',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is an avid tumbler, gain +5 to all tumbling rolls'
-}, {
-    applyTo: 'tumble',
-    amount: 5
+    description: 'Your character gains the following effects',
+    results: [
+        'When falling, roll 2d10 acrobatics + agility, subtract half the result from meters fallen',
+        'You may substitute acrobatics for athletics when jumping',
+        'You may land into standing position',
+        'If you use an action that consumes one (and only one) meter of movement, it doesn\'t count as having used movement'
+    ]
 });
 
 export const AcrobaticsPerks = [Balance, AccurateThrower, Dodger, Evasive, Elusive, Tumbler];

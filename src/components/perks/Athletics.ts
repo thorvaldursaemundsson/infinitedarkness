@@ -5,10 +5,11 @@ const Climber = new PerkTemplate({
     name: 'climber',
     skill: skill,
     level: 1,
-    description: 'Your character is better at climing, when you climb you move at half rather than quarter speed.'
-}, {
-    applyTo: 'climb',
-    amount: 5
+    description: 'Your character is better at climing',
+    results: [
+        'when you climb you move at half rather than quarter speed',
+        'when climbing you may use both hands for your action'
+    ]
 });
 
 const DistanceThrower = new PerkTemplate({
@@ -16,57 +17,53 @@ const DistanceThrower = new PerkTemplate({
     skill: 'acrobatics',
     level: 1,
     description: 'Your character is experienced with building momentum. Add +25% maximum distance to all throwing. (using either athletics, combat or explosives)'
-}, {
-    applyTo: '',
-    amount: 0
 });
 
 const Runner = new PerkTemplate({
     name: 'runner',
     skill: skill,
     level: 1,
-    description: 'Your character is better at running, gain +5 to running (effectively doubling your maximum range)'
+    description: 'Your character is better at running',
+    results: [
+        'You gain +1 speed',
+        'You can run twice as far without gaining exhaustion'
+    ]
 }, {
-    applyTo: 'run',
-    amount: 5
+    amount: 1,
+    applyTo: 'speed'
 });
 
 const Jumper = new PerkTemplate({
     name: 'jumper',
     skill: skill,
     level: 1,
-    description: 'Your character is better at jumping, gain +5 to jumping rolls and falling counts as 1 less meter.'
-}, {
-    applyTo: 'jump',
-    amount: 5
+    description: 'Your character is better at jumping',
+    results: [
+        'You can jump 2 meters further and 0.5 meters higher',
+        'When you roll for jump and get a dice result of 10 or less it counts as 10',
+        'You only need 2 meter of running up to avoid -5 on roll'
+    ]
 });
 
 const Swimmer = new PerkTemplate({
     name: 'swimmer',
     skill: skill,
     level: 1,
-    description: 'Your character is better at swimming, gain +5 to swimming rolls'
-}, {
-    applyTo: 'jump',
-    amount: 5
+    description: 'Your character is better at swimming',
+    results: [
+        'You can hold your breath for 1 minute longer',
+        'You suffer only half penalties from difficult waters',
+        'You gain 1 base speed in water'
+    ]
 });
 
 const DeepLungs = new PerkTemplate({
     name: 'deep lungs',
     skill: skill,
     level: 1,
-    description: 'You have trained your body to hold your breath for longer, you hold your breath for twice as long.'
-}, {
-    applyTo: 'breath',
-    amount: 5
+    description: 'You have trained your body to hold your breath for longer, you hold your breath for four as long.'
 });
 
-const FastSwimmer = new PerkTemplate({
-    name: 'fast swimmer',
-    skill: skill,
-    level: 1,
-    description: 'When you roll to swim at 100% speed you instead swim at 150%'
-});
 
 const GoodFortitude = new PerkTemplate({
     name: 'good fortitude',
@@ -106,16 +103,6 @@ const StrongBack = new PerkTemplate({
 }, {
     applyTo: 'carryingCapacity',
     amount: 3
-});
-
-const Fast = new PerkTemplate({
-    name: 'Fast',
-    skill: skill,
-    level: 1,
-    description: 'You are a trained runner, gain +1 base speed and +3 to all running rolls'
-}, {
-    applyTo: 'speed',
-    amount: 1
 });
 
 const HighMobility = new PerkTemplate({
@@ -170,5 +157,5 @@ const Robust = new PerkTemplate({
     applyTo: 'damageAbsorption'
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, FastSwimmer, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
-    Fast, HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy, Robust];
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
+    HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy, Robust];
