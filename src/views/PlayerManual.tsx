@@ -14,7 +14,6 @@ import Cybernetics from '../components/playermanual/Cybernetics';
 import HealthAndRest from '../components/playermanual/HealthAndRest';
 import { IViewProps } from './IViewProps';
 import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSpeed';
-import SpellRoller from '../components/playermanual/SpellRoller';
 
 
 const PlayerManual: React.FC<IViewProps> = ({route}) => {
@@ -50,8 +49,7 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <Cybernetics key='pmcyb' />
         <hr />
         <Radiation key='pmr' />
-        <hr />
-        <Section title='Spell Roller'><SpellRoller key='pm9' /></Section>
+        
     </div>);
 }
 

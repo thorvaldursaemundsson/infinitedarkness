@@ -124,7 +124,7 @@ const DeadlyShot = new PerkTemplate({
 });
 
 const AnnihilatingShot = new PerkTemplate({
-    name: 'deadly shot',
+    name: 'annihilating shot',
     skill: skill,
     level: 3,
     description: 'you are particularly deadly, add +1d6 damage when making a snipe shot. Requires DeadlyShot perk '

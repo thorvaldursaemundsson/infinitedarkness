@@ -7,6 +7,7 @@ import Wizard from '../components/gamemaster/Wizard';
 import CharacterGenerator from '../components/gamemaster/CharacterGenerator';
 import Weather from '../components/gamemaster/Weather';
 import EnvironmentalDamage from '../components/gamemaster/EnvironmentalDamage';
+import SpellRoller from '../components/gamemaster/SpellRoller';
 
 
 const GameMaster: React.FC = () => {
@@ -28,6 +29,8 @@ const GameMaster: React.FC = () => {
         <Section title='Weather'>
             <Weather />
         </Section>
+        <hr />
+        <Section title='Spell Roller'><SpellRoller key='pm9' /></Section>
         <hr />
         <EnvironmentalDamage key='pmenvdmg' />
         <hr />

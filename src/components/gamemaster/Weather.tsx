@@ -1,9 +1,14 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import Section from '../playermanual/Section';
 
 
 
 const Weather: React.FC = () => {
+    const [temperatureRange, setTemperatureRange] = useState<[number, number, number]>([0, 0, 0]);
+    const [latitude, setLatitude] = useState(0);
+
+
     return <>
         <h2>Weather</h2>
         <p>Weather depends on multiple factors, but here's an easy weather calculator, weather is a relative a short term phenomenon.</p>
@@ -19,8 +24,69 @@ const Weather: React.FC = () => {
             <li><b>99</b>: Severe Hurricane</li>
             <li><b>100</b>: Extreme Hurricane</li>
         </ul>
+
+        <Section title='Weather generator'>
+            <div>
+                <input className='short' title='min temperature' type='text' value={temperatureRange[0]} onChange={(e) => setTemperatureRange([parseFloat(e.target.value), temperatureRange[1], temperatureRange[2]])} />
+                <input className='short' title='mean temperature' type='text' value={temperatureRange[1]} onChange={(e) => setTemperatureRange([temperatureRange[0], parseFloat(e.target.value), temperatureRange[2]])} />
+                <input className='short' title='max temperature' type='text' value={temperatureRange[2]} onChange={(e) => setTemperatureRange([temperatureRange[0], temperatureRange[1], parseFloat(e.target.value)])} />
+                |
+                <input className='short' title='latitude' type='text' value={latitude} onChange={(e) => setLatitude(parseFloat(e.target.value))} />
+
+                <WeatherGenerator temperatureRange={temperatureRange} latitude={latitude} />
+            </div>
+        </Section>
     </>;
 }
+
+interface IWeatherGenerator {
+    temperatureRange: [number, number, number];
+    latitude: number;
+}
+
+
+
+const WeatherGenerator: React.FC<IWeatherGenerator> = ({ temperatureRange, latitude }) => {
+    const [temperature, setTemperature] = useState(0);
+    const [humidity, setHumidity] = useState(0);
+    const [windSpeed, setWindSpeed] = useState(0);
+
+    const randomize = () => {
+        const temperatureMod = 0;//Math.random() * 20 - 10;
+        const latitudeInRadians = Math.sin(Math.PI / (90 - latitude));
+        if (Math.abs(latitude) > 45) {
+            Math.sin(latitude)
+
+            setTemperature(temperatureMod + temperatureRange[0] + temperatureRange[1] * latitudeInRadians);
+        }
+        else {
+
+            setTemperature(temperatureMod + temperatureRange[1] + temperatureRange[2] * latitudeInRadians);
+        }
+    };
+
+    const temperatureMod = 0;//Math.random() * 20 - 10;
+    const latitudeInRadians = Math.sin((Math.PI / 180) * (90 - latitude));
+    let temp = 0;
+    if (Math.abs(latitude) > 45) {
+        Math.sin(latitude)
+
+        temp = (temperatureMod + temperatureRange[1] * latitudeInRadians);
+    }
+    else {
+
+        temp = (temperatureMod + temperatureRange[2] * latitudeInRadians);
+    }
+
+
+    return <div>
+        <button onClick={() => randomize()} >Randomize</button>
+        <b>Temperature </b>{Math.floor(temp)}<br />
+        <b>Humidity</b> {humidity}<br />
+        <b>Wind Speed</b> {windSpeed}
+    </div>;
+}
+
 
 
 export default Weather;
