@@ -1,6 +1,6 @@
 import { CharacterSize } from "../Character";
 
-export type race = 'human' | 'shambras' | 'merlion' | 'nekovian';
+export type race = 'human' | 'shambras' | 'merlion' | 'nekovian' | 'synth';
 
 export interface IDice {
     numberOfDice: 1 | 2 | 3 | 4;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface IHideText {
     isEdit: "edit" | "print" | "explain" | "hide";
@@ -23,6 +23,24 @@ const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt, explain }) => {
     else return <HideText txt={txt} isEdit={isEdit} explain={explain} />
 }
 
+interface ISelectText extends IEditText {
+    options: string[];
+}
+
+export const SelectText: React.FC<ISelectText> = ({ isEdit, onChange, txt, explain, options }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    if (isEdit === "edit") {
+        return <>
+            <input onFocus={() => setIsOpen(true)} className='no-print' type="text" onChange={(e) => onChange(e.target.value)} value={txt}></input>
+            {isOpen &&
+                <span className="SelectTextBlock">
+                    {options.map(option => <span className="SelectTextOption" onClick={() => { onChange(option); setIsOpen(false); }}>{option}</span>)}
+                </span>}
+        </>
+    }
+    else return <HideText txt={txt} isEdit={isEdit} explain={explain} />
+}
 
 
 export default EditText;

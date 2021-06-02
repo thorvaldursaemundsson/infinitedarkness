@@ -5,6 +5,7 @@ import { FTLHyperDrive, History, Merlions, SolSystem, CentauriSystem, FringeWorl
 import Section from '../components/playermanual/Section';
 import Robotics from '../components/Lore/Robotics';
 import Monsters from '../components/monsters/Monsters';
+import Synths from '../components/Lore/Synths';
 
 const WorldAndLore: React.FC = () => {
     return (<div>
@@ -23,6 +24,8 @@ const WorldAndLore: React.FC = () => {
         <Section title='The galaxy'>work in progress...</Section>
         <hr />
         <Section title='The Humans'><Humans /></Section>
+        <hr />
+        <Section title='The Synths'><Synths /></Section>
         <hr />
         <Section title='The Merlions'><Merlions /></Section>
         <hr />

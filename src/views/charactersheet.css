@@ -214,3 +214,20 @@ span.smallLabel {
   display: inline-block;
   height: 100%;
 }
+
+span.SelectTextOption {
+  display: block;
+  border: 1px solid gray;
+  border-radius: 2px;
+  height: 22px;
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+  background-color: #ccddff;
+  width: 80px;
+}
+
+span.SelectTextBlock {
+  display: block;
+  position: absolute;
+}

@@ -1,6 +1,7 @@
 import { Character, CharacterSize } from "../Character";
 import { Perk } from "./Perks";
 import { Trait } from "../traits/Traits";
+import { race } from "../races/Races";
 
 export interface dispatcher {
     action: string;
@@ -24,6 +25,16 @@ const getSizeFromString = (str:string|undefined):CharacterSize => {
     }
 };
 
+const stringToRace = (str:string|undefined):race => {
+    switch (str) {
+        case 'merlion': return 'merlion';
+        case 'synth': return 'synth';
+        case 'shambras': return 'shambras';
+        case 'nekovian': return 'nekovian';
+        default: return 'human';
+    }
+}
+
 export const useCharacter = (state: Character, action: dispatcher): Character => {
     switch (action.action) {
         case 'strength': return new Character({ ...state, strength: action.value });
@@ -40,7 +51,7 @@ export const useCharacter = (state: Character, action: dispatcher): Character =>
             r.skills[state.skills.findIndex(s => s.name === action.name)].level = action.value;
             return r;
         case 'name': return new Character({ ...state, name: action.name || '' });
-        case 'species': return new Character({ ...state, species: action.name || '' });
+        case 'species': return new Character({ ...state, species: stringToRace(action.name)});
         case 'gender': return new Character({ ...state, gender: action.name || '' });
         case 'background': return new Character({ ...state, background: action.name || '' });
         case 'size':

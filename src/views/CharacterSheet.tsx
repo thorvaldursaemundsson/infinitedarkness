@@ -1,11 +1,11 @@
 import React, { useReducer, useState } from 'react';
-import { Character } from '../components/Character';
+import { Character, CharacterSizes } from '../components/Character';
 import { GetTraits } from '../components/traits/Traits';
 import { GetPerkList } from '../components/general/GetPerkList';
 import { useCharacter } from '../components/general/useCharacter';
 
 import './charactersheet.css';
-import EditText, { HideText } from '../components/general/HideText';
+import EditText, { HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
 
 interface CharacterSheetProps {
@@ -76,7 +76,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Species</label>
                     </td>
                     <td>
-                        <EditText txt={character.species} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} explain={character.explain('species')} />
+                        <SelectText options={['human', 'shambras', 'merlion', 'nekovian', 'synth']} txt={character.species} isEdit={viewState} onChange={(str) => dispatch({ name: str, action: 'species', value: 0 })} explain={character.explain('species')} />
                     </td>
                     <td>
                         <label>Sequence</label>
@@ -167,7 +167,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     <HideText isEdit={viewState} txt={character.getBaseSpeed().toString()} explain={character.explain('speed')}/>
                         </td>
                     <td><label>Size</label></td><td>
-                        <EditText txt={character.size} isEdit={viewState} onChange={(size) => dispatch({action:'size', value: 0, name: size}) } explain={character.explain('size')} />
+                        <SelectText options={[...CharacterSizes]} txt={character.size} isEdit={viewState} onChange={(size) => dispatch({action:'size', value: 0, name: size}) } explain={character.explain('size')} />
                     </td>
                 </tr>
                 <tr>

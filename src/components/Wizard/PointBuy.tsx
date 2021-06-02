@@ -5,6 +5,7 @@ import { merlions } from '../races/Merlions';
 import { nekovian } from '../races/Nekovians';
 import { IRacialMod, race } from '../races/Races';
 import { shambras } from '../races/Shambras';
+import { synths } from '../races/Synth';
 
 export interface IStats {
     strength: number;
@@ -40,6 +41,9 @@ const pickRacialMod = (species: race | undefined, age: number | undefined) => {
             break;
         case 'shambras':
             output = shambras.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+        case 'synth': 
+            output = synths.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
             break;
     }
     return output;

@@ -6,8 +6,7 @@ import { GetSkillList } from '../general/GetSkillList';
 import BackgroundChooser, { SkillRankPair } from '../Wizard/BackgroundChooser';
 import BasicChooser from '../Wizard/BasicChooser';
 import PointBuy, { IStats } from '../Wizard/PointBuy';
-
-type race = 'human' | 'shambras' | 'merlion' | 'nekovian';
+import { race } from "../races/Races";
 
 export const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
     const allSkills = GetSkillList();
@@ -49,7 +48,6 @@ const Wizard: React.FC = () => {
 
     const completeStep1 = (changerace: race, gender: string, age: number, name: string) => {
         setBackgroundSkills([]);
-        console.log('changing race from ' + race + ' to ' + changerace)
         setRace(changerace);
         setGender(gender);
         setAge(age);

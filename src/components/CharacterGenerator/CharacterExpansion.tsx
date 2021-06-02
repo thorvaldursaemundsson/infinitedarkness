@@ -6,7 +6,10 @@ import { GetSkillList } from "../general/GetSkillList";
 import { Skill } from "../general/Skills";
 import { rollCharacterData, sumN } from "../Lore/CharacterRoller";
 import { humans } from "../races/Humans";
+import { merlions } from "../races/Merlions";
+import { nekovian } from "../races/Nekovians";
 import { race } from "../races/Races";
+import { shambras } from "../races/Shambras";
 
 export interface INonPlayerCharacter {
     species: race;
@@ -95,6 +98,18 @@ const getRacialMod = (species: race, age: number) => {
             const h = humans.find(pred => pred.ageSpan[0] < age && age < pred.ageSpan[1]);
             if (h !== undefined) return h;
             else return humans[humans.length];
+        case 'merlion':
+            const m = merlions.find(pred => pred.ageSpan[0] < age && age < pred.ageSpan[1]);
+            if (m !== undefined) return m;
+            else return merlions[merlions.length];
+        case 'nekovian':
+            const n = nekovian.find(pred => pred.ageSpan[0] < age && age < pred.ageSpan[1]);
+            if (n !== undefined) return n;
+            else return nekovian[nekovian.length];
+        case 'shambras':
+            const s = shambras.find(pred => pred.ageSpan[0] < age && age < pred.ageSpan[1]);
+            if (s !== undefined) return s;
+            else return shambras[shambras.length];
         default:
             return humans[humans.length];
     }
