@@ -1,11 +1,7 @@
 import React, { useReducer } from 'react';
+import { findRacialModFromRage } from '../../utils/utilFunctions';
 import { CharacterSize } from '../Character';
-import { humans } from '../races/Humans';
-import { merlions } from '../races/Merlions';
-import { nekovian } from '../races/Nekovians';
-import { IRacialMod, race } from '../races/Races';
-import { shambras } from '../races/Shambras';
-import { synths } from '../races/Synth';
+import {  race } from '../races/Races';
 
 export interface IStats {
     strength: number;
@@ -26,28 +22,7 @@ interface IPointBuyProps {
     onComplete: (output: IStats) => void;
 }
 
-const pickRacialMod = (species: race | undefined, age: number | undefined) => {
-    if (species === undefined || age === undefined) return undefined;
-    let output: IRacialMod | undefined = undefined;
-    switch (species) {
-        case 'human':
-            output = humans.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
-            break;
-        case 'merlion':
-            output = merlions.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
-            break;
-        case 'nekovian':
-            output = nekovian.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
-            break;
-        case 'shambras':
-            output = shambras.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
-            break;
-        case 'synth': 
-            output = synths.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
-            break;
-    }
-    return output;
-}
+
 
 interface IDispatch {
     strength?: number;
@@ -117,7 +92,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
         restExp: 0,
     });
 
-    const currentRacialMod = pickRacialMod(startingSpecies, startingAge);
+    const currentRacialMod = findRacialModFromRage(startingSpecies, startingAge);
     if (currentRacialMod === undefined) {
         return <>please choose valid species and age range</>;
     }

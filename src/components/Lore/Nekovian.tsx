@@ -1,14 +1,11 @@
 import React from 'react';
 import Section from '../playermanual/Section';
-import { Character } from '../Character';
 import { GenericCharacterRoller } from './CharacterRoller';
 import RaceTable from '../races/RaceTable';
-import { nekovian } from '../races/Nekovians';
+import { nekovianData } from '../races/Nekovians';
+import { getExperienceAges } from '../races/Races';
 
-const experienceAges = [...Array(90)]
-    .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsNekovian(index), mult: Character.ExperienceMultiplerNekovian(index) };
-    });
+const experienceAges = getExperienceAges(nekovianData, 90);
 
 const Nekovian = () => <>
     <h2>Nekovians</h2>
@@ -27,9 +24,9 @@ const Nekovian = () => <>
     <p>Nekovians move at double speed in water and air, and can fly (glide downwards at ~15 degrees)</p>
     <p>Nekovians have a bite attack, roll combat + agility vs defense, deals 1d6 + strength/3</p>
     
-    <RaceTable racialData={nekovian} />
+    <RaceTable racialData={nekovianData.racialMods} />
     
-    <GenericCharacterRoller racialMod={nekovian} />
+    <GenericCharacterRoller raceData={nekovianData} />
 
     <Section title='Nekovian experience per age is as following'>
         <table>
@@ -39,7 +36,7 @@ const Nekovian = () => <>
                 </tr>
             </thead>
             <tbody>
-                {experienceAges.slice(16, 101).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                {experienceAges.slice(16, 90).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
             </tbody>
         </table>
     </Section>

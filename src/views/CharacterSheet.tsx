@@ -152,7 +152,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Carrying capacity</label>
                     </td>
                     <td>
-                        <HideText isEdit={viewState} txt={character.getBaseCarryingCapacity().toString()} explain={character.explain('carryingCapacity')}/>
+                        <HideText isEdit={viewState} txt={character.getBaseCarryingCapacity().toString()} explain={character.explain('carryingCapacity')} />
                     </td>
                     <td>
                         <label>Willpower</label>
@@ -164,10 +164,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 <tr>
                     <td><label>Player</label></td><td>&nbsp;</td>
                     <td><label>Speed</label></td><td>
-                    <HideText isEdit={viewState} txt={character.getBaseSpeed().toString()} explain={character.explain('speed')}/>
-                        </td>
+                        <HideText isEdit={viewState} txt={character.getBaseSpeed().toString()} explain={character.explain('speed')} />
+                    </td>
                     <td><label>Size</label></td><td>
-                        <SelectText options={[...CharacterSizes]} txt={character.size} isEdit={viewState} onChange={(size) => dispatch({action:'size', value: 0, name: size}) } explain={character.explain('size')} />
+                        <SelectText options={[...CharacterSizes]} txt={character.size} isEdit={viewState} onChange={(size) => dispatch({ action: 'size', value: 0, name: size })} explain={character.explain('size')} />
                     </td>
                 </tr>
                 <tr>
@@ -318,13 +318,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        {Pad(30,0).map(i=><span className='mentalHealthBoxes'>&nbsp;</span>)}
+                                        {Pad(30, 0).map(i => <span className='mentalHealthBoxes'>&nbsp;</span>)}
                                     </td>
                                     <td>
-                                        {Pad(80,0).map(i=><span className='manaBoxes'>&nbsp;</span>)}
+                                        {Pad(80, 0).map(i => <span className='manaBoxes'>&nbsp;</span>)}
                                     </td>
                                     <td>
-                                        {Pad(8,0).map(i=><span className='exhaustionBoxes'>&nbsp;</span>)}
+                                        {Pad(8, 0).map(i => <span className='exhaustionBoxes'>&nbsp;</span>)}
                                     </td>
                                 </tr>
                             </tbody>

@@ -1,14 +1,11 @@
 import React from "react";
-import { Character } from "../Character";
 import Section from "../playermanual/Section";
-import { humans } from "../races/Humans";
+import { humansData } from "../races/Humans";
+import { getExperienceAges } from "../races/Races";
 import RaceTable from "../races/RaceTable";
 import { GenericCharacterRoller } from "./CharacterRoller";
 
-const experienceAges = [...Array(90)]
-    .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsHuman(index), mult: Character.ExperienceMultiplerHuman(index) };
-    });
+const experienceAges = getExperienceAges(humansData, 100);
 
 
 const Humans: React.FC = () => {
@@ -22,9 +19,9 @@ const Humans: React.FC = () => {
         <h3>Playing a human character</h3>
         <p>Humans are the obvious choice for new players but also a good option for experienced players too. These are their stats</p>
         <p>Humans are inherently good at throwing, like their ancestors throwing crap. Humans suffer half range penalty for accuracy when throwing.</p>
-        <RaceTable racialData={humans} />
+        <RaceTable racialData={humansData.racialMods} />
 
-        <GenericCharacterRoller racialMod={humans} />
+        <GenericCharacterRoller raceData={humansData} />
 
         <Section title='Human experience per age is as following'>
 

@@ -1,14 +1,11 @@
 import React from 'react';
-import { Character } from '../Character';
 import { GenericCharacterRoller } from './CharacterRoller';
 import Section from '../playermanual/Section';
 import RaceTable from '../races/RaceTable';
-import { shambras } from '../races/Shambras';
+import { shambrasData } from '../races/Shambras';
+import { getExperienceAges } from '../races/Races';
 
-const experienceAges = [...Array(90)]
-    .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsShambras(index), mult: Character.ExperienceMultiplerShambras(index) };
-    });
+const experienceAges = getExperienceAges(shambrasData, 300);
 
 const Shambras: React.FC = () => {
     return <>
@@ -28,9 +25,9 @@ const Shambras: React.FC = () => {
         <p>Shambras are a playable species, their stats depend greatly on their age</p>
         <p>Shambras take certain penalties as they grow older and bigger, players that are close to a previous or next age limit may choose to take adjecent effects instead</p>
         
-        <RaceTable racialData={shambras} />
+        <RaceTable racialData={shambrasData.racialMods} />
         
-        <GenericCharacterRoller racialMod={shambras} />
+        <GenericCharacterRoller raceData={shambrasData} />
 
         <Section title='Shambra experience per age is as following'>
             <table>
@@ -40,7 +37,7 @@ const Shambras: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {experienceAges.slice(16, 101).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                    {experienceAges.slice(16, 201).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
                 </tbody>
             </table>
         </Section>

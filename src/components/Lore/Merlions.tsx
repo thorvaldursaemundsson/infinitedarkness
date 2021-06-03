@@ -1,14 +1,11 @@
 import React from "react";
-import { Character } from "../Character";
 import Section from "../playermanual/Section";
-import { merlions } from "../races/Merlions";
+import {  merlionsData } from "../races/Merlions";
+import { getExperienceAges } from "../races/Races";
 import RaceTable from "../races/RaceTable";
 import { GenericCharacterRoller } from "./CharacterRoller";
 
-const experienceAges = [...Array(90)]
-    .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsMerlion(index), mult: Character.ExperienceMultiplerMerlion(index) };
-    });
+const experienceAges = getExperienceAges(merlionsData, 120);
 
 const Merlions: React.FC = () => {
     return <>
@@ -29,9 +26,9 @@ const Merlions: React.FC = () => {
         <p>Merlions gain trait "redolex" which increases all mental skills by +1 during combat</p>
         <p>Merlions gain trait "manaless" which locks them out of spells, they gain +2 to all resistence against spells</p>
         
-        <RaceTable racialData={merlions} />
+        <RaceTable racialData={merlionsData.racialMods} />
         
-        <GenericCharacterRoller racialMod={merlions} />
+        <GenericCharacterRoller raceData={merlionsData} />
         <Section title='Merlion experience per age is as following'>
             <table>
                 <thead>

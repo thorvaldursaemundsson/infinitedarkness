@@ -2,19 +2,20 @@ import Section from "./Section";
 import React from "react";
 import { GenericCharacterRoller } from "../Lore/CharacterRoller";
 import { IOpenableViewItem } from "../../views/IViewProps";
-import { humans } from "../races/Humans";
-import { nekovian } from "../races/Nekovians";
-import { merlions } from "../races/Merlions";
-import { shambras } from "../races/Shambras";
-
+import { humansData } from "../races/Humans";
+import { shambrasData } from "../races/Shambras";
+import { merlionsData } from "../races/Merlions";
+import { nekovianData } from "../races/Nekovians";
+import { synthsData } from "../races/Synth";
 const MakeCharacter: React.FC<IOpenableViewItem> = ({ initiallyOpen }) => {
     return <Section title='How to make a character' initiallyOpen={initiallyOpen}>
 
         <Section title='Ability roller'>
-            <Section title='Human dice roller'><GenericCharacterRoller racialMod={humans} /></Section>
-            <Section title='Shambra dice roller'><GenericCharacterRoller racialMod={shambras} /></Section>
-            <Section title='Merlion dice roller'><GenericCharacterRoller racialMod={merlions} /></Section>
-            <Section title='Nekovian dice roller'><GenericCharacterRoller racialMod={nekovian} /></Section>
+            <Section title='Human dice roller'><GenericCharacterRoller raceData={humansData} /></Section>
+            <Section title='Shambra dice roller'><GenericCharacterRoller raceData={shambrasData} /></Section>
+            <Section title='Merlion dice roller'><GenericCharacterRoller raceData={merlionsData} /></Section>
+            <Section title='Nekovian dice roller'><GenericCharacterRoller raceData={nekovianData} /></Section>
+            <Section title='Synth dice roller'><GenericCharacterRoller raceData={synthsData} /></Section>
         </Section>
         <h3>Step 1 - concept</h3>
         <h4>Roll attributes</h4>

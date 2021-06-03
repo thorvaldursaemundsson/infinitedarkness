@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EditText from "../general/HideText";
-import { Character } from "../Character";
-import { IDice, IRacialMod } from "../races/Races";
+import { IDice, IRaceData, IRacialMod } from "../races/Races";
 
 
 
@@ -85,7 +84,7 @@ const roll = (dice: IDice) => {
 
 
 interface IGenericCharacterRoller {
-    racialMod: IRacialMod[];
+    raceData: IRaceData;
 }
 
 const getAbility = (age: number, racialMod: IRacialMod[], ability: 'strength' | 'agility' | 'endurance' | 'perception' | 'intelligence' | 'willpower') => {
@@ -103,23 +102,23 @@ const getAbility = (age: number, racialMod: IRacialMod[], ability: 'strength' | 
     }
 }
 
-export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ racialMod }) => {
+export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ raceData }) => {
     const [age, setAge] = useState(24);
     return <div>
         Age: {age}<br />
-    Starting Exp: {Character.CharacterPointsSpecies(age, racialMod[0].species)}<br />
-    Multiplier Exp: {Character.ExperienceMultiplierSpecies(age, racialMod[0].species)}<br />
+    Starting Exp: {raceData.experiencePoints(age) }<br />
+    Multiplier Exp: {raceData.experienceMultipler(age)}<br />
         <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
         <CharacterRoller
             ageSpan={[age, age]}
             species={'human'}
             sizeOptions={['medium']}
-            strength={getAbility(age, racialMod, 'strength')}
-            agility={getAbility(age, racialMod, 'agility')}
-            endurance={getAbility(age, racialMod, 'endurance')}
-            intelligence={getAbility(age, racialMod, 'intelligence')}
-            willpower={getAbility(age, racialMod, 'willpower')}
-            perception={getAbility(age, racialMod, 'perception')}
+            strength={getAbility(age, raceData.racialMods, 'strength')}
+            agility={getAbility(age, raceData.racialMods, 'agility')}
+            endurance={getAbility(age, raceData.racialMods, 'endurance')}
+            intelligence={getAbility(age, raceData.racialMods, 'intelligence')}
+            willpower={getAbility(age, raceData.racialMods, 'willpower')}
+            perception={getAbility(age, raceData.racialMods, 'perception')}
         />
     </div>;
 }

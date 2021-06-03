@@ -1,4 +1,10 @@
 import React from "react";
+import { humansData } from "../components/races/Humans";
+import { merlionsData } from "../components/races/Merlions";
+import { nekovianData } from "../components/races/Nekovians";
+import { IRacialMod, race } from "../components/races/Races";
+import { shambrasData } from "../components/races/Shambras";
+import { synthsData } from "../components/races/Synth";
 
 export const weightConverter = (grams: number) => {
     if (grams < 1000) return `${grams.toFixed(0)}g`;
@@ -23,3 +29,26 @@ export const Selector: React.FC<ISelector> = ({ values, callback, preset, label 
         {values.map(v => <option value={v} selected={preset === v}>{v}</option>)}
     </select></label>
 };
+
+export const findRacialModFromRage = (species: race | undefined, age: number | undefined) => {
+    if (species === undefined || age === undefined) return undefined;
+    let output: IRacialMod | undefined = undefined;
+    switch (species) {
+        case 'human':
+            output = humansData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+        case 'merlion':
+            output = merlionsData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+        case 'nekovian':
+            output = nekovianData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+        case 'shambras':
+            output = shambrasData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+        case 'synth': 
+            output = synthsData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
+            break;
+    }
+    return output;
+}

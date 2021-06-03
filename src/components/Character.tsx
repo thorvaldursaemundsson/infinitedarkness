@@ -3,6 +3,11 @@ import { Perk } from './general/Perks';
 import { Trait } from "./traits/Traits";
 import { GetSkillList } from "./general/GetSkillList";
 import { race } from "./races/Races";
+import { humansData } from "./races/Humans";
+import { merlionsData } from "./races/Merlions";
+import { nekovianData } from "./races/Nekovians";
+import { shambrasData } from "./races/Shambras";
+import { synthsData } from "./races/Synth";
 
 export const fSum = (n: number): number => {
     let x = 0;
@@ -199,151 +204,24 @@ export class Character {
     }
 
 
-
-    private static CharacterPoints(start: number, agePhases: number[], expPhases: number[], age: number): number {
-        let p = start;
-        if (agePhases.length !== expPhases.length) console.error('age Phases and expPhases must be of equal length!');
-        let prevPhase = 0;
-        for (var phase in agePhases) {
-            let currentAgePhase = agePhases[phase];
-            let expPhase = expPhases[phase];
-
-            let ageRange = currentAgePhase - prevPhase;
-            if (age > prevPhase) p += Math.min(age - prevPhase, ageRange) * expPhase;
-            prevPhase = currentAgePhase;
-        }
-
-        return p;
-    }
-
-    public static CharacterPointsSpecies(age: number, species: race): number {
-        switch (species) {
-            case 'human': return Character.CharacterPointsHuman(age);
-            case 'merlion': return Character.CharacterPointsMerlion(age);
-            case 'shambras': return Character.CharacterPointsShambras(age);
-            case 'nekovian': return Character.CharacterPointsNekovian(age);
-            case 'synth': return Character.CharacterPointsSynths(age);
-        }
-    }
-
-    public static ExperienceMultiplierSpecies(age: number, species: race): number {
-        switch (species) {
-            case 'human': return Character.ExperienceMultiplerHuman(age);
-            case 'merlion': return Character.ExperienceMultiplerMerlion(age);
-            case 'shambras': return Character.ExperienceMultiplerShambras(age);
-            case 'nekovian': return Character.ExperienceMultiplerNekovian(age);
-            case 'synth': return Character.ExperienceMultiplerSynths(age);
-        }
-    }
-
-    public static CharacterPointsHuman(age: number) {
-        return Character.CharacterPoints(0, [18, 26, 40, 80], [10, 8, 6, 4], age);
-    }
-
-    public static CharacterPointsSynths(age: number) {
-        return 300;
-    }
-
-    public static CharacterPointsMerlion(age: number) {
-        return Character.CharacterPoints(0, [16, 28, 50, 90], [10, 8, 6, 4], age);
-    }
-
-    public static CharacterPointsShambras(age: number) {
-        return Character.CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age);
-    }
-
-    public static CharacterPointsNekovian(age: number) {
-        return Character.CharacterPoints(0, [16, 24, 36, 80], [10, 8, 6, 4], age);
-    }
-
-
-    public static ExperienceMultiplerHuman(age: number) {
-        if (age > 60) return 1;
-        if (age > 50) return 1.5;
-        if (age > 40) return 2;
-        if (age > 35) return 2.5;
-        if (age > 30) return 3;
-        if (age > 26) return 3.5;
-        if (age > 22) return 4;
-        if (age > 18) return 4.5;
-        return 5;
-    }
-
-    public static ExperienceMultiplerMerlion(age: number) {
-        if (age > 70) return 1;
-        if (age > 60) return 1.5;
-        if (age > 50) return 2;
-        if (age > 35) return 2.5;
-        if (age > 30) return 3;
-        if (age > 26) return 3.5;
-        if (age > 22) return 4;
-        if (age > 18) return 4.5;
-        return 5;
-    }
-
-    public static ExperienceMultiplerShambras(age: number) {
-        if (age > 100) return 3;
-        if (age > 80) return 2.5;
-        if (age > 60) return 2;
-        if (age > 40) return 1.5;
-        return 1;
-    }
-
-    public static ExperienceMultiplerNekovian(age: number) {
-        if (age > 60) return 1;
-        if (age > 50) return 1.5;
-        if (age > 40) return 2;
-        if (age > 30) return 2.5;
-        if (age > 26) return 3;
-        if (age > 24) return 3.5;
-        if (age > 20) return 4;
-        if (age > 16) return 4.5;
-        return 5;
-    }
-
-    public static ExperienceMultiplerSynths(age: number) {
-        return 1;
-    }
-
-    private characterPointsHuman() {
-        return Character.CharacterPointsHuman(this.age);
-    }
-
-    private characterPointsMerlion() {
-        return Character.CharacterPointsMerlion(this.age);
-    }
-
-    private characterPointsShambras() {
-        return Character.CharacterPointsShambras(this.age);
-    }
-
-    private characterPointsNekovian() {
-        return Character.CharacterPointsNekovian(this.age);
-    }
-
-    private characterPointsSynth() {
-        return Character.CharacterPointsSynths(this.age);
-    }
-
     public getStartingPointsAvailable(): number {
 
         switch (this.species) {
-            case 'human': return this.characterPointsHuman() + this.bonusExp;
-            case 'merlion': return this.characterPointsMerlion() + this.bonusExp;
-            case 'shambras': return this.characterPointsShambras() + this.bonusExp;
-            case 'nekovian': return this.characterPointsNekovian() + this.bonusExp;
-            case 'synth': return this.characterPointsSynth() + this.bonusExp;
-            default: return this.characterPointsHuman() + this.bonusExp;
+            case 'human': return humansData.experiencePoints(this.age) + this.bonusExp; 
+            case 'merlion': return merlionsData.experiencePoints(this.age) + this.bonusExp; 
+            case 'shambras': return shambrasData.experiencePoints(this.age) + this.bonusExp;
+            case 'nekovian': return nekovianData.experiencePoints(this.age) + this.bonusExp;
+            case 'synth': return synthsData.experiencePoints(this.age) + this.bonusExp;
         }
     }
 
-    public getExperienceMultiplier() {
+    public getExperienceMultiplier(): number {
         switch (this.species) {
-            case 'human': return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
-            case 'merlion': return Math.max(Character.ExperienceMultiplerMerlion(this.age) + this.getHook('experienceMultiplier'), 1);
-            case 'shambras': return Math.max(Character.ExperienceMultiplerShambras(this.age) + this.getHook('experienceMultiplier'), 1);
-            case 'nekovian': return Math.max(Character.ExperienceMultiplerNekovian(this.age) + this.getHook('experienceMultiplier'), 1);
-            default: return Math.max(Character.ExperienceMultiplerHuman(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'human': return Math.max(humansData.experienceMultipler(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'merlion': return Math.max(merlionsData.experienceMultipler(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'shambras': return Math.max(shambrasData.experienceMultipler(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'nekovian': return Math.max(nekovianData.experienceMultipler(this.age) + this.getHook('experienceMultiplier'), 1);
+            case 'synth': return Math.max(synthsData.experienceMultipler(this.age) + this.getHook('experienceMultiplier'), 1);
         }
 
     }

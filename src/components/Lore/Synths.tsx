@@ -1,14 +1,11 @@
 import React from "react";
-import { Character } from "../Character";
 import Section from "../playermanual/Section";
+import { getExperienceAges } from "../races/Races";
 import RaceTable from "../races/RaceTable";
-import { synths } from "../races/Synth";
+import { synthsData } from "../races/Synth";
 import { GenericCharacterRoller } from "./CharacterRoller";
 
-const experienceAges = [...Array(90)]
-    .map((v: any, index: number, arr: any[]) => {
-        return { age: index, exp: Character.CharacterPointsSynths(index), mult: Character.ExperienceMultiplerSynths(index) };
-    });
+const experienceAges = getExperienceAges(synthsData, 60);
 
 
 const Synths: React.FC = () => {
@@ -30,9 +27,9 @@ const Synths: React.FC = () => {
             <li>runs out of energy in 1 week, each day without recharging they go into lower energy use gaining a cumulative -5 to all rolls</li>
             <li>may reallocate experience points when spending new ones (1:1)</li>
         </ul>
-        <RaceTable racialData={synths} />
+        <RaceTable racialData={synthsData.racialMods} />
 
-        <GenericCharacterRoller racialMod={synths} />
+        <GenericCharacterRoller raceData={synthsData} />
 
         <Section title='Human experience per age is as following'>
 
@@ -43,7 +40,7 @@ const Synths: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {experienceAges.slice(16, 101).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                    {experienceAges.slice(2, 60).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
                 </tbody>
             </table>
         </Section>
