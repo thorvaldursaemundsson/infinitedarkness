@@ -5,7 +5,7 @@ import Section from '../playermanual/Section';
 
 
 const Weather: React.FC = () => {
-    const [temperatureRange, setTemperatureRange] = useState<[number, number, number]>([0, 0, 0]);
+    const [temperatureRange, setTemperatureRange] = useState<[number, number, number]>([-50, 0, 50]);
     const [latitude, setLatitude] = useState(0);
 
 
@@ -66,20 +66,28 @@ const WeatherGenerator: React.FC<IWeatherGenerator> = ({ temperatureRange, latit
     };
 
     const temperatureMod = 0;//Math.random() * 20 - 10;
-    const latitudeInRadians = Math.sin((Math.PI / 180) * (90 - latitude));
+    const latitudeInRadians = Math.floor(Math.sin((Math.PI / 180) * ((90 - latitude) * 2)) * 1000) / 1000;
     let temp = 0;
+    let delta = 0;
+    let base = 0;
+    let add = 0;
     if (Math.abs(latitude) > 45) {
-        Math.sin(latitude)
-
-        temp = (temperatureMod + temperatureRange[1] * latitudeInRadians);
+        delta = temperatureRange[2] - temperatureRange[1];
+        add = latitudeInRadians;
     }
     else {
 
-        temp = (temperatureMod + temperatureRange[2] * latitudeInRadians);
+        delta = temperatureRange[1] - temperatureRange[0];
+        add = latitudeInRadians;
     }
 
+    temp = base + delta * add;
 
     return <div>
+        rads: {latitudeInRadians} <br />
+        Delta: {delta}<br />
+        base: {base}<br />
+        add: {add}<br />
         <button onClick={() => randomize()} >Randomize</button>
         <b>Temperature </b>{Math.floor(temp)}<br />
         <b>Humidity</b> {humidity}<br />

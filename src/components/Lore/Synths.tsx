@@ -5,7 +5,7 @@ import RaceTable from "../races/RaceTable";
 import { synthsData } from "../races/Synth";
 import { GenericCharacterRoller } from "./CharacterRoller";
 
-const experienceAges = getExperienceAges(synthsData, 60);
+const experienceAges = getExperienceAges(synthsData, 20);
 
 
 const Synths: React.FC = () => {
@@ -27,11 +27,12 @@ const Synths: React.FC = () => {
             <li>runs out of energy in 1 week, each day without recharging they go into lower energy use gaining a cumulative -5 to all rolls</li>
             <li>may reallocate experience points when spending new ones (1:1)</li>
         </ul>
+        <p>Synths have a unique benefit, which is that they can increase their base abilities with credits. See Robotics for this.</p>
         <RaceTable racialData={synthsData.racialMods} />
 
         <GenericCharacterRoller raceData={synthsData} />
 
-        <Section title='Human experience per age is as following'>
+        <Section title='Synth experience per age is as following'>
 
             <table>
                 <thead>
@@ -40,7 +41,7 @@ const Synths: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {experienceAges.slice(2, 60).map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
+                    {experienceAges.map(ex => <tr><td>{ex.age}</td> <td>{ex.exp}</td> <td>{ex.mult}</td> </tr>)}
                 </tbody>
             </table>
         </Section>

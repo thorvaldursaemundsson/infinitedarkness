@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { weightConverter } from "../../utils/utilFunctions";
+import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import Firearms, { Ammo, AmmoInformation, AmmoModifications, AmmoTypesInformation, FireArm, FirearmModifications, IAmmoModification, IFirearmModification, writeDamageDice } from "./Firearms";
 import { Condition, ICondition, IQuality, Quality } from "./Item";
 
@@ -131,7 +131,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Value
                 </td>
                 <td>
-                    {(firearm.value + firearmModsCost) * firearmModsCostMultiplier * quality.valueModifier * condition.valueModifier}
+                    {bigNumberSeparator((firearm.value + firearmModsCost) * firearmModsCostMultiplier * quality.valueModifier * condition.valueModifier)}
                 </td>
             </tr>
             <tr>
@@ -195,7 +195,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Clip cost / weight
                 </td>
                 <td>
-                    {ammoCost} / {ammo.weight * firearm.capacity * firearmModsAmmoMultMod}
+                    {bigNumberSeparator(ammoCost)} / {ammo.weight * firearm.capacity * firearmModsAmmoMultMod}
                 </td>
             </tr>
             <tr>

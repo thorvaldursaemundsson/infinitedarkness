@@ -18,6 +18,7 @@ const useCases: UseCase[] = [
             'If roll equals defense then you hit, if roll is less than up to 8, 9, 10, 11 or 12 (declare before rolling) then take no action and simply wait (player may declare in advance the roll)',
             'Defense from skill and agility removed',
             'Requires that you do not use your movement (before or after)',
+            'Penalty from range is halved',
             'Add +1 armor pierce per each 10 over defense'
         ],
         type: 'active'

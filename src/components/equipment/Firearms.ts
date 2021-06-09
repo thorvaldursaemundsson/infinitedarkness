@@ -399,7 +399,6 @@ const Firearms: FireArm[] = [
         fireArmClass: 'rifle', name: 'Night AV Sniper', damage: D(2, 10), range: 1800, ammo: '12x28', strengthRequirement: 5, capacity: 4, fireAction: ['bolt action'], armorpiercing: 5, hitbonus: -1, weight: 8200, value: 3600,
         description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles', reload: 'full round'
     },
-
     //automatic rifle
     {
         fireArmClass: 'rifle', name: 'Skolt Advanced', damage: D(1, 12), range: 700, ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 3600,
@@ -409,7 +408,6 @@ const Firearms: FireArm[] = [
         fireArmClass: 'rifle', name: 'Merlion Predator', damage: D(2, 10), range: 1100, ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 11000,
         description: 'This strange merlion designed weapon was originally intended as an anti-human weapon, but when merlions decided that humans were harmless creatures they offered this weapon as a gesture of good will'
     },
-
     //shotgun
     {
         fireArmClass: 'rifle', name: 'Skolt Crusher', damage: D(2, 6), range: 160, ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2600, value: 2400, armorpiercing: 1,
@@ -424,9 +422,7 @@ const Firearms: FireArm[] = [
         fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: D(2, 6), range: 40, ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 2,
         description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 1,
     },
-
     //magnetic guns
-
     {
         fireArmClass: 'rifle', name: 'Night Coil', damage: D(2, 6), range: 1200, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 4,
         description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent', reload: 'full round'
@@ -439,21 +435,19 @@ const Firearms: FireArm[] = [
         fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: D(2, 8), range: 2000, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 5,
         description: 'A strange rifle that exploits the electroweak force in an unknown way', reload: 'action'
     },
-
     //machinegun
     {
-        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: D(1, 8), range: 600, ammo: '9x17', strengthRequirement: 8, capacity: 200, fireAction: ['fully-automatic'], rps: 10, weight: 8000, value: 5500,
+        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: D(1, 8), range: 600, ammo: '9x17', strengthRequirement: 5, capacity: 200, fireAction: ['fully-automatic'], rps: 10, weight: 8000, value: 5500,
         description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: D(1, 12), range: 900, ammo: '9x23', strengthRequirement: 7, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 6700, hitbonus: 3,
-        description: 'An elegant machine gun used only be the merlion military, take -2 if not using the tripod'
+        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: D(1, 12), range: 900, ammo: '9x23', strengthRequirement: 6, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 6700, hitbonus: 3,
+        description: 'An elegant machine gun used only be the merlion military'
     },
     {
         fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: D(2, 10), range: 1600, ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 9500,
         description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action', reload: 'two full rounds'
     },
-
     //rocket launcher
     {
         fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: D(6, 8), range: 600, ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
@@ -475,7 +469,6 @@ const Firearms: FireArm[] = [
         description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
         reload: 'two full rounds'
     },
-
     //energy weapons
     {
         fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2300,
@@ -529,7 +522,7 @@ export const FirearmModifications: IFirearmModification[] = [
     },
     {
         name: 'Targeting gyro scope',
-        description: 'Reduces long range penalties by quarter when using snipe shot or half when using aimed shot.',
+        description: 'Reduces long range penalties by third when using snipe shot or half when using aimed shot. Does not stack with regular scope',
         effects: [],
         cost: 2200,
         costMultiplier: 1,

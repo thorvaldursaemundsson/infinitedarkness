@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { weightConverter } from "../../utils/utilFunctions";
+import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import { CharacterSize } from "../Character";
 import Section from "../playermanual/Section";
 import { ArmorPlate, armorPlates, BodySuit, bodySuits, IntegratedSystem, integratedSystems, PowerArmor, powerArmors } from "./Armors";
@@ -156,7 +156,7 @@ const ArmorCrafter: React.FC = () => {
         <div className='divcol2'>
             <div>
                 <b>Damage Absorbtion:</b> {defense}<br />
-                <b>Cost:</b> {cost} credits <br />
+                <b>Cost:</b> {bigNumberSeparator(cost)} credits <br />
                 <b>Weight:</b> {weightConverter(weight * 1000)}
             </div>
             <div>

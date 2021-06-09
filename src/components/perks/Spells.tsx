@@ -348,7 +348,21 @@ const Precognition = new SpellTemplate(
         'for an action that takes 16 hours: 14 mana',
         'for an action that takes 24 hours: 16 mana'
     ]
-)
+);
+
+const Agreement = new SpellTemplate(
+    'Agreement',
+    'Spell: you look at someone within range, think of a phrase cause them to speak it out loud. They believe it is their own thoughts. They make a contested willpower + spell + 2d10 roll to resist. If they resist they instead feel the thought as an intrusive foreign thought. The spell only works if the target is awake, lucid and able to speak.',
+    undefined,
+    '60 meters',
+    [
+        'base mana: 3',
+        'you can delay the phrase based on time, up to 24 hours per 1 mana extra',
+        'you can delay the phrase until a simple unambigious trigger for 2 mana, if the trigger does not occur within 24 hours nothing happens',
+        'you can make the target believe the phrase is true for 6 seconds for 4 extra mana',
+        'the target is under no obligation to believe the phrase is true otherwise, merely that it had this thought and said it. It is up to the GM\'s discretion to decide how the target reacts'
+    ]
+);
 
 //mutations
 const MortisAlbum = new SpellTemplate(
@@ -464,5 +478,5 @@ const XRayVision = new SpellTemplate(
 export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, XRayVision,//8
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition //22
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, Agreement //23
 ];

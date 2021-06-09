@@ -279,9 +279,10 @@ const Distance: React.FC = () => {
     const [n, setN] = useState(6);
     const strs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const weights = [0.2, 0.5, 1, 2, 4, 5, 8, 10, 15, 20, 25, 30, 50, 75, 100];
+    const distancePenalty = 5;
     return <>
         <h5>Range penalty</h5>
-        <p>Targets become harder to hit when they are further away, each 3 meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
+        <p>Targets become harder to hit when they are further away, each {distancePenalty} meters away gives you a -1 to hit penalty. Some conditions affect range penalties, these conditions stack with other conditions, perks and weapon stats.</p>
         <ul>
             <li>No gravity and no atmosphere: range penalties halfed (does not apply to lasers)</li>
             <li>Rain or heavy winds: double range penalties</li>

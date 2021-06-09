@@ -7,7 +7,7 @@ import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
 import { bodySuits, armorPlates, PowerArmor, powerArmors, ArmorData, integratedSystems } from "../equipment/Armors";
 import ArmorCrafter from "../equipment/ArmorCrafter";
-import { weightConverter } from "../../utils/utilFunctions";
+import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import FirearmCrafter from "../equipment/FirearmCrafter";
 import { Condition, Quality } from "../equipment/Item";
 
@@ -116,7 +116,7 @@ const Equipment: React.FC = () => {
                         {integratedSystems.map(i => <tr>
                             <td>{i.name}</td>
                             <td><Ellipsis text={i.description} cutOff={40} /></td>
-                            <td>{i.cost}</td>
+                            <td>{bigNumberSeparator(i.cost)}</td>
                             <td>{i.weight}</td>
                         </tr>)}
                     </tbody>
@@ -226,7 +226,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
                 <td>{armor.name}</td>
                 <td>{armor.damageAbsorbtion}</td>
                 <td>{armor.agilityMod} {extra}</td>
-                <td>{armor.cost}</td>
+                <td>{bigNumberSeparator(armor.cost)}</td>
                 <td>{armor.weight}</td>
             </tr>
             <tr><td colSpan={5}><Ellipsis text={armor.description} cutOff={120}></Ellipsis></td></tr>
@@ -236,7 +236,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
             <td>{armor.name}</td>
             <td>{armor.damageAbsorbtion}</td>
             <td>{armor.agilityMod} {extra} </td>
-            <td>{armor.cost}</td>
+            <td>{bigNumberSeparator(armor.cost)}</td>
             <td>{armor.weight}</td>
         </tr>);
 }
@@ -272,7 +272,7 @@ const WeaponTable: React.FC<WeaponTableProps> = ({ data }) => {
                     <td style={s}>{weapon.armorpiercing}</td>
                     <td style={s}>{weapon.hitbonus}</td>
                     <td style={s}>{weightConverter(weapon.weight)}</td>
-                    <td style={s}>{weapon.value} c</td>
+                    <td style={s}>{bigNumberSeparator(weapon.value)} c</td>
                 </tr>
             })}
         </tbody>
@@ -329,7 +329,7 @@ const FireArmRow = (f: FireArm) => {
         <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
 
         <td>{weightConverter(f.weight)}</td>
-        <td title={(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)}>{f.value}</td>
+        <td title={(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)}>{bigNumberSeparator(f.value)}</td>
     </tr>
         {descriptionOpen && <tr>
             <td>STR: {f.strengthRequirement}</td>

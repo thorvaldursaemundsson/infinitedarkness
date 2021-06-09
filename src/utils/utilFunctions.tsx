@@ -12,6 +12,10 @@ export const weightConverter = (grams: number) => {
     return `${(grams / 100000).toFixed(4)} tons`;
 };
 
+export const bigNumberSeparator = (numb:number) => {
+    return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 const RollSingleDice = (sides: number) => Math.floor(Math.random() * sides) + 1;
 
 export const RollDice = (numberOfDice: number, sidesPerDice: number) =>
