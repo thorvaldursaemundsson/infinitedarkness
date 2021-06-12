@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { findRacialModFromRage } from '../../utils/utilFunctions';
 import { CharacterSize } from '../Character';
-import {  race } from '../races/Races';
+import { race } from '../races/Races';
 
 export interface IStats {
     strength: number;
@@ -182,7 +182,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
             return <label className="shortLabel"> <input type='radio' name='size' checked={currentStats.size === size} onClick={() => setCurrentStats({ size: size })}></input> {size}</label>;
         })}
         <br />
-        <button onClick={() => complete()} disabled={!pointsLeftValid}>Done</button>
+        <button onClick={() => complete()}>Done</button>
     </>;
 }
 
