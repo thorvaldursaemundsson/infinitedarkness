@@ -350,8 +350,8 @@ const Precognition = new SpellTemplate(
     ]
 );
 
-const Agreement = new SpellTemplate(
-    'Agreement',
+const ThoughtInvasion = new SpellTemplate(
+    'Thought Invasion',
     'Spell: you look at someone within range, think of a phrase cause them to speak it out loud. They believe it is their own thoughts. They make a contested willpower + spell + 2d10 roll to resist. If they resist they instead feel the thought as an intrusive foreign thought. The spell only works if the target is awake, lucid and able to speak.',
     undefined,
     '60 meters',
@@ -404,8 +404,8 @@ const Biopod = new SpellTemplate(
     ]
 );
 
-const Xeropaga = new SpellTemplate(
-    'Xeropaga',
+const Xenobite = new SpellTemplate(
+    'Xenobite',
     'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites its victim. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
     '1 action',
     undefined,
@@ -473,10 +473,24 @@ const XRayVision = new SpellTemplate(
     ]
 );
 
+const ThornSkin = new SpellTemplate(
+    'Thorn Skin',
+    'Mutation: Sharp needlelike thorns extrude from your skin over your entire body, no place is without, the thorns color match your hair color or skin color. These thorns have a variety of effects and can be shot out from anywhere on your body.',
+    undefined,
+    undefined,
+    [
+        'The thorns offer small protection, increase damage absorbtion by 1 permanently',
+        'The torns can help you climb, you add +5 on any climbing check',
+        'Anyone who grapples you takes 1d6 damage',
+        'As an action you can shoot out thorns at one target, roll 2d10 + spell + agility vs their defense, if you hit they take 1d6 damage, costs 1 mana. Thorns immediately grown back',
+        'You may enlognate the thorns at will, it takes 10 minutes (100 consecutive full round actions), costs 1 mana, lasts 24 hours. Each time add +1d6 to any damage, +5 to climb and +1 damage absorbtion'
+    ]
+);
 
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xeropaga, TwinSoul, Ferral, CursedBlood, XRayVision,//8
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin,//9
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, Agreement //23
+    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
 ];

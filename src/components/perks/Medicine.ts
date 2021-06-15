@@ -54,4 +54,11 @@ const CrossSpeciesHealer = new PerkTemplate({
     description: 'You have familiarized yourself with one species outside your own, pick one species, that species no longer "different species" penalty to medicine checks',
 });
 
-export const MedicinePerks = [Healer, MedicineExpert, Surgeon, Psychiatrist, CrossSpeciesHealer, Diagnostician];
+const SurgicalStrike = new PerkTemplate({
+    name: 'Surgical Strike',
+    skill: 'medicine',
+    level: 2,
+    description: 'You know how to use your knowledge of anatomy with deadly precision. If you hit someone using a firearm (aim or snipe only) or a combat weapon and exceed their defense by 10 points you can add +1d6 damage',
+});
+
+export const MedicinePerks = [Healer, MedicineExpert, Surgeon, Psychiatrist, CrossSpeciesHealer, Diagnostician, SurgicalStrike];

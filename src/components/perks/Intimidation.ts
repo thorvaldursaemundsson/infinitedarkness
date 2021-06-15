@@ -4,7 +4,7 @@ const Interrogator = new PerkTemplate({
     name: 'interrogator',
     skill: 'intimidation',
     level: 1,
-    description: 'Your character is better able to break down a subject to the point where they no longer can without information, you gain +3 to interrogation'
+    description: 'When you interrogate someone they no longer have a benefit to subterfuge against you.'
 }, {
     applyTo: 'interrogation',
     amount: 3
@@ -14,7 +14,7 @@ const Frighten = new PerkTemplate({
     name: 'frighten',
     skill: 'intimidation',
     level: 1,
-    description: 'When you roll for frighten you gain +3 to your roll and any target that is affected become fearful for as many rounds as their mental health is damaged, fearful imposes -5 to all attacking actions'
+    description: 'When you frighten someone they must attempt to flee if possible, surrender if they can reasonably believe they will be given quarter before attacking you.'
 }, {
     applyTo: 'frighten',
     amount: 0
@@ -24,7 +24,7 @@ const Spook = new PerkTemplate({
     name: 'spook',
     skill: 'intimidation',
     level: 1,
-    description: 'Your character gains +3 when telling spooky story'
+    description: 'Your story is so scary that it prevents mental health recovery for 1d6 days.'
 }, {
     applyTo: 'spook',
     amount: 3

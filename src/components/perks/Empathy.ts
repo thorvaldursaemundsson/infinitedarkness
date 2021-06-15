@@ -9,7 +9,6 @@ const Mentalist = new PerkTemplate({
         'You can attempt to understand someone just by looking at with a glance',
         'You can disguise your intentions against non-mentalists, giving false readings'
     ]
-
 });
 
 const EmpathicListener = new PerkTemplate({
@@ -33,4 +32,11 @@ const ExpertTeamwork = new PerkTemplate({
     description: 'When you and up to 5 other work together everyone benefits from the highest skill rank from the team. Whether only one or all are actually doing the task, they are all occupied for the duration of the task.'
 });
 
-export const EmpathyPerks = [Mentalist, LieDetector, EmpathicListener, ExpertTeamwork];
+const CounterIntimidation = new PerkTemplate({
+    name: 'counter intimidation',
+    skill: 'empathy',
+    level: 2,
+    description: 'You may substitute your empathy skill for intimidation to resist intimidation, additionally if you successfully defend against interrogation with 5 points or more you can strike fear into the interrogator, causing them to take 1d6 mental health damage and be frightened for as many minutes as the damage taken.',
+});
+
+export const EmpathyPerks = [Mentalist, LieDetector, EmpathicListener, ExpertTeamwork, CounterIntimidation];
