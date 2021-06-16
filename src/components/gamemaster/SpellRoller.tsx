@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { d100SpreaderT } from "../../utils/d100Spreader";
+import { shuffle } from "../../utils/utilFunctions";
 import Ellipsis from "../general/Ellipsis";
 import { SpellsPerks } from "../perks/Spells";
 
-const sortedSpreadedSpells = d100SpreaderT(SpellsPerks.map(sp => { return { label: sp.name, value: sp } }).sort());
+const spells = shuffle(SpellsPerks);
+
+const sortedSpreadedSpells = d100SpreaderT(spells.map(sp => { return { label: sp.name, value: sp } }).sort());
+
 
 const SpellRoller: React.FC = () => {
     const [rolls, setRolls] = useState<number[]>([]);
@@ -22,6 +26,8 @@ const SpellRoller: React.FC = () => {
         setRolls(numbers);
     };
 
+
+
     return (<>
         <h2>Spell roller</h2>
         <p>When you want to acquire a supernatural ability, you roll over all spells and perks {fractionOfSpells} times and pick one. There are in total {SpellsPerks.length} spells and mutations.</p>
@@ -36,7 +42,7 @@ const SpellRoller: React.FC = () => {
         <button onClick={() => Roll()}>Roll</button>
         <ol>
             {rolls.map(r => <li>{SpellsPerks[r].name} ({r})
-            <Ellipsis text={SpellsPerks[r].description} cutOff={10} />
+                <Ellipsis text={SpellsPerks[r].description} cutOff={10} />
             </li>)}
         </ol>
         <p>Or if you prefer to roll manually. If you roll the same option twice or a spell or mutation you already posess, just reroll. You should end up with exactly {fractionOfSpells} options.</p>

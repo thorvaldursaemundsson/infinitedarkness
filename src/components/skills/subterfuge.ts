@@ -12,7 +12,12 @@ const useCases: UseCase[] = [
         description: 'telling outright lies or knowingly leading others to a false conclusion through omission of the truth',
         type: 'active'
     },
-
+    {
+        name: 'disguise',
+        attribute: 'perception',
+        description: 'You create a disguise, contested by subterfuge + perception (passive 10)',
+        type: 'active'
+    }
 ];
 const Subterfuge = new SkillTemplate('subterfuge', '', useCases);
 export default Subterfuge;

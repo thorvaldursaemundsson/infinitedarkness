@@ -62,16 +62,17 @@ const Splinter = new SpellTemplate(
 
 const Unmask = new SpellTemplate(
     'Unmask',
-    'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm)',
+    'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm). Leaves behind residue of your old skin.',
     '1 action',
     'personal',
     [
         'base mana: 2 (change face only)',
-        'change fingerprint/retina: +1 mana',
+        'change fingerprints: +1 mana',
         'change color of skin, eyes and/or hair: +1 mana',
         'change gender: +2 mana (requires change DNA)',
         'change DNA: +1 mana',
-        'change trait: +3 mana (requires character points if you add a positive or remove a negative, only one trait)'
+        'change trait: +3 mana (requires character points if you add a positive or remove a negative, only one trait)',
+        'you can not change your dna, fingerprints to match someone else, to match someone\'s looks you must also roll a (disguise) subterfuge'
     ]
 );
 
@@ -195,20 +196,23 @@ const Tesseraction = new SpellTemplate(
     ]
 );
 
-const HarshEmpathy = new SpellTemplate(
-    'Harsh Empathy',
-    'Spell: You establish an unrelenting empathic link to another person, which allows you to feel everything they feel, they feel everything you feel. Mental trauma and respite is shared. Lasts 1 day',
+const SensoryMeld = new SpellTemplate(
+    'Sensory meld',
+    'Spell: You establish an unrelenting empathic link to another person, you perceive everything they do, they perceive everything you do. Lasts 24 hours. Once per hour the target may attempt to suppress this effect with a contested roll (2d10 + willpower + spells). If either die while this is in effect the other takes 2d6 mental health damage from the trauma. You can have multiple links at the same time, sensory perception is shared across the network.',
     'free action',
     '10 meters, visual contact',
     [
         'base mana: 1',
-        'increase duration: +1 mana per 2 days'
+        'increase duration: +1 mana per 2 days',
+        'increase distance: +1 mana per 4 meters',
+        'add telepathy: +2 mana',
+        're-establish link without visual contact: +5 mana, allows contest to resist'
     ]
 );
 
-const BrutalEmpathy = new SpellTemplate(
-    'Brutal Empathy',
-    'Spell: You establish an immediate empathic link to another person which causes the sum total of your life damage to be redistributed equally',
+const EmapthicEqualibrium = new SpellTemplate(
+    'Empathic Equalibrium',
+    'Spell: You establish an immediate empathic link to another person which causes the sum total of your life damage and mental health damage to be redistributed equally. Both know what the other has been thinking since they woke up. There is no contested roll. Can only be used once per round.',
     'free action',
     '10 meters visual contact',
     [
@@ -492,5 +496,5 @@ const ThornSkin = new SpellTemplate(
 export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin,//9
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    HarshEmpathy, BrutalEmpathy, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
+    SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
 ];
