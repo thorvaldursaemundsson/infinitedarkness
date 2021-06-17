@@ -125,15 +125,16 @@ const LuminiferousTransubstantiation = new SpellTemplate(
 );
 
 const ColorBias = new SpellTemplate(
-    'ColorBias',
-    'Spell: You alter the color charge of the subatomic matter of a small object that you touch, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram of the object is annihilated per hour, stops at 2 hours. Object weight max 1kg',
+    'Color Bias',
+    'Spell: You touch a small object (1 liter of smaller) and alter the color charge of the atoms, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram of the object is annihilated per hour, stops at 2 hours. Object weight max 1kg',
     '1 action',
     'direct contact',
     [
         'base mana: 3',
         'increase radiation level: +1 mana per level (+0.1 microgram per hour)',
         'increase duration: +1 mana per hour',
-        'increase max kg: +1 mana per kg'
+        'increase max kg: +1 mana per kg',
+        'this radiation has no effect on you (and only you)'
     ]
 );
 
@@ -333,7 +334,7 @@ const MoteOfPureEntropy = new SpellTemplate(
         '7: The target swap place with the caster of the mote',
         '8: The target is restored to previous state, restore 1d3 condition (max pristine) or regenerate 1d6 life instantly.',
         '9: The target begins to glow brightly for 1d4 rounds, the target has +10 base defense and -10 to all rolls based on sight',
-        '10: The target becomes completelybn  insvisible (entire spectrum) and blind for 2d12 rounds.',
+        '10: The target becomes completely  insvisible (entire spectrum) and blind for 2d12 rounds.',
     ]
 );
 
@@ -356,7 +357,7 @@ const Precognition = new SpellTemplate(
 
 const ThoughtInvasion = new SpellTemplate(
     'Thought Invasion',
-    'Spell: you look at someone within range, think of a phrase cause them to speak it out loud. They believe it is their own thoughts. They make a contested willpower + spell + 2d10 roll to resist. If they resist they instead feel the thought as an intrusive foreign thought. The spell only works if the target is awake, lucid and able to speak.',
+    'Spell: you look at someone within range, think of a phrase and cause them to speak it out loud. They believe it is their own thoughts. They make a contested willpower + spell + 2d10 roll to resist. If they resist they instead feel the thought as an intrusive foreign thought. The spell only works if the target is awake, lucid and able to speak.',
     undefined,
     '60 meters',
     [
@@ -483,17 +484,27 @@ const ThornSkin = new SpellTemplate(
     undefined,
     undefined,
     [
-        'The thorns offer small protection, increase damage absorbtion by 1 permanently',
+        'The thorns offer small protection, increase damage absorbtion by 1 and base defense by 2 permanently',
         'The torns can help you climb, you add +5 on any climbing check',
         'Anyone who grapples you takes 1d6 damage',
         'As an action you can shoot out thorns at one target, roll 2d10 + spell + agility vs their defense, if you hit they take 1d6 damage, costs 1 mana. Thorns immediately grown back',
-        'You may enlognate the thorns at will, it takes 10 minutes (100 consecutive full round actions), costs 1 mana, lasts 24 hours. Each time add +1d6 to any damage, +5 to climb and +1 damage absorbtion'
+        'You may enlognate the thorns at will, it takes 10 minutes (100 consecutive full round actions), costs 1 mana, lasts 24 hours. Each time add +1d6 to any damage, +5 to climb, +1 damage absorbtion, +2 base defense'
     ]
 );
 
+const AmoebicHive = new SpellTemplate(
+    'Amoebic Hive',
+    'Mutation: Tiny black drops of amoebic slowly crawl over your skin, they enter and exist through the pores and permeate your body. These amoebic organisms are made of you.',
+    undefined,
+    undefined,
+    [
+        'As an action you can leave some behind on a surface for an hour, you feel temperature and pressure through them. Costs 1 mana',
+        'As an action you can touch someone and try to infect another person with the drops, roll spell + agility + 2d10 to hit vs their defense, every minute they must make a contested roll of spell + endurance + 2d10 or take 1d6 damage which can not be reduced, if they succeed the infection ends. Only a hermetically sealed armor gives protection. Costs 1 mana',
+        'As a 10 round action you can utilize them to drastically increase your metabolism, you regenerate 1d6 life and gain 1 level of exhaustion. Costs 2 mana'
+    ]
+)
 
-
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin,//9
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive,//9
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
     SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
