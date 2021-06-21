@@ -3,6 +3,7 @@ import Section from './Section';
 import Indexer, { Indexed } from '../general/Indexer';
 import Cooking from '../skills/cooking';
 import { ConsumableTools, ConsumableWeapons } from '../equipment/Consumables';
+import { CharacterSizeMods } from '../Character';
 
 
 const Consumables = () => <Section title='Consumables'>
@@ -22,11 +23,7 @@ const Food = () => <>
     <h4>How much you eat</h4>
     <p>Characters need to eat a certain amount to live, characters that don't eat enough will start to starve. Also characters that don't eat OR drink water dies after 72 hours of dehydration. Characters need</p>
     <ul>
-        <li>Tiny: 2 meal</li>
-        <li>Small: 2.5 meals</li>
-        <li>Medium: 3 meals</li>
-        <li>Large: 3.5 meals</li>
-        <li>Huge: 4 meals</li>
+        {CharacterSizeMods.map(m => <li><b>{m.size}</b>: {m.consumption}</li>)}
     </ul>
     <p>After 2 days of not eating characters will see their life regeneration halved and -2 to all rolls</p>
     <p>After 7 days of not eating characters life regeneration will stop, they take -8 to all rolls</p>
@@ -53,7 +50,7 @@ const Food = () => <>
     </ul>
     <h5>Street food</h5>
     <p>Street food works similar to resturant food with two modifications. Average quality is the highest quality easily available. The price is reduced by 25%.
-    You can find good street food with streetwise 20. Great streetfood with streetwise 30. Outstanding streetfood with streetwise 40.
+        You can find good street food with streetwise 20. Great streetfood with streetwise 30. Outstanding streetfood with streetwise 40.
     </p>
     <p>Note that you can only find resturant food and streetwise food in locations where they exist, a successful role may include travel.</p>
     <h5>Home cooked food</h5>
@@ -140,7 +137,7 @@ const Tools = () => <>
         <tbody>
             {ConsumableTools.map(tool => <>
                 <tr>
-                    <td><b>{tool.name}</b></td><td>{tool.charges}</td><td>{tool.weight/1000}</td><td>{tool.value}</td>
+                    <td><b>{tool.name}</b></td><td>{tool.charges}</td><td>{tool.weight / 1000}</td><td>{tool.value}</td>
                 </tr>
                 <tr>
                     <td className='univeralBorderBottom' colSpan={4}>{tool.description}</td>
@@ -165,13 +162,13 @@ const Weapons = () => <>
         <tbody>
 
             {ConsumableWeapons.map(c => <>
-            <tr>
-                <td>{c.name}</td>
-                <td>{c.weight}</td>
-                <td>{c.value}</td>
-                <td>{c.charges}</td>
-            </tr>
-            <tr>
+                <tr>
+                    <td>{c.name}</td>
+                    <td>{c.weight}</td>
+                    <td>{c.value}</td>
+                    <td>{c.charges}</td>
+                </tr>
+                <tr>
                     <td className='univeralBorderBottom' colSpan={4}>{c.description}</td>
                 </tr>
             </>)}

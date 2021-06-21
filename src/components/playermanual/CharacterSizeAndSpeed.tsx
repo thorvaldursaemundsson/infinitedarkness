@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { CharacterSizeMods } from '../Character';
 import Section from './Section';
 
 const tdWidth: CSSProperties = {
@@ -17,46 +18,33 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
                 <th>Size</th>
                 <th>Strength mod</th>
                 <th>Secondary mod</th>
-                <th>Size range (cm)</th>
+                <th>Height range (cm)</th>
                 <th>Mass range (kg)</th>
+                <th>Speed base</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Tiny</td>
-                <td>-2</td>
-                <td>+4</td>
-                <td>90-130</td>
-                <td>25-40</td>
-            </tr>
-            <tr>
-                <td>Small</td>
-                <td>-1</td>
-                <td>+2</td>
-                <td>120-160</td>
-                <td>35-65</td>
-            </tr>
-            <tr>
-                <td>Medium</td>
-                <td>+/-0</td>
-                <td>+/-0</td>
-                <td>150-190</td>
-                <td>60-110</td>
-            </tr>
-            <tr>
-                <td>Large</td>
-                <td>+1</td>
-                <td>-2</td>
-                <td>180-250</td>
-                <td>90-160</td>
-            </tr>
-            <tr>
-                <td>Huge</td>
-                <td>+2</td>
-                <td>-4</td>
-                <td>240-300</td>
-                <td>150-250</td>
-            </tr>
+
+            {CharacterSizeMods.map(m => <tr>
+                <td>
+                    {m.size}
+                </td>
+                <td>
+                    {m.strengthMod}
+                </td>
+                <td>
+                    {m.secondaryMod}
+                </td>
+                <td>
+                    {m.averageHeight[0]} - {m.averageHeight[0]}
+                </td>
+                <td>
+                    {m.averageWeight[0]} - {m.averageWeight[0]}
+                </td>
+                <td>
+                    {m.speedBase}
+                </td>
+            </tr>)}
         </tbody>
     </table>
     <h3>Movement speed</h3>
@@ -64,39 +52,10 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
     <p>Characters may choose to power walk but take a -5 to all rolls if they do so and lose their skill bonus to their defense, if they jog they take a -10 and lose their agility to their defense</p>
     <p>To run during combat uses up all actions during combat, they gain a +4 defense while running but forgo skill (use second defense number in place of third)</p>
     <p>To sprint the character must have first run, they forgo skill and agility (use only first defense number)</p>
-    
+
     <p>Speed is determined by size, athletics skill and species</p>
     <h6>Size</h6>
-    <table style={{ width: '320px' }}>
-        <thead>
-            <tr>
-                <th style={tdWidth}>Size</th>
-                <th style={tdWidth}>Speed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style={tdWidth}>Tiny</td>
-                <td style={tdWidth}>4</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Small</td>
-                <td style={tdWidth}>5</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Medium</td>
-                <td style={tdWidth}>6</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Large</td>
-                <td style={tdWidth}>7</td>
-            </tr>
-            <tr>
-                <td style={tdWidth}>Huge</td>
-                <td style={tdWidth}>8</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>See above table</p>
     <h6>Athletics skill</h6>
     <table style={{ width: '320px' }}>
         <thead>
@@ -201,9 +160,9 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
             </tr>
         </tbody>
     </table>
-    <p><b>Important notice!</b> Exhaustion and being over carrying capacity limits maximum speed, it also increases effort for available speeds. <br/>
-    For example if you are at 1 level of exhaustion and can't sprint, running now uses as much energy as sprinting. Walking uses twice as much energy.<br/>
-    Characters that wear heavy armor, carry huge loads of loot or are very exhausted have drastically limited travel ability. You may not fast travel while overburdened.</p>
+    <p><b>Important notice!</b> Exhaustion and being over carrying capacity limits maximum speed, it also increases effort for available speeds. <br />
+        For example if you are at 1 level of exhaustion and can't sprint, running now uses as much energy as sprinting. Walking uses twice as much energy.<br />
+        Characters that wear heavy armor, carry huge loads of loot or are very exhausted have drastically limited travel ability. You may not fast travel while overburdened.</p>
 </Section>;
 
 

@@ -11,7 +11,7 @@ export const synthsData: IRaceData = {
             perception: { sidesPerDice: 12, numberOfDice: 1, pointBuyMod: 2 },
             intelligence: { sidesPerDice: 10, numberOfDice: 1, pointBuyMod: 1 },
             willpower: { sidesPerDice: 6, numberOfDice: 1, pointBuyMod: -1 },
-            sizeOptions: ['tiny', 'small', 'medium', 'large', 'huge', 'gigantic']
+            sizeOptions: ['tiny', 'small', 'medium', 'large', 'huge', 'gigantic', 'colossal', 'titanic']
         },
     ],
     experiencePoints: age => 300,

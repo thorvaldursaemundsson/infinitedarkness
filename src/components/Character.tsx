@@ -22,8 +22,112 @@ export interface IHooker {
     amount: number;
 }
 
+interface CharacterSizeMod {
+    size: CharacterSize;
+    strengthMod: number;
+    secondaryMod: number;
+    damageAbsorbtion: number;
+    speedBase: number;
+    averageHeight: [number, number];
+    averageWeight: [number, number];
+    consumption: number;
+}
+
 export type CharacterSize = 'minute' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' | 'gigantic' | 'colossal' | 'titanic';
 export const CharacterSizes = ['minute', 'tiny', 'small', 'medium', 'large', 'huge', 'gigantic', 'colossal', 'titanic'];
+
+export const CharacterSizeMods: CharacterSizeMod[] = [
+    {
+        size: 'minute',
+        strengthMod: -4,
+        secondaryMod: +8,
+        damageAbsorbtion: 0,
+        speedBase: 3,
+        averageHeight: [60, 100],
+        averageWeight: [10, 30],
+        consumption: 1,
+    },
+    {
+        size: 'tiny',
+        strengthMod: -2,
+        secondaryMod: +4,
+        damageAbsorbtion: 0,
+        speedBase: 4,
+        averageHeight: [90, 130],
+        averageWeight: [25, 40],
+        consumption: 1.5,
+    },
+    {
+        size: 'small',
+        strengthMod: -1,
+        secondaryMod: +2,
+        damageAbsorbtion: 0,
+        speedBase: 5,
+        averageHeight: [120, 160],
+        averageWeight: [35, 65],
+        consumption: 2,
+    },
+    {
+        size: 'medium',
+        strengthMod: 0,
+        secondaryMod: 0,
+        damageAbsorbtion: 0,
+        speedBase: 6,
+        averageHeight: [150, 190],
+        averageWeight: [60, 110],
+        consumption: 2.5,
+    },
+    {
+        size: 'large',
+        strengthMod: +1,
+        secondaryMod: -2,
+        damageAbsorbtion: 0,
+        speedBase: 7,
+        averageHeight: [180, 250],
+        averageWeight: [90, 160],
+        consumption: 3,
+    },
+    {
+        size: 'huge',
+        strengthMod: +3,
+        secondaryMod: -4,
+        damageAbsorbtion: 1,
+        speedBase: 8,
+        averageHeight: [240, 300],
+        averageWeight: [150, 300],
+        consumption: 4,
+    },
+    {
+        size: 'gigantic',
+        strengthMod: +6,
+        secondaryMod: -8,
+        damageAbsorbtion: 2,
+        speedBase: 9,
+        averageHeight: [290, 350],
+        averageWeight: [280, 500],
+        consumption: 6,
+    },
+    {
+        size: 'colossal',
+        strengthMod: +10,
+        secondaryMod: -10,
+        damageAbsorbtion: 3,
+        speedBase: 10,
+        averageHeight: [330, 450],
+        averageWeight: [480, 1000],
+        consumption: 10,
+    },
+    {
+        size: 'titanic',
+        strengthMod: +16,
+        secondaryMod: -12,
+        damageAbsorbtion: 4,
+        speedBase: 11,
+        averageHeight: [420, 600],
+        averageWeight: [900, 2000],
+        consumption: 15,
+    },
+];
 
 export interface ICharacter {
     name: string;
@@ -122,6 +226,10 @@ export class Character {
     }
 
     public getDamageAbsorption() {
+        const f = CharacterSizeMods.find(s => s.size === this.size);
+        if (f !== undefined) {
+            return f.damageAbsorbtion + this.getHook('damageAbsorption');
+        }
         return this.getHook('damageAbsorption');
     }
 
@@ -135,18 +243,17 @@ export class Character {
         return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('passivedefense');
     }
 
-    private getDefenseFromSize() {
-        switch (this.size) {
-            case 'minute': return 16;
-            case 'tiny': return 14;
-            case 'small': return 12;
-            case 'medium': return 10;
-            case 'large': return 8;
-            case 'huge': return 6;
-            case 'gigantic': return 2;
-            case 'colossal': return -4;
-            case 'titanic': return -10;
+
+    public static findDefenseFromSize(size: CharacterSize): number {
+        const f = CharacterSizeMods.find(s => s.size === size);
+        if (f !== undefined) {
+            return f.secondaryMod;
         }
+        else throw new Error('Missing character size');
+    }
+
+    private getDefenseFromSize() {
+        return Character.findDefenseFromSize(this.size);
     }
 
     public getBaseDefense() {
@@ -157,18 +264,16 @@ export class Character {
         return (this.strength + 1 + this.getHook('carryingCapacity')) * 4;
     }
 
-    public getSizeSpeed() {
-        switch (this.size) {
-            case 'minute': return 3;
-            case 'tiny': return 4;
-            case 'small': return 5;
-            case 'medium': return 6;
-            case 'large': return 7;
-            case 'huge': return 8;
-            case 'gigantic': return 10;
-            case 'colossal': return 12;
-            case 'titanic': return 15;
+    public static findSpeedFromSize(size: CharacterSize): number {
+        const f = CharacterSizeMods.find(s => s.size === size);
+        if (f !== undefined) {
+            return f.speedBase;
         }
+        else throw new Error('Missing character size');
+    }
+
+    public getSizeSpeed() {
+        return Character.findSpeedFromSize(this.size);
     }
 
     public getSpeedFromSkill() {
@@ -207,8 +312,8 @@ export class Character {
     public getStartingPointsAvailable(): number {
 
         switch (this.species) {
-            case 'human': return humansData.experiencePoints(this.age) + this.bonusExp; 
-            case 'merlion': return merlionsData.experiencePoints(this.age) + this.bonusExp; 
+            case 'human': return humansData.experiencePoints(this.age) + this.bonusExp;
+            case 'merlion': return merlionsData.experiencePoints(this.age) + this.bonusExp;
             case 'shambras': return shambrasData.experiencePoints(this.age) + this.bonusExp;
             case 'nekovian': return nekovianData.experiencePoints(this.age) + this.bonusExp;
             case 'synth': return synthsData.experiencePoints(this.age) + this.bonusExp;

@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { findRacialModFromRage } from '../../utils/utilFunctions';
-import { CharacterSize } from '../Character';
+import { Character, CharacterSize, CharacterSizeMods } from '../Character';
 import { race } from '../races/Races';
 
 export interface IStats {
@@ -58,17 +58,11 @@ const calculateCost = (currentStats: IStats): number => {
 }
 
 const getStrengthMod = (size: CharacterSize) => {
-    switch (size) {
-        case 'minute': return -4;
-        case 'tiny': return -2;
-        case 'small': return -1;
-        case 'medium': return 0;
-        case 'large': return 1;
-        case 'huge': return 2;
-        case 'gigantic': return 4;
-        case 'colossal': return 8;
-        case 'titanic': return 12;
+    const f = CharacterSizeMods.find(s => s.size === size);
+    if (f !== undefined) {
+        return f.strengthMod;
     }
+    else throw new Error('Missing character size');
 }
 
 const costAtP = (current: number) => {
