@@ -253,7 +253,7 @@ export class Character {
     }
 
     private getDefenseFromSize() {
-        return Character.findDefenseFromSize(this.size);
+        return 10 + Character.findDefenseFromSize(this.size);
     }
 
     public getBaseDefense() {

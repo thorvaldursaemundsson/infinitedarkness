@@ -1,20 +1,12 @@
 import { PerkTemplate } from "../general/Perks";
 
-const ArtOfDeal = new PerkTemplate({
-    name: 'the art of the deal',
-    skill: 'persuasion',
-    level: 1,
-    description: 'Your character is a strong negotiator when it comes to making a deal, +5 to persuasion rolls when making deal due to using the best words'
-}, {
-    applyTo: 'deal',
-    amount: 5
-});
+const skill = 'persuasion';
 
 const MotivationalSpeaker = new PerkTemplate({
     name: 'motivational speaker',
-    skill: 'persuasion',
+    skill: skill,
     level: 1,
-    description: 'Your character is an adept motivational speaker, you gain +3 to persuasion when rolling for motivational speech'
+    description: 'Your character is an adept motivational speaker, you gain +3 to persuasion when rolling for motivational speech, maximum number of people is raised to 40, you may include yourself, additionally the bonus lasts for the whole day on every skill check.'
 }, {
     applyTo: 'motivationalspeaker',
     amount: 3
@@ -22,17 +14,17 @@ const MotivationalSpeaker = new PerkTemplate({
 
 const InspireCourage = new PerkTemplate({
     name: 'inspire courage',
-    skill: 'persuasion',
+    skill: skill,
     level: 1,
-    description: 'your character can inspire courage, speak for 1 minute and roll persuasion vs 25, if you succeed they are temporarily immune to mental health damage and penalties (1 hour)'
+    description: 'When you inspire courage people become immune to fear, lasts against one contested roll or until they go to sleep or 24 hours (which ever happens first).'
 }, {
     applyTo: 'inspirecourage',
     amount: 0
 });
 
-export const PeaceMaker = new PerkTemplate({
+const PeaceMaker = new PerkTemplate({
     name: 'peace maker',
-    skill: 'persuasion',
+    skill: skill,
     level: 1,
     description: 'Your character is known for talking down hostiles and coming to a non-violent outcome, gain +5 when attempting to talk down a hostile'
 }, {
@@ -40,4 +32,11 @@ export const PeaceMaker = new PerkTemplate({
     amount: 5
 });
 
-export const PersuasionPerks = [ArtOfDeal, MotivationalSpeaker, InspireCourage, PeaceMaker];
+const Trader = new PerkTemplate({
+    name: 'trader',
+    skill: skill,
+    level: 1,
+    description: 'You are a thrifty trader who is has deep experience with trading, you receive 10% better prices when selling and bargaining'
+});
+
+export const PersuasionPerks = [MotivationalSpeaker, InspireCourage, PeaceMaker, Trader];

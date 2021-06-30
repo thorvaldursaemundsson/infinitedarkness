@@ -21,6 +21,7 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
                 <th>Height range (cm)</th>
                 <th>Mass range (kg)</th>
                 <th>Speed base</th>
+                <th>Base defense</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,9 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
                 </td>
                 <td>
                     {m.speedBase}
+                </td>
+                <td>
+                    {10 + m.secondaryMod}
                 </td>
             </tr>)}
         </tbody>
