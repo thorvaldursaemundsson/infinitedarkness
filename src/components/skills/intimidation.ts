@@ -3,38 +3,49 @@ const useCases: UseCase[] = [
     {
         name: 'interrogation',
         attribute: 'willpower',
-        description: 'force someone to give you answers to questions, you roll intimidation + willpower, they roll willpower',
+        description: 'Force someone to give you answers to questions, they may contest with 2d10 + willpower + intimidation. Takes 10 minutes',
         results: [
-            'Less than equal: no answer, they resist for the day',
-            'Equal up to +10: they give one answer in 1 hours (may choose to lie, gain +5 to their subterfuge)',
-            'Equal up to +20: they give one answer in 15 minutes (may choose to lie, gain +5 to their subterfuge)',
-            'Equal up to +30: they give one answer in 1 minute (may choose to lie, gain +5 to their subterfuge)',
-            'If they are able to escape or fight back they can choose to cancel the interrogation',
-            'If you employ credible threat of torture or violence gain +5, they gain +5 to subterfuge',
-            'If you employ violence or torture, gain +10, they gain +10 to subterfuge'
+            'Should they succeed they choose to automatically resist any further attempt every hour, doing so inflicts 1 mental health damage.',
+            'Should they fail by less than 10, they must answer the question. They add 1d6 to their subterfuge roll if they attempt to lie, doing so inflicts 1 mental health damage',
+            'Should they fail by less than 20, they must answer the question. They add 1d6 to their subterfuge roll if they attempt to lie and don\'t know the anwser, doing so inflicts 1 mental health damage',
+            'Should they fail by less than 30, they must answer the question. They may only lie if they don\'t know the true answer. They take 1 mental health damage'
         ],
         type: 'active'
     },
     {
         name: 'frighten',
         attribute: 'willpower',
-        description: 'emit a terrifying display of power and ill intent to cause viewers to fear you and view you as more threatening. It is contested by a 10 + willpower + intimidation. May substitute willpower with strength',
+        description: 'As an action emit a terrifying display of power and ill intent to cause viewers/listeners within 10 meters to fear you and view you as more threatening. Roll 2d10 + willpower or strength + intimidation, contested by a (passive) 10 + willpower + intimidation. Those who fail will take mental health damage and enter into a state of fight or flight.',
         results: [
-            'Fail by 10 or more: they gain confidence against you, +2 to all rolls vs you, you take 1 mental health damage from humiliation',
-            'Fail by less than 10: no effect, they are not afraid of you',
-            'Success: They become frightened and take 1 mental health damage',
-            'Success 5: They become frightened and take 1d2 mental health damage.',
-            'Success 10: They become frightened and take 1d4 mental health damage.',
-            'Success 15: They become frightened and take 1d6 mental health damage.',
-            'Success 20: They become frightened and take 1d8 mental health damage.',
-            'Success 25: They become frightened and take 1d10 mental health damage.',
-            'If you are not able to directly attack or harm them, you gain -10 on your roll',
-            'If you are able to directly attack them but seemingly at a disadvantage you gain -5 on your roll',
-            'If you are able to directly attack them and seemingly at an advantage you gain +5 on your roll',
-            'If they are defenseless and at your mercy you gain +10 on your roll',
-            'If you attempt to frighten multiple targets then you gain penalty equal to the number of targets'
+            'Targets that succeed can not be frightened again for 24 hours',
+            'Targets that fail their contest will choose between fight or flight. They roll a dice, take mental health damage. The frighten lasts for a number of turns equal to total mental health damage',
+            'Fail by less than 10, roll 1d4',
+            'Fail by less than 20, roll 1d6',
+            'Fail by less than 30, roll 1d8',
+            'Fail by more than 30 or 30, roll 1d10',
+            'Targets that choose fight may only take actions to attack the target of their fear and are not allowed to perform perception or intelligence based skills',
+            'Targets that choose flight may only use their actions to move away from- or hide from the target of their fear, if neither are possible they may only perform dodge action',
+            'Targets that are panicked may not take any actions, have only their base defense, at the beginning of every turn they may roll 2d10 + willpower + intimidation, if they succeed they instead enter flight mode.',
+            'Any target that fails by more than 10 points must roll a 1d6, on a 1 they become paniced, on 2,3 they must flee, 4,5 they must fight, 6 they may choose',
+            'Any target that fails by 20 or more must roll a 1d6, on a 1,2 they become paniced, otherwise they must flee',
+            'Targets get a group bonus if they outnumber your team, +1 per target',
+            'If the target believes you have no means of hurting them then they receive a +10 bonus'
         ],
         type: 'active'
+    },
+    {
+        name: 'coerce',
+        attribute: 'willpower',
+        description: 'You threaten someone with violence and force them to perform an action, contested by 10 + willpower + intimidation. Whether you succeed or not they perceive it as a hostile action.',
+        type: 'active',
+        results: [
+            'The action should be stated before the roll, if the action is not within scope then the target doesn\'t have to do it',
+            'Should the target succeed they are immune to future coercion for 24 hours',
+            'Should they fail by less than 10 they will perform a simple action that merely inconveniences them',
+            'Should they fail by less than 20 they will perform an action that doesn\'t risk their health or station',
+            'Should they fail by less than 30 they will perform an action that doesn\'t kill them',
+            'A target that fails may choose to resist but only if they\'re willing to fight to the death rather than do the asked action, they take 1 mental health damage.',
+        ]
     },
     {
         name: 'spook',

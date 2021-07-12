@@ -1,28 +1,37 @@
 import { PerkTemplate } from "../general/Perks";
 
+const skill = 'intimidation';
+
 const Interrogator = new PerkTemplate({
-    name: 'interrogator',
-    skill: 'intimidation',
+    name: 'Interrogator',
+    skill: skill,
     level: 1,
-    description: 'When you interrogate someone they no longer have a benefit to subterfuge against you.'
+    description: 'When you interrogate someone you choose whether they take mental health damage. If they do they take double when lying.'
 }, {
     applyTo: 'interrogation',
     amount: 3
 });
 
 const Frighten = new PerkTemplate({
-    name: 'frighten',
-    skill: 'intimidation',
+    name: 'Frighten',
+    skill: skill,
     level: 1,
-    description: 'When you frighten someone they must attempt to flee if possible, surrender if they can reasonably believe they will be given quarter before attacking you.'
+    description: 'When you frighten someone they take 1 extra mental health damage if they fight you. Additionally the enemies get only half bonus from outnumbering your team. Frighten range increases to 50 meters.'
 }, {
     applyTo: 'frighten',
     amount: 0
 });
 
+const Dominator = new PerkTemplate({
+    name: 'Dominator',
+    skill: skill,
+    level: 1,
+    description: 'Targets that choose to fight must first make an active contest roll (2d10 + will + intimidation) otherwise they must comply.'
+});
+
 const Spook = new PerkTemplate({
-    name: 'spook',
-    skill: 'intimidation',
+    name: 'Spook',
+    skill: skill,
     level: 1,
     description: 'Your story is so scary that it prevents mental health recovery for 1d6 days.'
 }, {
@@ -30,4 +39,11 @@ const Spook = new PerkTemplate({
     amount: 3
 });
 
-export const IntimidationPerks = [Interrogator, Frighten, Spook];
+const IronWill = new PerkTemplate({
+    name: 'Iron Will',
+    skill: skill,
+    level: 1,
+    description: 'Whenever you resist an intimidation you add +3 to your result, additionally whenever you take mental health damage you take 1 less (minimum one)'
+});
+
+export const IntimidationPerks = [Interrogator, Frighten, Dominator, Spook, IronWill];

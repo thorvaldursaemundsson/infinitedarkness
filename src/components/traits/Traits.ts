@@ -10,7 +10,7 @@ export interface Trait extends IHooker {
 const Coward: Trait = {
     name: 'Coward',
     cost: -10,
-    description: 'You are a coward that more easily falls vicim to fear. Take a -2 to all frighten rolls and defense, frightened status lasts twice as long',
+    description: 'You are a coward that more easily falls vicim to fear. You may never choose fight when frighetened or coerced and you receive a -3 penalty to resist all sources of fear.',
     applyTo: 'fear',
     amount: -2,
 }
@@ -18,9 +18,9 @@ const Coward: Trait = {
 const Brave: Trait = {
     name: 'brave',
     cost: 10,
-    description: 'You are brave and are less likely to be phased by fear. Take +2 to all frighten rolls and defense, frightened always only lasts 1 round.',
+    description: 'You are brave and are less likely to be phased by fear. You are always allowed to choose fight when frightened, remain silent when interrogated, fight when coerced, you receive +3 to resist all sources of fear, when you take mental health damage from fear related sources you take 1 less (minimum 0).',
     applyTo: 'fear',
-    amount: 2,
+    amount: 3,
 }
 
 const FoolHardy: Trait = {
