@@ -8,6 +8,7 @@ const HealthAndRest = () =>
         <Indexer title='Health and rest'>
             <i>There are two kinds of health, mental and physical. Injury to either will result in reduced ability and can lead to eventual death</i>
             <Indexed title='Physical Health'>
+                <p>Life is equal to strength + endurance x 2 + athletics / 9, rounded down. Some perks and traits can increase or decrease life. Strength increase from armor or other temporary effects does not increase life</p>
                 <p>Physical health represents the integrity of body. </p>
                 <p>If you are injured you take penalty to all physical activities with an equal amount of damage taken. Note that merely walking is an athletics + endurance roll, severe damage may impede your ability to walk a distance.</p>
                 <p>If your physical health (life) is reduced to zero you do not immediately die, rather you are partially incapacitated, any extraneous physical activity will cause you to take 1 damage. You also gain intermediate bleeding, any further damage causes bleeding to start again.</p>
@@ -16,16 +17,14 @@ const HealthAndRest = () =>
                 <p>When you receive an injury during combat your body will produce adrenaline, this prevents penalties to physical activities, it lasts 1 hour, each time it happens you lose 1 mental health.</p>
                 <h5>Painkillers</h5>
                 <p>Painkillers can reduce the penalty to physical activities by transfering them into mental penalties. The stronger the painkiller the more it dulls the mind.</p>
-                <h5>Skill bonus</h5>
-                <p>You gain one additional health when your athletics skill rank reaches 9, then again at 18</p>
             </Indexed>
             <Indexed title='Mental Health'>
+                <p>Mental health is equal to willpower x 2, some perks and traits can increase or decrease mental health</p>
                 <p>Mental health represents the integrity of the mind.</p>
                 <p>If your mental health is injured you take a penalty to all mental activities equal to the amount of damage.</p>
                 <p>Mental health injuries come from high levels of stress, over time it can accumulate.</p>
                 <p>While you can not directly die from mental health injury it can debilitate you, if you reach zero you enter a state of depression: mundane tasks require a roll, if you fail you lack the motivation to act and do nothing. Even in life threatening situations since your character has lost the will to live.</p>
-                <h5>Skill bonus</h5>
-                <p>You gain one additional mental health when your survival skill rank reaches 9 and when your empathy reaches 9 (these stack)</p>
+
             </Indexed>
             <Indexed title='Ability damage'>
                 <p>Ability damage recovers 1 per rest, if you have ability damage in multiple abilities then the one with the most damage recovers.</p>
@@ -34,10 +33,9 @@ const HealthAndRest = () =>
                 <p>If maximum mental health or maximum life becomes a negative number then you are partially incapacitated. Any damage to life would count as death.</p>
             </Indexed>
             <Indexed title='Mana'>
-                <h4>Mana</h4>
+                <p>Mana is calculated as willpower x 2 + endurance + spells / 6, rounded down.</p>
                 <p>Mana is used for spells and activating mutations. A occations may let you expend mana for other purposes. There is no penalty to not having full mana, having below zero mana imposes a penalty equal to negative mana to all skill rolls. This stacks with other penalties.</p>
-                <h5>Skill bonus</h5>
-                <p>You gain one additional mana when your spells skill rank reaches 9, then again at 18</p>
+                
             </Indexed>
             <Indexed title='Recovery'>
                 <p>Recovery of life, mental health and mana generally happens when you rest. Life and mental health depends on the quality of sleep</p>

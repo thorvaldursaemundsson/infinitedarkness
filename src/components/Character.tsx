@@ -342,7 +342,8 @@ export class Character {
     public getMana() {
         let spellsBonus = 0;
         const spells = this.getSkillLevel('spells');
-        if (spells >= 9) spellsBonus++;
+        if (spells >= 6) spellsBonus++;
+        if (spells >= 12) spellsBonus++;
         if (spells >= 18) spellsBonus++;
         return Math.max(spellsBonus + this.endurance + this.willpower * 2 + this.getHook('mana'), 1);
     }
