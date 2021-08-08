@@ -22,7 +22,7 @@ const Nekovian = () => <>
     <h3>Playing as a Nekovian</h3>
     <p>Nekovians are a playable race but very few live outside of their homeworld and home system</p>
     <p>Nekovians move at double speed in water and air, and can fly (glide downwards at ~15 degrees)</p>
-    <p>Nekovians have a bite attack, roll combat + agility vs defense, deals 1d6 + strength/3</p>
+    <p>Nekovians have a bite attack, which deals 1d6 + strength / 3 damage</p>
     
     <RaceTable racialData={nekovianData.racialMods} />
     

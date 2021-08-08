@@ -25,7 +25,7 @@ const Merlions: React.FC = () => {
         <p>Merlions are a playable species but not recommended for new players, their stats are slightly affected by their age</p>
         <p>Merlions gain trait "redolex" which increases all mental skills by +1 during combat</p>
         <p>Merlions gain trait "manaless" which locks them out of spells, they gain +2 to all resistence against spells</p>
-        
+        <p>Merlions can use their claws, 1d2 + strength / 5 damage</p>
         <RaceTable racialData={merlionsData.racialMods} />
         
         <GenericCharacterRoller raceData={merlionsData} />

@@ -12,7 +12,7 @@ const Shambras: React.FC = () => {
         <h2>Shambras</h2>
         <h3>Shambra homeworld</h3>
         <p>The shambra homeworld is an inhospitable place for humans, the atmosphere containing lethal levels of chlorine gas at sea level. This is because billions of years ago when there were only single celled organisms deep in the ocean some evolved to use chlorine as an attack mechanism, over time the chlorine built up in the atmosphere. As a result every life form on the planet has evolved to resist chlorine.</p>
-        <p>To protect themselves the flora had to evolve to produce PVC plastic, some fauna evolved to have polytetrafluoroethylene (teflon) embedded in their furr or armor. Additionally shambras exhale small amounts of chlorine as a result of their immune system using chlorine to attack infections.</p>
+        <p>To protect themselves the flora had to evolve to produce PVC plastic, some fauna evolved to have polytetrafluoroethylene (teflon) embedded in their furr or armor. Additionally shambras exhale small amounts of chlorine as a result of their immune system using chlorine to attack infections, Shambras rarely become sick.</p>
         <h3>Biology and optics</h3>
         <p>Shambras are coverd in a nail like armor embedded with teflon that starts out rainbow refractory color and gets darker and matter over time, it hardens and eventually has to be shed, revealing underneath a new shiny colorful flexible armor</p>
         <p>Shambras have 4 eyes and 8 limbs, their legs tend to grow in proportion over time and have claw like hooves, they have two large upper arms equipped with pincers and two smaller lower arms equipped with a hand-like double pincer. The upper arms have strength and stability, the lower arms have fine motor control</p>
@@ -24,7 +24,8 @@ const Shambras: React.FC = () => {
         <h3>Playing as a shambra</h3>
         <p>Shambras are a playable species, their stats depend greatly on their age</p>
         <p>Shambras take certain penalties as they grow older and bigger, players that are close to a previous or next age limit may choose to take adjecent effects instead</p>
-        
+        <h4>Natural attacks</h4>
+        <p>Shambras using their claws to attack deal 1d6 + strength / 3 damage.</p>
         <RaceTable racialData={shambrasData.racialMods} />
         
         <GenericCharacterRoller raceData={shambrasData} />

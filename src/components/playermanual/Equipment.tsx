@@ -79,11 +79,11 @@ const Equipment: React.FC = () => {
                     <li>Huge: +20% cost/weight</li>
                 </ul>
                 <p>Coverage is a matter of how much the armor covers the body, as a matter of rule simplification armors are assumed to protect the more vital areas first.
-                When coverage is less than full roll a 1d6 dice and if the dice equals or exceeds the value then you benefit, otherwise you don't.
-                When blocking you always receive protection from armor as it is assumed that the character blocks using armor or shield.<br />
-                Full plate armors require vast or full protection.<br />
-                Power Armor requires vast or full protection.<br />
-                Armor plates require body suits.
+                    When coverage is less than full roll a 1d6 dice and if the dice equals or exceeds the value then you benefit, otherwise you don't.
+                    When blocking you always receive protection from armor as it is assumed that the character blocks using armor or shield.<br />
+                    Full plate armors require vast or full protection.<br />
+                    Power Armor requires vast or full protection.<br />
+                    Armor plates require body suits.
                 </p>
                 <ul>
                     <li>Full protection: 100% cost/weight and 6/6 protection (no roll needed) - entire body protected</li>
@@ -261,6 +261,7 @@ const WeaponTable: React.FC<WeaponTableProps> = ({ data }) => {
                 <th>HB</th>
                 <th>Weight</th>
                 <th>Value</th>
+                <th>Strength req</th>
             </tr>
         </thead>
         <tbody>
@@ -273,6 +274,7 @@ const WeaponTable: React.FC<WeaponTableProps> = ({ data }) => {
                     <td style={s}>{weapon.hitbonus}</td>
                     <td style={s}>{weightConverter(weapon.weight)}</td>
                     <td style={s}>{bigNumberSeparator(weapon.value)} c</td>
+                    <td style={s}> {weapon.strengthRequirement} </td>
                 </tr>
             })}
         </tbody>

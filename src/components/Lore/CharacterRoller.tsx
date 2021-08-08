@@ -41,8 +41,8 @@ const CharacterRoller: React.FC<IRacialMod> = (props) => {
     </div>);
 }
 
-export const sumN = (n: number[]) => ` ${n.join(', ')} = ${n.reduce(function (a, b) { return a + b; }, 0)}`;
-
+export const sumN = (n: number[]) => `  ${n.reduce(function (a, b) { return a + b; }, 0)}`;
+const howManyTimesCanYouReroll = 3;
 export const rollCharacterData = (dice: IRacialMod): ICharacterData[] => {
     let charData: ICharacterData[] = [];
     if (dice === undefined) {
@@ -55,7 +55,7 @@ export const rollCharacterData = (dice: IRacialMod): ICharacterData[] => {
             willpower: [4]
         }];
     }
-    for (let counter = 0; counter < 4; counter++) {
+    for (let counter = 0; counter < howManyTimesCanYouReroll; counter++) {
         charData.push({
             strength: roll(dice.strength),
             agility: roll(dice.agility),

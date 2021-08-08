@@ -181,9 +181,31 @@ const Conspiritorial: Trait = {
     description: 'You tend to believe in conspiricies and often fall prey to magical thinking. Whenever you roll for general knowledge you suffer a -5, additionally evidence contrary to your beliefs do not cause you to change your beliefs.',
     amount: 0,
     applyTo: ''
-}
+};
 
+const Flight: Trait = {
+    name: 'Flight',
+    cost: -40,
+    description: 'You were born with large arms and hollow bones. You have limited flight, while unencumbered and unexhausted you can maintain level flight for a number of meters equal to strength + athletics before you must touch ground, penalties to physical activities like life damage subtract. Only for nekovians',
+    amount: 0,
+    applyTo: '',
+};
 
+const Magnetoreception: Trait = {
+    name: 'Magnetoreception',
+    cost: -40,
+    description: 'You were born with latent magnetoreception allowing you to feel magnetic fields. You may use your perception to detect magnetic fields. Only Shambras',
+    amount: 0,
+    applyTo: ''
+};
+
+const Hyperredolexant: Trait = {
+    name: 'Hyperredolexant',
+    cost: -40,
+    description: 'When you enter redolex you feel a deeper rage than most others of your kin, your bonus to all metal activity is increased to 4. Only Merlions',
+    amount: 0,
+    applyTo: ''
+};
 
 export const GetTraits = (): Trait[] & IHooker[] => {
     return [
@@ -208,6 +230,9 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         Deaf,
         Mute,
         NaturalTalent,
-        Conspiritorial
+        Conspiritorial,
+        Flight,
+        Magnetoreception,
+        Hyperredolexant
     ].sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
 };
