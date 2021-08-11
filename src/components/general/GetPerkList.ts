@@ -23,6 +23,7 @@ import { ElectronicsPerks } from '../perks/Electronics';
 import { ExplosivesPerks } from '../perks/Explosives';
 import { GeneralKnowledgePerks } from '../perks/GeneralKnowledge';
 import { MechanicsPerks } from '../perks/Mechanics';
+import { SkillName } from './Skills';
 
 export const GetPerkList = (): Perk[] => {
     return [
@@ -51,6 +52,40 @@ export const GetPerkList = (): Perk[] => {
         ...SciencePerks,
         ...SavoirFairePerks,
     ].sort(sortPerk);
+}
+
+interface IPerkBySkill {
+    skill: SkillName;
+    perks: Perk[];
+}
+
+export const GetPerkListBySkills = (): IPerkBySkill[] => {
+    return [
+        { skill: 'combat', perks: CombatPerks },
+        { skill: 'cooking', perks: CookingPerks },
+        { skill: 'computer', perks: ComputerPerks },
+        { skill: 'firearms', perks: FirearmsPerks },
+        { skill: 'pilot', perks: PilotPerks },
+        { skill: 'spells', perks: SpellsPerks },
+        { skill: 'investigation', perks: InvestigationPerks },
+        { skill: 'intimidation', perks: IntimidationPerks },
+        { skill: 'larceny', perks: LarcenyPerks },
+        { skill: 'stealth', perks: StealthPerks },
+        { skill: 'survival', perks: SurvivalPerks },
+        { skill: 'medicine', perks: MedicinePerks },
+        { skill: 'empathy', perks: EmpathyPerks },
+        { skill: 'electronics', perks: ElectronicsPerks },
+        { skill: 'explosives', perks: ExplosivesPerks },
+        { skill: 'general knowledge', perks: GeneralKnowledgePerks },
+        { skill: 'mechanics', perks: MechanicsPerks },
+        { skill: 'subterfuge', perks: SubtreFugePerks },
+        { skill: 'athletics', perks: AthleticsPerks },
+        { skill: 'acrobatics', perks: AcrobaticsPerks },
+        { skill: 'persuasion', perks: PersuasionPerks },
+        { skill: 'streetwise', perks: StreetwisePerks },
+        { skill: 'science', perks: SciencePerks },
+        { skill: 'savoir-faire', perks: SavoirFairePerks },
+    ];
 }
 
 const sortPerk = (prevPerk: Perk, nextPerk: Perk) => {

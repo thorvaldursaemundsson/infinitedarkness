@@ -1,12 +1,13 @@
 import React, { useReducer, useState } from 'react';
 import { Character, CharacterSizes } from '../components/Character';
 import { GetTraits } from '../components/traits/Traits';
-import { GetPerkList } from '../components/general/GetPerkList';
+import { GetPerkListBySkills } from '../components/general/GetPerkList';
 import { useCharacter } from '../components/general/useCharacter';
 
 import './charactersheet.css';
 import EditText, { HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
+import Section from '../components/playermanual/Section';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -225,17 +226,32 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <h5>Perks {(viewState === "edit") ? <button className='no-print' onClick={() => setViewPerkList(!viewPerkList)}>Add Perk</button> : null}</h5>
                         <table>
                             <tbody>
-                                {viewPerkList ? GetPerkList().map(perk => {
-                                    const skillRanks: Skill | undefined = character.skills.find(s => s.name === perk.skill);
-                                    if (skillRanks === undefined || skillRanks.level < perk.level * 3 + 3)
-                                        return null;
-                                    if (character.perks.find(p => p.name === perk.name)) return null;
+                                {viewPerkList ? GetPerkListBySkills().map(perkBySkill => {
+                                    const skillRanks: Skill | undefined = character.skills.find(s => s.name === perkBySkill.skill);
+                                    if (skillRanks !== undefined && skillRanks.level >= 6) {
 
-                                    return <tr className='no-print'>
-                                        <td>
-                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button> ({perk.level}) {perk.description}
-                                        </td>
-                                    </tr>
+                                        return <tr className='no-print'>
+                                            <td>
+                                                <Section title={perkBySkill.skill}>
+                                                    {perkBySkill.perks.map(perk => {
+                                                        if (skillRanks.level < perk.level * 3 + 3)
+                                                            return null;
+                                                        if (character.perks.find(p => p.name === perk.name)) return null;
+                                                        return <>
+                                                            <br />
+                                                            <br />
+                                                            <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button>
+                                                            ({perk.level * 10}) {perk.description}
+                                                            {perk.results && <ul>{perk.results.map(r => <li>{r}</li>)}</ul>}
+
+                                                        </>;
+                                                    })}
+                                                </Section>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else return null;
+
                                 }) : null}
                                 {character.perks.map(perk => {
                                     return <tr>
