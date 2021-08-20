@@ -36,14 +36,14 @@ const CarryingCapacity = () => {
         <p>Penalty applies to swim and half to climb, jump, quarter to acrobatics</p>
         <ul>
             <li>Without effect your maximum speed is Sprint (5x)</li>
-            <li>-1 You can no longer sprint, limited to run (x4), -4 penalty</li>
-            <li>-2 You can no longer run, limited to jog (x3), -8 penalty</li>
-            <li>-2 You can no longer jog, limited to power walk (x2), -12 penalty</li>
-            <li>-4 You can no longer power walk, limited to walk (x1), -16 penalty</li>
-            <li>-8 You can only walk at half speed (x0.5), -20 penalty</li>
-            <li>-16 You can only walk at quarter speed (0.25x), -24 penalty</li>
-            <li>Max is how much you can deadlift</li>
-            <li>Drag is how much you can drag off the ground</li>
+            <li>-1 You can no longer sprint, limited to run (x4)</li>
+            <li>-2 You can no longer run, limited to jog (x3), limited to passive defense</li>
+            <li>-2 You can no longer jog, limited to power walk (x2), no reaction allowed</li>
+            <li>-4 You can no longer power walk, limited to walk (x1), limited to base defense</li>
+            <li>-8 You can only walk at half speed (x0.5), may only use one action</li>
+            <li>-16 You can only walk at quarter speed (0.25x), may only use move action</li>
+            <li>Max is how much you can deadlift, uses action and move just to stand up</li>
+            <li>Drag is how much you can drag off the ground, uses action and move to push 1 meter / round</li>
         </ul>
         <table>
             <thead>

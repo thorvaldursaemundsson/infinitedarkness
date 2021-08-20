@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { findRacialModFromRage } from '../../utils/utilFunctions';
-import { CharacterSize, CharacterSizeMods } from '../Character';
+import { Character, CharacterSize, CharacterSizeMods } from '../Character';
 import { race } from '../races/Races';
 
 export interface IStats {
@@ -86,13 +86,15 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
         restExp: 0,
     });
 
+    const totalCharacterPointsModifier = Math.floor(Character.getStartingPointsAvailable(currentStats.age, startingSpecies) / 10);
+
     const currentRacialMod = findRacialModFromRage(startingSpecies, startingAge);
     if (currentRacialMod === undefined) {
         return <>please choose valid species and age range</>;
     }
     const max = abilityMultiplier * 90;
     const pointsLeft = (max - calculateCost(currentStats));
-    const pointsLeftValid = pointsLeft > -30 && pointsLeft < 30;
+    const pointsLeftValid = pointsLeft > (-30 - totalCharacterPointsModifier) && pointsLeft < (30 + totalCharacterPointsModifier);
 
     const complete = () => {
         onComplete({

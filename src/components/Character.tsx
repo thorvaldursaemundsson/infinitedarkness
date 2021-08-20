@@ -311,12 +311,17 @@ export class Character {
 
     public getStartingPointsAvailable(): number {
 
-        switch (this.species) {
-            case 'human': return humansData.experiencePoints(this.age) + this.bonusExp;
-            case 'merlion': return merlionsData.experiencePoints(this.age) + this.bonusExp;
-            case 'shambras': return shambrasData.experiencePoints(this.age) + this.bonusExp;
-            case 'nekovian': return nekovianData.experiencePoints(this.age) + this.bonusExp;
-            case 'synth': return synthsData.experiencePoints(this.age) + this.bonusExp;
+        return Character.getStartingPointsAvailable(this.age, this.species) + this.bonusExp;
+    }
+
+    public static getStartingPointsAvailable(age:number, species:race): number {
+
+        switch (species) {
+            case 'human': return humansData.experiencePoints(age);
+            case 'merlion': return merlionsData.experiencePoints(age);
+            case 'shambras': return shambrasData.experiencePoints(age);
+            case 'nekovian': return nekovianData.experiencePoints(age);
+            case 'synth': return synthsData.experiencePoints(age);
         }
     }
 

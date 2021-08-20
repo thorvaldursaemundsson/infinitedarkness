@@ -18,18 +18,18 @@ const Vehicles: React.FC = () => {
             </Indexed>
             <Indexed title='water vehicles'>
                 <VehicleTable vehicles={WaterVehicles} parts={waterVehicleParts} />
-                
+
 
             </Indexed>
             <Indexed title='air'>
-            <Section title='Landing & crashlanding'>
+                <Section title='Landing & crashlanding'>
                     <h5>Landing</h5>
                     <p>Whenever you land there is a risk that a part of the airplane takes some damage or is worn. When you crash the risk increases considerably.</p>
                     <p>The first step is to find the part that is damaged, roll 1d100, the second step is to find the amount of damage, 1, 1d4 or 1d6 depending on landing success</p>
                     <h6>Level of damage</h6>
                     <p>There are 6 levels of damage (level 0 being undamaged, pristine). Damages reduce resell value and pilot skill addadtively. Repair is mechanics + intelligence.
-                    Some parts are essencial and the certain functions do not work without them.
-                </p>
+                        Some parts are essencial and the certain functions do not work without them.
+                    </p>
                     <ol>
                         <li>Worn: no effect on performance, repair 20. -1% value</li>
                         <li>Slightly damaged: -2 on pilot, repair 20. -2% value</li>
@@ -41,7 +41,7 @@ const Vehicles: React.FC = () => {
 
                     <RollOMeter partsList={airVehicleParts} amountList={rollAmounts} damageAmounts={airVehicleDamageTexts} />
 
-                </Section> 
+                </Section>
                 <VehicleTable vehicles={AirVehicles} parts={airVehicleParts} />
             </Indexed>
             <Indexed title='space'>
@@ -130,7 +130,7 @@ const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
                 </tr>
             </thead>
             <tbody>
-                {vehicles.map(v => <VehicleRow onSelect={(v) => {}} vehicle={v} />)}
+                {vehicles.map(v => <VehicleRow onSelect={(v) => { }} vehicle={v} />)}
             </tbody>
         </table>
     </>);
@@ -156,7 +156,7 @@ const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle, onSelect }) => {
                 <td>{vehicle.name}</td>
                 <td>{vehicle.medium.map(m => <span>{m} </span>)}</td>
                 <td>{vehicle.passengers}</td>
-                <td>{weightConverter(vehicle.cargoKg)}</td>
+                <td>{weightConverter(vehicle.cargoKg * 1000)}</td>
                 <td>{costConverter(vehicle.cost)}</td>
             </tr>
             <tr>
@@ -175,7 +175,7 @@ const VehicleRow: React.FC<IVehicleRowProps> = ({ vehicle, onSelect }) => {
         <td>{vehicle.name}</td>
         <td>{vehicle.medium.map(m => <span>{m} </span>)}</td>
         <td>{vehicle.passengers}</td>
-        <td>{weightConverter(vehicle.cargoKg)}</td>
+        <td>{weightConverter(vehicle.cargoKg * 1000)}</td>
         <td>{costConverter(vehicle.cost)}</td>
     </tr>
 }
