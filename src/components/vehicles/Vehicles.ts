@@ -285,6 +285,9 @@ export interface Vehicle {
     cargoKg: number;
     fuelType: FuelEngine[];
     parts: Part[];
+    /**
+     * kilometers
+     */
     range: number;
     /**
      * meters per second

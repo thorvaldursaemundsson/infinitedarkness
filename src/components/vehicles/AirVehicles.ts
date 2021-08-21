@@ -69,6 +69,19 @@ export const airVehicleDamageTexts: IDamageAmount[] = [
 
 const AirVehicles: Vehicle[] = [
     {
+        name: 'microplane',
+        medium: ['air'],
+        passengers: 1,
+        cargoKg: 150,
+        fuelType: [Electricity],
+        range: 120,
+        topSpeed: 140,
+        acceleration: 25,
+        cost: 28000,
+        description: 'Can drive on normal roads and use them as runways. More or less a flying car, wings can be folded.',
+        parts: []
+    },
+    {
         name: 'tiny airplane',
         medium: ['air'],
         passengers: 2,

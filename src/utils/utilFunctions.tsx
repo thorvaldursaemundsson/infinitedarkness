@@ -8,11 +8,11 @@ import { synthsData } from "../components/races/Synth";
 
 export const weightConverter = (grams: number) => {
     if (grams < 1000) return `${grams.toFixed(0)}g`;
-    if (grams < 1000 * 1000) return `${(grams / 1000).toFixed(1)}kg`;
-    return `${(grams / 100000).toFixed(4)} tons`;
+    else if (grams < (10000000)) return `${(grams / 1000).toFixed(0)}kg`;
+    else return `${(grams / 1000000).toFixed(1)} tons`;
 };
 
-export const bigNumberSeparator = (numb:number) => {
+export const bigNumberSeparator = (numb: number) => {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
@@ -50,7 +50,7 @@ export const findRacialModFromRage = (species: race | undefined, age: number | u
         case 'shambras':
             output = shambrasData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
             break;
-        case 'synth': 
+        case 'synth':
             output = synthsData.racialMods.find(irm => irm.ageSpan[1] >= age && irm.ageSpan[0] <= age);
             break;
     }
@@ -58,20 +58,20 @@ export const findRacialModFromRage = (species: race | undefined, age: number | u
 }
 
 
-export function shuffle<T>(array:T[]) {
-    var currentIndex = array.length,  randomIndex;
-  
+export function shuffle<T>(array: T[]) {
+    var currentIndex = array.length, randomIndex;
+
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
-  }
+}
