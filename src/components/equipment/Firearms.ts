@@ -384,8 +384,8 @@ const Firearms: FireArm[] = [
 
     //rifle
     {
-        fireArmClass: 'rifle', name: 'Fantry Assault Model', damage: D(2, 6), range: 800, ammo: '11x17', strengthRequirement: 3, capacity: 24, fireAction: ['semi-automatic'], armorpiercing: 1, weight: 2200, value: 1500,
-        description: 'A light weight assault weapon'
+        fireArmClass: 'rifle', name: 'Fantry Assault Model', damage: D(2, 6), range: 800, ammo: '11x17', strengthRequirement: 3, capacity: 48, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, weight: 2200, value: 1500,
+        description: 'A light weight assault weapon', rps: 6, hitbonus: 1,
     },
     {
         fireArmClass: 'rifle', name: 'Skolt Hunter', damage: D(2, 8), range: 100, ammo: '12x20', strengthRequirement: 4, capacity: 8, fireAction: ['bolt action'], armorpiercing: 2, weight: 2300, value: 2000,
@@ -401,8 +401,8 @@ const Firearms: FireArm[] = [
     },
     //automatic rifle
     {
-        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: D(1, 12), range: 700, ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 3200, value: 3600,
-        description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare '
+        fireArmClass: 'rifle', name: 'Skolt Advanced', damage: D(1, 12), range: 700, ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 3, rps: 8, weight: 3200, value: 3600,
+        description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare ', hitbonus: 1
     },
     {
         fireArmClass: 'rifle', name: 'Merlion Predator', damage: D(2, 10), range: 1100, ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 11000,
@@ -653,7 +653,7 @@ export const FirearmModifications: IFirearmModification[] = [
     {
         name: 'Turbo charge',
         description: '(energy weapons) +50% damage, can only fire once per round.',
-        effects: ['ammo use +100%', '-25% range', 'Overheats: gain 1 heat point every shot, lose 1 heat after 2 rounds of non-use, can\'t fire if at 8 heat.'],
+        effects: ['ammo use +100%', '-25% range', 'Overheats: uses 2 ammo per shot, can only fire every other turn'],
         cost: 0,
         costMultiplier: 1.25,
         weight: 500,

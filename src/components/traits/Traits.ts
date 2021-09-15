@@ -95,12 +95,12 @@ const WealthyFamily: Trait = {
     applyTo: '',
 }
 
-const Aggressive: Trait = {
-    name: 'aggressive',
-    cost: 10,
-    description: 'you are particularly aggressive and fast to fight, +2 to sequence and -2 to all defense. If you panic you may choose to instead go berserk',
-    amount: 0,
-    applyTo: ''
+const LightningReflexes: Trait = {
+    name: 'lightning reflexes',
+    cost: 20,
+    description: 'You are fast to react to danger, you add +3 to your sequence and +3 to rolls triggered by reaction',
+    amount: 3,
+    applyTo: 'sequence'
 }
 
 const Frugal: Trait = {
@@ -220,7 +220,7 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         DoubleHanded,
         Phobia,
         WealthyFamily,
-        Aggressive,
+        LightningReflexes,
         Frugal,
         Durable,
         MentallyFlexible,

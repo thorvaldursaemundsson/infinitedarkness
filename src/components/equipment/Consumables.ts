@@ -4,7 +4,7 @@ interface IConsumable extends Item {
     charges: number;
 }
 
-export const ConsumableWeapons:IConsumable[] = [
+export const ConsumableWeapons: IConsumable[] = [
     {
         name: 'Frag Grenade',
         description: 'Does 6d8 damage in a radius of 2 meters (hexes) and quarter 1 meter radius more. Destroys objects. Deafness in blast area for 4 rounds.',
@@ -316,4 +316,137 @@ export const ConsumableTools: IConsumable[] = [
         weight: 1000,
         value: 8000,
     }
+];
+
+interface IMedicine extends IConsumable {
+    medicineSkillRolls: string[];
+}
+
+export const ConsumableMedicine: IMedicine[] = [
+    {
+        name: 'Adrenaline',
+        description: 'Immediately awakens someone who is unconscious',
+        charges: 5,
+        weight: 100,
+        value: 1600,
+        medicineSkillRolls: [
+            '20+: can awaken someone who is not critically incapacitated',
+            '30+: can awaken someone who is critically incapacitated',
+        ],
+    },
+    {
+        name: 'Stempack',
+        description: 'Heals 1 life per hour for 8 hours. Can not be used more often than 1 per endurance per 10 days.',
+        charges: 10,
+        weight: 10,
+        value: 2000,
+        medicineSkillRolls: [
+            '14 or less: takes 6 seconds. causes 1d4 damage. Causes 1 level of exhaustion',
+            '20-24: Takes 10 minutes. Causes 1 level of exhaustion',
+            '25-30: Takes 1 minute. Causes 1 level of exhaustion',
+            '31-40: Takes 30 seconds',
+            '41+: Takes 30 seconds, immediately heal 1 life'
+        ],
+    },
+    {
+        name: 'Antibiotics',
+        description: 'Strengthens immune response to bacterial infection. When rolling immune response vs bacterial disease roll add +10',
+        charges: 5,
+        weight: 10,
+        value: 2000,
+        medicineSkillRolls: [
+            '14 or less: takes 6 seconds. Gain no benefit from antibiotics, gain 1 level of exhaustion',
+            '20-29: Takes 10 minutes',
+            '30+: Takes 1 minute'
+        ],
+    },
+    {
+        name: 'Antivirals',
+        description: 'Strengthens immune response to viral infection. When rolling immune response vs bacterial disease add +10',
+        charges: 2,
+        weight: 10,
+        value: 1600,
+        medicineSkillRolls: [
+            '14 or less: takes 6 seconds. Gain no benefit from antibiotics, gain 1 level of exhaustion',
+            '20-29: Takes 10 minutes',
+            '30+: Takes 1 minute'
+        ],
+    },
+    {
+        name: 'Radioflush',
+        description: 'Removes radioactive materials from body over the course of 72 hours (does not drop radiation level). Causes 1 level of exhaustion',
+        charges: 2,
+        weight: 50,
+        value: 1600,
+        medicineSkillRolls: [
+            '19 or less: Takes 6 seconds. do not gain benefits',
+            '20-29: Takes 1 minute.',
+            '30+: Takes 1 minute. No exhaustion'
+        ],
+    },
+    {
+        name: 'Gene therapy detox',
+        description: 'Reduces radiation dose by 1, takes 30 days to take effect. Causes 1 level of exhaustion after every rest while active.',
+        charges: 4,
+        weight: 10,
+        value: 2400,
+        medicineSkillRolls: [
+            '24 or less: Takes 6 seconds. do not gain benefits',
+            '25-29: Takes 60 minutes.',
+            '30-34: Takes 60 minutes. Effect only requires 20 days.',
+            '35-39: Takes 60 minutes. Effect only requires 10 days.',
+            '40+: Takes 60 minutes. Effect only requires 5 days.',
+        ],
+    },
+    {
+        name: 'Antivenom',
+        description: 'Counteracts venom, stops it from causing further harm.',
+        charges: 1,
+        weight: 20,
+        value: 1200,
+        medicineSkillRolls: [
+            '20-24: takes 5 minutes. Causes 1 level of exhaustion',
+            '25-29: takes 1 minute. Causes 1 level of exhaustion',
+            '30+: takes 12 seconds.'
+        ],
+    },
+    {
+        name: 'Anti-Radiation drug',
+        description: 'reduces accumulation of radiation damage for 30 days by 1 level',
+        charges: 5,
+        weight: 50,
+        value: 1000,
+        medicineSkillRolls: [
+            '10-19: causes 1 level of exhaustion',
+            '20-29: normal effect',
+            '30+: may take second dose with additional effect'
+        ],
+    },
+    {
+        name: 'Active carbon',
+        description: 'reduces effect of poisons recently consumed, neutralizes medicines and drugs taken orally',
+        charges: 10,
+        weight: 100,
+        value: 100,
+        medicineSkillRolls: [
+        ],
+    },
+    {
+        name: 'Weak painkillers',
+        description: 'Half penalty to all rolls from life damage, max 10',
+        charges: 20,
+        weight: 100,
+        value: 200,
+        medicineSkillRolls: [
+        ],
+    },
+    {
+        name: 'Strong painkiller',
+        description: 'Quarter penalty to all rolls from life damage, max 30.',
+        charges: 20,
+        weight: 100,
+        value: 1000,
+        medicineSkillRolls: [
+        ],
+    },
 ];

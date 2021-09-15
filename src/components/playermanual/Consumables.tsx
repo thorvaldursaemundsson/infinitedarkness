@@ -2,7 +2,7 @@ import React from 'react';
 import Section from './Section';
 import Indexer, { Indexed } from '../general/Indexer';
 import Cooking from '../skills/cooking';
-import { ConsumableTools, ConsumableWeapons } from '../equipment/Consumables';
+import { ConsumableMedicine, ConsumableTools, ConsumableWeapons } from '../equipment/Consumables';
 import { CharacterSizeMods } from '../Character';
 
 
@@ -84,32 +84,30 @@ const Medicine = () => <>
     <h4>Healing Medicine</h4>
     <p>Healing medicine concerns all kinds of drugs that restore life, limb and damage, all these require medicine check.</p>
     <p>Dosage matters for size, which means altered credit cost. Tiny: -20%, small: -10, large: +10%, huge: +20%</p>
-    <ul>
-        <li>Stempack: 200 credits, restores life </li>
-        <li>Antibiotics: 400 credits, cures bacterial infection </li>
-        <li>Antivirals: 800 credits, cures viral infection </li>
-        <li>Radioflush: 900 credits, removes radioactive materials from body (does not drop radiation level)</li>
-        <li>Gene therapy detox: 600 credits, accelerates radiation healing to 1 level per month.</li>
-        <li>Antivenom: 700 credits, neutralizes (specific) venom</li>
-    </ul>
-    <h4>Resillience Drugs</h4>
-    <p>Resillience drugs are similar to medicine in that they require medicine skill, however they don't heal damage. They prevent it</p>
-    <ul>
-        <li>Anti-Radiation drug: 200 credits, reduces accumulation of radiation damage for 30 days by 1 level</li>
-        <li>Active carbon: 10 credits, reduces effect of poisons recently consumed, neutralizes medicines and drugs</li>
-    </ul>
-    <h4>Performance Enhancing Drugs</h4>
-    <p>Performance enhancing drugs are often illegal and most carry negative effects, some are also addictive</p>
-    <p>Characters who become addicted become unable to resist the temptation to take more of the drug which tends to ruin their lives.</p>
-    <ul>
-        <li>Weak painkillers: 10 credits, reduces penalty from damage by 2 (no skill needed), lasts 8 hours</li>
-        <li>Intermediate painkiller: 50 credits, reduces penalty from damage by 6 (no skill needed, requires prescription), lasts 8 hours</li>
-        <li>Strong painkiller: 200 credits, reduces penalty from damage by 16, requires medicine skill, lasts 8 hours</li>
-        <li>Coffee: +1 to all intelligence and perception rolls for 6 hours, no effect if addicted</li>
-        <li>Alcohol (1 beer): 20 credits, reduces penalty from damage by 1, reduces all mental rolls by 1, increases bravery by 2, lasts 2 hours</li>
-        <li>Berzerker drops: 1500 credits, gain +1 strength, endurance, +3 to combat for 1 hour, high risk of addiction</li>
-        <li>Spirit Elixir: unknown credits, unknown effect</li>
-    </ul>
+    <p>Some medicines require a skill check, which are listed below</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>uses</th>
+                <th>Weight (kg)</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {ConsumableMedicine.map(tool => <>
+                <tr>
+                    <td><b>{tool.name}</b></td><td>{tool.charges}</td><td>{tool.weight / 1000}</td><td>{tool.value}</td>
+                </tr>
+                <tr>
+                    <td className='univeralBorderBottom' colSpan={4}>
+                        {tool.description}
+                        {tool.medicineSkillRolls.length > 0 ? <ul>{tool.medicineSkillRolls.map(m => <li>{m}</li>)}</ul> : null}
+                    </td>
+                </tr>
+            </>)}
+        </tbody>
+    </table>
 </>;
 
 interface ITool {
@@ -175,7 +173,4 @@ const Weapons = () => <>
         </tbody>
     </table>
 </>;
-
-//Hand grenade
-//Remote activated Bomb
 //Traps

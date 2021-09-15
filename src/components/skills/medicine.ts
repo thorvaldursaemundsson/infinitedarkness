@@ -39,17 +39,6 @@ const useCases: UseCase[] = [
             'administer light painkillers: 10 (1/2 damage penalty to skills)',
             'administer medium painkillers: 20 (1/4 damage penalty to skills)',
             'administer heavy painkillers: 30 (1/8 damage penalty to skills)',
-            'administer adrenaline: 20+ (patient ignores damage penalties to skills up to -100% damage)',
-            'administer stempack: 30+ (takes 10 minutes, heal 1 life per hour for 8 hours, max 1 per endurance per week)',
-            'administer stempack: 15 or less cause 1d4 damage and 50% risk of cancer',
-            'administer antibiotics: 20',
-            'administer antivirals: 25',
-            'administer radioflush: 20',
-            'administer antivenom: 25',
-            'administer gene therapy detox: 25',
-            'administer anti-radiation: 25',
-            'administer active carbon: 5',
-            'administer performance enhancing drugs: 15',
             'patient is different species: -8'
         ],
         type: 'active'

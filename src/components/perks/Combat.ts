@@ -70,16 +70,6 @@ const MartialArtsMaster = new PerkTemplate({
     amount: 3
 });
 
-const LightningReflexes = new PerkTemplate({
-    name: 'lightning reflexes',
-    skill: 'combat',
-    level: 1,
-    description: 'when you are ambushed you gain +4 to your sequence, does not apply if the attacker has no sequence advantage'
-}, {
-    applyTo: 'sequence',
-    amount: 4,
-});
-
 const Disarm = new PerkTemplate({
     name: 'disarm',
     skill: 'combat',
@@ -125,5 +115,5 @@ const Beast = new PerkTemplate({
 
 
 export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization,
-    MartialArts, MartialArtsExpert, MartialArtsMaster, LightningReflexes, Disarm, DualWeaponFighter, DualWeaponMaster,
+    MartialArts, MartialArtsExpert, MartialArtsMaster, Disarm, DualWeaponFighter, DualWeaponMaster,
     Barbarian, Berzerker, Beast];
