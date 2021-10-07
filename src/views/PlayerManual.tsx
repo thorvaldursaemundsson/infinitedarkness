@@ -7,7 +7,7 @@ import Experience from '../components/playermanual/Experience';
 import Vehicles from '../components/playermanual/Vehicles';
 import Section from '../components/playermanual/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
-import CarryingCapacity from '../components/playermanual/CarryingCapacity';
+import CarryingCapacity from '../components/playermanual/CarryingExhaustion';
 import Radiation from '../components/playermanual/Radiation';
 import Consumables from '../components/playermanual/Consumables';
 import Cybernetics from '../components/playermanual/Cybernetics';

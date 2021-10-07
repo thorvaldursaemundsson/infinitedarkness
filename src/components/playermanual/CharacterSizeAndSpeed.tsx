@@ -126,19 +126,9 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
         </thead>
         <tbody>
             <tr>
-                <td>Step</td>
-                <td>25%</td>
-                <tr>Taking one single step at a time, generally only used if very exhausted or over carrying capacity</tr>
-            </tr>
-            <tr>
-                <td>Slow walk</td>
-                <td>50%</td>
-                <tr>Walking very slow</tr>
-            </tr>
-            <tr>
                 <td>Walk</td>
                 <td>100%</td>
-                <tr>Normal walking speed</tr>
+                <tr>Normal walking speed using move action</tr>
             </tr>
             <tr>
                 <td>Power Walk</td>
@@ -148,18 +138,19 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
             <tr>
                 <td>Jog</td>
                 <td>300%</td>
-                <tr>Requires use of both move action and action. Do not gain benefit from skill to defense (use level 2 defense)</tr>
+                <tr>Requires use of both move action and action. Defense drops from active to passive, or passive to base. Can not use if defense is already at base</tr>
             </tr>
             <tr>
                 <td>Run</td>
                 <td>400%</td>
-                <tr>Requires use of both move action and action. Do not gain benefit from agility to defense (use level 1 defense)</tr>
+                <tr>Requires use of both move action and action. Defense drops to base, can only use if defense is on active.<br />
+                May not react</tr>
             </tr>
             <tr>
                 <td>Sprint</td>
                 <td>500%</td>
-                <tr>Requires use of both move action and action. Do not gain benefit from agility to defense (use level 1 defense).
-                    Must run in a straigth or near straight line.
+                <tr>Requires use of both move action and action. Defense drops to base, can only use if defense is on active<br />
+                    Must run in a straigth or near straight line.<br />
                     Must have used run action in previous turn.</tr>
             </tr>
         </tbody>
