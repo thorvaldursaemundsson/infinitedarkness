@@ -43,8 +43,14 @@ const Equipment: React.FC = () => {
                 <FirearmCrafter />
                 <hr />
                 <FirearmTable data={Firearms} />
-                <p>
-                    Condition adds to to hit modifier, quality adds to both to hit and damage.
+                <p> Condition adds to to hit modifier, quality adds to both to hit and damage. </p>
+                <h5>Overheating</h5>
+                <p>Some firearms overheat in certain situations.
+                    Sub-machine guns and assault rifles (fully automatic rifle) when using fully automatic mode will overheat when they use twice their magazine capacity.
+                    Once overheated they deal -2 damage and have -4 to hit. Cooling takes 10 minutes.</p>
+                <p>Machineguns can be belt fed ammunition and do not overheat due to built in cooling.</p>
+                <p>Energy weapons overheat when they have expended half of their capacity in 1 minute (10 rounds).
+                    Once overheated energy weapons can not be fired. Cooling takes 10 minutes
                 </p>
                 <h5>Firearm modifications</h5>
                 <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>

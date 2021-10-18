@@ -653,11 +653,27 @@ export const FirearmModifications: IFirearmModification[] = [
     {
         name: 'Turbo charge',
         description: '(energy weapons) +50% damage, can only fire once per round.',
-        effects: ['ammo use +100%', '-25% range', 'Overheats: uses 2 ammo per shot, can only fire every other turn'],
+        effects: ['ammo use +100%', '-25% range', 'Overheats: uses 2 ammo per shot, can only fire every other turn, if used two turns in a row will immediately overheat after second shot'],
         cost: 0,
         costMultiplier: 1.25,
         weight: 500,
     },
+    {
+        name: 'Barrel Cooler',
+        description: 'Delays overheating, speeds up cooling.',
+        effects: ['Overheats at 4x ammo capacity', 'Cools after 1 minute'],
+        cost: 400,
+        weight: 300,
+        costMultiplier: 1,
+    },
+    {
+        name: 'Heat sink',
+        description: 'Absorbs heat and vents it into the air, if combined with Turbo charge will instead allow fire once every turn and increases ammo use to 4 per shot',
+        effects: ['Energy weapon does not overheat', 'Uses 1 ec charge every 10th used.'],
+        cost: 600,
+        weight: 600,
+        costMultiplier: 1,
+    }
 ];
 
 export default Firearms;
