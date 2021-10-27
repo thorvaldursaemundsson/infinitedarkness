@@ -455,23 +455,23 @@ const Firearms: FireArm[] = [
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AV-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
+        fireArmClass: 'rocketlauncher', name: 'AV-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 800, hitbonus: -2,
         description: 'Standard anti-vehicle rocket launcher, destroys light tanks, up to 1 meter concrete. Reloading takes a full round action. Backblast: Deals 4d6 fire damage to anyone standing behind operator in up to 4 meters', splashRange: 2, lowDamageZone: 3,
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
+        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 12000, hitbonus: -3,
         description: 'Heavy anti-tank rocket launcher, will destroy any vehicle or base. Reloading takes a full round action. Backblast: Deals 5d6 fire damage to anyone standing behind operator in up to 8 meters', splashRange: .5, lowDamageZone: 1,
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AB-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
+        fireArmClass: 'rocketlauncher', name: 'AB-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 14000, hitbonus: -4,
         description: 'This rocket launcher is designed to destroy entire buildings, anything hit by it is vaporized. Reloading takes a full round action. Backblast: Deals 6d6 fire damage to anyone standing behind operator in up to 16 meters', splashRange: .5, lowDamageZone: 1,
         reload: 'two full rounds'
     },
     //energy weapons
     {
-        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2300,
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2800,
         description: 'the only laser handgun, needs protective gear to use, has blinding effect to all within 1 meters, half range penalty'
     },
     {
@@ -479,15 +479,15 @@ const Firearms: FireArm[] = [
         description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
     },
     {
-        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 6100,
+        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 16000,
         description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 3 meters, half range penalty'
     },
     {
-        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 9200,
+        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 20000,
         description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters', reload: 'action'
     },
     {
-        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 6700,
+        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 18000,
         description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action'
     }
 ];
