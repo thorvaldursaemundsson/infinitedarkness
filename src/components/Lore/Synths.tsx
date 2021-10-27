@@ -5,7 +5,7 @@ import RaceTable from "../races/RaceTable";
 import { synthsData } from "../races/Synth";
 import { GenericCharacterRoller } from "./CharacterRoller";
 
-const experienceAges = getExperienceAges(synthsData, 20);
+const experienceAges = getExperienceAges(synthsData, 400);
 
 
 const Synths: React.FC = () => {

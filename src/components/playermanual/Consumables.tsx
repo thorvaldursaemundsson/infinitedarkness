@@ -83,7 +83,7 @@ const Food = () => <>
 const Medicine = () => <>
     <h4>Healing Medicine</h4>
     <p>Healing medicine concerns all kinds of drugs that restore life, limb and damage, all these require medicine check.</p>
-    <p>Dosage matters for size, which means altered credit cost. Tiny: -20%, small: -10, large: +10%, huge: +20%</p>
+    <p>Dosage matters for size, tiny uses 1/2 charges, small, medium and large use 1, huge uses 3/2</p>
     <p>Some medicines require a skill check, which are listed below</p>
     <table>
         <thead>

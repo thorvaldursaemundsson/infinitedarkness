@@ -79,7 +79,7 @@ const GreatFortitude = new PerkTemplate({
     name: 'great fortitude',
     skill: skill,
     level: 2,
-    description: 'Your character has great fortitude, gain +4 life'
+    description: 'Your character has great fortitude, gain +4 life. Prerequisite: Good fortitude'
 }, {
     applyTo: 'life',
     amount: 4
@@ -89,10 +89,24 @@ const SupremeFortitude = new PerkTemplate({
     name: 'supreme fortitude',
     skill: skill,
     level: 3,
-    description: 'Your character has supreme fortitude, gain +6 hitpoints'
+    description: 'Your character has supreme fortitude, gain +6 hitpoints. Prerequisite: Great fortitude'
 }, {
     applyTo: 'life',
     amount: 6
+});
+
+const Regeneration = new PerkTemplate({
+    name: 'regeneration',
+    skill: skill,
+    level: 2,
+    description: 'Increases healing, regenerate 1 additional life from low quality sleep or better. Prerequisite: Good fortitude'
+});
+
+const Resillient = new PerkTemplate({
+    name: 'resillient',
+    skill: skill,
+    level: 1,
+    description: 'While incapacitated you never go unconscious from damage and extraneous physical activity do not cause damage. Bleeding damage is half',
 });
 
 const StrongBack = new PerkTemplate({
@@ -157,5 +171,5 @@ const Robust = new PerkTemplate({
     applyTo: 'damageAbsorption'
 });
 
-export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude, StrongBack,
+export const AthleticsPerks = [Climber, Runner, Swimmer, Jumper, DistanceThrower, DeepLungs, GoodFortitude, GreatFortitude, SupremeFortitude, Regeneration, Resillient, StrongBack,
     HighMobility, Marathoner, ArmorSpecialist, ArmorMaster, Hardy, Robust];

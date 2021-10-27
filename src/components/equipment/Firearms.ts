@@ -28,7 +28,7 @@ export interface AmmoInformation {
 export const AmmoTypesInformation: AmmoInformation[] = [
     {
         ammo: '9x17',
-        cost: 1.5,
+        cost: 2,
         weight: 7,
         types: ['tracer', 'hollow point', 'standard'],
         description: 'a small short 9mm bullet',
@@ -39,7 +39,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '9x21',
-        cost: 1.8,
+        cost: 3,
         weight: 9,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a slightly longer version of the 9mm',
@@ -50,7 +50,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '9x23',
-        cost: 2.1,
+        cost: 3.5,
         weight: 11,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a long version of the 9mm',
@@ -61,7 +61,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '10x19',
-        cost: 3,
+        cost: 2.8,
         weight: 10,
         types: ['hollow point', 'standard'],
         description: 'a standard 10cm bullet',
@@ -72,7 +72,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '10x21',
-        cost: 3.5,
+        cost: 3.6,
         weight: 11,
         types: ['tracer', 'hollow point', 'armor piercing', 'standard'],
         description: 'a long version of the 10cm bullet',
@@ -83,7 +83,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '11x17',
-        cost: 4,
+        cost: 3.8,
         weight: 12,
         types: ['incendiary', 'standard'],
         description: 'a short wide 11cm bullet',
@@ -105,7 +105,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '12x20',
-        cost: 7,
+        cost: 10,
         weight: 16,
         types: ['armor piercing', 'incendiary', 'standard'],
         description: 'a large 12cm bullet',
@@ -116,7 +116,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '12x24',
-        cost: 7,
+        cost: 16,
         weight: 20,
         types: ['hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a long large 12cm bullet',
@@ -127,7 +127,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '12x28',
-        cost: 8,
+        cost: 20,
         weight: 25,
         types: ['tracer', 'hollow point', 'armor piercing', 'incendiary', 'standard'],
         description: 'a very long large 12cm bullet',
@@ -150,7 +150,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '12 gauge',
         cost: 9,
-        weight: 24,
+        weight: 28,
         types: ['shell', 'slug', 'explosive', 'wolf'],
         description: 'a 12 gauge shotgun shell',
         loudness: {
@@ -161,7 +161,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '20 gauge',
         cost: 6.6,
-        weight: 22,
+        weight: 21,
         types: ['shell', 'slug', 'wolf'],
         description: 'a 20 gauge shotgun shell',
         loudness: {
@@ -172,7 +172,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '20mm rpg',
         cost: 1500,
-        weight: 400,
+        weight: 800,
         types: ['standard', 'grenade'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
@@ -183,7 +183,7 @@ export const AmmoTypesInformation: AmmoInformation[] = [
     }, {
         ammo: '30mm rpg',
         cost: 2500,
-        weight: 1000,
+        weight: 1600,
         types: ['frag', 'standard', 'grenade', 'fire bomb'],
         description: 'a 40mm rocket propelled grenade',
         loudness: {
@@ -243,20 +243,20 @@ export interface IAmmoModification {
 
 export const AmmoModifications: IAmmoModification[] = [
     { name: 'Standard', description: 'default version of the ammo, assumes the weapons stats unchanged', cost: 1 },
-    { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +3 to hit.', hitAdd: 3, cost: 1.5 },
-    { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1.2 },
-    { name: 'Armor Piercing', description: 'bullet made of hard alloy instead of lead, adds +4 armor piercing, -1 damage.', armorPiercingAdd: 4, damageAdd: -1, cost: 1.1 },
+    { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +3 to hit.', hitAdd: 3, cost: 1.3 },
+    { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1.1 },
+    { name: 'Armor Piercing', description: 'bullet made of hard steel alloy instead of lead, adds +4 armor piercing, -1 damage.', armorPiercingAdd: 4, damageAdd: -1, cost: 1.1 },
     { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', damageAdd: 2, armorPiercingAdd: 1, cost: 2.5 },
     { name: 'Shell', description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
     { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 2, damageAdd: 1, hitAdd: 1, cost: 1, rangeMultiplier: 2 },
     { name: 'Explosive', description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', damageAdd: 2, armorPiercingAdd: 3, hitAdd: 1, cost: 2 },
-    { name: 'Wolf', description: 'tungsten slug, named after the old name of tungsten, extremely hard and heavy slug, double range', armorPiercingAdd: 5, damageAdd: 1, cost: 10, rangeMultiplier: 2 },
+    { name: 'Wolf', description: 'tungsten slug, named after the old name of tungsten, extremely hard and heavy slug, double range', armorPiercingAdd: 5, damageAdd: 2, cost: 10, rangeMultiplier: 2 },
     { name: 'Neodymium', description: 'ferromagnetic neodymium bullet, stronger magnet results in more force', armorPiercingAdd: 1, damageAdd: 1, cost: 10 },
-    { name: 'Plasma Bomb', description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Double damage and area of effect, removes armor piercing.', damageMultiplier: 2, splashMultiplier: 2, cost: 5 },
+    { name: 'Plasma Bomb', description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Increase damaga and area of effect by 50%, deals fire and electric damage, armor piercing reduced to 0.', damageMultiplier: 1.5, splashMultiplier: 1.5, cost: 5 },
     { name: 'Fire Bomb', description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
     { name: 'Frag', description: 'releases metal fragments at extreme velocity. Double damage and damage reduction from armor/cover. Not compatible with plasma', cost: 1 },
     { name: 'Homing', description: 'homes in on target, requires snipe shot. Range penalties are halved. Not compatible with grenade', cost: 1.5 },
-    { name: 'Grenade', description: 'non-rocket propelled, reduces range to 80m, adds +2d8 damage, adds +1 strength requirement due to recoil', cost: 1 },
+    { name: 'Grenade', description: 'non-rocket propelled, reduces range to 80m, removes backblast property, adds +1 strength requirement due to recoil', cost: 1 },
 ];
 
 
@@ -437,11 +437,11 @@ const Firearms: FireArm[] = [
     },
     //machinegun
     {
-        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: D(1, 8), range: 600, ammo: '9x17', strengthRequirement: 5, capacity: 200, fireAction: ['fully-automatic'], rps: 10, weight: 8000, value: 5500,
+        fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: D(1, 8), range: 600, ammo: '9x17', strengthRequirement: 5, capacity: 200, fireAction: ['fully-automatic'], rps: 6, weight: 8000, value: 5500,
         description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
     },
     {
-        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: D(1, 12), range: 900, ammo: '9x23', strengthRequirement: 6, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 8, weight: 7000, value: 6700, hitbonus: 3,
+        fireArmClass: 'machinegun', name: 'Merlion Durium', damage: D(1, 12), range: 900, ammo: '9x23', strengthRequirement: 6, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 6, weight: 7000, value: 6700, hitbonus: 3,
         description: 'An elegant machine gun used only be the merlion military'
     },
     {
@@ -450,23 +450,23 @@ const Firearms: FireArm[] = [
     },
     //rocket launcher
     {
-        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: D(6, 8), range: 600, ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 2000, hitbonus: -1,
-        description: 'Specialized rocket launcher, fires tiny rockets, can fire multiple per round. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 2,
+        fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: D(6, 8), range: 600, ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 6000, hitbonus: -1,
+        description: 'Specialized rocket launcher, fires small rockets, designed to take out heavily armored soldiers. Reloading takes a full round action. Backblast: Deals 3d6 fire damage to anyone standing behind operator in up to 2 meters', splashRange: .5, lowDamageZone: 2,
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AP-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
-        description: 'Heavy anti-personell rocket launcher, useful for forcing someone out of cover. Reloading takes a full round action.', splashRange: 2, lowDamageZone: 3,
+        fireArmClass: 'rocketlauncher', name: 'AV-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 1500, hitbonus: -2,
+        description: 'Standard anti-vehicle rocket launcher, destroys light tanks, up to 1 meter concrete. Reloading takes a full round action. Backblast: Deals 4d6 fire damage to anyone standing behind operator in up to 4 meters', splashRange: 2, lowDamageZone: 3,
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'ALV-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
-        description: 'Anti light vehicle rocket launcher, used to destroy cars and stuff, also extremely effective at destroying people. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
+        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 1700, hitbonus: -3,
+        description: 'Heavy anti-tank rocket launcher, will destroy any vehicle or base. Reloading takes a full round action. Backblast: Deals 5d6 fire damage to anyone standing behind operator in up to 8 meters', splashRange: .5, lowDamageZone: 1,
         reload: 'two full rounds'
     },
     {
-        fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
-        description: 'Anti tank rocket launcher, used to destroy tanks and buildings, can also be used to convert people into ash and minced meat. Reloading takes a full round action.', splashRange: .5, lowDamageZone: 1,
+        fireArmClass: 'rocketlauncher', name: 'AB-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 2400, hitbonus: -4,
+        description: 'This rocket launcher is designed to destroy entire buildings, anything hit by it is vaporized. Reloading takes a full round action. Backblast: Deals 6d6 fire damage to anyone standing behind operator in up to 16 meters', splashRange: .5, lowDamageZone: 1,
         reload: 'two full rounds'
     },
     //energy weapons

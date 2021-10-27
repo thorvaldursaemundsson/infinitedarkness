@@ -336,7 +336,7 @@ export const ConsumableMedicine: IMedicine[] = [
     },
     {
         name: 'Stempack',
-        description: 'Heals 1 life per hour for 8 hours. Can not be used more often than 1 per endurance per 10 days.',
+        description: 'Over the course of 24 hours will regenerate life equal to endurance. Can be used up to 3 times spaced 8 hours apart with stacking effect, but always gain exhaustion per administration.',
         charges: 10,
         weight: 10,
         value: 2000,

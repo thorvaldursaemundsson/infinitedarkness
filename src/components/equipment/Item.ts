@@ -3,6 +3,7 @@ interface Item {
     weight: number;
     value: number;
     description?: string;
+    longDescription?: string | undefined;
     name: string;
 }
 

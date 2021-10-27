@@ -14,10 +14,17 @@ const LightWeaponSpecialization = new PerkTemplate({
     name: 'light weapon specialization',
     skill: 'combat',
     level: 1,
-    description: 'gain +1 damage and +2 to hit on small melee weapons'
+    description: 'gain +1 damage and +2 to hit on light melee weapons'
 }, {
     applyTo: 'lightmelee',
     amount: 1
+});
+
+const LightWeaponsMaster = new PerkTemplate({
+    name: 'light weapon master',
+    skill: 'combat',
+    level: 2,
+    description: 'once per turn when you hit a target with a light melee weapon you may add 1d6 damage. Requires Light weapon specialization'
 });
 
 const MediumWeaponSpecialization = new PerkTemplate({
@@ -30,14 +37,28 @@ const MediumWeaponSpecialization = new PerkTemplate({
     amount: 1
 });
 
-const LargeWeaponSpecialization = new PerkTemplate({
-    name: 'large weapon specialization',
+const MediumWeaponMaster = new PerkTemplate({
+    name: 'medium weapon master',
+    skill: 'combat',
+    level: 2,
+    description: 'once per turn when you hit a target with a medium melee weapon you may add 1d6 damage. Requires Light weapon specialization'
+});
+
+const HeavyWeaponSpecialization = new PerkTemplate({
+    name: 'heavy weapon specialization',
     skill: 'combat',
     level: 1,
     description: 'gain +1 damage and +2 to hit on large melee weapons'
 }, {
     applyTo: 'largemelee',
     amount: 1
+});
+
+const HeavyWeaponMaster = new PerkTemplate({
+    name: 'heavy weapon master',
+    skill: 'combat',
+    level: 2,
+    description: 'once per turn when you hit a target with a medium melee weapon you may add 1d6 damage. Requires Heavy weapon specialization'
 });
 
 const MartialArts = new PerkTemplate({
@@ -112,8 +133,16 @@ const Beast = new PerkTemplate({
     description: 'You cause absolute wreckage, +1 damage and +2 to hit on all offensive combat rolls, -2 to defense and block. You also gain +3 to your endurance roll to stay awake when critical. Requires berzerker.'
 });
 
+const PreciseAttacker = new PerkTemplate({
+    name: 'precise attacker',
+    skill: 'combat',
+    level: 1,
+    description: 'You add +2 to all attacks when you roll combat, instead of adding +1 damage per 10 points above you instead add +1 per 5 points above',
+}, {
+    amount: 2,
+    applyTo: 'combatHitBonus'
+});
 
-
-export const CombatPerks = [Deflection, LightWeaponSpecialization, MediumWeaponSpecialization, LargeWeaponSpecialization,
-    MartialArts, MartialArtsExpert, MartialArtsMaster, Disarm, DualWeaponFighter, DualWeaponMaster,
+export const CombatPerks = [Deflection, LightWeaponSpecialization, LightWeaponsMaster, MediumWeaponSpecialization, MediumWeaponMaster, HeavyWeaponSpecialization, HeavyWeaponMaster,
+    MartialArts, MartialArtsExpert, MartialArtsMaster, Disarm, DualWeaponFighter, DualWeaponMaster, PreciseAttacker,
     Barbarian, Berzerker, Beast];
