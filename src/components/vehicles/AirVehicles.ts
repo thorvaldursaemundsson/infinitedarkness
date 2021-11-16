@@ -10,7 +10,7 @@ export const airVehicleParts: string[] = ['cockpit nose', 'cockpit window', 'sid
 
 export const rollAmounts: IRollAmount[] = [
     {
-        text: 'Land safely with 15 points to spare',
+        text: 'Land safely with 10 points to spare',
         numberOf1d100: 0,
         sidesPerDice: 0,
     },
@@ -23,16 +23,28 @@ export const rollAmounts: IRollAmount[] = [
         text: 'Crashland safely',
         numberOf1d100: 2,
         sidesPerDice: 4,
+        passengerDamage: {
+            sidesPerDice: 4,
+            numberOfDice: 2,
+        }
     },
     {
         text: 'Crashland violently',
         numberOf1d100: 4,
         sidesPerDice: 6,
+        passengerDamage: {
+            sidesPerDice: 12,
+            numberOfDice: 2,
+        }
     },
     {
         text: 'Crashland catastrophically',
         numberOf1d100: 10,
         sidesPerDice: 6,
+        passengerDamage: {
+            sidesPerDice: 20,
+            numberOfDice: 4,
+        }
     }
 ];
 

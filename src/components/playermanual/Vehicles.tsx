@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Section from "./Section";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
-import { IDamageAmount, IRollAmount, Vehicle } from "../vehicles/Vehicles";
+import { IDamageAmount, IDice, IRollAmount, Vehicle } from "../vehicles/Vehicles";
 import LandVehicles from "../vehicles/LandVehicles";
 import WaterVehicles from "../vehicles/WaterVehicles";
 import SpaceVehicles from "../vehicles/SpaceVehicles";
 import AirVehicles, { airVehicleDamageTexts, airVehicleParts, rollAmounts } from "../vehicles/AirVehicles";
 import { weightConverter } from "../../utils/utilFunctions";
+import VehicleEditor from "../vehicles/VehicleEditor";
 
 
 const Vehicles: React.FC = () => {
@@ -19,12 +20,12 @@ const Vehicles: React.FC = () => {
             <Indexed title='water vehicles'>
                 <VehicleTable vehicles={WaterVehicles} parts={waterVehicleParts} />
 
-
             </Indexed>
             <Indexed title='air'>
                 <Section title='Landing & crashlanding'>
                     <h5>Landing</h5>
                     <p>Whenever you land there is a risk that a part of the airplane takes some damage or is worn. When you crash the risk increases considerably.</p>
+                    <p>Crashing into water with a water plane reduces the passenger damage by 1 dice. Crashing into a hard slope or vertical wall like side of mountain increases damage by 2 dice</p>
                     <p>The first step is to find the part that is damaged, roll 1d100, the second step is to find the amount of damage, 1, 1d4 or 1d6 depending on landing success</p>
                     <h6>Level of damage</h6>
                     <p>There are 6 levels of damage (level 0 being undamaged, pristine). Damages reduce resell value and pilot skill addadtively. Repair is mechanics + intelligence.
@@ -40,7 +41,6 @@ const Vehicles: React.FC = () => {
                     </ol>
 
                     <RollOMeter partsList={airVehicleParts} amountList={rollAmounts} damageAmounts={airVehicleDamageTexts} />
-
                 </Section>
                 <VehicleTable vehicles={AirVehicles} parts={airVehicleParts} />
             </Indexed>
@@ -55,6 +55,7 @@ interface IRollOmeterProps {
     partsList: string[];
     amountList: IRollAmount[];
     damageAmounts: IDamageAmount[];
+    passengerDamage?: IDice | undefined;
 }
 
 const RollOMeter: React.FC<IRollOmeterProps> = ({ partsList, amountList, damageAmounts }) => {
@@ -85,7 +86,10 @@ const RollOMeter: React.FC<IRollOmeterProps> = ({ partsList, amountList, damageA
 
     return <>
         <ol>
-            {amountList.map(a => <li>{a.text}: roll {a.numberOf1d100}d100, apply 1d{a.sidesPerDice} damage <button onClick={() => rollAmount(a)}>appy</button></li>)}
+            {amountList.map(a => <li>
+                {a.text}: roll {a.numberOf1d100}d100, apply 1d{a.sidesPerDice} damage <button onClick={() => rollAmount(a)}>appy</button>
+                {a.passengerDamage && <>{a.passengerDamage.numberOfDice}d{a.passengerDamage.sidesPerDice} damage to passengers</>}
+            </li>)}
         </ol>
         <hr />
         {currentRolls.map(r => {
@@ -111,14 +115,15 @@ interface IVehicleTableProps {
 }
 
 const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
-    /*const [vehicleToEdit, setVehicleToEdit] = useState<Vehicle | undefined>(undefined);
+    const [vehicleToEdit, setVehicleToEdit] = useState<Vehicle | undefined>(undefined);
 
     const viewVehicleToEdit = (v: Vehicle | undefined) => {
         if (v === undefined) return null;
         else return <VehicleEditor baseVehicle={v} />;
-    }*/
+    }
 
     return (<>
+        {viewVehicleToEdit(vehicleToEdit)}
         <table className='datatable'>
             <thead>
                 <tr>
@@ -130,7 +135,7 @@ const VehicleTable: React.FC<IVehicleTableProps> = ({ vehicles }) => {
                 </tr>
             </thead>
             <tbody>
-                {vehicles.map(v => <VehicleRow onSelect={(v) => { }} vehicle={v} />)}
+                {vehicles.map(v => <VehicleRow onSelect={(v) => { setVehicleToEdit(v); }} vehicle={v} />)}
             </tbody>
         </table>
     </>);

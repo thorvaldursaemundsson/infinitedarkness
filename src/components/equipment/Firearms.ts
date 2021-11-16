@@ -472,15 +472,15 @@ const Firearms: FireArm[] = [
     //energy weapons
     {
         fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2800,
-        description: 'the only laser handgun, needs protective gear to use, has blinding effect to all within 1 meters, half range penalty'
+        description: 'the only laser handgun, fires green laser, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 20 for half) and -1 on all sight related checks until a long rest has been completed, half range penalty',
     },
     {
         fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
-        description: 'shoots a blue laser pulse, needs protective gear to use, has blinding effect to all within 2 meters, half range penalty'
+        description: 'shoots a high energy blue laser pulse, needs protective gear to use, has blinding effect to all within 3 meters for 3d4 rounds (acrobatics 20 for half) and -2 on all sight related checks until a long rest has been completed, half range penalty'
     },
     {
         fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 16000,
-        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 3 meters, half range penalty'
+        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 4 meters for 3d6 rounds and -4 on all sight related checks until a long rest has been completed, inflicts 1 radiation dose every 10 shots in 4 meter thick clothes negates radiation, half range penalty'
     },
     {
         fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 20000,

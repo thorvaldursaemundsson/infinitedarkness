@@ -31,6 +31,7 @@ interface CharacterSizeMod {
     averageHeight: [number, number];
     averageWeight: [number, number];
     consumption: number;
+    lifeMod: number;
 }
 
 export type CharacterSize = 'minute' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' | 'gigantic' | 'colossal' | 'titanic';
@@ -46,6 +47,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [60, 100],
         averageWeight: [10, 30],
         consumption: 1,
+        lifeMod: -3,
     },
     {
         size: 'tiny',
@@ -56,6 +58,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [90, 130],
         averageWeight: [25, 40],
         consumption: 1.5,
+        lifeMod: -2,
     },
     {
         size: 'small',
@@ -66,6 +69,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [120, 160],
         averageWeight: [35, 65],
         consumption: 2,
+        lifeMod: -1,
     },
     {
         size: 'medium',
@@ -76,6 +80,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [150, 190],
         averageWeight: [60, 110],
         consumption: 2.5,
+        lifeMod: 0,
     },
     {
         size: 'large',
@@ -86,6 +91,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [180, 250],
         averageWeight: [90, 160],
         consumption: 3,
+        lifeMod: 1,
     },
     {
         size: 'huge',
@@ -96,6 +102,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [240, 300],
         averageWeight: [150, 300],
         consumption: 4,
+        lifeMod: 2,
     },
     {
         size: 'gigantic',
@@ -106,6 +113,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [290, 350],
         averageWeight: [280, 500],
         consumption: 6,
+        lifeMod: 4,
     },
     {
         size: 'colossal',
@@ -116,6 +124,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [330, 450],
         averageWeight: [480, 1000],
         consumption: 10,
+        lifeMod: 8,
     },
     {
         size: 'titanic',
@@ -126,6 +135,7 @@ export const CharacterSizeMods: CharacterSizeMod[] = [
         averageHeight: [420, 600],
         averageWeight: [900, 2000],
         consumption: 15,
+        lifeMod: 16,
     },
 ];
 
@@ -272,6 +282,14 @@ export class Character {
         else throw new Error('Missing character size');
     }
 
+    public static findLifeFromSize(size: CharacterSize): number {
+        const f = CharacterSizeMods.find(s => s.size === size);
+        if (f !== undefined) {
+            return f.lifeMod;
+        }
+        else throw new Error('Missing character size');
+    }
+
     public getSizeSpeed() {
         return Character.findSpeedFromSize(this.size);
     }
@@ -314,7 +332,7 @@ export class Character {
         return Character.getStartingPointsAvailable(this.age, this.species) + this.bonusExp;
     }
 
-    public static getStartingPointsAvailable(age:number, species:race): number {
+    public static getStartingPointsAvailable(age: number, species: race): number {
 
         switch (species) {
             case 'human': return humansData.experiencePoints(age);
@@ -341,7 +359,11 @@ export class Character {
         if (athletics >= 9) athleticsBonus++;
         if (athletics >= 18) athleticsBonus++;
 
-        return Math.max(athleticsBonus + this.strength + this.endurance * 2 + this.getHook('life'), 1);
+        return Math.max(athleticsBonus + this.strength + this.endurance * 2 + this.getHook('life') + this.getLifeModSize(), 1);
+    }
+
+    public getLifeModSize(): number {
+        return Character.findLifeFromSize(this.size);
     }
 
     public getMana() {

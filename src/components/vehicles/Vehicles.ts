@@ -52,7 +52,7 @@ export interface Part {
     /**
      * one if not defined
      */
-    quantity?:number|undefined;
+    quantity?: number | undefined;
 }
 
 export interface EnergyConverter {
@@ -299,15 +299,19 @@ export interface Vehicle {
     description: string;
 }
 
-
+export interface IDice {
+    numberOfDice: 1 | 2 | 3 | 4 | 5 | 6;
+    sidesPerDice: 4 | 6 | 8 | 10 | 12 | 20;
+}
 
 export interface IRollAmount {
-    numberOf1d100:number;
-    sidesPerDice:number;
-    text:string;
+    numberOf1d100: number;
+    sidesPerDice: number;
+    text: string;
+    passengerDamage?: IDice | undefined;
 }
 
 export interface IDamageAmount {
-    damageAmountNumber:number;
+    damageAmountNumber: number;
     damageText: string,
 }
