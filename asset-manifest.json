@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "../infinitedarkness/static/css/main.29a97a79.chunk.css",
-    "main.js": "../infinitedarkness/static/js/main.54810583.chunk.js",
-    "main.js.map": "../infinitedarkness/static/js/main.54810583.chunk.js.map",
-    "runtime-main.js": "../infinitedarkness/static/js/runtime-main.25a8bfe6.js",
-    "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.25a8bfe6.js.map",
+    "main.js": "../infinitedarkness/static/js/main.b8dc2718.chunk.js",
+    "main.js.map": "../infinitedarkness/static/js/main.b8dc2718.chunk.js.map",
+    "runtime-main.js": "../infinitedarkness/static/js/runtime-main.70e29ad7.js",
+    "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.70e29ad7.js.map",
     "static/js/2.3feb41b6.chunk.js": "../infinitedarkness/static/js/2.3feb41b6.chunk.js",
     "static/js/2.3feb41b6.chunk.js.map": "../infinitedarkness/static/js/2.3feb41b6.chunk.js.map",
     "static/js/3.f6acc9f7.chunk.js": "../infinitedarkness/static/js/3.f6acc9f7.chunk.js",
     "static/js/3.f6acc9f7.chunk.js.map": "../infinitedarkness/static/js/3.f6acc9f7.chunk.js.map",
-    "static/js/4.6c9821c5.chunk.js": "../infinitedarkness/static/js/4.6c9821c5.chunk.js",
-    "static/js/4.6c9821c5.chunk.js.map": "../infinitedarkness/static/js/4.6c9821c5.chunk.js.map",
+    "static/js/4.29c111f9.chunk.js": "../infinitedarkness/static/js/4.29c111f9.chunk.js",
+    "static/js/4.29c111f9.chunk.js.map": "../infinitedarkness/static/js/4.29c111f9.chunk.js.map",
     "static/js/5.fcb8de38.chunk.js": "../infinitedarkness/static/js/5.fcb8de38.chunk.js",
     "static/js/5.fcb8de38.chunk.js.map": "../infinitedarkness/static/js/5.fcb8de38.chunk.js.map",
     "static/js/6.58a37d22.chunk.js": "../infinitedarkness/static/js/6.58a37d22.chunk.js",
@@ -20,14 +20,14 @@
     "static/js/8.3352e0e0.chunk.js": "../infinitedarkness/static/js/8.3352e0e0.chunk.js",
     "static/js/8.3352e0e0.chunk.js.map": "../infinitedarkness/static/js/8.3352e0e0.chunk.js.map",
     "index.html": "../infinitedarkness/index.html",
-    "precache-manifest.3755f9fa70f158c943a8f461ba7ded22.js": "../infinitedarkness/precache-manifest.3755f9fa70f158c943a8f461ba7ded22.js",
+    "precache-manifest.b0409c2e5294769b1e3e60dbf3847b89.js": "../infinitedarkness/precache-manifest.b0409c2e5294769b1e3e60dbf3847b89.js",
     "service-worker.js": "../infinitedarkness/service-worker.js",
     "static/css/main.29a97a79.chunk.css.map": "../infinitedarkness/static/css/main.29a97a79.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.25a8bfe6.js",
+    "static/js/runtime-main.70e29ad7.js",
     "static/js/2.3feb41b6.chunk.js",
     "static/css/main.29a97a79.chunk.css",
-    "static/js/main.54810583.chunk.js"
+    "static/js/main.b8dc2718.chunk.js"
   ]
 }
