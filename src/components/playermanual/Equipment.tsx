@@ -36,10 +36,11 @@ const Equipment: React.FC = () => {
                     Heavy weapons gain 1/2 of your strength (rounded down) as bonus damage, they are characterized as two handed weapons and often are too big for close quarter combat
                 </p>
                 <p>Close quarters is defined as being adjecent to 2 or more walls or large obstacles, open quarters is empty space around you (nothing to take cover behind)</p>
+                <p>Melee weapons cause bleeding if damage dealt from single attack is equal to or greater than 50% of the target's life, bludgeoning weapons like hammers cause internal bleeding.</p>
             </Indexed>
             <Indexed title='Firearms'>
                 <h4>Guns</h4>
-                <p>All firearms cause bleeding</p>
+                <p>All firearms cause bleeding, except lasers. Removing bullets requires a surgery, (medicine check DC = 10 + 3 per bullet), each bullet remaining in body reduces max life by 3.</p>
                 <FirearmCrafter />
                 <hr />
                 <FirearmTable data={Firearms} />

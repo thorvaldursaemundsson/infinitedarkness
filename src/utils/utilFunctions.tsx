@@ -13,7 +13,10 @@ export const weightConverter = (grams: number) => {
 };
 
 export const bigNumberSeparator = (numb: number) => {
-    return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return numb
+        .toFixed(1)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const RollSingleDice = (sides: number) => Math.floor(Math.random() * sides) + 1;

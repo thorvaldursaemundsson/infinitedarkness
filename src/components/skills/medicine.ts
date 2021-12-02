@@ -3,15 +3,17 @@ const useCases: UseCase[] = [
     {
         name: 'first aid',
         attribute: 'agility',
-        description: 'if someone has zero or negative hitpoints then you can prevent bleedout by rolling first aid vs their total damage taken',
+        description: 'if someone has zero or negative hitpoints then you can prevent bleedout by rolling first aid vs their total damage taken. Plausing bleeding means that taking injury restarts bleeding and total expected life loss is culumative. Stopped means bleeding starts over',
         results: [
             'perform CPR: 15 or higher: keep alive for as long as you keep performign CPR (only needed if heart stopped or breathing stopped)',
-            'stop bleeding: total damage, takes 10 turns to complete. (you automatically get the best possible result for your roll)',
-            'stop bleeding DC + 5: takes 3 turns to complete instead of 10',
-            'stop bleeding DC + 10: takes 1 turn instead of 3',
-            'stop bleeding DC + 15: also the patient gains consciousness if unconscious',
-            'stop bleeding DC + 20: also the patient immediately heals 1 life',
-            'patient is different species: -5'
+            'stop bleeding: 10-14, bleeding is slowed to half (requires ongoing care)',
+            'stop bleeding: 15-19, bleeding is paused (requires ongoing care)',
+            'stop bleeding: 20-24, bleeding is paused',
+            'stop bleeding: 25-29, bleeding is stopped and target regains consciousness if unconscious',
+            'stop bleeding: 30+, as 29 and additionally target regains 1 life ',
+            'target is critical: -3',
+            'target is different species: -3',
+            'target is self: -5'
         ],
         type: 'active'
     },

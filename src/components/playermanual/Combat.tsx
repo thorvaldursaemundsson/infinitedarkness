@@ -181,9 +181,9 @@ const Bleeding = () => {
                     <br />A single first aid will stop all bleeding.
                 </p>
         <ul>
-            <li>While nominal if you take 50% or more of your life in a single round: Light bleeding deals 1d10 damage at the rate of 1 per 10 minutes</li>
-            <li>While critical if you take any damage: Intermediate bleeding deals 1d20 damage at the rate of 1 per 5 minutes</li>
-            <li>While dying if you take any damage: Heavy bleeding deals 1 damage every 4 turns, lasts until character bleeds out or has first aid performed on them.</li>
+            <li>While nominal if you take 50% or more of your life in a single round: Light bleeding deals 1d10 damage at the rate of 1 per 2 minutes</li>
+            <li>While critical if you take any damage: Intermediate bleeding deals 1d20 damage at the rate of 1 per 5 rounds</li>
+            <li>While dying if you take any damage: Heavy bleeding deals 1 damage every turn, lasts until character bleeds out or has first aid performed on them.</li>
         </ul>
         <p>If bleeding causes you to go to a different stage then those effects take hold but the bleeding type does not change. Unless you take more damage from any other source than bleeding.</p>
         <Section title='example'>

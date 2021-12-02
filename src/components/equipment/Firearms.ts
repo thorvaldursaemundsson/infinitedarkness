@@ -246,7 +246,7 @@ export const AmmoModifications: IAmmoModification[] = [
     { name: 'Tracer', description: 'tracer rounds have built in pyrotechnics which makes the bullet projectile more visible, adds +3 to hit.', hitAdd: 3, cost: 1.3 },
     { name: 'Hollow point', description: 'hollow point bullets are designed to shatter upon impact, adds +3 damage, reduces armor piercing to zero and doubles damage reduction from armor', damageAdd: 3, armorPiercingMultiplier: 0, cost: 1.1 },
     { name: 'Armor Piercing', description: 'bullet made of hard steel alloy instead of lead, adds +4 armor piercing, -1 damage.', armorPiercingAdd: 4, damageAdd: -1, cost: 1.1 },
-    { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', damageAdd: 2, armorPiercingAdd: 1, cost: 2.5 },
+    { name: 'Incendiary', description: 'bullet is designed to superheat, allows it to melt metal upon impact and cause massive damage +2 armor piercing and +1 damage.', damageAdd: 1, armorPiercingAdd: 2, cost: 2.5 },
     { name: 'Shell', description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
     { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 2, damageAdd: 1, hitAdd: 1, cost: 1, rangeMultiplier: 2 },
     { name: 'Explosive', description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', damageAdd: 2, armorPiercingAdd: 3, hitAdd: 1, cost: 2 },
@@ -668,7 +668,7 @@ export const FirearmModifications: IFirearmModification[] = [
     },
     {
         name: 'Heat sink',
-        description: 'Absorbs heat and vents it into the air, if combined with Turbo charge will instead allow fire once every turn and increases ammo use to 4 per shot',
+        description: 'Absorbs heat and vents it into the air, if combined with Turbo charge will instead allow fire once every turn and increases ammo use to 4 per shot. If used on normal firearm prevents overheating',
         effects: ['Energy weapon does not overheat', 'Uses 1 ec charge every 10th used.'],
         cost: 600,
         weight: 600,

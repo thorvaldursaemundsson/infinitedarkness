@@ -4,7 +4,7 @@ const Healer = new PerkTemplate({
     name: 'healer',
     skill: 'medicine',
     level: 1,
-    description: 'Your character is an expert at cleaning wounds and applying bandages, gains +3 to first aid rolls and heal +1 life when successfully stopping bleeding or performing surgery.'
+    description: 'Your character is an expert at cleaning wounds and applying bandages, gains +3 to first aid rolls and heal +1 life when successfully stopping bleeding, assisted healing or performing surgery.'
 }, {
     applyTo: 'healing',
     amount: 3
