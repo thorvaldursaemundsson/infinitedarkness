@@ -8,8 +8,8 @@ interface IStep2Props {
 }
 
 const getFinalBackground = (age: number) => {
-    if (age > 20) return 2;
-    if (age > 10) return 1;
+    if (age > 25) return 2;
+    if (age > 15) return 1;
     return 0;
 }
 

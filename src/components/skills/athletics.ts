@@ -5,7 +5,10 @@ const useCases: UseCase[] = [
         attribute: 'strength',
         description: 'how fast you swim, how long you can keep your breath, you need equal amount of rest time to reset timers. When you swim through moving water the movement on the water is added to your movement. If you roll is such that you can not move then you start to drown. Carrying capacity penalties are doubled for swimming',
         results: [
-            'hold breath 1 minute: 14-20',
+            'hold breath 12 seconds: 5 or less',
+            'hold breath 18 seconds: 6-10',
+            'hold breath 30 seconds: 11-15',
+            'hold breath 1 minute: 16-20',
             'hold breath 2 minute: 21-25',
             'hold breath 3 minute: 26-30',
             'stay afloat: use run table with 50% walk modifier',
