@@ -4,7 +4,7 @@ import { race } from '../races/Races';
 
 export interface Trait extends IHooker {
     name: string;
-    cost: -40 | -30 | -20 | -10 | 0 | 10 | 20 | 30 | 40 | 80;
+    cost: number;
     description: string;
     race: race | 'any';
 }
