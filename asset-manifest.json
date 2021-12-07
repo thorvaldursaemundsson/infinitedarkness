@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "../infinitedarkness/static/css/main.29a97a79.chunk.css",
-    "main.js": "../infinitedarkness/static/js/main.570b08e1.chunk.js",
-    "main.js.map": "../infinitedarkness/static/js/main.570b08e1.chunk.js.map",
-    "runtime-main.js": "../infinitedarkness/static/js/runtime-main.213a0db7.js",
-    "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.213a0db7.js.map",
+    "main.js": "../infinitedarkness/static/js/main.3d719cb3.chunk.js",
+    "main.js.map": "../infinitedarkness/static/js/main.3d719cb3.chunk.js.map",
+    "runtime-main.js": "../infinitedarkness/static/js/runtime-main.40502fac.js",
+    "runtime-main.js.map": "../infinitedarkness/static/js/runtime-main.40502fac.js.map",
     "static/js/2.3feb41b6.chunk.js": "../infinitedarkness/static/js/2.3feb41b6.chunk.js",
     "static/js/2.3feb41b6.chunk.js.map": "../infinitedarkness/static/js/2.3feb41b6.chunk.js.map",
     "static/js/3.704a76b9.chunk.js": "../infinitedarkness/static/js/3.704a76b9.chunk.js",
@@ -17,17 +17,17 @@
     "static/js/6.58a37d22.chunk.js.map": "../infinitedarkness/static/js/6.58a37d22.chunk.js.map",
     "static/js/7.c9c14fc8.chunk.js": "../infinitedarkness/static/js/7.c9c14fc8.chunk.js",
     "static/js/7.c9c14fc8.chunk.js.map": "../infinitedarkness/static/js/7.c9c14fc8.chunk.js.map",
-    "static/js/8.3352e0e0.chunk.js": "../infinitedarkness/static/js/8.3352e0e0.chunk.js",
-    "static/js/8.3352e0e0.chunk.js.map": "../infinitedarkness/static/js/8.3352e0e0.chunk.js.map",
+    "static/js/8.4a727388.chunk.js": "../infinitedarkness/static/js/8.4a727388.chunk.js",
+    "static/js/8.4a727388.chunk.js.map": "../infinitedarkness/static/js/8.4a727388.chunk.js.map",
     "index.html": "../infinitedarkness/index.html",
-    "precache-manifest.c1eb1a8934128ceee0027094fc0dac77.js": "../infinitedarkness/precache-manifest.c1eb1a8934128ceee0027094fc0dac77.js",
+    "precache-manifest.7aecf5b4402e98cadd12e9c1b9a6c1d3.js": "../infinitedarkness/precache-manifest.7aecf5b4402e98cadd12e9c1b9a6c1d3.js",
     "service-worker.js": "../infinitedarkness/service-worker.js",
     "static/css/main.29a97a79.chunk.css.map": "../infinitedarkness/static/css/main.29a97a79.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.213a0db7.js",
+    "static/js/runtime-main.40502fac.js",
     "static/js/2.3feb41b6.chunk.js",
     "static/css/main.29a97a79.chunk.css",
-    "static/js/main.570b08e1.chunk.js"
+    "static/js/main.3d719cb3.chunk.js"
   ]
 }
