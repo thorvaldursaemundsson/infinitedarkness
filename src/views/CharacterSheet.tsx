@@ -273,7 +273,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <h5>Traits {(viewState === "edit") ? <button className='no-print' onClick={() => setViewTraitList(!viewTraitList)}>Add Trait</button> : null}</h5>
                         <table>
                             <tbody>
-                                {viewTraitList ? GetTraits().map(trait => {
+                                {viewTraitList ? GetTraits().filter(trait => trait.race === 'any' || trait.race === character.species).map(trait => {
                                     return <tr className='no-print'>
                                         <td>
                                             <button onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}

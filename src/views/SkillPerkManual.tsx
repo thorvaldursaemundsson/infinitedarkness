@@ -62,11 +62,23 @@ const TraitSection = () => {
         <p>Traits often describe a characters behavior, characters with these traits are expected to roleplay in a way which does not conflict with that trait</p>
         <p>It is recommended that a character have between 1 and 3 traits</p>
         <p>Traits in this section affect more than just roleplay, they also affect outcome of the dice</p>
-        {GetTraits().map(trait => {
+        <h6>General traits</h6>
+        {GetTraits().filter(trait => trait.race === 'any').map(trait => {
             return (<div>
                 <h3><span style={{ display: 'inline-block', width: '200px' }}>{trait.name}</span> {currentPerk !== trait.name ?
                     <Button onClick={() => setCurrentPerk(trait.name)}>?</Button> :
                     <Button onClick={() => setCurrentPerk('')}>X</Button>} </h3>
+                {currentPerk === trait.name ? <div>
+                    <p><b>Cost</b>: {trait.cost}</p>
+                    {trait.description}</div> : null}
+            </div>);
+        })}
+        <h6>Racial traits</h6>
+        {GetTraits().filter(trait => trait.race !== 'any').map(trait => {
+            return (<div>
+                <h3><span style={{ display: 'inline-block', width: '200px' }}>{trait.name}</span> {currentPerk !== trait.name ?
+                    <Button onClick={() => setCurrentPerk(trait.name)}>?</Button> :
+                    <Button onClick={() => setCurrentPerk('')}>X</Button>} ({trait.race}) </h3>
                 {currentPerk === trait.name ? <div>
                     <p><b>Cost</b>: {trait.cost}</p>
                     {trait.description}</div> : null}
@@ -88,7 +100,7 @@ const CharacterTraits: React.FC = (props) => {
     return (<>
         <h2>Character Traits</h2>
         <p>Character traits describe how your character acts, how you roleplay them. Note that there is always room for interpretation when roleplaying a character whos personality is summed up in 3-5 words. And there is always a choice for which trait to embody at any given time.<br />
-        "it's how my character should act" is often not an accepted excuse if your roleplay disrupts the game or causes hurt feelings. Ultimately the player is always the author of the character and always fully responsible for their actions.<br />
+            "it's how my character should act" is often not an accepted excuse if your roleplay disrupts the game or causes hurt feelings. Ultimately the player is always the author of the character and always fully responsible for their actions.<br />
         </p>
         <p>Roll 1d100 5 times, results 67-100 means free choice. Pick between 3 and 5, preferably at least one negative and at least one positive</p>
         <button onClick={() => Roll()}>roll</button> {trait}
