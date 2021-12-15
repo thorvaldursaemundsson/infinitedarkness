@@ -1,3 +1,4 @@
+import { SkillName } from "../general/Skills";
 import Item from "./Item";
 
 export type Ammo = '9x17' | '9x21' | '9x23' |
@@ -290,7 +291,7 @@ const D = (n: number, s: number): IDamageDice => {
 
 type reloadType = 'move action' | 'action' | 'full round' | 'two full rounds';
 
-interface IFirearm extends Item {
+export interface IFirearm extends Item {
     fireArmClass: fireArmClass,
     damage: IDamageDice;
     /**
@@ -330,7 +331,7 @@ export class FireArm implements IFirearm {
     splashRange?: number;
     lowDamageZone?: number;
     reload?: reloadType;
-
+    relatedSkill: SkillName = 'firearms';
 
     constructor(name: string, weight: number, value: number, damage: IDamageDice, fireArmClass: fireArmClass, range: number, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined, reload: reloadType | undefined) {
         this.fireArmClass = fireArmClass;
@@ -357,138 +358,138 @@ const Firearms: FireArm[] = [
     //hand guns
     {
         fireArmClass: 'handgun', name: 'revolver', damage: D(1, 10), range: 300, ammo: '10x19', strengthRequirement: 2, capacity: 6, fireAction: ['double action revolver'], armorpiercing: 1, weight: 800, value: 1000,
-        description: 'basic revolver, this antique weapon design is mostly considered a collectors item for gun and antique enthusiasts. It still works.', reload: 'full round'
+        description: 'basic revolver, this antique weapon design is mostly considered a collectors item for gun and antique enthusiasts. It still works.', reload: 'full round', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'handgun', name: 'Fantry Light Model', damage: D(2, 6), range: 350, ammo: '10x21', strengthRequirement: 1, capacity: 19, fireAction: ['semi-automatic'], armorpiercing: 1, weight: 950, value: 900,
-        description: 'the light handgun model of the fantry gun manufacturer, has a generous ammo capacity and the design makes it less loud than other handguns',
+        description: 'the light handgun model of the fantry gun manufacturer, has a generous ammo capacity and the design makes it less loud than other handguns', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'handgun', name: 'Fantry Heavy Model', damage: D(2, 8), range: 450, ammo: '11x21', strengthRequirement: 4, capacity: 14, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 1200, value: 1200,
-        description: 'a large hand gun designed to inflict serious damage', reload: 'action'
+        description: 'a large hand gun designed to inflict serious damage', reload: 'action', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'handgun', name: 'Merlion Atomic', damage: D(2, 6), range: 400, ammo: '10x21', strengthRequirement: 2, capacity: 12, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 850, hitbonus: 2, value: 1700,
-        description: 'Common handgun used exclusively by merlions, the arcane alloys allows for both supreme recoil handling'
+        description: 'Common handgun used exclusively by merlions, the arcane alloys allows for both supreme recoil handling', relatedSkill: 'firearms',
     },
 
     //submachinegun
     {
         fireArmClass: 'handgun', name: 'Fantry Sub Model', damage: D(1, 8), range: 350, ammo: '9x21', strengthRequirement: 3, capacity: 24, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 2, rps: 8, weight: 1800, value: 2800,
-        description: 'A very light submachine gun, fires relatively slow for a submachine gun on while on full automatic',
+        description: 'A very light submachine gun, fires relatively slow for a submachine gun on while on full automatic', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'handgun', name: 'Skolt cleaner', damage: D(1, 10), range: 300, ammo: '10x19', strengthRequirement: 4, capacity: 36, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, rps: 10, weight: 2100, value: 3100,
-        description: 'The Skolt Cleaner is a popular submachinegun', reload: 'action'
+        description: 'The Skolt Cleaner is a popular submachinegun', reload: 'action', relatedSkill: 'firearms',
     },
 
     //rifle
     {
         fireArmClass: 'rifle', name: 'Fantry Assault Model', damage: D(2, 6), range: 800, ammo: '11x17', strengthRequirement: 3, capacity: 48, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 1, weight: 2200, value: 1500,
-        description: 'A light weight assault weapon', rps: 6, hitbonus: 1,
+        description: 'A light weight assault weapon', rps: 6, hitbonus: 1, relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Skolt Hunter', damage: D(2, 8), range: 100, ammo: '12x20', strengthRequirement: 4, capacity: 8, fireAction: ['bolt action'], armorpiercing: 2, weight: 2300, value: 2000,
-        description: 'A rifle primarily designed for hunting', reload: 'full round'
+        description: 'A rifle primarily designed for hunting', reload: 'full round', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Skolt LG', damage: D(2, 10), range: 1200, ammo: '12x24', strengthRequirement: 5, capacity: 6, fireAction: ['bolt action'], armorpiercing: 3, weight: 3500, value: 2100,
-        description: 'The skolt LG (long gun) is primarily designed for hunting large game', reload: 'full round'
+        description: 'The skolt LG (long gun) is primarily designed for hunting large game', reload: 'full round', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Night AV Sniper', damage: D(2, 10), range: 1800, ammo: '12x28', strengthRequirement: 5, capacity: 4, fireAction: ['bolt action'], armorpiercing: 5, hitbonus: -1, weight: 8200, value: 3600,
-        description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles', reload: 'full round'
+        description: 'This huge sniper rifle is designed to take out targets at extreme range, or damage vehicles', reload: 'full round', relatedSkill: 'firearms',
     },
     //automatic rifle
     {
         fireArmClass: 'rifle', name: 'Skolt Advanced', damage: D(1, 12), range: 700, ammo: '11x21', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 3, rps: 8, weight: 3200, value: 3600,
-        description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare ', hitbonus: 1
+        description: 'A slim and futuristic looking fully automatic assault rifle designed for urban warfare ', hitbonus: 1, relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Merlion Predator', damage: D(2, 10), range: 1100, ammo: '12x24', strengthRequirement: 4, capacity: 45, fireAction: ['semi-automatic', 'fully-automatic'], armorpiercing: 4, rps: 12, weight: 3600, value: 11000,
-        description: 'This strange merlion designed weapon was originally intended as an anti-human weapon, but when merlions decided that humans were harmless creatures they offered this weapon as a gesture of good will'
+        description: 'This strange merlion designed weapon was originally intended as an anti-human weapon, but when merlions decided that humans were harmless creatures they offered this weapon as a gesture of good will', relatedSkill: 'firearms',
     },
     //shotgun
     {
         fireArmClass: 'rifle', name: 'Skolt Crusher', damage: D(2, 6), range: 160, ammo: '12 gauge', strengthRequirement: 4, capacity: 10, fireAction: ['semi-automatic'], weight: 2600, value: 2400, armorpiercing: 1,
-        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.5, lowDamageZone: 1,
+        description: 'The skolt crusher is a long barrel semi-automatic shotgun, has a low spread. If within 3 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.5, lowDamageZone: 1, relatedSkill: 'firearms',
         reload: 'action'
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer', damage: D(2, 6), range: 80, ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2700, value: 2100, hitbonus: 1,
-        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.8, lowDamageZone: 1,
+        description: 'This old fashioned pump action shotgun offers a wide spread which increases likelyhood of hitting. If within 2 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 0.8, lowDamageZone: 1, relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Night Hammer sawed off', damage: D(2, 6), range: 40, ammo: '12 gauge', strengthRequirement: 4, capacity: 12, fireAction: ['pump action'], weight: 2000, value: 2000, hitbonus: 2,
-        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 1,
+        description: 'A sawed off version of the Night Hammer, slightly lighter and has a huge spread. If within 1 meters lowest damage dice counts as max. Double range penalty to accuracy.', splashRange: 1, relatedSkill: 'firearms',
     },
     //magnetic guns
     {
         fireArmClass: 'rifle', name: 'Night Coil', damage: D(2, 6), range: 1200, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 7000, value: 2600, hitbonus: 2, armorpiercing: 4,
-        description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent', reload: 'full round'
+        description: 'This experimental weapon uses electromagnetic induction to launch a bullet, naturally very silent', reload: 'full round', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Skolt Railgun', damage: D(2, 8), range: 1800, ammo: '4mm ec', strengthRequirement: 7, capacity: 60, fireAction: ['semi-automatic'], weight: 11000, value: 3800, hitbonus: 1, armorpiercing: 5,
-        description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds', reload: 'full round'
+        description: 'A huge railgun, has two long rails along which a tiny ferromagnetic bullet is accelerated to breathtaking speeds', reload: 'full round', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'rifle', name: 'Merlion Force Gun', damage: D(2, 8), range: 2000, ammo: '4mm ec', strengthRequirement: 6, capacity: 60, fireAction: ['semi-automatic'], weight: 9000, value: 5400, hitbonus: 1, armorpiercing: 5,
-        description: 'A strange rifle that exploits the electroweak force in an unknown way', reload: 'action'
+        description: 'A strange rifle that exploits the electroweak force in an unknown way', reload: 'action', relatedSkill: 'firearms',
     },
     //machinegun
     {
         fireArmClass: 'machinegun', name: 'Fantry Tyrant Model', damage: D(1, 8), range: 600, ammo: '9x17', strengthRequirement: 5, capacity: 200, fireAction: ['fully-automatic'], rps: 6, weight: 8000, value: 5500,
-        description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod'
+        description: 'The Tyrant model of the Fantry gun manufacturer, fully automatic machine gun light enough to hold up or using the tripod', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'machinegun', name: 'Merlion Durium', damage: D(1, 12), range: 900, ammo: '9x23', strengthRequirement: 6, capacity: 150, fireAction: ['fully-automatic'], armorpiercing: 3, rps: 6, weight: 7000, value: 6700, hitbonus: 3,
-        description: 'An elegant machine gun used only be the merlion military'
+        description: 'An elegant machine gun used only be the merlion military', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'machinegun', name: 'Skolt Obliderator', damage: D(2, 10), range: 1600, ammo: '12x28', strengthRequirement: 9, capacity: 120, fireAction: ['fully-automatic'], armorpiercing: 4, rps: 8, weight: 12000, value: 9500,
-        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action', reload: 'two full rounds'
+        description: 'Point this massive machinegun in a direction, hold down the trigger and watch as everything is turned into swiss cheese. Reloading takes a full round action', reload: 'two full rounds', relatedSkill: 'firearms',
     },
     //rocket launcher
     {
         fireArmClass: 'rocketlauncher', name: 'Minirocket Launcher', damage: D(6, 8), range: 600, ammo: '20mm rpg', strengthRequirement: 6, capacity: 8, fireAction: ['semi-automatic'], armorpiercing: 2, weight: 6000, value: 6000, hitbonus: -1,
-        description: 'Specialized rocket launcher, fires small rockets, designed to take out heavily armored soldiers. Reloading takes a full round action. Backblast: Deals 3d6 fire damage to anyone standing behind operator in up to 2 meters', splashRange: .5, lowDamageZone: 2,
+        description: 'Specialized rocket launcher, fires small rockets, designed to take out heavily armored soldiers. Reloading takes a full round action. Backblast: Deals 3d6 fire damage to anyone standing behind operator in up to 2 meters', splashRange: .5, lowDamageZone: 2, relatedSkill: 'firearms',
         reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AV-RPG', damage: D(8, 8), range: 1000, ammo: '30mm rpg', strengthRequirement: 6, capacity: 3, fireAction: ['bolt action'], armorpiercing: 4, weight: 5000, value: 800, hitbonus: -2,
-        description: 'Standard anti-vehicle rocket launcher, destroys light tanks, up to 1 meter concrete. Reloading takes a full round action. Backblast: Deals 4d6 fire damage to anyone standing behind operator in up to 4 meters', splashRange: 2, lowDamageZone: 3,
+        description: 'Standard anti-vehicle rocket launcher, destroys light tanks, up to 1 meter concrete. Reloading takes a full round action. Backblast: Deals 4d6 fire damage to anyone standing behind operator in up to 4 meters', splashRange: 2, lowDamageZone: 3, relatedSkill: 'firearms',
         reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AT-RPG', damage: D(10, 8), range: 2500, ammo: '40mm rpg', strengthRequirement: 6, capacity: 2, fireAction: ['bolt action'], armorpiercing: 6, weight: 5000, value: 12000, hitbonus: -3,
-        description: 'Heavy anti-tank rocket launcher, will destroy any vehicle or base. Reloading takes a full round action. Backblast: Deals 5d6 fire damage to anyone standing behind operator in up to 8 meters', splashRange: .5, lowDamageZone: 1,
+        description: 'Heavy anti-tank rocket launcher, will destroy any vehicle or base. Reloading takes a full round action. Backblast: Deals 5d6 fire damage to anyone standing behind operator in up to 8 meters', splashRange: .5, lowDamageZone: 1, relatedSkill: 'firearms',
         reload: 'two full rounds'
     },
     {
         fireArmClass: 'rocketlauncher', name: 'AB-RPG', damage: D(12, 8), range: 3500, ammo: '50mm rpg', strengthRequirement: 6, capacity: 1, fireAction: ['bolt action'], armorpiercing: 8, weight: 7000, value: 14000, hitbonus: -4,
-        description: 'This rocket launcher is designed to destroy entire buildings, anything hit by it is vaporized. Reloading takes a full round action. Backblast: Deals 6d6 fire damage to anyone standing behind operator in up to 16 meters', splashRange: .5, lowDamageZone: 1,
+        description: 'This rocket launcher is designed to destroy entire buildings, anything hit by it is vaporized. Reloading takes a full round action. Backblast: Deals 6d6 fire damage to anyone standing behind operator in up to 16 meters', splashRange: .5, lowDamageZone: 1, relatedSkill: 'firearms',
         reload: 'two full rounds'
     },
     //energy weapons
     {
         fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2800,
-        description: 'the only laser handgun, fires green laser, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 20 for half) and -1 on all sight related checks until a long rest has been completed, half range penalty',
+        description: 'the only laser handgun, fires green laser, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 20 for half) and -1 on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
-        description: 'shoots a high energy blue laser pulse, needs protective gear to use, has blinding effect to all within 3 meters for 3d4 rounds (acrobatics 20 for half) and -2 on all sight related checks until a long rest has been completed, half range penalty'
+        description: 'shoots a high energy blue laser pulse, needs protective gear to use, has blinding effect to all within 3 meters for 3d4 rounds (acrobatics 20 for half) and -2 on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 16000,
-        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 4 meters for 3d6 rounds and -4 on all sight related checks until a long rest has been completed, inflicts 1 radiation dose every 10 shots in 4 meter thick clothes negates radiation, half range penalty'
+        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 4 meters for 3d6 rounds and -4 on all sight related checks until a long rest has been completed, inflicts 1 radiation dose every 10 shots in 4 meter thick clothes negates radiation, half range penalty', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 20000,
-        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters', reload: 'action'
+        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters', reload: 'action', relatedSkill: 'firearms',
     },
     {
         fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 18000,
-        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action'
+        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action', relatedSkill: 'firearms',
     }
 ];
 

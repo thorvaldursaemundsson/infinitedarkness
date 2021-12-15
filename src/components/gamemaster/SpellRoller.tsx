@@ -33,8 +33,8 @@ const SpellRoller: React.FC = () => {
         <p>When you want to acquire a supernatural ability, you roll over all spells and perks {fractionOfSpells} times and pick one. There are in total {SpellsPerks.length} spells and mutations.</p>
         <h3>Experience points</h3>
         <p>
-            When you first acquire a spell or mutation you must increase your spells skill to 6 and buy the perk, this costs 31 character points.
-            If you do not have 31 character points available then you may go into negative character points, while you have negative points the spell or mutation is inactive.<br />
+            When you first acquire a spell or mutation you must increase your spells skill to 6 and buy the perk, this costs 31 experience points.
+            If you do not have 31 experience points available then you may go into negative experience points, while you have negative points the spell or mutation is inactive.<br />
             If you are acquiring additional spells or mutations then the same rules apply, but you don't have to raise your spells skill any further, thus limiting it to -10.<br />
             There is no limit to how many spells or mutations you can acquire this way, however the inactive ones don't become active until your total character point debt is paid, thus adding new ones also delays the old ones.<br />
             Spells and mutations that are active remain active forever. The only escape from mutation is death.

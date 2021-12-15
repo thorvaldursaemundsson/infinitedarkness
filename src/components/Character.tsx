@@ -229,7 +229,7 @@ export class Character {
         return this.getStartingPointsAvailable() - this.getCalculatedPointsUsed();
     }
 
-    private getSkillLevel(skillName: string) {
+    public getSkillLevel(skillName: string) {
         var skill = this.skills.find(s => s.name === skillName);
         if (skill !== undefined) return skill.level;
         return 0;

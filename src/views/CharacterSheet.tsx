@@ -8,6 +8,11 @@ import './charactersheet.css';
 import EditText, { HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
 import Section from '../components/playermanual/Section';
+import Item from '../components/equipment/Item';
+import { ConsumableMedicine, ConsumableTools, ConsumableWeapons, IConsumable } from '../components/equipment/Consumables';
+import { weightConverter } from '../utils/utilFunctions';
+import Firearms, { IFirearm } from '../components/equipment/Firearms';
+import MeleeWeapons, { IMeleeWeapon } from '../components/equipment/MeleeWeapons';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -19,6 +24,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
     const [viewTraitList, setViewTraitList] = useState(false);
     const [viewPerkList, setViewPerkList] = useState(false);
+    const [inventory, setInventory] = useState<Item[]>([]);
+    const [isAddingInventory, setIsAddingInventory] = useState(false);
+
+    const carryWeight = inventory.length > 0 ? inventory.map(i => i.weight).reduce((a, b) => a + b) : 0;
 
     return (<div className="characterSheet">
         {viewState !== "edit" ?
@@ -114,7 +123,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
                 <tr>
                     <td>
-                        <label>Character points</label>
+                        <label>Experience points</label>
                     </td>
                     <td>
                         <HideText txt={character.getCalculatedPointsLeft()} explain={character.explain('pointsLeft')} isEdit={viewState} />
@@ -153,7 +162,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Carrying capacity</label>
                     </td>
                     <td>
-                        <HideText isEdit={viewState} txt={character.getBaseCarryingCapacity().toString()} explain={character.explain('carryingCapacity')} />
+                        <HideText isEdit={viewState} txt={`${weightConverter(carryWeight)} / ${character.getBaseCarryingCapacity().toString()}kg`} explain={character.explain('carryingCapacity')} />
                     </td>
                     <td>
                         <label>Willpower</label>
@@ -175,12 +184,22 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     <td colSpan={2}>
                         Background
                     </td>
-                    <td colSpan={2}>
-                        Apperance traits
+                    <td>
+                        <label>Mana</label>
+                    </td>
+                    <td>
+                        <HideText isEdit={viewState} txt={character.getMana()} explain={character.explain('mana')} />
                     </td>
                     <td colSpan={2}>
                         Personality traits
                     </td>
+                </tr>
+                <tr>
+                    <td colSpan={2}> &nbsp;</td>
+                    <td colSpan={2}>
+                        Apperance traits
+                    </td>
+                    <td colSpan={2}> &nbsp;</td>
                 </tr>
                 {Pad(5, 0).map(i =>
                     <tr>
@@ -363,7 +382,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <thead>
                                 <tr>
                                     <th className='bigtd'>
-                                        Weapon
+                                        <span onClick={() => setIsAddingInventory(!isAddingInventory)}>Weapon </span>
                                     </th>
                                     <th className='smalltd'>
                                         HB
@@ -386,7 +405,51 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Pad(7, 0).map(i =>
+
+                                {isAddingInventory && <>
+                                    <Section title='Firearms'>
+                                        <ViewFireArms items={Firearms} onClick={w => setInventory([...inventory, w])} />
+                                    </Section>
+
+                                    <Section title='Arms'>
+                                        <ViewFireArms items={MeleeWeapons} onClick={w => setInventory([...inventory, w])} />
+                                    </Section>
+                                </>}
+                                {inventory.filter(i => i.relatedSkill === 'firearms' || i.relatedSkill === 'combat').map(item => {
+                                    const skill = character.getSkillLevel(item.relatedSkill);
+
+                                    let firearm: IFirearm | undefined = item.relatedSkill === 'firearms' ? item as IFirearm : undefined;
+                                    let arm: IMeleeWeapon | undefined = item.relatedSkill !== 'firearms' ? item as IMeleeWeapon : undefined;
+
+
+                                    return <tr>
+                                        <td className='bigtd'>
+                                            {item.name}
+                                        </td>
+                                        <td className='smalltd'>
+                                            {skill + character.agility}
+                                        </td>
+                                        <td className='smalltd'>
+                                            {firearm && firearm.armorpiercing}
+                                            {arm && arm.armorpiercing}
+                                        </td>
+                                        <td className='smalltd3'>
+                                            {firearm && `${firearm.damage.numberOfDice}d${firearm.damage.sides} + ${firearm.damage.bonus}`}
+                                            {arm && arm.damage}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {firearm && `${firearm.capacity} (${firearm.ammo})`}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {weightConverter(item.weight)}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {item.value}
+                                        </td>
+                                    </tr>;
+                                })}
+
+                                {Pad(7 - inventory.length, 0).map(i =>
                                     <tr>
                                         <td className='bigtd'>
 
@@ -418,7 +481,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <thead>
                                 <tr>
                                     <th className='bigtd'>
-                                        Item
+                                        <span onClick={() => setIsAddingInventory(!isAddingInventory)}>Item </span>
                                     </th>
                                     <th className='smalltd3'>
                                         Skill
@@ -435,10 +498,38 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Pad(19, 0).map(i =>
+                                {isAddingInventory && <>
+                                    <Section title='weapons'>
+                                        <ViewConsumables consumables={ConsumableWeapons} onClick={w => setInventory([...inventory, w])} />
+                                    </Section>
+
+                                    <Section title='tools'>
+                                        <ViewConsumables consumables={ConsumableTools} onClick={w => setInventory([...inventory, w])} />
+                                    </Section>
+
+                                    <Section title='medicine'>
+                                        <ViewConsumables consumables={ConsumableMedicine} onClick={w => setInventory([...inventory, w])} />
+                                    </Section>
+                                </>}
+                                {inventory.filter(i => i.relatedSkill !== 'firearms' && i.relatedSkill !== 'combat').map(item => <tr>
+                                    <td className='bigtd'>
+                                        {item.name}
+                                    </td>
+                                    <td className='smalltd3'>
+
+                                    </td>
+                                    <td className='smalltd2'>
+                                    </td>
+                                    <td className='smalltd2'>
+                                        {weightConverter(item.weight)}
+                                    </td>
+                                    <td className='smalltd2'>
+                                        {item.value}
+                                    </td>
+                                </tr>)}
+                                {Pad((!isAddingInventory ? 19 - inventory.length : 0), 0).map(i =>
                                     <tr>
                                         <td className='bigtd'>
-
                                         </td>
                                         <td className='smalltd3'>
 
@@ -478,6 +569,56 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         </table></div>);
 }
 
+
+interface IViewArms {
+    onClick: (item: Item) => void;
+    items: Item[];
+}
+
+const ViewFireArms: React.FC<IViewArms> = ({ onClick, items }) => {
+    return <>{items.map(item => <tr>
+        <td className='bigtd'>
+            <button onClick={() => onClick(item)} >{item.name}</button>
+        </td>
+        <td className='smalltd3'>
+
+        </td>
+        <td className='smalltd2'>
+
+        </td>
+        <td className='smalltd2'>
+            {item.weight}
+        </td>
+        <td className='smalltd2'>
+            {item.value}
+        </td>
+    </tr>)}</>;
+};
+
+interface IViewConsumables {
+    onClick: (item: IConsumable) => void;
+    consumables: IConsumable[];
+}
+
+const ViewConsumables: React.FC<IViewConsumables> = ({ onClick, consumables }) => {
+    return <>{consumables.map(item => <tr>
+        <td className='bigtd'>
+            <button onClick={() => onClick(item)} >{item.name}</button>
+        </td>
+        <td className='smalltd3'>
+
+        </td>
+        <td className='smalltd2'>
+
+        </td>
+        <td className='smalltd2'>
+            {item.weight}
+        </td>
+        <td className='smalltd2'>
+            {item.value}
+        </td>
+    </tr>)}</>;
+}
 
 const Pad = (minSize: number, size: number) => {
     const i = Math.max(minSize - size, 0);

@@ -1,3 +1,5 @@
+import { SkillName } from "../general/Skills";
+
 interface Item {
     /** grams */
     weight: number;
@@ -5,6 +7,7 @@ interface Item {
     description?: string;
     longDescription?: string | undefined;
     name: string;
+    relatedSkill:SkillName;
 }
 
 export interface IQuality {

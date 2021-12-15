@@ -3,8 +3,8 @@ import Section from "./Section";
 
 
 const Experience: React.FC = () => {
-    return <Section title='Character points and Experience'>
-        <p>To increase skills, base stats, buy perks and traits you spend character points, your starting character points depend on your species and starting age. Older characters start with more experience, younger characters have a high experience multiplier which allows them to gain character points faster.</p>
+    return <Section title='Experience points and multiplier'>
+        <p>To increase skills, base stats, buy perks and traits you spend experience points, your starting experience points depend on your species and starting age. Older characters start with more experience, younger characters have a high experience multiplier which allows them to gain experience points faster.</p>
         <h4>Cost</h4>
         <p>The cost of increasing a skill is equal to the amount you increase to per step. For example if you have 4 ranks and wish to increase to 6 it costs 11, because you must first increase to 5 and then to 6. 5 + 6 = 11<br />
         Please consult the following chart when increasing multiple steps</p>

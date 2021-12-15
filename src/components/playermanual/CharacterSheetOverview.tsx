@@ -17,11 +17,11 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <h4>Age</h4>
     <p>The age of your character in Earth Years</p>
 
-    <h4>Character Points</h4>
-    <p>Character points are universally applicable experience points which can be used for anything. See more under Character Points and Experience. Your age and species determine your starting experience.</p>
+    <h4>Experience Points</h4>
+    <p>Experience points are universally applicable experience points which can be used for anything. See more under Experience Points and Experience. Your age and species determine your starting experience.</p>
 
     <h4>Experience multiplier</h4>
-    <p>How quickly you gain experience, depends on age and species. See more under Character Points and Experience.</p>
+    <p>How quickly you gain experience, depends on age and species. See more under Experience Points and Experience.</p>
 
     <h4>Player</h4>
     <p>The player's name</p>

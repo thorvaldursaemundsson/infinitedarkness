@@ -71,7 +71,7 @@ const Unmask = new SpellTemplate(
         'change color of skin, eyes and/or hair: +1 mana',
         'change gender: +2 mana (requires change DNA)',
         'change DNA: +1 mana',
-        'change trait: +3 mana (requires character points if you add a positive or remove a negative, only one trait)',
+        'change trait: +3 mana (requires experience points if you add a positive or remove a negative, only one trait)',
         'you can not change your dna, fingerprints to match someone else, to match someone\'s looks you must also roll a (disguise) subterfuge'
     ]
 );

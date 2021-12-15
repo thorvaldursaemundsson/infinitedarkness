@@ -14,7 +14,7 @@ const Experience: React.FC = () => {
             <li>+1 If the player plays according to their traits most of the time and doesn't contradict them</li>
             <li>+2 If the player plays according to their traits exceptionally well</li>
         </ul>
-        <p><i>Players that disrupt the game by breaking character during important moments, interrupts others out of character, metagames or in any way acts in a toxic way that ruins the fun for everyone should generally not get character points.
+        <p><i>Players that disrupt the game by breaking character during important moments, interrupts others out of character, metagames or in any way acts in a toxic way that ruins the fun for everyone should generally not get experience points.
             The game master should consider whether it's appropriate to take them aside or to tell them in front of the whole group whether to tell them how they acted wrong.
             </i></p>
         <h5>Overcoming adversity</h5>
@@ -24,7 +24,7 @@ const Experience: React.FC = () => {
         <p>Each nomination grants a +1 experience point, it's preferred that the players choose based on characterization, cooperation and making the game fun for everyone. However the players get the final say on who they give this experience to and they may do whatever they want.</p>
         <p>This is meant to encourage gratitute and cooperation among the players</p>
         <h4>Experience Multiplier</h4>
-        <p>When the sources are all added up, each character multiplies their end of session experience and adds it to their pool of unsused character points.</p>
+        <p>When the sources are all added up, each character multiplies their end of session experience and adds it to their pool of unsused experience points.</p>
         <p>These points can be spent on anything, unlike skill exp which can only be spent on their respective skills and underlying perks.</p>
         
     </>

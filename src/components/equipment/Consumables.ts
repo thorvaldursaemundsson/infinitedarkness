@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-interface IConsumable extends Item {
+export interface IConsumable extends Item {
     charges: number;
 }
 
@@ -10,21 +10,24 @@ export const ConsumableWeapons: IConsumable[] = [
         description: 'Does 6d8 damage in a radius of 2 meters (hexes) and quarter 1 meter radius more. Destroys objects. Deafness in blast area for 4 rounds.',
         value: 1400,
         weight: 900,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Incendiary Grenade',
         description: 'Does 2d6 thermal damage in a radius of 3 meters to everyone starting in or moving through the area. Lasts 10 rounds. Anyone standing in the area when the incendiary grenade detonates will also burn for 10 rounds, taking 2d6 at the start of their turn. Being on fire imposes a -10 to all perception based rolls and the burning creature must succeed a DC 15 willpower roll or become paniced.',
         value: 1300,
         weight: 950,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Plasma Grenade',
         description: 'Does 10d6 thermal and electrical damage in a radius of 3 meters.',
         value: 3000,
         weight: 1500,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Electric Pulse Grenade',
@@ -32,34 +35,39 @@ export const ConsumableWeapons: IConsumable[] = [
         value: 3000,
         weight: 1200,
         charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Flash grenade',
         description: 'Blinds and deafens everyone within 5 meters for 2d6+4 rounds and everyone within 10 meters for 1d6+2 rounds. Make a contested acrobatics + agility to protect your eyes OR your ears.',
         value: 700,
         weight: 750,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Smoke Bomb',
         description: 'Creates smoke that expands by 1 meter (hex) per round to a maximum of 10 meter. Smoke prevents vision and lasts 20 rounds. Anyone beginning their turn inside smoke and is breathing must succeed an endurance roll against 20 or lose their action for their turn.',
         value: 600,
         weight: 700,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Steel foam grenade',
         description: 'Creates steel foam that expands up to 2 meters in all direction, each round it hardens and gains 5 points up to 20.',
         value: 1200,
         weight: 2000,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
     {
         name: 'Oil Disperser',
         description: 'Releases slippery oil and marbles on a 4meter radius area, terrain becomes difficult and anyone attempting to walk across it must succeed on a DC 20 acrobatics + agility roll of fall prone and lose their action.',
         value: 600,
         weight: 700,
-        charges: 1
+        charges: 1,
+        relatedSkill: 'explosives',
     },
 ];
 
@@ -70,6 +78,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 20,
         weight: 2500,
         value: 4000,
+        relatedSkill: 'medicine',
     },
     {
         name: 'Climing/Parkour gear',
@@ -77,6 +86,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 50,
         weight: 3000,
         value: 1500,
+        relatedSkill: 'acrobatics',
     },
     {
         name: 'Sports gear',
@@ -84,6 +94,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 40,
         weight: 2000,
         value: 2000,
+        relatedSkill: 'athletics',
     },
     {
         name: 'Sharpening tools',
@@ -91,6 +102,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1000,
         weight: 500,
         value: 100,
+        relatedSkill: 'combat',
     },
     {
         name: 'Portable Cooking set',
@@ -98,6 +110,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 10000,
         value: 5000,
+        relatedSkill: 'cooking'
     },
     {
         name: 'Electronics toolkit',
@@ -105,6 +118,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 30,
         weight: 4000,
         value: 2000,
+        relatedSkill: 'electronics'
     },
     {
         name: 'Ballistic kit',
@@ -112,6 +126,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 40,
         weight: 300,
         value: 400,
+        relatedSkill: 'firearms'
     },
     {
         name: 'Forensics kit',
@@ -119,6 +134,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 40,
         weight: 1000,
         value: 1200,
+        relatedSkill: 'investigation'
     },
     {
         name: 'Lockpick',
@@ -126,6 +142,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 200,
         value: 500,
+        relatedSkill: 'larceny'
     },
     {
         name: 'Electronic lockpick',
@@ -133,6 +150,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 80,
         weight: 2000,
         value: 3500,
+        relatedSkill: 'computer'
     },
     {
         name: 'Mechanics kit',
@@ -140,6 +158,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1000,
         weight: 5000,
         value: 1500,
+        relatedSkill: 'mechanics'
     },
     {
         name: 'Batteries',
@@ -147,6 +166,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10000,
         weight: 1000,
         value: 1000,
+        relatedSkill: 'electronics'
     },
     {
         name: 'Personal solar array',
@@ -154,6 +174,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10000,
         weight: 500,
         value: 2000,
+        relatedSkill: 'electronics'
     },
     {
         name: 'Motion sensor',
@@ -161,6 +182,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 200,
         value: 200,
+        relatedSkill: 'mechanics'
     },
     {
         name: 'Tiny tracker',
@@ -168,6 +190,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1,
         weight: 10,
         value: 300,
+        relatedSkill: 'computer'
     },
     {
         name: 'Infrared googles',
@@ -175,6 +198,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10000,
         weight: 200,
         value: 900,
+        relatedSkill: 'stealth'
     },
     {
         name: 'Ultraviolet googles',
@@ -182,6 +206,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10000,
         weight: 300,
         value: 1600,
+        relatedSkill: 'stealth'
     },
     {
         name: 'Pocket Computer',
@@ -189,6 +214,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1000,
         weight: 1000,
         value: 2000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Jetpack',
@@ -196,6 +222,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 6000,
         value: 14000,
+        relatedSkill: 'athletics'
     },
     {
         name: 'Flightsuit',
@@ -203,6 +230,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 80,
         weight: 10000,
         value: 8000,
+        relatedSkill: 'athletics'
     },
     {
         name: 'SCUBA suit',
@@ -210,6 +238,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 10,
         weight: 6000,
         value: 12000,
+        relatedSkill: 'athletics'
     },
     {
         name: 'Parachute',
@@ -217,6 +246,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 5000,
         value: 7000,
+        relatedSkill: 'athletics'
     },
     {
         name: 'Massive Parachute',
@@ -224,6 +254,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 50,
         weight: 10000,
         value: 20000,
+        relatedSkill: 'athletics'
     },
     {
         name: 'Laser protection gear',
@@ -231,6 +262,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1000,
         weight: 100,
         value: 500,
+        relatedSkill: 'firearms'
     },
     {
         name: 'Plasma protection gear',
@@ -238,13 +270,15 @@ export const ConsumableTools: IConsumable[] = [
         charges: 1000,
         weight: 1000,
         value: 1600,
+        relatedSkill: 'firearms'
     },
     {
         name: 'Spy drone',
-        description: '	Small drone, charges propellers to fly but cacharges virtually no noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km.',
+        description: '	Small drone, charges propellers to fly but cacharges virtually no noice, has a small mounted camera and comes with remote controll (can also be controlled via computer), range 1km. Has +5 to stealth checks to remain hidden.',
         charges: 500,
         weight: 200,
         value: 4000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Carrier drone',
@@ -252,34 +286,39 @@ export const ConsumableTools: IConsumable[] = [
         charges: 500,
         weight: 2000,
         value: 9000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Large carrier drone',
-        description: 'Large sized drone, similar to carrier drone, can carry 6kg.',
+        description: 'Large sized drone, similar to carrier drone, can carry 6kg. Has -5 to steath checks to remain hidden.',
         charges: 500,
         weight: 10000,
         value: 15000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Industrial carrier drone',
-        description: 'Large sized drone, similar to large carrier but can carry 52kg.',
+        description: 'Large sized drone, similar to large carrier but can carry 52kg. Has -10 to steath checks to remain hidden.',
         charges: 500,
         weight: 80000,
         value: 25000,
+        relatedSkill: 'computer'
     },
     {
         name: 'H.W. Industrial carrier drone',
-        description: 'Heavy weight indistrial carrier drone, capacity 175kg. Basically a small hellicopter',
+        description: 'Heavy weight indistrial carrier drone, capacity 175kg. Basically a small hellicopter. Has -15 to steath checks to remain hidden.',
         charges: 500,
         weight: 250000,
         value: 35000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Transport drone',
-        description: 'It\'s a vehicle, capacity 3500kg.',
+        description: 'It\'s a vehicle, capacity 3500kg. Has -20 to steath checks to remain hidden.',
         charges: 500,
         weight: 5000000,
         value: 90000,
+        relatedSkill: 'computer'
     },
     {
         name: 'Camping kit',
@@ -287,6 +326,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 50,
         weight: 20000,
         value: 4000,
+        relatedSkill: 'survival'
     },
     {
         name: 'Field physics kit',
@@ -294,6 +334,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 6000,
         value: 8000,
+        relatedSkill: 'science'
     },
     {
         name: 'Field chemistry kit',
@@ -301,6 +342,7 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 3000,
         value: 7000,
+        relatedSkill: 'science'
     },
     {
         name: 'Field biology kit',
@@ -308,13 +350,15 @@ export const ConsumableTools: IConsumable[] = [
         charges: 100,
         weight: 3000,
         value: 7000,
+        relatedSkill: 'science'
     },
     {
         name: 'Neural enhancer',
-        description: 'A neural enhancer charges very precise magnetic fields to speed up brainwaves. Roll science + intelligence vs 25 to adapt it to your brain, the adaption lasts until you gain character points. If you succeed then you add +1 to all intelligence, perception and agility rolls for 4 hours. When the time is elapsed you take a -2 penalty for 4 hours. If you dont wait 16 hours to use it again you take 1 mental health damage.',
+        description: 'A neural enhancer charges very precise magnetic fields to speed up brainwaves. Roll science + intelligence vs 25 to adapt it to your brain, the adaption lasts until you gain experience points. If you succeed then you add +1 to all intelligence, perception and agility rolls for 4 hours. When the time is elapsed you take a -2 penalty for 4 hours. If you dont wait 16 hours to use it again you take 1 mental health damage.',
         charges: 1000,
         weight: 1000,
         value: 8000,
+        relatedSkill: 'science'
     }
 ];
 
@@ -333,6 +377,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '20+: can awaken someone who is not critically incapacitated',
             '30+: can awaken someone who is critically incapacitated',
         ],
+        relatedSkill: 'medicine'
     },
     {
         name: 'Stempack',
@@ -347,6 +392,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '31-40: Takes 30 seconds',
             '41+: Takes 30 seconds, immediately heal 1 life'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Antibiotics',
@@ -359,6 +405,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '20-29: Takes 10 minutes',
             '30+: Takes 1 minute'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Antivirals',
@@ -371,6 +418,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '20-29: Takes 10 minutes',
             '30+: Takes 1 minute'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Radioflush',
@@ -383,6 +431,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '20-29: Takes 1 minute.',
             '30+: Takes 1 minute. No exhaustion'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Gene therapy detox',
@@ -397,6 +446,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '35-39: Takes 60 minutes. Effect only requires 10 days.',
             '40+: Takes 60 minutes. Effect only requires 5 days.',
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Antivenom',
@@ -409,6 +459,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '25-29: takes 1 minute. Causes 1 level of exhaustion',
             '30+: takes 12 seconds.'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Anti-Radiation drug',
@@ -421,6 +472,7 @@ export const ConsumableMedicine: IMedicine[] = [
             '20-29: normal effect',
             '30+: may take second dose with additional effect'
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Active carbon',
@@ -430,6 +482,7 @@ export const ConsumableMedicine: IMedicine[] = [
         value: 100,
         medicineSkillRolls: [
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Weak painkillers',
@@ -439,6 +492,7 @@ export const ConsumableMedicine: IMedicine[] = [
         value: 200,
         medicineSkillRolls: [
         ],
+        relatedSkill: 'medicine',
     },
     {
         name: 'Strong painkiller',
@@ -448,5 +502,6 @@ export const ConsumableMedicine: IMedicine[] = [
         value: 1000,
         medicineSkillRolls: [
         ],
+        relatedSkill: 'medicine',
     },
 ];

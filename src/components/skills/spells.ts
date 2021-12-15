@@ -22,7 +22,7 @@ const useCases: UseCase[] = [
     {
         name: 'acquire mutation',
         attribute: 'willpower',
-        description: 'When you acquire a mutation roll 1d10 and consult the chart (Spells are always acquired immediately). The first time when you acquire a spell or mutation and spend character points you are allowed to go into negative. However the next time you must have 10 character points available. The character points are spent BEFORE you roll and you MUST always take one. Once you have a mutation or spell they can never be removed.',
+        description: 'When you acquire a mutation roll 1d10 and consult the chart (Spells are always acquired immediately). The first time when you acquire a spell or mutation and spend experience points you are allowed to go into negative. However the next time you must have 10 experience points available. The experience points are spent BEFORE you roll and you MUST always take one. Once you have a mutation or spell they can never be removed.',
         type: 'active',
         results: [
             '1: You acquire the negative effects immediately and after 1d6 days acquire the positive effects',
