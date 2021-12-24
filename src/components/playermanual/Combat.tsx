@@ -1,4 +1,4 @@
-import Section from "./Section";
+import Section from "../Section";
 import React, { useState } from "react";
 import Indexer, { Indexed } from "../general/Indexer";
 import Firearms from "../skills/firearms";

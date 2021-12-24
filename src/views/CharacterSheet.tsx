@@ -7,12 +7,15 @@ import { useCharacter } from '../components/general/useCharacter';
 import './charactersheet.css';
 import EditText, { HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
-import Section from '../components/playermanual/Section';
+import Section from '../components/Section';
 import Item from '../components/equipment/Item';
 import { ConsumableMedicine, ConsumableTools, ConsumableWeapons, IConsumable } from '../components/equipment/Consumables';
 import { weightConverter } from '../utils/utilFunctions';
-import Firearms, { IFirearm } from '../components/equipment/Firearms';
+import { IFirearm } from '../components/equipment/Firearms';
 import MeleeWeapons, { IMeleeWeapon } from '../components/equipment/MeleeWeapons';
+import FloatingSection from '../components/FloatingSection';
+import FirearmCrafter from '../components/equipment/FirearmCrafter';
+import ArmorCrafter, { FullArmor } from '../components/equipment/ArmorCrafter';
 
 interface CharacterSheetProps {
     initialCharacter: Character;
@@ -28,6 +31,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [isAddingInventory, setIsAddingInventory] = useState(false);
 
     const carryWeight = inventory.length > 0 ? inventory.map(i => i.weight).reduce((a, b) => a + b) : 0;
+
+    const damageAbsFromInventory = (): number => { 
+        const armors:FullArmor[] = inventory.filter(item => item.relatedSkill === 'combat' && (item as any).type === 'armor') as FullArmor[];
+        if (armors.length > 0)
+        {
+            return armors[0].getDamageAbsorbtion();
+        }
+        return 0;
+    };
 
     return (<div className="characterSheet">
         {viewState !== "edit" ?
@@ -112,7 +124,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Damage absorption</label>
                     </td>
                     <td>
-                        <HideText txt={character.getDamageAbsorption()} explain={'damage absorbtion'} isEdit={viewState} />
+                        <HideText txt={character.getDamageAbsorption() + damageAbsFromInventory()} explain={'damage absorbtion'} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Perception</label>
@@ -407,9 +419,11 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <tbody>
 
                                 {isAddingInventory && <>
-                                    <Section title='Firearms'>
-                                        <ViewFireArms items={Firearms} onClick={w => setInventory([...inventory, w])} />
-                                    </Section>
+                                    <FloatingSection title='Firearms'>
+                                        <FirearmCrafter onGetFirearm={(f) => setInventory([...inventory, f])} >
+
+                                        </FirearmCrafter>
+                                    </FloatingSection>
 
                                     <Section title='Arms'>
                                         <ViewFireArms items={MeleeWeapons} onClick={w => setInventory([...inventory, w])} />
@@ -424,10 +438,12 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
                                     return <tr>
                                         <td className='bigtd'>
-                                            {item.name}
+                                            {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                         </td>
                                         <td className='smalltd'>
-                                            {skill + character.agility}
+                                            {skill + character.agility +
+                                                ((firearm !== undefined && firearm.hitbonus !== undefined) ? firearm.hitbonus : 0) +
+                                                ((arm !== undefined && arm.hitbonus !== undefined) ? arm.hitbonus : 0)}
                                         </td>
                                         <td className='smalltd'>
                                             {firearm && firearm.armorpiercing}
@@ -510,10 +526,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     <Section title='medicine'>
                                         <ViewConsumables consumables={ConsumableMedicine} onClick={w => setInventory([...inventory, w])} />
                                     </Section>
+                                    <FloatingSection title='armor'>
+                                        <ArmorCrafter onClick={w => setInventory([...inventory, w])} />
+                                    </FloatingSection>
                                 </>}
                                 {inventory.filter(i => i.relatedSkill !== 'firearms' && i.relatedSkill !== 'combat').map(item => <tr>
                                     <td className='bigtd'>
-                                        {item.name}
+                                        {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                     </td>
                                     <td className='smalltd3'>
 
@@ -569,6 +588,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
         </table></div>);
 }
 
+const removeItem = (currentList: Item[], remove: Item): Item[] => {
+    return currentList.filter(i => i.name !== remove.name);
+};
 
 interface IViewArms {
     onClick: (item: Item) => void;

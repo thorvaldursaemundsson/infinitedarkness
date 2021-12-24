@@ -1,5 +1,8 @@
 import { SkillName } from "../general/Skills";
 
+export type qualityMod = 3 | 2 | 1 | 0 | -1 | -2 | -3 | -4;
+export type conditionMod =  2 | 1 | 0 | -1 | -2 | -3 | -4;
+
 interface Item {
     /** grams */
     weight: number;
@@ -7,7 +10,9 @@ interface Item {
     description?: string;
     longDescription?: string | undefined;
     name: string;
-    relatedSkill:SkillName;
+    relatedSkill: SkillName;
+    condition?: undefined | conditionMod;
+    quality?: undefined | qualityMod;
 }
 
 export interface IQuality {
@@ -102,6 +107,32 @@ export const Quality: IQuality[] = [
         valueModifier: .4
     },
 ];
+
+export interface IDamageDice {
+    sides: number;
+    numberOfDice: number;
+    bonus: number;
+}
+
+/**
+* 
+* @param n number of dice
+* @param s sides per dice
+* @param b flat bonus damage
+* @returns 
+*/
+export const D = (n: number, s: number): IDamageDice => {
+   return {
+       sides: s, numberOfDice: n, bonus: 0
+   };
+}
+
+export const writeDamageDice = (d: IDamageDice, b: number) => {
+    if (d.bonus + b === 0) return `${d.numberOfDice}d${d.sides}`;
+    else if (d.bonus + b > 0) return `${d.numberOfDice}d${d.sides} + ${d.bonus + b}`;
+    if (d.bonus + b < 0) return `${d.numberOfDice}d${d.sides} - ${Math.abs(d.bonus + b)}`;
+}
+
 
 
 export default Item;

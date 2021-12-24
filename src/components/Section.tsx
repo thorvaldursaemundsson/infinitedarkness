@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import usePersistentState from "../../utils/usePersistentState";
+import usePersistentState from "../utils/usePersistentState";
 
-interface ISection {
+export interface ISection {
     title: string;
     tab?: number;
     border?: boolean | undefined;

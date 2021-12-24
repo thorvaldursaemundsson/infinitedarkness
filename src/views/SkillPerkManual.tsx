@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { GetTraits } from '../components/traits/Traits';
 import { GetPerkList } from '../components/general/GetPerkList';
 import { GetSkillList } from '../components/general/GetSkillList';
-import Section from '../components/playermanual/Section';
+import Section from '../components/Section';
 import Indexer, { Indexed } from '../components/general/Indexer';
 
 const SkillPerkManual: React.FC = () => {

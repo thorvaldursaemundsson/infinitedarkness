@@ -341,3 +341,15 @@ td.yesX {
 td.no {
   background-color: rgb(255, 216, 200);
 }
+
+.floatsection {
+  display: block;
+  position: fixed;
+  background: white;
+  width: 600px;
+  z-index: 999;
+}
+.floaterbox{ 
+  padding: 10px;
+  border: 1px solid black;
+}

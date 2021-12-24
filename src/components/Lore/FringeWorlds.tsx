@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../playermanual/Section';
+import Section from '../Section';
 import Ashra from '../fringeworlds/Ashra';
 import Tonati from '../fringeworlds/Tonati';
 import Atargatis from '../fringeworlds/Atargatis';

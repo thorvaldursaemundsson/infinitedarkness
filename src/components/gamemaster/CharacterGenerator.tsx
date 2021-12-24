@@ -5,7 +5,7 @@ import { Jobs } from '../CharacterGenerator/jobs';
 import { humanEyeColors, humanHairColors, humanSkinColors } from '../CharacterGenerator/looks';
 import { femaleHumanNames, maleHumanNames } from '../CharacterGenerator/names';
 import { quirks } from '../CharacterGenerator/quirks';
-import Section from '../playermanual/Section';
+import Section from '../Section';
 
 
 const randomFromList = (list: string[]): string => list[Math.floor(Math.random() * list.length)];

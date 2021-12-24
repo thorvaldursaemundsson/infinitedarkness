@@ -1,4 +1,4 @@
-import Section from "./Section";
+import Section from "../Section";
 import React from "react";
 import { GenericCharacterRoller } from "../Lore/CharacterRoller";
 import { IOpenableViewItem } from "../../views/IViewProps";

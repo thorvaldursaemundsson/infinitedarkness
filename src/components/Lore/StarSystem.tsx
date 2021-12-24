@@ -1,7 +1,7 @@
 import React from 'react';
 import Ellipsis from '../general/Ellipsis';
 import { IStarSystem, IStar, IPlanetoid, Distance, HeavenlyBodyType } from './IStarSystem'
-import Section from '../playermanual/Section';
+import Section from '../Section';
 import Threejs from '../Threejs';
 
 const StarSystem: React.FC<IStarSystem> = ({ stars, roguePlanetoids, name, description }) =>

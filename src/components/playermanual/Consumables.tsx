@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './Section';
+import Section from '../Section';
 import Indexer, { Indexed } from '../general/Indexer';
 import Cooking from '../skills/cooking';
 import { ConsumableMedicine, ConsumableTools, ConsumableWeapons } from '../equipment/Consumables';

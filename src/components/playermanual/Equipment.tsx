@@ -1,7 +1,7 @@
 
 import React, { CSSProperties, useState } from "react";
-import Section from "./Section"
-import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoModifications, FirearmModifications, writeDamageDice } from "../equipment/Firearms";
+import Section from "../Section"
+import Firearms, { FireArm, AmmoInformation, AmmoTypesInformation, Ammo, AmmoModifications, FirearmModifications } from "../equipment/Firearms";
 import MeleeWeapons, { MeleeWeapon } from "../equipment/MeleeWeapons";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
@@ -9,7 +9,7 @@ import { bodySuits, armorPlates, PowerArmor, powerArmors, ArmorData, integratedS
 import ArmorCrafter from "../equipment/ArmorCrafter";
 import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import FirearmCrafter from "../equipment/FirearmCrafter";
-import { Condition, Quality } from "../equipment/Item";
+import { Condition, Quality, writeDamageDice } from "../equipment/Item";
 
 const Equipment: React.FC = () => {
     return (<Section title='Equipment'>
@@ -276,7 +276,7 @@ const WeaponTable: React.FC<WeaponTableProps> = ({ data }) => {
                 return <tr>
                     <td style={s}>{weapon.size}</td>
                     <td style={s}>{weapon.name}</td>
-                    <td style={s}>{weapon.damage}</td>
+                    <td style={s}>{writeDamageDice(weapon.damage, 0)}</td>
                     <td style={s}>{weapon.armorpiercing}</td>
                     <td style={s}>{weapon.hitbonus}</td>
                     <td style={s}>{weightConverter(weapon.weight)}</td>

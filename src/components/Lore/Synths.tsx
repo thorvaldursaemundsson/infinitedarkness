@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../playermanual/Section";
+import Section from "../Section";
 import { getExperienceAges } from "../races/Races";
 import RaceTable from "../races/RaceTable";
 import { synthsData } from "../races/Synth";

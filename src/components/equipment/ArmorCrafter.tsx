@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import { CharacterSize } from "../Character";
-import Section from "../playermanual/Section";
+import { SkillName } from "../general/Skills";
+import Section from "../Section";
 import { ArmorPlate, armorPlates, BodySuit, bodySuits, IntegratedSystem, integratedSystems, PowerArmor, powerArmors } from "./Armors";
+import Item, { conditionMod, qualityMod } from "./Item";
 
 const getSizeMod = (size: CharacterSize) => {
     switch (size) {
@@ -16,30 +18,116 @@ const getSizeMod = (size: CharacterSize) => {
     }
 }
 
-const getProtectionMod = (n: number) => {
-    switch (n) {
-        case 6: return 1;
-        case 5: return .9;
-        case 4: return .8;
-        case 3: return .7;
-        case 2: return .5;
-        case 1: return .3;
-        default: return 1;
+
+interface IArmorCrafterProps {
+    onClick?: (item: FullArmor) => void;
+}
+
+export interface IFullArmor {
+    bodySuit?: BodySuit | undefined;
+    armorPlate?: ArmorPlate | undefined;
+    powerArmor?: PowerArmor | undefined;
+    integratedSystemsOnArmor: IntegratedSystem[];
+    size: CharacterSize;
+}
+
+export class FullArmor implements IFullArmor, Item {
+    bodySuit?: BodySuit | undefined;
+    armorPlate?: ArmorPlate | undefined;
+    powerArmor?: PowerArmor | undefined;
+    integratedSystemsOnArmor: IntegratedSystem[];
+    size: CharacterSize;
+    weight: number;
+    value: number;
+    description?: string | undefined;
+    longDescription?: string | undefined;
+    name: string;
+    relatedSkill: SkillName;
+    condition?: conditionMod | undefined;
+    quality?: qualityMod | undefined;
+    type: string = 'armor';
+    constructor(data: IFullArmor) {
+        this.bodySuit = data.bodySuit;
+        this.armorPlate = data.armorPlate;
+        this.powerArmor = data.powerArmor;
+        this.integratedSystemsOnArmor = data.integratedSystemsOnArmor;
+        this.size = data.size;
+        this.weight = this.getWeight();
+        this.name = this.getName();
+        this.relatedSkill = 'combat';
+        this.value = this.getValue();
+    }
+    public getDamageAbsorbtion(): number {
+        const bodySuit = (this.bodySuit && this.bodySuit.damageAbsorbtion) || 0;
+        const armorPlate = (this.armorPlate && this.armorPlate.damageAbsorbtion) || 0;
+        const powerArmor = (this.powerArmor && this.powerArmor.damageAbsorbtion) || 0;
+
+        const integrationValue = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor.map(i => i.damageAbsorbtion).reduce((a, b) => a + b, 0) : 0;
+
+        return bodySuit + armorPlate + powerArmor + integrationValue;
+    }
+
+    public getWeight(): number {
+        const bodySuit = (this.bodySuit && this.bodySuit.weight) || 0;
+        const armorPlate = (this.armorPlate && this.armorPlate.weight) || 0;
+        const powerArmor = (this.powerArmor && this.powerArmor.weight) || 0;
+
+        const integrationValue = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor.map(i => i.weight).reduce((a, b) => a + b, 0) : 0;
+
+        return (bodySuit + armorPlate + powerArmor + integrationValue) * getSizeMod(this.size);
+    }
+
+    public getValue(): number {
+        const bodySuit = (this.bodySuit && this.bodySuit.cost) || 0;
+        const armorPlate = (this.armorPlate && this.armorPlate.cost) || 0;
+        const powerArmor = (this.powerArmor && this.powerArmor.cost) || 0;
+
+        const integrationValue = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor.map(i => i.cost).reduce((a, b) => a + b, 0) : 0;
+
+        return (bodySuit + armorPlate + powerArmor + integrationValue) * getSizeMod(this.size);
+    }
+
+    public getName(): string {
+        const bodySuit = this.bodySuit;
+        const armorPlate = this.armorPlate;
+        const powerArmor = this.powerArmor;
+        return `${bodySuit && bodySuit.name} ${armorPlate && armorPlate.name} ${powerArmor && powerArmor.name}`;
+    }
+
+    public getStrengthMod(): number {
+        const powerArmor = (this.powerArmor && this.powerArmor.strengthMod) || 0;
+
+        const integratedBonus = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor
+            .map(m => m.abilityModifiers.filter(am => am.ability === 'strength').map(am => am.modifier).reduce((a, b) => a + b + 0, 0))
+            .reduce((a, b) => a + b, 0) : 0;
+
+        return powerArmor + integratedBonus;
+    }
+
+    public getAgilityMod(): number {
+        const bodySuit = (this.bodySuit && this.bodySuit.agilityMod) || 0;
+        const armorPlate = (this.armorPlate && this.armorPlate.agilityMod) || 0;
+        const powerArmor = (this.powerArmor && this.powerArmor.agilityMod) || 0;
+
+        const integratedBonus = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor
+            .map(m => m.abilityModifiers.filter(am => am.ability === 'agility').map(am => am.modifier).reduce((a, b) => a + b, 0))
+            .reduce((a, b) => a + b, 0) : 0;
+
+        return bodySuit + armorPlate + powerArmor + integratedBonus;
+    }
+
+    public getPerceptionMod(): number {
+        const powerArmor = (this.powerArmor && this.powerArmor.perceptionMod) || 0;
+
+        const integratedBonus = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor
+            .map(m => m.abilityModifiers.filter(am => am.ability === 'perception').map(am => am.modifier).reduce((a, b) => a + b, 0))
+            .reduce((a, b) => a + b, 0) : 0;
+
+        return powerArmor + integratedBonus;
     }
 }
 
-const getQualityMod = (n: number) => {
-    switch (n) {
-        case 0: return 1;
-        case -1: return .9;
-        case -2: return .8;
-        case -3: return .7;
-        case -4: return .6;
-        default: return 1;
-    }
-}
-
-const ArmorCrafter: React.FC = () => {
+const ArmorCrafter: React.FC<IArmorCrafterProps> = ({ onClick }) => {
     const [bodySuit, setBodySuit] = useState<BodySuit | undefined>(undefined);
     const [armorPlate, setArmorPlate] = useState<ArmorPlate | undefined>(undefined);
     const [powerArmor, setPowerArmor] = useState<PowerArmor | undefined>(undefined);
@@ -48,60 +136,20 @@ const ArmorCrafter: React.FC = () => {
     const [size, setSize] = useState<CharacterSize>('medium');
     const [protectionAmount, setProtectionAmount] = useState(6);
 
-    let defense = 0;
-    let cost = 0;
-    let weight = 0;
-    let agilityMod = 0;
-    let strengthMod = 0;
-    let perceptionMod = 0;
-    if (bodySuit !== undefined) {
-        defense += bodySuit.damageAbsorbtion;
-        cost += bodySuit.cost;
-        weight += bodySuit.weight;
-        agilityMod += bodySuit.agilityMod;
-    }
-    if (armorPlate !== undefined) {
-        defense += armorPlate.damageAbsorbtion;
-        cost += armorPlate.cost;
-        weight += armorPlate.weight;
-        agilityMod += armorPlate.agilityMod;
-    }
-    if (powerArmor !== undefined) {
-        defense += powerArmor.damageAbsorbtion;
-        cost += powerArmor.cost;
-        weight += powerArmor.weight;
-        agilityMod += powerArmor.agilityMod;
-        strengthMod += powerArmor.strengthMod;
-        perceptionMod += powerArmor.perceptionMod;
-    }
-
-    for (let index in integratedSystemsOnArmor) {
-        let item = integratedSystemsOnArmor[index];
-        cost += item.cost;
-        weight += item.weight;
-        defense += item.damageAbsorbtion;
-        for (let i in item.abilityModifiers) {
-            let abs = item.abilityModifiers[i];
-            switch (abs.ability) {
-                case 'strength': strengthMod += abs.modifier; break;
-                case 'agility': agilityMod += abs.modifier; break;
-                case 'perception': perceptionMod += abs.modifier; break;
-            }
-        }
-    }
-
     const addOrRemoveIntegratedSystem = (add: boolean, item: IntegratedSystem) => {
         if (add)
             setIntegratedSystemsOnArmor([...integratedSystemsOnArmor, item]);
         else
             setIntegratedSystemsOnArmor(integratedSystemsOnArmor.filter(i => i.name !== item.name));
-
     }
 
-    defense += qualityMod;
-    let protectionAmountActual = powerArmor === undefined ? protectionAmount : Math.max(protectionAmount, 3);
-    cost = cost * getSizeMod(size) * getProtectionMod(protectionAmountActual) * getQualityMod(qualityMod);
-    weight = weight * getSizeMod(size) * getProtectionMod(protectionAmountActual);
+    const theArmor = new FullArmor({
+        bodySuit: bodySuit,
+        armorPlate: armorPlate,
+        powerArmor: powerArmor,
+        integratedSystemsOnArmor: integratedSystemsOnArmor,
+        size: size,
+    });
 
     return (<div>
         <p>Customize an armor</p>
@@ -155,16 +203,17 @@ const ArmorCrafter: React.FC = () => {
         </select>
         <div className='divcol2'>
             <div>
-                <b>Damage Absorbtion:</b> {defense}<br />
-                <b>Cost:</b> {bigNumberSeparator(cost)} credits <br />
-                <b>Weight:</b> {weightConverter(weight * 1000)}
+                <b>Damage Absorbtion:</b> {theArmor.getDamageAbsorbtion()}<br />
+                <b>Cost:</b> {bigNumberSeparator(theArmor.getValue())} credits <br />
+                <b>Weight:</b> {weightConverter(theArmor.getWeight() * 1000)}
             </div>
             <div>
-                <b>Agility mod</b>: {agilityMod}<br />
-                <b>Strength mod</b>: {strengthMod}<br />
-                <b>Perception mod</b>: {perceptionMod}
+                <b>Agility mod</b>: {theArmor.getAgilityMod()}<br />
+                <b>Strength mod</b>: {theArmor.getStrengthMod()}<br />
+                <b>Perception mod</b>: {theArmor.getPerceptionMod()}
             </div>
         </div>
+        {onClick && <button onClick={() => onClick(theArmor)}>Ok</button>}
     </div>);
 }
 

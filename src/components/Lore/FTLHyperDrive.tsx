@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../playermanual/Section";
+import Section from "../Section";
 
 const FTLHyperDrive: React.FC = () => {
     return <>

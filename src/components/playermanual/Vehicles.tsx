@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Section from "./Section";
+import Section from "../Section";
 import Ellipsis from "../general/Ellipsis";
 import Indexer, { Indexed } from "../general/Indexer";
 import { IDamageAmount, IDice, IRollAmount, Vehicle } from "../vehicles/Vehicles";

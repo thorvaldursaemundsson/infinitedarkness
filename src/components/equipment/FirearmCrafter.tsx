@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
-import Firearms, { Ammo, AmmoInformation, AmmoModifications, AmmoTypesInformation, FireArm, FirearmModifications, IAmmoModification, IFirearmModification, writeDamageDice } from "./Firearms";
-import { Condition, ICondition, IQuality, Quality } from "./Item";
+import Firearms, { Ammo, AmmoInformation, AmmoModifications, AmmoTypesInformation, FireArm, FirearmModifications, IAmmoModification, IFirearmModification } from "./Firearms";
+import { Condition, ICondition, IQuality, Quality, writeDamageDice } from "./Item";
 
 const selectFirearm = (firearmName: string, setter: React.Dispatch<React.SetStateAction<FireArm | null>>) => {
     if (firearmName === 'null') setter(null);
@@ -44,12 +44,17 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const [selectedFirearmMods, setSelectedFirearmMods] = useState<IFirearmModification[]>([]);
     const [quality, setQuality] = useState<IQuality>(Quality[3]);
     const [condition, setCondition] = useState<ICondition>(Condition[0]);
+    
+    const ammoMod = ammoModGetter(ammoType);
+
+    firearm.firearmModification = selectedFirearmMods;
+    firearm.ammoModification = ammoMod;
 
     const firearmModsCost = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.cost).reduce((a, b) => a + b);
     const firearmModsCostMultiplier = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.costMultiplier).reduce((a, b) => a * b);
 
     const firearmModsStrengthMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.strengthMod || 0).reduce((a, b) => a + b);
-    const firearmModsHitMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.hitMod || 0).reduce((a, b) => a + b);
+    const firearmModsHitMod =  firearm.getHitBonus();
     const firearmModsDamageMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.damageMod || 0).reduce((a, b) => a + b);
     const firearmModsArmorPiercingMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.armorPiercingMod || 0).reduce((a, b) => a + b);
     const firearmModsRangeMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.rangeMod || 1).reduce((a, b) => a * b);
@@ -57,7 +62,6 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
     const firearmModsWeightMultMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.weightMultiplier || 1).reduce((a, b) => a * b);
     const firearmModsAmmoMultMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.ammoCapacityMod || 1).reduce((a, b) => a * b);
 
-    const ammoMod = ammoModGetter(ammoType);
     const ammoCost = (firearm.capacity * firearmModsAmmoMultMod) * ammo.cost * ammoMod.cost;
 
     return (<table>
@@ -223,8 +227,13 @@ const getAmmoByName = (ammo: Ammo): AmmoInformation => {
     return maybeAmmo;
 }
 
-const FirearmCrafter: React.FC = () => {
+interface IFirearmCrafter {
+    onGetFirearm?: (firearm:FireArm) => void;
+}
+
+const FirearmCrafter: React.FC<IFirearmCrafter> = ({ onGetFirearm }) => {
     const [firearm, setFirearm] = useState<FireArm | null>(null);
+
 
     return <div>
         <h5>Firearm Crafter</h5>
@@ -233,6 +242,7 @@ const FirearmCrafter: React.FC = () => {
             {Firearms.map(f => <option value={f.name}>{f.name}</option>)}
         </select>
         {firearm !== null ? <DisplayFirearm ammo={getAmmoByName(firearm.ammo)} firearm={firearm} /> : null}
+        {(firearm !== null && onGetFirearm !== undefined) ? <button onClick={() => onGetFirearm(firearm)}>Done</button> : null}
     </div>;
 }
 

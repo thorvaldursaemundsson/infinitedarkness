@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './Section';
+import Section from '../Section';
 
 const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <h1>Character sheet overview</h1>

@@ -1,5 +1,5 @@
 import { SkillName } from "../general/Skills";
-import Item from "./Item";
+import Item, { D, IDamageDice } from "./Item";
 
 export type Ammo = '9x17' | '9x21' | '9x23' |
     '10x19' | '10x21' |
@@ -265,29 +265,8 @@ type fireAction = 'single action revolver' | 'double action revolver' | 'bolt ac
 
 type fireArmClass = 'handgun' | 'submachinegun' | 'rifle' | 'machinegun' | 'rocketlauncher' | 'laser' | 'plasma';
 
-interface IDamageDice {
-    sides: number;
-    numberOfDice: number;
-    bonus: number;
-}
 
-export const writeDamageDice = (d: IDamageDice, b: number) => {
-    if (d.bonus + b === 0) return `${d.numberOfDice}d${d.sides}`;
-    else if (d.bonus + b > 0) return `${d.numberOfDice}d${d.sides} + ${d.bonus + b}`;
-    if (d.bonus + b < 0) return `${d.numberOfDice}d${d.sides} - ${Math.abs(d.bonus + b)}`;
-}
-/**
- * 
- * @param n number of dice
- * @param s sides per dice
- * @param b flat bonus damage
- * @returns 
- */
-const D = (n: number, s: number): IDamageDice => {
-    return {
-        sides: s, numberOfDice: n, bonus: 0
-    };
-}
+
 
 type reloadType = 'move action' | 'action' | 'full round' | 'two full rounds';
 
@@ -332,6 +311,10 @@ export class FireArm implements IFirearm {
     lowDamageZone?: number;
     reload?: reloadType;
     relatedSkill: SkillName = 'firearms';
+    ammoModification?: IAmmoModification | undefined = undefined;
+    firearmModification?: IFirearmModification[] = [];
+    quality?: 0 | 2 | 1 | -1 | -2 | 3 | -3 | -4 | undefined;
+    condition?: 0 | 2 | 1 | -1 | -2 | -3 | -4 | undefined;
 
     constructor(name: string, weight: number, value: number, damage: IDamageDice, fireArmClass: fireArmClass, range: number, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined, reload: reloadType | undefined) {
         this.fireArmClass = fireArmClass;
@@ -351,10 +334,39 @@ export class FireArm implements IFirearm {
         this.splashRange = splashRange;
         this.lowDamageZone = lowDamageZone;
         this.reload = reload || 'move action';
+        this.firearmModification = [];
+    }
+
+    public getHitBonus(): number {
+        return (this.hitbonus || 0) + this.getQualityBonus() + this.getConditionBonus() + this.getAmmoBonus() + this.getModBonus();
+    }
+
+    private getQualityBonus(): number {
+        return this.quality || 0;
+    }
+    private getConditionBonus(): number {
+        return this.condition || 0;
+    }
+    private getAmmoBonus(): number {
+
+        if (this.ammoModification !== undefined) {
+            return this.ammoModification.hitAdd || 0;
+        }
+        return 0;
+    }
+    private getModBonus(): number {
+        let b = 0;
+        if (this.firearmModification !== undefined && this.firearmModification.length > 0) {
+            for (var index in this.firearmModification) {
+                const fm = this.firearmModification[index];
+                b += fm.hitMod || 0;
+            }
+        }
+        return b;
     }
 }
 
-const Firearms: FireArm[] = [
+const IFirearms: IFirearm[] = [
     //hand guns
     {
         fireArmClass: 'handgun', name: 'revolver', damage: D(1, 10), range: 300, ammo: '10x19', strengthRequirement: 2, capacity: 6, fireAction: ['double action revolver'], armorpiercing: 1, weight: 800, value: 1000,
@@ -492,6 +504,9 @@ const Firearms: FireArm[] = [
         description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action', relatedSkill: 'firearms',
     }
 ];
+
+const Firearms = IFirearms.map(f => new FireArm(f.name, f.weight, f.value, f.damage, f.fireArmClass, f.range, f.fireAction, f.capacity, f.ammo,
+    f.strengthRequirement, f.description, f.hitbonus, f.armorpiercing, f.rps, f.splashRange, f.lowDamageZone, f.reload));
 
 export interface IFirearmModification {
     name: string;

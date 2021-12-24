@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../components/playermanual/Section';
+import Section from '../components/Section';
 import Guidelines from '../components/gamemaster/Guidelines';
 import Experience from '../components/gamemaster/Experience';
 import GameTools from '../components/gamemaster/GameTools';

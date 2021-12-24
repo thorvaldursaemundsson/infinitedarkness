@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { CharacterSizeMods } from '../Character';
-import Section from './Section';
+import Section from '../Section';
 
 const tdWidth: CSSProperties = {
     width: '160px',

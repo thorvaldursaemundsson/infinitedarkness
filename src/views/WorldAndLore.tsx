@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FTLHyperDrive, History, Merlions, SolSystem, CentauriSystem, FringeWorlds, Humans, Shambra, Nekovian, Credits } from './../components/Lore/Lore'
 
-import Section from '../components/playermanual/Section';
+import Section from '../components/Section';
 import Robotics from '../components/Lore/Robotics';
 import Monsters from '../components/monsters/Monsters';
 import Synths from '../components/Lore/Synths';

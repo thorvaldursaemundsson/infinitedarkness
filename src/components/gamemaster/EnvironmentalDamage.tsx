@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { RollDice, Selector } from "../../utils/utilFunctions";
 import Indexer, { Indexed } from "../general/Indexer";
-import Section from "../playermanual/Section";
+import Section from "../Section";
 
 const EnvironmentalDamage: React.FC = () => {
 

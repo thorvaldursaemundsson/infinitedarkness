@@ -1,6 +1,6 @@
 import React from 'react';
 import { GenericCharacterRoller } from './CharacterRoller';
-import Section from '../playermanual/Section';
+import Section from '../Section';
 import RaceTable from '../races/RaceTable';
 import { shambrasData } from '../races/Shambras';
 import { getExperienceAges } from '../races/Races';

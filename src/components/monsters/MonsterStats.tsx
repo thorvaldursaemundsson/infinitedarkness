@@ -2,7 +2,7 @@ import React from "react";
 import { CharacterSize } from "../Character";
 import { Skill } from "../general/Skills";
 import '../../views/charactersheet.css';
-import Section from "../playermanual/Section";
+import Section from "../Section";
 
 type attribute = 'strength' | 'agility' | 'endurance' | 'perception' | 'willpower' | 'intelligence';
 

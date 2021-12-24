@@ -5,7 +5,7 @@ import Equipment from '../components/playermanual/Equipment';
 import Wealth from '../components/playermanual/Wealth';
 import Experience from '../components/playermanual/Experience';
 import Vehicles from '../components/playermanual/Vehicles';
-import Section from '../components/playermanual/Section';
+import Section from '../components/Section';
 import CharacterSheetOverview from '../components/playermanual/CharacterSheetOverview';
 import CarryingCapacity from '../components/playermanual/CarryingExhaustion';
 import Radiation from '../components/playermanual/Radiation';
