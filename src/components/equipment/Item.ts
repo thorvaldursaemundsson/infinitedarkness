@@ -1,7 +1,7 @@
 import { SkillName } from "../general/Skills";
 
 export type qualityMod = 3 | 2 | 1 | 0 | -1 | -2 | -3 | -4;
-export type conditionMod =  2 | 1 | 0 | -1 | -2 | -3 | -4;
+export type conditionMod = 2 | 1 | 0 | -1 | -2 | -3 | -4;
 
 interface Item {
     /** grams */
@@ -11,8 +11,8 @@ interface Item {
     longDescription?: string | undefined;
     name: string;
     relatedSkill: SkillName;
-    condition?: undefined | conditionMod;
-    quality?: undefined | qualityMod;
+    condition?: undefined | ICondition;
+    quality?: undefined | IQuality;
 }
 
 export interface IQuality {
@@ -23,7 +23,9 @@ export interface IQuality {
 
 export interface ICondition {
     label: string;
+    /** bonus or penalty to skill roll */
     effect: number;
+    /** factor of value */
     valueModifier: number;
 }
 
@@ -122,9 +124,9 @@ export interface IDamageDice {
 * @returns 
 */
 export const D = (n: number, s: number): IDamageDice => {
-   return {
-       sides: s, numberOfDice: n, bonus: 0
-   };
+    return {
+        sides: s, numberOfDice: n, bonus: 0
+    };
 }
 
 export const writeDamageDice = (d: IDamageDice, b: number) => {

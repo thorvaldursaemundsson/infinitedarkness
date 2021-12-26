@@ -1,5 +1,5 @@
 import { SkillName } from "../general/Skills";
-import Item, { D, IDamageDice } from "./Item";
+import Item, { D, ICondition, IDamageDice, IQuality } from "./Item";
 
 export type Ammo = '9x17' | '9x21' | '9x23' |
     '10x19' | '10x21' |
@@ -266,8 +266,6 @@ type fireAction = 'single action revolver' | 'double action revolver' | 'bolt ac
 type fireArmClass = 'handgun' | 'submachinegun' | 'rifle' | 'machinegun' | 'rocketlauncher' | 'laser' | 'plasma';
 
 
-
-
 type reloadType = 'move action' | 'action' | 'full round' | 'two full rounds';
 
 export interface IFirearm extends Item {
@@ -313,8 +311,8 @@ export class FireArm implements IFirearm {
     relatedSkill: SkillName = 'firearms';
     ammoModification?: IAmmoModification | undefined = undefined;
     firearmModification?: IFirearmModification[] = [];
-    quality?: 0 | 2 | 1 | -1 | -2 | 3 | -3 | -4 | undefined;
-    condition?: 0 | 2 | 1 | -1 | -2 | -3 | -4 | undefined;
+    quality?: IQuality | undefined;
+    condition?: ICondition | undefined;
 
     constructor(name: string, weight: number, value: number, damage: IDamageDice, fireArmClass: fireArmClass, range: number, fireAction: fireAction[], capacity: number, ammo: Ammo, strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, rps: number | undefined, splashRange: number | undefined, lowDamageZone: number | undefined, reload: reloadType | undefined) {
         this.fireArmClass = fireArmClass;
@@ -338,28 +336,91 @@ export class FireArm implements IFirearm {
     }
 
     public getHitBonus(): number {
-        return (this.hitbonus || 0) + this.getQualityBonus() + this.getConditionBonus() + this.getAmmoBonus() + this.getModBonus();
+        return (this.hitbonus || 0) + this.getQualityBonus() + this.getConditionBonus() + this.getAmmoHitBonus() + this.getModHitBonus();
+    }
+
+    public getArmorPercing(): number {
+        return ((this.armorpiercing || 0) + this.getAmmoArmorPercingBonus() + this.getModArmorPercingBonus()) * this.getAmmoArmorPercingFactor();
+    }
+
+    public getDamageDice(): IDamageDice {
+
+
+        return {
+            numberOfDice: this.damage.numberOfDice,
+            sides: this.damage.sides,
+            bonus: this.damage.bonus + this.getModDamageBonus() + this.getAmmoDamageBonus() + this.getQualityBonus(),
+        };
     }
 
     private getQualityBonus(): number {
-        return this.quality || 0;
+        return (this.quality && this.quality.effect) || 0;
     }
-    private getConditionBonus(): number {
-        return this.condition || 0;
-    }
-    private getAmmoBonus(): number {
 
-        if (this.ammoModification !== undefined) {
-            return this.ammoModification.hitAdd || 0;
+    private getConditionBonus(): number {
+        return (this.condition && this.condition.effect) || 0;
+    }
+
+    private getAmmoHitBonus(): number {
+        if (this.ammoModification !== undefined &&
+            this.ammoModification.hitAdd !== undefined) {
+            return this.ammoModification.hitAdd;
         }
         return 0;
     }
-    private getModBonus(): number {
+
+    private getAmmoDamageBonus(): number {
+        if (this.ammoModification !== undefined &&
+            this.ammoModification.damageAdd !== undefined) {
+            return this.ammoModification.damageAdd;
+        }
+        return 0;
+    }
+
+    private getAmmoArmorPercingBonus(): number {
+        if (this.ammoModification !== undefined &&
+            this.ammoModification.armorPiercingAdd !== undefined) {
+            return this.ammoModification.armorPiercingAdd;
+        }
+        return 0;
+    }
+
+    private getAmmoArmorPercingFactor(): number {
+        if (this.ammoModification !== undefined &&
+            this.ammoModification.armorPiercingMultiplier !== undefined) {
+            return this.ammoModification.armorPiercingMultiplier;
+        }
+        else return 1;
+    }
+
+    private getModHitBonus(): number {
         let b = 0;
         if (this.firearmModification !== undefined && this.firearmModification.length > 0) {
             for (var index in this.firearmModification) {
                 const fm = this.firearmModification[index];
                 b += fm.hitMod || 0;
+            }
+        }
+        return b;
+    }
+
+    private getModArmorPercingBonus(): number {
+        let b = 0;
+        if (this.firearmModification !== undefined && this.firearmModification.length > 0) {
+            for (var index in this.firearmModification) {
+                const fm = this.firearmModification[index];
+                b += fm.armorPiercingMod || 0;
+            }
+        }
+        return b;
+    }
+
+    private getModDamageBonus(): number {
+        let b = 0;
+        if (this.firearmModification !== undefined && this.firearmModification.length > 0) {
+            for (var index in this.firearmModification) {
+                const fm = this.firearmModification[index];
+                b += fm.damageMod || 0;
             }
         }
         return b;

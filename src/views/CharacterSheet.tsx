@@ -8,10 +8,10 @@ import './charactersheet.css';
 import EditText, { HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
 import Section from '../components/Section';
-import Item from '../components/equipment/Item';
+import Item, { IDamageDice } from '../components/equipment/Item';
 import { ConsumableMedicine, ConsumableTools, ConsumableWeapons, IConsumable } from '../components/equipment/Consumables';
 import { weightConverter } from '../utils/utilFunctions';
-import { IFirearm } from '../components/equipment/Firearms';
+import { FireArm } from '../components/equipment/Firearms';
 import MeleeWeapons, { IMeleeWeapon } from '../components/equipment/MeleeWeapons';
 import FloatingSection from '../components/FloatingSection';
 import FirearmCrafter from '../components/equipment/FirearmCrafter';
@@ -32,10 +32,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
     const carryWeight = inventory.length > 0 ? inventory.map(i => i.weight).reduce((a, b) => a + b) : 0;
 
-    const damageAbsFromInventory = (): number => { 
-        const armors:FullArmor[] = inventory.filter(item => item.relatedSkill === 'combat' && (item as any).type === 'armor') as FullArmor[];
-        if (armors.length > 0)
-        {
+    const damageAbsFromInventory = (): number => {
+        const armors: FullArmor[] = inventory.filter(item => item.relatedSkill === 'combat' && (item as any).type === 'armor') as FullArmor[];
+        if (armors.length > 0) {
             return armors[0].getDamageAbsorbtion();
         }
         return 0;
@@ -432,9 +431,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 {inventory.filter(i => i.relatedSkill === 'firearms' || i.relatedSkill === 'combat').map(item => {
                                     const skill = character.getSkillLevel(item.relatedSkill);
 
-                                    let firearm: IFirearm | undefined = item.relatedSkill === 'firearms' ? item as IFirearm : undefined;
+                                    let firearm: FireArm | undefined = item.relatedSkill === 'firearms' ? item as FireArm : undefined;
                                     let arm: IMeleeWeapon | undefined = item.relatedSkill !== 'firearms' ? item as IMeleeWeapon : undefined;
 
+                                    let damageDice: IDamageDice | undefined = firearm !== undefined ? firearm.getDamageDice() : undefined;
 
                                     return <tr>
                                         <td className='bigtd'>
@@ -442,15 +442,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                         <td className='smalltd'>
                                             {skill + character.agility +
-                                                ((firearm !== undefined && firearm.hitbonus !== undefined) ? firearm.hitbonus : 0) +
+                                                ((firearm !== undefined ? firearm.getHitBonus() : 0)) +
                                                 ((arm !== undefined && arm.hitbonus !== undefined) ? arm.hitbonus : 0)}
                                         </td>
                                         <td className='smalltd'>
-                                            {firearm && firearm.armorpiercing}
+                                            {firearm && firearm.getArmorPercing()}
                                             {arm && arm.armorpiercing}
                                         </td>
                                         <td className='smalltd3'>
-                                            {firearm && `${firearm.damage.numberOfDice}d${firearm.damage.sides} + ${firearm.damage.bonus}`}
+                                            {damageDice && `${damageDice.numberOfDice}d${damageDice.sides} + ${damageDice.bonus}`}
                                             {arm && arm.damage}
                                         </td>
                                         <td className='smalltd2'>

@@ -5,7 +5,7 @@ import { CharacterSize } from "../Character";
 import { SkillName } from "../general/Skills";
 import Section from "../Section";
 import { ArmorPlate, armorPlates, BodySuit, bodySuits, IntegratedSystem, integratedSystems, PowerArmor, powerArmors } from "./Armors";
-import Item, { conditionMod, qualityMod } from "./Item";
+import Item, { ICondition, IQuality } from "./Item";
 
 const getSizeMod = (size: CharacterSize) => {
     switch (size) {
@@ -43,8 +43,8 @@ export class FullArmor implements IFullArmor, Item {
     longDescription?: string | undefined;
     name: string;
     relatedSkill: SkillName;
-    condition?: conditionMod | undefined;
-    quality?: qualityMod | undefined;
+    condition?: ICondition | undefined;
+    quality?: IQuality | undefined;
     type: string = 'armor';
     constructor(data: IFullArmor) {
         this.bodySuit = data.bodySuit;

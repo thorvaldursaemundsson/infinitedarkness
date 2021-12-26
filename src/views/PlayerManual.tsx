@@ -17,7 +17,6 @@ import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSp
 
 
 const PlayerManual: React.FC<IViewProps> = ({route}) => {
-    console.log(route);
     return (<div>
         <h1>The Player Manual</h1>
         <p>This page is to help the player create characters and play the game, view each section below for more details.</p>

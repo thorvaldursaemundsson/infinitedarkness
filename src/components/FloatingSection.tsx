@@ -12,7 +12,6 @@ const mouseDown = (x: React.Dispatch<React.SetStateAction<number>>, y: React.Dis
     isMoving = true;
     xDispatcher = x;
     yDispatcher = y;
-    console.log('start moving');
     offsetX = event.screenX - currentX;
     offsetY = event.screenY - currentY;
 };
@@ -22,7 +21,6 @@ const mouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (yDispatcher === undefined || xDispatcher === undefined) return;
     xDispatcher(event.screenX - offsetX);
     yDispatcher(event.screenY - offsetY);
-    console.log(`x: ${event.pageX - offsetX}, y: ${event.pageY - offsetY}`);
 };
 
 const mouseUp = () => {

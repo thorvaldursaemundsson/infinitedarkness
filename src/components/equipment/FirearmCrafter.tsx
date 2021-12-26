@@ -49,14 +49,14 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
 
     firearm.firearmModification = selectedFirearmMods;
     firearm.ammoModification = ammoMod;
+    firearm.quality = quality;
+    firearm.condition = condition;
 
     const firearmModsCost = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.cost).reduce((a, b) => a + b);
     const firearmModsCostMultiplier = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.costMultiplier).reduce((a, b) => a * b);
 
     const firearmModsStrengthMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.strengthMod || 0).reduce((a, b) => a + b);
-    const firearmModsHitMod =  firearm.getHitBonus();
     const firearmModsDamageMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.damageMod || 0).reduce((a, b) => a + b);
-    const firearmModsArmorPiercingMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.armorPiercingMod || 0).reduce((a, b) => a + b);
     const firearmModsRangeMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.rangeMod || 1).reduce((a, b) => a * b);
     const firearmModsWeightMod = selectedFirearmMods.length === 0 ? 0 : selectedFirearmMods.map(sfm => sfm.weight || 0).reduce((a, b) => a + b);
     const firearmModsWeightMultMod = selectedFirearmMods.length === 0 ? 1 : selectedFirearmMods.map(sfm => sfm.weightMultiplier || 1).reduce((a, b) => a * b);
@@ -110,7 +110,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Hit bonus
                 </td>
                 <td>
-                    {numberOrZero(firearm.hitbonus) + numberOrZero(ammoMod.hitAdd) + firearmModsHitMod + quality.effect + condition.effect}
+                    {numberOrZero(firearm.getHitBonus())}
                 </td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Armor piercing
                 </td>
                 <td>
-                    {numberOrZero(firearm.armorpiercing) + numberOrZero(ammoMod.armorPiercingAdd) + firearmModsArmorPiercingMod}
+                    {numberOrZero(firearm.getArmorPercing())}
                 </td>
             </tr>
             <tr>
