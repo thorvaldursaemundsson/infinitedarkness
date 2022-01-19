@@ -11,7 +11,7 @@ const speciesAvailable: race[] = ['human', 'merlion', 'nekovian', 'shambras', 's
 const BasicChooser: React.FC<IStep1Props> = ({ onComplete }) => {
     const [race, setRace] = useState<race>('human');
     const [gender, setGender] = useState('');
-    const [age, setAge] = useState(99);
+    const [age, setAge] = useState(30);
     const [name, setName] = useState('no name');
 
     return (<><p>We start by picking a race, an age, name, gender</p>

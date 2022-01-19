@@ -13,10 +13,19 @@ export interface ICharacterData {
     intelligence: number[];
 }
 
-const CharacterRoller: React.FC<IRacialMod> = (props) => {
-    const [characterData, setCharacterData] = useState<ICharacterData[]>([]);
+interface ICharacterRollerProps extends IRacialMod {
+    onChoose?: (data: ICharacterData | undefined) => void;
+}
 
-    return (<div className="flexbox">
+const chosenRoll: React.CSSProperties = { background: '#99FF99' };
+
+const CharacterRoller: React.FC<ICharacterRollerProps> = (props) => {
+    const [characterData, setCharacterData] = useState<ICharacterData[]>([]);
+    const [optionSelected, setOptionSelected] = useState(-1);
+
+    const onChoose = props.onChoose;
+
+    return (<><div className="flexbox">
         <button onClick={() => rollCharacterDataAndSet(props, setCharacterData)}>Roll</button>
 
         <div className="flexContainer">
@@ -28,17 +37,22 @@ const CharacterRoller: React.FC<IRacialMod> = (props) => {
             Willpower {props.willpower.numberOfDice}d{props.willpower.sidesPerDice}<br />
         </div>
 
-        {characterData.map(cd => {
-            return <div className="flexContainer">
+        {characterData.map((cd, i, ar) => {
+            const c = optionSelected === i ? chosenRoll : null;
+            return <div className="flexContainer" style={{ ...c }}>
                 {sumN(cd.strength)}<br />
                 {sumN(cd.endurance)}<br />
                 {sumN(cd.agility)}<br />
                 {sumN(cd.perception)}<br />
                 {sumN(cd.intelligence)}<br />
                 {sumN(cd.willpower)}<br />
+                <button onClick={() => setOptionSelected(i)}>X</button>
             </div>
         })}
-    </div>);
+
+    </div>
+        {(onChoose !== undefined && characterData.length > 0 && optionSelected !== -1) ? <div className="flexContainer"><button onClick={() => onChoose(characterData[optionSelected])}>Ok</button></div> : null}
+    </>);
 }
 
 export const sumN = (n: number[]) => `  ${n.reduce(function (a, b) { return a + b; }, 0)}`;
@@ -85,6 +99,8 @@ const roll = (dice: IDice) => {
 
 interface IGenericCharacterRoller {
     raceData: IRaceData;
+    startingAge?: number | undefined;
+    onChoose?: (data: ICharacterData | undefined) => void;
 }
 
 const getAbility = (age: number, racialMod: IRacialMod[], ability: 'strength' | 'agility' | 'endurance' | 'perception' | 'intelligence' | 'willpower') => {
@@ -102,13 +118,14 @@ const getAbility = (age: number, racialMod: IRacialMod[], ability: 'strength' | 
     }
 }
 
-export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ raceData }) => {
-    const [age, setAge] = useState(24);
+export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ raceData, startingAge, onChoose }) => {
+    const [age, setAge] = useState(startingAge || 24);
     return <div>
         Age: {age}<br />
-    Starting Exp: {raceData.experiencePoints(age) }<br />
-    Multiplier Exp: {raceData.experienceMultipler(age)}<br />
-        <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" />
+        Starting Exp: {raceData.experiencePoints(age)}<br />
+        Multiplier Exp: {raceData.experienceMultipler(age)}<br />
+        {startingAge === undefined ?
+            <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" /> : age}
         <CharacterRoller
             ageSpan={[age, age]}
             species={'human'}
@@ -119,6 +136,7 @@ export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ race
             intelligence={getAbility(age, raceData.racialMods, 'intelligence')}
             willpower={getAbility(age, raceData.racialMods, 'willpower')}
             perception={getAbility(age, raceData.racialMods, 'perception')}
+            onChoose={onChoose}
         />
     </div>;
 }

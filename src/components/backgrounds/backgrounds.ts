@@ -46,7 +46,7 @@ const TribalChildhood: ITemplate = {
 export const EarlyChildhoodBackground: IBackground = {
     name: 'Early Childhood',
     description: 'This concerns your early childhood, where you were born and grew up may limit your options.',
-    ageRange: [0, 9],
+    ageRange: [0, 15],
     templates: [Starborn, Schooled, Homeschooled, Orphan, TribalChildhood],
     pickRaise: [2, 2, 3, 3, 4, 4]
 };
@@ -90,7 +90,7 @@ const TribalYouth: ITemplate = {
 export const YouthBackground: IBackground = {
     name: 'Youth',
     description: 'How you spent your early teens to early adulthood can drastically change your trajectory in life.',
-    ageRange: [10, 24],
+    ageRange: [16, 24],
     pickRaise: [2, 2, 3, 3, 4, 4],
     templates: [ScientificHighschool, LiberalArtsHighschool, TradeSchool, UnskilledLabor, MurderHobo, TribalYouth],
 };

@@ -7,6 +7,7 @@ import BackgroundChooser, { SkillRankPair } from '../Wizard/BackgroundChooser';
 import BasicChooser from '../Wizard/BasicChooser';
 import PointBuy, { IStats } from '../Wizard/PointBuy';
 import { race } from "../races/Races";
+import AbilityRoller from '../Wizard/AbilityRoller';
 
 export const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
     const allSkills = GetSkillList();
@@ -33,6 +34,7 @@ const Wizard: React.FC = () => {
     const [name, setName] = useState('no name');
     const [step, setStep] = useState(0);
     const [backgroundSkills, setBackgroundSkills] = useState<SkillRankPair[]>([]);
+    const [pbOrR, setPbOrR] = useState(true);
     const [abilityStats, setAbilityStats] = useState<IStats>({
         age: 24,
         species: 'human',
@@ -66,7 +68,9 @@ const Wizard: React.FC = () => {
             <BasicChooser onComplete={(race, gender, age, name) => completeStep1(race, gender, age, name)} />
         </Conditional>
         <Conditional shouldView={step === 1}>
-            <PointBuy startingAge={age} startingSpecies={race} onComplete={(output) => { setAbilityStats(output); setStep(2) }} />
+            <button onClick={() => setPbOrR(!pbOrR)}>PointBuy / Roll for stats</button>
+            {pbOrR !== false ? <PointBuy startingAge={age} startingSpecies={race} onComplete={(output) => { setAbilityStats(output); setStep(2) }} /> :
+            <AbilityRoller startingAge={age} startingSpecies={race} onComplete={(output) => { setAbilityStats(output); setStep(2) }} /> }
         </Conditional>
         <Conditional shouldView={step === 2} >
             <BackgroundChooser age={age} onComplete={(skillRanks) => completeStep2(skillRanks)} />

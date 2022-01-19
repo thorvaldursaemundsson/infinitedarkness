@@ -57,7 +57,7 @@ const calculateCost = (currentStats: IStats): number => {
         fSumAbilities(currentStats.willpower);
 }
 
-const getStrengthMod = (size: CharacterSize) => {
+export const getStrengthMod = (size: CharacterSize) => {
     const f = CharacterSizeMods.find(s => s.size === size);
     if (f !== undefined) {
         return f.strengthMod;
