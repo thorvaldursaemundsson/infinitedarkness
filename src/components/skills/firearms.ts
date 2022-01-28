@@ -61,6 +61,7 @@ const useCases: UseCase[] = [
             'Add +15 to hit',
             'If roll equals defense then you hit with 1d8 bullets',
             'Defense limited to base',
+            'Prevents reaction until your next turn',
             'Uses your movement action',
             'Strength requirement increase by 2',
             'Gain +1 bullet hit per each 10 over defense',

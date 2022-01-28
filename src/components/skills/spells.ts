@@ -3,7 +3,7 @@ const useCases: UseCase[] = [
     {
         name: 'cast spell',
         attribute: 'willpower',
-        description: 'cast a spell, unless the spell description says otherwise uses an action, does not restrict movement and has no visible somatic or verbal requirement, you simply will it into existence.',
+        description: 'cast a spell, unless the spell description says otherwise it uses an action, does not restrict movement and has no visible somatic or verbal requirement, you simply will it into existence. Some mutations have active effects that costs mana, these counts as spells.',
         results: [
             'Spell mana cost depends on how you use them',
             'The difficult is 4 + 4 x mana cost (1 mana = 8, 2 mana = 12, 3 mana = 16, etc)',
@@ -16,7 +16,7 @@ const useCases: UseCase[] = [
     {
         name: 'regenerate mana',
         attribute: 'willpower',
-        description: 'you regenerate 1 mana every 24 hours, if your mana goes into the negatives you can not cast any more spells. You also suffer a penalty to all active and passive rolls equal to your negative mana. Mana regeneration does not depend on rest.',
+        description: 'you regenerate 1 mana every 24 hours, if your mana goes into the negatives you can not cast any more spells or actively use mutations that require mana. You also suffer a penalty to all active and passive rolls equal to your negative mana. Mana regeneration does not depend on rest.',
         type: 'passive'
     },
     {

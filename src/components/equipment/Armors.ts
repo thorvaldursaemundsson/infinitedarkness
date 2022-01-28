@@ -162,7 +162,7 @@ const armorPlates: ArmorPlate[] = [
         name: 'Titan Alloy Fullplate',
         damageAbsorbtion: 8,
         weight: 16,
-        cost: 15000,
+        cost: 18000,
         agilityMod: -3,
         description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'

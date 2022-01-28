@@ -9,11 +9,15 @@ import Item, { ICondition, IQuality } from "./Item";
 
 const getSizeMod = (size: CharacterSize) => {
     switch (size) {
-        case 'tiny': return 0.8;
-        case 'small': return 0.9;
+        case 'minute': return .33;
+        case 'tiny': return 0.65;
+        case 'small': return 0.8;
         case 'medium': return 1;
-        case 'large': return 1.1;
-        case 'huge': return 1.2;
+        case 'large': return 1.25;
+        case 'huge': return 1.5;
+        case 'gigantic': return 3;
+        case 'colossal': return 5;
+        case 'titanic': return 10;
         default: return 1;
     }
 }

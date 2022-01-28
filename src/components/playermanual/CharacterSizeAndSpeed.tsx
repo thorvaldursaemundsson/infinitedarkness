@@ -144,14 +144,16 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
                 <td>Run</td>
                 <td>400%</td>
                 <tr>Requires use of both move action and action. Defense drops to base, can only use if defense is on active.<br />
-                May not react</tr>
+                    May not react</tr>
             </tr>
             <tr>
                 <td>Sprint</td>
                 <td>500%</td>
                 <tr>Requires use of both move action and action. Defense drops to base, can only use if defense is on active<br />
                     Must run in a straigth or near straight line.<br />
-                    Must have used run action in previous turn.</tr>
+                    Must have used run action in previous turn.<br />
+                    Prevents reaction
+                </tr>
             </tr>
         </tbody>
     </table>

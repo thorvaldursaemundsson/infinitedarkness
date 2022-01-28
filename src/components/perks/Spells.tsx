@@ -494,7 +494,7 @@ const ThornSkin = new SpellTemplate(
 
 const AmoebicHive = new SpellTemplate(
     'Amoebic Hive',
-    'Mutation: Tiny black drops of amoebic slowly crawl over your skin, they enter and exist through the pores and permeate your body. These amoebic organisms are made of you.',
+    'Mutation: Tiny black drops of amoeba slowly crawl over your skin, they enter and exist through the pores and permeate your body. These amoebic organisms are made of you.',
     undefined,
     undefined,
     [
@@ -502,9 +502,22 @@ const AmoebicHive = new SpellTemplate(
         'As an action you can touch someone and try to infect another person with the drops, roll spell + agility + 2d10 to hit vs their defense, every minute they must make a contested roll of spell + endurance + 2d10 or take 1d6 damage which can not be reduced, if they succeed the infection ends. Only a hermetically sealed armor gives protection. Costs 1 mana',
         'As a 10 round action you can utilize them to drastically increase your metabolism, you regenerate 1d6 life and gain 1 level of exhaustion. Costs 2 mana'
     ]
-)
+);
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive,//9
+const SpontaneousRegeneration = new SpellTemplate(
+    'Spontaneous Regeneration',
+    'Mutation: Every day, at a random point during the day (GM rolls 1d12 hours after you wake up) you instantly heal 1d6 life. Any amount healed beyond full bounces back and instead causes damage. This healing and damage is unavoidable. If you are above 100% life then you only take damage, if you are below 0 then the dice instead causes damage, if the damage is more than needed to kill you it bounces back to heal you. If you are damaged by this you also lose 1 mental health.',
+    'action',
+    'self',
+    [
+        'As an action you can trigger this effect. When you do so you can increase the strength by using more mana.',
+        '3 mana: 1d12',
+        '4 mana: 2d12',
+        '5 mana: 3d12',
+    ]
+);
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive, SpontaneousRegeneration,//10
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
     SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
