@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { EditNumber } from "../general/HideText";
 import { race } from "../races/Races";
 
 
@@ -22,7 +23,7 @@ const BasicChooser: React.FC<IStep1Props> = ({ onComplete }) => {
         <br />
         Gender: <input type='text' value={gender} onChange={(e) => setGender(e.target.value)} /><br />
         Name: <input type='text' value={name} onChange={(e) => setName(e.target.value)} /><br />
-        Age: <input type='text' value={age} onChange={(e) => setAge(parseInt(e.target.value))} /><br />
+        Age:  <EditNumber onChange={(n) => setAge(n)} txt={age} explain={""} isEdit={"edit"} /><br />
         <button onClick={() => onComplete(race, gender, age, name)}>OK</button>
     </>);
 }

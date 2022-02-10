@@ -5,7 +5,7 @@ import { GetPerkListBySkills } from '../components/general/GetPerkList';
 import { useCharacter } from '../components/general/useCharacter';
 
 import './charactersheet.css';
-import EditText, { HideText, SelectText } from '../components/general/HideText';
+import EditText, { EditNumber, HideNumber, HideText, SelectText } from '../components/general/HideText';
 import { Skill } from '../components/general/Skills';
 import Section from '../components/Section';
 import Item, { IDamageDice } from '../components/equipment/Item';
@@ -64,13 +64,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Life</label>
                     </td>
                     <td>
-                        <HideText txt={character.getLife()} isEdit={viewState} explain={character.explain('life')} />
+                        <HideNumber txt={character.getLife()} isEdit={viewState} explain={character.explain('life')} />
                     </td>
                     <td>
                         <label>Strength</label>
                     </td>
                     <td>
-                        <EditText txt={character.strength} isEdit={viewState} onChange={(str) => dispatch({ action: 'strength', value: parseInt(str) })} explain={character.explain('strength')} />
+                        <EditNumber txt={character.strength} isEdit={viewState} onChange={(str) => dispatch({ action: 'strength', value: (str) })} explain={character.explain('strength')} />
                     </td>
                 </tr>
                 <tr>
@@ -84,12 +84,12 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Mental Health</label>
                     </td>
                     <td>
-                        <HideText txt={character.getMentalHealth()} isEdit={viewState} explain={character.explain('mentalHealth')} /> </td>
+                        <HideNumber txt={character.getMentalHealth()} isEdit={viewState} explain={character.explain('mentalHealth')} /> </td>
                     <td>
                         <label>Endurance</label>
                     </td>
                     <td>
-                        <EditText txt={character.endurance} isEdit={viewState} onChange={(str) => dispatch({ action: 'endurance', value: parseInt(str) })} explain={character.explain('endurance')} />
+                        <EditNumber txt={character.endurance} isEdit={viewState} onChange={(str) => dispatch({ action: 'endurance', value: (str) })} explain={character.explain('endurance')} />
                     </td>
                 </tr>
                 <tr>
@@ -103,13 +103,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Sequence</label>
                     </td>
                     <td>
-                        <HideText txt={character.getSequence()} isEdit={viewState} explain={character.explain('sequence')} />
+                        <HideNumber txt={character.getSequence()} isEdit={viewState} explain={character.explain('sequence')} />
                     </td>
                     <td>
                         <label>Agility</label>
                     </td>
                     <td>
-                        <EditText txt={character.agility} isEdit={viewState} onChange={(str) => dispatch({ action: 'agility', value: parseInt(str) })} explain={character.explain('agility')} />
+                        <EditNumber txt={character.agility} isEdit={viewState} onChange={(str) => dispatch({ action: 'agility', value: (str) })} explain={character.explain('agility')} />
                     </td>
                 </tr>
                 <tr>
@@ -117,19 +117,19 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Age</label>
                     </td>
                     <td>
-                        <EditText txt={character.age} isEdit={viewState} onChange={(str) => dispatch({ action: 'age', value: parseInt(str) })} explain={character.explain('age')} />
+                        <EditNumber txt={character.age} isEdit={viewState} onChange={(str) => dispatch({ action: 'age', value: (str) })} explain={character.explain('age')} />
                     </td>
                     <td>
                         <label>Damage absorption</label>
                     </td>
                     <td>
-                        <HideText txt={character.getDamageAbsorption() + damageAbsFromInventory()} explain={'damage absorbtion'} isEdit={viewState} />
+                        <HideNumber txt={character.getDamageAbsorption() + damageAbsFromInventory()} explain={'damage absorbtion'} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Perception</label>
                     </td>
                     <td>
-                        <EditText txt={character.perception} isEdit={viewState} onChange={(str) => dispatch({ action: 'perception', value: parseInt(str) })} explain={character.explain('perception')} />
+                        <EditNumber txt={character.perception} isEdit={viewState} onChange={(str) => dispatch({ action: 'perception', value: (str) })} explain={character.explain('perception')} />
                     </td>
                 </tr>
                 <tr>
@@ -137,29 +137,29 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Experience points</label>
                     </td>
                     <td>
-                        <HideText txt={character.getCalculatedPointsLeft()} explain={character.explain('pointsLeft')} isEdit={viewState} />
+                        <HideNumber txt={character.getCalculatedPointsLeft()} explain={character.explain('pointsLeft')} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Defense</label>
                     </td>
                     <td>
                         <SmallLabel>
-                            <HideText txt={character.getBaseDefense()} explain={character.explain('basedefense')} isEdit={viewState} />
+                            <HideNumber txt={character.getBaseDefense()} explain={character.explain('basedefense')} isEdit={viewState} />
                         </SmallLabel>
                         /
                         <SmallLabel>
-                            <HideText txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
+                            <HideNumber txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
                         </SmallLabel>
                         /
                         <SmallLabel>
-                            <HideText txt={character.getActiveDefense()} explain={character.explain('activedefense')} isEdit={viewState} />
+                            <HideNumber txt={character.getActiveDefense()} explain={character.explain('activedefense')} isEdit={viewState} />
                         </SmallLabel>
                     </td>
                     <td>
                         <label>Intelligence</label>
                     </td>
                     <td>
-                        <EditText txt={character.intelligence} isEdit={viewState} onChange={(str) => dispatch({ action: 'intelligence', value: parseInt(str) })} explain={character.explain('intelligence')} />
+                        <EditNumber txt={character.intelligence} isEdit={viewState} onChange={(str) => dispatch({ action: 'intelligence', value: (str) })} explain={character.explain('intelligence')} />
                     </td>
                 </tr>
                 <tr>
@@ -167,7 +167,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Experience multiplier</label>
                     </td>
                     <td>
-                        <HideText txt={character.getExperienceMultiplier()} isEdit={viewState} explain={character.explain('experienceMultiplier')} />
+                        <HideNumber txt={character.getExperienceMultiplier()} isEdit={viewState} explain={character.explain('experienceMultiplier')} />
                     </td>
                     <td>
                         <label>Carrying capacity</label>
@@ -179,7 +179,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Willpower</label>
                     </td>
                     <td>
-                        <EditText txt={character.willpower} isEdit={viewState} onChange={(str) => dispatch({ action: 'willpower', value: parseInt(str) })} explain={character.explain('willpower')} />
+                        <EditNumber txt={character.willpower} isEdit={viewState} onChange={(str) => dispatch({ action: 'willpower', value: (str) })} explain={character.explain('willpower')} />
                     </td>
                 </tr>
                 <tr>
@@ -199,7 +199,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Mana</label>
                     </td>
                     <td>
-                        <HideText isEdit={viewState} txt={character.getMana()} explain={character.explain('mana')} />
+                        <HideNumber isEdit={viewState} txt={character.getMana()} explain={character.explain('mana')} />
                     </td>
                     <td colSpan={2}>
                         Personality traits
@@ -238,7 +238,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         </td>
                                         <td></td>
                                         <td>
-                                            <EditText txt={skill.level} isEdit={viewState} onChange={(str) => dispatch({ action: 'skill', name: skill.name, value: parseInt(str) })} explain={character.explain('skill:' + skill.name)} />
+                                            <EditNumber txt={skill.level} isEdit={viewState} onChange={(str) => dispatch({ action: 'skill', name: skill.name, value: str })} explain={character.explain('skill:' + skill.name)} />
                                         </td>
                                     </tr>
                                 })}

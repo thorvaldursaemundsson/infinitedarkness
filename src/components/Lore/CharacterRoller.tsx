@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditText from "../general/HideText";
+import { EditNumber } from "../general/HideText";
 import { IDice, IRaceData, IRacialMod } from "../races/Races";
 
 
@@ -125,7 +125,7 @@ export const GenericCharacterRoller: React.FC<IGenericCharacterRoller> = ({ race
         Starting Exp: {raceData.experiencePoints(age)}<br />
         Multiplier Exp: {raceData.experienceMultipler(age)}<br />
         {startingAge === undefined ?
-            <EditText isEdit="edit" onChange={(str) => setAge(parseInt(str))} txt={age} explain="" /> : age}
+            <EditNumber isEdit="edit" onChange={(str) => setAge(str)} txt={age} explain="" /> : age}
         <CharacterRoller
             ageSpan={[age, age]}
             species={'human'}

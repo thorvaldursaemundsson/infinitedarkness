@@ -30,6 +30,7 @@ const interceptData = (characterdata: ICharacterData | undefined, onComplete: (o
     if (characterdata === undefined) return;
     onComplete({
         restExp: 0,
+
         size: size,
         age: age,
         species: species,
@@ -44,6 +45,11 @@ const interceptData = (characterdata: ICharacterData | undefined, onComplete: (o
 
 const AbilityRoller: React.FC<IAbilityRollerProps> = ({ startingAge, startingSpecies, onComplete }) => {
     const [size, setSize] = useState<CharacterSize>('medium');
+
+    const currentRacialMod = findRacialModFromRage(startingSpecies, startingAge);
+    if (currentRacialMod === undefined) {
+        return <>please choose valid species and age range</>;
+    }
 
     const racialData = getRacialMods(startingAge, startingSpecies);
 

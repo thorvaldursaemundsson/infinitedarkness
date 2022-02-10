@@ -3,8 +3,9 @@ import React, { useState } from "react";
 interface IHideText {
     isEdit: "edit" | "print" | "explain" | "hide";
     explain: string;
-    txt: string | number;
+    txt: string;
 }
+
 export const HideText: React.FC<IHideText> = ({ isEdit, txt, explain }) => {
     if (isEdit === "edit")
         return <span className='no-print'>{txt}</span>;
@@ -21,6 +22,34 @@ const EditText: React.FC<IEditText> = ({ isEdit, onChange, txt, explain }) => {
     if (isEdit === "edit")
         return <input className='no-print' type="text" onChange={(e) => onChange(e.target.value)} value={txt}></input>
     else return <HideText txt={txt} isEdit={isEdit} explain={explain} />
+}
+
+interface IHideNumber {
+    isEdit: "edit" | "print" | "explain" | "hide";
+    explain: string;
+    txt: number;
+}
+
+export const HideNumber: React.FC<IHideNumber> = ({ isEdit, txt, explain }) => {
+    if (isEdit === "edit")
+        return <span className='no-print'>{txt}</span>;
+    else if (isEdit === "explain")
+        return <span className='no-print'>{explain}</span>;
+    else return null;
+}
+
+interface IEditNumber extends IHideNumber {
+    onChange: (str: number) => void;
+}
+const parseNumber = (p:string, d:number):number => {
+    const n = parseFloat(p);
+    if (isNaN(n)) return d;
+    return n;
+};
+export const EditNumber: React.FC<IEditNumber> = ({ isEdit, onChange, txt, explain }) => {
+    if (isEdit === "edit")
+        return <input className='no-print' type="text" onChange={(e) => onChange(parseNumber(e.target.value, txt))} value={txt}></input>
+    else return <HideNumber txt={txt} isEdit={isEdit} explain={explain} />
 }
 
 interface ISelectText extends IEditText {
