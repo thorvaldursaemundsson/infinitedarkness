@@ -72,7 +72,7 @@ export const shambrasData: IRaceData = {
             intelligence: { sidesPerDice: 10, numberOfDice: 1, pointBuyMod: 1 },
             willpower: { sidesPerDice: 10, numberOfDice: 1, pointBuyMod: 1 },
             sizeOptions: ['large', 'huge'],
-            special: '-10 climb and swim -15 jump'
+            special: '-12 climb and swim -18 jump'
         },
         {
             ageSpan: [201, 300],
@@ -84,7 +84,7 @@ export const shambrasData: IRaceData = {
             intelligence: { sidesPerDice: 12, numberOfDice: 1, pointBuyMod: 2 },
             willpower: { sidesPerDice: 8, numberOfDice: 1, pointBuyMod: 0 },
             sizeOptions: ['large', 'huge', 'gigantic'],
-            special: '-12 climb and swim -18 jump'
+            special: '-14 climb and swim -21 jump'
         },
     ],
     experiencePoints: age => CharacterPoints(0, [10, 20, 40, 80, 160, 320, 640], [4, 5, 6, 8, 10, 11, 12], age),

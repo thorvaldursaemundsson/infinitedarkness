@@ -65,7 +65,7 @@ const MartialArts = new PerkTemplate({
     name: 'martial arts',
     skill: 'combat',
     level: 1,
-    description: 'gain +1 to hit with all unarmed attacks and they now deal 1d4 + strength / 4 damage (not compatible with natural attacks or barbarian)'
+    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d4 + strength / 4 damage (not compatible with natural attacks or barbarian)'
 }, {
     applyTo: 'unarmed',
     amount: 1
@@ -75,7 +75,7 @@ const MartialArtsExpert = new PerkTemplate({
     name: 'martial arts expert',
     skill: 'combat',
     level: 2,
-    description: 'gain +2 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage. (not compatible with natural attacks or barbarian). Requires martial arts'
+    description: 'gain +4 to hit with all unarmed attacks and they now deal 1d6 + strength / 3 damage. (not compatible with natural attacks or barbarian). Requires martial arts'
 }, {
     applyTo: 'unarmed',
     amount: 2
@@ -85,7 +85,7 @@ const MartialArtsMaster = new PerkTemplate({
     name: 'martial arts master',
     skill: 'combat',
     level: 3,
-    description: 'gain +3 to hit with all unarmed attacks and they now deal 1d8 + strength / 3 damage. (not compatible with natural attacks or barbarian).  Requires martial art expert'
+    description: 'gain +6 to hit with all unarmed attacks and they now deal 1d8 + strength / 3 damage. (not compatible with natural attacks or barbarian).  Requires martial art expert'
 }, {
     applyTo: 'unarmed',
     amount: 3
@@ -143,6 +143,13 @@ const PreciseAttacker = new PerkTemplate({
     applyTo: 'combatHitBonus'
 });
 
+const Wrestler = new PerkTemplate({
+    name: 'Wrestler',
+    skill: 'combat',
+    level: 1,
+    description: 'You are adept at wrestling and grappling. You add +3 to your combat roll to grapple, wrestle, shove or disarm a target and a +3 to athletics or acrobatics on contested rolls for grab, shove or disarm'
+});
+
 export const CombatPerks = [Deflection, LightWeaponSpecialization, LightWeaponsMaster, MediumWeaponSpecialization, MediumWeaponMaster, HeavyWeaponSpecialization, HeavyWeaponMaster,
-    MartialArts, MartialArtsExpert, MartialArtsMaster, Disarm, DualWeaponFighter, DualWeaponMaster, PreciseAttacker,
+    MartialArts, MartialArtsExpert, MartialArtsMaster, Disarm, DualWeaponFighter, DualWeaponMaster, PreciseAttacker, Wrestler,
     Barbarian, Berzerker, Beast];

@@ -8,7 +8,7 @@ export type Ammo = '9x17' | '9x21' | '9x23' |
     '4mm ec' |
     '12 gauge' | '20 gauge' |
     '20mm rpg' | '30mm rpg' | '40mm rpg' | '50mm rpg' |
-    '1hec' | '2hec' | '10hec';
+    '1hec' | '2hec' | '3hec' | '5hec' | '10hec';
 
 export interface ILoudness {
     deafnessRange: number;
@@ -216,10 +216,54 @@ export const AmmoTypesInformation: AmmoInformation[] = [
         }
     }, {
         ammo: '1hec',
-        cost: 0,
+        cost: 0.01,
         weight: 0,
         types: ['standard'],
         description: '1 unit of hyperelectron charge, battery rechargeable',
+        loudness: {
+            deafnessRange: 0,
+            deafnessTime: 0,
+            hearingRange: 500,
+        }
+    }, {
+        ammo: '2hec',
+        cost: 0.2,
+        weight: 0,
+        types: ['standard'],
+        description: '1 unit of hyperelectron charge, battery rechargeable',
+        loudness: {
+            deafnessRange: 0,
+            deafnessTime: 0,
+            hearingRange: 500,
+        }
+    }, {
+        ammo: '3hec',
+        cost: 1,
+        weight: 0,
+        types: ['standard'],
+        description: '1 unit of hyperelectron charge, battery rechargeable, designed for high discharge',
+        loudness: {
+            deafnessRange: 0,
+            deafnessTime: 0,
+            hearingRange: 500,
+        }
+    }, {
+        ammo: '5hec',
+        cost: 2,
+        weight: 0,
+        types: ['standard'],
+        description: '1 unit of hyperelectron charge, battery rechargeable, designed for very high discharge',
+        loudness: {
+            deafnessRange: 0,
+            deafnessTime: 0,
+            hearingRange: 500,
+        }
+    }, {
+        ammo: '10hec',
+        cost: 4,
+        weight: 0,
+        types: ['standard'],
+        description: '10 units of hyperelectron charge, battery rechargeable, designed for extreme discharge',
         loudness: {
             deafnessRange: 0,
             deafnessTime: 0,
@@ -251,7 +295,7 @@ export const AmmoModifications: IAmmoModification[] = [
     { name: 'Shell', description: 'contains multiple pellets which spread and gives to hit bonus', cost: 1 },
     { name: 'Slug', description: 'contains a single metal slug, removes splash, adds +4 armor piercing, +1 to hit bonus, double range', armorPiercingAdd: 2, damageAdd: 1, hitAdd: 1, cost: 1, rangeMultiplier: 2 },
     { name: 'Explosive', description: 'contains an alloy which explodes on contact, removes splash, adds +2 damage, +3 armor piercing, +1 to hit.', damageAdd: 2, armorPiercingAdd: 3, hitAdd: 1, cost: 2 },
-    { name: 'Wolf', description: 'tungsten slug, named after the old name of tungsten, extremely hard and heavy slug, double range', armorPiercingAdd: 5, damageAdd: 2, cost: 10, rangeMultiplier: 2 },
+    { name: 'Wolf', description: 'tungsten slug, named after the old name of tungsten, extremely hard and heavy slug, double range. armor piercing +5, damage +2', armorPiercingAdd: 5, damageAdd: 2, cost: 10, rangeMultiplier: 2 },
     { name: 'Neodymium', description: 'ferromagnetic neodymium bullet, stronger magnet results in more force', armorPiercingAdd: 1, damageAdd: 1, cost: 10 },
     { name: 'Plasma Bomb', description: 'Uses the bomb to initiate a thermo-nuclear fusion reaction, releasing super heated plasma. Increase damaga and area of effect by 50%, deals fire and electric damage, armor piercing reduced to 0.', damageMultiplier: 1.5, splashMultiplier: 1.5, cost: 5 },
     { name: 'Fire Bomb', description: 'The grenade releases a rapidly burning accelerant, half damage every round for anyone within the area, removes armor piercing, anying leaving instead takes 1d6, lasts 1d4 rounds, +150% cost. Not compatible  with fire or frag', cost: 1 },
@@ -545,24 +589,24 @@ const IFirearms: IFirearm[] = [
     },
     //energy weapons
     {
-        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2800,
-        description: 'the only laser handgun, fires green laser, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 20 for half) and -1 on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
+        fireArmClass: 'laser', name: 'Fantry Lasergun', damage: D(2, 4), range: 1800, ammo: '1hec', strengthRequirement: 1, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 1, hitbonus: 5, weight: 1100, value: 2800,
+        description: 'the only laser handgun, fires green laser, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 20 for half) and additionally -1 (cumulative) on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
     },
     {
-        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '1hec', strengthRequirement: 3, capacity: 100, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
-        description: 'shoots a high energy blue laser pulse, needs protective gear to use, has blinding effect to all within 3 meters for 3d4 rounds (acrobatics 20 for half) and -2 on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
+        fireArmClass: 'laser', name: 'Skolt Lightpulse', damage: D(3, 4), range: 2000, ammo: '2hec', strengthRequirement: 3, capacity: 60, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 2, hitbonus: 4, weight: 3000, value: 4400,
+        description: 'shoots a high energy blue laser pulse, needs protective gear to use, has blinding effect to all within 3 meters for 3d4 rounds (acrobatics 20 for half) and additionally -2 (cumulative) on all sight related checks until a long rest has been completed, half range penalty', relatedSkill: 'firearms',
     },
     {
-        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '1hec', strengthRequirement: 3, capacity: 80, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 16000,
-        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 4 meters for 3d6 rounds and -4 on all sight related checks until a long rest has been completed, inflicts 1 radiation dose every 10 shots in 4 meter thick clothes negates radiation, half range penalty', relatedSkill: 'firearms',
+        fireArmClass: 'laser', name: 'Merlion Deathray', damage: D(3, 6), range: 2400, ammo: '3hec', strengthRequirement: 3, capacity: 40, fireAction: ['semi-automatic', 'continuous'], armorpiercing: 3, hitbonus: 4, weight: 3000, value: 16000,
+        description: 'shoots a ultraviolet laser pulse, needs protective gear to use, has blinding effect to all within 4 meters for 3d6 rounds (acrobatics 25 for half) and additionally -4 (cumulative) on all sight related checks until a long rest has been completed, inflicts 1 radiation dose every 10 shots in 4 meter thick clothes negates radiation, half range penalty', relatedSkill: 'firearms',
     },
     {
-        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 20000,
-        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, half damage at 50 meters', reload: 'action', relatedSkill: 'firearms',
+        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '5hec', strengthRequirement: 4, capacity: 20, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 18000,
+        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 18 for half), level 2 radiation, half damage at 40 meters', reload: 'action', relatedSkill: 'firearms',
     },
     {
-        fireArmClass: 'plasma', name: 'Skolt Plasma Bloom', damage: D(4, 6), range: 120, ammo: '1hec', strengthRequirement: 4, capacity: 60, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6200, value: 18000,
-        description: 'shoots an intense laser which causes the air to "bloom", induction is used to propel the blooming plasma, half damage at 40 meters', reload: 'action', relatedSkill: 'firearms',
+        fireArmClass: 'plasma', name: 'Merlion Plasma Cannon', damage: D(6, 6), range: 100, ammo: '10hec', strengthRequirement: 4, capacity: 15, fireAction: ['semi-automatic'], hitbonus: 1, weight: 6000, value: 24000,
+        description: 'shoots highly energetic beam of charged particles which ionizes the air as it passes through it, needs protective gear to use, has blinding effect to all within 2 meters for 2d4 rounds (acrobatics 18 for half), level 5 radiation , half damage at 50 meters', reload: 'action', relatedSkill: 'firearms',
     }
 ];
 

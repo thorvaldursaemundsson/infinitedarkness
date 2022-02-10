@@ -123,6 +123,8 @@ const Actions = () => {
         <h5>Move action</h5>
         <p>Using your move action you can move up to your speed. Move action can be broken up between actions. Some actions specify that you have reduced movement, if its reduced to zero then you may not make any kind of move action.</p>
         <p>Falling prone costs 1 movement speed, standing up costs half. Swiming, climbing and jumping counts as move, see athletics. Jumping uses half your movement and the distance is not affected by speed. See athletics skill.</p>
+        <h5>Reaction</h5>
+        <p>A reaction is an action that is can be taken immediately in response to an action, reactions describe the situations they may be taken. Reactions do not generate free actions instead they use a delayed action or an action from your next turn. If you've used your next turn reaction you may not react again.</p>
     </>;
 }
 
@@ -215,6 +217,23 @@ const MeleeAttacks = () => {
         <p>When you are using two melee weapons you may make one second attack immediately after the first on the same target. This attack does not benefit from your agility bonus to hit or strength bonus to damage. The second weapon must be a light weapon if your strength is 6 or less.
             If you use multiple attacks option with two weapons only the first attack gets a bonus attack from the off-hand weapon, multi-attack penalty applies to off-hand weapon.
         </p>
+        <h5>Special attack options</h5>
+        <p>Special attack options can replace a single attack or one of many multiattacks.</p>
+        <ul>
+            <li><b>Grapple</b>: You may attempt to grab someone, make a 2d10 + combat + agility roll vs the target's defense.
+                Followed by an contest of 2d10 + strength + athletics vs 2d10 + strength + athletics or 2d10 + agility + acrobatics.<br />
+                If you win the target is grappled, while grappled the target may not move, if you move you can drag them with you using 2 meters of movement per 1 meter moved.</li>
+            <li><b>Wrestle</b>: You may attempt to wrestle a target that you are currently grappling. You make roll 2d10 + strength + athletics contest by 2d10 + strength + athletics or 2d10 + agility + acrobatics of the target.<br />
+                If you succeed you must use your action every turn to restrain them, while restrained they may only use their action to attempt to break free.</li>
+            <li><b>Shove</b>: You may attempt to shove someone, make a 2d10 + combat + agility roll vs the target's defense.
+                Followed by an contest of 2d10 + strength + athletics vs 2d10 + strength + athletics or 2d10 + agility + acrobatics.<br />
+                If you win you can either push them the length of the space you occupy (minimum 1 meter) or push them prone. That decision must be made before you roll the dice.</li>
+            <li><b>Disarm</b>: You may attempt to grab an item the target is holding with their hands.make a 2d10 + combat + agility roll vs the target's defense.<br />
+                If you hit you now both hold the item in your hand and on subsequent turns you can use your action to prevent them from using their action to use the item, if you do so they waste their action.<br />
+                You may as a part of the disarm action (or the target on their turn with their action) may also attempt to pull it from their hands, to do so roll 2d10 + strength + athletics vs 2d10 + strength + athletics.<br/>
+                If you win you take the item from them, if you fail you lose your grip.
+            </li>
+        </ul>
     </>;
 }
 
@@ -257,6 +276,8 @@ const RangedAttacks = () => {
         </>)}
         <h5>Firearm loudness and hearing loss</h5>
         <p>(Optional rule) Firearms can be heard from away, but it varies heavily on the caliber and conditions. Without ear protection firearms can cause temporary hearing loss.</p>
+        <h5>Firing into melee range</h5>
+        <p>Shooting someone who is standing within melee range and has melee weapons or unarmed available allows them to use their reaction to reduce your attack roll by 2d10 + agility + combat, doing so counts as a blocking action and follows similar rules.</p>
     </>;
 }
 
@@ -401,7 +422,7 @@ const MassiveDamage = () => {
                     <tr> <td>3-4</td> <td>Punctured belly</td> <td>Your digestive tract has been punctured, you are stunned for 1d2 rounds and lose 1 speed.</td> </tr>
                     <tr> <td>5-6</td> <td>Punctured artery</td> <td>You lose 2 life at the end of each your turns for 1d4 rounds</td> </tr>
                     <tr> <td>7-8</td> <td>Punctured lung</td> <td>One of your lungs is punctured and can't be used, add 3 levels of exhaustion.
-                         If your other lung is punctured you can no longer breathe, 
+                        If your other lung is punctured you can no longer breathe,
                         you fall unsconsious when you run out of breath (as per holding breath rules), your brain dies 10 minutes later</td> </tr>
                     <tr> <td>9</td> <td>Ruptured organ</td> <td>You can't heal without medical assitance and surgery</td> </tr>
                     <tr> <td>10</td> <td>Pierced head</td> <td>Roll a 1d4, on 1 and 2 an eye is destroyed, on 3 and 4 an ear is destroyed</td> </tr>
@@ -440,7 +461,7 @@ const MassiveDamage = () => {
                     <tr> <td>3-4</td> <td>Punctured belly</td> <td>Your digestive tract has been punctured, you are stunned for 1d2 rounds and lose 1 speed.</td> </tr>
                     <tr> <td>5-6</td> <td>Ruptured artery</td> <td>You lose 1 life at the end of each your turnfor 1d10 rounds</td> </tr>
                     <tr> <td>7-8</td> <td>Punctured lung</td> <td>One of your lungs is punctured and can't be used, add 3 levels of exhaustion.
-                         If your other lung is punctured you can no longer breathe, 
+                        If your other lung is punctured you can no longer breathe,
                         you fall unsconsious when you run out of breath (as per holding breath rules), your brain dies 10 minutes later</td> </tr>
                     <tr> <td>9</td> <td>Ruptured organ</td> <td>You can't heal without medical assitance and surgery</td> </tr>
                     <tr> <td>10</td> <td>Blasted bone</td> <td>Roll 1d4 (or 1d8 for shambra), a limb has had its bones completely shattered and can not be used for any action.</td></tr>
@@ -507,10 +528,10 @@ const MassiveDamage = () => {
                     <tr> <td>7-8</td> <td>Concussion</td> <td>You are stunned for 1d4 rounds and can take no actions during that time. You can't take actions that require intelligence or a skill check, your willpower, agility and perception count as 1.
                         Someone must use their move action every turn for 1 hour to prevent you from falling asleep and entering a coma.
                         Takes 4 weeks of healing to recover, or 1 week with a medicine check vs 20</td> </tr>
-                    
+
                     <tr> <td>9-10</td> <td>Collapsed lung</td> <td>One of your lungs is collapsed and can't be used, add 3 levels of exhaustion.
-                         If your other lung is collapsed you can no longer breathe, 
-                         you fall unsconsious when you run out of breath (as per holding breath rules), your brain dies 10 minutes later</td> </tr>
+                        If your other lung is collapsed you can no longer breathe,
+                        you fall unsconsious when you run out of breath (as per holding breath rules), your brain dies 10 minutes later</td> </tr>
                 </tbody>
             </table>
 
