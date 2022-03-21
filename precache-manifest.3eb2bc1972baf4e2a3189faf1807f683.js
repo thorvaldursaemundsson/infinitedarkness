@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "81357b16a5d1a55342d70b8108814ee6",
+    "revision": "a1778c367889cb549dfdb9624168368e",
     "url": "../infinitedarkness/index.html"
   },
   {
-    "revision": "6210fe53d507cc7b4f80",
+    "revision": "b7ffe1e2cb9150d95b25",
     "url": "../infinitedarkness/static/css/main.d554128a.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "../infinitedarkness/static/js/5.7ea74ea6.chunk.js"
   },
   {
-    "revision": "178b41ad55a25bd078c5",
-    "url": "../infinitedarkness/static/js/6.d77ce9ef.chunk.js"
+    "revision": "947716afc94a4c973e25",
+    "url": "../infinitedarkness/static/js/6.e7053f25.chunk.js"
   },
   {
     "revision": "abefb5d7900b6ead65ba",
@@ -36,11 +36,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "../infinitedarkness/static/js/8.5606846a.chunk.js"
   },
   {
-    "revision": "6210fe53d507cc7b4f80",
-    "url": "../infinitedarkness/static/js/main.99ad6506.chunk.js"
+    "revision": "b7ffe1e2cb9150d95b25",
+    "url": "../infinitedarkness/static/js/main.467ba57e.chunk.js"
   },
   {
-    "revision": "1820ade4a53f54d938c2",
-    "url": "../infinitedarkness/static/js/runtime-main.fd4a5eac.js"
+    "revision": "dd776342d324b59f4692",
+    "url": "../infinitedarkness/static/js/runtime-main.384e4021.js"
   }
 ]);
