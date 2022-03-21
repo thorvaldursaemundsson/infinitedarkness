@@ -230,10 +230,15 @@ const MeleeAttacks = () => {
                 If you win you can either push them the length of the space you occupy (minimum 1 meter) or push them prone. That decision must be made before you roll the dice.</li>
             <li><b>Disarm</b>: You may attempt to grab an item the target is holding with their hands.make a 2d10 + combat + agility roll vs the target's defense.<br />
                 If you hit you now both hold the item in your hand and on subsequent turns you can use your action to prevent them from using their action to use the item, if you do so they waste their action.<br />
-                You may as a part of the disarm action (or the target on their turn with their action) may also attempt to pull it from their hands, to do so roll 2d10 + strength + athletics vs 2d10 + strength + athletics.<br/>
+                You may as a part of the disarm action (or the target on their turn with their action) may also attempt to pull it from their hands, to do so roll 2d10 + strength + athletics vs 2d10 + strength + athletics.<br />
                 If you win you take the item from them, if you fail you lose your grip.
             </li>
         </ul>
+        <p>If multiple creatures attempt to perform grapple, shove or disarm the same target they can work together, they must perform the same action in consecutive turn order.<br />
+            The second creature receives a +3 bonus on their strength roll.<br />
+            The third creature receives a +6 bonus on their strength roll.<br />
+            The fourth and every after receives a +9 bonus on their strength roll.
+        </p>
     </>;
 }
 

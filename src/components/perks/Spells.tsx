@@ -369,6 +369,48 @@ const ThoughtInvasion = new SpellTemplate(
     ]
 );
 
+const Electrostatic = new SpellTemplate(
+    'Electrostatic',
+    'Spell: You have the ability to build electromagnetic potential in your body, as an action you can build an energy potential and then freely at any point you convert the energy into a electric potential, generating an electric current. The energy dissipates at the rate of 1 mana per 24hours. Energy potential can not be accumulated.',
+    undefined,
+    'touch',
+    [
+        'Base mana: 1 for 1d8 electric damage',
+        'For each 1 mana extra spent increase electric damage by 1d8',
+        'Current is delivered by touch, starting at 4 mana the current has a reach of 1 meter, increases by 1 for every 4 extra mana spent',
+        'When you generate a current you deliver it to everything you are touching, all electronics you are touching is suseptible, and if you are grounded the damage is divided between the ground and the target you are touching',
+        'As a reaction when receiving electrical damage may attempt to counter, build energy potential and release it instantly, reduce incoming damage equal to the electric damage from your own potential'
+    ]
+);
+
+const Elevation = new SpellTemplate(
+    'Elevation',
+    'Spell: As an action you create a force between you and the surface below you that lifts you 1 meter up into the air, while elevated this way you can not move, this lasts until the start of your next turn where you gently drop to the ground. The surface will still feel your weight and must be able to support you.',
+    undefined,
+    'self',
+    [
+        'Base mana: 1',
+        'You can spend additional mana, for each 1 you double the duration',
+        'You can spend additional mana, for each 1 you double the elevation',
+        'While elevated you can create a horizontal force against a vertical surface to push yourself away from that surface. The force must be aligned with or perpendicular to the force of gravity.',
+        'In a state of freefall or microgravity where you are freely floating you can use this force to propell yourself from another object.',
+        'As a reaction to falling you can try to elevate, you reduce the amount you fallen by an equal'
+    ]
+);
+
+const FalseDeath = new SpellTemplate(
+    'False Death',
+    'Spell: As an action you cause a creature to completely stop and fall dead, this death is only temporary and after an hour they come back to life. Injuries sustained during this time are retained but timed damage like bleeding and poison is paused. Every test will reveal that they are dead.',
+    undefined,
+    '10 meters, visual contact',
+    [
+        'Base mana: 3',
+        'You can increase the number of hours by 1 for 1 mana',
+        'You can increase the range by 10 for 1 mana',
+        'If the target is unwilling it can try to resist, roll 2d10 + willpower + spells, if it rolls higher than your roll it is unaffected, otherwise it is dead for 1 round per hour it would\'ve been affected.'
+    ]
+);
+
 //mutations
 const MortisAlbum = new SpellTemplate(
     'Mortis Album',
@@ -449,6 +491,9 @@ const Ferral = new SpellTemplate(
         'you gain permanently: 1 strength, 1 endurance, -1 agility, -1 perception',
         'you gain permanently: +25% weight',
         'you gain permanently: -1 speed',
+        'You add a -5 penalty to all social rolls, -10 if your skin is visible (except intimidation)',
+        'You gain a bite attack that deals 1d6 + strength/3',
+        'all medicine rolls on you take a -10 to their roll',
         'As an action you can increase damage strength by 2 and absorbtion by 1 and damage by 1 by eating 500 grams of pure iron, doing so costs 3 mana and every drops speed by 0.5 (round down), speed cant go below 4, lasts one 24 hours'
     ]
 );
@@ -517,8 +562,43 @@ const SpontaneousRegeneration = new SpellTemplate(
     ]
 );
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive, SpontaneousRegeneration,//10
+const Lithovorism = new SpellTemplate(
+    'Lithovorism',
+    'Mutation: You start craving mineral rich rocks like feldspar and granite (in addition to your normal food requirement), your teeth and jaw become strong enough to crush pebbles the size of 4cm or less, your body weight doubles at a rate of 1kg per day up to double its original and you must eat an amount of these rocks equal 1% of your body\'s mass every day. Every day that you do not eat enough minerals you do not regenerate mana and instead lose 1.',
+    undefined,
+    undefined,
+    [
+        'Your natural damage absorbtion increase by 2',
+        'Your endurance and strength increase by 1',
+        'You add a -1 penalty to all agility and perception rolls',
+        'Your speed decreases by 2',
+        'You add a -5 penalty to all social rolls, -10 if your skin is visible (except intimidation)',
+        'You gain a bite attack that deals 1d6 + strength/3',
+        'all medicine rolls on you take a -10 to their roll',
+        'when eating minerals equal to 1% of your body weight you regenerate 1 life every 10 minute for 1d6 minutes, doing this multiple times accumulates the regeneration period',
+        'Your body mass doubles',
+    ]
+);
+
+const EyeStalksExtensions = new SpellTemplate(
+    'Eye Stalk Extensions',
+    'Mutation: Your eyes become eye stalks that can extend out of your head or retract into your eye sockets.',
+    undefined,
+    undefined,
+    [
+        'Smaller than tiny: 5cm',
+        'Tiny: maximum extension 10cm',
+        'Small: maximum extension 15cm',
+        'Medium: maximum extension 20cm',
+        'Large: maximum extension 25cm',
+        'Huge: maximum extension 35cm',
+        'Bigger than huge: 50cm'
+    ]
+);
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive, SpontaneousRegeneration, Lithovorism, EyeStalksExtensions, //13
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
-    SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition, ThoughtInvasion //23
+    SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition,
+    ThoughtInvasion, Electrostatic, Elevation, FalseDeath //26
 ];
