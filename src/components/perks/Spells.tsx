@@ -18,9 +18,9 @@ class SpellTemplate implements PerkTemplate {
         this.name = name;
         this.skill = 'spells';
         this.level = 1;
-        const rangeText = range !== undefined ? `range: ${range}` : '';
+        const rangeText = range !== undefined ? `\n Range: ${range}` : '';
         const castingText = castingTime !== undefined ? `Casting time: ${castingTime}. ` : '';
-        this.description = `${castingText}${description} ${rangeText}`;
+        this.description = `${castingText}${description}${rangeText}`;
         this.applyTo = spellhook.applyTo;
         this.amount = spellhook.amount;
         this.results = results;
