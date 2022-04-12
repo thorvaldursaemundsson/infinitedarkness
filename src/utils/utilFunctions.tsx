@@ -63,6 +63,7 @@ export const findRacialModFromRage = (species: race | undefined, age: number | u
 
 export function shuffle<T>(array: T[]) {
     var currentIndex = array.length, randomIndex;
+    const newArray = [...array];
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -72,9 +73,9 @@ export function shuffle<T>(array: T[]) {
         currentIndex--;
 
         // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
+        [newArray[currentIndex], newArray[randomIndex]] = [
+            newArray[randomIndex], newArray[currentIndex]];
     }
 
-    return array;
+    return newArray;
 }
