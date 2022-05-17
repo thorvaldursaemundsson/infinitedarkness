@@ -29,4 +29,8 @@ export const MinorQuirks = ['Will not ever drink alcohol',
 'Must not ever lie or mislead when speaking',
 'Must always refer to themselves in third person',
 'Must daily speak with fake accent',
-'Must not ever engage in small talk'];
+'Must not ever engage in small talk',
+'Must never attack someone physically weaker than you',
+'Must never ask direct questions',
+'Must never use euphemisms',
+'Must hold an object at all times'];
