@@ -170,10 +170,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <HideNumber txt={character.getExperienceMultiplier()} isEdit={viewState} explain={character.explain('experienceMultiplier')} />
                     </td>
                     <td>
-                        <label>Carrying capacity</label>
+                        <label>Carrying capacity (kg)</label>
                     </td>
                     <td>
-                        <HideText isEdit={viewState} txt={`${weightConverter(carryWeight)} / ${character.getBaseCarryingCapacity().toString()}kg`} explain={character.explain('carryingCapacity')} />
+                        <HideText isEdit={viewState} txt={`${weightConverter(carryWeight)} / ${character.getBaseCarryingCapacity(1).toString()} / ${character.getBaseCarryingCapacity(2).toString()} / ${character.getBaseCarryingCapacity(3).toString()}`} explain={character.explain('carryingCapacity')} />
                     </td>
                     <td>
                         <label>Willpower</label>

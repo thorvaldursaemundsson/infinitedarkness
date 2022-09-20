@@ -67,12 +67,12 @@ const Unmask = new SpellTemplate(
     'personal',
     [
         'base mana: 2 (change face only)',
-        'change fingerprints: +1 mana',
-        'change color of skin, eyes and/or hair: +1 mana',
-        'change gender: +2 mana (requires change DNA)',
-        'change DNA: +1 mana',
+        'change fingerprints/retina/other ID: +1 mana (to random, can not choose what new is)',
+        'change color of skin, eyes and/or hair: +1 mana (can only change to natural variants)',
+        'change sex: +2 mana (requires change DNA, bypasses functional features limitation for this only)',
+        'change DNA: +1 mana, (you can not add functional features with this)',
         'change trait: +3 mana (requires experience points if you add a positive or remove a negative, only one trait)',
-        'you can not change your dna, fingerprints to match someone else, to match someone\'s looks you must also roll a (disguise) subterfuge'
+        'you can not copy someone else\'s dna, fingerprints, retina, etc, to match someone\'s looks you must also roll a (disguise) subterfuge'
     ]
 );
 
@@ -377,37 +377,23 @@ const Electrostatic = new SpellTemplate(
     [
         'Base mana: 1 for 1d8 electric damage',
         'For each 1 mana extra spent increase electric damage by 1d8',
-        'Current is delivered by touch, starting at 4 mana the current has a reach of 1 meter, increases by 1 for every 4 extra mana spent',
-        'When you generate a current you deliver it to everything you are touching, all electronics you are touching is suseptible, and if you are grounded the damage is divided between the ground and the target you are touching',
-        'As a reaction when receiving electrical damage may attempt to counter, build energy potential and release it instantly, reduce incoming damage equal to the electric damage from your own potential'
-    ]
-);
-
-const Elevation = new SpellTemplate(
-    'Elevation',
-    'Spell: As an action you create a force between you and the surface below you that lifts you 1 meter up into the air, while elevated this way you can not move, this lasts until the start of your next turn where you gently drop to the ground. The surface will still feel your weight and must be able to support you.',
-    undefined,
-    'self',
-    [
-        'Base mana: 1',
-        'You can spend additional mana, for each 1 you double the duration',
-        'You can spend additional mana, for each 1 you double the elevation',
-        'While elevated you can create a horizontal force against a vertical surface to push yourself away from that surface. The force must be aligned with or perpendicular to the force of gravity.',
-        'In a state of freefall or microgravity where you are freely floating you can use this force to propell yourself from another object.',
-        'As a reaction to falling you can try to elevate, you reduce the amount you fallen by an equal'
+        'Current is delivered by touch, starting at 4 mana the current has a reach of 1 meter, increases by 1 for every 4 extra mana spent. Ranged touch uses the same combat roll to hit as melee but the discharge is lost if you miss',
+        'When you generate a current and deliver it, you deliver it to everything you are touching, all electronics you are touching is suseptible, and if you are grounded the damage is divided between the ground and the target you are touching',
+        'As a reaction when you are receiving electrical damage you may attempt to counter, build energy potential and release it instantly, reduce incoming damage equal to the electric damage from your own potential',
+        'To touch someone unwilling you must make a combat roll 2d10 + agility + combat vs their defense'
     ]
 );
 
 const FalseDeath = new SpellTemplate(
     'False Death',
-    'Spell: As an action you cause a creature to completely stop and fall dead, this death is only temporary and after an hour they come back to life. Injuries sustained during this time are retained but timed damage like bleeding and poison is paused. Every test will reveal that they are dead.',
+    'Spell: As an action you cause a creature to completely stop and fall dead, this death is only temporary and after an hour they come back to life. Injuries sustained during this time are retained but timed damage like bleeding and poison is paused. Every test will reveal that they are dead and died recently. When the effect is over the creature regains the body heat it had before this spell with no memories of what happened when they were under this effect, as if they were really dead or in a co.',
     undefined,
     '10 meters, visual contact',
     [
         'Base mana: 3',
         'You can increase the number of hours by 1 for 1 mana',
         'You can increase the range by 10 for 1 mana',
-        'If the target is unwilling it can try to resist, roll 2d10 + willpower + spells, if it rolls higher than your roll it is unaffected, otherwise it is dead for 1 round per hour it would\'ve been affected.'
+        'If the target is unwilling it can try to resist, roll 2d10 + willpower + spells, if it rolls higher than your roll it is unaffected, otherwise it succums'
     ]
 );
 
@@ -596,9 +582,24 @@ const EyeStalksExtensions = new SpellTemplate(
     ]
 );
 
-export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive, SpontaneousRegeneration, Lithovorism, EyeStalksExtensions, //13
+const AuraOfInsanity = new SpellTemplate(
+    'Aura of Insanity',
+    'Mutation: your mere presence causes insanity to everyone near you, creatures that enter your presence or stay in it for an extended period will have their sanity drained',
+    undefined,
+    '4 meters',
+    [
+        'your aura power is 10 + willpower + spell rank',
+        'as an action you can reduce the range by 1 meter (minimum 1), costs 1 mana, while it is reduced you lose 1 mana per day per meter reduced below 3 meters',
+        'as an action you can increase the range by 1 meter, costs 1 mana, while it is increased you lose 1 mana per day per meter increased beyond 5',
+        'when creatures enter your aura must roll 2d10 + willpower vs your aura power, if they fail they lose 1 mental health and become hostile to everyone, if they succeed they are immune to this effect for 72 hours',
+        'when creatures stay in your aura must roll 2d10 + willpower vs your aura ever hour, if they fail they lose 1 mana and gain one minor quirk for 2d12 hours, this effect is cumulative, creatures that fail to adhere to their quirks become enraged and attack everyone around them, or themselves if nobody is available'
+    ]
+)
+
+export const SpellsPerks = [MortisAlbum, Ocultos, Biopod, Xenobite, TwinSoul, Ferral, CursedBlood, XRayVision, ThornSkin, AmoebicHive, SpontaneousRegeneration,
+    Lithovorism, EyeStalksExtensions, AuraOfInsanity, //14
 
     DimensionalSwap, Splinter, Unmask, UmbraConstant, MirrorTrap, DarkVortex, LuminiferousTransubstantiation, ColorBias, Rift, Conversation, HyperSight, Tesseraction,
     SensoryMeld, EmapthicEqualibrium, SpiritualRegeneration, Quintessence, SolarFlare, QuantumLeap, Assimilation, ManipulateSpacetime, MoteOfPureEntropy, Precognition,
-    ThoughtInvasion, Electrostatic, Elevation, FalseDeath //26
+    ThoughtInvasion, Electrostatic, FalseDeath //26
 ];

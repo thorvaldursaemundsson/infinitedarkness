@@ -270,8 +270,8 @@ export class Character {
         return this.getDefenseFromSize() + this.getHook('basedefense');
     }
 
-    public getBaseCarryingCapacity() {
-        return (this.strength + 1 + this.getHook('carryingCapacity')) * 4;
+    public getBaseCarryingCapacity(limitMod: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8) {
+        return (this.getCarryCapacity(limitMod) + this.getHook('carryingCapacity'))
     }
 
     public static findSpeedFromSize(size: CharacterSize): number {
@@ -324,6 +324,24 @@ export class Character {
 
         return base + size + skill + hookBonus;
 
+    }
+
+    public static getCarryCapacity(strength: number, limitPenalty: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9, size: CharacterSize): number {
+        switch (size) {
+            case 'minute': return (strength + 1) * limitPenalty * 1;
+            case 'tiny': return (strength + 1) * limitPenalty * 2;
+            case 'small': return (strength + 1) * limitPenalty * 3;
+            case 'medium': return (strength + 1) * limitPenalty * 4;
+            case 'large': return (strength + 1) * limitPenalty * 5;
+            case 'huge': return (strength + 1) * limitPenalty * 6;
+            case 'gigantic': return (strength + 1) * limitPenalty * 7;
+            case 'colossal': return (strength + 1) * limitPenalty * 8;
+            case 'titanic': return (strength + 1) * limitPenalty * 10;
+        }
+    }
+
+    public getCarryCapacity(limitPenalty: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8) {
+        return Character.getCarryCapacity(this.strength, limitPenalty, this.size);
     }
 
 
