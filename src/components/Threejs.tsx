@@ -48,12 +48,12 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
 
     makeStar(star: IStar, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[]) {
-        var [starContainer, starSphere, label] = this.makeSphere(this.calculateStarSize(star), star.name, this.getColorFromStar(star), star.axialTilt);
+        const [starContainer, starSphere, label] = this.makeSphere(this.calculateStarSize(star), star.name, this.getColorFromStar(star), star.axialTilt);
         starSphere.rotation.x = star.axialTilt;
         parentMesh.attach(starContainer);
         let starRot: IRotator = { mesh: starSphere, body: star, star: true, satelite: false, periodFactor: 0, label: label, distanceMod: 0, periodMod: 0 };
         source.push(starRot);
-        star.planetoids.map(planet => this.makePlanet(planet, starRot, parentMesh, source));
+        star.planetoids.forEach(planet => this.makePlanet(planet, starRot, parentMesh, source));
         return starRot;
     }
 
@@ -68,7 +68,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
     makePlanet(planet: IPlanetoid, parent: IRotator, parentMesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>, source: IRotator[], isSatelite: boolean = false) {
         if (planet.bodyType === 'belt') return this.makeBelt(planet, parent, parentMesh, source);
         if (planet.bodyType === 'ring') return this.makeRings(planet, parent);
-        var [planetContainer, planetSphere, label] = this.makeSphere(this.calculatePlanetSize(planet), planet.name, this.getColorFromPlanet(planet), planet.axialTilt);
+        const [planetContainer, planetSphere, label] = this.makeSphere(this.calculatePlanetSize(planet), planet.name, this.getColorFromPlanet(planet), planet.axialTilt);
         parentMesh.attach(planetContainer);
         let rotPlan: IRotator = {
             mesh: planetSphere,
@@ -78,7 +78,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         };
         planetSphere.rotation.x = planet.axialTilt;
         source.push(rotPlan);
-        planet.satelites.map(sat => this.makePlanet(sat, rotPlan, parentMesh, source, true));
+        planet.satelites.forEach(sat => this.makePlanet(sat, rotPlan, parentMesh, source, true));
         return rotPlan;
     }
 
@@ -86,7 +86,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         if (belt.bodyType !== 'belt') throw new Error('whoops');
         let innerRadius = getOritalDistanceMod(belt.orbitDistance) - 0.5;
         let outerRadius = innerRadius * 1.25 + 1;
-        var beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'images/texture_planet_belt.png', 0);
+        const beltDisk = this.makeHolyDisk(innerRadius, outerRadius, 'images/texture_planet_belt.png', 0);
         let beltPlan: IRotator = {
             mesh: beltDisk, body: belt, star: false,
             satelite: false, parent: parent, periodFactor: calculateOrbitalPeriod(parent.body.mass, belt.orbitDistance),
@@ -110,7 +110,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
     makeSystem(rotator: IRotator[]) {
         let base: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> = new THREE.Mesh();
-        this.props.starSystem.stars.map((star) => this.makeStar(star, base, rotator));
+        this.props.starSystem.stars.forEach((star) => this.makeStar(star, base, rotator));
         return base;
     }
 
@@ -158,7 +158,6 @@ class Threejs extends React.Component<IThreejsProps, {}> {
         root.position.x = x;
         root.add(label);
         label.position.y = 1;
-        //label.position.z = .4 * 1.01;
 
         // if units are meters then 0.01 here makes size
         // of the label into centimeters.
@@ -233,22 +232,22 @@ class Threejs extends React.Component<IThreejsProps, {}> {
 
 
     componentDidMount() {
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
-        var renderer = new THREE.WebGLRenderer();
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
         renderer.setSize(760, 760);
         this.mount.appendChild(renderer.domElement);
         renderer.domElement.addEventListener('mousedown', (e) => this.startMoveMouse(e));
         renderer.domElement.addEventListener('mousemove', (e) => this.moveMouse(e));
         renderer.domElement.addEventListener('mouseup', () => this.endMoveMouse());
 
-        var rotatorList: IRotator[] = [];
-        var system = this.makeSystem(rotatorList);
+        const rotatorList: IRotator[] = [];
+        const system = this.makeSystem(rotatorList);
 
         scene.add(system);
         camera.position.z = 5;
         let counter = 0;
-        var animate = () => {
+        const animate = () => {
             requestAnimationFrame(animate);
             counter += this.speedOfTime;
             if (counter > 3600000) counter = 0;
@@ -259,7 +258,7 @@ class Threejs extends React.Component<IThreejsProps, {}> {
                 }
                 else if (s.star === false) {
                     let planet: IPlanetoid = s.body as IPlanetoid;
-                    let distMod = s.distanceMod; //this.getOritalDistanceMod(planet.orbitDistance);
+                    let distMod = s.distanceMod;
                     if (s.satelite && s.parent !== undefined) {
                         let par: IPlanetoid = s.parent.body as IPlanetoid;
                         distMod += this.calculatePlanetSize(planet) + this.calculatePlanetSize(par);

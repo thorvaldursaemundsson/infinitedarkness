@@ -273,7 +273,7 @@ const WeaponTable: React.FC<WeaponTableProps> = ({ data }) => {
         </thead>
         <tbody>
             {data.map(weapon => {
-                return <tr>
+                return <tr key={`equipment_firearms_row_${weapon.name}`}>
                     <td style={s}>{weapon.size}</td>
                     <td style={s}>{weapon.name}</td>
                     <td style={s}>{writeDamageDice(weapon.damage, 0)}</td>
@@ -302,8 +302,8 @@ const FirearmTable: React.FC<FirearmTableProps> = ({ data }) => {
                 <th>AP</th>
                 <th>HB</th>
                 <th>Range</th>
-                <th>Action</th>
-                <th>Ammo/Cap</th>
+                <th>Action (points)</th>
+                <th>Ammo/Cap (reload time)</th>
                 <th>Weight</th>
                 <th>Value</th>
             </tr>
@@ -334,8 +334,8 @@ const FireArmRow = (f: FireArm) => {
         <td>{f.armorpiercing || 0}</td>
         <td>{f.hitbonus || 0}</td>
         <td>{f.range}</td>
-        <td>{f.fireAction.join(', ')}</td>
-        <td>{f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
+        <td>{f.fireCost} | {f.fireAction.join(', ')}</td>
+        <td>{f.reload} | {f.capacity} ({f.ammo}) {f.rps !== undefined ? '/ rpr: ' + f.rps * 6 : null}</td>
 
         <td>{weightConverter(f.weight)}</td>
         <td title={(getAmmoInfo(f.ammo).cost * f.capacity).toFixed(0)}>{bigNumberSeparator(f.value)}</td>

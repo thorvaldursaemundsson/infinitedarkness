@@ -21,7 +21,7 @@ interface CharacterSheetProps {
     initialCharacter: Character;
     characterCallback: (c: Character) => void;
 }
-const padSize = 33;
+const padSize = 32;
 export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
     const [character, dispatch] = useReducer(useCharacter, props.initialCharacter);
     const [viewState, setViewState] = useState<"edit" | "print" | "explain" | "hide">("edit");
@@ -206,14 +206,24 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                     </td>
                 </tr>
                 <tr>
+                    <td colSpan={2}> &nbsp; </td>
+                    <td colSpan={1}>
+                        <label>Action points</label>
+                    </td>
+                    <td colSpan={1}>
+                        <HideNumber isEdit={viewState} txt={character.getActionPoints()} explain={character.explain('actionPoints')} />
+                    </td>
+                    <td colSpan={2}> &nbsp;</td>
+                </tr>
+                <tr>
                     <td colSpan={2}> &nbsp;</td>
                     <td colSpan={2}>
                         Apperance traits
                     </td>
                     <td colSpan={2}> &nbsp;</td>
                 </tr>
-                {Pad(5, 0).map(i =>
-                    <tr>
+                {Pad(4, 0).map(i =>
+                    <tr key={`cs_traits_${i}`}>
                         <td colSpan={2}> &nbsp;</td>
                         <td colSpan={2}> &nbsp;</td>
                         <td colSpan={2}> &nbsp;</td>
@@ -232,7 +242,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             </thead>
                             <tbody>
                                 {character.skills.map(skill => {
-                                    return <tr>
+                                    return <tr key={`cs_skills_${skill.name}`}>
                                         <td>
                                             <label>{skill.name}</label>
                                         </td>
@@ -243,7 +253,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     </tr>
                                 })}
                                 {Pad(padSize, character.skills.length).map(i => {
-                                    return <tr>
+                                    return <tr key={`cs_skillsleft_${i}`}>
                                         <td > <label> &nbsp;</label></td>
                                         <td> </td>
                                         <td> </td>
@@ -260,7 +270,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     const skillRanks: Skill | undefined = character.skills.find(s => s.name === perkBySkill.skill);
                                     if (skillRanks !== undefined && skillRanks.level >= 6) {
 
-                                        return <tr className='no-print'>
+                                        return <tr className='no-print' key={`cs_perksview_${perkBySkill.skill}`}>
                                             <td>
                                                 <Section title={perkBySkill.skill}>
                                                     {perkBySkill.perks.map(perk => {
@@ -272,7 +282,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                                             <br />
                                                             <button onClick={() => dispatch({ action: 'addperk', name: perk.name, value: 0, perkToAdd: perk })}>{perk.name}</button>
                                                             ({perk.level * 10}) {perk.description}
-                                                            {perk.results && <ul>{perk.results.map(r => <li>{r}</li>)}</ul>}
+                                                            {perk.results && <ul>{perk.results.map(r => <li key={`cs_perkitem${perk.name}_${r}`}>{r}</li>)}</ul>}
 
                                                         </>;
                                                     })}
@@ -284,7 +294,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
                                 }) : null}
                                 {character.perks.map(perk => {
-                                    return <tr>
+                                    return <tr key={`cs_perks_${perk.name}`}>
                                         <td>
                                             {perk.name}
                                             <button onClick={() => dispatch({ action: 'removeperk', name: perk.name, value: 0, perkToAdd: perk })}>x</button>
@@ -292,7 +302,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     </tr>
                                 })}
                                 {Pad(viewPerkList ? 0 : padSize + 1, character.perks.length).map(i => {
-                                    return <tr>
+                                    return <tr key={`cs_otherperks_${i}`}>
                                         <td> </td>
                                     </tr>
                                 })}
@@ -304,14 +314,14 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <table>
                             <tbody>
                                 {viewTraitList ? GetTraits().filter(trait => trait.race === 'any' || trait.race === character.species).map(trait => {
-                                    return <tr className='no-print'>
+                                    return <tr className='no-print' key={`cs_traitsview_${trait.name}`}>
                                         <td>
                                             <button onClick={() => dispatch({ action: 'addtrait', name: trait.name, value: 0, traitToAdd: trait })}>{trait.name}</button> {trait.description}
                                         </td>
                                     </tr>
                                 }) : null}
                                 {character.traits.map(trait => {
-                                    return <tr>
+                                    return <tr key={`cs_traitsadd_${trait.name}`}>
                                         <td>
                                             {trait.name}
                                             <button onClick={() => dispatch({ action: 'removetrait', name: trait.name, value: 0, traitToAdd: trait })}>x</button>
@@ -319,7 +329,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     </tr>
                                 })}
                                 {Pad(viewTraitList ? 0 : padSize - 26, character.traits.length).map(i => {
-                                    return <tr>
+                                    return <tr key={`cs_traitsadd2_${i}`}>
                                         <td> </td>
                                     </tr>
                                 })}
@@ -328,7 +338,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <h5 style={{ marginTop: '20px' }}>Reputation</h5>
                         <table>
                             <tbody>
-                                {Pad(padSize - 8, 0).map(i => <tr>
+                                {Pad(padSize - 8, 0).map(i => <tr key={`cs_rep_${i}`}>
                                     <td> </td>
                                 </tr>)}
                             </tbody>
@@ -341,15 +351,15 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <table className='lifeboxes'>
                             <thead>
                                 <tr>
-                                    <th colSpan={80}>Life</th>
+                                    <th colSpan={60}>Life</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    {Pad(80, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(60, 0).map(i => <td> &nbsp;</td>)}
                                 </tr>
                                 <tr>
-                                    {Pad(80, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(60, 0).map(i => <td> &nbsp;</td>)}
                                 </tr>
                             </tbody>
                         </table>
@@ -396,6 +406,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         <span onClick={() => setIsAddingInventory(!isAddingInventory)}>Weapon </span>
                                     </th>
                                     <th className='smalltd'>
+                                        Action
+                                    </th>
+                                    <th className='smalltd'>
                                         HB
                                     </th>
                                     <th className='smalltd'>
@@ -416,45 +429,114 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td colSpan={7}>
+                                        {isAddingInventory && <>
+                                            <FloatingSection title='Firearms'>
+                                                <FirearmCrafter onGetFirearm={(f) => setInventory([...inventory, f])} >
 
-                                {isAddingInventory && <>
-                                    <FloatingSection title='Firearms'>
-                                        <FirearmCrafter onGetFirearm={(f) => setInventory([...inventory, f])} >
+                                                </FirearmCrafter>
+                                            </FloatingSection>
 
-                                        </FirearmCrafter>
-                                    </FloatingSection>
-
-                                    <Section title='Arms'>
-                                        <ViewFireArms items={MeleeWeapons} onClick={w => setInventory([...inventory, w])} />
-                                    </Section>
-                                </>}
-                                {inventory.filter(i => i.relatedSkill === 'firearms' || i.relatedSkill === 'combat').map(item => {
+                                            <Section title='Arms'>
+                                                <ViewFireArms items={MeleeWeapons} onClick={w => setInventory([...inventory, w])} />
+                                            </Section>
+                                        </>}
+                                    </td>
+                                </tr>
+                                {inventory.filter(i => i.relatedSkill === 'firearms').map(item => {
                                     const skill = character.getSkillLevel(item.relatedSkill);
 
                                     let firearm: FireArm | undefined = item.relatedSkill === 'firearms' ? item as FireArm : undefined;
-                                    let arm: IMeleeWeapon | undefined = item.relatedSkill !== 'firearms' ? item as IMeleeWeapon : undefined;
+                                    if (firearm === undefined) return <></>;
 
-                                    let damageDice: IDamageDice | undefined = firearm !== undefined ? firearm.getDamageDice() : undefined;
+                                    let damageDice: IDamageDice = firearm.getDamageDice();
 
                                     return <tr>
                                         <td className='bigtd'>
                                             {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                         </td>
                                         <td className='smalltd'>
+                                            {firearm.fireCost}
+                                        </td>
+                                        <td className='smalltd'>
                                             {skill + character.agility +
-                                                ((firearm !== undefined ? firearm.getHitBonus() : 0)) +
-                                                ((arm !== undefined && arm.hitbonus !== undefined) ? arm.hitbonus : 0)}
+                                                ((firearm.getHitBonus()))}
                                         </td>
                                         <td className='smalltd'>
                                             {firearm && firearm.getArmorPercing()}
-                                            {arm && arm.armorpiercing}
+                                        </td>
+                                        <td className='smalltd3'>
+                                            {`${damageDice.numberOfDice}d${damageDice.sides} + ${damageDice.bonus}`}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {`${firearm.capacity} (${firearm.ammo})`}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {weightConverter(item.weight)}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {item.value}
+                                        </td>
+                                    </tr>;
+                                })}
+                                {inventory.filter(i => i.relatedSkill === 'combat').map(item => {
+                                    const skill = character.getSkillLevel(item.relatedSkill);
+
+                                    let arm: IMeleeWeapon | undefined = item.relatedSkill === 'combat' ? item as IMeleeWeapon : undefined;
+                                    if (arm === undefined) return <></>;
+
+                                    let damageDice = arm.damage;
+
+                                    return <tr>
+                                        <td className='bigtd'>
+                                            {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
+                                        </td>
+                                        <td className='smalltd'>
+                                            {arm.actionPoints}
+                                        </td>
+                                        <td className='smalltd'>
+                                            {skill + character.agility +
+                                                (arm.hitbonus || 0)}
+                                        </td>
+                                        <td className='smalltd'>
+                                            {arm.armorpiercing}
                                         </td>
                                         <td className='smalltd3'>
                                             {damageDice && `${damageDice.numberOfDice}d${damageDice.sides} + ${damageDice.bonus}`}
-                                            {arm && arm.damage}
+                                            {arm.damage}
                                         </td>
                                         <td className='smalltd2'>
-                                            {firearm && `${firearm.capacity} (${firearm.ammo})`}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {weightConverter(item.weight)}
+                                        </td>
+                                        <td className='smalltd2'>
+                                            {item.value}
+                                        </td>
+                                    </tr>;
+                                })}
+                                {inventory.filter(i => i.relatedSkill !== 'combat' && i.relatedSkill !== 'firearms').map(item => {
+                                    //const skill = character.getSkillLevel(item.relatedSkill);
+
+                                    return <tr>
+                                        <td className='bigtd'>
+                                            {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
+                                            {item.relatedSkill}
+                                        </td>
+                                        <td className='smalltd'>
+
+                                        </td>
+                                        <td className='smalltd'>
+
+                                        </td>
+                                        <td className='smalltd'>
+
+                                        </td>
+                                        <td className='smalltd3'>
+
+                                        </td>
+                                        <td className='smalltd2'>
                                         </td>
                                         <td className='smalltd2'>
                                             {weightConverter(item.weight)}
@@ -468,6 +550,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 {Pad(7 - inventory.length, 0).map(i =>
                                     <tr>
                                         <td className='bigtd'>
+
+                                        </td>
+                                        <td className='smalltd'>
 
                                         </td>
                                         <td className='smalltd'>

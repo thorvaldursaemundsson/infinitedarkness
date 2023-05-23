@@ -23,7 +23,7 @@ const Dodger = new PerkTemplate({
     name: 'dodger',
     skill: 'acrobatics',
     level: 1,
-    description: 'Your character is a faster dodger, you gain +3 to your active defense'
+    description: 'Your character is a faster dodger, you gain +2 to your active defense, unspent action points give double active defense'
 }, {
     applyTo: 'activedefense',
     amount: 3
@@ -49,6 +49,13 @@ const Elusive = new PerkTemplate({
     amount: 3
 });
 
+const RapidMovement = new PerkTemplate({
+    name: 'rapid movement',
+    skill: 'acrobatics',
+    level: 1,
+    description: 'Your character has rapid movement in combat, the first time you move you only spend 2 action points instead of 3'
+});
+
 const Tumbler = new PerkTemplate({
     name: 'tumbler',
     skill: 'acrobatics',
@@ -62,4 +69,4 @@ const Tumbler = new PerkTemplate({
     ]
 });
 
-export const AcrobaticsPerks = [Balance, AccurateThrower, Dodger, Evasive, Elusive, Tumbler];
+export const AcrobaticsPerks = [Balance, AccurateThrower, Dodger, Evasive, Elusive, Tumbler, RapidMovement];

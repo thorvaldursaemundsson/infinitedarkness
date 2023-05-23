@@ -139,25 +139,23 @@ const Turns = () => {
 
 const Dodging = () => {
     return <>
-        <p>Passive defense is the number that your enemy is required to hit to hit you in combat</p>
-        You have a passive defense of 10 when:
+        <p>To hit you in combat a creature must make a roll that equals or exceeds your defense</p>
+        You use your base defense (the first number) when
         <ul>
-            <li>You don't see the attack, or</li>
-            <li>You are doing something that requires concentration, or</li>
+            <li>You are not expecting to be attacked (eg, surprised)</li>
+            <li>You are doing something that requires concentration</li>
             <li>You are doing something that requires stillness</li>
             <li>You are immobilized</li>
         </ul>
-        You have a passive defense of 10 + agility + your lowest combat or acrobatics when:
+        You have a passive defense of (second number) when:
         <ul>
-            <li>You can see the attack coming</li>
+            <li>You used an action in combat that reduced your defense by one step</li>
         </ul>
-        If you have a passive dodge you may choose to do an active dodge.
+        You use your active defense (the last number) when:
         <ul>
-            <li>An active dodge gives you Acrobatics (active dodge) + Agility + 2d10</li>
-            <li>This applies to ALL incoming attacks</li>
-            <li>You can activate this at any time, so long as you have not acted yet</li>
-            <li>If you have already acted this turn you may "borrow" your next turn's action, your next turn is then spent</li>
+            <li>You are in combat</li>
         </ul>
+        Finally you can use dodge action, roll a d10 and add it to your active defense.
     </>;
 }
 
@@ -172,22 +170,22 @@ const Bleeding = () => {
         <p>A character has five stages of life</p>
         <ol>
             <li>Undamaged: Life is at 100%, no damage has been taken.</li>
-            <li>Nominal: Life is above 0, during combat they suffer no negative penalties, after combat they gain one exhaustion and mental health damage.</li>
-            <li>Critical: Life is 0 or less, but more than -100%. They must roll 2d10 + endurance vs total damage taken to stay conscious, they take damage if they do any physically challenging activity.
+            <li>Nominal: Life is above 0, during combat they suffer no negative penalties, after combat they gain one exhaustion and mental health damage. The damage they've taken is also applied to all physical skill checks as determined by the GM.</li>
+            <li>Critical: Life is 0 or less, but more than -100%. They must roll 2d10 + endurance vs total damage taken to stay conscious, they take 1 point of damage if they do any physically challenging activity.
                 <br />A critical character can be forcefully awakened with adrenaline (administer medicine 20). Doing so imposes one exhaustion and mental health damage. They still take damage and can bleed.</li>
-            <li>Dying: Life is below -100% but above -200%. They are unconscious and can not perform any action.</li>
-            <li>Dead: This state is permanent and irreversible, there's no coming back, roll up a new character.</li>
+            <li>Dying: Life is below -100% but above -200%. They are unconscious and can not perform any action, they can not be awakened.</li>
+            <li>Dead: Life is equal or below -200%. This state is permanent and irreversible, there's no coming back, roll up a new character.</li>
         </ol>
         <p>Exhaustion and mental health damage is cumulative. So if you are brought to dying you gain 3 levels of exhaustion at the end of combat, 4 if adrenaline was administered.
-            <br />Note that damage to mental health prevents recovery so if a character is damaged daily with no time for recovery they will break down psychologically.
+            <br />Note that damage to mental health prevents recovery of mental health so if a character is damaged daily with no time for recovery they will break down psychologically.
         </p>
         <p>
-            Bleeding happens when you take a certain amount of damage, bleeding can happen once per turn and can stack. Damage from bleeding does not cause further bleeding even if it takes you below a life threshold.
+            Bleeding happens when you take a certain amount of damage or if the GM decides it is appropriate, bleeding can happen once per turn and can stack. Damage from bleeding does not cause further bleeding even if it takes you below a life threshold.
             <br />A single first aid will stop all bleeding.
         </p>
         <ul>
-            <li>While nominal if you take 50% or more of your life in a single round: Light bleeding deals 1d10 damage at the rate of 1 per 2 minutes</li>
-            <li>While critical if you take any damage: Intermediate bleeding deals 1d20 damage at the rate of 1 per 5 rounds</li>
+            <li>While nominal if you take 50% or more of your life in a single round: Light bleeding deals 1 damage per minute for 1d10 minutes. Certain weapons can guarantee bleeding</li>
+            <li>While critical if you take any damage: Intermediate bleeding deals 1 damage per 4 rounds for a total of 4 x 1d20 rounds</li>
             <li>While dying if you take any damage: Heavy bleeding deals 1 damage every turn, lasts until character bleeds out or has first aid performed on them.</li>
         </ul>
         <p>If bleeding causes you to go to a different stage then those effects take hold but the bleeding type does not change. Unless you take more damage from any other source than bleeding.</p>

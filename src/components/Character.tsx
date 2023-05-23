@@ -155,7 +155,7 @@ export interface ICharacter {
     perks: Perk[];
     traits: Trait[];
     size: CharacterSize;
-    bonusExp?: number | undefined;
+    bonusExp?: number;
 }
 
 export class Character {
@@ -230,7 +230,7 @@ export class Character {
     }
 
     public getSkillLevel(skillName: string) {
-        var skill = this.skills.find(s => s.name === skillName);
+        const skill = this.skills.find(s => s.name === skillName);
         if (skill !== undefined) return skill.level;
         return 0;
     }
@@ -409,6 +409,20 @@ export class Character {
     public getHook(applyTo: string): number {
 
         return this.sumOr(applyTo, this.perks, 0) + this.sumOr(applyTo, this.traits, 0);
+    }
+
+    public static calculateActionPoints(character: Character): number {
+        const baseActionPoints = 4;
+        const agilityBonus = Math.floor(character.agility / 2);
+        const acrobaticsBonus = Math.floor(character.getSkillLevel('acrobatics') / 6);
+        const combatBonus = Math.floor(character.getSkillLevel('combat') / 6);
+        const perkBonuses = character.getHook('actionpoints');
+
+        return baseActionPoints + agilityBonus + acrobaticsBonus + combatBonus + perkBonuses;
+    }
+
+    public getActionPoints(): number {
+        return Character.calculateActionPoints(this);
     }
 
     public explain(what: string): string {

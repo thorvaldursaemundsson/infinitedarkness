@@ -129,8 +129,8 @@ td h5 {
 }
 
 table.lifeboxes tbody tr td {
-  height: 9px;
-  width: 9px;
+  height: 12px;
+  width: 12px;
   border: 1px solid black;
   border-left: none;
   line-height: 0;

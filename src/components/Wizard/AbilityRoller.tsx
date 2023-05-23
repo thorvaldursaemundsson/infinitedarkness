@@ -55,7 +55,7 @@ const AbilityRoller: React.FC<IAbilityRollerProps> = ({ startingAge, startingSpe
 
     return <div>
         <GenericCharacterRoller raceData={racialData} startingAge={startingAge} onChoose={(data) => interceptData(data, onComplete, size, startingAge, startingSpecies)} />
-        {racialData.racialMods[0].sizeOptions.map(s => <label className="shortLabel"    >
+        {racialData.racialMods[0].sizeOptions.map(s => <label className="shortLabel">
             <input type='radio' name='size' onClick={() => setSize(s)} checked={s === size} />{s}
         </label>)}
     </div>;

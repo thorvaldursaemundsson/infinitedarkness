@@ -33,7 +33,7 @@ interface ISelector {
 
 export const Selector: React.FC<ISelector> = ({ values, callback, preset, label }) => {
     return <label className='mediumSizedLabel'>{label}<select onChange={e => callback(e.target.value)}>
-        {values.map(v => <option value={v} selected={preset === v}>{v}</option>)}
+        {values.map(v => <option key={`selector_${label}_${v}`} value={v} selected={preset === v}>{v}</option>)}
     </select></label>
 };
 
@@ -62,7 +62,7 @@ export const findRacialModFromRage = (species: race | undefined, age: number | u
 
 
 export function shuffle<T>(array: T[]) {
-    var currentIndex = array.length, randomIndex;
+    let currentIndex = array.length, randomIndex;
     const newArray = [...array];
 
     // While there remain elements to shuffle...

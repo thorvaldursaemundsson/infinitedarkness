@@ -23,19 +23,7 @@ const mouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     yDispatcher(event.screenY - offsetY);
 };
 
-const mouseUp = () => {
-    isMoving = false;
-    xDispatcher = undefined;
-    yDispatcher = undefined;
-};
-
-const mouseOut = () => {
-    isMoving = false;
-    xDispatcher = undefined;
-    yDispatcher = undefined;
-};
-
-const mouseEnter = () => {
+const stopMoving = () => {
     isMoving = false;
     xDispatcher = undefined;
     yDispatcher = undefined;
@@ -53,11 +41,11 @@ const FloatingSection: React.FC<ISection> = ({ title, tab, children, }) => {
     return <div className={`boardersection ${!isOpen ? '' : 'floatsection'}`} style={{ paddingLeft: tabSize, left: `${x}px`, top: `${y}px` }}>
         <div className="floaterbox" style={{ cursor: 'pointer' }}
             onMouseDown={(e) => mouseDown(setX, setY, e, x, y)}
-            onMouseUp={() => mouseUp()}
-            onMouseOut={() => mouseOut()}
-            onMouseLeave={() => mouseOut()}
+            onMouseUp={() => stopMoving()}
+            onMouseOut={() => stopMoving()}
+            onMouseLeave={() => stopMoving()}
             onMouseMove={(e) => mouseMove(e)}
-            onMouseEnter={() => mouseEnter()}
+            onMouseEnter={() => stopMoving()}
         >...</div>
         <Button onClick={(event) => { setIsOpen(!isOpen); setX(event.screenX-40); setY(event.screenY-160); }}>{title} {isOpen ? '-' : '+'}</Button>
         {isOpen && children}

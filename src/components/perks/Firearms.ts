@@ -4,7 +4,7 @@ const HandGunSpecialization = new PerkTemplate({
     name: 'hand gun specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with single handheld guns'
+    description: 'gain +2 to hit with single handheld guns'
 }, {
     applyTo: 'handgun',
     amount: 3

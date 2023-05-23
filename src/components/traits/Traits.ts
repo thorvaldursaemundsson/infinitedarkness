@@ -207,6 +207,15 @@ const Conspiritorial: Trait = {
     race: 'any',
 };
 
+const PersonOfAction: Trait = {
+    name: 'Person of action',
+    cost: 20,
+    description: 'You are a person of action, you gain +1 action points',
+    amount: 1,
+    applyTo: 'actionpoints',
+    race: 'any'
+};
+
 const Flight: Trait = {
     name: 'Flight',
     cost: 40,
@@ -276,6 +285,7 @@ export const GetTraits = (): Trait[] & IHooker[] => {
         Mute,
         NaturalTalent,
         Conspiritorial,
+        PersonOfAction,
         Flight,
         Magnetoreception,
         HardShell,

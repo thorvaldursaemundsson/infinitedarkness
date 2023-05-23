@@ -72,12 +72,9 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
             <tr>
                 <td style={{ width: '25%' }}>
                     Name
-
                 </td>
                 <td style={{ width: '25%' }}>
                     {firearm.name}
-
-
                 </td>
                 <td style={{ width: '25%' }} rowSpan={11}>
                     {FirearmModifications.map(fm => {
@@ -183,7 +180,15 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     Capacity / Reload
                 </td>
                 <td>
-                    {firearm.capacity * firearmModsAmmoMultMod} / {firearm.reload || 'move'}
+                    {firearm.capacity * firearmModsAmmoMultMod} / {firearm.reload}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Action points
+                </td>
+                <td>
+                    {firearm.fireCost}
                 </td>
             </tr>
             <tr>
@@ -210,10 +215,6 @@ const DisplayFirearm: React.FC<IDisplayFirearm> = ({ firearm, ammo }) => {
                     {firearm.fireArmClass} & {firearm.fireAction.join(', ')}
                 </td>
             </tr>
-
-
-
-
             <tr>
                 <td colSpan={4}>{firearm.description}</td>
             </tr>

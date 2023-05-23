@@ -5,8 +5,8 @@ import usePersistentState from "../utils/usePersistentState";
 export interface ISection {
     title: string;
     tab?: number;
-    border?: boolean | undefined;
-    initiallyOpen?: boolean | undefined;
+    border?: boolean;
+    initiallyOpen?: boolean;
 }
 
 const Section: React.FC<ISection> = ({ title, tab, border, children, initiallyOpen }) => {
