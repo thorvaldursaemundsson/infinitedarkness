@@ -12,11 +12,11 @@ import AbilityRoller from '../Wizard/AbilityRoller';
 export const getPopulatedSkillList = (backgroundSkills: SkillRankPair[]) => {
     const allSkills = GetSkillList();
 
-    for (var index in backgroundSkills) {
-        var s = backgroundSkills[index];
+    for (let index in backgroundSkills) {
+        let s = backgroundSkills[index];
 
-        for (var index2 in allSkills) {
-            var s2 = allSkills[index2];
+        for (let index2 in allSkills) {
+            let s2 = allSkills[index2];
             if (s2.name === s.skill) {
                 s2.level += s.rank;
                 break;

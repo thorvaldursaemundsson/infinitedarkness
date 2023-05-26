@@ -38,8 +38,8 @@ interface ICharacterExpansion {
 const skillList = GetSkillList();
 const randomSkillPicker = (template: ITemplate, pickOptions: number[]) => {
     let skills: Skill[] = [];
-    for (var index in pickOptions) {
-        var rank = pickOptions[index];
+    for (let index in pickOptions) {
+        let rank = pickOptions[index];
 
         const skillName = template.skillOptions[Math.floor(Math.random() * template.skillOptions.length)];
         if (skillName !== undefined) {
@@ -144,12 +144,12 @@ const CharacterExpansion: React.FC<ICharacterExpansion> = ({ npcBase }) => {
     Intelligence: {character.intelligence}, Willpower: {character.willpower}, Perception {character.perception}
         </p>
         <p>
-            Life: {character.getLife()}, Defense: {character.getBaseDefense()} / {character.getPassiveDefense()} / {character.getActiveDefense()}
+            Life: {character.getLife()}, Defense: {character.getBaseDefense()} / {character.getActiveDefense()}
         </p>
         <p>Background: {character.background}</p>
         <h5>Skills</h5>
         <ul>
-            {character.skills.map(s => <li>{s.name}: {s.level}</li>)}
+            {character.skills.map(s => <li key={s.name + s.level}>{s.name}: {s.level}</li>)}
         </ul>
     </>;
 }

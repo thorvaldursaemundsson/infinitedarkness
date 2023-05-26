@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { bigNumberSeparator, weightConverter } from "../../utils/utilFunctions";
 import { CharacterSize } from "../Character";
 import { SkillName } from "../general/Skills";
@@ -108,10 +107,10 @@ export class FullArmor implements IFullArmor, Item {
         return powerArmor + integratedBonus;
     }
 
-    public getAgilityMod(): number {
-        const bodySuit = (this.bodySuit && this.bodySuit.agilityMod) || 0;
-        const armorPlate = (this.armorPlate && this.armorPlate.agilityMod) || 0;
-        const powerArmor = (this.powerArmor && this.powerArmor.agilityMod) || 0;
+    public getActionPointMod(): number {
+        const bodySuit = (this.bodySuit && this.bodySuit.actionPointMod) || 0;
+        const armorPlate = (this.armorPlate && this.armorPlate.actionPointMod) || 0;
+        const powerArmor = (this.powerArmor && this.powerArmor.actionPointMod) || 0;
 
         const integratedBonus = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor
             .map(m => m.abilityModifiers.filter(am => am.ability === 'agility').map(am => am.modifier).reduce((a, b) => a + b, 0))
@@ -212,7 +211,7 @@ const ArmorCrafter: React.FC<IArmorCrafterProps> = ({ onClick }) => {
                 <b>Weight:</b> {weightConverter(theArmor.getWeight() * 1000)}
             </div>
             <div>
-                <b>Agility mod</b>: {theArmor.getAgilityMod()}<br />
+                <b>Action point mod</b>: {theArmor.getActionPointMod()}<br />
                 <b>Strength mod</b>: {theArmor.getStrengthMod()}<br />
                 <b>Perception mod</b>: {theArmor.getPerceptionMod()}
             </div>

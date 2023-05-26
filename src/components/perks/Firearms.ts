@@ -4,7 +4,7 @@ const HandGunSpecialization = new PerkTemplate({
     name: 'hand gun specialization',
     skill: skill,
     level: 1,
-    description: 'gain +2 to hit with single handheld guns'
+    description: 'use 1 less action point with hand guns once per turn.'
 }, {
     applyTo: 'handgun',
     amount: 3
@@ -17,11 +17,18 @@ const HandGunExpert = new PerkTemplate({
     description: 'Requires hand gun specialization. Add +1d6 damage when using a handgun once per turn. Must be declared before rolling damage.',
 });
 
+const HandGunMaster = new PerkTemplate({
+    name: 'hand gun master',
+    skill: skill,
+    level: 3,
+    description: 'Requires hand gun expert. You have +4 to hit with hand guns.'
+});
+
 const RifleSpecialization = new PerkTemplate({
     name: 'rifle specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with rifles'
+    description: 'use 1 less action point with rifles once per turn.'
 }, {
     applyTo: 'rifle',
     amount: 3
@@ -38,7 +45,7 @@ const MachineGunSpecialization = new PerkTemplate({
     name: 'machine gun specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with portable and stationary machine guns'
+    description: 'use 1 less action point with machine guns once per turn'
 }, {
     applyTo: 'machinegun',
     amount: 3
@@ -55,7 +62,7 @@ const RocketLaunchersSpecialization = new PerkTemplate({
     name: 'rocket launcher specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with rocket launchers, grenade launchers and all guns that fire explosives'
+    description: 'use 1 less action point with rocket launchers, grenade launchers and all guns that fire explosives once per turn'
 }, {
     applyTo: 'rocketlauncher',
     amount: 3
@@ -65,7 +72,7 @@ const LaserSpecialization = new PerkTemplate({
     name: 'laser specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with all laser based weapons'
+    description: 'use 1 less action point with laser weapons once per turn.'
 }, {
     applyTo: 'lasers',
     amount: 3
@@ -82,7 +89,7 @@ const PlasmaSpecialization = new PerkTemplate({
     name: 'plasma specialization',
     skill: skill,
     level: 1,
-    description: 'gain +3 to hit with all plasma based weapons'
+    description: 'use 1 less action point with plasma weapons once per turn'
 }, {
     applyTo: 'plasma',
     amount: 3
@@ -135,7 +142,7 @@ const FastShooter = new PerkTemplate({
     name: 'fast shooter',
     skill: skill,
     level: 2,
-    description: 'you may use burst firemode on semi-automatic firearms'
+    description: 'you may use burst fire mode on semi-automatic firearms'
 });
 
 const Suppressor = new PerkTemplate({
@@ -149,7 +156,7 @@ const RapidReload = new PerkTemplate({
     name: 'rapid reload',
     skill: skill,
     level: 1,
-    description: 'you may reload as a move action rather than an action'
+    description: 'Reloading a firearm uses 2 less action points, to a minimum of 1.'
 });
 
 const HeavyHandle = new PerkTemplate({
@@ -163,15 +170,15 @@ const StraferShooter = new PerkTemplate({
     name: 'strafer shooter',
     skill: skill,
     level: 2,
-    description: 'Burst no longer uses half movement speed, oppressive fire only uses half movement.',
+    description: 'Using firearms no longer interrupts move action.',
 });
 
 const RapidBoltAction = new PerkTemplate({
     name: 'Rapid Bolt Action',
     skill: skill,
     level: 2,
-    description: 'If you use aimed shot with a bolt action or semi-automatic firearm you may also use your move action shoot the same target. Doing so drops your defense to base.',
+    description: 'If you use a bolt action firearm you use 1 less action point once per turn.',
 });
 
-export const FirearmsPerks = [HandGunSpecialization, HandGunExpert, RifleSpecialization, RifleExpert, MachineGunSpecialization, MachineGunExpert, RocketLaunchersSpecialization,
+export const FirearmsPerks = [HandGunSpecialization, HandGunExpert, HandGunMaster, RifleSpecialization, RifleExpert, MachineGunSpecialization, MachineGunExpert, RocketLaunchersSpecialization,
     LaserSpecialization, LaserExpert, PlasmaSpecialization, PlasmaExpert, Sniper, Marksman, DeadEye, Suppressor, RapidReload, StraferShooter, RapidBoltAction, HeavyHandle, FastShooter, DeadlyShot, AnnihilatingShot];

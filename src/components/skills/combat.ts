@@ -1,13 +1,25 @@
 import { SkillTemplate, UseCase } from "../general/Skills";
 const useCases: UseCase[] = [
     {
-        name: 'unarmed attack',
+        name: 'punch',
         attribute: 'agility',
-        description: 'punching kicking, deals 1d2 - 1 + strength / 5 (rounded down). Shambras using claw attack deal 1d6 + strength / 4',
+        description: 'unarmed strike, deals 1d2 + strength / 5 (rounded down).',
         type: 'active',
         results: [
             'You gain +1 damage for every 10 points above the target defense',
-            'you can do multiple attacks, at 6, 12, 18, 24, 30 you can do one extra at each, each time taking -3 penalty per extra attack'
+            'you can do multiple attacks, at 6, 12, 18, 24, 30 you can do one extra at each, each time taking -3 penalty per extra attack',
+            'Action points: 3'
+        ]
+    },
+    {
+        name: 'kick',
+        attribute: 'agility',
+        description: 'unarmed strike, deals 1d2 + strength / 4 (rounded down).',
+        type: 'active',
+        results: [
+            'You gain +1 damage for every 10 points above the target defense',
+            'you can do multiple attacks, at 6, 12, 18, 24, 30 you can do one extra at each, each time taking -3 penalty per extra attack',
+            'Action points: 4'
         ]
     },
     {
@@ -17,7 +29,7 @@ const useCases: UseCase[] = [
         type: 'active',
         results: [
             'You gain +1 damage for every 10 points above the target defense',
-            'you can do multiple attacks, at 6, 12, 18, 24, 30 you can do one extra at each, each time taking -3 penalty per extra attack'
+            'Action points: depends on weapon'
         ]
     },
     {

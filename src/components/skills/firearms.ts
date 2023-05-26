@@ -13,33 +13,35 @@ const useCases: UseCase[] = [
     {
         name: 'snipe',
         attribute: 'perception',
-        description: 'Wait for the perfect hit and then shoot, any non fully-automatic weapon. Uses 2 or more action points',
+        description: 'Wait for the perfect hit and then shoot, any non fully-automatic weapon.',
         results: [
             'If roll equals defense then you hit, if roll is less than up to 8, 9, 10, 11 or 12 (declare before rolling) then take no action and simply wait',
             'Range penalty is half',
             'Adds +2 to hit for each additional action point spent',
-            'Add +1 armor pierce per each 10 over defense'
+            'Add +1 armor pierce per each 10 over defense',
+            'Action point use: +2'
         ],
         type: 'active'
     },
     {
         name: 'semi burst',
         attribute: 'agility',
-        description: 'Fire multiple shots with a semi-automatic weapon. Uses 2 more action burst.',
+        description: 'Fire multiple shots with a semi-automatic weapon.',
         results: [
-            'Fire 4 bullets',
+            'Fire 5 bullets',
             'Add +5 to hit',
-            'If roll equals defense then you hit with 1d3 bullets',
+            'If roll equals defense then you hit with 1d2 bullets',
             'Defense limited to passive',
-            'Gain +1 minimum bullets hit per each 10 over defense (max 4)',
+            'Gain +1 minimum bullets hit per each 10 over defense (max 5)',
             'You can fire on two adjacent squares, doing so removes the bonus to hit and you only hit with one bullet on each target',
+            'Action point use: +2'
         ],
         type: 'active'
     },
     {
         name: 'burst',
         attribute: 'agility',
-        description: 'Hold down the trigger on a fully-automatic weapon for a short burst. Requires full-auto or continuous. Uses 3 more action burst.',
+        description: 'Hold down the trigger on a fully-automatic weapon for a short burst. Requires full-auto or continuous.',
         results: [
             'Fire 10 bullets',
             'Add +10 to hit',
@@ -48,15 +50,15 @@ const useCases: UseCase[] = [
             'Uses half of your movement speed',
             'Strength requirement increase by 1',
             'Gain +1 minimum bullets hit per each 10 over defense (max 10)',
-            'You can fire on multiple adjacent squares, up to a max of 4 squares, each square reduces hit bonus by 5 and reduces number of bullets per target by one dice size',
-            'dice size goes d6, d4, d3, d2 and then 1 bullet'
+            'You can fire on multiple adjacent squares, each uses 2 more action point and reduces your hit result by 5 and -1 bullet hit',
+            'Action point use: +3'
         ],
         type: 'active'
     },
     {
         name: 'oppressive fire',
         attribute: 'strength',
-        description: 'Hold down the trigger on a fully automatic firearm for the whole round, can spray across multiple targets. Requires full-auto or continuous. Uses 4 more action burst.',
+        description: 'Hold down the trigger on a fully automatic firearm for the whole round, can spray across multiple targets. Requires full-auto or continuous.',
         results: [
             'Shoot as many bullets as it uses per round, potentially empying the magazine',
             'Add +15 to hit',
@@ -66,8 +68,8 @@ const useCases: UseCase[] = [
             'Requires that you do not use your movement (before or after)',
             'Strength requirement increase by 2',
             'Gain +1 bullet hit per each 10 over defense',
-            'You can fire on multiple adjacent squares 6, each square reduces hit bonus by 5 and number of bullets per target by one dice size.',
-            'dice size goes d8, d6, d4, d3, d2'
+            'You can fire on multiple adjacent squares, each uses 1 more action point and reduces your hit result by 5 and -1 bullet hit',
+            'Action point use: +4'
         ],
         type: 'active'
     },

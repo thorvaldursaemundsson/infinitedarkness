@@ -37,16 +37,16 @@ const CarryingCapacity = () => {
         <h3>Carrying Capacity</h3>
         <p>There is only so much weight you can put on a Shambra before they lay down and give up</p>
         <p>Being over capacity goes in phases, at or below the first you suffer no penalty. Then as you increase in weight you begin to suffer various penalties</p>
-        <p>Penalty applies to swim and half to climb, jump, quarter to acrobatics</p>
+        <p>Penalty applies to action points and move speed. Each point reduces each by 1</p>
         <ul>
             <li>Without effect your maximum speed is Sprint (5x)</li>
-            <li>-1 You can no longer sprint, limited to run (x4)</li>
-            <li>-2 You can no longer run, limited to jog (x3), limited to passive defense</li>
-            <li>-4 You can no longer jog, limited to power walk (x2), no reaction allowed</li>
-            <li>-8 You can no use move action, limited to base defense</li>
-            <li>-16 You can only walk at half speed (x0.5), may only use one action</li>
-            <li>Max is how much you can deadlift, can use action to move 1 meter in a round</li>
-            <li>Drag is how much you can drag off the ground, uses action and move to push 1 meter / round</li>
+            <li>-1 to action points and move speed</li>
+            <li>-2 to action points and move speed</li>
+            <li>-3 to action points and move speed</li>
+            <li>-4 to action points and move speed</li>
+            <li>-5 to action points and move speed</li>
+            <li>Max is how much you can deadlift, if you have action points remaining you can only use them to move</li>
+            <li>Drag is how much you can drag off the ground, if you have action points remaining you can only use move action and max 1 meter / round</li>
         </ul>
         <b>Size</b>: 
         {sizes.map(s => <> <span style={currentSize === s ? { textDecoration: 'underline' } : undefined} onClick={() => setCurrentSize(s)}>{s}</span> </>)}
@@ -58,15 +58,15 @@ const CarryingCapacity = () => {
                     <th>No effect</th>
                     <th>-1</th>
                     <th>-2</th>
+                    <th>-3</th>
                     <th>-4</th>
-                    <th>-8</th>
-                    <th>-16</th>
+                    <th>-5</th>
                     <th>Max</th>
                     <th>Drag</th>
                 </tr>
             </thead>
             <tbody>
-                {[...new Array(18)].map((v, str, ar) => <tr>
+                {[...new Array(18)].map((v, str, ar) => <tr key={`pm_ce_tr_${str}`}>
                     <td>{str + 1}</td>
                     <td>{(Character.getCarryCapacity(str + 1, 1, currentSize))}</td>
                     <td>{(Character.getCarryCapacity(str + 1, 2, currentSize))}</td>

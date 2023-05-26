@@ -56,9 +56,9 @@ const Equipment: React.FC = () => {
                 <h5>Firearm modifications</h5>
                 <p>In addition to the various weapons there are modifications which can affect the firearms performance in various ways</p>
                 <ul>
-                    {FirearmModifications.map(fm => <li><b>{fm.name}</b>: {fm.description}
+                    {FirearmModifications.map(fm => <li key={`pm_e_fm_${fm.name}`}><b>{fm.name}</b>: {fm.description}
                         <br />
-                        <ul>{fm.effects.map(e => <li>{e}</li>)}</ul>
+                        <ul>{fm.effects.map(e => <li key={`pm_e_fm_fme_${e}`}>{e}</li>)}</ul>
                         Weight: {fm.weight}
                         <br />Cost: {fm.cost}
                     </li>)}
@@ -69,7 +69,7 @@ const Equipment: React.FC = () => {
                 {AmmoTable(AmmoTypesInformation)}
                 <b>Modifications</b>
                 <ul>
-                    {AmmoModifications.map(am => <li><b>{am.name}</b>: {am.description}<br /> cost: {am.cost * 100}%</li>)}
+                    {AmmoModifications.map(am => <li key={`pme_am_${am.name}`}><b>{am.name}</b>: {am.description}<br /> cost: {am.cost * 100}%</li>)}
                 </ul>
             </Indexed>
             <Indexed title='Body Armors'>
@@ -79,11 +79,11 @@ const Equipment: React.FC = () => {
                 <p>Quality/condition simply applies to total damage reduction, however pristine and intact give no benefit. They merely act as a buffer</p>
                 <p>Size applies to weight and cost, but not to protection. Armors must often be custom made to the wearer</p>
                 <ul>
-                    <li>Tiny: -20% cost/weight</li>
+                    <li>Tiny: -25% cost/weight</li>
                     <li>Small: -10% cost/weight</li>
                     <li>Medium: no effect</li>
                     <li>Large: +10% cost/weight</li>
-                    <li>Huge: +20% cost/weight</li>
+                    <li>Huge: +25% cost/weight</li>
                 </ul>
                 <p>Coverage is a matter of how much the armor covers the body, as a matter of rule simplification armors are assumed to protect the more vital areas first.
                     When coverage is less than full roll a 1d6 dice and if the dice equals or exceeds the value then you benefit, otherwise you don't.
@@ -120,7 +120,7 @@ const Equipment: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {integratedSystems.map(i => <tr>
+                        {integratedSystems.map(i => <tr key={`pm_e_ar_is_${i.name}`}>
                             <td>{i.name}</td>
                             <td><Ellipsis text={i.description} cutOff={40} /></td>
                             <td>{bigNumberSeparator(i.cost)}</td>
@@ -160,7 +160,7 @@ const Equipment: React.FC = () => {
                         <tr><th>Condition</th><th>Effect</th><th>Value</th></tr>
                     </thead>
                     <tbody>
-                        {Condition.map(c => <tr> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
+                        {Condition.map(c => <tr key={`pm_e_qq_c_${c.label}`}> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
                     </tbody>
                 </table>
                 <p>When an item has been used a number of times equal to the users skill it drops in condition by 1 step, a repair skill check can prevent this. A failed repair can cause the quality to drop.</p>
@@ -175,7 +175,7 @@ const Equipment: React.FC = () => {
                         <tr><th>Quality</th><th>Effect</th><th>Value</th></tr>
                     </thead>
                     <tbody>
-                        {Quality.map(c => <tr> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
+                        {Quality.map(c => <tr key={`pm_e_qq_q_${c.label}`}> <td>{c.label}</td><td>{plusMinus(c.effect)}</td><td>{c.valueModifier * 100}%</td></tr>)}
                     </tbody>
                 </table>
                 <p>Improving the quality of an item is not possible without supplying new material, these materials need to be of equivalent or higher quality, a failed attempt will consume the materials. A badly failed will reduce condition.</p>
@@ -213,7 +213,7 @@ const ArmorTable: React.FC<IArmorTableProps> = ({ armors }) => {
             </tr>
         </thead>
         <tbody>
-            {armors.map(bs => <ArmorRow armor={bs}></ArmorRow>)}
+            {armors.map(bs => <ArmorRow key={`pm_e_ar_${bs.name}`} armor={bs}></ArmorRow>)}
         </tbody>
     </table>;
 }
@@ -232,7 +232,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
             <tr onClick={() => setDescriptionOpen(false)}>
                 <td>{armor.name}</td>
                 <td>{armor.damageAbsorbtion}</td>
-                <td>{armor.agilityMod} {extra}</td>
+                <td>{armor.actionPointMod} {extra}</td>
                 <td>{bigNumberSeparator(armor.cost)}</td>
                 <td>{armor.weight}</td>
             </tr>
@@ -242,7 +242,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
         return (<tr onClick={() => setDescriptionOpen(true)}>
             <td>{armor.name}</td>
             <td>{armor.damageAbsorbtion}</td>
-            <td>{armor.agilityMod} {extra} </td>
+            <td>{armor.actionPointMod} {extra} </td>
             <td>{bigNumberSeparator(armor.cost)}</td>
             <td>{armor.weight}</td>
         </tr>);

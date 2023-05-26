@@ -143,17 +143,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Defense</label>
                     </td>
                     <td>
-                        <SmallLabel>
-                            <HideNumber txt={character.getBaseDefense()} explain={character.explain('basedefense')} isEdit={viewState} />
-                        </SmallLabel>
-                        /
-                        <SmallLabel>
-                            <HideNumber txt={character.getPassiveDefense()} explain={character.explain('passivedefense')} isEdit={viewState} />
-                        </SmallLabel>
-                        /
-                        <SmallLabel>
-                            <HideNumber txt={character.getActiveDefense()} explain={character.explain('activedefense')} isEdit={viewState} />
-                        </SmallLabel>
+                        <SmallLabel><HideNumber txt={character.getBaseDefense()} explain={character.explain('basedefense')} isEdit={viewState} /></SmallLabel>
+                        / <SmallLabel><HideNumber txt={character.getActiveDefense()} explain={character.explain('activedefense')} isEdit={viewState} /></SmallLabel>
                     </td>
                     <td>
                         <label>Intelligence</label>
@@ -356,10 +347,10 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    {Pad(60, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(60, 0).map(i => <td key={`cs_life_top_${i}`}> &nbsp;</td>)}
                                 </tr>
                                 <tr>
-                                    {Pad(60, 0).map(i => <td> &nbsp;</td>)}
+                                    {Pad(60, 0).map(i => <td key={`cs_life_bottom_${i}`}> &nbsp;</td>)}
                                 </tr>
                             </tbody>
                         </table>
@@ -374,13 +365,13 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        {Pad(30, 0).map(i => <span className='mentalHealthBoxes'>&nbsp;</span>)}
+                                        {Pad(30, 0).map(i => <span key={`cs_mental_${i}`} className='mentalHealthBoxes'>&nbsp;</span>)}
                                     </td>
                                     <td>
-                                        {Pad(80, 0).map(i => <span className='manaBoxes'>&nbsp;</span>)}
+                                        {Pad(80, 0).map(i => <span key={`cs_mana_${i}`} className='manaBoxes'>&nbsp;</span>)}
                                     </td>
                                     <td>
-                                        {Pad(8, 0).map(i => <span className='exhaustionBoxes'>&nbsp;</span>)}
+                                        {Pad(8, 0).map(i => <span  key={`cs_exh_${i}`} className='exhaustionBoxes'>&nbsp;</span>)}
                                     </td>
                                 </tr>
                             </tbody>
@@ -452,7 +443,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
                                     let damageDice: IDamageDice = firearm.getDamageDice();
 
-                                    return <tr>
+                                    return <tr key={`cs_i_f_${item.name}`}>
                                         <td className='bigtd'>
                                             {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                         </td>
@@ -488,7 +479,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
                                     let damageDice = arm.damage;
 
-                                    return <tr>
+                                    return <tr key={`cs_i_m_${item.name}`}>
                                         <td className='bigtd'>
                                             {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                         </td>
@@ -517,9 +508,9 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                     </tr>;
                                 })}
                                 {inventory.filter(i => i.relatedSkill !== 'combat' && i.relatedSkill !== 'firearms').map(item => {
-                                    //const skill = character.getSkillLevel(item.relatedSkill);
+                                    
 
-                                    return <tr>
+                                    return <tr key={`cs_i_f_${item.name}`}>
                                         <td className='bigtd'>
                                             {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                             {item.relatedSkill}
@@ -548,7 +539,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                 })}
 
                                 {Pad(7 - inventory.length, 0).map(i =>
-                                    <tr>
+                                    <tr key={`cs_i_pad_${i}`}>
                                         <td className='bigtd'>
 
                                         </td>
@@ -615,7 +606,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         <ArmorCrafter onClick={w => setInventory([...inventory, w])} />
                                     </FloatingSection>
                                 </>}
-                                {inventory.filter(i => i.relatedSkill !== 'firearms' && i.relatedSkill !== 'combat').map(item => <tr>
+                                {inventory.filter(i => i.relatedSkill !== 'firearms' && i.relatedSkill !== 'combat').map(item => <tr key={`cs_i_f_c_${item.name}`}>
                                     <td className='bigtd'>
                                         {item.name} <button onClick={() => setInventory(removeItem(inventory, item))}>x</button>
                                     </td>
@@ -631,8 +622,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                                         {item.value}
                                     </td>
                                 </tr>)}
-                                {Pad((!isAddingInventory ? 19 - inventory.length : 0), 0).map(i =>
-                                    <tr>
+                                {Pad((!isAddingInventory ? 17 - inventory.length : 0), 0).map(i =>
+                                    <tr key={`cs_i_adding_${i}`}>
                                         <td className='bigtd'>
                                         </td>
                                         <td className='smalltd3'>
@@ -665,7 +656,7 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                 </tr>
 
                 {Pad(12, 0).map(i =>
-                    <tr>
+                    <tr key={`cs_i_pad_leftover_${i}`}>
                         <td colSpan={6}> </td>
                     </tr>)}
 
@@ -683,7 +674,7 @@ interface IViewArms {
 }
 
 const ViewFireArms: React.FC<IViewArms> = ({ onClick, items }) => {
-    return <>{items.map(item => <tr>
+    return <>{items.map(item => <tr key={`cs_vfa_${item.name}`}>
         <td className='bigtd'>
             <button onClick={() => onClick(item)} >{item.name}</button>
         </td>
@@ -708,7 +699,7 @@ interface IViewConsumables {
 }
 
 const ViewConsumables: React.FC<IViewConsumables> = ({ onClick, consumables }) => {
-    return <>{consumables.map(item => <tr>
+    return <>{consumables.map(item => <tr key={`cs_vc_item_${item.name}`}>
         <td className='bigtd'>
             <button onClick={() => onClick(item)} >{item.name}</button>
         </td>

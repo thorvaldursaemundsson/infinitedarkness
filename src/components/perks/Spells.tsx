@@ -1,5 +1,6 @@
 import { PerkTemplate } from "../general/Perks";
 import { IHooker } from "../Character";
+import { actionPointsUses } from "../equipment/MeleeWeapons";
 
 const spellhook: IHooker = {
     applyTo: 'spells',
@@ -14,12 +15,14 @@ class SpellTemplate implements PerkTemplate {
     amount: number;
     description: string;
     results?: string[];
-    constructor(name: string, description: string, castingTime?: string, range?: string, results?: string[] | undefined) {
+    actionPoints?: actionPointsUses;
+    constructor(name: string, description: string, actionPoints?: actionPointsUses, range?: string, results?: string[] | undefined) {
         this.name = name;
         this.skill = 'spells';
         this.level = 1;
+        this.actionPoints = actionPoints;
         const rangeText = range !== undefined ? `\n Range: ${range}` : '';
-        const castingText = castingTime !== undefined ? `Casting time: ${castingTime}. ` : '';
+        const castingText = actionPoints ? `action points: ${this.actionPoints}. ` : '';
         this.description = `${castingText}${description}${rangeText}`;
         this.applyTo = spellhook.applyTo;
         this.amount = spellhook.amount;
@@ -35,23 +38,21 @@ const DimensionalSwap = new SpellTemplate(
     'Dimensional Swap',
     'Spell: You can cause an object to begin to exist or seize to exist by finding a virtual parallel universe which is identical in every way except for the objects existence.' +
     'The object can not be of any previous consequence since it had to have either existed or not in both worlds. The object and its circumstances must be known to you. It is not possible to create paradoxes',
-    '1 action',
+    1,
     '10 meters, visual contact',
     [
         'base mana: 2',
-        'object is larger than 1kg: +1 mana',
-        'object is not within visual sight of caser: +2 mana',
-        'object is/was partially used: +2 mana',
-        'you dont see the object: +3 mana',
-        'increase range: +1 mana per 10 meters',
-        'no visual contact: +2 mana'
+        'increasse object mass: +1 mana/kg',
+        'object is not within visual sight of caster: +2 mana',
+        'object is/was partially used: (GM discretion)',
+        'increase range: +1 mana per 10 meters'
     ]
 );
 
 const Splinter = new SpellTemplate(
     'Splinter',
     'Spell: You cover yourself in a cocoon, after a minute the cocoon splits open revealing two clones of yourself with all of your capabilities and has shared mana, both think they are the original, your equipment and inventory is duplicated. Lasts 24 hours after which one will die and whoever is left is the original (players choice). The duplicate will slowly disintigrate into nothing after death (including equipment which immediately becomes innert and useless). Spend 2 mana every day to keep it alive longer, prevents mana regen while active. Skills gained by a clone is gained by the original too, experience multiplier applies across the whole set. Mana is shared between clones',
-    '1 minute',
+    8,
     'personal',
     [
         'Base mana: 3',
@@ -63,7 +64,7 @@ const Splinter = new SpellTemplate(
 const Unmask = new SpellTemplate(
     'Unmask',
     'Spell: Your skin splits open and shreds to pieces, revealing a new person hiding underneat. This person is the real you, this person doesnt need to have your face, gender, DNA or even height (you may increase or decrease up to 10cm). Leaves behind residue of your old skin.',
-    '1 action',
+    8,
     'personal',
     [
         'base mana: 2 (change face only)',
@@ -79,7 +80,7 @@ const Unmask = new SpellTemplate(
 const UmbraConstant = new SpellTemplate(
     'Umbra Constant',
     'Spell: Your shadow becomes a temporary fixture on the ground, you may also enter the shadow and hide inside it for up to one hour. If the surface is damaged you get pushed out immediately.',
-    '1 move action',
+    3,
     'direct contact',
     ['base mana: 2',
         'increase to five hours: +1 mana',
@@ -93,7 +94,7 @@ const UmbraConstant = new SpellTemplate(
 const MirrorTrap = new SpellTemplate(
     'Mirror Trap',
     'Spell: you trap someone in a mirror when you see them through the mirror directly, they become trapped inside a fake mirror universe, they are automatically freed when the mirror is broken, while inside the mirror they are timeless and immortal, lasts 1 day',
-    '1 action',
+    4,
     '10 meters, visual contact',
     ['base mana: 3',
         'increase by 1 day: +1 mana per day']
@@ -102,7 +103,7 @@ const MirrorTrap = new SpellTemplate(
 const DarkVortex = new SpellTemplate(
     'Dark Vortex',
     'Spell: You draw dark matter from all directions into one single point up to 1 meter away from your head, the dark matter creates a gravity well with 1m/s/s pull at 1 meter away, lasts 1 minute. You can interact with this point as if it was a tiny ball',
-    '1 action',
+    5,
     '1 meter, visual contact',
     ['base mana: 1',
         'increase gravity: +1 mana per 1/m/s/s',
@@ -112,7 +113,7 @@ const DarkVortex = new SpellTemplate(
 const LuminiferousTransubstantiation = new SpellTemplate(
     'Luminiferous Transubstantiation',
     'Spell: Your body converts into pure ultra high energy light that moves at the speed of light through up to 1m of solid or liquid matter or 30m of air, you travel up 30m. Clothes and equipment not included by default. While in light form you are blind, you must roll 10 points higher to accurately rematerialize where you want to, otherwise you will rematerialize within 1d6 meters of the target.',
-    '1 action',
+    6,
     'personal',
     [
         'base mana: 2',
@@ -127,7 +128,7 @@ const LuminiferousTransubstantiation = new SpellTemplate(
 const ColorBias = new SpellTemplate(
     'Color Bias',
     'Spell: You touch a small object (1 liter of smaller) and alter the color charge of the atoms, this object becomes intensly radiactive as it slowly converts into energy. Level 8 radiation at 1 meter. 1 microgram of the object is annihilated per hour, stops at 2 hours. Object weight max 1kg',
-    '1 action',
+    4,
     'direct contact',
     [
         'base mana: 3',
@@ -141,7 +142,7 @@ const ColorBias = new SpellTemplate(
 const Rift = new SpellTemplate(
     'Rift',
     'Spell: Opens up a tiny rift to another dimension at the palm of your hand, a strange energy leaks out. This rift can be moved around only by you, you move it freely with your mind. It moves at a rate of up to 600meters per round. It must be within 300 meters of you. Anyone that touches it must roll 1d10 for a random effect. It lasts as long as you want but drains you of 1 mana per turn. To hit a person you must make a combat roll. If two consequtive effects are the same, reroll.',
-    '1 action',
+    6,
     'direct contact',
     [
         'base mana: 3',
@@ -162,7 +163,7 @@ const Rift = new SpellTemplate(
 const Conversation = new SpellTemplate(
     'Conversation',
     'Spell: You mentally communicate with anyone youve previously met, you may do at most 4 back/fourth, maximum 100 words each time. Persons who dont know you can do this will experience it as an inner monologue, asking uncomfortable questions may yield no answer',
-    '1 action',
+    5,
     'unlimited',
     [
         'base mana: 2',
@@ -176,7 +177,7 @@ const Conversation = new SpellTemplate(
 const HyperSight = new SpellTemplate(
     'Hyper Sight',
     'Spell: You see things from the vantage point of a higher dimension, allowing you to see through matter as if it were transparent for up to 100 meters. Lasts 10 minutes',
-    '1 move action',
+    3,
     'personal',
     [
         'base mana: 2',
@@ -187,7 +188,7 @@ const HyperSight = new SpellTemplate(
 const Tesseraction = new SpellTemplate(
     'Tesseraction',
     'Spell: you designate a 1x1x1 cubic meter volume to become the host of a four dimensional tesseract. You add 7 extra cubic meters of volume which only you can interact with, you may rotate the tesserate so that any of the volumes becomes coterminus with reality. Lasts 5 days',
-    '1 action',
+    3,
     '1 meter visual contact',
     [
         'base mana: 3',
@@ -200,7 +201,7 @@ const Tesseraction = new SpellTemplate(
 const SensoryMeld = new SpellTemplate(
     'Sensory meld',
     'Spell: You establish an unrelenting empathic link to another person, you perceive everything they do, they perceive everything you do. Lasts 24 hours. Once per hour the target may attempt to suppress this effect with a contested roll (2d10 + willpower + spells). If either die while this is in effect the other takes 2d6 mental health damage from the trauma. You can have multiple links at the same time, sensory perception is shared across the network.',
-    'free action',
+    1,
     '10 meters, visual contact',
     [
         'base mana: 1',
@@ -214,7 +215,7 @@ const SensoryMeld = new SpellTemplate(
 const EmapthicEqualibrium = new SpellTemplate(
     'Empathic Equalibrium',
     'Spell: You establish an immediate empathic link to another person which causes the sum total of your life damage and mental health damage to be redistributed equally. Both know what the other has been thinking since they woke up. There is no contested roll. Can only be used once per round.',
-    'free action',
+    1,
     '10 meters visual contact',
     [
         'base mana: 2',
@@ -225,7 +226,7 @@ const EmapthicEqualibrium = new SpellTemplate(
 const SpiritualRegeneration = new SpellTemplate(
     'Spiritual Regeneration',
     'Spell: You are able to convert mana into life and reverse on yourself and others.',
-    '1 minute',
+    8,
     'personal or direct contact',
     [
         'base mana: 1, heal 1 life per round for 1d6 rounds',
@@ -238,7 +239,7 @@ const SpiritualRegeneration = new SpellTemplate(
 const Quintessence = new SpellTemplate(
     'Quintessence',
     'Spell: You projectile vomit a stream of a silvery bubbling liquid. When it hits a target the liquid engulfs it completely. After 1 minute the liquid disappates and the target is released, for the target no time has passed.',
-    '1 action',
+    5,
     '5 meters',
     [
         'base mana: 1. Make an unarmed attack to see if you hit a person',
@@ -256,7 +257,7 @@ const Quintessence = new SpellTemplate(
 const SolarFlare = new SpellTemplate(
     'Solar Flare',
     'Spell: Hot electric plasma engulfs your body, which you can direct at one target, damage counts as heat and electric, as such non-fire resistant armor only applies half damage absorbtion, power armor and electric devices have no effect while in contact with flame. If you are wearing clothes they are immediately incinirated, armor loses 1 condition (1 DA) per turn. Fire resistant materials instead take 4 times longer to damage. Lasts 1 minute',
-    '1 action',
+    1,
     'personal, 10 meter range',
     [
         'While active add spells skill to base defense, add +2 damage absorbtion, increase speed by +3',
@@ -274,7 +275,7 @@ const SolarFlare = new SpellTemplate(
 const QuantumLeap = new SpellTemplate(
     'Quantum Leap',
     'Spell: You make the electrons in your body perform a quantum leap, removing their friction from the rest of the world for a split second. While frictionless you can move through solid objects freely and become completely invisible. Gravity still applies so if you stand still and make a quantum leap you will fall through the ground potentially dooming yourself. If you end the spell while inside solid or liquid matter it fuses with your body- destroying it utterly. Lasts up to 1 round.',
-    '1 action',
+    1,
     'personal',
     [
         'base mana: 1 entire body or partial, clothes, armor, equipment, inventory is not automatically included',
@@ -290,7 +291,7 @@ const QuantumLeap = new SpellTemplate(
 const Assimilation = new SpellTemplate(
     'Assimilation',
     'Spell: You touch a living being directly and begin assimilating their body into yours, they roll 2d10 + willpower + spells to contest your roll, the winner steals 1d4 life and 1d2 mana from the loser. Additionally you gain some features from the creature if they are a different species from yours (determined by the GM), if the loser dies then compare the winner and loser attribute, pick the one with the biggest difference and move one step closer. All these effects last 2d10 days.',
-    '1 action',
+    4,
     'touch',
     [
         'base mana: 2',
@@ -305,7 +306,7 @@ const Assimilation = new SpellTemplate(
 const ManipulateSpacetime = new SpellTemplate(
     'Manipulate Spacetime',
     'Spell: you change the fabric of spacetime to create a unidirectional field of gravity in the shape of a cylinder 1 meter across, directed away from you, the direction of gravity can be in any direction of your choosing. It does not cancel out existing gravity fields but rather adds to them. The field lasts for 6 seconds and propagates at the speed of light. Anything caught in this field is accelerated by 10m/s/s. Each time you use this ability you become 1d10 days younger (over the course of a minute) per mana spent.',
-    '1 action',
+    6,
     '100 meters',
     [
         'base mana: 1',
@@ -319,7 +320,7 @@ const ManipulateSpacetime = new SpellTemplate(
 const MoteOfPureEntropy = new SpellTemplate(
     'Mote of Pure Entropy',
     'Spell: You produce a mote in the palm of your hand which you can then move freely once per round at the rate of 10 meters/round, the mote gives of white light when in contact with air. If it comes into contact with a solid object roll a 1d10, the mote then evaporates. The mote will evaporate at the end of your turn, you can prevent evaporation with a spell + willpower roll vs 5 x number of turns the mote has been active. If you have multiple motes then you must keep track of them seperately, if two motes touch then they annihilate each other.',
-    '1 action',
+    1,
     '40 meters',
     [
         'base mana: 1',
@@ -340,8 +341,8 @@ const MoteOfPureEntropy = new SpellTemplate(
 
 const Precognition = new SpellTemplate(
     'Precognition',
-    'Spell: You learn the outcome of your next action. Before you take an action that takes no more than 1 round you may attempt to see the outcome before it happens. First you roll for precognition, then you roll for your skill, you find out the outcome of your result and may choose whether to move forward or do something else. If you don\'t proceed then you end your turn.',
-    'free action',
+    'Spell: You learn the outcome of your next action. Before you take an action that takes no more than 1 round you may attempt to see the outcome before it happens, this increases that actions action point uses by 1. First you roll for precognition, then you roll for your skill, you find out the outcome of your result and may choose whether to move forward or do something else. If you don\'t proceed then you end your turn.',
+    1,
     undefined,
     [
         'for an action that takes 1 action: 2 mana',
@@ -358,7 +359,7 @@ const Precognition = new SpellTemplate(
 const ThoughtInvasion = new SpellTemplate(
     'Thought Invasion',
     'Spell: you look at someone within range, think of a phrase and cause them to speak it out loud. They believe it is their own thoughts. They make a contested willpower + spell + 2d10 roll to resist. If they resist they instead feel the thought as an intrusive foreign thought. The spell only works if the target is awake, lucid and able to speak.',
-    undefined,
+    1,
     '60 meters',
     [
         'base mana: 3',
@@ -372,7 +373,7 @@ const ThoughtInvasion = new SpellTemplate(
 const Electrostatic = new SpellTemplate(
     'Electrostatic',
     'Spell: You have the ability to build electromagnetic potential in your body, as an action you can build an energy potential and then freely at any point you convert the energy into a electric potential, generating an electric current. The energy dissipates at the rate of 1 mana per 24hours. Energy potential can not be accumulated.',
-    undefined,
+    1,
     'touch',
     [
         'Base mana: 1 for 1d8 electric damage',
@@ -387,7 +388,7 @@ const Electrostatic = new SpellTemplate(
 const FalseDeath = new SpellTemplate(
     'False Death',
     'Spell: As an action you cause a creature to completely stop and fall dead, this death is only temporary and after an hour they come back to life. Injuries sustained during this time are retained but timed damage like bleeding and poison is paused. Every test will reveal that they are dead and died recently. When the effect is over the creature regains the body heat it had before this spell with no memories of what happened when they were under this effect, as if they were really dead or in a co.',
-    undefined,
+    4,
     '10 meters, visual contact',
     [
         'Base mana: 3',
@@ -415,7 +416,7 @@ const MortisAlbum = new SpellTemplate(
 const Ocultos = new SpellTemplate(
     'Ocultos',
     'Mutation: Eyes grow all over your body, at the rate of 1 per 1d12 days a new eye opens up somewhere randomly on your skin up to a maximum 33 additional eyes. The eyes are fully functional and grant the ability to gain a glipse of something of your choice, glipse closes an eye of your choice which then disappears. The GM rolls the correctness secretly.',
-    '1 minute',
+    8,
     undefined,
     [
         'any yes or no question: 2 mana. Answer correctness 99%',
@@ -440,10 +441,10 @@ const Biopod = new SpellTemplate(
 const Xenobite = new SpellTemplate(
     'Xenobite',
     'Mutation: Your tongue permanently transforms into a viper that delivers powerful neurotoxin when it bites its victim. The snake phases through armor and clothes as if it was air, damage absorbtion from any source has no effect. Additionally the first time you strike someone you gain 1d6 mana, they lose the same amount, after resting this can be done again.',
-    '1 action',
+    4,
     undefined,
     [
-        'use spell to hit their defense (standard rules) counts as full round action and you only have base level defense for the rest of the round. If you miss then no effect. No effects on robots',
+        'use spell to hit their defense (standard rules). If you miss then no effect. No effects on robots',
         'base mana: 1',
         '1st round: 1d6 intelligence damage, drain 1d6 mana',
         '2nd round: 1d6 perception damage',
@@ -469,7 +470,7 @@ const TwinSoul = new SpellTemplate(
 const Ferral = new SpellTemplate(
     'Ferral',
     'Mutation: Your skin turns into a dark shade of grey like iron then grow into small scales that rust and also slowly fall out. Your nails and teeth turn into black hard steel, your hair turn into thin steel wires. You are not affected by magnetism. Your insides and blood are also black and metallic.',
-    undefined,
+    8,
     undefined,
     [
         'You gain permanenty: 2 damage absorbtion',
@@ -487,7 +488,7 @@ const Ferral = new SpellTemplate(
 const CursedBlood = new SpellTemplate(
     'Cursed Blood',
     'Mutation: Your blood gains the ability to absorb and emit gamma rays, each dose of radiation you gain heals 1 life and 1 level of exhaustion and 1 dose of radiation when you rest. Additionally you can emit gamma radiation, when you do you lose the ability to heal from radiation for 24 hours. Be warned that you still suffer all negative effects of radiation poisoning, including risk of death.',
-    undefined,
+    4,
     undefined,
     [
         'Per 1 dose: 1 life, 1 exhaustion',
@@ -500,7 +501,7 @@ const CursedBlood = new SpellTemplate(
 const XRayVision = new SpellTemplate(
     'X-Ray Vision',
     'Mutation: your visual band changes from normal visible light (400nm - 700nm wavelength) to x rays (0.01nm - 10nm), as such low density materials become nearly invisible to you, high density remain visible. Additionally whenever your eyes are open you emmit x rays in all directions, this counts as illumination for you up to 100 meters, and as a level 1 radiation source to everyone within 2 meters. You also gain +2 radiation resistance.',
-    undefined,
+    1,
     undefined,
     [
         'You can stop the radiation by closing your eyes, however it does not matter if you are conscious as long as you are alive',
@@ -512,7 +513,7 @@ const XRayVision = new SpellTemplate(
 const ThornSkin = new SpellTemplate(
     'Thorn Skin',
     'Mutation: Sharp needlelike thorns extrude from your skin over your entire body, no place is without, the thorns color match your hair color or skin color. These thorns have a variety of effects and can be shot out from anywhere on your body.',
-    undefined,
+    2,
     undefined,
     [
         'The thorns offer small protection, increase damage absorbtion by 1 and base defense by 2 permanently',
@@ -526,7 +527,7 @@ const ThornSkin = new SpellTemplate(
 const AmoebicHive = new SpellTemplate(
     'Amoebic Hive',
     'Mutation: Tiny black drops of amoeba slowly crawl over your skin, they enter and exist through the pores and permeate your body. These amoebic organisms are made of you.',
-    undefined,
+    2,
     undefined,
     [
         'As an action you can leave some behind on a surface for an hour, you feel temperature and pressure through them. Costs 1 mana',
@@ -538,7 +539,7 @@ const AmoebicHive = new SpellTemplate(
 const SpontaneousRegeneration = new SpellTemplate(
     'Spontaneous Regeneration',
     'Mutation: Every day, at a random point during the day (GM rolls 1d12 hours after you wake up) you instantly heal 1d6 life. Any amount healed beyond full bounces back and instead causes damage. This healing and damage is unavoidable. If you are above 100% life then you only take damage, if you are below 0 then the dice instead causes damage, if the damage is more than needed to kill you it bounces back to heal you. If you are damaged by this you also lose 1 mental health.',
-    'action',
+    1,
     'self',
     [
         'As an action you can trigger this effect. When you do so you can increase the strength by using more mana.',
@@ -585,7 +586,7 @@ const EyeStalksExtensions = new SpellTemplate(
 const AuraOfInsanity = new SpellTemplate(
     'Aura of Insanity',
     'Mutation: your mere presence causes insanity to everyone near you, creatures that enter your presence or stay in it for an extended period will have their sanity drained',
-    undefined,
+    1,
     '4 meters',
     [
         'your aura power is 10 + willpower + spell rank',

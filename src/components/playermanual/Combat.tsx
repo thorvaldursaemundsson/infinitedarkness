@@ -15,7 +15,7 @@ const Combat: React.FC = () => {
             <Indexed title='Turns'>
                 <Turns />
             </Indexed>
-            <Indexed title='Dodging and passive defense'>
+            <Indexed title='Dodging and active defense'>
                 <Dodging />
             </Indexed>
             <Indexed title='Blocking'>
@@ -29,9 +29,6 @@ const Combat: React.FC = () => {
             </Indexed>
             <Indexed title='Melee attacking'>
                 <MeleeAttacks />
-            </Indexed>
-            <Indexed title='Multiple attacks'>
-                <MultipleAttacks />
             </Indexed>
             <Indexed title='Dual wielding'>
                 <DualWielding />
@@ -117,14 +114,34 @@ const CombatStarts = () => {
 
 const Actions = () => {
     return <>
-        <p>During combat characters make take actions on their turn. In some special circumstances a character can take a specific action out of turn. These require that the character has actions left.</p>
-        <h5>Action</h5>
-        <p>You get one action, this can be an attack, interacting with an object, or performing a skill. Some attacking modes lets you attack multiple times. You can also use your action to make a move action.</p>
+        <p>During combat characters make take actions on their turn, actions use action points. At the start of your turn your action points are refreshed.</p>
         <h5>Move action</h5>
-        <p>Using your move action you can move up to your speed. Move action can be broken up between actions. Some actions specify that you have reduced movement, if its reduced to zero then you may not make any kind of move action.</p>
-        <p>Falling prone costs 1 movement speed, standing up costs half. Swiming, climbing and jumping counts as move, see athletics. Jumping uses half your movement and the distance is not affected by speed. See athletics skill.</p>
+        <p>Moving 1 meter uses 1 action point, if you spend 3 action points on moving you may move up to your remaining movement speed without spending action points.
+            You can move multiple times, if you take other actions then your move is interrupted.</p>
+        <p>Falling prone uses 1 action point, standing up uses 3. Swiming, climbing and jumping counts individual as move actions.
+            So if you run and then jump you must use a total of 6 action points.</p>
+        <h5>Ending your turn</h5>
+        <p>If you end your turn with action points remaining you add an equal amount to your active defense until the start of your next turn.</p>
+        <p>For example, if you have 5 action points and 20 active defense, you end your turn doing nothing.
+            Your defense increases by 5, 5 + 20 = 25. Until your next turn your defense is 25</p>
+        <h5>Overextend</h5>
+        <p>You can overextend your action points, meaning you can use more action points than you have, doing so puts you into negative action points.
+            And you can go into negative equal to your max action points. And when you end your turn your negative is deducted from your defense.
+            Additionally, overextending action points are deducted from your next turn action points.</p>
+        <p>For example if you have 5 action points, active defense 20 and run and then jump, using 6 action points, you now have -1 action points.
+            You end your turn with -1 action points, your active defense is 19 until the start of your next turn. On the start of your next turn you only have 4 action points.
+        </p>
         <h5>Reaction</h5>
-        <p>A reaction is an action that is can be taken immediately in response to an action, reactions describe the situations they may be taken. Reactions do not generate free actions instead they use a delayed action or an action from your next turn. If you've used your next turn reaction you may not react again.</p>
+        <p>A reaction is an action that is can be taken immediately in response to an action, reactions describe the situations they may be taken.
+            Reactions uses action points same as actions on your turn, you can go into negative action points same as if you were overextending, and same rules apply when you do,</p>
+        <p>For example, you have 5 action points and active defense 20. You take an action that uses 3, you now have 2 action points remaining.
+            You then end your turn with 22 active defense, an enemy throws a grenade at you, you are allowed to roll a contested acrobatics vs explosives and you succeed.
+            You use your reaction to move out of the blast radius, using 3 action points to move. This causes you to overextend and your active defense drops to 19.
+            At the start of your next turn you have 4 action points.
+            <br/>
+            However if before your next turn another enemy throws another grenade and you react again to move you will go into 16 active defense and have overextended to -4.
+            If someone then attacks you, you do not have enough action points to attempt to block, because blocking uses more action points than you can overextend.
+        </p>
     </>;
 }
 
@@ -147,15 +164,10 @@ const Dodging = () => {
             <li>You are doing something that requires stillness</li>
             <li>You are immobilized</li>
         </ul>
-        You have a passive defense of (second number) when:
-        <ul>
-            <li>You used an action in combat that reduced your defense by one step</li>
-        </ul>
         You use your active defense (the last number) when:
         <ul>
             <li>You are in combat</li>
         </ul>
-        Finally you can use dodge action, roll a d10 and add it to your active defense.
     </>;
 }
 
@@ -206,10 +218,8 @@ const Bleeding = () => {
 
 const MeleeAttacks = () => {
     return <>
-        <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets defense then you hit</p>
-        <h5>Overextend</h5>
-        <p>Some enemies may be extremely difficult to hit, once a turn you may overextend your attack, you can add up to as much as +10 to your attack roll but this leaves you open to counter attacks, you take twice negative on all skill rolls and passives until it's your turn again</p>
-        <h5>Flanking</h5>
+        <p>A melee attack is anything from a punch to a cut with a sword. You roll 2d10 + Combat (skill), if the roll is equal or exceeds the targets defense then you hit. Uses action points, different types of attacks uses different amount of action points.</p>
+         <h5>Flanking (optional rule)</h5>
         <p>When a target is flanked (facing more than one melee combatant) the attackers will gain bonus to hit equal to the number of flankers x2. This does not apply if they are flanked too.</p>
         <h5>Two weapon fighting</h5>
         <p>When you are using two melee weapons you may make one second attack immediately after the first on the same target. This attack does not benefit from your agility bonus to hit or strength bonus to damage. The second weapon must be a light weapon if your strength is 6 or less.
@@ -218,15 +228,15 @@ const MeleeAttacks = () => {
         <h5>Special attack options</h5>
         <p>Special attack options can replace a single attack or one of many multiattacks.</p>
         <ul>
-            <li><b>Grapple</b>: You may attempt to grab someone, make a 2d10 + combat + agility roll vs the target's defense.
+            <li><b>Grapple</b>: Uses 4 action points. You may attempt to grab someone, make a 2d10 + combat + agility roll vs the target's defense.
                 Followed by an contest of 2d10 + strength + athletics vs 2d10 + strength + athletics or 2d10 + agility + acrobatics.<br />
                 If you win the target is grappled, while grappled the target may not move, if you move you can drag them with you using 2 meters of movement per 1 meter moved.</li>
-            <li><b>Wrestle</b>: You may attempt to wrestle a target that you are currently grappling. You make roll 2d10 + strength + athletics contest by 2d10 + strength + athletics or 2d10 + agility + acrobatics of the target.<br />
+            <li><b>Wrestle</b>: Uses 4 action points. You may attempt to wrestle a target that you are currently grappling. You make roll 2d10 + strength + athletics contest by 2d10 + strength + athletics or 2d10 + agility + acrobatics of the target.<br />
                 If you succeed you must use your action every turn to restrain them, while restrained they may only use their action to attempt to break free.</li>
-            <li><b>Shove</b>: You may attempt to shove someone, make a 2d10 + combat + agility roll vs the target's defense.
+            <li><b>Shove</b>: Uses 4 action points. You may attempt to shove someone, make a 2d10 + combat + agility roll vs the target's defense.
                 Followed by an contest of 2d10 + strength + athletics vs 2d10 + strength + athletics or 2d10 + agility + acrobatics.<br />
                 If you win you can either push them the length of the space you occupy (minimum 1 meter) or push them prone. That decision must be made before you roll the dice.</li>
-            <li><b>Disarm</b>: You may attempt to grab an item the target is holding with their hands.make a 2d10 + combat + agility roll vs the target's defense.<br />
+            <li><b>Disarm</b>: Uses 4 action points. You may attempt to grab an item the target is holding with their hands.make a 2d10 + combat + agility roll vs the target's defense.<br />
                 If you hit you now both hold the item in your hand and on subsequent turns you can use your action to prevent them from using their action to use the item, if you do so they waste their action.<br />
                 You may as a part of the disarm action (or the target on their turn with their action) may also attempt to pull it from their hands, to do so roll 2d10 + strength + athletics vs 2d10 + strength + athletics.<br />
                 If you win you take the item from them, if you fail you lose your grip.
@@ -240,33 +250,19 @@ const MeleeAttacks = () => {
     </>;
 }
 
-const MultipleAttacks = () => {
-    return <>
-        <p>Characters may do more than two or more consecutive attacks in certain circumstances. Only applies to combat rolls. Additional attacks may be reserved for blocking, unused blocks can not be converted into attacks when it is not your turn.</p>
-        <p>Each attack after the first also costs one movement, if you are out of movement then you can not perform additional attacks.</p>
-        <ul>
-            <li><b>2 attacks</b>: requires 6 or higher  combat. Take -3 penalty to all attacks</li>
-            <li><b>3 attacks</b>: requires 12 or higher combat. Take -6 penalty to all attacks</li>
-            <li><b>4 attacks</b>: requires 18 or higher combat. Take -9 penalty to all attacks</li>
-            <li><b>5 attacks</b>: requires 24 or higher combat. Take -12 penalty to all attacks</li>
-            <li><b>6 attacks</b>: requires 30 or higher combat. Take -15 penalty to all attacks</li>
-        </ul>
-    </>;
-}
-
 const Blocking = () => {
     return <>
         <p>Blocking is an reactive action that can be done against melee attacks. When you are hit with a melee attack you may use your melee attack to block.
             Roll 2d10 + agility + combat, if you exceed their attack roll then you block the attack and damage is reduced by 1/2 rounded down.
         </p>
-        <p>If you've already used your action for the turn then you may not attempt to block.</p>
-        <p>If you are using multiple melee attacks then you may use one or more of these attacks as blocks</p></>;
+        <p>Blocking uses 3 action points </p>
+        </>;
 }
 
 const RangedAttacks = () => {
     return <>
         <p>
-            When you shoot someone your roll must hit the targets passive defense to hit.
+            When you shoot someone your roll must hit the targets active defense to hit.
             Guns have multiple types of attacks, snipe shots, aimed shots, semi-burst, burst and oppressive fire
         </p>
         <p>Using a weapon that has a higher strength requirement imposes a burden to your aiming, penalty to aiming is 10x what you are missing</p>
@@ -274,7 +270,7 @@ const RangedAttacks = () => {
             <h5>{uc.name} ({uc.attribute})</h5>
             <p>{uc.description}</p>
             <ul>
-                {uc.results !== undefined ? uc.results.map(r => <li>{r}</li>) : null}
+                {uc.results !== undefined ? uc.results.map(r => <li key={`c_ra_li_${r}`}>{r}</li>) : null}
             </ul>
         </>)}
         <h5>Firearm loudness and hearing loss</h5>
@@ -328,11 +324,11 @@ const Distance: React.FC = () => {
         <p>Humans have half distance penalty when throwing.</p>
         <table>
             <thead>
-                <tr><th>Weights Strengths</th>{strs.map(s => <th>{s}</th>)}</tr>
+                <tr><th>Weights Strengths</th>{strs.map(s => <th key={`c_d_th_${s}`}>{s}</th>)}</tr>
             </thead>
-            {weights.map(w => <tr>
+            {weights.map(w => <tr key={`c_d_tr_${w}`}>
                 <td>{w}</td>
-                {strs.map(s => <td>
+                {strs.map(s => <td key={`c_d_td_${s}`}>
                     {Math.floor(((s / Math.sqrt(w)) * n))}
                 </td>)}
             </tr>)}
@@ -342,10 +338,10 @@ const Distance: React.FC = () => {
 
 const Cover = () => {
     return <>
-        <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both passive defense and damage reduction</p>
+        <p>Hinding behind a cover, whether partially or fully gives your character cover, cover grants both base defense and damage reduction</p>
         <p>Damage reduction depends on the type of material is covering you, thickness and hardness matter. When damage absorbtion from cover is applied it stacks with all other sources, armor piercing is applied only once to the entire stack.
             Cover does not grant any benefits from close range combat rolls or thrown explosive rolls, only firearms and non-explosive thrown like knives.
-            Firearms that deal splash damage like shotguns and missile launchers always apply passive defense and cover damage absorbtion, but may destroy the cover depending on the damage.
+            Firearms that deal splash damage like shotguns and missile launchers always apply base defense and cover damage absorbtion, but may destroy the cover depending on the damage.
         </p>
         <p>Each time damage is taken through damage absorbtion each source drops their damage absorbtion by 1 point, when dropped to zero they no longer provide any benefit.</p>
         <p>If damage exceeds damage absorbtion x 10 then the cover or armor is instantly destroyed. Damage from multiple bullets count seperately for this purpose.</p>
@@ -360,13 +356,13 @@ const Cover = () => {
             </tbody>
         </table>
         <h5>Low cover</h5>
-        <p>Low cover (25% +) of your body is covered, you gain +4 passive defense, 25% chance to apply damage absorbtion from cover</p>
+        <p>Low cover (25% +) of your body is covered, you gain +4 base defense, 25% chance to apply damage absorbtion from cover</p>
         <h5>High cover</h5>
-        <p>Mid cover (50% +) of your body is covered, you gain +8 passive defense, 50% chance to apply damage absorbtion from cover</p>
+        <p>Mid cover (50% +) of your body is covered, you gain +8 base defense, 50% chance to apply damage absorbtion from cover</p>
         <h5>Massive cover</h5>
-        <p>High cover (75% +) of your body is covered, you gain +12 passive defense, 75% chance to apply damage absorbtion from cover</p>
+        <p>High cover (75% +) of your body is covered, you gain +12 base defense, 75% chance to apply damage absorbtion from cover</p>
         <h5>total cover</h5>
-        <p>Your entire body is covered, you gain +20 passive defense if the enemy knows where you are, if they do not then they must guess the hex, 100% chance to apply damage absorbtion from cover.
+        <p>Your entire body is covered, you gain +20 base defense if the enemy knows where you are, if they do not then they must guess the hex, 100% chance to apply damage absorbtion from cover.
             Total cover also prevents you from attacking.
         </p>
     </>;
@@ -391,7 +387,7 @@ const MassiveDamage = () => {
             <br />
             * Means that this injury will naturally heal or is not permanent, otherwise a you need medical assistance. (surgery, medicine, cloning, etc)
             <br />
-            <br /> Any injury that causes a penalty to agility also inflicts the same penalty to your passive and active defense
+            <br /> Any injury that causes a penalty to agility also inflicts the same penalty to your active defense
             You do not roll on the massive damage table if you are brought to a dying state due to bleeding.
         </p>
         <p>Roll a 1d10, subtract from the result by an amount equal to life left if above 0</p>

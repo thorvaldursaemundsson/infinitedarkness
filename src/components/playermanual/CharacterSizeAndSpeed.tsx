@@ -26,7 +26,7 @@ const CharacterSizeAndSpeed = () => <Section title='Character Size & movement sp
         </thead>
         <tbody>
 
-            {CharacterSizeMods.map(m => <tr>
+            {CharacterSizeMods.map(m => <tr key={`csas_csm_${m.size}`}>
                 <td>
                     {m.size}
                 </td>

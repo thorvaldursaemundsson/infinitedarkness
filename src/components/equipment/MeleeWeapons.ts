@@ -1,29 +1,31 @@
 import { SkillName } from "../general/Skills";
 import Item, { D, IDamageDice } from "./Item";
 
+export type actionPointsUses = 1|2|3|4|5|6|7|8;
+
 export interface IMeleeWeapon extends Item {
     size: 'light' | 'medium' | 'heavy';
     damage: IDamageDice;
     hitbonus?: number;
     armorpiercing?: number;
     strengthRequirement: number;
-    actionPoints: 1|2|3|4|5|6|7|8;
+    actionPoints: actionPointsUses;
 }
 
 export class MeleeWeapon implements IMeleeWeapon {
     size: "light" | "medium" | "heavy";
     damage: IDamageDice;
-    hitbonus?: number | undefined;
-    armorpiercing?: number | undefined;
+    hitbonus?: number;
+    armorpiercing?: number;
     weight: number;
     value: number;
-    description?: string | undefined;
+    description?: string;
     name: string;
     strengthRequirement: number;
     relatedSkill: SkillName = 'combat';
-    actionPoints: 1|2|3|4|5|6|7|8;
+    actionPoints: actionPointsUses;
 
-    constructor(name: string, weight: number, value: number, damage: IDamageDice, size: "light" | "medium" | "heavy", strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, actionPoints: 1|2|3|4|5|6|7|8) {
+    constructor(name: string, weight: number, value: number, damage: IDamageDice, size: "light" | "medium" | "heavy", strengthRequirement: number, description: string | undefined, hitbonus: number | undefined, armorpiercing: number | undefined, actionPoints: actionPointsUses) {
         this.size = size;
         this.name = name;
         this.weight = weight;

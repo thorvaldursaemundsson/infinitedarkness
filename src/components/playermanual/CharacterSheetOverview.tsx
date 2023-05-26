@@ -44,8 +44,7 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <h4>Defense</h4>
     <p>Defense is the number enemies must overcome to hit you with attacks.<br />
     First number is your <b>base defense</b>: (depends on size).<br />
-    Second number is your <b>passive defense</b>: <i>base defense</i> + agility.<br />
-    Third number is <b>active defense</b>: <i>passive defense</i> + skill (combat or acrobatics, whichever is higher).<br />
+    Second is <b>active defense</b>: base + agility + skill (combat or acrobatics, whichever is higher).<br />
     Benefits to defense apply at a level, cover applies to base and up. Since passives is based on base it inherits the same benefit, active likewise.
     </p>
 
@@ -53,7 +52,10 @@ const CharacterSheetOverview = () => <Section title='Character sheet overview'>
     <p>How much your character can carry without becoming encumbered. See carrying capacity for more details</p>
 
     <h4>Speed</h4>
-    <p>Your character's base speed. Can move this many meters during a single combat round.</p>
+    <p>Your character's base speed. This is walking speed outside of combat. A move action in combat uses 3 action points and you can move up to your speed in meters.</p>
+
+    <h4>Action points</h4>
+    <p>This is how many action points your character starts with at the start of your turn. It is 4 + agility / 2, each 6 ranks of acrobatics and combat give +1 too. Certain perks and traits can add action points, as do certain stimulants.</p>
 
     <h4>Apperance Traits</h4>
     <p>Describe how your character looks like, how tall, how heavy.</p>

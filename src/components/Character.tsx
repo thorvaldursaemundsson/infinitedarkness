@@ -249,7 +249,7 @@ export class Character {
         return this.getPassiveDefense() + Math.max(combat, acrobatics) + this.getHook('activedefense');
     }
 
-    public getPassiveDefense() {
+    private getPassiveDefense() {
         return this.getBaseDefense() + Math.max(this.agility, 0) + this.getHook('passivedefense');
     }
 

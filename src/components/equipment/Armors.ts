@@ -5,7 +5,7 @@ export interface ArmorData {
     damageAbsorbtion: number;
     weight: number;
     cost: number;
-    agilityMod: number;
+    actionPointMod: number;
     description: string;
     armorType: string;
 }
@@ -43,7 +43,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 3,
         weight: 10,
         cost: 3000,
-        agilityMod: -1,
+        actionPointMod: -1,
         description: 'Composite armor made primarily of nylon and polyester, thick layers give stab and cut protection',
         armorType: 'bodySuit'
     },
@@ -52,7 +52,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 2,
         weight: 5,
         cost: 4500,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'Heat resistant synthetic fiber, woven into a flexible and light body suit',
         armorType: 'bodySuit'
     },
@@ -61,7 +61,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 3,
         weight: 10,
         cost: 6000,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
         armorType: 'bodySuit'
     },
@@ -70,7 +70,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 5,
         weight: 15,
         cost: 12000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'An incredibly strong weave of carbon fiber, kevlar and nylon and polyester. Gives incredible defense',
         armorType: 'bodySuit'
     },
@@ -79,7 +79,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 6,
         weight: 10,
         cost: 30000,
-        agilityMod: -1,
+        actionPointMod: -1,
         description: 'A kevlar body suit reinforced with graphene nanotube super structures which gives protection against most attacks',
         armorType: 'bodySuit'
     },
@@ -88,7 +88,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 7,
         weight: 8,
         cost: 40000,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'A body armor made entirely out of nanotube carbyne weave, incredibly strong, light and expensive',
         armorType: 'bodySuit'
     },
@@ -97,7 +97,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 8,
         weight: 8,
         cost: 400000,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'MKII version of high yield nanosuit',
         armorType: 'bodySuit'
     },
@@ -106,7 +106,7 @@ const bodySuits: BodySuit[] = [
         damageAbsorbtion: 9,
         weight: 8,
         cost: 4000000,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'MKII version of high yield nanosuit',
         armorType: 'bodySuit'
     }
@@ -118,7 +118,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 2,
         weight: 8,
         cost: 2500,
-        agilityMod: 0,
+        actionPointMod: 0,
         description: 'Hard but elastic plastic plates which reflect impacts, very durable',
         armorType: 'armorPlate'
     },
@@ -127,7 +127,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 4,
         weight: 10,
         cost: 3500,
-        agilityMod: -1,
+        actionPointMod: -1,
         description: 'Very hard ceramic plates which absorb a lot of damage, however each time the damage is exceeded they lose 1 damage absorbtion. These are replaced after every combat',
         armorType: 'armorPlate'
     },
@@ -136,7 +136,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 5,
         weight: 12,
         cost: 4000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'High carbon hardened steel plates, very strong but also heavy',
         armorType: 'armorPlate'
     },
@@ -145,7 +145,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 7,
         weight: 18,
         cost: 8000,
-        agilityMod: -3,
+        actionPointMod: -3,
         description: 'High carbon hardened steel plates, very strong but also heavy. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
@@ -154,7 +154,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 6,
         weight: 10,
         cost: 9000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive',
         armorType: 'armorPlate'
     },
@@ -163,7 +163,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 8,
         weight: 16,
         cost: 18000,
-        agilityMod: -3,
+        actionPointMod: -3,
         description: 'An alloy of titanium and gold, stronger than steel. And significantly more expensive. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
@@ -172,7 +172,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 7,
         weight: 8,
         cost: 18000,
-        agilityMod: -1,
+        actionPointMod: -1,
         description: 'Titan alloy reinforced by a weave of graphene nanotube super structure',
         armorType: 'armorPlate'
     },
@@ -181,7 +181,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 9,
         weight: 12,
         cost: 32000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'Titan alloy reinforced by a weave of graphene nanotube super structure. Fullplate means more thickness and coverage.',
         armorType: 'armorPlate'
     },
@@ -190,7 +190,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 10,
         weight: 12,
         cost: 320000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'MKII version of the Hyper Nanostructure Fullplates',
         armorType: 'armorPlate'
     },
@@ -199,7 +199,7 @@ const armorPlates: ArmorPlate[] = [
         damageAbsorbtion: 11,
         weight: 12,
         cost: 3200000,
-        agilityMod: -2,
+        actionPointMod: -2,
         description: 'MKIII version of the Hyper Nanostructure Fullplates',
         armorType: 'armorPlate'
     },
@@ -211,7 +211,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 0,
         weight: 6,
         cost: 4000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 0,
         strengthMod: 1,
         description: 'Servos placed on joints aid movement speed, agility and strength',
@@ -222,7 +222,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 1,
         weight: 12,
         cost: 7000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 0,
         strengthMod: 3,
         description: 'Frame around the body grants greater strength, speed and agility',
@@ -233,7 +233,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 1,
         weight: 14,
         cost: 8000,
-        agilityMod: 3,
+        actionPointMod: 3,
         perceptionMod: 0,
         strengthMod: 2,
         description: 'Advanced frame around the body, which grants great mobility and strength',
@@ -244,7 +244,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 4,
         weight: 18,
         cost: 9000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 1,
         strengthMod: 4,
         description: 'This armor frame encapsulates the entire body and greats great strength, as well as visual prowess and mobility',
@@ -255,7 +255,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 5,
         weight: 24,
         cost: 12000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 1,
         strengthMod: 5,
         description: 'This armor frame is almost a vehicle, the strength bonus it grants is beyond belief',
@@ -266,7 +266,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 6,
         weight: 30,
         cost: 16000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 1,
         strengthMod: 5,
         description: 'An even larger version of the Titan Power Armor',
@@ -277,7 +277,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 7,
         weight: 30,
         cost: 160000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 1,
         strengthMod: 6,
         description: 'MKII version of the Mecha Titan',
@@ -288,7 +288,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 8,
         weight: 30,
         cost: 1600000,
-        agilityMod: 1,
+        actionPointMod: 1,
         perceptionMod: 1,
         strengthMod: 8,
         description: 'MKIII version of the Mecha Titan',
@@ -299,7 +299,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 4,
         weight: 12,
         cost: 15000,
-        agilityMod: 2,
+        actionPointMod: 2,
         perceptionMod: 2,
         strengthMod: 2,
         description: 'The fabled merlion warrior armor frame grants a balanced bonus to visual prowess, mobility and strength',
@@ -310,7 +310,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 5,
         weight: 12,
         cost: 150000,
-        agilityMod: 3,
+        actionPointMod: 3,
         perceptionMod: 3,
         strengthMod: 3,
         description: 'The MKII version of the merlion warrior armor',
@@ -321,7 +321,7 @@ const powerArmors: PowerArmor[] = [
         damageAbsorbtion: 6,
         weight: 12,
         cost: 1500000,
-        agilityMod: 4,
+        actionPointMod: 4,
         perceptionMod: 4,
         strengthMod: 4,
         description: 'The MKIII version of the merlion warrior armor',
