@@ -206,7 +206,7 @@ const ArmorTable: React.FC<IArmorTableProps> = ({ armors }) => {
         <thead>
             <tr>
                 <th style={armorThSizeWide}>Name</th>
-                <th style={armorThSizeWide}>Damage Absorbtion</th>
+                <th style={armorThSizeWide}>Damage Absorbtion:Minimum damage</th>
                 <th>Mod</th>
                 <th>Cost</th>
                 <th>Weight</th>
@@ -231,7 +231,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
         return <>
             <tr onClick={() => setDescriptionOpen(false)}>
                 <td>{armor.name}</td>
-                <td>{armor.damageAbsorbtion}</td>
+                <td>{armor.damageAbsorbtion.damageReduction}:{armor.damageAbsorbtion.minimumDamage}</td>
                 <td>{armor.actionPointMod} {extra}</td>
                 <td>{bigNumberSeparator(armor.cost)}</td>
                 <td>{armor.weight}</td>
@@ -241,7 +241,7 @@ const ArmorRow: React.FC<IArmorRow> = ({ armor }) => {
     else
         return (<tr onClick={() => setDescriptionOpen(true)}>
             <td>{armor.name}</td>
-            <td>{armor.damageAbsorbtion}</td>
+            <td>{armor.damageAbsorbtion.damageReduction}:{armor.damageAbsorbtion.minimumDamage}</td>
             <td>{armor.actionPointMod} {extra} </td>
             <td>{bigNumberSeparator(armor.cost)}</td>
             <td>{armor.weight}</td>
@@ -326,7 +326,8 @@ const getAmmoInfo = (ammo: Ammo): AmmoInformation => {
 
 const FireArmRow = (f: FireArm) => {
     const [descriptionOpen, setDescriptionOpen] = useState(false);
-
+    const splash = f.splashRange ? 'Splash' : '';
+    const splashRadius = splash ? `;${f.lowDamageZone} m radius` : '';
     return (<><tr style={firearmRowStyle} onClick={() => setDescriptionOpen(!descriptionOpen)}>
         <td>{f.fireArmClass}</td>
         <td>{f.name}</td>
@@ -343,7 +344,7 @@ const FireArmRow = (f: FireArm) => {
         {descriptionOpen && <tr>
             <td>STR: {f.strengthRequirement}</td>
             <td>
-                {f.splashRange !== undefined ? `Splash: ${f.splashRange}${f.lowDamageZone !== undefined ? `/${f.lowDamageZone}` : ``} m radius` : ' '}
+                {splash}{splashRadius}
             </td>
             <td colSpan={8}><Ellipsis text={f.description} cutOff={100} /></td>
         </tr>}
@@ -365,19 +366,20 @@ const AmmoTable = (ammo: AmmoInformation[]) =>
         </thead>
         <tbody>
             {ammo.map(a =>
-                <><tr>
-                    <td>{a.ammo}</td>
-                    <td>{a.cost}</td>
-                    <td>{a.weight}</td>
-                    <td>
-                        {a.types.map(t => capitalize(t)).join(', ')}
-                    </td>
-                </tr>
+                <React.Fragment key={`pm_e_at_tr1_${a.ammo}`}>
                     <tr>
+                        <td>{a.ammo}</td>
+                        <td>{a.cost}</td>
+                        <td>{a.weight}</td>
+                        <td>
+                            {a.types.map(t => capitalize(t)).join(', ')}
+                        </td>
+                    </tr>
+                    <tr >
                         <td className='univeralBorderBottom' colSpan={3}>{a.description}</td>
                         <td className='univeralBorderBottom'> Heard from: {a.loudness.hearingRange}, deaf from:{a.loudness.deafnessRange} for {a.loudness.deafnessTime} rounds </td>
                     </tr>
-                </>)}
+                </React.Fragment>)}
         </tbody>
     </table>;
 

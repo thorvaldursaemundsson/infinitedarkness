@@ -60,14 +60,18 @@ export class FullArmor implements IFullArmor, Item {
         this.relatedSkill = 'combat';
         this.value = this.getValue();
     }
-    public getDamageAbsorbtion(): number {
-        const bodySuit = (this.bodySuit && this.bodySuit.damageAbsorbtion) || 0;
-        const armorPlate = (this.armorPlate && this.armorPlate.damageAbsorbtion) || 0;
-        const powerArmor = (this.powerArmor && this.powerArmor.damageAbsorbtion) || 0;
+    public getDamageAbsorbtion(): [number, number] {
+        const bodySuitDr = (this.bodySuit && this.bodySuit.damageAbsorbtion.damageReduction) || 0;
+        const armorPlateDr = (this.armorPlate && this.armorPlate.damageAbsorbtion.damageReduction) || 0;
+        const powerArmorDr = (this.powerArmor && this.powerArmor.damageAbsorbtion.damageReduction) || 0;
+
+        const bodySuitM = (this.bodySuit && this.bodySuit.damageAbsorbtion.minimumDamage) || 0;
+        const armorPlateM = (this.armorPlate && this.armorPlate.damageAbsorbtion.minimumDamage) || 0;
+        const powerArmorM = (this.powerArmor && this.powerArmor.damageAbsorbtion.minimumDamage) || 0;
 
         const integrationValue = this.integratedSystemsOnArmor.length > 0 ? this.integratedSystemsOnArmor.map(i => i.damageAbsorbtion).reduce((a, b) => a + b, 0) : 0;
 
-        return bodySuit + armorPlate + powerArmor + integrationValue;
+        return [bodySuitDr + armorPlateDr + powerArmorDr + integrationValue, Math.max(bodySuitM, armorPlateM, powerArmorM)];
     }
 
     public getWeight(): number {
@@ -154,6 +158,8 @@ const ArmorCrafter: React.FC<IArmorCrafterProps> = ({ onClick }) => {
         size: size,
     });
 
+    const [damageReduction, damageMinimum] = theArmor.getDamageAbsorbtion();
+
     return (<div>
         <p>Customize an armor</p>
         <select onChange={(e) => setBodySuit(bodySuits.find(f => f.name === e.target.value))}>
@@ -206,7 +212,7 @@ const ArmorCrafter: React.FC<IArmorCrafterProps> = ({ onClick }) => {
         </select>
         <div className='divcol2'>
             <div>
-                <b>Damage Absorbtion:</b> {theArmor.getDamageAbsorbtion()}<br />
+                <b>Damage Absorbtion:</b> {damageReduction}/{damageMinimum}<br />
                 <b>Cost:</b> {bigNumberSeparator(theArmor.getValue())} credits <br />
                 <b>Weight:</b> {weightConverter(theArmor.getWeight() * 1000)}
             </div>

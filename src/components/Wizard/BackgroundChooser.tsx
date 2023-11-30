@@ -24,9 +24,9 @@ export interface SkillRankPair {
     rank: number;
 }
 const setSkillRank = (skillRanks: SkillRankPair[], setSkillRanks: React.Dispatch<React.SetStateAction<SkillRankPair[]>>, skill: SkillName, rank: number) => {
-    let currentSkillRanks = skillRanks;
-    for (var index in currentSkillRanks) {
-        var skillRank = currentSkillRanks[index];
+    let currentSkillRanks = [...skillRanks];
+    for (let index in currentSkillRanks) {
+        let skillRank = currentSkillRanks[index];
         if (skillRank.skill === skill) {
             skillRank.rank = rank;
             break;
@@ -39,13 +39,13 @@ const ChoostSkillsInTemplate: React.FC<ITemplateSkillPicker> = ({ inputTemplate,
     const distinctPickRaise = [0, ...pickRaise.filter((v, i, a) => a.indexOf(v) === i)];
 
     return (<>
-        <p>Please assign at least: {pickRaise.map(pr => `${pr} `)} to skills below.</p>
+        <p>Please assign a rank of 2, 3 and 4 to two skills each below.</p>
         <ul className="listhighliter">
-            {inputTemplate.skillOptions.sort().map(skill => {
-                return <li><label className="shortLabel">{skill}</label>
+            {[...inputTemplate.skillOptions].sort().map(skill => {
+                return <li key={`w_bc_csit_${skill}`}><label className="shortLabel">{skill}</label>
                     {distinctPickRaise.map(rank => {
                         return <label key={'ws2csin_l_' + skill + rank} className="veryShortLabel">
-                            <input key={'ws2csin_l_' + skill + rank} name={skill} type='radio' onClick={() => setSkillRank(skillRanks, setSkillRanks, skill, rank)} /> {rank}
+                            <input key={'ws2csin_l_' + skill + rank} name={skill} type='radio' checked={rank === skillRanks.find(s=>s.skill===skill)!.rank} onChange={() => setSkillRank(skillRanks, setSkillRanks, skill, rank)} /> {rank}
                         </label>
                     })}
                 </li>
@@ -89,17 +89,11 @@ const BackgroundChooser: React.FC<IStep2Props> = ({ age, onComplete }) => {
     const [currentBackground, setCurrentBackground] = useState(0);
     const finalBackground = getFinalBackground(age);
 
-    const ViewBackgroundOptions = () => {
-        switch (currentBackground) {
-            case 0: return <ChooseBackground key='ws2cb1' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={EarlyChildhoodBackground} />;
-            case 1: return <ChooseBackground key='ws2cb2' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={YouthBackground} />;
-            case 2: return <ChooseBackground key='ws2cb3' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={AdultBackground} />;
-            default: return null;
-        }
-    }
-
     return (<>
-        {currentBackground > finalBackground ? <button onClick={() => onComplete(skillRanks)}>Done</button> : <ViewBackgroundOptions key='ws2vbo' />}
+        {currentBackground > finalBackground ? <button onClick={() => onComplete(skillRanks)}>Done</button> : null}
+        {currentBackground === 0 ? <ChooseBackground key='ws2cb1' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={EarlyChildhoodBackground} />: null}
+        {currentBackground === 1 ? <ChooseBackground key='ws2cb2' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={YouthBackground} />: null}
+        {currentBackground === 2 ? <ChooseBackground key='ws2cb3' onComplete={(sr) => nextBackground(currentBackground, setCurrentBackground, setSkillRanks, sr, skillRanks)} backgroundOptions={AdultBackground} />: null}
     </>);
 }
 

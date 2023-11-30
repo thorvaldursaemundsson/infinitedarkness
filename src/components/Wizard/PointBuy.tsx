@@ -76,12 +76,12 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
     const [currentStats, setCurrentStats] = useReducer(IStatsReducer, {
         species: startingSpecies,
         age: startingAge || 24,
-        strength: 4,
-        agility: 4,
-        endurance: 4,
-        intelligence: 4,
-        perception: 4,
-        willpower: 4,
+        strength: 0,
+        agility: 0,
+        endurance: 0,
+        intelligence: 0,
+        perception: 0,
+        willpower: 0,
         size: 'medium',
         restExp: 0,
     });
@@ -129,7 +129,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.strength.pointBuyMod + getStrengthMod(currentStats.size)}</td>
                     <td>{currentStats.strength + currentRacialMod.strength.pointBuyMod + getStrengthMod(currentStats.size)}</td>
                     <td><button onClick={() => setCurrentStats({ strength: currentStats.strength + 1 })}>+ ({costAtP(currentStats.strength)})</button>
-                        <button onClick={() => setCurrentStats({ strength: Math.max(currentStats.strength - 1, 1) })}>- ({costAtM(currentStats.strength)})</button></td>
+                        <button onClick={() => setCurrentStats({ strength: Math.max(currentStats.strength - 1, 0) })}>- ({costAtM(currentStats.strength)})</button></td>
                 </tr>
                 <tr>
                     <td>Endurance</td>
@@ -137,7 +137,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.endurance.pointBuyMod}</td>
                     <td>{currentStats.endurance + currentRacialMod.endurance.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ endurance: currentStats.endurance + 1 })}>+ ({costAtP(currentStats.endurance)})</button>
-                        <button onClick={() => setCurrentStats({ endurance: Math.max(currentStats.endurance - 1, 1) })}>- ({costAtM(currentStats.endurance)})</button></td>
+                        <button onClick={() => setCurrentStats({ endurance: Math.max(currentStats.endurance - 1, 0) })}>- ({costAtM(currentStats.endurance)})</button></td>
                 </tr>
                 <tr>
                     <td>Agility</td>
@@ -145,7 +145,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.agility.pointBuyMod}</td>
                     <td>{currentStats.agility + currentRacialMod.agility.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ agility: currentStats.agility + 1 })}>+ ({costAtP(currentStats.agility)})</button>
-                        <button onClick={() => setCurrentStats({ agility: Math.max(currentStats.agility - 1, 1) })}>- ({costAtM(currentStats.agility)})</button></td>
+                        <button onClick={() => setCurrentStats({ agility: Math.max(currentStats.agility - 1, 0) })}>- ({costAtM(currentStats.agility)})</button></td>
                 </tr>
                 <tr>
                     <td>Perception</td>
@@ -153,7 +153,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.perception.pointBuyMod}</td>
                     <td>{currentStats.perception + currentRacialMod.perception.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ perception: currentStats.perception + 1 })}>+ ({costAtP(currentStats.perception)})</button>
-                        <button onClick={() => setCurrentStats({ perception: Math.max(currentStats.perception - 1, 1) })}>- ({costAtM(currentStats.perception)})</button></td>
+                        <button onClick={() => setCurrentStats({ perception: Math.max(currentStats.perception - 1, 0) })}>- ({costAtM(currentStats.perception)})</button></td>
                 </tr>
                 <tr>
                     <td>Intelligence</td>
@@ -161,7 +161,7 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.intelligence.pointBuyMod}</td>
                     <td>{currentStats.intelligence + currentRacialMod.intelligence.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ intelligence: currentStats.intelligence + 1 })}>+ ({costAtP(currentStats.intelligence)})</button>
-                        <button onClick={() => setCurrentStats({ intelligence: Math.max(currentStats.intelligence - 1, 1) })}>- ({costAtM(currentStats.intelligence)})</button></td>
+                        <button onClick={() => setCurrentStats({ intelligence: Math.max(currentStats.intelligence - 1, 0) })}>- ({costAtM(currentStats.intelligence)})</button></td>
                 </tr>
                 <tr>
                     <td>Willpower</td>
@@ -169,13 +169,13 @@ const PointBuy: React.FC<IPointBuyProps> = ({ startingSpecies, startingAge, onCo
                     <td>{currentRacialMod.willpower.pointBuyMod}</td>
                     <td>{currentStats.willpower + currentRacialMod.willpower.pointBuyMod}</td>
                     <td><button onClick={() => setCurrentStats({ willpower: currentStats.willpower + 1 })}>+ ({costAtP(currentStats.willpower)})</button>
-                        <button onClick={() => setCurrentStats({ willpower: Math.max(currentStats.willpower - 1, 1) })}>- ({costAtM(currentStats.willpower)})</button></td>
+                        <button onClick={() => setCurrentStats({ willpower: Math.max(currentStats.willpower - 1, 0) })}>- ({costAtM(currentStats.willpower)})</button></td>
                 </tr>
             </tbody>
         </table>
         <h5>Size</h5>
         {currentRacialMod.sizeOptions.map(size => {
-            return <label className="shortLabel"> <input type='radio' name='size' checked={currentStats.size === size} onClick={() => setCurrentStats({ size: size })}></input> {size}</label>;
+            return <label key={`w_pb_pb_size_${size}`} className="shortLabel"> <input type='radio' name='size' checked={currentStats.size === size} onChange={() => setCurrentStats({ size: size })}></input> {size}</label>;
         })}
         <br />
         <button onClick={() => complete()}>Done</button>

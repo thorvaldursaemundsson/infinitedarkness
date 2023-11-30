@@ -17,7 +17,7 @@ const BasicChooser: React.FC<IStep1Props> = ({ onComplete }) => {
 
     return (<><p>We start by picking a race, an age, name, gender</p>
         Race:
-        {speciesAvailable.map(r => <label className="shortLabel">
+        {speciesAvailable.map(r => <label key={`w_bc_bc_sa_${r}`} className="shortLabel">
             <input checked={race === r} name={r} type='radio' onChange={() => setRace(r)} />{r}
         </label>)}
         <br />

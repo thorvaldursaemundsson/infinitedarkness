@@ -9,7 +9,8 @@ import { nekovianData } from "../races/Nekovians";
 import { synthsData } from "../races/Synth";
 const MakeCharacter: React.FC<IOpenableViewItem> = ({ initiallyOpen }) => {
     return <Section title='How to make a character' initiallyOpen={initiallyOpen}>
-
+        <h3>Alternative method</h3>
+        <p>Go to "Game Master" then go to "Character Creator Wizard". It will give you your options and perform calculations for you.</p>
         <Section title='Ability roller'>
             <Section title='Human dice roller'><GenericCharacterRoller raceData={humansData} /></Section>
             <Section title='Shambra dice roller'><GenericCharacterRoller raceData={shambrasData} /></Section>

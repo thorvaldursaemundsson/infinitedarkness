@@ -9,7 +9,7 @@ const shortWidth: CSSProperties = {
 
 const sizes: CharacterSize[] = ['minute', 'tiny', 'small', 'medium', 'large', 'huge', 'gigantic', 'colossal', 'titanic'];
 
-const CarryingCapacity = () => {
+const CarryingCapacity: React.FC = () => {
     const [currentWeight, setCurrentWeight] = useState(80);
     const [cargoWeight, setCargoWeight] = useState(0);
     const [strength, setStrength] = useState(5);
@@ -22,8 +22,8 @@ const CarryingCapacity = () => {
     const weightFactor = (currentWeight + cargoWeight) * gravityFactor - currentWeight;
 
     const strengthFactor = weightFactor / strength;
-    let penalty = '0';
-    if (strengthFactor <= 4) { }
+    let penalty = '';
+    if (strengthFactor <= 4) { penalty = '0'; }
     else if (strengthFactor <= 8) penalty = '-1';
     else if (strengthFactor <= 12) penalty = '-2';
     else if (strengthFactor <= 16) penalty = '-4';
@@ -33,23 +33,23 @@ const CarryingCapacity = () => {
     else if (strengthFactor <= 32) penalty = 'drag';
     else penalty = 'too heavy';
 
-    return (<Section title='Carrying Capacity and Exhaustion Levels'>
+    return (<Section title='Carrying Capacity and Exhaustion Levels' key='pm_ccael_section'>
         <h3>Carrying Capacity</h3>
         <p>There is only so much weight you can put on a Shambra before they lay down and give up</p>
         <p>Being over capacity goes in phases, at or below the first you suffer no penalty. Then as you increase in weight you begin to suffer various penalties</p>
         <p>Penalty applies to action points and move speed. Each point reduces each by 1</p>
         <ul>
-            <li>Without effect your maximum speed is Sprint (5x)</li>
-            <li>-1 to action points and move speed</li>
-            <li>-2 to action points and move speed</li>
-            <li>-3 to action points and move speed</li>
-            <li>-4 to action points and move speed</li>
-            <li>-5 to action points and move speed</li>
-            <li>Max is how much you can deadlift, if you have action points remaining you can only use them to move</li>
-            <li>Drag is how much you can drag off the ground, if you have action points remaining you can only use move action and max 1 meter / round</li>
+            <li key='pm_ccael_li_1'>Without effect your maximum speed is Sprint (5x)</li>
+            <li key='pm_ccael_li_2'>-1 to action points and move speed</li>
+            <li key='pm_ccael_li_3'>-2 to action points and move speed</li>
+            <li key='pm_ccael_li_4'>-3 to action points and move speed</li>
+            <li key='pm_ccael_li_5'>-4 to action points and move speed</li>
+            <li key='pm_ccael_li_6'>-5 to action points and move speed</li>
+            <li key='pm_ccael_li_7'>Max is how much you can deadlift, if you have action points remaining you can only use them to move</li>
+            <li key='pm_ccael_li_8'>Drag is how much you can drag off the ground, if you have action points remaining you can only use move action and max 1 meter / round</li>
         </ul>
         <b>Size</b>: 
-        {sizes.map(s => <> <span style={currentSize === s ? { textDecoration: 'underline' } : undefined} onClick={() => setCurrentSize(s)}>{s}</span> </>)}
+        {sizes.map(s => <span key={`pm_ccael_s_span_${s}`} style={currentSize === s ? { textDecoration: 'underline' } : undefined} onClick={() => setCurrentSize(s)}>{s}</span>)}
 
         <table>
             <thead>

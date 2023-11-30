@@ -14,6 +14,7 @@ import Cybernetics from '../components/playermanual/Cybernetics';
 import HealthAndRest from '../components/playermanual/HealthAndRest';
 import { IViewProps } from './IViewProps';
 import CharacterSizeAndSpeed from '../components/playermanual/CharacterSizeAndSpeed';
+import ActionCards from '../components/actioncards/ActionCards';
 
 
 const PlayerManual: React.FC<IViewProps> = ({route}) => {
@@ -31,7 +32,9 @@ const PlayerManual: React.FC<IViewProps> = ({route}) => {
         <hr />
         <CharacterSizeAndSpeed key='pmcs' />
         <hr />
-        <CarryingCapacity key='pmcc' />
+        <CarryingCapacity key='pmcac' />
+        <hr />
+        <ActionCards key='pmacds' />
         <hr />
         <Combat key='pm5' />
         <hr />

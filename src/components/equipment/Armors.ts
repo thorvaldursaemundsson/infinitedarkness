@@ -1,8 +1,13 @@
 import { abilities } from "../general/Skills";
 
+export interface DamageAbsorbtion {
+    damageReduction: number;
+    minimumDamage: number;
+}
+
 export interface ArmorData {
     name: string;
-    damageAbsorbtion: number;
+    damageAbsorbtion: DamageAbsorbtion;
     weight: number;
     cost: number;
     actionPointMod: number;
@@ -17,8 +22,8 @@ export interface ArmorPlate extends ArmorData {
 }
 
 interface AbilityMod {
-    ability:abilities,
-    modifier:number;
+    ability: abilities,
+    modifier: number;
 }
 
 export interface IntegratedSystem {
@@ -26,9 +31,9 @@ export interface IntegratedSystem {
     description: string;
     cost: number;
     weight: number;
-    damageAbsorbtion:number;
+    damageAbsorbtion: number;
     abilityModifiers: AbilityMod[];
-    stack:number;
+    stack: number;
 }
 
 export interface PowerArmor extends ArmorData {
@@ -40,7 +45,7 @@ export interface PowerArmor extends ArmorData {
 const bodySuits: BodySuit[] = [
     {
         name: 'Nylon Polyester Composite',
-        damageAbsorbtion: 3,
+        damageAbsorbtion: { damageReduction: 3, minimumDamage: 1 },
         weight: 10,
         cost: 3000,
         actionPointMod: -1,
@@ -49,7 +54,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'Kevlar',
-        damageAbsorbtion: 2,
+        damageAbsorbtion: { damageReduction: 2, minimumDamage: 0 },
         weight: 5,
         cost: 4500,
         actionPointMod: 0,
@@ -58,7 +63,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'Carbon Reinforced Kevlar',
-        damageAbsorbtion: 3,
+        damageAbsorbtion: { damageReduction: 3, minimumDamage: 1 },
         weight: 10,
         cost: 6000,
         actionPointMod: 0,
@@ -67,7 +72,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'Carbon Fiber Weave',
-        damageAbsorbtion: 5,
+        damageAbsorbtion: { damageReduction: 5, minimumDamage: 2 },
         weight: 15,
         cost: 12000,
         actionPointMod: -2,
@@ -76,7 +81,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'Nanotube Superstructure Fiber',
-        damageAbsorbtion: 6,
+        damageAbsorbtion: { damageReduction: 6, minimumDamage: 2 },
         weight: 10,
         cost: 30000,
         actionPointMod: -1,
@@ -85,7 +90,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'High Yield Nanosuit',
-        damageAbsorbtion: 7,
+        damageAbsorbtion: { damageReduction: 7, minimumDamage: 2 },
         weight: 8,
         cost: 40000,
         actionPointMod: 0,
@@ -94,7 +99,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'High Yield Nanosuit MKII',
-        damageAbsorbtion: 8,
+        damageAbsorbtion: { damageReduction: 8, minimumDamage: 2 },
         weight: 8,
         cost: 400000,
         actionPointMod: 0,
@@ -103,7 +108,7 @@ const bodySuits: BodySuit[] = [
     },
     {
         name: 'High Yield Nanosuit MKIII',
-        damageAbsorbtion: 9,
+        damageAbsorbtion: { damageReduction: 9, minimumDamage: 3 },
         weight: 8,
         cost: 4000000,
         actionPointMod: 0,
@@ -115,7 +120,7 @@ const bodySuits: BodySuit[] = [
 const armorPlates: ArmorPlate[] = [
     {
         name: 'Hard Plast Plates',
-        damageAbsorbtion: 2,
+        damageAbsorbtion: { damageReduction: 2, minimumDamage: 0 },
         weight: 8,
         cost: 2500,
         actionPointMod: 0,
@@ -124,7 +129,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Ceramic Plates',
-        damageAbsorbtion: 4,
+        damageAbsorbtion: { damageReduction: 4, minimumDamage: 1 },
         weight: 10,
         cost: 3500,
         actionPointMod: -1,
@@ -133,7 +138,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Steel Plates',
-        damageAbsorbtion: 5,
+        damageAbsorbtion: { damageReduction: 5, minimumDamage: 2 },
         weight: 12,
         cost: 4000,
         actionPointMod: -2,
@@ -142,7 +147,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Steel Fullplate',
-        damageAbsorbtion: 7,
+        damageAbsorbtion: { damageReduction: 7, minimumDamage: 3 },
         weight: 18,
         cost: 8000,
         actionPointMod: -3,
@@ -151,7 +156,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Titan Alloy Plates',
-        damageAbsorbtion: 6,
+        damageAbsorbtion: { damageReduction: 6, minimumDamage: 2 },
         weight: 10,
         cost: 9000,
         actionPointMod: -2,
@@ -160,7 +165,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Titan Alloy Fullplate',
-        damageAbsorbtion: 8,
+        damageAbsorbtion: { damageReduction: 8, minimumDamage: 3 },
         weight: 16,
         cost: 18000,
         actionPointMod: -3,
@@ -169,7 +174,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Hyper Nanostructure Plates',
-        damageAbsorbtion: 7,
+        damageAbsorbtion: { damageReduction: 7, minimumDamage: 3 },
         weight: 8,
         cost: 18000,
         actionPointMod: -1,
@@ -178,7 +183,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Hyper Nanostructure Fullplates',
-        damageAbsorbtion: 9,
+        damageAbsorbtion: { damageReduction: 9, minimumDamage: 3 },
         weight: 12,
         cost: 32000,
         actionPointMod: -2,
@@ -187,7 +192,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Hyper Nanostructure Fullplates MKII',
-        damageAbsorbtion: 10,
+        damageAbsorbtion: { damageReduction: 10, minimumDamage: 3 },
         weight: 12,
         cost: 320000,
         actionPointMod: -2,
@@ -196,7 +201,7 @@ const armorPlates: ArmorPlate[] = [
     },
     {
         name: 'Hyper Nanostructure Fullplates MKIII',
-        damageAbsorbtion: 11,
+        damageAbsorbtion: { damageReduction: 11, minimumDamage: 3 },
         weight: 12,
         cost: 3200000,
         actionPointMod: -2,
@@ -208,7 +213,7 @@ const armorPlates: ArmorPlate[] = [
 const powerArmors: PowerArmor[] = [
     {
         name: 'Exo-Servos',
-        damageAbsorbtion: 0,
+        damageAbsorbtion: { damageReduction: 0, minimumDamage: 0 },
         weight: 6,
         cost: 4000,
         actionPointMod: 1,
@@ -219,7 +224,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Exoskeletal Frame',
-        damageAbsorbtion: 1,
+        damageAbsorbtion: { damageReduction: 1, minimumDamage: 1 },
         weight: 12,
         cost: 7000,
         actionPointMod: 1,
@@ -230,7 +235,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Scout Frame',
-        damageAbsorbtion: 1,
+        damageAbsorbtion: { damageReduction: 1, minimumDamage: 1 },
         weight: 14,
         cost: 8000,
         actionPointMod: 3,
@@ -241,7 +246,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Powered Armor',
-        damageAbsorbtion: 4,
+        damageAbsorbtion: { damageReduction: 4, minimumDamage: 2 },
         weight: 18,
         cost: 9000,
         actionPointMod: 1,
@@ -252,7 +257,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Titan Power Armor',
-        damageAbsorbtion: 5,
+        damageAbsorbtion: { damageReduction: 5, minimumDamage: 2 },
         weight: 24,
         cost: 12000,
         actionPointMod: 1,
@@ -263,7 +268,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Mecha Titan',
-        damageAbsorbtion: 6,
+        damageAbsorbtion: { damageReduction: 6, minimumDamage: 2 },
         weight: 30,
         cost: 16000,
         actionPointMod: 1,
@@ -274,7 +279,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Mecha Titan MKII',
-        damageAbsorbtion: 7,
+        damageAbsorbtion: { damageReduction: 7, minimumDamage: 2 },
         weight: 30,
         cost: 160000,
         actionPointMod: 1,
@@ -285,7 +290,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Mecha Titan MKIII',
-        damageAbsorbtion: 8,
+        damageAbsorbtion: { damageReduction: 8, minimumDamage: 3 },
         weight: 30,
         cost: 1600000,
         actionPointMod: 1,
@@ -296,7 +301,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Merlion Warrior Armor',
-        damageAbsorbtion: 4,
+        damageAbsorbtion: { damageReduction: 4, minimumDamage: 1 },
         weight: 12,
         cost: 15000,
         actionPointMod: 2,
@@ -307,7 +312,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Merlion Warrior Armor MKII',
-        damageAbsorbtion: 5,
+        damageAbsorbtion: { damageReduction: 5, minimumDamage: 1 },
         weight: 12,
         cost: 150000,
         actionPointMod: 3,
@@ -318,7 +323,7 @@ const powerArmors: PowerArmor[] = [
     },
     {
         name: 'Merlion Warrior Armor MKIII',
-        damageAbsorbtion: 6,
+        damageAbsorbtion: { damageReduction: 6, minimumDamage: 1 },
         weight: 12,
         cost: 1500000,
         actionPointMod: 4,
@@ -329,7 +334,7 @@ const powerArmors: PowerArmor[] = [
     },
 ];
 
-const integratedSystems:IntegratedSystem[] = [
+const integratedSystems: IntegratedSystem[] = [
     {
         name: 'Breathing apparatus',
         description: 'allows the user to breathe air from an oxygen tank, lasts up to 4 hours of use. Can be switched on and off at will. Can be refueled for 100 credits',

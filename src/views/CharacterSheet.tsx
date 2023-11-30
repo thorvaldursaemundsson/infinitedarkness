@@ -32,13 +32,19 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
 
     const carryWeight = inventory.length > 0 ? inventory.map(i => i.weight).reduce((a, b) => a + b) : 0;
 
-    const damageAbsFromInventory = (): number => {
+    const damageAbsFromInventory = (): [number,number] => {
         const armors: FullArmor[] = inventory.filter(item => item.relatedSkill === 'combat' && (item as any).type === 'armor') as FullArmor[];
         if (armors.length > 0) {
             return armors[0].getDamageAbsorbtion();
         }
-        return 0;
+        return [0,0];
     };
+
+    //character.getDamageAbsorption() + damageAbsFromInventory()
+    const characterDamageReduction = character.getDamageAbsorption();
+    const [damageAbsInventory, minDamageFromInventory] = damageAbsFromInventory();
+    const damageAbs = characterDamageReduction + damageAbsInventory;
+    const minDamage = Math.max(minDamageFromInventory);
 
     return (<div className="characterSheet">
         {viewState !== "edit" ?
@@ -123,7 +129,8 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = (props) => {
                         <label>Damage absorption</label>
                     </td>
                     <td>
-                        <HideNumber txt={character.getDamageAbsorption() + damageAbsFromInventory()} explain={'damage absorbtion'} isEdit={viewState} />
+                        <HideNumber txt={damageAbs} explain={'damage absorbtion'} isEdit={viewState} />:
+                        <HideNumber txt={minDamage} explain={'minimum damage'} isEdit={viewState} />
                     </td>
                     <td>
                         <label>Perception</label>
